@@ -1,0 +1,10 @@
+{
+  "orgName": "Form Builder - Build Test Org",
+  "edition": "Enterprise",
+  "features": ["enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
+  "settings": {
+    "flowSettings": {
+      "enableFlowPauseEnabled": true
+    }
+  }
+}

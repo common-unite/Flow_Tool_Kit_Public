@@ -1,0 +1,11 @@
+{
+  "orgName": "Form Builder - Dev Org",
+  "adminEmail": "bobby@common-unite.com",
+  "edition": "Developer",
+  "features": ["enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
+  "settings": {
+    "flowSettings": {
+      "enableFlowPauseEnabled": true
+    }
+  }
+}
