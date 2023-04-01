@@ -7,7 +7,7 @@
     ],
     "namespace": "FlowToolKit",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "54.0",
+    "sourceApiVersion": "57.0",
     "packageAliases": {
         "Flow Tool Kit: Form and Table Builder": "0Ho4W000000PBNpSAO",
         "Flow Tool Kit: Form and Table Builder@0.1.0-1": "04t4W000002Z10OQAS",
