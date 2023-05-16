@@ -27,6 +27,10 @@ flows:
 
 tasks:
 
+    create_package_version:
+        options:
+            post_install_script: InstallScript
+
     github_copy_subtree:
         options:
             repo_url: "https://github.com/common-unite/Flow_Tool_Kit_Public"
