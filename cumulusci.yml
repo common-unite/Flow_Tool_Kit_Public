@@ -9,7 +9,12 @@ project:
     source_format: sfdx
 
 
+sources:
+    snowfakery:
+            github: 'https://github.com/SFDO-Tooling/Snowfakery'
+
 flows:
+
     release_2gp_beta:
         steps:
             90:
