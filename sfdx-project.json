@@ -2,14 +2,10 @@
     "packageDirectories": [
         {
             "path": "force-app",
-            "default": false
-        },
-        {
-            "path": "force-app-temp",
             "default": true
         }
     ],
     "namespace": "FlowToolKit",
     "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "57.0"
+    "sourceApiVersion": "58.0"
 }
