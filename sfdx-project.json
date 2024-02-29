@@ -3,6 +3,10 @@
         {
             "path": "force-app",
             "default": true
+        },
+        {
+            "path": "force-app-temp",
+            "default": false
         }
     ],
     "namespace": "FlowToolKit",
