@@ -1,11 +1,17 @@
 {
-    "packageDirectories": [
-        {
-            "path": "force-app",
-            "default": true
-        }
-    ],
-    "namespace": "FlowToolKit",
-    "sfdcLoginUrl": "https://login.salesforce.com",
-    "sourceApiVersion": "61.0"
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "namespace": "FlowToolKit",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "61.0",
+  "packageAliases": {
+    "FlowToolKit": "04tRQ0000002NerYAE",
+    "Documentation Support": "0Ho4W000000PBO4SAO",
+    "Documentation Support@0.7.0-1": "04t4W000002Z1TPQA0",
+    "Documentation Support@0.8.0-1": "04tRQ0000002NgTYAU"
+  }
 }
