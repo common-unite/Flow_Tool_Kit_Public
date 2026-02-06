@@ -4,7 +4,7 @@ project:
     package:
         name: 'Flow Tool Kit: Form and Table Builder'
         namespace: FlowToolKit
-        api_version: '61.0'
+        api_version: '64.0'
     git:
     source_format: sfdx
 

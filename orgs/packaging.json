@@ -3,6 +3,9 @@
   "edition": "Enterprise",
   "features": ["enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
   "settings": {
+    "emailAdministrationSettings": {
+      "enableEnhancedEmailEnabled": true
+    },
     "languageSettings": {
       "enableTranslationWorkbench": true
     },
