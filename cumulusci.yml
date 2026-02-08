@@ -32,6 +32,9 @@ flows:
 
 tasks:
 
+    export_form:
+        class_path: cci_flowtoolkit_tasks.export_form.ExportFormMetadata
+
     create_package_version:
         options:
             post_install_script: InstallScript
