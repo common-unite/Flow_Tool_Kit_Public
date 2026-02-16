@@ -15,6 +15,13 @@ sources:
 
 flows:
 
+    dev_org:
+        steps:
+            5:
+                task: assign_permission_sets
+                options:
+                    api_names: Form_Builder_Admin,Form_Flow_User
+
     release_2gp_beta:
         steps:
             90:

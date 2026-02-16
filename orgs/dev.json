@@ -1,11 +1,52 @@
 {
   "orgName": "Form Builder - Dev Org",
-  "adminEmail": "bobby@common-unite.com",
   "edition": "Developer",
-  "features": ["enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
+  "adminEmail": "bobby@common-unite.com",
+  "hasSampleData": false,
+  "features": [
+    "PlatformCache",
+    "ProviderFreePlatformCache",
+    "ArcGraphCommunity",
+    "Assessments",
+    "BusinessRulesEngine",
+    "ContactsToMultipleAccounts",
+    "DefaultWorkflowUser",
+    "DocGenInd",
+    "EnableSetPasswordInApi",
+    "Fundraising",
+    "Grantmaking",
+    "IndustriesActionPlan",
+    "MarketingUser",
+    "NonprofitCloudCaseManagementUser",
+    "OmnistudioDesigner",
+    "OmnistudioRuntime",
+    "PersonAccounts",
+    "ProgramManagement"
+  ],
   "settings": {
-    "emailAdministrationSettings": {
-      "enableEnhancedEmailEnabled": true
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "chatterSettings": {
+      "enableChatter": true
+    },
+    "apexSettings": {
+      "enableDisableParallelApexTesting": true
+    },
+    "userManagementSettings": {
+      "enableNewProfileUI": true
+    },
+    "securitySettings": {
+      "enableAdminLoginAsAnyUser": true,
+      "sessionSettings": {
+        "forceRelogin": false
+      }
+    },
+    "enhancedNotesSettings": {
+      "enableEnhancedNotes": true
     },
     "flowSettings": {
       "enableFlowPauseEnabled": true
