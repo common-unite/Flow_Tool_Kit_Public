@@ -52,7 +52,7 @@ tasks:
             branch: "main"
             create_release: true
             release_body: true
-            include: [ "cumulusci.yml","sfdx-project.json","orgs/" ]
+            include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md","documents/" ]
 
     robot:
         options:
@@ -74,5 +74,26 @@ orgs:
     scratch:
         build:
             config_file: orgs/build.json
+
         packaging:
             config_file: orgs/packaging.json
+
+        dev:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: True
+
+        feature_get-sobject-type-invocable:
+            config_file: orgs/dev.json
+            days: 7
+            namespaced: True
+
+        feature_review-display-type:
+            config_file: orgs/dev.json
+            days: 7
+            namespaced: True
+
+        feature_hide-headers-dividers:
+            config_file: orgs/dev.json
+            days: 7
+            namespaced: True
