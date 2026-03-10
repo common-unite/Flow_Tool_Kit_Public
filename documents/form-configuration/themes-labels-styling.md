@@ -1,6 +1,12 @@
 # Themes, Labels & Styling
 > Control the visual appearance of your forms with themes, provide translatable labels for multilingual support, and apply custom CSS overrides through style sheets.
 
+## Video Walkthroughs
+
+{% embed url="https://vimeo.com/755158586" %}
+
+{% embed url="https://vimeo.com/815680609" %}
+
 ## Overview
 
 Flow Tool Kit provides three mechanisms for customizing the look and text of your forms:

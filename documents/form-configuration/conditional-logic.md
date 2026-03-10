@@ -14,11 +14,15 @@ Rules are stored as Custom Metadata Types (Form_Conditional_Logic__mdt and Form_
 
 ## Quick Start
 
+![Conditional logic configuration in Form Builder](../screenshots/form-configuration/conditional-logic/conditional-logic-config.png)
+
 1. **Open Form Builder** — Navigate to your form in the Form Builder tab.
 2. **Select a Section or Field** — Click the section or field you want to conditionally show/hide.
 3. **Add Conditional Logic** — In the properties panel, add a conditional logic rule.
 4. **Define Conditions** — Specify the field to watch, the operator (equals, not equals, contains, etc.), and the value to match.
 5. **Save** — Save the form. The condition is now active at runtime.
+
+![Conditional logic toggling fields in real-time](../screenshots/gifs/conditional-logic-toggle.gif)
 
 ## How Conditions Work
 

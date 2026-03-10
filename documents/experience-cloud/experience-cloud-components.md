@@ -11,13 +11,23 @@ This component is designed specifically for Experience Cloud sites where you nee
 
 - **Experience Cloud** (Community Page and Default) — this is an Experience Cloud-only component
 
+## Video Walkthroughs
+
+{% embed url="https://vimeo.com/894319528" %}
+
+{% embed url="https://vimeo.com/998220973" %}
+
 ## Quick Start
+
+![Flowless component on an Experience Cloud page](../screenshots/experience-cloud/flowless-form-on-record-page.png)
 
 1. **Build a Form** — In Form Builder, create a Form for the object you want to display/edit.
 2. **Add to Experience Cloud Page** — In Experience Builder, drag "Form (Dynamic Component)" onto your page.
 3. **Configure via Property Editor** — The custom property editor opens automatically. Select your object, form, and display options.
 4. **Set Record Context** — The component automatically binds to `{!recordId}` and `{!objectApiName}` from the page context.
 5. **Publish** — Publish your Experience Cloud site.
+
+![Experience Builder with Form component](../screenshots/experience-cloud/flowless-experience-builder.png)
 
 ## Properties
 

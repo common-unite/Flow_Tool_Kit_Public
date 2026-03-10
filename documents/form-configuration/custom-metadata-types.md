@@ -1,6 +1,10 @@
 # Custom Metadata Types
 > The metadata foundation of Flow Tool Kit — Forms, Sections, Fields, Conditional Logic, Themes, Labels, and more are all defined as Custom Metadata Type records.
 
+## Video Walkthrough
+
+{% embed url="https://vimeo.com/756525219" %}
+
 ## Overview
 
 Flow Tool Kit is metadata-driven. Every form, section, field, theme, label, and conditional logic rule is stored as a Custom Metadata Type (CMT) record. This means your form definitions deploy with your metadata — through change sets, packages, and CI/CD pipelines — and are available across environments without data migration.

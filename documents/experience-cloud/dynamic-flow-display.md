@@ -14,6 +14,8 @@ This is especially valuable in Experience Cloud, where you often need to embed f
 - **Record Page**
 - **Experience Cloud** (Community Page and Default — with custom property editor)
 
+![Experience Cloud page with form component](../screenshots/experience-cloud/experience-cloud-flow-on-page.png)
+
 ## Quick Start
 
 1. **Add to Page** — Drag "Form (Dynamic Flow)" onto your Lightning page in App Builder or Experience Builder.

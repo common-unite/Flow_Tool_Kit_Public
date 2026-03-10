@@ -13,6 +13,49 @@ sources:
     snowfakery:
             github: 'https://github.com/SFDO-Tooling/Snowfakery'
 
+plans:
+    install:
+        slug: install
+        title: Install Flow Tool Kit
+        tier: primary
+        checks:
+            - when: "not tasks.check_lws_enabled()['is_enabled']"
+              action: error
+              message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
+            - when: "not tasks.check_enhanced_email()['is_enabled']"
+              action: error
+              message: "Enhanced Email must be enabled. Go to Setup → Enhanced Email to enable it. Flow Tool Kit requires Enhanced Email as a package dependency."
+        steps:
+            1:
+                flow: install_prod
+            2:
+                task: deploy
+                options:
+                    path: unpackaged/post/config
+                ui_options:
+                    name: "Deploy Default Configuration (Custom Metadata)"
+                    is_required: False
+                    is_recommended: True
+
+    upgrade:
+        slug: upgrade
+        title: Upgrade Flow Tool Kit
+        tier: additional
+        is_listed: False
+        preflight_message: "This upgrades Flow Tool Kit and its dependencies to the latest version. Existing custom metadata records will not be modified."
+        checks:
+            - when: "not tasks.check_lws_enabled()['is_enabled']"
+              action: error
+              message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
+            - when: "not tasks.check_enhanced_email()['is_enabled']"
+              action: error
+              message: "Enhanced Email must be enabled. Go to Setup → Enhanced Email to enable it. Flow Tool Kit requires Enhanced Email as a package dependency."
+        steps:
+            1:
+                task: update_dependencies
+            2:
+                task: install_managed
+
 flows:
 
     dev_org:
@@ -41,6 +84,14 @@ tasks:
 
     export_form:
         class_path: cci_flowtoolkit_tasks.export_form.ExportFormMetadata
+
+    check_lws_enabled:
+        class_path: tasks.check_lws_enabled.CheckLWSEnabled
+        description: Check if Lightning Web Security (LWS) is enabled
+
+    check_enhanced_email:
+        class_path: tasks.check_enhanced_email.CheckEnhancedEmailEnabled
+        description: Check if Enhanced Email is enabled
 
     create_package_version:
         options:

@@ -1,6 +1,12 @@
 # Form Components System
 > Save, share, and reuse form configurations as Form Component records — enabling component-based form selection in Flows, Experience Cloud, and record pages.
 
+## Video Walkthroughs
+
+{% embed url="https://vimeo.com/762432694" %}
+
+{% embed url="https://vimeo.com/822081867" %}
+
 ## Overview
 
 The Form Components system lets you save form configurations as reusable `Form_Component__c` records. Instead of referencing Form metadata by QualifiedApiName every time, you create a Form Component that packages the form definition, object, theme, and layout settings into a single selectable record.
