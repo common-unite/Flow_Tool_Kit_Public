@@ -147,6 +147,7 @@
 
 * [Release 3.208](release-notes/release-3.208.md)
 * [Release 3.211](release-notes/release-3.211.md)
+* [Release 3.212](release-notes/release-3.212.md)
 * [Release 3.213](release-notes/release-3.213.md)
 
 ## Platform

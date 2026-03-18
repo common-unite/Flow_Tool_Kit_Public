@@ -6,22 +6,10 @@
   "features": [
     "PlatformCache",
     "ProviderFreePlatformCache",
-    "ArcGraphCommunity",
-    "Assessments",
-    "BusinessRulesEngine",
     "ContactsToMultipleAccounts",
     "DefaultWorkflowUser",
-    "DocGenInd",
     "EnableSetPasswordInApi",
-    "Fundraising",
-    "Grantmaking",
-    "IndustriesActionPlan",
-    "MarketingUser",
-    "NonprofitCloudCaseManagementUser",
-    "OmnistudioDesigner",
-    "OmnistudioRuntime",
-    "PersonAccounts",
-    "ProgramManagement"
+    "MarketingUser"
   ],
   "settings": {
     "lightningExperienceSettings": {

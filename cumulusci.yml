@@ -65,6 +65,100 @@ flows:
                 options:
                     api_names: Form_Builder_Admin,Form_Flow_User
 
+    npc_dev_org:
+        description: Set up an NPC scratch org with Grantmaking, OmniStudio, Action Plans, and Experience Cloud
+        steps:
+            1:
+                flow: dependencies
+            2:
+                flow: deploy_unmanaged
+            3:
+                task: deploy_post
+                options:
+                    path: unpackaged/post
+                    namespace_inject: FlowToolKit
+            4:
+                task: assign_permission_sets
+                options:
+                    api_names: Form_Builder_Admin,Form_Flow_User
+            5:
+                task: assign_permission_set_licenses
+                options:
+                    api_names: OmniStudioDesigner,ActionPlansPsl,GrantmakingPsl,FundraisingAccessPsl,ProgramManagementPsl,DynamicAssessmentPsl,GroupMembershipPsl,DocumentChecklistPsl,CarePlansPermissionSetLicense,IndustriesAssessmentPsl
+                ignore_failure: True
+            6:
+                task: assign_permission_sets
+                options:
+                    api_names: OmniStudioAdmin,OmniStudioExecution,ActionPlans,GrantmakingManager,FundraisingAccess,AdvancedProgramManagement,DynamicAssessmentPsl,GroupMembershipPsl,AnalyticsStoreUser,DocumentChecklist,CarePlansPermissionSetLicense,IndustriesAssessmentPermissionSet,IndustriesInteractionSummaryPsl,Fundraising_Admin
+                ignore_failure: True
+            7:
+                task: execute_anon
+                options:
+                    path: datasets/npc/setup_admin_user.apex
+                ignore_failure: True
+            8:
+                task: deploy
+                options:
+                    path: force-app-npc
+                ui_options:
+                    name: "Deploy NPC Configuration (fields, profiles, LWC, Apex, Flows, FlexiPages, List Views, Settings, Sharing)"
+            10:
+                task: execute_anon
+                options:
+                    path: datasets/npc/load_npc_stage_definitions.apex
+                ignore_failure: True
+            10.1:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: datasets/npc/npc_sample_data.recipe.yml
+                ignore_failure: True
+            10.2:
+                task: execute_anon
+                options:
+                    path: datasets/npc/load_npc_sample_accounts.apex
+                ignore_failure: True
+            10.3:
+                task: execute_anon
+                options:
+                    path: datasets/npc/load_npc_sample_data.apex
+                ignore_failure: True
+            11:
+                task: create_community
+                options:
+                    template: Grantmaking
+                    name: Grantmaking Portal
+                    url_path_prefix: grantmaking
+                ignore_failure: True
+            12:
+                task: publish_community
+                options:
+                    name: Grantmaking Portal
+                ignore_failure: True
+            12.1:
+                task: deploy
+                options:
+                    path: unpackaged/npc-post-community
+                ui_options:
+                    name: "Deploy EC Navigation Menu (post-community)"
+                ignore_failure: True
+            12.2:
+                task: publish_community
+                options:
+                    name: Grantmaking Portal
+                ignore_failure: True
+            13:
+                task: execute_anon
+                options:
+                    path: datasets/npc/add_network_members.apex
+                ignore_failure: True
+            14:
+                task: execute_anon
+                options:
+                    path: datasets/npc/create_portal_users.apex
+                ignore_failure: True
+            15:
+                task: snapshot_changes
+
     release_2gp_beta:
         steps:
             90:
@@ -149,7 +243,7 @@ orgs:
             days: 7
             namespaced: True
 
-        feature_lwc-section-type:
-            config_file: orgs/dev.json
+        feature_npc-action-plan-integration:
+            config_file: orgs/npc.json
             days: 7
             namespaced: True
