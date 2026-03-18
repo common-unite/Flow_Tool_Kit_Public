@@ -148,3 +148,8 @@ orgs:
             config_file: orgs/dev.json
             days: 7
             namespaced: True
+
+        feature_lwc-section-type:
+            config_file: orgs/dev.json
+            days: 7
+            namespaced: True

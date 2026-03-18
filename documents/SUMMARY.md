@@ -122,6 +122,7 @@
 * [Data Model](advanced-topics/data-model.md)
 * [Google reCAPTCHA Setup](advanced-topics/google-recaptcha-setup.md)
 * [Lightning Out](advanced-topics/lightning-out.md)
+* [Lwc Section Type](advanced-topics/lwc-section-type.md)
 
 ## FAQ & Troubleshooting
 
@@ -146,6 +147,7 @@
 
 * [Release 3.208](release-notes/release-3.208.md)
 * [Release 3.211](release-notes/release-3.211.md)
+* [Release 3.213](release-notes/release-3.213.md)
 
 ## Platform
 
