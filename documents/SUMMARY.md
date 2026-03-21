@@ -1,5 +1,6 @@
 # Table of Contents
 
+* [Form Template Sources](form-template-sources.md)
 * [Video Mapping](video-mapping.md)
 
 ## Welcome

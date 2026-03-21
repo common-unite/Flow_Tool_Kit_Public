@@ -64,6 +64,11 @@ flows:
                 task: assign_permission_sets
                 options:
                     api_names: Form_Builder_Admin,Form_Flow_User
+            6:
+                task: snowfakery
+                description: Load standard test data (Form Template + Campaigns)
+                options:
+                    recipe: datasets/default/sample_data.recipe.yml
 
     npc_dev_org:
         description: Set up an NPC scratch org with Grantmaking, OmniStudio, Action Plans, and Experience Cloud
@@ -245,5 +250,10 @@ orgs:
 
         feature_npc-action-plan-integration:
             config_file: orgs/npc.json
+            days: 7
+            namespaced: True
+
+        feature_campaign-form-template:
+            config_file: orgs/dev.json
             days: 7
             namespaced: True
