@@ -15,7 +15,7 @@ Think about what this unlocks:
 
 The pattern works with any standard or custom object. If you can create a record in Salesforce, you can connect a form to it.
 
-![Form Template Source Editor Demo](screenshots/form-template-source-editor-demo.gif)
+![Form Template Source Editor Demo](../screenshots/form-template-source-editor-demo.gif)
 
 ## Why This Matters
 
@@ -95,7 +95,7 @@ For Campaign, the standard fields (`Name`, `IsActive`, `StartDate`, `EndDate`) a
 
 Navigate to **Setup > Custom Metadata Types > Form Template Source > Manage Records > New**.
 
-![Form Template Source Configuration](screenshots/form-template-source-campaign-config.png)
+![Form Template Source Configuration](../screenshots/form-template-source-campaign-config.png)
 
 Configure the mapping:
 
@@ -120,7 +120,7 @@ Only map the fields you need. Unmapped fields won't appear in the Form Template 
 
 Open the source object's record page in **Lightning App Builder** and add the **Form (Template Source Editor)** component.
 
-![Lightning App Builder](screenshots/form-template-source-editor-app-builder.png)
+![Lightning App Builder](../screenshots/form-template-source-editor-app-builder.png)
 
 The component automatically detects the Form Template Source metadata for the current object and displays the configured fields in a tabbed layout.
 

@@ -1,6 +1,5 @@
 # Table of Contents
 
-* [Form Template Sources](form-template-sources.md)
 * [Video Mapping](video-mapping.md)
 
 ## Welcome
@@ -154,3 +153,8 @@
 ## Platform
 
 * [Message Channels](platform/message-channels.md)
+
+## Form Templates
+
+* [Form Template Sources](form-templates/form-template-sources.md)
+* [Url Parameter Mapping](form-templates/url-parameter-mapping.md)
