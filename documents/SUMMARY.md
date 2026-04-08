@@ -121,6 +121,7 @@
 * [Cache Reset](advanced-topics/cache-reset.md)
 * [Data Model](advanced-topics/data-model.md)
 * [Google reCAPTCHA Setup](advanced-topics/google-recaptcha-setup.md)
+* [Iframe Embed](advanced-topics/iframe-embed.md)
 * [Lightning Out](advanced-topics/lightning-out.md)
 * [Lwc Section Type](advanced-topics/lwc-section-type.md)
 
@@ -149,6 +150,7 @@
 * [Release 3.211](release-notes/release-3.211.md)
 * [Release 3.212](release-notes/release-3.212.md)
 * [Release 3.213](release-notes/release-3.213.md)
+* [Release 3.218](release-notes/release-3.218.md)
 
 ## Platform
 
