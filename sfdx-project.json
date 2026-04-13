@@ -3,6 +3,10 @@
     {
       "path": "force-app",
       "default": true
+    },
+    {
+      "path": "force-app-post",
+      "default": false
     }
   ],
   "namespace": "FlowToolKit",

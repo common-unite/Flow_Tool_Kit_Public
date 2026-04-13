@@ -31,6 +31,13 @@ plans:
             2:
                 task: deploy
                 options:
+                    path: force-app-post
+                ui_options:
+                    name: "Deploy Post-Install Components"
+                    is_required: True
+            3:
+                task: deploy
+                options:
                     path: unpackaged/post/config
                 ui_options:
                     name: "Deploy Default Configuration (Custom Metadata)"
@@ -72,6 +79,10 @@ flows:
                 task: assign_permission_sets
                 options:
                     api_names: Form_Builder_Admin,Form_Flow_User
+            6:
+                task: deploy
+                options:
+                    path: force-app-post
             # Testing Aura EC site for iframe embed testing
             7:
                 task: create_community
@@ -93,14 +104,32 @@ flows:
                 ignore_failure: True
 
     npc_dev_org:
-        description: Set up an NPC scratch org with Grantmaking, OmniStudio, Action Plans, and Experience Cloud. Extends dev_org (inherits dependencies, deploy, permission sets, sample data) and skips update_admin_profile (fails with PersonAccounts).
+        description: Set up an NPC scratch org with Grantmaking, OmniStudio, Action Plans, and Experience Cloud. Replicates dev_org (dependencies, deploy force-app, sample data, permission sets) but skips update_admin_profile (fails on PersonAccounts) and the Testing Aura EC site (NPC org uses the Grantmaking Portal instead).
         group: Flow Tool Kit
         steps:
-            # Skip update_admin_profile — fails with PersonAccounts (Account.Business_Account record type not found)
-            3.3:
-                task: update_admin_profile
-                when: "False"
-            # NPC Permission Set Licenses (after dev_org step 5)
+            # Replicate dev_org's structure — cannot use dev_org as subflow because CCI can't disable nested tasks via flow step options
+            1:
+                flow: dependencies
+            2:
+                flow: deploy_unmanaged
+            # Inline the parts of config_dev we want — SKIP update_admin_profile (fails with "record type Account.Business_Account not found" on PersonAccount orgs)
+            3:
+                task: deploy_post
+                options:
+                    path: unpackaged/post
+            # Assign project permission sets — update_admin_profile (skipped above) would normally grant FLS on namespaced fields to the admin profile. Form_Builder_Admin provides FLS via permission set instead.
+            4:
+                task: assign_permission_sets
+                options:
+                    api_names: Form_Builder_Admin,Form_Flow_User
+            5:
+                task: deploy
+                options:
+                    path: force-app-post
+            # Skip default snowfakery (datasets/default/sample_data.recipe.yml) — NPC orgs have strict State/Country Picklists which break fake: state_abbr. NPC has its own sample data pipeline (steps 11.1–11.3).
+            6:
+                task: snapshot_changes
+            # NPC Permission Set Licenses
             7:
                 task: assign_permission_set_licenses
                 options:
