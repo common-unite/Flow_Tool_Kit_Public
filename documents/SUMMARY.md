@@ -1,5 +1,6 @@
 # Table of Contents
 
+* [Form_builder_truncation_investigation](form_builder_truncation_investigation.md)
 * [Video Mapping](video-mapping.md)
 
 ## Welcome
@@ -151,6 +152,7 @@
 * [Release 3.212](release-notes/release-3.212.md)
 * [Release 3.213](release-notes/release-3.213.md)
 * [Release 3.218](release-notes/release-3.218.md)
+* [Release 3.226](release-notes/release-3.226.md)
 
 ## Platform
 

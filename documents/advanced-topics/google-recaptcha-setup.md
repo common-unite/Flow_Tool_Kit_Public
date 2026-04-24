@@ -69,6 +69,30 @@ For reCAPTCHA v3 (and recommended for v2):
    - **Version** — v2 or v3
    - **Score Threshold** (v3 only) — minimum score to accept (0.0-1.0, recommended: 0.5)
 
+### Grant Guest User Access to the External Credential
+
+{% hint style="danger" %}
+**This step is required for Experience Cloud guest users.** Missing any of these permissions will block the callout and throw `You don't have read permissions on the User External Credential object` when a guest clicks a reCAPTCHA-enabled button.
+{% endhint %}
+
+Granting access to the external credential principal alone is **not** enough. Salesforce queries the standard `UserExternalCredential` object at callout time to resolve which principal to use, and guest users do not have access to that object by default.
+
+1. Create (or edit) a Permission Set intended for your guest user.
+2. On the permission set, grant **all three** of the following:
+
+| Permission | Where to set |
+|---|---|
+| **Read** on the `UserExternalCredential` standard object | Object Settings → User External Credential → Read |
+| **External Credential Principal Access** for `GoogleRecaptcha - External Form User` | Permission Set → External Credential Principal Access → Add |
+| Apex class access to `FlowToolKit.reCAPTCHA` | Permission Set → Apex Class Access |
+
+3. Assign this permission set to the **Site Guest User** via the Experience Cloud site's public access settings (not regular user assignment):
+   - Experience Cloud Workspaces → Administration → Pages → **Go to Force.com**
+   - Public Access Settings → **Manage Assignments → Edit Assignments**
+   - Add the permission set and save.
+4. In **Setup → Session Settings**, ensure **Let guest users make callouts using Named Credentials** is enabled (Winter '24 release update).
+5. In **Setup → Named Credentials → GoogleRecaptcha**, confirm that **Allowed Namespaces** includes `FlowToolKit`.
+
 ## Step 3: Enable on Forms
 
 1. In Form Builder or template configuration, enable reCAPTCHA.
@@ -101,6 +125,8 @@ For reCAPTCHA v3 (and recommended for v2):
 | All submissions blocked (v3) | Score threshold too high | Lower the threshold (try 0.3-0.5) |
 | Works in sandbox, not production | Different domains | Register the production domain with Google |
 | "Timeout or duplicate" error | Token expired | Tokens are valid for 2 minutes — check for slow form submissions |
+| `You don't have read permissions on the User External Credential object` (guest user only) | Guest user's permission set is missing **Read** on the `UserExternalCredential` standard object. Granting External Credential Principal Access alone is not sufficient — Salesforce still queries `UserExternalCredential` to resolve the principal at callout time. | Follow [Grant Guest User Access to the External Credential](#grant-guest-user-access-to-the-external-credential) above. Most common cause: permission set was created but never assigned via **Public Access Settings → Manage Assignments**, or the `UserExternalCredential` object read was never granted. |
+| Works in one org, fails in another with the External Credential error | Partial setup in the broken org — typically missing one of: `UserExternalCredential` read, guest assignment on the Site, the **Let guest users make callouts using Named Credentials** session setting, or the `FlowToolKit` namespace in the Named Credential's Allowed Namespaces list. | Diff both orgs against the checklist in [Grant Guest User Access to the External Credential](#grant-guest-user-access-to-the-external-credential). |
 
 ## Related Pages
 
