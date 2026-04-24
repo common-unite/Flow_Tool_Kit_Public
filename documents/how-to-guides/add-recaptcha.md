@@ -46,6 +46,22 @@ When your forms are exposed on Experience Cloud sites (especially to unauthentic
 2. Enter your **Site Key** and **Secret Key**.
 3. Select the reCAPTCHA version (v2 or v3).
 
+### Grant Guest User Permissions (required for Experience Cloud)
+
+{% hint style="warning" %}
+**Don't skip this.** Without these permissions, guest users hit `You don't have read permissions on the User External Credential object` the moment they click a reCAPTCHA-enabled button. Granting External Credential Principal Access alone is **not** enough.
+{% endhint %}
+
+On the permission set assigned to your guest user, grant all of:
+
+- **Read** on the `UserExternalCredential` standard object (Object Settings)
+- **External Credential Principal Access** for `GoogleRecaptcha - External Form User`
+- Apex Class Access to `FlowToolKit.reCAPTCHA`
+
+Then assign the permission set via **Experience Workspaces → Administration → Pages → Go to Force.com → Public Access Settings → Manage Assignments**. Also verify **Setup → Session Settings → Let guest users make callouts using Named Credentials** is enabled.
+
+See [Google reCAPTCHA Setup — Grant Guest User Access](../advanced-topics/google-recaptcha-setup.md#grant-guest-user-access-to-the-external-credential) for the full checklist.
+
 ## Step 3: Enable reCAPTCHA on Your Form
 
 1. Open the form in **Form Builder** or configure via the form's CMDT settings.
@@ -81,6 +97,7 @@ When your forms are exposed on Experience Cloud sites (especially to unauthentic
 | "Invalid site key" error | Verify the site key matches your domain in the Google reCAPTCHA console |
 | All submissions blocked | Check the secret key is correct. For v3, lower the score threshold. |
 | Works in sandbox, not production | Add the production domain to the Google reCAPTCHA site registration |
+| `You don't have read permissions on the User External Credential object` on guest-user click | Guest user permission set is missing **Read** on the `UserExternalCredential` standard object. Granting the External Credential Principal alone is not sufficient. See [Grant Guest User Permissions](#grant-guest-user-permissions-required-for-experience-cloud) above. |
 
 ## Related Pages
 
