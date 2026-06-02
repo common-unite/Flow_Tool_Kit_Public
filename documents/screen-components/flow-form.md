@@ -58,6 +58,7 @@ Whether you're building a simple contact form or a complex multi-section intake 
 | `iconName` | String | No | — | SLDS icon name for the header (e.g., "standard:account") |
 | `richText` | String | No | — | Rich text HTML content for the header area |
 | `showHeader` | Boolean | No | — | Display the form header section |
+| `scrollIntoView` | Boolean | No | false | When true, the form scrolls into view on render so users always begin a Flow screen at the form header (see [Scroll Into View on Render](#scroll-into-view-on-render)) |
 | `topMargin` | String | No | — | SLDS margin class for top spacing |
 | `bottomMargin` | String | No | slds-m-bottom_none | SLDS margin class for bottom spacing |
 | `showFieldSetDivider` | Boolean | No | — | Show a visual divider between field sets |
@@ -105,6 +106,63 @@ Whether you're building a simple contact form or a complex multi-section intake 
 - Use `recordWithoutNulls` before Update elements to avoid overwriting existing values with blanks
 
 **Reactive Updates**: The `transformationRecord` input allows other components on the same screen to push field value changes into the form in real-time. The `changedRecordFieldsDateTime` output fires whenever any value changes, which can trigger downstream reactive components.
+
+## Scroll Into View on Render
+
+When a Flow advances from one screen to the next, the next screen renders but the browser viewport stays at whatever scroll position the user left the previous screen at. On long forms, users often start the next screen mid-page and miss the header / first fields entirely.
+
+The **Scroll Into View** property fixes this. When enabled, the Flow Form smoothly scrolls itself into view so its top edge aligns with the top of the viewport — every render, every screen transition.
+
+### Where to find it
+
+Open the Flow Form custom property editor in Flow Builder, expand **Form Properties (Optional)**, and you'll see the **Scroll Into View** section with a toggle on the right.
+
+![Scroll Into View property in the Form Properties accordion](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/131-scroll-into-view-cpe.png)
+
+### Configuring the toggle
+
+The toggle in the section header sets a literal `true` / `false` value. For dynamic control, use the variable picker just below — bind any Boolean variable, formula, or upstream component output (e.g. another component's `valid` flag, a screen-level Boolean variable, a `$GlobalConstant`).
+
+![Toggling Scroll Into View and selecting a Boolean variable](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/131-scroll-into-view-config.gif)
+
+### Runtime behavior
+
+Once enabled, the form's top edge snaps to the top of the viewport on every render. The animation is smooth (respects `prefers-reduced-motion` for users who have opted out of animations at the OS level).
+
+![Form scrolling into view on screen transition](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/131-scroll-into-view-runtime.gif)
+
+### When it fires
+
+| Scenario | Scrolls? |
+|---|---|
+| Screen renders with `scrollIntoView = true` | Yes — once per screen render |
+| Screen renders with `scrollIntoView = false` | No |
+| Reactive input flips `scrollIntoView` from `false` → `true` after render | Yes — once per transition |
+| Reactive input flips `true` → `false` → `true` (multiple times) | Yes — fires on every rising edge |
+| Same-value sets (`true → true` with no false in between) | No |
+| Re-renders triggered by typing, validation, picklist loads, conditional logic | No — internal re-renders are suppressed |
+
+### When it never fires (by design)
+
+The scroll is suppressed in design-time and embedded contexts where it would be disruptive or wrong:
+
+- **Form Builder preview pane** — would scroll the builder itself
+- **Form Builder editor** — wouldn't make sense while editing
+- **Repeater rows** — each repeated row would fight the others for the viewport
+- **Sub-form rendering inside a parent form** — would scroll past the parent
+- **Table-edit mode** — inline edit shouldn't move the page
+
+### Common patterns
+
+- **Long multi-step Flows**: Enable on every Flow Form so users always start at the form header after Next/Previous navigation
+- **Conditional jump**: Bind to a Boolean variable that another component toggles — e.g. a "Skip to Form" button on screen 1 sets a variable that drives scrollIntoView on screen 2, forcing a scroll the moment the user lands
+- **Reactive validation focus**: Bind to a screen-level Boolean that flips true when an upstream validation error needs the user's attention
+
+### Implementation notes
+
+- The scroll uses `requestAnimationFrame` + `Element.scrollIntoView({ block: 'start', behavior: 'smooth' })` on the form's root element — the same pattern as `formTemplate._scrollFormToTop()`
+- The setter detects rising-edge transitions (`false → true`) so reactive flips re-trigger the scroll
+- The first render handles the initial-load case (admin enabled the toggle in the builder, form renders true on mount)
 
 ## Works With
 
