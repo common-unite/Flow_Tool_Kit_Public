@@ -31,6 +31,8 @@ Form Templates now support an optional **Prefill Flow** — an autolaunched Flow
 
 **Starter Flow.** `(Form) Prefill | Template` ships as a Template flow (clonable via Setup) demonstrating the full pattern: Contact + Account lookups, surgical Transform mapping, related-record seeding with the section tag, and an `Already_Submitted` guard that blocks a Contact who already submitted from filling the form out again.
 
+![The shipped starter prefill flow in Flow Builder](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/123-prefill-flow-builder-canvas.png)
+
 **Documentation.** See [Prefill Flow](../form-template-framework/prefill-flow.md) for the full admin guide, troubleshooting catalog, and security guidance.
 
 ### Guest-User Save Override (Overridable Flow)
