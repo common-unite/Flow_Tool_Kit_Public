@@ -97,6 +97,7 @@
 * [Pages And Sections](form-template-framework/pages-and-sections.md)
 * [Prefill Flow](form-template-framework/prefill-flow.md)
 * [Prefill Templates](form-template-framework/prefill-templates.md)
+* [Stages Mode](form-template-framework/stages-mode.md)
 * [Submission Conversion](form-template-framework/submission-conversion.md)
 
 ### How-To Guides
@@ -157,6 +158,7 @@
 * [Release 3.227](release-notes/release-3.227.md)
 * [Release 3.229](release-notes/release-3.229.md)
 * [Release 3.230](release-notes/release-3.230.md)
+* [Release 3.231](release-notes/release-3.231.md)
 
 ## Platform
 

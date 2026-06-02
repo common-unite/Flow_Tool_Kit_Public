@@ -19,6 +19,8 @@ For long or complex forms, users may not be able to complete everything in one s
 
 All saved data is stored in a **Form Submission** record with a status of "Draft."
 
+![Stages overview header with the "Draft saved" indicator and the "Email me a resume link" button](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/127-draft-saved-resume-button.png)
+
 ## Step 1: Enable Save & Resume
 
 1. Open your Form Template configuration.

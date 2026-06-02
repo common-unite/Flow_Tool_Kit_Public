@@ -69,13 +69,24 @@ When your Flow detects a condition that should block the user from filling out t
 
 Extend this pattern for any condition: license checks, eligibility windows, application-status gates. Each new rule routes to its own Assignment element that sets `hasError + errorMessage` before terminating.
 
+## Two starter flows ship — pick autolaunched or screen
+
+As of v3.231 the package ships **two** starter prefill flows with identical underlying logic. Admins pick which API name to put in `Form_Template__c.Prefill_Flow_Api_Name__c`:
+
+| Starter | Type | When to use |
+| --- | --- | --- |
+| `Form_Submission_Prefill` | Autolaunched | Default. Runs server-side with no UI. The formTemplate LWC's `formTemplateFlowModal` hosts it; for autolaunched flows the modal stays hidden behind the spinner state and closes once outputs return. Zero UX cost. |
+| `Form_Prefill_w_Screen_Template` | Screen Flow | Same logic as the autolaunched starter, plus **sample screens** demonstrating where admins can plug in user validation inputs and custom error messages. Use when you want to display screens before the form template renders — intro/welcome screens, terms-of-service acceptance, custom validation prompts, etc. **If the user bypasses or clicks through the screens to finish, the form loads normally** — screens only block the form load if an admin's clone explicitly sets `hasError=true` and the configured error message. |
+
+Both starter flows expose the same input (`record` — Form_Submission) and output variables (`prefillRecord`, `prefillRelatedRecords`, `stages`, `hasError`, `errorMessage`), so swapping between them on a given Form Template requires no LWC or controller changes.
+
 ## Cloning the starter to customize
 
-The starter Flow is shipped as a **Template flow** (`isTemplate=true`) — you'll see a Clone affordance in Setup → Flows. To customize:
+Both starter Flows are shipped as **Template flows** (`isTemplate=true`) — you'll see a Clone affordance in Setup → Flows. To customize:
 
-1. Open the starter Flow in Flow Builder.
+1. Open the starter Flow in Flow Builder (pick the autolaunched or screen-flow starter depending on whether you want UI screens).
 2. Click **Save As** → **A New Flow** to clone into your namespace.
-3. Edit your clone (Contact lookup, Transforms, error gating — all yours).
+3. Edit your clone (Contact lookup, Transforms, error gating, screens — all yours).
 4. Activate the clone.
 5. Add your clone's API name to the `Form_Template__c.Prefill_Flow_Api_Name__c` picklist values via Setup → Object Manager → Form Template → Fields & Relationships → Prefill Flow → New Picklist Value.
 6. Point your Form Template at the clone.
