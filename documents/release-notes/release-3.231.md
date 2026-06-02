@@ -6,6 +6,10 @@
 
 Long forms with optional sections, multi-contributor workflows, or multi-session respondents have always struggled with the linear Next/Back rhythm. **Stages Mode** replaces that with a non-linear stepper — respondents land on a stage overview, see every page at a glance, jump in any order, and the form persists their progress through real records.
 
+![Stages overview showing Complete, In progress, and Todo status badges with time estimates](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/125-stages-overview.png)
+
+![Walkthrough: opening a stage, filling it with the vertical indicator, and the Return / Save Progress / Mark Complete footer](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/125-stages-walkthrough.gif)
+
 **What you can do.**
 
 - Render any Form Template as a stage overview instead of page-by-page navigation.
@@ -25,6 +29,8 @@ Long forms with optional sections, multi-contributor workflows, or multi-session
 ### Save & Resume via Email
 
 Pairs naturally with Stages Mode: when **Allow Save Progress** is enabled, the stages header now includes a **"Draft saved N minutes ago"** indicator alongside an **Email me a resume link** button. Clicking the button persists the current submission and dispatches an email to the respondent containing a single-use URL that returns them to their exact saved state — including their last-edited stage, auto-expanded on the overview. The standard pattern for long, multi-session forms like grants, applications, and intake.
+
+![Stages overview header with the "Draft saved" indicator and the "Email me a resume link" button](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/127-draft-saved-resume-button.png)
 
 **Security model.** Tokens are 32-character hex strings (128 bits of true randomness from `Crypto.generateAesKey`, Salesforce's documented CSPRNG). The token is NOT derived from the Submission Id, datetime, or any other visible field — so even a user who has read access to the submission cannot compute or guess a valid token. Single-use — the token is cleared the moment the resume link is consumed. Re-requesting the link generates a fresh random token, invalidating the previous email. The `Internal_Unique_Token__c` field is internal metadata and should not be exposed on any record page layout.
 
@@ -50,6 +56,8 @@ Pairs naturally with Stages Mode: when **Allow Save Progress** is enabled, the s
 
 The formTemplate LWC now hosts the configured prefill flow inside a `lightning/modal` (via the new `formTemplateFlowModal` LWC) instead of an inline hidden render. The modal stays behind a spinner until the flow's first status event, then reveals — autolaunched flows finish before any UI is shown; screen flows render their screens for the user. The modal cannot be dismissed by the user (no X, no ESC, no click-outside); only the flow finishing or returning a final output closes it.
 
+![Prefill flow running inside the modal on the Form Template](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/123-prefill-flow-demo.gif)
+
 Two starter prefill flows now ship with the same underlying logic. Admins pick which API name to put in `Form_Template__c.Prefill_Flow_Api_Name__c`:
 
 - **`Form_Submission_Prefill`** — autolaunched (existing). No UI; runs server-side and returns outputs. Use when no validation/intro screens are needed.
@@ -60,6 +68,8 @@ Both are shipped as Template flows and granted via the three FlowToolKit permiss
 ### Scroll Into View on Flow Form
 
 Long multi-screen flows have a chronic UX gap: when a user clicks Next, the next screen renders but the page stays scrolled wherever they left off. On a screen with a tall Flow Form, users often start mid-page and miss the header.
+
+![Scroll Into View smoothly scrolling the form into view on render](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/131-scroll-into-view-runtime.gif)
 
 **The fix.** Flow Form has a new opt-in property — **Scroll Into View** — that smoothly scrolls the form into view on every render. Off by default. Existing flows are unaffected; opt-in per screen via a toggle in the property editor.
 
