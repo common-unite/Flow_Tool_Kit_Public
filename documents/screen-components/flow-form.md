@@ -117,19 +117,19 @@ The **Scroll Into View** property fixes this. When enabled, the Flow Form smooth
 
 Open the Flow Form custom property editor in Flow Builder, expand **Form Properties (Optional)**, and you'll see the **Scroll Into View** section with a toggle on the right.
 
-![Scroll Into View property in the Form Properties accordion](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/131-scroll-into-view-cpe.png)
+![Scroll Into View property in the Form Properties accordion](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/131-scroll-into-view-cpe.png)
 
 ### Configuring the toggle
 
 The toggle in the section header sets a literal `true` / `false` value. For dynamic control, use the variable picker just below — bind any Boolean variable, formula, or upstream component output (e.g. another component's `valid` flag, a screen-level Boolean variable, a `$GlobalConstant`).
 
-![Toggling Scroll Into View and selecting a Boolean variable](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/131-scroll-into-view-config.gif)
+![Toggling Scroll Into View and selecting a Boolean variable](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/131-scroll-into-view-config.gif)
 
 ### Runtime behavior
 
 Once enabled, the form's top edge snaps to the top of the viewport on every render. The animation is smooth (respects `prefers-reduced-motion` for users who have opted out of animations at the OS level).
 
-![Form scrolling into view on screen transition](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/131-scroll-into-view-runtime.gif)
+![Form scrolling into view on screen transition](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/131-scroll-into-view-runtime.gif)
 
 ### When it fires
 
