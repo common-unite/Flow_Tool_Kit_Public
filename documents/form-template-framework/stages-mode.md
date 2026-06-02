@@ -2,7 +2,7 @@
 
 > Render a Form Template as a non-linear stepper. Respondents see all pages at once, pick their path, work in any order, and the form remembers what's done.
 
-![Stages overview showing pages with Complete, In progress, and Todo status badges, time estimates, and per-stage action buttons](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/125-stages-overview.png)
+![Stages overview showing pages with Complete, In progress, and Todo status badges, time estimates, and per-stage action buttons](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/125-stages-overview.png)
 
 ## Why Stages Mode
 
@@ -36,7 +36,7 @@ Three new fields on `Form_Template_Page__c` shape how each stage card renders.
 
 All four fields are optional. Leave them blank and the stage card falls back to just the page label with `Start Step` on the action button.
 
-![Form Template edit modal showing per-page Button Label configuration and the Prefill Flow selector](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/125-stages-template-config.png)
+![Form Template edit modal showing per-page Button Label configuration and the Prefill Flow selector](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/125-stages-template-config.png)
 
 > **Trigger default:** when a new Form Template is inserted with **Stages Mode** enabled, the `Form_Template` trigger sets the auto-created first page's `Button_Label__c` to `Start Step` (instead of the field default `Continue`). Subsequent pages added by the admin keep the standard `Continue` default so they can be overridden per-page.
 
@@ -44,7 +44,7 @@ All four fields are optional. Leave them blank and the stage card falls back to 
 
 When a respondent opens a stages-mode template they land on the **stages overview**, not page 1.
 
-![Walkthrough: opening a stage, filling the form with the vertical stage indicator on the left, and the Return / Save Progress / Mark Complete footer buttons](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/125-stages-walkthrough.gif)
+![Walkthrough: opening a stage, filling the form with the vertical stage indicator on the left, and the Return / Save Progress / Mark Complete footer buttons](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/125-stages-walkthrough.gif)
 
 - One card per page, in `Position__c` order
 - Each card shows: number, title, description (if set), time chip (if set), Optional badge (if set), status badge, and an action button
@@ -88,7 +88,7 @@ The three FlowToolKit permission sets ship with full CRUD/FLS:
 
 A respondent partway through a long form can click **Email me a resume link** in the stages overview header and receive a single-use URL that returns them to their exact saved state. Combined with Stages Mode, this is the answer for multi-session forms: nonprofits leaving applications open for weeks, finance teams pausing on the budget page until they have figures, contributors handing off between staff and program leads.
 
-![Stages overview header showing the "Draft saved" indicator and the "Email me a resume link" button, with completed stages below](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/127-draft-saved-resume-button.png)
+![Stages overview header showing the "Draft saved" indicator and the "Email me a resume link" button, with completed stages below](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/127-draft-saved-resume-button.png)
 
 > ### Required setup — must be done before the feature works in your org
 >
