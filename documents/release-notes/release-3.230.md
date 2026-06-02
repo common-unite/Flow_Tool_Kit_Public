@@ -15,7 +15,7 @@ Form Templates now support an optional **Prefill Flow** — an autolaunched Flow
 
 **Configuring.** Open a Form Template record. In the **Default Form Values** section, set the new **Prefill Flow** picklist. The base package ships `Bypass` (default — no flow runs) and `(Form) Prefill | Template` (the starter). Add your own cloned flows as picklist values via Setup.
 
-![Prefill Flow picklist on the Form Template edit modal](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/123-prefill-flow-demo.gif)
+![Prefill Flow picklist on the Form Template edit modal](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/123-prefill-flow-demo.gif)
 
 **The Flow contract.** Five variables, only one required:
 
