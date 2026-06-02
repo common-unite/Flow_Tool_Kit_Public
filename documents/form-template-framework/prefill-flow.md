@@ -16,7 +16,7 @@ The Flow runs exactly once, on the **initial load of a fresh Form Submission** (
 
 Every page or component bound to this Form Template inherits the prefill behavior. You don't configure it per-placement.
 
-![Prefill Flow picklist on the Form Template edit modal](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/123-prefill-flow-demo.gif)
+![Prefill Flow picklist on the Form Template edit modal](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/123-prefill-flow-demo.gif)
 
 ## The Flow contract
 
@@ -43,7 +43,7 @@ The starter Flow:
 5. A second **Alternate Contacts** Transform builds a collection of related Form Submissions for every other Contact on the Account, with `Internal_SectionId__c = "Contacts"` so they route to the section tagged `Contacts`.
 6. Assignment writes `prefillRecord` to the output and `Add`s the alternate contacts collection to `prefillRelatedRecords`.
 
-![Starter Flow canvas in Flow Builder](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/release_2gp_production/documents/screenshots/123-prefill-flow-builder-canvas.png)
+![Starter Flow canvas in Flow Builder](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/123-prefill-flow-builder-canvas.png)
 
 ## Section Tag routing
 
