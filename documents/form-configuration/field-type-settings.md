@@ -22,6 +22,7 @@ By default, boolean fields display as a modern **toggle switch**. You can overri
 | **Picklist** | Dropdown with True/False options |
 | **Radio** | Radio button group with True/False options |
 | **Buttons** | Button group (same as picklist button overrides) |
+| **Attestation** | Consent/certification card — a checkbox beside a rich-text statement in a brand-themed box that fills when checked |
 
 ![Boolean display type options](../screenshots/form-configuration/field-types/boolean-display-types.png)
 
@@ -39,6 +40,18 @@ The underlying value is always boolean `true`/`false` regardless of the display 
 ### Making Booleans Required
 
 The toggle and checkbox display types have a UX limitation with required fields — they default to `false`, so "required" effectively means "must be true." Use the **Picklist** or **Radio** display type instead: the field loads with no value selected, so requiring a selection forces an intentional choice between true and false.
+
+### Attestation Selector
+
+The **Attestation** display type renders a boolean as a consent/certification **card**: a checkbox sits beside a rich-text statement inside a bordered box, and the whole card is clickable. When the user checks it, the card fills with your brand color so the agreement visibly stands out.
+
+![Selecting the Attestation display type and the card rendering in the preview](../screenshots/188-attestation-selector-demo.gif)
+
+Unlike the other display types, Attestation replaces the plain **Custom Label** with a **Rich Text Label** field — write the full attestation statement (formatting, links, and merge fields) there. When you choose Attestation, the Form Builder hides the label, help text, prepend/append, and prompt inputs, since the rich-text statement is the only visible content. Leave the rich text blank and the field's standard label is used instead.
+
+![A checked attestation card on a branded form](../screenshots/188-attestation-selector.png)
+
+The card's border and fill follow your org's brand color across internal Lightning, Aura, and LWR Experience Cloud sites. The underlying value is still a boolean `true`/`false`.
 
 ## Phone Fields
 
