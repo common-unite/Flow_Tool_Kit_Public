@@ -163,6 +163,7 @@
 * [Release 3.230](release-notes/release-3.230.md)
 * [Release 3.231](release-notes/release-3.231.md)
 * [Release 3.232](release-notes/release-3.232.md)
+* [Release 3.234](release-notes/release-3.234.md)
 
 ## Platform
 
