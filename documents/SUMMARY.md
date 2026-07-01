@@ -27,9 +27,9 @@
 * [Set Up File Uploads](how-to-guides/set-up-file-uploads.md)
 * [Use Data Tables](how-to-guides/use-data-tables.md)
 * [Use Repeating Sections](how-to-guides/use-repeating-sections.md)
-* [Use the Icon Selector](how-to-guides/use-the-icon-selector.md)
-* [Use Section Dividers](how-to-guides/use-section-dividers.md)
 * [Use Rich Text Message Cards](how-to-guides/use-rich-text-message-cards.md)
+* [Use Section Dividers](how-to-guides/use-section-dividers.md)
+* [Use The Icon Selector](how-to-guides/use-the-icon-selector.md)
 
 ## Deployment
 
@@ -164,6 +164,8 @@
 * [Release 3.231](release-notes/release-3.231.md)
 * [Release 3.232](release-notes/release-3.232.md)
 * [Release 3.234](release-notes/release-3.234.md)
+* [Release 3.235](release-notes/release-3.235.md)
+* [Release 3.236](release-notes/release-3.236.md)
 
 ## Platform
 
