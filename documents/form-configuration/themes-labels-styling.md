@@ -9,13 +9,14 @@
 
 ## Overview
 
-Flow Tool Kit provides three mechanisms for customizing the look and text of your forms:
+Flow Tool Kit provides four mechanisms for customizing the look and text of your forms:
 
 1. **Themes** (Form_Theme__mdt) — Color schemes, backgrounds, and spacing applied to form headers, sections, and fields
 2. **Labels** (Form_Label__mdt + Form_Label_Translation__mdt) — Reusable, translatable text strings for field labels, help text, and other UI text
-3. **Style Sheets** (Form_Style_Sheet__mdt) — Custom CSS loaded from Static Resources for advanced styling beyond what themes offer
+3. **Per-Template Style Sheets** (Form_Template__c.Style_Sheet__c) — Custom CSS from a Static Resource, automatically scoped to a single Form Template
+4. **Org-Wide Style Sheets** (Form_Style_Sheet__mdt) — Custom CSS loaded globally for every form in the org
 
-Together, these give admins full control over how forms look and what text they display — across languages and branding requirements.
+Together, these give admins full control over how forms look and what text they display — across languages and branding requirements. Not sure which to use? Start with the [Custom Styling Overview](custom-styling-overview.md).
 
 ## Themes (Form_Theme__mdt)
 
@@ -125,11 +126,32 @@ Labels are reusable text strings that support translation. Instead of hardcoding
 ### Supported Languages
 Form Labels support 87 language codes, including all major Salesforce-supported languages and regional variants (e.g., `en_US`, `fr_FR`, `es_MX`, `zh_CN`, `ar`, `ja`, `ko`).
 
+## Per-Template Style Sheets (Form Template)
+
+### What Per-Template Style Sheets Do
+
+A Form Template can carry its own CSS style sheet — applied to **that template only**, with automatic isolation. The template's record Id is injected as a CSS class on its container, and every selector in the sheet is automatically prefixed with it at load time, so the CSS cannot affect other forms, other templates, or the surrounding page. `:root` selectors map to the template container itself — the right place for CSS custom properties.
+
+### How to Assign One
+
+1. **Create a Static Resource**: a single `text/css` file, or a zip containing `.css` files
+2. Open the **Form Template record page** → **Form Theme & Stylesheet** tab
+3. Pick the sheet with the **Style Sheet Selector** — options are grouped by namespace (or Local) and then by zip file, with each resource's Description shown beneath its name
+4. The reference is stored in `Form_Template__c.Style_Sheet__c` as `ResourceName` (or `Namespace__ResourceName`, or `.../path/inside.css` for zip entries)
+
+### Behavior Notes
+
+- The CSS text is read server-side and injected by the form — no cross-origin fetches, nothing added to `document.head`
+- **`@import` is not supported** — a sheet containing one is skipped entirely (fail-safe) rather than loaded unscoped
+- Clearing the Style Sheet field removes the injected styles on the next load
+- Content is cached (Platform Cache) — after editing a resource's body, allow a few minutes or rename the resource
+- Loads **in addition to** themes and org-wide style sheets; use it for template-specific branding on top of your standard theme
+
 ## Style Sheets (Form_Style_Sheet__mdt)
 
 ### What Style Sheets Do
 
-Style Sheets load custom CSS from a Static Resource to override default form styling. This is the most powerful (and most advanced) customization option — it gives you full CSS control over form elements.
+Style Sheets load custom CSS from a Static Resource to override default form styling **globally, for every form in the org**. This is the most powerful (and most advanced) customization option — it gives you full CSS control over form elements. For styling a single template, prefer a [Per-Template Style Sheet](#per-template-style-sheets-form-template).
 
 ### Style Sheet Properties
 
@@ -166,5 +188,5 @@ Create a theme with dark `accordionBackgroundColor__c` and light `accordionFontC
 - **Color Format**: Theme color fields accept 7-character values. Use HEX format (e.g., `#FF5733`). RGB and RGBA are also supported.
 - **Background Images**: Theme image fields accept URLs. Use content assets, static resources, or external URLs. Pair with `position` and `size` fields for proper placement.
 - **Label Caching**: Labels are cached in Platform Cache (FlowToolKit.FormComponents partition) for performance. Changes may take a moment to reflect.
-- **Style Sheet Scope**: Style Sheet CSS is global — it affects all forms in the org, not just specific forms. Use specific selectors to target only the elements you want to change.
-- **Theme vs Style Sheet**: Use themes for standard color/background customization. Use Style Sheets only when you need CSS-level control that themes don't provide (custom animations, complex layout changes, etc.).
+- **Style Sheet Scope**: Form_Style_Sheet__mdt CSS is global — it affects all forms in the org, not just specific forms. Use specific selectors (under `.flowForm`, or under a template's injected Id class) to target only the elements you want to change.
+- **Theme vs Style Sheet**: Use themes for standard color/background customization. Use a Per-Template Style Sheet when one template needs CSS-level control. Use org-wide Style Sheets only for CSS conventions that should apply everywhere (custom animations, complex layout changes, etc.). See the [Custom Styling Overview](custom-styling-overview.md) for the full decision guide.

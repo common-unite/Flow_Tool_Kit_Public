@@ -12,7 +12,7 @@ Lightning Out lets you embed Lightning Web Components (including Flow Tool Kit f
 
 ## How It Works
 
-![Lightning Out form rendered on external page](../screenshots/advanced-topics/lightning-out-form-rendered.png)
+![Lightning Out form rendered on external page](../.gitbook/assets/lightning-out-form-rendered.png)
 
 1. Your external website loads the Lightning Out JavaScript library from Salesforce.
 2. Lightning Out creates a secure connection to your Salesforce org.
@@ -21,17 +21,17 @@ Lightning Out lets you embed Lightning Web Components (including Flow Tool Kit f
 
 ## Prerequisites
 
-- A Salesforce **Connected App** configured for Lightning Out
-- A **Visualforce page** that serves as the Lightning Out container
-- Your external website can load JavaScript from your Salesforce org
-- Users must be authenticated (Lightning Out doesn't support guest access natively)
+* A Salesforce **Connected App** configured for Lightning Out
+* A **Visualforce page** that serves as the Lightning Out container
+* Your external website can load JavaScript from your Salesforce org
+* Users must be authenticated (Lightning Out doesn't support guest access natively)
 
 ## Step 1: Create a Connected App
 
 1. Go to **Setup → App Manager → New Connected App**.
 2. Configure OAuth settings:
-   - **Callback URL**: Your external site URL
-   - **Selected OAuth Scopes**: Access your basic information, Perform requests on your behalf
+   * **Callback URL**: Your external site URL
+   * **Selected OAuth Scopes**: Access your basic information, Perform requests on your behalf
 3. Save and note the **Consumer Key**.
 
 ## Step 2: Create a Lightning Out App
@@ -59,23 +59,23 @@ Add the Lightning Out JavaScript to your external website:
 **Authentication is required.** Lightning Out requires an authenticated Salesforce session. Users must log in before the form renders. For public-facing forms without authentication, use [Experience Cloud](../how-to-guides/deploy-to-experience-cloud.md) instead.
 {% endhint %}
 
-- **CORS**: Add your external site's domain to **Setup → CORS → Allowed Origins**.
-- **CSP**: Configure Content Security Policy trusted sites for both directions.
-- **Connected App policies**: Set appropriate session duration and refresh token policies.
-- **IP restrictions**: Consider restricting the Connected App to known IP ranges.
+* **CORS**: Add your external site's domain to **Setup → CORS → Allowed Origins**.
+* **CSP**: Configure Content Security Policy trusted sites for both directions.
+* **Connected App policies**: Set appropriate session duration and refresh token policies.
+* **IP restrictions**: Consider restricting the Connected App to known IP ranges.
 
 ## Lightning Out vs Experience Cloud
 
-| | Lightning Out | Experience Cloud |
-|---|---|---|
-| **Authentication** | Required | Optional (supports guest users) |
-| **Hosting** | Your external website | Salesforce-hosted site |
-| **Customization** | Full control over surrounding page | Experience Builder templates |
-| **Setup Complexity** | Higher (Connected App, CORS, embedding) | Lower (point-and-click) |
-| **Best For** | Existing websites needing Salesforce forms | Standalone portals and public forms |
+|                      | Lightning Out                              | Experience Cloud                    |
+| -------------------- | ------------------------------------------ | ----------------------------------- |
+| **Authentication**   | Required                                   | Optional (supports guest users)     |
+| **Hosting**          | Your external website                      | Salesforce-hosted site              |
+| **Customization**    | Full control over surrounding page         | Experience Builder templates        |
+| **Setup Complexity** | Higher (Connected App, CORS, embedding)    | Lower (point-and-click)             |
+| **Best For**         | Existing websites needing Salesforce forms | Standalone portals and public forms |
 
 ## Related Pages
 
-- [Deploy to Experience Cloud](../how-to-guides/deploy-to-experience-cloud.md) — alternative for public forms
-- [Experience Cloud Components](../experience-cloud/experience-cloud-components.md) — EC component reference
-- [Google reCAPTCHA Setup](google-recaptcha-setup.md) — bot protection for external forms
+* [Deploy to Experience Cloud](../how-to-guides/deploy-to-experience-cloud.md) — alternative for public forms
+* [Experience Cloud Components](../experience-cloud/experience-cloud-components.md) — EC component reference
+* [Google reCAPTCHA Setup](google-recaptcha-setup.md) — bot protection for external forms

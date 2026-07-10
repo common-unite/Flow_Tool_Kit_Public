@@ -1,4 +1,4 @@
-# How To: Add reCAPTCHA to Forms
+# Add reCAPTCHA
 
 > Protect public-facing forms from bots with Google reCAPTCHA.
 
@@ -14,7 +14,7 @@
 
 When your forms are exposed on Experience Cloud sites (especially to unauthenticated/guest users), you need bot protection. Flow Tool Kit integrates with Google reCAPTCHA to validate that form submissions come from real users.
 
-![reCAPTCHA button configuration](../screenshots/advanced-topics/recaptcha-button-config.png)
+![reCAPTCHA button configuration](../.gitbook/assets/recaptcha-button-config.png)
 
 ## Step 1: Get reCAPTCHA Keys from Google
 
@@ -37,8 +37,8 @@ When your forms are exposed on Experience Cloud sites (especially to unauthentic
 
 1. Go to **Setup → Named Credentials**.
 2. Create a credential for the reCAPTCHA verification endpoint:
-   - **URL**: `https://www.google.com/recaptcha/api/siteverify`
-   - **Authentication**: No authentication (the secret key is sent as a parameter)
+   * **URL**: `https://www.google.com/recaptcha/api/siteverify`
+   * **Authentication**: No authentication (the secret key is sent as a parameter)
 
 ### Store Keys in Custom Metadata
 
@@ -54,9 +54,9 @@ When your forms are exposed on Experience Cloud sites (especially to unauthentic
 
 On the permission set assigned to your guest user, grant all of:
 
-- **Read** on the `UserExternalCredential` standard object (Object Settings)
-- **External Credential Principal Access** for `GoogleRecaptcha - External Form User`
-- Apex Class Access to `FlowToolKit.reCAPTCHA`
+* **Read** on the `UserExternalCredential` standard object (Object Settings)
+* **External Credential Principal Access** for `GoogleRecaptcha - External Form User`
+* Apex Class Access to `FlowToolKit.reCAPTCHA`
 
 Then assign the permission set via **Experience Workspaces → Administration → Pages → Go to Force.com → Public Access Settings → Manage Assignments**. Also verify **Setup → Session Settings → Let guest users make callouts using Named Credentials** is enabled.
 
@@ -78,12 +78,12 @@ See [Google reCAPTCHA Setup — Grant Guest User Access](../advanced-topics/goog
 
 ## reCAPTCHA v2 vs v3
 
-| | v2 (Checkbox) | v3 (Invisible) |
-|---|---|---|
-| **User Experience** | User clicks a checkbox | No user interaction — runs in background |
-| **When to Use** | When you want visible verification | When you want seamless UX |
-| **Scoring** | Pass/fail | Score 0.0-1.0 (you set the threshold) |
-| **Complexity** | Simpler to set up | Requires threshold tuning |
+|                     | v2 (Checkbox)                      | v3 (Invisible)                           |
+| ------------------- | ---------------------------------- | ---------------------------------------- |
+| **User Experience** | User clicks a checkbox             | No user interaction — runs in background |
+| **When to Use**     | When you want visible verification | When you want seamless UX                |
+| **Scoring**         | Pass/fail                          | Score 0.0-1.0 (you set the threshold)    |
+| **Complexity**      | Simpler to set up                  | Requires threshold tuning                |
 
 {% hint style="info" %}
 **Recommendation**: Start with reCAPTCHA v2 for simplicity. Move to v3 if the checkbox friction is unacceptable for your users.
@@ -91,17 +91,17 @@ See [Google reCAPTCHA Setup — Grant Guest User Access](../advanced-topics/goog
 
 ## Troubleshooting
 
-| Issue | Fix |
-|-------|-----|
-| reCAPTCHA widget doesn't load | Check CSP Trusted Sites — `https://www.google.com` must be trusted |
-| "Invalid site key" error | Verify the site key matches your domain in the Google reCAPTCHA console |
-| All submissions blocked | Check the secret key is correct. For v3, lower the score threshold. |
-| Works in sandbox, not production | Add the production domain to the Google reCAPTCHA site registration |
-| `You don't have read permissions on the User External Credential object` on guest-user click | Guest user permission set is missing **Read** on the `UserExternalCredential` standard object. Granting the External Credential Principal alone is not sufficient. See [Grant Guest User Permissions](#grant-guest-user-permissions-required-for-experience-cloud) above. |
+| Issue                                                                                        | Fix                                                                                                                                                                                                                                                                                       |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| reCAPTCHA widget doesn't load                                                                | Check CSP Trusted Sites — `https://www.google.com` must be trusted                                                                                                                                                                                                                        |
+| "Invalid site key" error                                                                     | Verify the site key matches your domain in the Google reCAPTCHA console                                                                                                                                                                                                                   |
+| All submissions blocked                                                                      | Check the secret key is correct. For v3, lower the score threshold.                                                                                                                                                                                                                       |
+| Works in sandbox, not production                                                             | Add the production domain to the Google reCAPTCHA site registration                                                                                                                                                                                                                       |
+| `You don't have read permissions on the User External Credential object` on guest-user click | Guest user permission set is missing **Read** on the `UserExternalCredential` standard object. Granting the External Credential Principal alone is not sufficient. See [Grant Guest User Permissions](add-recaptcha.md#grant-guest-user-permissions-required-for-experience-cloud) above. |
 
 ## Related Pages
 
-- [reCAPTCHA & Security Reference](../form-configuration/recaptcha-security.md) — full configuration details
-- [Google reCAPTCHA Setup (Advanced)](../advanced-topics/google-recaptcha-setup.md) — detailed setup guide
-- [Deploy to Experience Cloud](deploy-to-experience-cloud.md) — Experience Cloud form deployment
-- [Guest User Permissions](../experience-cloud/experience-cloud-components.md) — required permissions for guest users
+* [reCAPTCHA & Security Reference](../form-configuration/recaptcha-security.md) — full configuration details
+* [Google reCAPTCHA Setup (Advanced)](../advanced-topics/google-recaptcha-setup.md) — detailed setup guide
+* [Deploy to Experience Cloud](deploy-to-experience-cloud.md) — Experience Cloud form deployment
+* [Guest User Permissions](../experience-cloud/experience-cloud-components.md) — required permissions for guest users

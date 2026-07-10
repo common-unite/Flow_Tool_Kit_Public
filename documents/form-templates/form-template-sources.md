@@ -6,16 +6,16 @@ Form Template Sources connect your forms to the records that drive them. A singl
 
 Think about what this unlocks:
 
-- **Event Registration** — one form template, reused across every event. Each event record controls its own registration dates, theme, and confirmation message.
-- **Program Enrollment** — a program intake form that pulls the program name, eligibility dates, and pre-filled details directly from the program record.
-- **Grant Applications** — a single application form connected to each funding opportunity, with deadlines and instructions driven by the grant record.
-- **Membership Signups** — membership tiers drive different pre-fill values and confirmation emails, all from the same form.
-- **Volunteer Signups** — each volunteer opportunity controls when its signup opens and closes, what the form says, and what the confirmation email contains.
-- **Cohort Registration** — cohort records drive registration windows and pre-populate cohort-specific details into the form.
+* **Event Registration** — one form template, reused across every event. Each event record controls its own registration dates, theme, and confirmation message.
+* **Program Enrollment** — a program intake form that pulls the program name, eligibility dates, and pre-filled details directly from the program record.
+* **Grant Applications** — a single application form connected to each funding opportunity, with deadlines and instructions driven by the grant record.
+* **Membership Signups** — membership tiers drive different pre-fill values and confirmation emails, all from the same form.
+* **Volunteer Signups** — each volunteer opportunity controls when its signup opens and closes, what the form says, and what the confirmation email contains.
+* **Cohort Registration** — cohort records drive registration windows and pre-populate cohort-specific details into the form.
 
 The pattern works with any standard or custom object. If you can create a record in Salesforce, you can connect a form to it.
 
-![Form Template Source Editor Demo](../screenshots/form-template-source-editor-demo.gif)
+![Form Template Source Editor Demo](../.gitbook/assets/form-template-source-editor-demo.gif)
 
 ## Why This Matters
 
@@ -42,9 +42,9 @@ If a mapped field is blank on the source record, the Form Template's own value i
 
 The Form Template component can be placed on:
 
-- **Lightning Record Pages** — drop it on a Campaign page, and it automatically detects the source configuration and renders the form
-- **Experience Cloud Pages** — the source record Id is passed via the page context
-- **Flow Screens** — pass any source record Id into the component's `recordId` property
+* **Lightning Record Pages** — drop it on a Campaign page, and it automatically detects the source configuration and renders the form
+* **Experience Cloud Pages** — the source record Id is passed via the page context
+* **Flow Screens** — pass any source record Id into the component's `recordId` property
 
 Admins direct users to the source record using custom buttons, navigation menu items, or email links. When the user arrives, the form loads with that record's overrides applied.
 
@@ -52,8 +52,8 @@ Admins direct users to the source record using custom buttons, navigation menu i
 
 Every form submission loaded from a source record is stamped with:
 
-- **Source Id** (`Source_Id__c`) — always populated with the source record Id. This is a text field that stores the Id regardless of the source object type. Used at runtime to re-apply source overrides when a user resumes a saved submission. Also available in conversion Flows to query the source record for related data — for example, looking up the event location, program coordinator, or grant requirements to display within the form or drive downstream automation.
-- **Source Lookup Field** (optional) — a configurable lookup field on Form Submission that points directly back to the source record (e.g., `Campaign__c`). Useful for reports, list views, related lists on the source record, and platform event-driven conversion flows.
+* **Source Id** (`Source_Id__c`) — always populated with the source record Id. This is a text field that stores the Id regardless of the source object type. Used at runtime to re-apply source overrides when a user resumes a saved submission. Also available in conversion Flows to query the source record for related data — for example, looking up the event location, program coordinator, or grant requirements to display within the form or drive downstream automation.
+* **Source Lookup Field** (optional) — a configurable lookup field on Form Submission that points directly back to the source record (e.g., `Campaign__c`). Useful for reports, list views, related lists on the source record, and platform event-driven conversion flows.
 
 ### Confirmation Email Resolution
 
@@ -69,25 +69,25 @@ This chain is handled automatically by the `(Form Submission) Convert | Utility 
 
 ### Prerequisites
 
-- Flow Tool Kit managed package installed
-- `Form_Builder_Admin` permission set assigned
+* Flow Tool Kit managed package installed
+* `Form_Builder_Admin` permission set assigned
 
 ### Step 1: Create Fields on the Source Object
 
 Add custom fields to the source object for each override you want to support. Only the **Form Template lookup** is required — all other fields are optional. Start with just the fields you need and add more later.
 
-| Override | Field Type | Example (Campaign) |
-|----------|-----------|-------------------|
-| Form Template (required) | Lookup to `Form_Template__c` | `Form_Template__c` |
-| Name | Text | `Name` (standard) |
-| Active | Checkbox | `IsActive` (standard) |
-| Start Date | Date or DateTime | `StartDate` (standard) |
-| End Date | Date or DateTime | `EndDate` (standard) |
-| Theme | Text (min 40 chars) | `Theme__c` |
-| Pre-fill Template | Lookup to `Form_Submission__c` | `Prefill_Template_Override__c` |
-| Confirmation Message | Rich Text (Html) | `Confirmation_Page_Message__c` |
-| Offline Message | Rich Text (Html) | `Offline_Message__c` |
-| Email Template | Text (min 40 chars) | `Email_Template_Name_Confirmation__c` |
+| Override                 | Field Type                     | Example (Campaign)                    |
+| ------------------------ | ------------------------------ | ------------------------------------- |
+| Form Template (required) | Lookup to `Form_Template__c`   | `Form_Template__c`                    |
+| Name                     | Text                           | `Name` (standard)                     |
+| Active                   | Checkbox                       | `IsActive` (standard)                 |
+| Start Date               | Date or DateTime               | `StartDate` (standard)                |
+| End Date                 | Date or DateTime               | `EndDate` (standard)                  |
+| Theme                    | Text (min 40 chars)            | `Theme__c`                            |
+| Pre-fill Template        | Lookup to `Form_Submission__c` | `Prefill_Template_Override__c`        |
+| Confirmation Message     | Rich Text (Html)               | `Confirmation_Page_Message__c`        |
+| Offline Message          | Rich Text (Html)               | `Offline_Message__c`                  |
+| Email Template           | Text (min 40 chars)            | `Email_Template_Name_Confirmation__c` |
 
 For Campaign, the standard fields (`Name`, `IsActive`, `StartDate`, `EndDate`) are already available. The custom fields above are included in the Flow Tool Kit package.
 
@@ -95,24 +95,24 @@ For Campaign, the standard fields (`Name`, `IsActive`, `StartDate`, `EndDate`) a
 
 Navigate to **Setup > Custom Metadata Types > Form Template Source > Manage Records > New**.
 
-![Form Template Source Configuration](../screenshots/form-template-source-campaign-config.png)
+![Form Template Source Configuration](../.gitbook/assets/form-template-source-campaign-config.png)
 
 Configure the mapping:
 
-| Section | Field | Description |
-|---------|-------|-------------|
-| **Information** | Source Object | The object that drives the form (e.g., Campaign) |
-| **Information** | Form Template Field | The lookup field that points to the Form Template (required) |
-| **Details** | Name Field | Field used as the form title |
-| **Details** | Theme Field | Field storing the theme developer name |
-| **Availability** | Active Field | Checkbox controlling whether the form accepts submissions |
-| **Availability** | Start Date Field | Date/DateTime when submissions open |
-| **Availability** | End Date Field | Date/DateTime when submissions close |
-| **Availability** | Offline Message Field | Rich text shown when the form is unavailable |
-| **Pre-fill Values** | Prefill Template Field | Lookup to a Form Submission record with default values |
-| **Email/Messaging** | Confirmation Message Field | Rich text shown after successful submission |
-| **Email/Messaging** | Email Template Field | Text field storing the email template developer name |
-| **Form Submission Source** | Source Lookup Field | API name of the lookup field on Form Submission that points back to this object (optional) |
+| Section                    | Field                      | Description                                                                                |
+| -------------------------- | -------------------------- | ------------------------------------------------------------------------------------------ |
+| **Information**            | Source Object              | The object that drives the form (e.g., Campaign)                                           |
+| **Information**            | Form Template Field        | The lookup field that points to the Form Template (required)                               |
+| **Details**                | Name Field                 | Field used as the form title                                                               |
+| **Details**                | Theme Field                | Field storing the theme developer name                                                     |
+| **Availability**           | Active Field               | Checkbox controlling whether the form accepts submissions                                  |
+| **Availability**           | Start Date Field           | Date/DateTime when submissions open                                                        |
+| **Availability**           | End Date Field             | Date/DateTime when submissions close                                                       |
+| **Availability**           | Offline Message Field      | Rich text shown when the form is unavailable                                               |
+| **Pre-fill Values**        | Prefill Template Field     | Lookup to a Form Submission record with default values                                     |
+| **Email/Messaging**        | Confirmation Message Field | Rich text shown after successful submission                                                |
+| **Email/Messaging**        | Email Template Field       | Text field storing the email template developer name                                       |
+| **Form Submission Source** | Source Lookup Field        | API name of the lookup field on Form Submission that points back to this object (optional) |
 
 Only map the fields you need. Unmapped fields won't appear in the Form Template Source Editor component, and the Form Template's own values will be used.
 
@@ -120,7 +120,7 @@ Only map the fields you need. Unmapped fields won't appear in the Form Template 
 
 Open the source object's record page in **Lightning App Builder** and add the **Form (Template Source Editor)** component.
 
-![Lightning App Builder](../screenshots/form-template-source-editor-app-builder.png)
+![Lightning App Builder](../.gitbook/assets/form-template-source-editor-app-builder.png)
 
 The component automatically detects the Form Template Source metadata for the current object and displays the configured fields in a tabbed layout.
 
@@ -159,27 +159,27 @@ Each event gets its own registration window, and every submission traces back to
 
 ## Technical Reference
 
-### Custom Metadata Type: Form_Template_Source__mdt
+### Custom Metadata Type: Form\_Template\_Source\_\_mdt
 
 One record per source object. All field mappings use `MetadataRelationship` type (pointing to `FieldDefinition`) scoped to the source object, except `Source_Lookup_Field__c` which is a plain text field storing the API name.
 
 ### Components
 
-| Component | Where to Find | Description |
-|-----------|--------------|-------------|
-| Form (Template Source Editor) | Lightning App Builder > Custom components | Tabbed editor placed on source record pages |
-| Form (Template) | Lightning App Builder > Custom components / Flow Screen | Core form renderer — detects source records automatically when placed on a source record page |
+| Component                     | Where to Find                                           | Description                                                                                   |
+| ----------------------------- | ------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Form (Template Source Editor) | Lightning App Builder > Custom components               | Tabbed editor placed on source record pages                                                   |
+| Form (Template)               | Lightning App Builder > Custom components / Flow Screen | Core form renderer — detects source records automatically when placed on a source record page |
 
 ### Flow Actions
 
-| Action | Category | Description |
-|--------|----------|-------------|
+| Action                    | Category      | Description                                                                                                                                                                                                                                              |
+| ------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Get Source Email Template | Flow Tool Kit | Resolves the confirmation email template name from a Form Template Source record. Pass the `Source_Id__c` from a Form Submission and the action returns the email template developer name configured on the source record, or null if no mapping exists. |
 
 ### Flows
 
-| Flow | Description |
-|------|-------------|
+| Flow                                                              | Description                                                                                                                                                                                                                                                              |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | (Form Submission) Convert \| Utility \| Send Email \| Overridable | Handles confirmation and save-progress emails. Dynamically resolves the email template from the source record before falling back to the Form Template default. This flow is **overridable** — admins can create an override to customize the email logic for their org. |
 
 ### How Source Resolution Works

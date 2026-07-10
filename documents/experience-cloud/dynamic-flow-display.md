@@ -1,4 +1,5 @@
 # Dynamic Flow Display
+
 > Embed any Flow as a component, modal, or button on Experience Cloud pages, App Pages, Record Pages, and Home Pages — with full property passing and display control.
 
 ## Overview
@@ -9,12 +10,12 @@ This is especially valuable in Experience Cloud, where you often need to embed f
 
 ## Where to Use It
 
-- **App Page**
-- **Home Page**
-- **Record Page**
-- **Experience Cloud** (Community Page and Default — with custom property editor)
+* **App Page**
+* **Home Page**
+* **Record Page**
+* **Experience Cloud** (Community Page and Default — with custom property editor)
 
-![Experience Cloud page with form component](../screenshots/experience-cloud/experience-cloud-flow-on-page.png)
+![Experience Cloud page with form component](../.gitbook/assets/experience-cloud-flow-on-page.png)
 
 ## Quick Start
 
@@ -28,33 +29,33 @@ This is especially valuable in Experience Cloud, where you often need to embed f
 
 ### Inputs (App/Home Page)
 
-| Property | Type | Required | Default | Description |
-|---|---|---|---|---|
-| `flowApiName` | String | Yes | — | API Name of the Screen Flow to display |
-| `buttonLabel` | String | No | — | Label for the button (used with `button` and `modal` display types) |
-| `recordId` | String | No | — | Record Id to pass to the flow (optional on App/Home pages) |
-| `displayType` | String | No | component | How to render the flow: `component`, `modal`, or `button` |
-| `modalSize` | String | No | large | Modal size when displayType is modal: `small`, `medium`, `large`, or `full` |
+| Property      | Type   | Required | Default   | Description                                                                 |
+| ------------- | ------ | -------- | --------- | --------------------------------------------------------------------------- |
+| `flowApiName` | String | Yes      | —         | API Name of the Screen Flow to display                                      |
+| `buttonLabel` | String | No       | —         | Label for the button (used with `button` and `modal` display types)         |
+| `recordId`    | String | No       | —         | Record Id to pass to the flow (optional on App/Home pages)                  |
+| `displayType` | String | No       | component | How to render the flow: `component`, `modal`, or `button`                   |
+| `modalSize`   | String | No       | large     | Modal size when displayType is modal: `small`, `medium`, `large`, or `full` |
 
 ### Inputs (Record Page)
 
-| Property | Type | Required | Default | Description |
-|---|---|---|---|---|
-| `flowApiName` | String | Yes | — | API Name of the Screen Flow |
-| `buttonLabel` | String | No | — | Button label text |
-| `displayType` | String | No | component | Display type: `component`, `modal`, `button` |
-| `modalSize` | String | No | large | Modal size: `small`, `medium`, `large`, `full` |
+| Property      | Type   | Required | Default   | Description                                    |
+| ------------- | ------ | -------- | --------- | ---------------------------------------------- |
+| `flowApiName` | String | Yes      | —         | API Name of the Screen Flow                    |
+| `buttonLabel` | String | No       | —         | Button label text                              |
+| `displayType` | String | No       | component | Display type: `component`, `modal`, `button`   |
+| `modalSize`   | String | No       | large     | Modal size: `small`, `medium`, `large`, `full` |
 
-*Record Id is automatically provided by the page context on Record Pages.*
+_Record Id is automatically provided by the page context on Record Pages._
 
 ### Inputs (Experience Cloud)
 
 Experience Cloud uses a custom property editor for configuration. Properties are stored as a JSON string.
 
-| Property | Type | Required | Default | Description |
-|---|---|---|---|---|
-| `properties` | String | — | — | JSON configuration (managed by the property editor) |
-| `recordId` | String | No | {!recordId} | Record Id from the page context |
+| Property     | Type   | Required | Default     | Description                                         |
+| ------------ | ------ | -------- | ----------- | --------------------------------------------------- |
+| `properties` | String | —        | —           | JSON configuration (managed by the property editor) |
+| `recordId`   | String | No       | {!recordId} | Record Id from the page context                     |
 
 The property editor provides a visual interface for setting Flow API Name, display type, modal size, and other options.
 
@@ -65,42 +66,47 @@ This component has no Flow outputs (it is not a Flow Screen component — it emb
 ## How It Works
 
 **Display Types**:
-- **Component** — The flow renders inline, directly embedded in the page where you placed the component. It behaves like any other page component.
-- **Modal** — The flow renders inside a modal dialog. On Record Pages and App Pages, the modal opens automatically when the page loads. In Experience Cloud, behavior can be configured via the property editor.
-- **Button** — A button appears on the page. When clicked, the flow opens in a modal. The `buttonLabel` controls the button text.
+
+* **Component** — The flow renders inline, directly embedded in the page where you placed the component. It behaves like any other page component.
+* **Modal** — The flow renders inside a modal dialog. On Record Pages and App Pages, the modal opens automatically when the page loads. In Experience Cloud, behavior can be configured via the property editor.
+* **Button** — A button appears on the page. When clicked, the flow opens in a modal. The `buttonLabel` controls the button text.
 
 **Record Context**: On Record Pages, the component automatically passes `recordId` to the flow. On App Pages and Home Pages, you can manually set a `recordId`. In Experience Cloud, `{!recordId}` binds to the page context.
 
 **Modal Sizing**: When using `modal` or `button` display types, `modalSize` controls the dialog width:
-- `small` — narrow dialog
-- `medium` — standard width
-- `large` — wide dialog (default)
-- `full` — full viewport width
+
+* `small` — narrow dialog
+* `medium` — standard width
+* `large` — wide dialog (default)
+* `full` — full viewport width
 
 ## Works With
 
-| Component | Integration |
-|---|---|
-| **Any Screen Flow** | Embeds any Screen Flow — not limited to Flow Tool Kit flows |
-| **Experience Cloud** | Custom property editor for community page configuration |
-| **Record Pages** | Automatic record context passing |
+| Component            | Integration                                                 |
+| -------------------- | ----------------------------------------------------------- |
+| **Any Screen Flow**  | Embeds any Screen Flow — not limited to Flow Tool Kit flows |
+| **Experience Cloud** | Custom property editor for community page configuration     |
+| **Record Pages**     | Automatic record context passing                            |
 
 ## Common Patterns
 
 ### 1. Inline Flow on Record Page
+
 Place Dynamic Flow on an Account record page with `displayType=component`. Set `flowApiName` to your "Quick Edit Account" flow. The flow renders inline with the record Id automatically passed.
 
 ### 2. Button-Triggered Modal
+
 On an Experience Cloud page, set `displayType=button` with `buttonLabel="Submit Request"`. Users click the button and a modal opens with your intake flow. Set `modalSize=large` for forms with many fields.
 
 ### 3. Auto-Opening Modal
+
 On a Record Page, set `displayType=modal` with `modalSize=medium`. When users navigate to the record, the flow immediately opens in a modal. Useful for guided record setup or required data collection.
 
 ## Tips & Considerations
 
-- **Flow API Name**: Use the Flow's API Name, not its label. Find this in Setup > Flows.
-- **Not a Flow Screen Component**: Dynamic Flow is a Lightning page component, not a Flow Screen component. You place it on pages in App Builder / Experience Builder, not inside other flows.
-- **Experience Cloud Property Editor**: In Experience Cloud, the property editor serializes all configuration as JSON. This enables richer configuration options than standard Lightning page properties allow.
-- **Flow Inputs**: The component automatically passes `recordId` to the flow. If your flow needs additional inputs, consider using the Experience Cloud property editor's configuration options.
-- **Versioning**: The component runs the active version of the specified flow. Activating a new version immediately updates what users see.
-- **Performance**: Inline flows (`component` display type) load when the page loads. For heavy flows, consider `button` display type so users only load the flow when they need it.
+* **Flow API Name**: Use the Flow's API Name, not its label. Find this in Setup > Flows.
+* **Not a Flow Screen Component**: Dynamic Flow is a Lightning page component, not a Flow Screen component. You place it on pages in App Builder / Experience Builder, not inside other flows.
+* **Experience Cloud Property Editor**: In Experience Cloud, the property editor serializes all configuration as JSON. This enables richer configuration options than standard Lightning page properties allow.
+* **Flow Inputs**: The component automatically passes `recordId` to the flow. If your flow needs additional inputs, consider using the Experience Cloud property editor's configuration options.
+* **Versioning**: The component runs the active version of the specified flow. Activating a new version immediately updates what users see.
+* **Performance**: Inline flows (`component` display type) load when the page loads. For heavy flows, consider `button` display type so users only load the flow when they need it.

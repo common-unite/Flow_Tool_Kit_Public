@@ -1,4 +1,4 @@
-# Deploying Form Metadata
+# Deploying Metadata
 
 > How to move form configurations between Salesforce environments using change sets, SFDX, or third-party tools.
 
@@ -14,7 +14,7 @@
 
 The simplest method for sandbox → production deployments.
 
-![Change set component selection](../screenshots/how-to-guides/deploy-change-set-selection.png)
+![Change set component selection](../.gitbook/assets/deploy-change-set-selection.png)
 
 ### Step 1: Create an Outbound Change Set
 
@@ -28,13 +28,13 @@ Add the Custom Metadata Type records for your forms:
 
 1. Select component type: **Custom Metadata Type Records**.
 2. Add all records for your forms:
-   - `Form__mdt` records (the form definitions)
-   - `Form_Section__mdt` records (sections)
-   - `Form_Field__mdt` records (fields)
-   - `Form_Conditional_Logic__mdt` records (if conditional logic is used)
-   - `Form_Conditional_Logic_Condition__mdt` records (conditions)
-   - `Form_Style_Sheet__mdt` records (if themes are customized)
-   - `Form_Labels__mdt` records (if labels/translations are used)
+   * `Form__mdt` records (the form definitions)
+   * `Form_Section__mdt` records (sections)
+   * `Form_Field__mdt` records (fields)
+   * `Form_Conditional_Logic__mdt` records (if conditional logic is used)
+   * `Form_Conditional_Logic_Condition__mdt` records (conditions)
+   * `Form_Style_Sheet__mdt` records (if themes are customized)
+   * `Form_Labels__mdt` records (if labels/translations are used)
 
 {% hint style="warning" %}
 **Include all dependencies.** If you deploy a Section without its parent Form, or a Field without its parent Section, the deployment may fail or the references will be broken.
@@ -120,6 +120,6 @@ After deploying, verify in the target org:
 
 ## Related Pages
 
-- [Deployment Overview](deployment-overview.md) — what needs to be deployed and why
-- [Deploying to Production](deploying-to-production.md) — production-specific checklist
-- [Deploying to Experience Cloud](deploying-to-experience-cloud.md) — EC-specific considerations
+* [Deployment Overview](deployment-overview.md) — what needs to be deployed and why
+* [Deploying to Production](deploying-to-production.md) — production-specific checklist
+* [Deploying to Experience Cloud](deploying-to-experience-cloud.md) — EC-specific considerations

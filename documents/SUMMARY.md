@@ -61,6 +61,7 @@
 
 * [Conditional Logic](form-configuration/conditional-logic.md)
 * [Custom Metadata Types](form-configuration/custom-metadata-types.md)
+* [Custom Styling Overview](form-configuration/custom-styling-overview.md)
 * [Field Labels Help Text](form-configuration/field-labels-help-text.md)
 * [Field Type Settings](form-configuration/field-type-settings.md)
 * [Field Validation](form-configuration/field-validation.md)
@@ -69,6 +70,7 @@
 * [Form Components System](form-configuration/form-components-system.md)
 * [Formula Recalculation](form-configuration/formula-recalculation.md)
 * [Input Field Configuration](form-configuration/input-field-configuration.md)
+* [Picklist Option Labels](form-configuration/picklist-option-labels.md)
 * [Prompt Messages](form-configuration/prompt-messages.md)
 * [reCAPTCHA & Security](form-configuration/recaptcha-security.md)
 * [Themes Labels Styling](form-configuration/themes-labels-styling.md)
@@ -107,6 +109,7 @@
 
 * [Build Multi Page Form](form-template-framework/how-to/build-multi-page-form.md)
 * [Create PDF from Submission](form-template-framework/how-to/create-pdf-from-submission.md)
+* [Host Form On Record Page](form-template-framework/how-to/host-form-on-record-page.md)
 * [Overridable Conversion Flows](form-template-framework/how-to/overridable-conversion-flows.md)
 * [Save And Resume Forms](form-template-framework/how-to/save-and-resume-forms.md)
 * [Set Up Email Notifications](form-template-framework/how-to/set-up-email-notifications.md)
@@ -168,6 +171,7 @@
 * [Release 3.236](release-notes/release-3.236.md)
 * [Release 3.237](release-notes/release-3.237.md)
 * [Release 3.238](release-notes/release-3.238.md)
+* [Release 3.239](release-notes/release-3.239.md)
 
 ## Platform
 
