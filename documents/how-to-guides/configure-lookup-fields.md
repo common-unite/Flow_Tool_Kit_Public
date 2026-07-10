@@ -1,4 +1,4 @@
-# How To: Configure Lookup Fields
+# Configure Lookup Fields
 
 > Customize how lookup fields search, display, and filter records in your forms.
 
@@ -14,7 +14,7 @@
 
 When your form includes a lookup field (like Account on a Contact form), Flow Tool Kit renders it as a searchable lookup with a modal table. You can customize which columns appear in the search results, add filters, enable new record creation, and even display hierarchical data.
 
-![Lookup field with custom toggle in Form Builder](../screenshots/form-configuration/field-types/lookup-custom-toggle.png)
+![Lookup field with custom toggle in Form Builder](../.gitbook/assets/lookup-custom-toggle.png)
 
 ## Step 1: Create a Lookup Table Form
 
@@ -34,11 +34,11 @@ The lookup modal uses a separate Form to define its columns:
 2. Add a **Form (Lookup)** component to the **same screen**.
 3. Configure the Lookup component:
 
-| Property | Value | Example |
-|----------|-------|---------|
-| **Object** | The lookup target object | `Account` |
-| **Form** | The lookup table form you created | `Account_Lookup_Table` |
-| **Field Name** (optional) | Specific lookup field to configure | `AccountId` |
+| Property                  | Value                              | Example                |
+| ------------------------- | ---------------------------------- | ---------------------- |
+| **Object**                | The lookup target object           | `Account`              |
+| **Form**                  | The lookup table form you created  | `Account_Lookup_Table` |
+| **Field Name** (optional) | Specific lookup field to configure | `AccountId`            |
 
 If you leave **Field Name** blank, the Lookup component applies to all lookup fields for that object on the form.
 
@@ -73,32 +73,35 @@ Allow users to create new records directly from the lookup modal:
 
 ### Display Options
 
-| Property | Description |
-|----------|-------------|
-| **Show Row Number Column** | Display row numbers in the search results |
-| **Hide Table Header** | Remove column headers for a cleaner look |
-| **Hide Table Footer** | Remove the footer row |
-| **Table Height** | Set a fixed height (pixels) for the search results area |
+| Property                   | Description                                             |
+| -------------------------- | ------------------------------------------------------- |
+| **Show Row Number Column** | Display row numbers in the search results               |
+| **Hide Table Header**      | Remove column headers for a cleaner look                |
+| **Hide Table Footer**      | Remove the footer row                                   |
+| **Table Height**           | Set a fixed height (pixels) for the search results area |
 
 ## Common Patterns
 
 ### Account Lookup on Contact Form
-- Lookup Object: Account
-- Columns: Name, Phone, Industry, Billing City
-- Result: Users search accounts by name and see key info to pick the right one
+
+* Lookup Object: Account
+* Columns: Name, Phone, Industry, Billing City
+* Result: Users search accounts by name and see key info to pick the right one
 
 ### Contact Lookup with Role Filter
-- Lookup Object: Contact
-- Columns: Name, Email, Title, Account Name
-- Filter: Only show contacts related to a specific account
+
+* Lookup Object: Contact
+* Columns: Name, Email, Title, Account Name
+* Filter: Only show contacts related to a specific account
 
 ### Hierarchical Account Picker
-- Lookup Object: Account
-- Tree display enabled with `ParentId`
-- Users can expand parent accounts to find child accounts visually
+
+* Lookup Object: Account
+* Tree display enabled with `ParentId`
+* Users can expand parent accounts to find child accounts visually
 
 ## Related Pages
 
-- [Lookup Reference](../screen-components/lookup.md) — all properties and configuration options
-- [Build a Form](build-a-form.md) — creating forms from scratch
-- [Use Data Tables](use-data-tables.md) — similar column configuration for table displays
+* [Lookup Reference](../screen-components/lookup.md) — all properties and configuration options
+* [Build a Form](build-a-form.md) — creating forms from scratch
+* [Use Data Tables](use-data-tables.md) — similar column configuration for table displays

@@ -1,4 +1,4 @@
-# Quick Start: Build Your First Form Component
+# Quick Start
 
 > Build a working form component and add it to a Flow in under 5 minutes.
 
@@ -23,7 +23,7 @@ You'll see the Form Builder interface — this is where you create and manage al
 3. Give your form component a name (e.g., "Contact Intake Form").
 4. Click **Create**.
 
-![Creating a new form component in Form Builder](../screenshots/getting-started/form-builder-new-component.png)
+![Creating a new form component in Form Builder](../.gitbook/assets/form-builder-new-component.png)
 
 ## Step 3: Add a Section
 
@@ -39,7 +39,7 @@ Every form component needs at least one section to hold fields.
 2. **Drag fields** into your section — start with: First Name, Last Name, Email, Phone, and Account.
 3. Fields snap into the column layout automatically.
 
-![Assigning fields to a form section](../screenshots/getting-started/form-builder-field-assignment.png)
+![Assigning fields to a form section](../.gitbook/assets/form-builder-field-assignment.png)
 
 {% hint style="info" %}
 **Tip**: The Account field automatically renders as a Lookup field — users can search for and select an existing account.
@@ -49,11 +49,11 @@ Every form component needs at least one section to hold fields.
 
 Click any field to see its properties panel. You can:
 
-- Mark it as **Required**
-- Override the **Label** text
-- Add **Help Text** that appears below the field
-- Set a **Default Value**
-- Add **Conditional Visibility** rules (show/hide based on other field values)
+* Mark it as **Required**
+* Override the **Label** text
+* Add **Help Text** that appears below the field
+* Set a **Default Value**
+* Add **Conditional Visibility** rules (show/hide based on other field values)
 
 For now, mark **Last Name** and **Email** as required.
 
@@ -63,16 +63,16 @@ Click **Save**. Your form component metadata is now stored and ready to use.
 
 ## Step 7: Add the Form Component to a Flow
 
-![Flow Form component on the Flow Builder canvas](../screenshots/getting-started/flow-builder-form-component.png)
+![Flow Form component on the Flow Builder canvas](../.gitbook/assets/flow-builder-form-component.png)
 
 1. Open **Setup → Flows** and create a new **Screen Flow**.
 2. Add a **Screen** element.
 3. In the component panel, find **Flow Form** (under the FlowToolKit section).
 4. Drag it onto the screen.
 5. In the property editor:
-   - Set **Object** to `Contact`
-   - Set **Form** to the form component you just created ("Contact Intake Form")
-   - Set **Record** to a Contact record variable (create one if needed)
+   * Set **Object** to `Contact`
+   * Set **Form** to the form component you just created ("Contact Intake Form")
+   * Set **Record** to a Contact record variable (create one if needed)
 6. Save and activate your flow.
 
 ## Step 8: Test It
@@ -83,8 +83,8 @@ Click **Debug** or **Run** in Flow Builder to preview your form. You should see 
 
 You've built your first form component. Here's where to go from here:
 
-- [Core Concepts](core-concepts.md) — understand form components, sections, fields, and how they connect
-- [Form Builder Reference](../screen-components/form-builder.md) — all Form Builder features in detail
-- [Flow Form Reference](../screen-components/flow-form.md) — all Flow Form properties and options
-- [Conditional Logic](../form-configuration/conditional-logic.md) — show/hide fields based on values
-- [Themes and Styling](../form-configuration/themes-labels-styling.md) — customize the look of your forms
+* [Core Concepts](core-concepts.md) — understand form components, sections, fields, and how they connect
+* [Form Builder Reference](../screen-components/form-builder.md) — all Form Builder features in detail
+* [Flow Form Reference](../screen-components/flow-form.md) — all Flow Form properties and options
+* [Conditional Logic](../form-configuration/conditional-logic.md) — show/hide fields based on values
+* [Themes and Styling](../form-configuration/themes-labels-styling.md) — customize the look of your forms

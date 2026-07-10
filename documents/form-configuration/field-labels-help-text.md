@@ -1,4 +1,5 @@
-# Field Labels & Help Text
+# Field Labels Help Text
+
 > Customize label position, size, and text — use merge fields for dynamic labels, override help text, and add prepend/append indicators.
 
 ## Video Walkthrough
@@ -11,18 +12,18 @@ Flow Tool Kit gives you full control over field labels and help text. Override t
 
 ## Label Position
 
-| Position | Description |
-|---|---|
+| Position              | Description                      |
+| --------------------- | -------------------------------- |
 | **Default / Stacked** | Label above the field (standard) |
-| **Inline** | Label to the left of the field |
-| **None** | Label hidden entirely |
+| **Inline**            | Label to the left of the field   |
+| **None**              | Label hidden entirely            |
 
-![Label position options in Form Builder](../screenshots/form-configuration/input-fields/label-position-options.png)
+![Label position options in Form Builder](../.gitbook/assets/label-position-options.png)
 
 ## Label Size & Alignment
 
-- **Label Size**: Default, Medium, or Large
-- **Center Label**: Toggle to center the label text above the field
+* **Label Size**: Default, Medium, or Large
+* **Center Label**: Toggle to center the label text above the field
 
 ## Custom Label Override
 
@@ -35,6 +36,7 @@ Salesforce limits field labels to 40 characters. The custom label override **rem
 ### HTML in Labels
 
 Custom labels support HTML for styling. For example:
+
 ```html
 <span style="color:red">Required: Household Name</span>
 ```
@@ -45,13 +47,19 @@ This also works with custom stylesheet injection via static resources for org-wi
 
 Use `{{fieldName}}` syntax in labels, placeholders, and help text to inject live values from other fields on the form.
 
-| Merge Field | What It Injects |
-|---|---|
-| `{{FirstName}}` | Current value of the FirstName field (updates in real-time as the user types) |
-| `{{Label}}` | The field's schema label (from the object definition) |
-| `{{HelpText}}` | The field's schema help text |
+| Merge Field         | What It Injects                                                                                                                 |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `{{FirstName}}`     | Current value of the FirstName field (updates in real-time as the user types)                                                   |
+| `{{Label}}`         | The field's schema label (from the object definition)                                                                           |
+| `{{HelpText}}`      | The field's schema help text                                                                                                    |
+| `{{fieldnumber}}`   | The field's position among **visible** fields (1, 2, 3… — renumbers automatically when conditional logic hides or shows fields) |
+| `{{sectionnumber}}` | The section's position among visible sections (dividers and illustrations don't count)                                          |
 
-![Merge field in a custom label](../screenshots/form-configuration/input-fields/merge-field-in-label.png)
+![Merge field in a custom label](../.gitbook/assets/merge-field-in-label.png)
+
+{% hint style="info" %}
+Merge fields also work inside **picklist option labels**: rename any picklist or multiselect option per form, including dynamic wording that re-resolves as the respondent answers. See [Picklist Option Labels](picklist-option-labels.md).
+{% endhint %}
 
 ### Common Merge Field Patterns
 
@@ -59,23 +67,25 @@ Use `{{fieldName}}` syntax in labels, placeholders, and help text to inject live
 
 **Help Text as Label**: Use `{{HelpText}}` in the custom label to display the field's help text as the label. This is useful for Translation Workbench users — help text fields support longer descriptions than labels, and translations apply automatically.
 
+**Numbered Questions**: Use `Question {{fieldnumber}} — {{Label}}` as the custom label to auto-number survey questions. Numbering is scoped to each form component and skips hidden fields, so questions never show gaps and re-flow when fields are reordered or conditionally hidden. Repeating sections number each instance from 1. `{{fieldnumber}}` and `{{sectionnumber}}` work in labels, help text, prompts, and placeholders.
+
 ## Prepend & Append Text
 
 Add text or symbols before or after the input field:
 
-- **Prepend Text**: Displayed before the input (e.g., `$` for currency fields)
-- **Append Text**: Displayed after the input (e.g., `%` or unit abbreviations)
+* **Prepend Text**: Displayed before the input (e.g., `$` for currency fields)
+* **Append Text**: Displayed after the input (e.g., `%` or unit abbreviations)
 
-![Prepend and append text on a field](../screenshots/form-configuration/input-fields/prepend-append-text.png)
+![Prepend and append text on a field](../.gitbook/assets/prepend-append-text.png)
 
 ## Help Text
 
 By default, help text comes from the object schema and displays as a tooltip icon.
 
-| Setting | Description |
-|---|---|
-| **Custom Help Text** | Override the schema help text with custom text |
-| **Disable Help Text** | Toggle to hide the help text tooltip entirely |
+| Setting               | Description                                    |
+| --------------------- | ---------------------------------------------- |
+| **Custom Help Text**  | Override the schema help text with custom text |
+| **Disable Help Text** | Toggle to hide the help text tooltip entirely  |
 
 ### Help Text + Merge Fields
 
@@ -83,14 +93,14 @@ Use `{{HelpText}}` in a custom label or prompt message to repurpose the schema h
 
 ## Tips & Considerations
 
-- **Merge fields are live** — `{{FirstName}}` updates in real-time as the user types in the FirstName field. This enables personalized labels and prompts.
-- **Translation Workbench compatibility** — the `{{HelpText}}` merge field pattern lets you use longer, translatable descriptions from the help text field as labels, with automatic translation support.
-- **HTML requires care** — while HTML in labels is powerful, use it sparingly. Broken HTML tags can affect form rendering.
-- **Prepend/Append vs. Label** — use prepend/append for short indicators ($, %, units). Use custom labels for longer descriptive text.
+* **Merge fields are live** — `{{FirstName}}` updates in real-time as the user types in the FirstName field. This enables personalized labels and prompts.
+* **Translation Workbench compatibility** — the `{{HelpText}}` merge field pattern lets you use longer, translatable descriptions from the help text field as labels, with automatic translation support.
+* **HTML requires care** — while HTML in labels is powerful, use it sparingly. Broken HTML tags can affect form rendering.
+* **Prepend/Append vs. Label** — use prepend/append for short indicators ($, %, units). Use custom labels for longer descriptive text.
 
 ## Related Pages
 
-- [Input Field Configuration](input-field-configuration.md) — field configuration overview
-- [Prompt Messages](prompt-messages.md) — rich text prompts on field focus
-- [Themes, Labels & Styling](themes-labels-styling.md) — theme-level label and translation configuration
-- [Field Width & Responsiveness](field-width-responsiveness.md) — label position affects layout at different widths
+* [Input Field Configuration](input-field-configuration.md) — field configuration overview
+* [Prompt Messages](prompt-messages.md) — rich text prompts on field focus
+* [Themes, Labels & Styling](themes-labels-styling.md) — theme-level label and translation configuration
+* [Field Width & Responsiveness](field-width-responsiveness.md) — label position affects layout at different widths

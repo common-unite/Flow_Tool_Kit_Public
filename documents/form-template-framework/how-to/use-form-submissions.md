@@ -1,4 +1,4 @@
-# How To: Use Form Submissions
+# Use Form Submissions
 
 > Capture, review, and convert form submission data into Salesforce records.
 
@@ -12,7 +12,7 @@
 
 ## Overview
 
-![Save progress button on form](../../screenshots/form-template-framework/form-submissions/save-progress-button.png)
+![Save progress button on form](../../.gitbook/assets/save-progress-button.png)
 
 When users fill out a Form Template, their data is captured as a **Form Submission** record. Submissions can be reviewed before final processing, then converted into one or more Salesforce records (Account, Contact, Lead, Case, Opportunity, Campaign Member).
 
@@ -34,9 +34,9 @@ Form submissions are built into the Form Template Framework. When a user complet
 
 Submissions can be displayed in read-only review mode before final submission:
 
-- The last page of the template can show a summary of all pages
-- Users review their data and either go back to edit or confirm submission
-- This is configured in the template settings
+* The last page of the template can show a summary of all pages
+* Users review their data and either go back to edit or confirm submission
+* This is configured in the template settings
 
 ## Step 3: Convert Submissions to Records
 
@@ -48,14 +48,14 @@ After reviewing a submission, convert it into Salesforce records:
 
 ### What Gets Created
 
-| Target Object | When To Use |
-|--------------|-------------|
-| Account | Organization/company data |
-| Contact | Individual person data |
-| Lead | Prospect data for sales pipeline |
-| Case | Support request or inquiry |
-| Opportunity | Sales opportunity |
-| Campaign Member | Add to a marketing campaign |
+| Target Object   | When To Use                      |
+| --------------- | -------------------------------- |
+| Account         | Organization/company data        |
+| Contact         | Individual person data           |
+| Lead            | Prospect data for sales pipeline |
+| Case            | Support request or inquiry       |
+| Opportunity     | Sales opportunity                |
+| Campaign Member | Add to a marketing campaign      |
 
 ## Step 4: Set Up Conversion Rules
 
@@ -63,7 +63,7 @@ Conversion rules define how submission fields map to Salesforce fields:
 
 1. Configure conversion rules for your template.
 2. For each target object, map:
-   - **Source field** (from the submission) → **Target field** (on the Salesforce object)
+   * **Source field** (from the submission) → **Target field** (on the Salesforce object)
 3. Set transformation rules if data needs to be modified during conversion.
 
 {% hint style="info" %}
@@ -78,18 +78,18 @@ If the standard conversion doesn't meet your needs, override it with a custom Fl
 2. Reference it in the template's conversion configuration.
 3. Your Flow receives the submission data and creates/updates records however you need.
 
-See [Advanced Topics: Overridable Flows](../advanced-topics/overridable-flows.md) for details.
+See [Advanced Topics: Overridable Flows](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/advanced-topics/overridable-flows.md) for details.
 
 ## Automatic vs. Manual Conversion
 
-| Mode | Description | When To Use |
-|------|-------------|------------|
-| **Automatic** | Records created immediately on submission | Simple intake forms, no review needed |
-| **Manual** | Admin reviews and triggers conversion | Applications, sensitive data, quality review |
+| Mode          | Description                               | When To Use                                  |
+| ------------- | ----------------------------------------- | -------------------------------------------- |
+| **Automatic** | Records created immediately on submission | Simple intake forms, no review needed        |
+| **Manual**    | Admin reviews and triggers conversion     | Applications, sensitive data, quality review |
 
 ## Related Pages
 
-- [Form Submissions Reference](../form-template-framework/form-submissions.md) — full reference
-- [Build a Multi-Page Form](build-multi-page-form.md) — template creation
-- [Create PDF from Submission](create-pdf-from-submission.md) — generate PDFs
-- [Set Up Email Notifications](set-up-email-notifications.md) — notify on submission
+* [Form Submissions Reference](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-submissions.md) — full reference
+* [Build a Multi-Page Form](build-multi-page-form.md) — template creation
+* [Create PDF from Submission](create-pdf-from-submission.md) — generate PDFs
+* [Set Up Email Notifications](set-up-email-notifications.md) — notify on submission

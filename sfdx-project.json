@@ -11,7 +11,7 @@
   ],
   "namespace": "FlowToolKit",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "64.0",
+  "sourceApiVersion": "66.0",
   "packageAliases": {
     "FlowToolKit": "04tRQ0000002NerYAE",
     "Documentation Support": "0Ho4W000000PBO4SAO",

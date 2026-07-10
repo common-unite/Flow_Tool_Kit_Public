@@ -6,7 +6,7 @@
 
 Page conditional logic lets you create dynamic, branching form experiences. Instead of showing all pages to every user, you can conditionally display pages based on the responses entered on earlier pages.
 
-![Page conditional logic configuration](../screenshots/68-page-conditional-logic.png)
+![Page conditional logic configuration](../.gitbook/assets/68-page-conditional-logic.png)
 
 ## How It Works
 
@@ -18,16 +18,18 @@ Page conditional logic lets you create dynamic, branching form experiences. Inst
 ## Condition Rules
 
 ### Supported Operators
-- Equals
-- Not Equals
-- Is Blank
-- Is Not Blank
-- Contains
-- Greater Than / Less Than (numeric fields)
+
+* Equals
+* Not Equals
+* Is Blank
+* Is Not Blank
+* Contains
+* Greater Than / Less Than (numeric fields)
 
 ### Logic Combinations
-- **AND** — all conditions must be true to show the page
-- **OR** — any one condition being true shows the page
+
+* **AND** — all conditions must be true to show the page
+* **OR** — any one condition being true shows the page
 
 ### Field References
 
@@ -54,11 +56,11 @@ Page 5: Spouse Information (shown when Marital Status = "Married")
 
 ## Tips
 
-- **Test all paths** — with conditional pages, users can take different routes through the form. Test each combination to ensure navigation works correctly
-- **Default values** — if a skipped page has required fields, ensure your Flow handles the absence of those values downstream
-- **Page numbering** — use gaps (10, 20, 30) so you can insert conditional pages between existing ones
+* **Test all paths** — with conditional pages, users can take different routes through the form. Test each combination to ensure navigation works correctly
+* **Default values** — if a skipped page has required fields, ensure your Flow handles the absence of those values downstream
+* **Page numbering** — use gaps (10, 20, 30) so you can insert conditional pages between existing ones
 
 ## Related Pages
 
-- [Pages and Sections](pages-and-sections.md) — page structure reference
-- [Conditional Logic](../form-configuration/conditional-logic.md) — field-level conditional logic (within a single form component)
+* [Pages and Sections](pages-and-sections.md) — page structure reference
+* [Conditional Logic](../form-configuration/conditional-logic.md) — field-level conditional logic (within a single form component)

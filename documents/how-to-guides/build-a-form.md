@@ -1,4 +1,4 @@
-# How To: Build a Form Component
+# Build A Form
 
 > End-to-end guide — create an object configuration, build a form component in Form Builder, and add it to a Flow.
 
@@ -18,7 +18,7 @@ Open the **App Launcher** and search for **Form Builder**. Click the tab to open
 
 Before building a form component, you need an object configuration that tells Form Builder which Salesforce object the form component targets.
 
-![Creating a new form component](../screenshots/getting-started/form-builder-new-component.png)
+![Creating a new form component](../.gitbook/assets/form-builder-new-component.png)
 
 1. In Form Builder, click **New Form**.
 2. Select the **Object** (e.g., Contact, Account, or any custom object).
@@ -51,25 +51,25 @@ Sections are the structural containers for your fields. They create visual group
 
 ### Recommended Fields to Start With
 
-| Object | Good Starting Fields |
-|--------|---------------------|
+| Object  | Good Starting Fields                                                   |
+| ------- | ---------------------------------------------------------------------- |
 | Contact | First Name, Last Name, Email, Phone, Account (lookup), Mailing Address |
-| Account | Name, Phone, Website, Industry, Billing Address |
-| Case | Subject, Description, Priority, Status, Contact (lookup) |
-| Lead | First Name, Last Name, Company, Email, Phone, Lead Source |
+| Account | Name, Phone, Website, Industry, Billing Address                        |
+| Case    | Subject, Description, Priority, Status, Contact (lookup)               |
+| Lead    | First Name, Last Name, Company, Email, Phone, Lead Source              |
 
 ## Step 5: Configure Field Properties
 
 Click any field to open its **Properties Panel**:
 
-| Property | What It Does |
-|----------|-------------|
-| **Required** | User must fill in this field to proceed |
-| **Read Only** | Displays the value but doesn't allow editing |
-| **Label Override** | Change the field label shown to users |
-| **Help Text** | Instructional text displayed below the field |
-| **Default Value** | Pre-filled value when the form loads |
-| **Placeholder** | Ghost text shown in empty fields |
+| Property                   | What It Does                                                                                  |
+| -------------------------- | --------------------------------------------------------------------------------------------- |
+| **Required**               | User must fill in this field to proceed                                                       |
+| **Read Only**              | Displays the value but doesn't allow editing                                                  |
+| **Label Override**         | Change the field label shown to users                                                         |
+| **Help Text**              | Instructional text displayed below the field                                                  |
+| **Default Value**          | Pre-filled value when the form loads                                                          |
+| **Placeholder**            | Ghost text shown in empty fields                                                              |
 | **Conditional Visibility** | Show/hide based on other field values (see [Add Conditional Logic](add-conditional-logic.md)) |
 
 ## Step 6: Save the Form Component
@@ -83,36 +83,38 @@ Click **Save**. Your form component metadata is now stored as Custom Metadata re
 3. In the component panel, find **Flow Form** under the FlowToolKit section.
 4. Drag it onto the screen.
 5. In the **Custom Property Editor**:
-   - **Object**: Select the same object as your form component (e.g., Contact)
-   - **Form**: Select the form component you just created
-   - **Record**: Assign a record variable of the matching object type
+   * **Object**: Select the same object as your form component (e.g., Contact)
+   * **Form**: Select the form component you just created
+   * **Record**: Assign a record variable of the matching object type
 
 ## Step 8: Use the Form Output in Your Flow
 
 After the screen element, the form component's output is available as a record variable:
 
-- `{!FlowForm.record}` — the SObject record containing all field values the user entered
-- Use this in **Create Records**, **Update Records**, or **Decision** elements
+* `{!FlowForm.record}` — the SObject record containing all field values the user entered
+* Use this in **Create Records**, **Update Records**, or **Decision** elements
 
 For example, to create a new Contact:
+
 1. Add a **Create Records** element after the screen
 2. Set the input to `{!FlowForm.record}`
 
 ## Step 9: Test
 
 Click **Debug** or **Run** in Flow Builder to preview your form. Verify:
-- All fields appear in the correct sections
-- Required fields show validation when left empty
-- The record is created/updated correctly after submission
+
+* All fields appear in the correct sections
+* Required fields show validation when left empty
+* The record is created/updated correctly after submission
 
 ## What's Next
 
-- [Add Conditional Logic](add-conditional-logic.md) — show/hide fields based on values
-- [Configure Lookup Fields](configure-lookup-fields.md) — customize lookup search and display
-- [Configure Themes and Styling](configure-themes-and-styling.md) — change form appearance
-- [Form Builder Reference](../screen-components/form-builder.md) — all features and options
+* [Add Conditional Logic](add-conditional-logic.md) — show/hide fields based on values
+* [Configure Lookup Fields](configure-lookup-fields.md) — customize lookup search and display
+* [Configure Themes and Styling](configure-themes-and-styling.md) — change form appearance
+* [Form Builder Reference](../screen-components/form-builder.md) — all features and options
 
 ## Related Pages
 
-- [Flow Form Reference](../screen-components/flow-form.md) — all input/output properties
-- [Core Concepts](../getting-started/core-concepts.md) — how form components, sections, and fields connect
+* [Flow Form Reference](../screen-components/flow-form.md) — all input/output properties
+* [Core Concepts](../getting-started/core-concepts.md) — how form components, sections, and fields connect

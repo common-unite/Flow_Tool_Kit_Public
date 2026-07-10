@@ -55,6 +55,20 @@ Click a stage to open that page. Two buttons at the bottom replace the standard 
 - **Mark Page Complete** — validates the page, saves, marks the stage as `Done`, returns to the overview
 - **Return to Stages** — saves any progress and returns to the overview without marking the stage complete (if the stage was `Todo`, it flips to `Current` to show the respondent has started it)
 
+Inside a stage, the vertical stage indicator beside the form doubles as a progress map and a shortcut: a green filled check marks completed pages, a blue filled pencil marks the current page, a clock marks pages in progress, an orange warning marks pages needing correction, a lock marks locked stages, and a gray dot marks pages not started. Every page except the current one and locked stages is clickable; clicking saves the page being left and opens the target, exactly like returning to the overview and starting that step. Clickable steps also respond to Enter and Space for keyboard users.
+
+## Stage Mode Layout
+
+The **Stage Mode Layout** multiselect on the Form Template (Template Settings, shown when Stages Mode is on) adjusts the overview per template:
+
+| Option | Effect |
+| --- | --- |
+| **Hide Progress Banner** | Removes the progress summary card (step counts, percent complete, progress bar). |
+| **Hide Completed Fields** | Removes the field and section count pills on each stage card; validation error counts still show. |
+| **Display Template Header** | Renders the template's configured Header form component in place of the plain title and subtitle, in the same rounded card treatment as the linear layout. The draft-saved indicator and resume-link button are hidden while the header displays. |
+
+Leave it blank for the default layout.
+
 ## Data Model
 
 Stages mode adds one runtime object: `Form_Submission_Stage__c`.
@@ -106,9 +120,11 @@ A respondent partway through a long form can click **Email me a resume link** in
 3. The `Form_Submission` Apex trigger watches that field. When it transitions to a non-blank value (or changes to a different non-blank value), the trigger generates a cryptographically random 32-character hex token (128 bits, via Salesforce's `Crypto.generateAesKey` CSPRNG) and writes it to `Internal_Unique_Token__c`. The token is **not** derived from any record field — it cannot be computed by anyone who has read access to the submission.
 4. The `Form_Submission_Send_Resume_Link` autolaunched flow fires record-triggered on the token write. It resolves the recipient via the formula:
    ```
-   BLANKVALUE($User.Email, BLANKVALUE($Record.Contact1_Email__c, $Record.Email__c))
+   BLANKVALUE($Record.Contact1_Email__c,
+   BLANKVALUE($Record.Email__c,
+   BLANKVALUE($Record.Contact_1__r.Email, $Record.Owner:User.Email)))
    ```
-   — the logged-in user's email wins, then `Contact1_Email__c`, then `Email__c`. If all three are blank the flow no-ops gracefully.
+   — `Contact1_Email__c` wins, then `Email__c`, then the related Contact 1's `Email` (so a submission whose only recipient signal is the `Contact_1__c` lookup still resolves a real address), and finally the submission Owner's `User.Email`. Because every submission has an Owner with a User email, a recipient effectively always resolves — there is no blank-recipient branch in the flow.
 5. The email goes out with merge fields for the submission Id (`{!$Record.Id}`) and token (`{!$Record.Internal_Unique_Token__c}`). The shipped body is intentionally minimal — admins clone the flow to brand the email and construct the full resume URL.
 6. The recipient clicks the link, which carries URL parameter `pv9` (Token) into the Form Template record page.
 7. The Form Template's existing URL parameter mapping (`pv9 → Internal_Unique_Token__c`) feeds the token into the `Form_Submission_Prefill` flow's `record` input.
