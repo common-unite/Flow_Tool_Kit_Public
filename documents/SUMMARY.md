@@ -70,6 +70,7 @@
 * [Form Components System](form-configuration/form-components-system.md)
 * [Formula Recalculation](form-configuration/formula-recalculation.md)
 * [Input Field Configuration](form-configuration/input-field-configuration.md)
+* [Likert Matrix Sections](form-configuration/likert-matrix-sections.md)
 * [Picklist Option Labels](form-configuration/picklist-option-labels.md)
 * [Prompt Messages](form-configuration/prompt-messages.md)
 * [reCAPTCHA & Security](form-configuration/recaptcha-security.md)
@@ -172,6 +173,7 @@
 * [Release 3.237](release-notes/release-3.237.md)
 * [Release 3.238](release-notes/release-3.238.md)
 * [Release 3.239](release-notes/release-3.239.md)
+* [Release 3.240](release-notes/release-3.240.md)
 
 ## Platform
 
