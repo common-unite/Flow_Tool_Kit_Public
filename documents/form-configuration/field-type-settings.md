@@ -130,6 +130,43 @@ Convert any picklist field into an interactive star/icon rating selector by sele
 
 The number of icons matches the number of picklist values. Hovering over an icon shows the picklist value label. Selecting an icon lights it up along with all icons to its left (standard rating behavior). The underlying data is still a standard picklist value, integrating with Salesforce reporting.
 
+## Survey Buttons
+
+Render any picklist as **vertical, full-width option cards** with the look and feel of a modern survey tool: each option is a large tap-friendly card with a radio indicator, and the selected card outlines and tints with your org's brand color.
+
+Select a picklist field and set **Picklist Display Type** to **Survey Buttons** in Picklist Override Settings:
+
+![Switching a picklist to Survey Buttons and selecting options in the preview](../.gitbook/assets/246-survey-buttons-demo.gif)
+
+* Works on every form factor; unlike the Radio display type, it never falls back to a dropdown on phones, making it a strong default for mobile-first forms.
+* The full picklist toolkit applies: subset and reorder options with Override Available Picklist Options, relabel them with [Picklist Option Labels](picklist-option-labels.md), and use required, help text, and conditional rules as usual.
+* Selecting a card stores the standard picklist API value; clicking the selected card again clears a non-required field.
+* [Likert Matrix sections](likert-matrix-sections.md) reuse this exact rendering for their stacked mobile layout, so surveys look consistent across the whole form.
+
+![Survey Buttons rendering a Conversion Status picklist as option cards](../.gitbook/assets/246-survey-buttons.png)
+
+## Visual Picker
+
+Turn any picklist or multiselect picklist into a grid of **selectable cards**, each showing an SLDS icon or one of your org's public image assets. Hovering a card fades the media into the option's label (phones show the label as an always-on caption instead), and selected cards outline and tint in your org's brand color.
+
+![Visual picker cards on a picklist and a multiselect, with hover revealing the labels](../.gitbook/assets/247-visual-picker-demo.gif)
+
+Set **Picklist Display Type** to **Visual Picker** in Picklist Override Settings, then click **Customize Visual Picker** to map each option:
+
+* **Type** picks the media per option. **Icon** (the default) opens the icon picker with its standard, custom, and doctype groups; **Image Asset** lists the org's public image assets, scaled to fit the card.
+* **Custom Label** works exactly like Override Option Labels, which this modal replaces while Visual Picker is active: saved values keep their API names, empty inputs keep the default label, and merge fields are supported. The label is what the hover reveal (or the phone caption) displays.
+
+![Mapping icons, image assets, and custom labels per option in the Customize Visual Picker editor](../.gitbook/assets/247-visual-picker-modal-demo.gif)
+
+A few behaviors to know:
+
+* **Column(s) Size** shapes the card grid exactly as it does for radio options: auto gives four cards per row on desktop, or choose 1 through 12 columns. Phones always render two per row.
+* **Override Available Picklist Options** subsets and reorders the cards, and icons paint in the org brand color in every context (internal, Aura sites, and LWR sites).
+* Multiselect fields render the same cards with checkbox behavior so several stay selected; on a single picklist, clicking the selected card again clears a non-required field.
+* Options without a mapped icon or asset fall back to a neutral icon, so a newly added picklist value never renders an empty card.
+
+![Choosing the column count and subsetting which options appear](../.gitbook/assets/247-visual-picker-columns-demo.gif)
+
 ## Signature Pad
 
 {% embed url="https://vimeo.com/891254284" %}
