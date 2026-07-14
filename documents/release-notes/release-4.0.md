@@ -1,18 +1,28 @@
-# Flow Tool Kit 4.0: Everything New Since 3.196
+# Flow Tool Kit 4.0: Forms People Finish
 
-> Forty-six releases, December 2025 through July 2026, in one place: every new capability, improvement, and fix, with documentation links and live demos.
+> The milestone release: forty-six releases of capability in one upgrade. Applications families complete together, giving pages that feel like giving, surveys that score themselves, and public forms on your own website, all living entirely in Salesforce and extended with Flow, not code.
+
+4.0 is the release where Flow Tool Kit outgrows the word "form builder." What ships here is a way to deliver experiences: a multi-session housing application a family finishes across three evenings and two phones, a donation page where the amounts invite instead of interrogate, a survey that routes a high-risk score before the confirmation page loads, an event registration embedded on your website that lands in Salesforce the instant it is submitted. Every piece runs inside your org, on your data, under your security model, and when your requirements get unusual, your admins extend it with the tool they already know: Flow.
+
+The fastest way to believe it is to use it. **[Open the live demo](https://common-unite.my.site.com/s/form-template/a0fRQ000003mUy9/affordable-housing-land-trust-application?language=en_US)**, a real public affordable-housing application, and spend ninety seconds clicking through stages. No login, no setup.
 
 ## ✨ Highlights
 
-### Stages Mode: long forms, reimagined
+### Stages Mode: applications people actually finish
 
-The biggest rethinking of how long forms work. Instead of a forced Next/Back march, respondents land on a **stage overview**, where every page is listed with a status badge (Complete, In progress, Todo, Optional), a time estimate, and a description, and they complete stages in any order. Progress lives in real Form Submission Stage records, so several people can collaborate on one submission, **Mark Page Complete** stamps who finished what and when, and admins report on progress like any other data. The vertical progress rail doubles as a live map: check, pencil, clock, warning, and lock markers show each stage's true state, and clicking navigates. Layout options let each template hide the progress banner, hide completed fields, or crown the overview with a branded template header.
+**TL;DR: your longest form becomes a stage overview respondents complete in any order, with progress stored as real Salesforce records your team can see, report on, and automate.**
 
-- **Stage overview home screen**: every page listed with a status badge, time estimate, and description; respondents work in any order
-- **Real progress records**: stage status lives on Form Submission Stage records, so several people can collaborate and admins report on progress like any other data
-- **Mark Page Complete**: stamps who finished each stage and when
-- **Live progress rail**: check, pencil, clock, warning, and lock markers double as click-to-navigate
-- **Per-template layout options**: hide the progress banner, hide completed fields, or show a branded template header
+Picture the longest thing you ask anyone to complete: the housing application, the grant proposal, the annual re-certification. The reason those get abandoned is not the questions, it is the march: page after page with no sense of where the end is. Stages Mode replaces the march with a **stage overview**: every step listed with what it is, how long it takes, and what is already done. A parent starts Household Information on a lunch break, a spouse attaches documents that evening from a phone, and the overview keeps everyone honest about what is left. Build it once and the same pattern carries your intake packets, board applications, compliance renewals, and every other "we mail them a checklist" process still living outside Salesforce.
+
+Delivery is the quiet win. There is no portal project here: Stages Mode is a checkbox on the Form Template, and each page's description, time estimate, and optional flag are fields your admin fills in. Because progress lives in Form Submission Stage records, your staff already have the tools to run the program: a list view of applicants stuck on Documents, a dashboard of completion rates by stage, a record-triggered flow that nudges anyone idle for a week. The application experience and the operations behind it come from the same checkbox.
+
+**Why it's different:**
+
+- **Progress is data, not UI state**: stage status lives on real records, so reports, list views, and record-triggered follow-ups work on day one
+- **True collaboration**: several people advance one submission, and **Mark Page Complete** stamps who finished what and when
+- **The overview is the navigation**: status badges, time estimates, and descriptions on every stage, and the progress rail's markers double as click-to-navigate
+- **Per-template layout options**: hide the progress banner, hide completed fields, or crown the overview with a branded header
+- **One checkbox to adopt**: an existing multi-page template becomes a staged application without rebuilding anything
 
 ![Full Stages Mode walkthrough on a public site: landing on the stage overview, opening a stage, saving progress, and marking stages complete](../.gitbook/assets/125-stages-public-walkthrough-demo.gif)
 
@@ -20,28 +30,41 @@ The biggest rethinking of how long forms work. Instead of a forced Next/Back mar
 
 📚 [Stages Mode](../form-template-framework/stages-mode.md)
 
-### Never lose a respondent: Save & Resume + Autosave
+### Life interrupts. Your forms are fine with that.
 
-Two features that together make abandoning a long form painless to recover from. **Autosave** silently saves drafts as respondents work: debounced on change or on a 10/30-second checkpoint clock, never writing when nothing changed, coordinating with manual Save Progress, and working for guests and iframe embeds. **Save & Resume via Email** adds a "Draft saved N minutes ago" indicator and an *Email me a resume link* button that sends a single-use, cryptographically random link returning the respondent to their exact saved state. Tokens clear on use and expire after seven days, email templates are admin-controlled per template, and a record-triggered flow lets admins send start-link invitations.
+**TL;DR: work saves itself as people type, and one click emails a private, single-use link that reopens the form exactly where they left it.**
 
-- **Autosave**: debounced saves on change plus 10/30-second checkpoints; never writes when nothing changed
-- **Works everywhere**: guests, iframe embeds, and alongside manual Save Progress
-- **"Draft saved" indicator**: respondents always know their work is safe
-- **Email me a resume link**: a single-use, cryptographically random link back to the exact saved state
-- **Admin-controlled**: per-template email templates, seven-day token expiry, and a record-triggered flow for start-link invitations
+A half-finished form is not a respondent failure, it is a Tuesday: the doorbell rings, the laptop dies, the lunch break ends. In 4.0, work saves itself as people type, a quiet "Draft saved" note keeps them confident, and when they need to walk away, one click emails them a private link that reopens the form exactly where they left it, days later, on any device. Nobody retypes an hour of answers, nobody double-submits, and nobody calls your office asking to start over. It works for logged-in users, for guests, and for forms embedded on your website, which means the people most likely to give up are now the ones most likely to come back.
+
+It also unlocks a delivery pattern you could not build before: launching a form *to* people instead of waiting for them. A record-triggered flow can send start links to a whole list, so two hundred members receive their renewal already tied to their record, open it without logging in, and finish it across as many sittings as they need. Your team writes zero code, controls every email template, and the tokens take care of themselves.
+
+**Why it's different:**
+
+- **Autosave that respects your org**: debounced on change, checkpointed on a timer, and never writing when nothing changed
+- **Links safe enough to email**: single-use, cryptographically random, cleared on use, expired after seven days
+- **Guests included**: the users you cannot ask to log in, and embedded forms, are covered
+- **Invitation-ready**: a record-triggered flow sends start links, turning any list into launched, prefilled drafts
+- **Admin-owned messaging**: per-template email templates, no code
 
 ![Autosave in action](../.gitbook/assets/216-autosave-demo.gif)
 
 📚 [Save and Resume Forms](../form-template-framework/how-to/save-and-resume-forms.md)
 
-### The Survey Suite: Likert Matrix, Survey Buttons, Visual Picker
+### Ask like a survey. Store like Salesforce.
 
-Form Builder became a survey tool. **Likert Matrix sections** render a battery of same-scale questions as one compact grid: rows are real fields, columns share one answer scale, and every click stores ordinary field data. Number mode scores the survey with a custom answer scale, a live total row, and a Total Score Result Field that stamps the running score into a number field for zero-code automation. **Survey Buttons** render any picklist as tap-friendly, full-width option cards that never collapse to a dropdown on phones. **Visual Picker** turns options into selectable icon or image cards with hover label reveal and brand-color selection; multiselects get checkbox behavior.
+**TL;DR: surveys are now just forms: Likert grids, tap-friendly answer cards, and visual pickers whose every answer is Salesforce field data the moment it is tapped.**
 
-- **Likert Matrix sections**: batteries of same-scale questions as one compact grid; every answer stores as ordinary field data
-- **Scored surveys**: number mode adds a custom answer scale, a live total row, and a Total Score Result Field for zero-code automation
-- **Survey Buttons**: any picklist as tap-friendly, full-width option cards that never collapse to a dropdown on phones
+Survey tools usually mean another vendor, another export, another "we'll sync it later." The Survey Suite makes the survey a form: **Likert Matrix sections** render a battery of same-scale questions as one clean grid, **Survey Buttons** turn picklists into tap-friendly cards that never collapse into a dropdown on a phone, and **Visual Picker** makes choices you can see instead of read. Build intake assessments, satisfaction surveys, screening questionnaires, and quizzes in the same builder as everything else, with the same conditional logic, merge fields, and themes.
+
+The delivery story is what the third-party tools cannot match: there is no sync. Every tap lands in a real field on a real record the moment it happens, so reports, dashboards, and automation see answers with zero import steps. Scored mode goes further: it totals live as the respondent clicks and stamps the result into a number field, which means a triage flow can route a high-risk intake to a case manager before the confirmation page has finished loading.
+
+**Why it's different:**
+
+- **No import step, ever**: every answer is ordinary field data on the submission the instant it is given
+- **Scored surveys drive automation**: a custom answer scale, a live total row, and a Total Score Result Field any flow can react to, zero code
+- **Survey Buttons stay buttons**: full-width option cards that never collapse to a dropdown on phones
 - **Visual Picker**: icon or image cards with hover label reveal and brand-color selection; multiselects get checkbox behavior
+- **The whole form toolkit applies**: conditional logic, merge fields, prefill, and themes work inside surveys because surveys are forms
 
 ![A scored Likert matrix updating its total live](../.gitbook/assets/144-likert-number-demo.gif)
 
@@ -49,40 +72,57 @@ Form Builder became a survey tool. **Likert Matrix sections** render a battery o
 
 📚 [Likert Matrix Sections](../form-configuration/likert-matrix-sections.md) · [Field Type Settings](../form-configuration/field-type-settings.md)
 
-### Number inputs, grown up: Steppers, Sliders, Preset Amounts
+### A number is a decision, not a data entry task
 
-Any number, currency, or percent field can render as a **stepper** (minus/plus buttons with an admin-configurable increment that never restricts typing), a **slider** (0–100 by default, honoring Min/Max/Step), or **preset amount chips**, the donation-page pattern, with an optional Other chip revealing a free-entry input. Currency and percent formatting apply in every mode, and the layout adapts to the container's real width, not just the device.
+**TL;DR: any number, currency, or percent field can render as preset amount chips, a stepper, or a slider, with true currency and percent formatting in every mode.**
 
-- **Stepper**: minus/plus buttons with an admin-set increment that never restricts what respondents can type
-- **Slider**: 0–100 by default; honors the field's Min, Max, and Step the moment you set them
-- **Preset Amounts**: label/value chips with an optional Other chip revealing a free-entry input
-- **Formatting intact**: currency symbols and percent signs follow the field in every mode
-- **Container-aware layout**: adapts to the space the form actually has, not just the device size
+A donation amount, a ticket quantity, a percent allocation: these are moments where someone decides, and a bare text box does nothing to help them. Now any number, currency, or percent field can render as **preset amount chips** (the giving-page pattern, with an Other chip for the generous), a **stepper** with real minus and plus buttons, or a **slider** for anything on a scale. Build the giving page with suggested amounts that light up in your brand color, the volunteer signup that counts seats with plus and minus, the budget worksheet where allocations slide instead of type.
+
+And because these are display overrides on the fields you already have, delivery is a dropdown, not a migration. No schema changes, no parallel fields, no validation rework: the same field your reports, rollups, and conversion flows have always read now simply asks better. Currency symbols and percent signs stay true in every mode, so the form reads like money instead of math.
+
+**Why it's different:**
+
+- **Purely visual overrides**: the field, its validation, and every report on it are untouched
+- **Preset chips with a smart Other**: a prefilled value matching no chip auto-selects Other, so nothing is ever orphaned
+- **Increments never restrict typing**: a stepper counting by fives still welcomes $12.50 typed directly
+- **Formatting follows the field**: currency symbols and percent signs in every mode
+- **Container-aware layout**: adapts to the space the form actually has, from full page to narrow sidebar
 
 ![Stepper, slider, and preset chips](../.gitbook/assets/254-number-overrides-demo.gif)
 
 📚 [Field Type Settings: Number Fields](../form-configuration/field-type-settings.md#number-fields)
 
-### Put any form on any website: Iframe Embed Mode
+### Your website just became a Salesforce form
 
-A Force.com Site serves your forms to the world: no Salesforce UI, no login. Choose a Flow, Form Template, or Record Form in the **Embed Code Generator** tab, copy the snippet, and paste it into WordPress, Squarespace, or any site. The iframe auto-resizes, publishes completion events via postMessage, respects guest-user security, and supports org-wide Google reCAPTCHA configured in one custom setting.
+**TL;DR: paste one generated snippet into any website and a real Salesforce form runs there, writing records the instant someone clicks submit.**
 
-- **Embed Code Generator**: pick a Flow, Form Template, or Record Form and copy the snippet
-- **Works on any site**: WordPress, Squarespace, or hand-rolled HTML
-- **Auto-resizing iframe**: the frame grows with the form and publishes completion events via postMessage
-- **Guest-safe**: respects guest-user security, with org-wide Google reCAPTCHA in one custom setting
+The forms on your public website no longer need to live in a separate product with a nightly sync and a reconciliation spreadsheet. Open the **Embed Code Generator**, pick a Flow, Form Template, or Record Form, copy one snippet, and paste it into WordPress, Squarespace, or hand-rolled HTML. Build the volunteer signup on your marketing site, the contact form that creates real leads, the event registration a campaign email points at, even a payment hand-off that captures the Stripe confirmation, all running your actual Salesforce forms with their conditional logic, themes, and prefill intact.
+
+For delivery, the whole conversation with your web team is one snippet. There is no middleware to license, no field mapping to maintain, no "we'll pull the leads in on Friday." Visitors see a form that simply belongs to the page: it sizes itself, keeps bots out with reCAPTCHA, and pairs with URL Parameter Mapping so the UTM codes on the link arrive on the submission for free. Your website and your org stop being two systems.
+
+**Why it's different:**
+
+- **One snippet, any site**: WordPress, Squarespace, or hand-rolled HTML
+- **Submissions are records instantly**: no sync, no export, no reconciliation
+- **The frame behaves**: auto-resizes with the form and publishes completion events the host page can react to
+- **Attribution built in**: pairs with URL Parameter Mapping to capture UTM codes and campaign parameters
+- **Guest-safe by design**: guest-user security respected end to end, org-wide reCAPTCHA in one custom setting
 
 ![The Embed Code Generator](../.gitbook/assets/100-embed-code-generator.png)
 
 📚 [Iframe Embed](../advanced-topics/iframe-embed.md)
 
-### Prefill Flow + Guest Save Override: extend with Flow, not code
+### The one that makes it yours: extend with Flow, not code
 
-No screenshot does this one justice, and it may be the most powerful capability in the release. Every Form Template can name a **Prefill Flow**: an autolaunched flow or screen flow that runs before the form renders, built entirely in Flow Builder. Your flow receives the working Form Submission, already carrying the template's prefill values and any URL parameters, and whatever it returns becomes the form's starting state. Query the running user's records and greet them with a half-completed form. Seed repeater and table sections with related records, routed by migration-safe **Section Tags**. With the screen-flow variant, put screens in front of the form itself: a welcome page, terms acceptance, or a custom eligibility check.
+**TL;DR: an admin-built flow runs before every form render: prefill anything, gate entry with your own rules, and hand in-progress drafts to resume links.**
+
+Every organization eventually asks its forms to do something no product anticipated: "only returning volunteers should see this," "pull their household from last year," "if they already applied, stop them politely." In most form tools, that sentence starts a development project. In Flow Tool Kit, it starts a flow. Every Form Template can name a **Prefill Flow**: an autolaunched flow or screen flow that runs before the form renders, built entirely in Flow Builder. Your flow receives the working Form Submission, already carrying the template's prefill values and any URL parameters, and whatever it returns becomes the form's starting state. Greet a returning user with a half-completed form. Seed repeater and table sections with their related records. With the screen-flow variant, put a welcome page, terms acceptance, or a custom eligibility check in front of the form itself.
 
 The same contract handles validation. Set `hasError` with a rich-text `errorMessage` and the form never renders; the respondent sees your message on a branded error illustration instead: "you have already submitted," "applications for this program are closed," "this invitation was for someone else." One recipe worth stealing: when your flow finds an in-progress draft, hand off to the packaged send-resume-link flow and tell the respondent a resume link is waiting in their inbox. They return to their exact saved state instead of starting over or double-submitting.
 
-Because it is ordinary Flow, it scales like Flow. Point every template at one shared prefill flow or give each template its own, and factor the common pieces (user matching, eligibility rules, draft detection) into subflows you reuse everywhere. Clonable starters ship in both autolaunched and screen-flow forms, a five-variable contract keeps the surface small, and a matching **Guest Save Override** flow defines the DML interface for guest saves: subscribers elevate deliberately, the package never does. Don't sleep on this feature.
+Because it is ordinary Flow, it scales like Flow. Point every template at one shared prefill flow or give each template its own, and factor the common pieces (user matching, eligibility rules, draft detection) into subflows you reuse everywhere. Clonable starters ship in both autolaunched and screen-flow forms, a five-variable contract keeps the surface small, and a matching **Guest Save Override** flow defines the DML interface for guest saves: subscribers elevate deliberately, the package never does. This is the reason Flow-first orgs choose Flow Tool Kit: when the requirements get weird, your admins keep going instead of opening a ticket. Don't sleep on this feature.
+
+**Why it's different:**
 
 - **Runs before render**: an autolaunched or screen flow you build entirely in Flow Builder
 - **Prefill anything**: user records, URL parameters, and prefill template values all meet in one input variable
@@ -93,26 +133,39 @@ Because it is ordinary Flow, it scales like Flow. Point every template at one sh
 
 📚 [Prefill Flow](../form-template-framework/prefill-flow.md)
 
-### Build one form. Use it everywhere: Form Template Sources
+### Build one form. Run your whole program calendar on it.
 
-One template can power hundreds of campaigns, events, programs, or cohorts. Each **source record** drives its own name, dates, availability window, branding, prefill values, and confirmation messaging, and every submission stamps its Source Id for downstream conversion and reporting. The **Template Source Editor** record-page component manages it all with tabbed navigation, auto-save, and a live form preview.
+**TL;DR: one Form Template serves every campaign, event, program, or cohort, with each record carrying its own dates, branding, prefill, and messaging.**
 
-- **One template, many contexts**: campaigns, events, programs, or cohorts, each driven by its own source record
-- **Per-source everything**: name, dates, availability window, theme, prefill values, confirmation message, and email template
-- **Source Id stamping**: every submission knows exactly which campaign or event it belongs to
-- **Template Source Editor**: a tabbed record-page component with auto-save and a live form preview
+Fifty events this year should not mean fifty registration forms. With **Form Template Sources**, one template serves them all: each campaign, event, program, or cohort record carries its own name, dates, availability window, branding, prefill values, and confirmation messaging, and the form adapts to whichever record it is opened from. Build a single event registration for the year's whole calendar, one program application across every cycle, one grant form across every funding round, on standard Campaign out of the box or any custom object with one metadata record.
+
+Then hand the keys to the people running the programs. The **Template Source Editor** lives on the source record page with tabbed navigation, auto-save, and a live preview, so an events coordinator sets their own dates, writes their own confirmation message, and previews their own form without touching Form Builder or filing an admin request. Close a campaign's end date and its form stops accepting submissions that instant. Every submission is stamped with the record that generated it, so attribution and follow-up automation come for free.
+
+**Why it's different:**
+
+- **Any object can be a source**: standard Campaign ships ready to use; a single metadata record teaches the framework any custom object
+- **Program staff self-serve**: the Template Source Editor runs on the record page with auto-save and a live form preview
+- **Availability follows the record**: dates and an active flag open and close the form instantly, with a per-source offline message
+- **Per-source everything**: name, theme, prefill values, confirmation message, and email template
+- **Attribution built in**: every submission stamps its source record for reporting and conversion automation
 
 ![The Template Source Editor](../.gitbook/assets/form-template-source-editor-demo.gif)
 
 📚 [Form Template Sources](../form-template-framework/form-template-sources.md)
 
-### Your brand, down to the pixel: Per-Template Style Sheets
+### Your brand, down to the pixel
 
-Each Form Template can carry its own CSS. Pick a style-sheet static resource from a grouped, described selector, and the sheet injects scoped to that template's output: one template can look like a wedding invitation while another stays corporate, on the same org. An install-only starter stylesheet ships un-managed so upgrades never overwrite your customizations, stable style hooks mark every field wrapper and template container, and a reorganized [Custom Styling Overview](../form-configuration/custom-styling-overview.md) hub documents every layer of the cascade.
+**TL;DR: each Form Template carries its own scoped CSS, so one org can serve a gala invitation and a corporate intake form that never bleed into each other.**
 
-- **CSS per template**: pick a style-sheet static resource from a grouped, described selector
-- **Scoped injection**: one template's look can never leak into other forms or the page around it
-- **Upgrade-safe starter**: ships un-managed, so upgrades never overwrite your customizations
+A gala invitation should not look like a support ticket. With **Per-Template Style Sheets**, each Form Template carries its own CSS: one template can look like a wedding invitation while another stays corporate, on the same org. Build the sub-branded program application, the white-labeled partner form, the seasonal campaign page whose look changes without touching anything else you run. Combined with themes for the broad strokes, your designers get real control instead of "close enough."
+
+The delivery risk that usually makes admins ban custom CSS is gone by construction: every sheet is scoped to its own template's output, so a rule aimed at one form cannot restyle another form or the page hosting it. An install-only starter stylesheet ships un-managed so upgrades never overwrite your work, stable style hooks mark every field wrapper and container as dependable targets, and the reorganized [Custom Styling Overview](../form-configuration/custom-styling-overview.md) maps every layer of the cascade. The form your donors see can finally match the brand your designers built.
+
+**Why it's different:**
+
+- **CSS per template**: pick a style-sheet static resource from a grouped, described selector on the template
+- **Scoping by construction**: one template's look cannot leak into other forms or the page around it
+- **Upgrade-safe starter**: ships un-managed, so package upgrades never overwrite your customizations
 - **Stable style hooks**: every field wrapper and the template container are dependable CSS targets
 - **One documentation hub**: the Custom Styling Overview maps every layer of the styling cascade
 
@@ -123,6 +176,8 @@ Each Form Template can carry its own CSS. Pick a style-sheet static resource fro
 ---
 
 ## 🆕 New Features
+
+The spotlights are the headline act, but forty-six releases added capability everywhere. Skim the bold text: every line below is something you can turn on today.
 
 ### Form Building & Display Types
 
@@ -178,6 +233,8 @@ Each Form Template can carry its own CSS. Pick a style-sheet static resource fro
 ---
 
 ## 📈 Improvements
+
+The refinements you feel without noticing: faster builders, friendlier mobile forms, and accessibility that holds up to a screen reader.
 
 ### Builder & Admin Experience
 
@@ -239,6 +296,6 @@ Eighty-six fixes shipped across the range. The ones you would have noticed:
 Everything above is documented on this site. Start at [Feature Overview](../welcome/feature-overview.md), then:
 [Stages Mode](../form-template-framework/stages-mode.md) · [Save & Resume](../form-template-framework/how-to/save-and-resume-forms.md) · [Prefill Flow](../form-template-framework/prefill-flow.md) · [Likert Matrix](../form-configuration/likert-matrix-sections.md) · [Field Type Settings](../form-configuration/field-type-settings.md) · [Picklist Option Labels](../form-configuration/picklist-option-labels.md) · [Custom Styling](../form-configuration/custom-styling-overview.md) · [Iframe Embed](../advanced-topics/iframe-embed.md) · [LWC Section Type](../advanced-topics/lwc-section-type.md) · [Page Conditional Logic](../form-template-framework/page-conditional-logic.md) · [Conversion Flows](../form-template-framework/how-to/overridable-conversion-flows.md)
 
-## Upgrade
+## Try it, then upgrade
 
-4.0 is flagged as the package's recommended version: open Setup → Installed Packages → **Upgrade to Recommended Version**.
+Ninety seconds in the **[live demo](https://common-unite.my.site.com/s/form-template/a0fRQ000003mUy9/affordable-housing-land-trust-application?language=en_US)** will tell you more than anything written here. When you are ready, 4.0 is flagged as the package's recommended version: open Setup → Installed Packages → **Upgrade to Recommended Version**, and everything above arrives in one click.
