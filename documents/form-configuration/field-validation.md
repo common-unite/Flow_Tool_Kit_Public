@@ -86,6 +86,8 @@ Number and currency fields support min/max validation with two modes:
 
 Field-relative validation is dynamic — as the referenced field's value changes, the validation boundary updates automatically.
 
+**Percent fields** enter Min/Max on the whole-number scale that percent fields store: 10 means 10% and 100 means 100%. Releases before 3.241 captured these on the decimal scale (0.1 for 10%), so percent Min/Max values saved earlier should be re-entered once after upgrading.
+
 ## Date Validation
 
 {% embed url="https://vimeo.com/829472502" %}

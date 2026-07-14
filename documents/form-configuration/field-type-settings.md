@@ -1,6 +1,6 @@
 # Field Type Settings
 
-> Configure display overrides and type-specific settings for boolean, phone, string, textarea, checkbox, picklist rating, and signature pad fields.
+> Configure display overrides and type-specific settings for boolean, phone, string, textarea, number, checkbox, picklist rating, and signature pad fields.
 
 ## Video Walkthroughs
 
@@ -108,7 +108,48 @@ Enter a regular expression in **Field Format** and a user-friendly message in **
 
 * **Character Counter**: Automatically displays as the user types (e.g., "7 of 200"). No configuration needed.
 * **Minimum / Maximum Length**: Same as string fields. Override the schema default maximum to a lower value.
-* **Custom Height**: Set a CSS height value (e.g., `250px`) in the **Height** field to control the initial textarea size. Users can still manually resize.
+* **Minimum / Maximum Height**: Set CSS height values (e.g., `250px`) to control the textarea size. Maximum Height is available on plain text areas and rich text alike.
+
+### Text (String) fields as a Text Area
+
+Any standard Text field can render as a multi-line text area: set **String Display Type** to **Text Area** in the field's String Override Settings. The character counter, minimum/maximum length, and the height controls all apply, so a 255-character field can collect a short paragraph without switching the schema to a Long Text Area.
+
+### Read-only long text: clamped scroll box
+
+Set a **Maximum Height** on a long text or rich text field and its **read-only** rendering (review screens, read-only forms, formula-driven rich text output) clamps to that height inside a bordered, scrollable box. Very long content stays visually contained with an obvious scroll affordance instead of stretching the page. Edit mode is unaffected beyond the standard textarea sizing.
+
+## Number Fields
+
+Number, currency, and percent fields can render as something more interactive than a plain input. Select the field and choose a **Number Display Type** in Number Override Settings:
+
+![The Number Display Type dropdown, the Edit Preset Amounts editor, and stepper, slider, and preset chips rendering in the preview](../.gitbook/assets/254-number-overrides-demo.gif)
+
+| Display Type       | Description                                                                                     |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| **Default**        | A standard number input.                                                                        |
+| **Stepper**        | Minus and plus buttons flank the formatted input.                                               |
+| **Slider**         | A draggable range; uses the field's Min/Max (0 to 100 when unset).                              |
+| **Preset Amounts** | Quick-pick amount chips you define, with an optional custom-value input.                         |
+
+The field's currency or percent formatting applies in every mode, and the standard field toolkit (custom labels, help text, required, prompts, sizing) works throughout. Formula fields are read-only, so they never offer these overrides.
+
+### Min, Max, and Step
+
+The field's **Min** and **Max** values bound the stepper's clamping and the slider's range. The **Step** value sets how much the Stepper buttons and Slider move per step — set Step to `1` so a stepper counts by whole dollars instead of pennies. Step is an increment only: it never restricts what a respondent can type, so a Step of 5 still allows 12.50 to be entered directly.
+
+![A stepper with Min 1, Max 100, and Step 1 incrementing the Quantity field](../.gitbook/assets/254-number-stepper-demo.gif)
+
+A slider with no Min/Max set runs 0 to 100; setting Min and Max (and an optional Step) reshapes the range and its granularity.
+
+![A percent slider bounded 0 to 100 with a Step of 10](../.gitbook/assets/254-number-slider-demo.gif)
+
+### Preset Amounts
+
+Choose **Preset Amounts** and click **Edit Preset Amounts** to open the editor. Each preset is a label/value pair — the label is the chip respondents see, the value is the number saved into the field. Reorder or delete rows, and turn on **Allow Custom Values** to offer an **Other** chip:
+
+* Selecting **Other** reveals a free-entry input (its placeholder defaults to "Custom {label}", overridable via the field's Placeholder setting).
+* A value that matches no preset automatically selects **Other** and shows the input, so a prefilled or unusual amount is never orphaned.
+* On narrow containers (a small device or a cramped page column) the chips and the custom input each take a full row; on wider layouts the chips take about three-quarters of the width with the input beside them.
 
 ## Picklist Rating Selector
 
@@ -145,7 +186,24 @@ Select a picklist field and set **Picklist Display Type** to **Survey Buttons** 
 
 ![Survey Buttons rendering a Conversion Status picklist as option cards](../.gitbook/assets/246-survey-buttons.png)
 
-## Visual Picker
+## Dynamic Selector Overrides
+
+Certain fields are really references in disguise: a text field that stores an SLDS icon name, an email template, a public image asset, or a style sheet. When a field's **API name** signals one of these purposes, Form Builder dynamically offers the matching selector as a display type, and the respondent (usually an admin filling out a configuration form) picks from a real list instead of typing a raw value.
+
+| Selector | Offered when the API name contains (case-insensitive) |
+| --- | --- |
+| **Icon Selector** | `icon` |
+| **Email Template Selector** | `emailtemplate`, `email_template` |
+| **Image Asset Selector** | `bannerimage`, `banner_image`, `tileimage`, `tile_image`, `imageasset`, `image_asset`, `assetfile`, `asset_file` |
+| **Style Sheet Selector** | `stylesheet`, `style_sheet` |
+
+The option appears in the field's display-type dropdown (String Display Type for text fields, Picklist Display Type for picklists) only when the name matches, the field is updateable, and a text field is at least 40 characters long. Fields named with `formqualifiedapiname` are related but different: they always render the form component selector automatically, with their own Form Selector Settings (target object and table-component toggle), and never show display-type overrides.
+
+A few behaviors to know:
+
+* The selector writes a plain text or picklist value into the field, and the value saves with the form like any other answer. Nothing writes to the record until the form itself saves.
+* The full field toolkit applies: custom labels with merge fields, label size and position, help text, and the required flag all render through the standard label pipeline.
+* The icon selector offers the complete current SLDS icon set across the utility, standard, custom, and doctype groups.
 
 Turn any picklist or multiselect picklist into a grid of **selectable cards**, each showing an SLDS icon or one of your org's public image assets. Hovering a card fades the media into the option's label (phones show the label as an always-on caption instead), and selected cards outline and tint in your org's brand color.
 

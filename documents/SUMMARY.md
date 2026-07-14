@@ -174,6 +174,7 @@
 * [Release 3.238](release-notes/release-3.238.md)
 * [Release 3.239](release-notes/release-3.239.md)
 * [Release 3.240](release-notes/release-3.240.md)
+* [Release 3.241](release-notes/release-3.241.md)
 
 ## Platform
 
