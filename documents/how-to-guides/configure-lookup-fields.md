@@ -21,11 +21,11 @@ When your form includes a lookup field (like Account on a Contact form), Flow To
 The lookup modal uses a separate Form to define its columns:
 
 1. Open **Form Builder** and create a **new Form** for the lookup's target object (e.g., Account).
-2. Add the fields you want to display as **search result columns** — Name, Phone, Industry, etc.
+2. Add the fields you want to display as **search result columns**: Name, Phone, Industry, etc.
 3. Save this form. You'll reference it in the Lookup component configuration.
 
 {% hint style="info" %}
-**Tip**: Keep lookup table forms simple — 3-5 columns is ideal. Too many columns make the search modal hard to scan.
+**Tip**: Keep lookup table forms simple; 3-5 columns is ideal. Too many columns make the search modal hard to scan.
 {% endhint %}
 
 ## Step 2: Add the Lookup Component to Your Flow Screen
@@ -102,6 +102,6 @@ Allow users to create new records directly from the lookup modal:
 
 ## Related Pages
 
-* [Lookup Reference](../screen-components/lookup.md) — all properties and configuration options
-* [Build a Form](build-a-form.md) — creating forms from scratch
-* [Use Data Tables](use-data-tables.md) — similar column configuration for table displays
+* [Lookup Reference](../screen-components/lookup.md): all properties and configuration options
+* [Build a Form](build-a-form.md): creating forms from scratch
+* [Use Data Tables](use-data-tables.md): similar column configuration for table displays

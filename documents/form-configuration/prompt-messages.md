@@ -1,6 +1,6 @@
 # Prompt Messages
 
-> Display rich text help prompts when users focus on a field — with merge fields, formatting, and an always-visible mode.
+> Display rich text help prompts when users focus on a field, with merge fields, formatting, and an always-visible mode.
 
 ## Video Walkthrough
 
@@ -33,8 +33,8 @@ Prompt messages support full rich text formatting:
 
 Use `{{fieldName}}` syntax to inject dynamic values:
 
-* `{{HelpText}}` — inject the field's schema help text as the prompt content
-* `{{FirstName}}` — personalize prompts with the user's input from other fields
+* `{{HelpText}}`: inject the field's schema help text as the prompt content
+* `{{FirstName}}`: personalize prompts with the user's input from other fields
 * Any field on the form can be referenced as a merge field
 
 ### Help Text as Prompt Pattern
@@ -56,13 +56,13 @@ By default, prompts only appear when a field has focus. To show all prompts at o
 
 ## Tips & Considerations
 
-* **Prompts are optional** — leaving the prompt message blank means no prompt appears for that field.
-* **Use alongside or instead of help text** — prompts can supplement the tooltip help text or replace it entirely.
-* **Rich text keeps attention** — colored or bold text in prompts draws attention to important guidance without cluttering the form.
-* **Always-visible for training** — enable "Display Prompts" when training users on a new form, then disable it once they're familiar.
+* **Prompts are optional**: leaving the prompt message blank means no prompt appears for that field.
+* **Use alongside or instead of help text**: prompts can supplement the tooltip help text or replace it entirely.
+* **Rich text keeps attention**: colored or bold text in prompts draws attention to important guidance without cluttering the form.
+* **Always-visible for training**: enable "Display Prompts" when training users on a new form, then disable it once they're familiar.
 
 ## Related Pages
 
-* [Input Field Configuration](input-field-configuration.md) — field configuration overview
-* [Field Labels & Help Text](field-labels-help-text.md) — label and help text customization
-* [Custom Buttons](../screen-components/custom-buttons.md) — wiring buttons to toggle prompts
+* [Input Field Configuration](input-field-configuration.md): field configuration overview
+* [Field Labels & Help Text](field-labels-help-text.md): label and help text customization
+* [Custom Buttons](../screen-components/custom-buttons.md): wiring buttons to toggle prompts

@@ -24,12 +24,12 @@ This component is designed for duplicate management workflows: find potential du
 
 | Property         | Type                   | Required | Default | Description                                                 |
 | ---------------- | ---------------------- | -------- | ------- | ----------------------------------------------------------- |
-| `records`        | SObject\[] (Generic T) | No       | —       | Collection of records to compare                            |
-| `record`         | SObject (Generic T)    | No       | —       | Record with custom/override values to include in comparison |
-| `object`         | String                 | No       | —       | SObject API name                                            |
-| `elementApiName` | String                 | No       | —       | Screen element API name (used for component key)            |
-| `topMargin`      | String                 | No       | —       | Top margin SLDS class                                       |
-| `bottomMargin`   | String                 | No       | —       | Bottom margin SLDS class                                    |
+| `records`        | SObject\[] (Generic T) | No       | -       | Collection of records to compare                            |
+| `record`         | SObject (Generic T)    | No       | -       | Record with custom/override values to include in comparison |
+| `object`         | String                 | No       | -       | SObject API name                                            |
+| `elementApiName` | String                 | No       | -       | Screen element API name (used for component key)            |
+| `topMargin`      | String                 | No       | -       | Top margin SLDS class                                       |
+| `bottomMargin`   | String                 | No       | -       | Bottom margin SLDS class                                    |
 
 ### Outputs
 

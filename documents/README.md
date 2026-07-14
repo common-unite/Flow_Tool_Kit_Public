@@ -2,7 +2,7 @@
 
 > The drag-and-drop form builder, data table, and utility toolkit for Salesforce Flow.
 
-Flow Tool Kit is a managed package that gives Salesforce admins the power to build dynamic, metadata-driven forms and tables — all without writing code. Design your layout in the Form Builder, drop it into a Flow, and let Flow Form handle the rest: field rendering, validation, conditional logic, theming, and record output.
+Flow Tool Kit is a managed package that gives Salesforce admins the power to build dynamic, metadata-driven forms and tables, all without writing code. Design your layout in the Form Builder, drop it into a Flow, and let Flow Form handle the rest: field rendering, validation, conditional logic, theming, and record output.
 
 ## Who Is This For?
 
@@ -18,7 +18,7 @@ Flow Tool Kit is a managed package that gives Salesforce admins the power to bui
 
 | Section                                                                                                                  | What You'll Find                                             |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Feature Overview](welcome/feature-overview.md)                                                                          | Everything Flow Tool Kit can do — scannable feature tree     |
+| [Feature Overview](welcome/feature-overview.md)                                                                          | Everything Flow Tool Kit can do (scannable feature tree)     |
 | [Getting Started](getting-started/installation.md)                                                                       | Install, configure permissions, build your first form        |
 | [Deployment](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/deployment/deployment-overview.md) | Deploy form metadata between environments                    |
 | [Screen Components](screen-components/form-builder.md)                                                                   | Form Builder, Flow Form, Data Table, Lookup, and more        |

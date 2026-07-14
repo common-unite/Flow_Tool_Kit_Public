@@ -2,9 +2,9 @@
 
 ## New Features
 
-### LWC Section Type — Custom Lightning Web Component Sections (#83)
+### LWC Section Type: Custom Lightning Web Component Sections (#83)
 
-Admins can now embed any custom Lightning Web Component inside a form section. This opens the door to advanced use cases that go beyond standard field inputs — map pickers, signature pads, custom calculators, third-party widgets, and more.
+Admins can now embed any custom Lightning Web Component inside a form section. This opens the door to advanced use cases that go beyond standard field inputs: map pickers, signature pads, custom calculators, third-party widgets, and more.
 
 **How it works:**
 1. Add a **Lightning Web Component** section in Form Builder
@@ -14,7 +14,7 @@ Admins can now embed any custom Lightning Web Component inside a form section. T
 **Data flow:**
 - The form passes the current `record` object to your LWC on every field change
 - Your LWC dispatches `formfieldchange` events to write values back to the form
-- Validation is supported — expose a `@api validate()` method and the form calls it on navigation
+- Validation is supported: expose a `@api validate()` method and the form calls it on navigation
 
 **Key details:**
 - Works in Form Builder preview, Flow runtime, and all display modes (default, review, tabset)

@@ -1,6 +1,6 @@
 # Formula Recalculation
 
-> Trigger live formula field recalculation on forms as users enter data — enabling real-time calculations, qualification checks, and conditional logic based on computed values.
+> Trigger live formula field recalculation on forms as users enter data, enabling real-time calculations, qualification checks, and conditional logic based on computed values.
 
 ## Video Walkthroughs
 
@@ -12,7 +12,7 @@
 
 ## Overview
 
-Salesforce formula fields normally only recalculate when a record is saved. Flow Tool Kit's formula recalculation feature lets formula fields update **live on the form** as users type — without saving the record first. This enables real-time calculations (income totals, age from birthdate, tax amounts) and conditional logic based on computed values.
+Salesforce formula fields normally only recalculate when a record is saved. Flow Tool Kit's formula recalculation feature lets formula fields update **live on the form** as users type, without saving the record first. This enables real-time calculations (income totals, age from birthdate, tax amounts) and conditional logic based on computed values.
 
 ![Formula recalculation toggle in Form Builder](../.gitbook/assets/formula-recalculation-toggle.png)
 
@@ -36,7 +36,7 @@ Salesforce formula fields normally only recalculate when a record is saved. Flow
 5. Enable the **Trigger Formula Recalculations** toggle.
 
 {% hint style="warning" %}
-Enable the toggle on the **input fields** that feed into the formula — NOT on the formula field itself.
+Enable the toggle on the **input fields** that feed into the formula, NOT on the formula field itself.
 {% endhint %}
 
 ## Common Patterns
@@ -59,15 +59,15 @@ Currency fields in an allocation form trigger recalculation of a remaining balan
 
 ## Tips & Considerations
 
-* **Be selective**: Only enable the toggle on fields that actually feed into formulas. Each recalculation triggers an Apex callout — don't enable it on every field.
+* **Be selective**: Only enable the toggle on fields that actually feed into formulas. Each recalculation triggers an Apex callout; don't enable it on every field.
 * **Formula fields are read-only**: They display their calculated value on the form but cannot be edited by the user.
 * **Cross-component reactivity**: Formula changes in one form component can trigger conditional logic in other flow components on the same screen.
 * **Works everywhere**: Formula recalculation works in both internal Flow screens and Experience Cloud sites.
-* **Conditional rules**: Recalculated formula values can be used as conditions for conditional logic rules — show/hide sections based on computed values.
+* **Conditional rules**: Recalculated formula values can be used as conditions for conditional logic rules; show/hide sections based on computed values.
 
 ## Related Pages
 
-* [Input Field Configuration](input-field-configuration.md) — field configuration overview
-* [Field Validation](field-validation.md) — min/max validation using formula fields as boundaries
-* [Conditional Logic](conditional-logic.md) — rules that can reference formula field values
-* [Form Components System](form-components-system.md) — reusable components for calculator patterns
+* [Input Field Configuration](input-field-configuration.md): field configuration overview
+* [Field Validation](field-validation.md): min/max validation using formula fields as boundaries
+* [Conditional Logic](conditional-logic.md): rules that can reference formula field values
+* [Form Components System](form-components-system.md): reusable components for calculator patterns

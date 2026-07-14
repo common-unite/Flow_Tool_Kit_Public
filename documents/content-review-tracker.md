@@ -7,19 +7,19 @@
 | Video | Vimeo ID | Issue | Status |
 |-------|----------|-------|--------|
 | Permission Set Considerations | 756547514 | Permission set names and access levels may have changed since recording | Needs review |
-| _No other videos reviewed yet_ | — | — | — |
+| _No other videos reviewed yet_ | - | - | - |
 
 ## Doc Pages Needing Screenshot Refresh
 
 | Page | Section | Issue | Status |
 |------|---------|-------|--------|
-| _No pages flagged yet_ | — | — | — |
+| _No pages flagged yet_ | - | - | - |
 
 ## Deprecated Features Still Referenced in Videos
 
 | Feature | Videos Affected | Deprecated In | Replacement |
 |---------|----------------|---------------|-------------|
-| _No deprecated features identified yet_ | — | — | — |
+| _No deprecated features identified yet_ | - | - | - |
 
 ## Video-to-Page Mapping Status
 
@@ -29,7 +29,7 @@ Tracks which videos have been consumed into documentation pages.
 |--------|:-----:|-------------|
 | Consumed | 0 | Video content fully incorporated into a doc page |
 | Pending | 91 | Video exists but hasn't been used as a doc source yet |
-| Outdated | 0 | Video content doesn't match current package — do NOT embed |
+| Outdated | 0 | Video content doesn't match current package; do NOT embed |
 | Retired | 0 | Video removed from showcase or no longer relevant |
 
 ## How to Use This Tracker

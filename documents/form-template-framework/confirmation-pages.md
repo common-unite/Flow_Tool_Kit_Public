@@ -1,6 +1,6 @@
 # Confirmation Pages
 
-> Configure a customizable confirmation screen after form submission — or bypass it entirely with a redirect.
+> Configure a customizable confirmation screen after form submission, or bypass it entirely with a redirect.
 
 ## Video Walkthrough
 
@@ -50,13 +50,13 @@ Page 5: Confirmation (customizable or disabled)
 
 ## Tips & Considerations
 
-* **Completely optional** — the confirmation page can be disabled if your flow handles post-submission navigation differently.
-* **Rich text supported** — the confirmation message supports formatting to create a polished closing experience.
-* **Redirect pattern** — when disabled, use a Flow navigation action to send users to a specific URL or page after submission.
-* **Electronic signature** — the consent/signature page (if used) appears before the confirmation page, not after it.
+* **Completely optional**: the confirmation page can be disabled if your flow handles post-submission navigation differently.
+* **Rich text supported**: the confirmation message supports formatting to create a polished closing experience.
+* **Redirect pattern**: when disabled, use a Flow navigation action to send users to a specific URL or page after submission.
+* **Electronic signature**: the consent/signature page (if used) appears before the confirmation page, not after it.
 
 ## Related Pages
 
-* [Form Templates](form-templates.md) — form template record configuration
-* [Pages and Sections](pages-and-sections.md) — configuring form pages
-* [Overview](overview.md) — Form Template Framework overview
+* [Form Templates](form-templates.md): form template record configuration
+* [Pages and Sections](pages-and-sections.md): configuring form pages
+* [Overview](overview.md): Form Template Framework overview

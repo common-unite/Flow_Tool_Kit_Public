@@ -1,5 +1,5 @@
 # Form Components System
-> Save, share, and reuse form configurations as Form Component records — enabling component-based form selection in Flows, Experience Cloud, and record pages.
+> Save, share, and reuse form configurations as Form Component records, enabling component-based form selection in Flows, Experience Cloud, and record pages.
 
 ## Video Walkthroughs
 
@@ -59,7 +59,7 @@ Build a form configuration using the visual Form Builder editor. The resulting J
 **Best for**: One-off configurations or when you need a specific form that doesn't warrant a reusable component.
 
 ### 3. Record Field Reference Mode
-Reference a field on a record that contains the form JSON. This enables truly dynamic form selection — the form to render can change based on the record's field value.
+Reference a field on a record that contains the form JSON. This enables truly dynamic form selection: the form to render can change based on the record's field value.
 
 **Best for**: Dynamic scenarios where different records need different forms (e.g., different form configurations per record type or account).
 
@@ -104,7 +104,7 @@ A shared child component that renders either a combobox (Component mode) or an e
 ## Common Patterns
 
 ### 1. Admin-Managed Form Library
-Create Form Components for common forms (Quick Edit Account, Full Contact Intake, Order Line Items). Admins select from this library when configuring Flow screens — no metadata API names needed.
+Create Form Components for common forms (Quick Edit Account, Full Contact Intake, Order Line Items). Admins select from this library when configuring Flow screens; no metadata API names needed.
 
 ### 2. Dynamic Form Per Record Type
 Store a Form Component QualifiedApiName on each record type (via a custom field). Use Record Field Reference mode to dynamically render the right form based on the record type.
@@ -116,6 +116,6 @@ Use the `Version__c` and `VersionId__c` fields to track changes to form configur
 
 - **Form Components are SObject Records**: Unlike Form metadata (CMTs), Form Components are regular custom object records. They count toward data storage and are subject to CRUD/FLS permissions.
 - **Edit Override**: The `Form_Component__c` object has an edit action override that opens the Form Builder directly, providing a seamless editing experience.
-- **Mode Preservation**: When switching between Component and Custom JSON modes in a property editor, the JSON configuration is preserved — switching modes doesn't lose your work.
+- **Mode Preservation**: When switching between Component and Custom JSON modes in a property editor, the JSON configuration is preserved; switching modes doesn't lose your work.
 - **Active Flag**: Deactivate Form Components to hide them from selection picklists without deleting the record. This is useful for retiring old configurations.
 - **Search and Reports**: Because Form Components are regular records, you can build reports, list views, and dashboards to manage your form library.

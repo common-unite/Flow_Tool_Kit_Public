@@ -24,10 +24,10 @@ The component supports three display types: a horizontal path (similar to Salesf
 | `activeStages`      | String\[] | Yes      | $Flow.ActiveStages  | Collection of all active stage names                 |
 | `type`              | String    | Yes      | base                | Display type: `base`, `vertical`, or `path`          |
 | `variant`           | String    | Yes      | base                | Visual variant: `base` or `shaded`                   |
-| `completeStages`    | String\[] | No       | —                   | Collection of stage names marked as complete         |
+| `completeStages`    | String\[] | No       | -                   | Collection of stage names marked as complete         |
 | `allComplete`       | Boolean   | No       | false               | Mark all stages as complete                          |
 | `hasError`          | Boolean   | No       | true                | When false, shows an error icon on the current stage |
-| `customClass`       | String    | No       | —                   | Custom CSS classes for the outer container           |
+| `customClass`       | String    | No       | -                   | Custom CSS classes for the outer container           |
 | `preventNavigation` | Boolean   | No       | false               | Prevent users from clicking stages to navigate       |
 | `topMargin`         | String    | No       | slds-m-top\_none    | Top margin SLDS class                                |
 | `bottomMargin`      | String    | No       | slds-m-bottom\_none | Bottom margin SLDS class                             |
@@ -56,5 +56,5 @@ Set `type=vertical` for a vertical step list. Ideal for sidebar layouts or narro
 ## Tips & Considerations
 
 * **Stage Navigation**: By default, users can click on previous stages to navigate backward. Set `preventNavigation=true` to disable this and force linear progression.
-* **Error States**: Set `hasError=false` to display an error icon on the current stage — useful for indicating validation failures before allowing the user to proceed.
+* **Error States**: Set `hasError=false` to display an error icon on the current stage, useful for indicating validation failures before allowing the user to proceed.
 * **Styling**: Use `customClass` to add SLDS utility classes for additional styling (e.g., padding, background colors).

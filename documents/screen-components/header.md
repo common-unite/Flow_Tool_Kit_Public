@@ -3,7 +3,7 @@
 
 ## Overview
 
-Form (Header) provides a consistent, themeable header for your Flow screens and Lightning pages. It displays a title, subtitle, help text, icon, and optional rich text content — all styled by the Flow Tool Kit theme system. It can also host custom buttons, making it a dual-purpose navigation and display component.
+Form (Header) provides a consistent, themeable header for your Flow screens and Lightning pages. It displays a title, subtitle, help text, icon, and optional rich text content, all styled by the Flow Tool Kit theme system. It can also host custom buttons, making it a dual-purpose navigation and display component.
 
 Header is one of the most versatile Flow Tool Kit components because it works everywhere: Flow Screens, App Pages, Record Pages, Home Pages, and Experience Cloud pages. Use it to add branded section headers, informational banners, or navigational buttons to any page.
 
@@ -21,11 +21,11 @@ Header is one of the most versatile Flow Tool Kit components because it works ev
 
 ## Quick Start
 
-1. **Add to Screen** — Drag "Form (Header)" onto a Flow Screen or Lightning page.
-2. **Set Title** — Enter a title (e.g., "Contact Information").
-3. **Add an Icon** — Set an SLDS icon name (e.g., "standard:contact") for a visual anchor.
-4. **Optional: Theme** — Assign a Form Theme for custom colors and styling.
-5. **Optional: Buttons** — On Flow Screens, add custom buttons to the header for inline navigation.
+1. **Add to Screen**: Drag "Form (Header)" onto a Flow Screen or Lightning page.
+2. **Set Title**: Enter a title (e.g., "Contact Information").
+3. **Add an Icon**: Set an SLDS icon name (e.g., "standard:contact") for a visual anchor.
+4. **Optional: Theme**: Assign a Form Theme for custom colors and styling.
+5. **Optional: Buttons**: On Flow Screens, add custom buttons to the header for inline navigation.
 
 ## Properties
 
@@ -33,15 +33,15 @@ Header is one of the most versatile Flow Tool Kit components because it works ev
 
 | Property | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `title` | String | No | — | Header title text |
-| `subtitle` | String | No | — | Subtitle text displayed below the title |
-| `helpText` | String | No | — | Help text content |
-| `iconName` | String | No | — | SLDS icon name (e.g., "standard:account", "utility:info") |
-| `richText` | String | No | — | Rich text HTML content displayed in the header area |
+| `title` | String | No | - | Header title text |
+| `subtitle` | String | No | - | Subtitle text displayed below the title |
+| `helpText` | String | No | - | Help text content |
+| `iconName` | String | No | - | SLDS icon name (e.g., "standard:account", "utility:info") |
+| `richText` | String | No | - | Rich text HTML content displayed in the header area |
 | `showHeader` | Boolean | No | true | Show or hide the header |
-| `topMargin` | String | No | — | SLDS margin class for top spacing |
-| `themeOverrideId` | String | No | — | QualifiedApiName of a Form Theme metadata record |
-| `buttons` | Button[] (Apex-Defined) | No | — | Collection of custom buttons to display in the header |
+| `topMargin` | String | No | - | SLDS margin class for top spacing |
+| `themeOverrideId` | String | No | - | QualifiedApiName of a Form Theme metadata record |
+| `buttons` | Button[] (Apex-Defined) | No | - | Collection of custom buttons to display in the header |
 | `groupButtons` | Boolean | No | false | Group buttons together without spacing |
 | `numberOfButtonsToShow` | Integer | No | 3 | Buttons visible before overflow menu |
 
@@ -49,12 +49,12 @@ Header is one of the most versatile Flow Tool Kit components because it works ev
 
 | Property | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `title` | String | No | — | Header title text |
-| `subtitle` | String | No | — | Subtitle text |
-| `iconName` | String | No | — | SLDS icon name |
-| `richText` | String | No | — | Rich text HTML content |
-| `topMargin` | String | No | — | Top margin (dropdown: none through xx-large) |
-| `themeOverrideId` | String | No | — | Theme Override QualifiedApiName |
+| `title` | String | No | - | Header title text |
+| `subtitle` | String | No | - | Subtitle text |
+| `iconName` | String | No | - | SLDS icon name |
+| `richText` | String | No | - | Rich text HTML content |
+| `topMargin` | String | No | - | Top margin (dropdown: none through xx-large) |
+| `themeOverrideId` | String | No | - | Theme Override QualifiedApiName |
 
 ### Outputs (Flow Screen only)
 
@@ -77,7 +77,7 @@ Header is one of the most versatile Flow Tool Kit components because it works ev
 | **Flow Form** | Share the same theme for consistent styling; header sits above the form |
 | **Custom Buttons** | Header can host buttons with the same Button[] collection |
 | **Themes** | Styled by Form Theme metadata |
-| **Data Table** | Visual pairing — header above, table below |
+| **Data Table** | Visual pairing: header above, table below |
 
 ## Common Patterns
 

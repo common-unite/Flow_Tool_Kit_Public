@@ -1,5 +1,5 @@
 # Custom Metadata Types
-> The metadata foundation of Flow Tool Kit — Forms, Sections, Fields, Conditional Logic, Themes, Labels, and more are all defined as Custom Metadata Type records.
+> The metadata foundation of Flow Tool Kit: Forms, Sections, Fields, Conditional Logic, Themes, Labels, and more are all defined as Custom Metadata Type records.
 
 ## Video Walkthrough
 
@@ -7,7 +7,7 @@
 
 ## Overview
 
-Flow Tool Kit is metadata-driven. Every form, section, field, theme, label, and conditional logic rule is stored as a Custom Metadata Type (CMT) record. This means your form definitions deploy with your metadata — through change sets, packages, and CI/CD pipelines — and are available across environments without data migration.
+Flow Tool Kit is metadata-driven. Every form, section, field, theme, label, and conditional logic rule is stored as a Custom Metadata Type (CMT) record. This means your form definitions deploy with your metadata (through change sets, packages, and CI/CD pipelines) and are available across environments without data migration.
 
 You rarely need to create CMT records manually. The Form Builder UI handles creation and management. But understanding the metadata structure helps you troubleshoot, build advanced configurations, and work with the system at a deeper level.
 
@@ -15,7 +15,7 @@ You rarely need to create CMT records manually. The Form Builder UI handles crea
 
 ```
 Form_Object__mdt          (which objects are available for form building)
-    └── Form__mdt         (a form definition — tied to one object)
+    └── Form__mdt         (a form definition, tied to one object)
         ├── Form_Section__mdt         (sections within the form)
         │   └── Form_Field__mdt       (fields within each section)
         ├── Form_Conditional_Logic__mdt           (visibility rules)
@@ -31,7 +31,7 @@ FormBuilderCache__mdt     (internal cache for Form Builder performance)
 
 ## Custom Metadata Types
 
-### Form_Object__mdt — Allowed Objects
+### Form_Object__mdt: Allowed Objects
 Controls which objects are available in the Form Builder object selector.
 
 | Field | Type | Required | Description |
@@ -41,7 +41,7 @@ Controls which objects are available in the Form Builder object selector.
 
 **Admin Use**: Add a `Form_Object__mdt` record for each object you want admins to build forms for. Without a record here, the object won't appear in Form Builder's object picklist.
 
-### Form__mdt — Form Definition
+### Form__mdt: Form Definition
 The top-level form record. Each form is tied to a single object.
 
 | Field | Type | Required | Description |
@@ -58,7 +58,7 @@ The top-level form record. Each form is tied to a single object.
 | `Delete__c` | Checkbox | No | Soft delete marker |
 | `DemoRecord__c` | Checkbox | No | Marks demo/sample records |
 
-### Form_Section__mdt — Form Section
+### Form_Section__mdt: Form Section
 Defines a section within a form. Sections group fields and control layout.
 
 | Field | Type | Required | Description |
@@ -75,7 +75,7 @@ Defines a section within a form. Sections group fields and control layout.
 | `Delete__c` | Checkbox | No | Soft delete marker |
 | `PreventDelete__c` | Checkbox | No | Prevent deletion in Form Builder |
 
-### Form_Field__mdt — Form Field
+### Form_Field__mdt: Form Field
 Defines an individual field within a section.
 
 | Field | Type | Required | Description |
@@ -91,7 +91,7 @@ Defines an individual field within a section.
 | `Alternative_Object__c` | EntityDefinition | No | Alternative object for cross-object references |
 | `Alternative_Field__c` | FieldDefinition | No | Alternative field from the alternative object |
 | `referenceFormComponent__c` | Form__mdt | No | Override form for related lookup display |
-| `config__c` | LongTextArea (131072) | No | Internal JSON — stores label overrides, help text, default values, column widths, calculations, and more |
+| `config__c` | LongTextArea (131072) | No | Internal JSON: stores label overrides, help text, default values, column widths, calculations, and more |
 | `minDateFieldName__c` | EntityParticle | No | Dynamic min date from another field |
 | `maxDateFieldName__c` | EntityParticle | No | Dynamic max date from another field |
 | `columnClassFieldReference__c` | EntityParticle | No | Field reference for dynamic CSS classes on table columns |
@@ -100,7 +100,7 @@ Defines an individual field within a section.
 | `addressFieldType__c` | Picklist | No | Address sub-field type: Address, Street, City, State, PostalCode, Country |
 | `Delete__c` | Checkbox | No | Soft delete marker |
 
-### Form_Conditional_Logic__mdt — Conditional Logic Rules
+### Form_Conditional_Logic__mdt: Conditional Logic Rules
 Defines visibility rules for sections and fields. See the [Conditional Logic](../form-configuration/conditional-logic.md) documentation for details.
 
 | Field | Type | Required | Description |
@@ -109,7 +109,7 @@ Defines visibility rules for sections and fields. See the [Conditional Logic](..
 | `config__c` | LongTextArea (131072) | No | JSON configuration for the logic rule |
 | `Delete__c` | Checkbox | No | Soft delete marker |
 
-### Form_Conditional_Logic_Condition__mdt — Individual Conditions
+### Form_Conditional_Logic_Condition__mdt: Individual Conditions
 Each condition within a conditional logic rule.
 
 | Field | Type | Required | Description |
@@ -124,16 +124,16 @@ Each condition within a conditional logic rule.
 | `config__c` | LongTextArea (131072) | No | JSON configuration |
 | `Delete__c` | Checkbox | No | Soft delete marker |
 
-### Form_Theme__mdt — Theme Styling
+### Form_Theme__mdt: Theme Styling
 See the [Themes, Labels & Styling](../form-configuration/themes-labels-styling.md) documentation for full details.
 
-### Form_Label__mdt — Reusable Labels
+### Form_Label__mdt: Reusable Labels
 See the [Themes, Labels & Styling](../form-configuration/themes-labels-styling.md) documentation.
 
-### Form_Label_Translation__mdt — Label Translations
+### Form_Label_Translation__mdt: Label Translations
 See the [Themes, Labels & Styling](../form-configuration/themes-labels-styling.md) documentation.
 
-### Form_Style_Sheet__mdt — Custom CSS Overrides
+### Form_Style_Sheet__mdt: Custom CSS Overrides
 References a Static Resource CSS file to override default form styles.
 
 | Field | Type | Description |
@@ -142,13 +142,13 @@ References a Static Resource CSS file to override default form styles.
 | `Path__c` | Text (255) | Path within a zip file (e.g., "StaticResourceName/folder/file.css") or just the resource name |
 | `NamespacePrefix__c` | Text (255) | Namespace of the static resource (if packaged) |
 
-### Form_Object__mdt — Object Registry
+### Form_Object__mdt: Object Registry
 Defines which objects are available for building forms.
 
-### FormBuilderCache__mdt — Builder Cache
+### FormBuilderCache__mdt: Builder Cache
 Internal cache records for Form Builder performance. Contains `Form__c` and `Table__c` text fields that store cached references.
 
-### Form_Sites_Url_Rewriter_Mappings__mdt — URL Rewriting
+### Form_Sites_Url_Rewriter_Mappings__mdt: URL Rewriting
 Configuration for Salesforce Sites URL rewriting. Maps friendly URLs to Salesforce URLs.
 
 | Field | Type | Required | Description |
@@ -158,7 +158,7 @@ Configuration for Salesforce Sites URL rewriting. Maps friendly URLs to Salesfor
 
 ## Subscriber-Controlled vs Developer-Controlled
 
-Most fields are **Subscriber-Controlled**, meaning admins in subscriber orgs can modify the values. A few fields (like `DemoRecord__c` and `PreventDelete__c`) are **Developer-Controlled** — only the package publisher can set them.
+Most fields are **Subscriber-Controlled**, meaning admins in subscriber orgs can modify the values. A few fields (like `DemoRecord__c` and `PreventDelete__c`) are **Developer-Controlled**: only the package publisher can set them.
 
 ## Tips & Considerations
 
@@ -166,4 +166,4 @@ Most fields are **Subscriber-Controlled**, meaning admins in subscriber orgs can
 - **Deployment**: CMT records deploy via metadata (change sets, packages, SFDX). They do NOT count toward data storage limits.
 - **Soft Delete Pattern**: Records use a `Delete__c` checkbox for soft deletion. Form Builder marks records for deletion; a cleanup process removes them.
 - **Config Fields**: The `config__c` LongTextArea fields store JSON with runtime configuration. These are managed by Form Builder and should not be edited manually unless you understand the schema.
-- **131072 Character Limit**: The `config__c` and related LongTextArea fields support up to 131,072 characters — sufficient for complex form configurations.
+- **131072 Character Limit**: The `config__c` and related LongTextArea fields support up to 131,072 characters, sufficient for complex form configurations.

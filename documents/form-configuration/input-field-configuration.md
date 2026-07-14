@@ -1,6 +1,6 @@
 # Input Field Configuration
 
-> Add, arrange, and customize individual fields on your form components — controlling display, validation, labels, and more.
+> Add, arrange, and customize individual fields on your form components, controlling display, validation, labels, and more.
 
 ## Video Walkthrough
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-Every field on a Flow Tool Kit form starts from the object schema — labels, help text, and required status are inherited automatically. From there, you can customize each field's display, validation, labels, width, prompts, and behavior through the Form Builder without writing code.
+Every field on a Flow Tool Kit form starts from the object schema: labels, help text, and required status are inherited automatically. From there, you can customize each field's display, validation, labels, width, prompts, and behavior through the Form Builder without writing code.
 
 This page introduces the input field configuration system. Detailed configuration for specific features is covered in dedicated pages linked below.
 
@@ -34,7 +34,7 @@ Open the section > **Section Fields** accordion > scroll to **Customized Section
 
 ### Method 2: Shift+Double-Click (Quick Edit)
 
-In the form preview, hold **Shift** and **double-click** on any field. The field's edit modal opens inline — make changes and click **Return** to apply.
+In the form preview, hold **Shift** and **double-click** on any field. The field's edit modal opens inline; make changes and click **Return** to apply.
 
 {% embed url="https://vimeo.com/936469868" %}
 
@@ -56,16 +56,16 @@ Each field's customization panel contains these configuration areas:
 ## Tips & Considerations
 
 * **Schema Inheritance**: When fields are added, all defaults (label, help text, required) come from the object schema. Customize only what you need to change.
-* **Search by Type**: Use the field search to filter by type (e.g., "picklist", "phone", "date") — useful for finding all fields of a specific type.
+* **Search by Type**: Use the field search to filter by type (e.g., "picklist", "phone", "date"). This is useful for finding all fields of a specific type.
 * **Multi-Select**: Hold Shift or Ctrl to select and move multiple fields at once.
 * **Shift+Double-Click**: The fastest way to make quick field edits without scrolling through the accordion.
 
 ## Related Pages
 
-* [Field Validation](field-validation.md) — required/disabled states, min/max, regex
-* [Field Type Settings](field-type-settings.md) — per-type display overrides
-* [Field Width & Responsiveness](field-width-responsiveness.md) — responsive column sizes
-* [Field Labels & Help Text](field-labels-help-text.md) — label customization and merge fields
-* [Prompt Messages](prompt-messages.md) — field-level help prompts
-* [Formula Recalculation](formula-recalculation.md) — live formula updates
-* [Conditional Logic](conditional-logic.md) — show/hide/require/disable rules
+* [Field Validation](field-validation.md): required/disabled states, min/max, regex
+* [Field Type Settings](field-type-settings.md): per-type display overrides
+* [Field Width & Responsiveness](field-width-responsiveness.md): responsive column sizes
+* [Field Labels & Help Text](field-labels-help-text.md): label customization and merge fields
+* [Prompt Messages](prompt-messages.md): field-level help prompts
+* [Formula Recalculation](formula-recalculation.md): live formula updates
+* [Conditional Logic](conditional-logic.md): show/hide/require/disable rules

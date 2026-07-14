@@ -11,7 +11,7 @@
 1. Go to the [Flow Tool Kit listing on AppExchange](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000HC4zCUAT).
 2. Click **Get It Now**.
 3. Choose the org where you want to install (production or sandbox).
-4. Select **Install for Admins Only** (recommended) — you can grant access to other users later via permission sets.
+4. Select **Install for Admins Only** (recommended); you can grant access to other users later via permission sets.
 5. Wait for the installation to complete. You'll receive an email confirmation.
 
 {% hint style="warning" %}
@@ -24,9 +24,9 @@ Flow Tool Kit includes three permission sets. Assign them based on each user's r
 
 | Permission Set | Who Gets It | What It Grants |
 |---------------|-------------|----------------|
-| **Form Builder Admin** | System Administrators | Full access — all components, objects, fields, configuration, and admin utilities |
-| **Form Builder Manager** | Admins who build and manage forms | Build and manage forms, templates, and submissions — everything except admin-only utilities |
-| **Form Flow User** | End users who fill out forms | Minimum access to fill out forms in Flows — read access to form metadata, no builder access |
+| **Form Builder Admin** | System Administrators | Full access: all components, objects, fields, configuration, and admin utilities |
+| **Form Builder Manager** | Admins who build and manage forms | Build and manage forms, templates, and submissions; everything except admin-only utilities |
+| **Form Flow User** | End users who fill out forms | Minimum access to fill out forms in Flows: read access to form metadata, no builder access |
 
 To assign a permission set:
 
@@ -43,9 +43,9 @@ To assign a permission set:
 After installation and permission set assignment:
 
 1. **Open the App Launcher** (waffle icon) and search for "Form Builder".
-2. **Click the Form Builder tab** — you should see the Form Builder interface with options to create a new form.
-3. **Create a test form** — select any object (e.g., Account), add a section, add a few fields, and save.
-4. **Test in a Flow** — create a simple screen flow, add the "Flow Form" component, select your test form, and preview it.
+2. **Click the Form Builder tab**: you should see the Form Builder interface with options to create a new form.
+3. **Create a test form**: select any object (e.g., Account), add a section, add a few fields, and save.
+4. **Test in a Flow**: create a simple screen flow, add the "Flow Form" component, select your test form, and preview it.
 
 If you see the Form Builder tab and can create a form, Flow Tool Kit is installed correctly.
 
@@ -55,6 +55,6 @@ If you see the Form Builder tab and can create a form, Flow Tool Kit is installe
 
 ## Next Steps
 
-- [Quick Start Guide](quick-start.md) — build your first real form in 5 minutes
-- [Core Concepts](core-concepts.md) — understand how forms, sections, fields, and templates work together
-- [Permission Sets](permission-sets.md) — detailed breakdown of what each permission set grants
+- [Quick Start Guide](quick-start.md): build your first real form in 5 minutes
+- [Core Concepts](core-concepts.md): understand how forms, sections, fields, and templates work together
+- [Permission Sets](permission-sets.md): detailed breakdown of what each permission set grants

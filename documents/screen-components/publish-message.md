@@ -6,11 +6,11 @@
 
 Form (Publish Message) sends a validation status message to a specific form section identified by its QualifiedApiName. This allows other screen components or Flow logic to flag individual sections as valid or invalid, displaying error indicators on the targeted section.
 
-This is a utility component — it doesn't render any visible UI. It publishes a message on the Flow_Form_Section_Validate message channel, which Flow Form listens for to update section-level validation indicators.
+This is a utility component; it doesn't render any visible UI. It publishes a message on the Flow_Form_Section_Validate message channel, which Flow Form listens for to update section-level validation indicators.
 
 ## Where to Use It
 
-- **Flow Screen** (utility — no visible UI)
+- **Flow Screen** (utility: no visible UI)
 
 ## Properties
 
@@ -18,9 +18,9 @@ This is a utility component — it doesn't render any visible UI. It publishes a
 
 | Property | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `sectionQualifiedApiName` | String | No | — | QualifiedApiName of the form section to target |
+| `sectionQualifiedApiName` | String | No | - | QualifiedApiName of the form section to target |
 | `isvalid` | Boolean | No | false | When false, the section displays an error indicator |
-| `channel` | String | No | — | Message channel API name (datasource: Flow_Form_Section_Validate) |
+| `channel` | String | No | - | Message channel API name (datasource: Flow_Form_Section_Validate) |
 
 ## Common Patterns
 

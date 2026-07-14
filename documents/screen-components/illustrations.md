@@ -1,9 +1,9 @@
 # Illustrations & Display
-> Display Salesforce Lightning Design System illustrations on Flow Screens, App Pages, Record Pages, and Experience Cloud — great for empty states, loading screens, and informational pages.
+> Display Salesforce Lightning Design System illustrations on Flow Screens, App Pages, Record Pages, and Experience Cloud. Great for empty states, loading screens, and informational pages.
 
 ## Overview
 
-Form (Illustration) renders built-in SLDS illustrations on any Lightning surface. These are the same illustrations Salesforce uses for empty states, error pages, and informational displays. Use them to add visual polish to your Flows — whether it's a friendly "all done" screen, a "no records found" state, or a branded welcome page.
+Form (Illustration) renders built-in SLDS illustrations on any Lightning surface. These are the same illustrations Salesforce uses for empty states, error pages, and informational displays. Use them to add visual polish to your Flows, whether it's a friendly "all done" screen, a "no records found" state, or a branded welcome page.
 
 The component is intentionally simple: pick an illustration, set a size, and optionally add a title and subtitle. It works everywhere Lightning components are supported.
 
@@ -17,10 +17,10 @@ The component is intentionally simple: pick an illustration, set a size, and opt
 
 ## Quick Start
 
-1. **Add to Screen** — Drag "Form (Illustration)" onto your Flow Screen or Lightning page.
-2. **Choose an Illustration** — Select from 22 available illustrations (e.g., "Gone Fishing", "Desert", "Setup").
-3. **Set the Size** — Choose `small` or `large`.
-4. **Add Text** — Optionally set a title and subtitle to display below the illustration.
+1. **Add to Screen**: Drag "Form (Illustration)" onto your Flow Screen or Lightning page.
+2. **Choose an Illustration**: Select from 22 available illustrations (e.g., "Gone Fishing", "Desert", "Setup").
+3. **Set the Size**: Choose `small` or `large`.
+4. **Add Text**: Optionally set a title and subtitle to display below the illustration.
 
 ## Properties
 
@@ -30,8 +30,8 @@ The component is intentionally simple: pick an illustration, set a size, and opt
 |---|---|---|---|---|
 | `type` | String | Yes | Base | The illustration to display. See available illustrations below |
 | `size` | String | Yes | small | Illustration size: `small` or `large` |
-| `title` | String | No | — | Title text displayed below the illustration |
-| `subtitle` | String | No | — | Subtitle text displayed below the title |
+| `title` | String | No | - | Title text displayed below the illustration |
+| `subtitle` | String | No | - | Subtitle text displayed below the title |
 
 ### Available Illustrations
 
@@ -66,7 +66,7 @@ This component has no outputs.
 
 ## How It Works
 
-The component renders a standard SLDS illustration SVG with optional text below it. On App Pages, Record Pages, and Home Pages, the `type` and `size` properties are presented as dropdown picklists. On Flow Screens, they're text inputs where you enter the value directly — enabling dynamic illustration selection via Flow variables.
+The component renders a standard SLDS illustration SVG with optional text below it. On App Pages, Record Pages, and Home Pages, the `type` and `size` properties are presented as dropdown picklists. On Flow Screens, they're text inputs where you enter the value directly, enabling dynamic illustration selection via Flow variables.
 
 ## Works With
 

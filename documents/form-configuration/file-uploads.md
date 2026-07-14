@@ -1,6 +1,6 @@
 # File Uploads
 
-> Collect file uploads on forms using long text area fields — with multi-file support, type restrictions, custom naming, and automated file linking.
+> Collect file uploads on forms using long text area fields, with multi-file support, type restrictions, custom naming, and automated file linking.
 
 ## Video Walkthroughs
 
@@ -36,7 +36,7 @@ Flow Tool Kit enables file uploads on any form by converting a Long Text Area fi
 | --------------------------- | --------------------------------------------------------------------------------------------------- |
 | **Upload Multiple**         | Toggle to allow multiple files per field                                                            |
 | **Maximum Number of Files** | Cap how many files when multiple is enabled (upload button disappears at limit)                     |
-| **Accepted File Types**     | Multi-select to restrict uploadable types (e.g., PDF, JPEG only — other types greyed out in picker) |
+| **Accepted File Types**     | Multi-select to restrict uploadable types (e.g., PDF, JPEG only; other types greyed out in picker) |
 | **Default Document Title**  | Custom naming with merge field support (e.g., `Pay Stub ({{fileName}})`)                            |
 | **Required**                | Enforce file upload before form submission                                                          |
 
@@ -100,14 +100,14 @@ File uploads work in guest user context:
 
 ## Tips & Considerations
 
-* **One Long Text Area per file field** — each file upload needs its own Long Text Area field on the object. You can have as many as needed.
-* **Save progress support** — previously uploaded files are retained when a form with save progress reloads.
-* **PDF generation** — uploaded files appear as clickable links in generated PDFs.
-* **Inspect JSON during development** — toggle the field between "File Upload" and "Default" long text area view to see the raw JSON.
-* **Multiple record linking** — pass a collection of record IDs to the subflow to link files to multiple records at once.
+* **One Long Text Area per file field**: each file upload needs its own Long Text Area field on the object. You can have as many as needed.
+* **Save progress support**: previously uploaded files are retained when a form with save progress reloads.
+* **PDF generation**: uploaded files appear as clickable links in generated PDFs.
+* **Inspect JSON during development**: toggle the field between "File Upload" and "Default" long text area view to see the raw JSON.
+* **Multiple record linking**: pass a collection of record IDs to the subflow to link files to multiple records at once.
 
 ## Related Pages
 
-* [How To: Set Up File Uploads](../how-to-guides/set-up-file-uploads.md) — step-by-step how-to guide
-* [Input Field Configuration](input-field-configuration.md) — field configuration overview
-* [Form Submissions](../form-template-framework/form-submissions.md) — submission processing
+* [How To: Set Up File Uploads](../how-to-guides/set-up-file-uploads.md): step-by-step how-to guide
+* [Input Field Configuration](input-field-configuration.md): field configuration overview
+* [Form Submissions](../form-template-framework/form-submissions.md): submission processing

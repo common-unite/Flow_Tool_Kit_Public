@@ -1,5 +1,5 @@
 # Collection & Data Utility Actions
-> Invocable Actions for manipulating record collections and sanitizing data in Flows — subset extraction, null removal, position recalculation, FLS sanitization, null stripping, and exception handling.
+> Invocable Actions for manipulating record collections and sanitizing data in Flows: subset extraction, null removal, position recalculation, FLS sanitization, null stripping, and exception handling.
 
 ## Overview
 
@@ -38,7 +38,7 @@ From a collection of 1000 records, set `chunkStart=200` and `chunkEnd=400` to ge
 
 **Action Name**: `Remove Nulls from Collection`
 
-Remove null entries from a record collection. This commonly occurs when looping and conditionally adding records — positions where records weren't added remain null.
+Remove null entries from a record collection. This commonly occurs when looping and conditionally adding records: positions where records weren't added remain null.
 
 #### Inputs
 
@@ -140,7 +140,7 @@ Throw a custom Apex exception from a Flow. Useful for triggering fault paths in 
 
 #### Outputs
 
-None — this action throws an exception, which triggers the Flow's fault path.
+None. This action throws an exception, which triggers the Flow's fault path.
 
 ## Common Patterns
 

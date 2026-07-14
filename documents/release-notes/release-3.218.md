@@ -2,7 +2,7 @@
 
 ## New Feature
 
-### Iframe Embed Mode — Embed Forms on External Websites (#100)
+### Iframe Embed Mode: Embed Forms on External Websites (#100)
 
 Embed Flow Tool Kit forms on any website using a simple iframe snippet. Visitors fill out forms directly on your website without seeing the Salesforce UI or needing a Salesforce account.
 
@@ -10,9 +10,9 @@ Embed Flow Tool Kit forms on any website using a simple iframe snippet. Visitors
 
 **Three embed types:**
 
-* **Flow** — embed any screen flow with optional input parameters (pv1-pv9, recordId, submissionId)
-* **Form Template** — embed a multi-page Form Template with confirmation pages
-* **Record Form** — embed a record creation form with object and form component selection
+* **Flow**: embed any screen flow with optional input parameters (pv1-pv9, recordId, submissionId)
+* **Form Template**: embed a multi-page Form Template with confirmation pages
+* **Record Form**: embed a record creation form with object and form component selection
 
 **How it works:**
 
@@ -24,20 +24,20 @@ Embed Flow Tool Kit forms on any website using a simple iframe snippet. Visitors
 
 **Key details:**
 
-* Auto-resize — the iframe height adjusts automatically as the form content changes
-* Completion messaging — the parent page receives a `postMessage` event when the form is submitted
+* Auto-resize: the iframe height adjusts automatically as the form content changes
+* Completion messaging: the parent page receives a `postMessage` event when the form is submitted
 * Works on both Classic (Visualforce) and Aura Experience Cloud sites
 * LWR sites are not supported (filtered from the site selector)
-* No authentication required — forms are served via the site's guest user
+* No authentication required: forms are served via the site's guest user
 
 **Documentation:** [Iframe Embed Guide](../advanced-topics/iframe-embed.md)
 
 **New components:**
 
-* `EmbedForm` — Visualforce page that bootstraps Lightning Out and renders the selected component
-* `Embed Code Generator` — admin UI tab for configuring and generating embed snippets
-* `EmbedCodeGenerator_Controller` — Apex controller for querying sites, flows, and templates
-* `iframeUtils` — shared utility module for iframe detection, resize, and completion messaging
+* `EmbedForm`: Visualforce page that bootstraps Lightning Out and renders the selected component
+* `Embed Code Generator`: admin UI tab for configuring and generating embed snippets
+* `EmbedCodeGenerator_Controller`: Apex controller for querying sites, flows, and templates
+* `iframeUtils`: shared utility module for iframe detection, resize, and completion messaging
 
 ## Bug Fixes
 
@@ -47,11 +47,11 @@ Embed Flow Tool Kit forms on any website using a simple iframe snippet. Visitors
 
 **Fixed by** adding `IS_IN_IFRAME` as a secondary check alongside `isGuest` in all affected components:
 
-* `formTemplate` — confirmation page display, update guard, NOT\_FOUND error handling
-* `lightningRecordForm` — confirmation display, button hiding, update guard, NOT\_FOUND handling
-* `lightningRecordFieldEdit` — button hiding, update guard
-* `formFieldFileUpload` — guest upload token, recordId handling
-* `flowForm` — IsGuest conditional logic, guest language dispatch, admin feature guard
+* `formTemplate`: confirmation page display, update guard, NOT\_FOUND error handling
+* `lightningRecordForm`: confirmation display, button hiding, update guard, NOT\_FOUND handling
+* `lightningRecordFieldEdit`: button hiding, update guard
+* `formFieldFileUpload`: guest upload token, recordId handling
+* `flowForm`: IsGuest conditional logic, guest language dispatch, admin feature guard
 
 ### Address Section Missing Rounded Edges (#98)
 

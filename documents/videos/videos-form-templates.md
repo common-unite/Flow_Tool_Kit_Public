@@ -1,11 +1,11 @@
 # Form Template Videos
 
-> Video walkthroughs for the Form Template Framework — multi-page forms, submissions, conversion, and more.
+> Video walkthroughs for the Form Template Framework: multi-page forms, submissions, conversion, and more.
 
 All videos are on the [Flow Tool Kit Vimeo Showcase](https://vimeo.com/showcase/flowtoolkit).
 
 {% hint style="info" %}
-Videos are listed by topic. Some may reference older versions — always check the [Form Template Framework documentation](../form-template-framework/form-templates.md) for current details.
+Videos are listed by topic. Some may reference older versions; always check the [Form Template Framework documentation](../form-template-framework/form-templates.md) for current details.
 {% endhint %}
 
 ## Getting Started with Templates
@@ -29,7 +29,7 @@ Videos are listed by topic. Some may reference older versions — always check t
 
 | Video | Vimeo ID | Description |
 |-------|----------|-------------|
-| Form Submissions | 758696750 | The submission lifecycle — capture, review, convert |
+| Form Submissions | 758696750 | The submission lifecycle: capture, review, convert |
 | Submission Review Mode | 758696800 | How users review before final submission |
 | Submission Conversion | 758696850 | Converting submissions into Salesforce records |
 | Conversion Rules | 758696900 | Field mapping and transformation during conversion |
@@ -55,5 +55,5 @@ Videos are listed by topic. Some may reference older versions — always check t
 
 ## Related Pages
 
-- [Form Template Framework](../form-template-framework/form-templates.md) — full written documentation
-- [Form Submissions](../form-template-framework/form-submissions.md) — submission lifecycle and conversion
+- [Form Template Framework](../form-template-framework/form-templates.md): full written documentation
+- [Form Submissions](../form-template-framework/form-submissions.md): submission lifecycle and conversion

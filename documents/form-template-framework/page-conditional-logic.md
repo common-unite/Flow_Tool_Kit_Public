@@ -13,7 +13,7 @@ Page conditional logic lets you create dynamic, branching form experiences. Inst
 1. Define conditions on a `Form_Template_Page__c` record
 2. When the user navigates to that page, the conditions are evaluated
 3. If conditions are **not met**, the page is skipped and the user advances to the next qualifying page
-4. Backward navigation also respects conditions — hidden pages are skipped when going back
+4. Backward navigation also respects conditions: hidden pages are skipped when going back
 
 ## Condition Rules
 
@@ -28,12 +28,12 @@ Page conditional logic lets you create dynamic, branching form experiences. Inst
 
 ### Logic Combinations
 
-* **AND** — all conditions must be true to show the page
-* **OR** — any one condition being true shows the page
+* **AND**: all conditions must be true to show the page
+* **OR**: any one condition being true shows the page
 
 ### Field References
 
-Conditions can **only reference fields from previous pages**. This is a fundamental constraint — the form hasn't collected data for the current or later pages yet, so those field values don't exist at evaluation time.
+Conditions can **only reference fields from previous pages**. This is a fundamental constraint: the form hasn't collected data for the current or later pages yet, so those field values don't exist at evaluation time.
 
 ## Example: Conditional Intake Form
 
@@ -56,11 +56,11 @@ Page 5: Spouse Information (shown when Marital Status = "Married")
 
 ## Tips
 
-* **Test all paths** — with conditional pages, users can take different routes through the form. Test each combination to ensure navigation works correctly
-* **Default values** — if a skipped page has required fields, ensure your Flow handles the absence of those values downstream
-* **Page numbering** — use gaps (10, 20, 30) so you can insert conditional pages between existing ones
+* **Test all paths**: with conditional pages, users can take different routes through the form. Test each combination to ensure navigation works correctly
+* **Default values**: if a skipped page has required fields, ensure your Flow handles the absence of those values downstream
+* **Page numbering**: use gaps (10, 20, 30) so you can insert conditional pages between existing ones
 
 ## Related Pages
 
-* [Pages and Sections](pages-and-sections.md) — page structure reference
-* [Conditional Logic](../form-configuration/conditional-logic.md) — field-level conditional logic (within a single form component)
+* [Pages and Sections](pages-and-sections.md): page structure reference
+* [Conditional Logic](../form-configuration/conditional-logic.md): field-level conditional logic (within a single form component)

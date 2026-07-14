@@ -1,6 +1,6 @@
 # Build A Form
 
-> End-to-end guide — create an object configuration, build a form component in Form Builder, and add it to a Flow.
+> End-to-end guide: create an object configuration, build a form component in Form Builder, and add it to a Flow.
 
 {% hint style="info" %}
 **Prerequisites**: Flow Tool Kit installed, **Form Builder Admin** or **Form Builder Manager** permission set assigned. See [Installation](../getting-started/installation.md).
@@ -35,11 +35,11 @@ Sections are the structural containers for your fields. They create visual group
 
 1. Click **Add Section**.
 2. Set the **Section Label** (e.g., "Personal Information", "Address Details").
-3. Choose the number of **Columns** — 1, 2, or 3. Two columns is the most common layout.
+3. Choose the number of **Columns**: 1, 2, or 3. Two columns is the most common layout.
 4. Repeat for each logical grouping of fields.
 
 {% hint style="warning" %}
-**Common Mistake**: Putting all fields in one section. Use multiple sections to break the form component into digestible groups — it makes the form easier to fill out and easier to manage.
+**Common Mistake**: Putting all fields in one section. Use multiple sections to break the form component into digestible groups; it makes the form easier to fill out and easier to manage.
 {% endhint %}
 
 ## Step 4: Add Fields
@@ -91,7 +91,7 @@ Click **Save**. Your form component metadata is now stored as Custom Metadata re
 
 After the screen element, the form component's output is available as a record variable:
 
-* `{!FlowForm.record}` — the SObject record containing all field values the user entered
+* `{!FlowForm.record}`: the SObject record containing all field values the user entered
 * Use this in **Create Records**, **Update Records**, or **Decision** elements
 
 For example, to create a new Contact:
@@ -109,12 +109,12 @@ Click **Debug** or **Run** in Flow Builder to preview your form. Verify:
 
 ## What's Next
 
-* [Add Conditional Logic](add-conditional-logic.md) — show/hide fields based on values
-* [Configure Lookup Fields](configure-lookup-fields.md) — customize lookup search and display
-* [Configure Themes and Styling](configure-themes-and-styling.md) — change form appearance
-* [Form Builder Reference](../screen-components/form-builder.md) — all features and options
+* [Add Conditional Logic](add-conditional-logic.md): show/hide fields based on values
+* [Configure Lookup Fields](configure-lookup-fields.md): customize lookup search and display
+* [Configure Themes and Styling](configure-themes-and-styling.md): change form appearance
+* [Form Builder Reference](../screen-components/form-builder.md): all features and options
 
 ## Related Pages
 
-* [Flow Form Reference](../screen-components/flow-form.md) — all input/output properties
-* [Core Concepts](../getting-started/core-concepts.md) — how form components, sections, and fields connect
+* [Flow Form Reference](../screen-components/flow-form.md): all input/output properties
+* [Core Concepts](../getting-started/core-concepts.md): how form components, sections, and fields connect

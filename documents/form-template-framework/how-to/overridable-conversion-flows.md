@@ -4,7 +4,7 @@
 
 ## Overview
 
-When a Form Submission is converted to Salesforce records, Flow Tool Kit uses built-in conversion Flows. If the default conversion doesn't meet your needs, you can **override** these Flows with your own — adding custom field mappings, validation, record linking, or any other logic.
+When a Form Submission is converted to Salesforce records, Flow Tool Kit uses built-in conversion Flows. If the default conversion doesn't meet your needs, you can **override** these Flows with your own, adding custom field mappings, validation, record linking, or any other logic.
 
 ## Video Walkthrough
 
@@ -38,14 +38,14 @@ The default conversion:
 | `submissionId` | Text | The Form Submission record ID |
 | `templateId`   | Text | The Form Template record ID   |
 
-3. Add your custom logic — query the submission data, create/update records as needed.
+3. Add your custom logic: query the submission data, create/update records as needed.
 4. Save and activate the Flow.
 
 ## Step 3: Configure the Override
 
 1. In the Form Template configuration, find the conversion settings.
 2. Set the **Override Flow** to your custom Flow's API name.
-3. The default conversion is bypassed — your Flow runs instead.
+3. The default conversion is bypassed; your Flow runs instead.
 
 ## Common Use Cases
 
@@ -59,24 +59,24 @@ Create records across multiple objects in a specific order with cross-references
 
 ### External System Integration
 
-Call an external API during conversion — send data to an ERP, trigger a webhook, or sync with a third-party system.
+Call an external API during conversion: send data to an ERP, trigger a webhook, or sync with a third-party system.
 
 ### Complex Validation
 
-Run business rules before conversion — check for duplicates, validate against external data, or enforce org-specific policies.
+Run business rules before conversion: check for duplicates, validate against external data, or enforce org-specific policies.
 
 ## Tips
 
 {% hint style="warning" %}
-**Test thoroughly.** Overriding conversion bypasses all default logic. Your custom Flow is responsible for everything — record creation, linking, error handling, and updating the submission status.
+**Test thoroughly.** Overriding conversion bypasses all default logic. Your custom Flow is responsible for everything: record creation, linking, error handling, and updating the submission status.
 {% endhint %}
 
 * Start by cloning the logic of the default conversion, then customize from there
-* Always handle errors gracefully — log failures to a custom object or send admin notifications
-* Keep the override Flow focused — delegate complex sub-tasks to subflows
+* Always handle errors gracefully: log failures to a custom object or send admin notifications
+* Keep the override Flow focused; delegate complex sub-tasks to subflows
 
 ## Related Pages
 
-* [Use Form Submissions](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/how-to-guides/use-form-submissions.md) — submission lifecycle
-* [Form Template Framework](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-templates.md) — template reference
-* [Form Submissions Reference](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-submissions.md) — submission details
+* [Use Form Submissions](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/how-to-guides/use-form-submissions.md): submission lifecycle
+* [Form Template Framework](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-templates.md): template reference
+* [Form Submissions Reference](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-submissions.md): submission details

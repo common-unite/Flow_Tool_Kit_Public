@@ -10,11 +10,11 @@ Number, currency, and percent fields can now render as something more interactiv
 
 ![The Number Display Type dropdown, the preset editor, and stepper, slider, and preset chips in the preview](../.gitbook/assets/254-number-overrides-demo.gif)
 
-* **Stepper** — minus/plus buttons flank the formatted input. The field's **Step** value sets the increment (set it to `1` so a stepper counts by whole dollars, not pennies); Step never restricts what a respondent can type.
-* **Slider** — a draggable range that defaults to 0–100 and honors the field's Min/Max and Step when set.
-* **Preset Amounts** — quick-pick chips you define as label/value pairs in the **Edit Preset Amounts** editor, with an optional **Other** chip (turn on Allow Custom Values) that reveals a free-entry input. A value matching no preset auto-selects Other so it is never orphaned.
+* **Stepper**: minus/plus buttons flank the formatted input. The field's **Step** value sets the increment (set it to `1` so a stepper counts by whole dollars, not pennies); Step never restricts what a respondent can type.
+* **Slider**: a draggable range that defaults to 0–100 and honors the field's Min/Max and Step when set.
+* **Preset Amounts**: quick-pick chips you define as label/value pairs in the **Edit Preset Amounts** editor, with an optional **Other** chip (turn on Allow Custom Values) that reveals a free-entry input. A value matching no preset auto-selects Other so it is never orphaned.
 
-Currency and percent formatting apply in every mode, the layout adapts to the container width (not just the device), and the full field toolkit — custom labels, help text, required, prompts — works throughout. Formula fields, being read-only, don't offer the overrides. Details: [Field Type Settings](../form-configuration/field-type-settings.md#number-fields).
+Currency and percent formatting apply in every mode, the layout adapts to the container width (not just the device), and the full field toolkit (custom labels, help text, required, prompts) works throughout. Formula fields, being read-only, don't offer the overrides. Details: [Field Type Settings](../form-configuration/field-type-settings.md#number-fields).
 
 ### Dynamic Selector Display Types (#249)
 
@@ -34,7 +34,27 @@ The chosen value saves with the form like any other answer (no direct record wri
 
 Details: [Field Type Settings](../form-configuration/field-type-settings.md#text-area--long-text-area-fields).
 
+### Object selector: Form Template Framework group (#259)
+
+Form Submission, Form Template, Form Template Page, and Form Template Page Section now group under **Form Template Framework** in the object selector instead of mixing with your org's custom objects.
+
 ## Fixed
+
+### Form template saves were broken for standard and guest users (#256)
+
+The packaged save flow (`Form_Submission_Upsert`) shipped in a state subscriber orgs could not activate (its upsert keyed on a non-unique external ID), which broke Form Template saves for any user without Manage Flows permission. A new unique `UniqueId__c` field restores the flow to its original replay-safe design and it now ships **active**. New saves no longer populate the legacy `ExternalId__c` field.
+
+### Repeater/table forms crashed the Form Builder preview (#257) and Form Component record pages (#258)
+
+An undefined template binding crashed any repeater or table form with an action on preview load, and configs saved during that window could crash record-page rendering. Both fixed; affected saved configs heal automatically on next render.
+
+### Form Template sections overlapped their neighbors (#255)
+
+A legacy negative bottom margin painted each section 12px over the one above it on non-accordion forms; removed from both the live and preview renderers.
+
+### File Name Format shown without the file upload override (#253)
+
+The File Name Format input no longer appears in the field editor unless the File Upload override is enabled.
 
 ### Percent Min/Max captured on the wrong scale (#248)
 

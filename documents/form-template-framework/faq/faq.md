@@ -1,6 +1,6 @@
 # Form Template FAQ
 
-> Common questions specific to the Form Template Framework — multi-page forms, submissions, and conversion.
+> Common questions specific to the Form Template Framework: multi-page forms, submissions, and conversion.
 
 ## Getting Started
 
@@ -26,11 +26,11 @@ No. Save-and-resume requires an authenticated user identity to match users with 
 
 ### How is form progress stored?
 
-Form field values are serialized as JSON and stored in the `Form_Submission__c` record. The Form Template component handles serialization and deserialization transparently — your Flow just needs to pass the submission record in and save it when `saveProgress` is true.
+Form field values are serialized as JSON and stored in the `Form_Submission__c` record. The Form Template component handles serialization and deserialization transparently; your Flow just needs to pass the submission record in and save it when `saveProgress` is true.
 
 ### What happens if a user abandons a form?
 
-The submission stays in Draft status. Consider creating a scheduled Flow or batch process to clean up abandoned submissions — for example, deleting Draft submissions older than 30 days.
+The submission stays in Draft status. Consider creating a scheduled Flow or batch process to clean up abandoned submissions; for example, deleting Draft submissions older than 30 days.
 
 ## Submissions & Conversion
 
@@ -66,6 +66,6 @@ Yes. The Form Template component includes built-in forward and backward navigati
 
 ## Related Pages
 
-- [Form Templates Reference](../form-templates.md) — component properties and architecture
-- [Form Submissions Reference](../form-submissions.md) — submission object and lifecycle
-- [Troubleshooting](troubleshooting.md) — solutions to common template issues
+- [Form Templates Reference](../form-templates.md): component properties and architecture
+- [Form Submissions Reference](../form-submissions.md): submission object and lifecycle
+- [Troubleshooting](troubleshooting.md): solutions to common template issues

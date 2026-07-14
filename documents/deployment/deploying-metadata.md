@@ -19,7 +19,7 @@ The simplest method for sandbox → production deployments.
 ### Step 1: Create an Outbound Change Set
 
 1. In the source org, go to **Setup → Outbound Change Sets**.
-2. Click **New** and give it a name (e.g., "Form Config — Contact Intake").
+2. Click **New** and give it a name (e.g., "Form Config: Contact Intake").
 3. Click **Add** to add components.
 
 ### Step 2: Add CMDT Records
@@ -112,14 +112,14 @@ JSON export/import handles a single form at a time. For bulk deployments, use SF
 
 After deploying, verify in the target org:
 
-1. Open **Form Builder** — your deployed forms should appear.
-2. Open each form — verify sections, fields, and conditional logic are correct.
-3. Test a Flow using the deployed form — verify runtime rendering.
+1. Open **Form Builder**; your deployed forms should appear.
+2. Open each form; verify sections, fields, and conditional logic are correct.
+3. Test a Flow using the deployed form; verify runtime rendering.
 4. If using themes, verify the styling appears correctly.
 5. Clear the form cache if changes aren't visible: navigate to `your-org/apex/FlowToolKit__CacheFlow`.
 
 ## Related Pages
 
-* [Deployment Overview](deployment-overview.md) — what needs to be deployed and why
-* [Deploying to Production](deploying-to-production.md) — production-specific checklist
-* [Deploying to Experience Cloud](deploying-to-experience-cloud.md) — EC-specific considerations
+* [Deployment Overview](deployment-overview.md): what needs to be deployed and why
+* [Deploying to Production](deploying-to-production.md): production-specific checklist
+* [Deploying to Experience Cloud](deploying-to-experience-cloud.md): EC-specific considerations

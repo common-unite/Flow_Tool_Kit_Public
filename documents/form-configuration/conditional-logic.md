@@ -4,24 +4,24 @@
 
 ## Overview
 
-Conditional Logic lets you control when sections and fields are visible on your forms. Define rules like "show the Spouse section when Marital Status equals Married" or "hide the Admin Notes field for guest users" — all configured in Form Builder, no code required.
+Conditional Logic lets you control when sections and fields are visible on your forms. Define rules like "show the Spouse section when Marital Status equals Married" or "hide the Admin Notes field for guest users", all configured in Form Builder with no code required.
 
 Rules are stored as Custom Metadata Types (Form\_Conditional\_Logic\_\_mdt and Form\_Conditional\_Logic\_Condition\_\_mdt) and evaluated in real-time as users fill out the form. When a condition is met, the target section or field appears; when it's not met, the target hides.
 
 ## Where to Configure
 
-* **Form Builder** — the primary place to create and manage conditional logic rules
-* **Custom Metadata Types** — advanced users can create records directly, but Form Builder is recommended
+* **Form Builder**: the primary place to create and manage conditional logic rules
+* **Custom Metadata Types**: advanced users can create records directly, but Form Builder is recommended
 
 ## Quick Start
 
 ![Conditional logic configuration in Form Builder](../.gitbook/assets/conditional-logic-config.png)
 
-1. **Open Form Builder** — Navigate to your form in the Form Builder tab.
-2. **Select a Section or Field** — Click the section or field you want to conditionally show/hide.
-3. **Add Conditional Logic** — In the properties panel, add a conditional logic rule.
-4. **Define Conditions** — Specify the field to watch, the operator (equals, not equals, contains, etc.), and the value to match.
-5. **Save** — Save the form. The condition is now active at runtime.
+1. **Open Form Builder**: Navigate to your form in the Form Builder tab.
+2. **Select a Section or Field**: Click the section or field you want to conditionally show/hide.
+3. **Add Conditional Logic**: In the properties panel, add a conditional logic rule.
+4. **Define Conditions**: Specify the field to watch, the operator (equals, not equals, contains, etc.), and the value to match.
+5. **Save**: Save the form. The condition is now active at runtime.
 
 ![Conditional logic toggling fields in real-time](../.gitbook/assets/conditional-logic-toggle.gif)
 
@@ -83,7 +83,7 @@ Assign a `Form_Conditional_Logic__mdt` record to the field's `conditionalLogic__
 
 ### Cascading Effects
 
-When a section is hidden, all fields within it are also hidden — regardless of individual field conditions. Field-level conditions only apply when the parent section is visible.
+When a section is hidden, all fields within it are also hidden, regardless of individual field conditions. Field-level conditions only apply when the parent section is visible.
 
 ## Works With
 
@@ -118,7 +118,7 @@ Use `IsNew` to show a "Welcome" section only for new record creation, and an "Ed
 
 ## Tips & Considerations
 
-* **Real-Time Evaluation**: Conditions evaluate as the user types/selects values. There's no delay — visibility changes are instant.
+* **Real-Time Evaluation**: Conditions evaluate as the user types/selects values. There's no delay; visibility changes are instant.
 * **Hidden Field Values**: When a field is hidden by conditional logic, its value is NOT cleared by default. If you need to clear hidden field values, use the `returnVisibleFieldsOnly` or `recordVisibleFields` outputs on Flow Form.
 * **Multiple Conditions**: You can combine field-based and user-based conditions in the same rule. All must pass for AND logic; any must pass for OR logic.
 * **Performance**: Conditional logic evaluation is client-side and fast. Even forms with many rules evaluate instantly.

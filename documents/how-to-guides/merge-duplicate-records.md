@@ -3,7 +3,7 @@
 > Use the Record Merge invocable action to merge duplicate records in a Flow.
 
 {% hint style="info" %}
-**Prerequisites**: Flow Tool Kit installed. This action works in any Flow — no form required.
+**Prerequisites**: Flow Tool Kit installed. This action works in any Flow, no form required.
 {% endhint %}
 
 ## Video Walkthrough
@@ -25,8 +25,8 @@ The Record Merge invocable action lets you merge duplicate Salesforce records di
 
 You need:
 
-* A **master record** — the record that survives after the merge
-* One or more **duplicate records** — records that will be merged into the master
+* A **master record**: the record that survives after the merge
+* One or more **duplicate records**: records that will be merged into the master
 
 In a screen flow, you might:
 
@@ -75,6 +75,6 @@ When records merge:
 
 ## Related Pages
 
-* [Record Operations Reference](../invocable-actions/record-operations.md) — all record operation actions
-* [Use Data Tables](use-data-tables.md) — display records for selection
-* [Feature Overview](../welcome/feature-overview.md) — all invocable actions
+* [Record Operations Reference](../invocable-actions/record-operations.md): all record operation actions
+* [Use Data Tables](use-data-tables.md): display records for selection
+* [Feature Overview](../welcome/feature-overview.md): all invocable actions

@@ -12,7 +12,7 @@
 
 ## Overview
 
-The Data Table component lets users view and manage multiple records at once — think line items on an order, contacts on an account, or tasks in a project. It supports:
+The Data Table component lets users view and manage multiple records at once: think line items on an order, contacts on an account, or tasks in a project. It supports:
 
 ![Data table with records and action buttons](../.gitbook/assets/data-table-records.png)
 
@@ -26,7 +26,7 @@ The Data Table component lets users view and manage multiple records at once —
 ## Step 1: Create a Table Form in Form Builder
 
 1. Open **Form Builder** and create a new Form for the object you want to display (e.g., Opportunity Line Item).
-2. Add the fields you want as **columns** — Product Name, Quantity, Unit Price, Total Price, etc.
+2. Add the fields you want as **columns**: Product Name, Quantity, Unit Price, Total Price, etc.
 3. Save the form.
 
 {% hint style="info" %}
@@ -125,6 +125,6 @@ Control how many records are required:
 
 ## Related Pages
 
-* [Data Table Reference](../screen-components/data-table.md) — all properties and configuration
-* [Build a Form](build-a-form.md) — create the form that defines table columns
-* [Configure Lookup Fields](configure-lookup-fields.md) — lookup fields in table cells
+* [Data Table Reference](../screen-components/data-table.md): all properties and configuration
+* [Build a Form](build-a-form.md): create the form that defines table columns
+* [Configure Lookup Fields](configure-lookup-fields.md): lookup fields in table cells

@@ -69,7 +69,7 @@ When passing DateTime values to JavaScript-based LWC components or external libr
 
 ## Tips & Considerations
 
-- **Seconds, Not Milliseconds**: These actions use seconds. JavaScript's `Date.now()` returns milliseconds — divide by 1000 before passing to the Datetime converter.
+- **Seconds, Not Milliseconds**: These actions use seconds. JavaScript's `Date.now()` returns milliseconds; divide by 1000 before passing to the Datetime converter.
 - **Timezone**: UNIX timestamps are UTC by default. The conversion to/from Salesforce DateTime preserves UTC. Display timezone handling is separate.
 - **Integer Limits**: The UNIX timestamp input uses Integer type, which supports dates up to approximately year 2038 (the "Year 2038 problem"). The output uses Long type which supports larger values.
 - **Null Handling**: Passing a null DateTime or null timestamp will cause an error. Validate inputs before calling these actions.

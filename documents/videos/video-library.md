@@ -5,7 +5,7 @@
 All videos are hosted on the [Flow Tool Kit Vimeo Showcase](https://vimeo.com/showcase/flowtoolkit).
 
 {% hint style="info" %}
-**Note**: Some older videos may show previous versions of the UI or deprecated features. The written documentation on this site is always kept current — use videos as visual guides and reference the docs for the latest details.
+**Note**: Some older videos may show previous versions of the UI or deprecated features. The written documentation on this site is always kept current; use videos as visual guides and reference the docs for the latest details.
 {% endhint %}
 
 ## Browse by Topic
@@ -22,27 +22,27 @@ All videos are hosted on the [Flow Tool Kit Vimeo Showcase](https://vimeo.com/sh
 These are great starting points if you're new to Flow Tool Kit:
 
 ### Getting Started
-- **Welcome to Flow Tool Kit** — overview of the package and its capabilities
-- **Getting Started** — install, configure, build your first form
-- **Flow Form Intro** — how the runtime form component works
+- **Welcome to Flow Tool Kit**: overview of the package and its capabilities
+- **Getting Started**: install, configure, build your first form
+- **Flow Form Intro**: how the runtime form component works
 
 ### Form Builder
-- **Form Builder Overview** — the drag-and-drop editor interface
-- **Form Builder — Themes** — customize form appearance with themes
-- **Form Builder — Conditional Logic** — show/hide fields based on values
+- **Form Builder Overview**: the drag-and-drop editor interface
+- **Form Builder: Themes**: customize form appearance with themes
+- **Form Builder: Conditional Logic**: show/hide fields based on values
 
 ### Form Templates
-- **Form Template Intro** — what templates are and when to use them
-- **Creating a Form Template** — step-by-step template creation
-- **Form Submissions** — the submission lifecycle and review mode
+- **Form Template Intro**: what templates are and when to use them
+- **Creating a Form Template**: step-by-step template creation
+- **Form Submissions**: the submission lifecycle and review mode
 
 ## Video + Documentation Cross-Reference
 
 Every video topic has a corresponding documentation page. When watching a video, reference the written docs for:
-- **Current property names and values** — videos may show old names
-- **Complete property lists** — videos focus on common properties, docs cover all of them
-- **Edge cases and gotchas** — documented but not always shown in videos
-- **Copy-paste configuration** — tables and code blocks in docs are easier to reference than video
+- **Current property names and values**: videos may show old names
+- **Complete property lists**: videos focus on common properties, docs cover all of them
+- **Edge cases and gotchas**: documented but not always shown in videos
+- **Copy-paste configuration**: tables and code blocks in docs are easier to reference than video
 
 ## Vimeo Channel
 

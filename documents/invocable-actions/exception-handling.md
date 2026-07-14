@@ -1,6 +1,6 @@
 # Exception Handling
 
-> Invocable action for throwing custom exceptions in Flows — useful for triggering faults in platform event handlers and error scenarios.
+> Invocable action for throwing custom exceptions in Flows, useful for triggering faults in platform event handlers and error scenarios.
 
 ## Throw Custom Exception
 
@@ -17,7 +17,7 @@ Throws a custom Apex exception with the specified message. This causes the Flow 
 
 ### Outputs
 
-None — this action throws an exception, so execution moves to the fault path.
+None. This action throws an exception, so execution moves to the fault path.
 
 ### Usage
 
@@ -32,5 +32,5 @@ This action intentionally causes a fault. Always ensure you have a fault connect
 
 ## Related Pages
 
-- [Form Submission Actions](form-submission-actions.md) — often used together in conversion flows
+- [Form Submission Actions](form-submission-actions.md): often used together in conversion flows
 - [Overridable Conversion Flows](../form-template-framework/how-to/overridable-conversion-flows.md)

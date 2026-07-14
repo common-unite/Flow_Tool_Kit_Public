@@ -4,7 +4,7 @@
 
 ## Salesforce Platform Limits
 
-These are Salesforce platform constraints — not Flow Tool Kit bugs. They apply to any managed package running on the platform.
+These are Salesforce platform constraints, not Flow Tool Kit bugs. They apply to any managed package running on the platform.
 
 ### Governor Limits in Flows
 
@@ -39,20 +39,20 @@ These are Salesforce platform constraints — not Flow Tool Kit bugs. They apply
 
 ### Form Builder
 
-- **One object per form component** — each form component targets a single Salesforce object. Cross-object forms require the Form Template Framework (multiple form components across pages).
-- **Field types** — Form Builder supports standard Salesforce field types. Encrypted fields and some compound fields (like geolocation) may not render correctly.
-- **Polymorphic lookups** — lookups that can reference multiple object types (like `WhoId` on Task) have limited support.
+- **One object per form component**: each form component targets a single Salesforce object. Cross-object forms require the Form Template Framework (multiple form components across pages).
+- **Field types**: Form Builder supports standard Salesforce field types. Encrypted fields and some compound fields (like geolocation) may not render correctly.
+- **Polymorphic lookups**: lookups that can reference multiple object types (like `WhoId` on Task) have limited support.
 
 ### Flow Form (Runtime)
 
-- **Controlling field must be on the same form component** — conditional logic can only reference fields that are on the current form component, not fields from other screen components or Flow variables.
-- **Record variable type must match** — the record variable assigned to Flow Form must be the same object type as the form component. Mismatches cause runtime errors.
-- **FlowAttributeChangeEvent echo** — when Flow Form dispatches attribute changes, the Flow runtime echoes the values back wrapped in new proxies. This is a platform behavior, not a bug.
+- **Controlling field must be on the same form component**: conditional logic can only reference fields that are on the current form component, not fields from other screen components or Flow variables.
+- **Record variable type must match**: the record variable assigned to Flow Form must be the same object type as the form component. Mismatches cause runtime errors.
+- **FlowAttributeChangeEvent echo**: when Flow Form dispatches attribute changes, the Flow runtime echoes the values back wrapped in new proxies. This is a platform behavior, not a bug.
 
 ### Data Table
 
-- **Large record sets** — while Data Table supports pagination, loading thousands of records in a single page can cause performance issues, especially with Lightning Locker Service enabled (see [Troubleshooting](troubleshooting.md#experience-cloud-form-is-slow)).
-- **Inline editing field types** — not all field types support inline editing in Data Table (e.g., rich text, file upload).
+- **Large record sets**: while Data Table supports pagination, loading thousands of records in a single page can cause performance issues, especially with Lightning Locker Service enabled (see [Troubleshooting](troubleshooting.md#experience-cloud-form-is-slow)).
+- **Inline editing field types**: not all field types support inline editing in Data Table (e.g., rich text, file upload).
 
 ### Form Template Framework
 
@@ -60,14 +60,14 @@ For Form Template Framework constraints (Save & Resume, conversion, page-level c
 
 ### Experience Cloud
 
-- **Lightning Locker Service performance** — if LWS is not enabled, form components with large datasets will be significantly slower due to proxy wrapping. Always enable Lightning Web Security for best performance.
-- **Guest user limitations** — guest users cannot access all Apex classes or objects. Carefully configure the guest user profile.
-- **CSP restrictions** — external resources (reCAPTCHA, custom fonts, external APIs) require CSP Trusted Site entries.
+- **Lightning Locker Service performance**: if LWS is not enabled, form components with large datasets will be significantly slower due to proxy wrapping. Always enable Lightning Web Security for best performance.
+- **Guest user limitations**: guest users cannot access all Apex classes or objects. Carefully configure the guest user profile.
+- **CSP restrictions**: external resources (reCAPTCHA, custom fonts, external APIs) require CSP Trusted Site entries.
 
 ### Deployment
 
-- **CMDT records are org-specific** — form component configurations don't sync automatically between orgs. You must explicitly deploy them.
-- **Namespace prefix** — in deployed CMDT records, the `FlowToolKit__` namespace prefix is required. Records created without it won't be recognized by the package.
+- **CMDT records are org-specific**: form component configurations don't sync automatically between orgs. You must explicitly deploy them.
+- **Namespace prefix**: in deployed CMDT records, the `FlowToolKit__` namespace prefix is required. Records created without it won't be recognized by the package.
 
 ## Unsupported Scenarios
 
@@ -81,6 +81,6 @@ For Form Template Framework constraints (Save & Resume, conversion, page-level c
 
 ## Related Pages
 
-- [Troubleshooting](troubleshooting.md) — solutions to common issues
-- [FAQ](faq.md) — frequently asked questions
-- [Feature Overview](../welcome/feature-overview.md) — what Flow Tool Kit can do
+- [Troubleshooting](troubleshooting.md): solutions to common issues
+- [FAQ](faq.md): frequently asked questions
+- [Feature Overview](../welcome/feature-overview.md): what Flow Tool Kit can do

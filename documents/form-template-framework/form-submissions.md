@@ -58,7 +58,7 @@ _Additional fields store serialized form data and metadata for each page/section
 
 | Component             | Integration                                                         |
 | --------------------- | ------------------------------------------------------------------- |
-| **Form Templates**    | Primary consumer — templates produce and consume submission records |
+| **Form Templates**    | Primary consumer: templates produce and consume submission records |
 | **Flow Form**         | Individual form instances within templates populate submission data |
 | **Invocable Actions** | Use JSON Serialize/Deserialize actions to process submission data   |
 
@@ -70,7 +70,7 @@ Create a flow that:
 
 * Queries for existing submissions for the current user
 * If found, passes it to the Form Template component
-* On each screen interaction, checks `saveProgress` — if true, upserts the submission
+* On each screen interaction, checks `saveProgress`; if true, upserts the submission
 * On final submit, processes all data and marks status as "Submitted"
 
 ### 2. Admin Review Queue

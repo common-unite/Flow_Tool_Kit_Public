@@ -16,7 +16,7 @@
 
 ![File upload field in Form Builder](../.gitbook/assets/file-upload-form-builder.png)
 
-Flow Tool Kit supports file upload fields on forms — users can attach documents, images, or other files as part of their form submission. Uploaded files are stored as Salesforce ContentDocument records linked to the parent record.
+Flow Tool Kit supports file upload fields on forms; users can attach documents, images, or other files as part of their form submission. Uploaded files are stored as Salesforce ContentDocument records linked to the parent record.
 
 ![File upload card with uploaded file](../.gitbook/assets/file-upload-card.png)
 
@@ -48,9 +48,9 @@ When the user uploads a file through the form:
 
 After the form screen, you can:
 
-* **Link files to a record** — if you're creating a new record, the files are linked after the record is created
-* **Process uploaded files** — use the **File Upload Serialize/Deserialize** invocable actions to work with file data in your Flow logic
-* **Package files** — use the **Content Document to Zip** action to bundle multiple uploads
+* **Link files to a record**: if you're creating a new record, the files are linked after the record is created
+* **Process uploaded files**: use the **File Upload Serialize/Deserialize** invocable actions to work with file data in your Flow logic
+* **Package files**: use the **Content Document to Zip** action to bundle multiple uploads
 
 ## File Upload Invocable Actions
 
@@ -66,12 +66,12 @@ After the form screen, you can:
 **File size limits**: Salesforce enforces file size limits based on your org edition. The form-level max file size setting should be equal to or less than your org's limit.
 {% endhint %}
 
-* **Accepted formats** — be specific. Instead of accepting all file types, list only what you need (e.g., `.pdf,.png,.jpg` for an application form)
-* **Multiple files** — if users need to upload several documents, enable the multiple option rather than adding multiple upload fields
-* **Guest users** — file uploads on Experience Cloud require additional guest user permissions for ContentDocument and ContentVersion objects
+* **Accepted formats**: be specific. Instead of accepting all file types, list only what you need (e.g., `.pdf,.png,.jpg` for an application form)
+* **Multiple files**: if users need to upload several documents, enable the multiple option rather than adding multiple upload fields
+* **Guest users**: file uploads on Experience Cloud require additional guest user permissions for ContentDocument and ContentVersion objects
 
 ## Related Pages
 
-* [File Upload Actions Reference](../invocable-actions/file-upload-actions.md) — invocable actions for file processing
-* [Build a Form](build-a-form.md) — creating forms
-* [Form Components Reference](../form-configuration/form-components-system.md) — all field types
+* [File Upload Actions Reference](../invocable-actions/file-upload-actions.md): invocable actions for file processing
+* [Build a Form](build-a-form.md): creating forms
+* [Form Components Reference](../form-configuration/form-components-system.md): all field types

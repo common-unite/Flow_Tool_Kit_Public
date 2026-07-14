@@ -1,6 +1,6 @@
 # Flow Tool Kit v3.234 Release Notes
 
-A large release centered on the **native Page Sections configurator**, a **JSON-baked Form Template record-page rebuild**, and a wave of form-design building blocks — theming, help-text modes, attestation, dividers, message cards, and illustrations.
+A large release centered on the **native Page Sections configurator**, a **JSON-baked Form Template record-page rebuild**, and a wave of form-design building blocks: theming, help-text modes, attestation, dividers, message cards, and illustrations.
 
 > **Upgrade directly to 3.234.** Versions 3.232 and 3.233 were promoted early and contain incidental managed-package removals that break upgrades from earlier versions. Both are superseded by 3.234, which consolidates everything since 3.231.
 
@@ -8,13 +8,13 @@ A large release centered on the **native Page Sections configurator**, a **JSON-
 
 ### Native Page Sections configurator
 
-The *Configure Page Sections* screen flow is replaced by a native LWC configurator on the Form Template Page record page — faster, themed, and far more capable. (#143)
+The *Configure Page Sections* screen flow is replaced by a native LWC configurator on the Form Template Page record page: faster, themed, and far more capable. (#143)
 
 **What you can do.**
 
 - Add, reorder, and delete page sections in a native UI (no screen-flow round trips), with live preview.
 - Use new section types: **Display Text** and **Lightning Web Component**, alongside Form, Repeater, and Table. (#171)
-- Add a **section divider** on every component type — rendered in the page-section component for Flow/LWC/Display Text, and via pass-through for Repeater/Table. (#172)
+- Add a **section divider** on every component type: rendered in the page-section component for Flow/LWC/Display Text, and via pass-through for Repeater/Table. (#172)
 - Build up to **15 page sections** (raised from 6), across the configurator, lookups, trigger, flexipage, and permission sets. (#168)
 - Customize a section in place: a **Customize** button and modal with a config-driven Pre-fill panel, rich-text Overview cards, a **Margin** section (top + bottom), and a dynamic Flow-template picklist. (#173, #174, #175, #176)
 
@@ -32,7 +32,7 @@ Form Themes can now paint and size **every** field label in a form.
 
 **What you can do.** (#204)
 
-- Set a **Label Color** on a theme — it applies to all labels under the form: text fields, comboboxes, checkboxes, radios, toggles, and address sub-fields.
+- Set a **Label Color** on a theme; it applies to all labels under the form: text fields, comboboxes, checkboxes, radios, toggles, and address sub-fields.
 - Set a **Default Label Size** that every field inherits, with the cascade **field Label Size → theme Default Label Size → Salesforce default**.
 - Override per field with the existing Label Size, including a new **Body Small** option that forces the standard small label over a theme default.
 
@@ -49,7 +49,7 @@ Choose how help text appears, per field. (#201)
 
 ### Boolean toggle: Label Position
 
-Boolean toggle fields gain a **Label Position** — Above (default), Left, or Right — with a side text block, a visible on/off state, and a rich-text label. (#192)
+Boolean toggle fields gain a **Label Position** of Above (default), Left, or Right, with a side text block, a visible on/off state, and a rich-text label. (#192)
 
 ### Form (Icon Selector) record-page component
 
@@ -57,17 +57,17 @@ A new record-page selector for choosing an SLDS icon, plus DRY shared LDS plumbi
 
 ### Illustration section
 
-A new section type renders a `displayIllustration` scene with a title and subtitle — useful for empty states, intros, and confirmations. (#159)
+A new section type renders a `displayIllustration` scene with a title and subtitle, useful for empty states, intros, and confirmations. (#159)
 
 ![Illustration section](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/159-illustration-section.png)
 
 ### Also in this release (introduced in 3.232, included here)
 
-These shipped in the superseded 3.232 build and are part of 3.234 — see [Release 3.232](release-3.232.md) for full detail:
+These shipped in the superseded 3.232 build and are part of 3.234; see [Release 3.232](release-3.232.md) for full detail:
 
-- **Section Divider Styles** — a Divider Style picker with designed, theme-driven divider styles. (#147)
-- **Rich Text Message Cards** — render rich text as an info / warning / error / success status card. (#148)
-- **Attestation Field Override** — a card-wrapped consent checkbox with rich text and an SLDS success state. (#188)
+- **Section Divider Styles**: a Divider Style picker with designed, theme-driven divider styles. (#147)
+- **Rich Text Message Cards**: render rich text as an info / warning / error / success status card. (#148)
+- **Attestation Field Override**: a card-wrapped consent checkbox with rich text and an SLDS success state. (#188)
 
 The Form Template framework gains parity for these: page-section dividers + message cards (#149), a Header Text Variant that renders header rich text as a message card (#156), and `formTemplateSection` full divider/header/margin parity across all component types (#184). Dividers also pick up subtitle styling (#157) and a configurable vertical margin (#158).
 

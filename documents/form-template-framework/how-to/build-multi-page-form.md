@@ -1,6 +1,6 @@
 # Build Multi Page Form
 
-> Create a multi-page form using the Form Template Framework — pages, sections, navigation, and save & resume.
+> Create a multi-page form using the Form Template Framework: pages, sections, navigation, and save & resume.
 
 {% hint style="info" %}
 **Prerequisites**: Familiarity with single-page forms in Form Builder. See [Build a Form](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/how-to/build-a-form.md) if you're new to Flow Tool Kit.
@@ -14,7 +14,7 @@
 
 ![Form Template record page overview](../../.gitbook/assets/template-record-page-overview.png)
 
-For complex data collection — applications, intake forms, surveys — a single-page form isn't enough. The **Form Template Framework** lets you build multi-page forms with:
+For complex data collection (applications, intake forms, surveys), a single-page form isn't enough. The **Form Template Framework** lets you build multi-page forms with:
 
 * Multiple pages with ordered navigation
 * Sections within each page
@@ -107,13 +107,13 @@ See [Form Template Framework](https://github.com/common-unite/cUnite_FormBuilder
 
 ## What's Next
 
-* [Use Form Submissions](use-form-submissions.md) — capture, review, and convert submission data
-* [Save and Resume Forms](save-and-resume-forms.md) — let users save progress
-* [Set Up Email Notifications](set-up-email-notifications.md) — send emails on submission
-* [Create PDF from Submission](create-pdf-from-submission.md) — generate PDFs from form data
+* [Use Form Submissions](use-form-submissions.md): capture, review, and convert submission data
+* [Save and Resume Forms](save-and-resume-forms.md): let users save progress
+* [Set Up Email Notifications](set-up-email-notifications.md): send emails on submission
+* [Create PDF from Submission](create-pdf-from-submission.md): generate PDFs from form data
 
 ## Related Pages
 
-* [Form Template Framework](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-templates.md) — full reference documentation
-* [Form Submissions](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-submissions.md) — submission lifecycle
-* [Core Concepts](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/getting-started/core-concepts.md) — forms vs. templates comparison
+* [Form Template Framework](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-templates.md): full reference documentation
+* [Form Submissions](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-submissions.md): submission lifecycle
+* [Core Concepts](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/getting-started/core-concepts.md): forms vs. templates comparison

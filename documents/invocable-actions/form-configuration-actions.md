@@ -7,7 +7,7 @@
 **Action Label**: Configure Form
 **Category**: Flow Tool Kit
 
-Creates a `FormConfiguration` object that can be passed to the Flow Form component's `formConfiguration` input. This provides an alternative to setting individual properties directly on the screen component — useful when you want to compute configuration values in Flow logic before the screen.
+Creates a `FormConfiguration` object that can be passed to the Flow Form component's `formConfiguration` input. This provides an alternative to setting individual properties directly on the screen component, useful when you want to compute configuration values in Flow logic before the screen.
 
 ### Inputs
 
@@ -76,10 +76,10 @@ Creates a `FormRepeaterConfiguration` object for the Repeater component. This ac
 ### Usage
 
 1. Add the "Configure Form (Repeater)" action before your screen element
-2. Set the properties you need — only configured properties override defaults
+2. Set the properties you need; only configured properties override defaults
 3. Pass the output to the Repeater's `formRepeaterConfiguration` input
 
 ## Related Pages
 
-- [Flow Form](../screen-components/flow-form.md) — consumes FormConfiguration
-- [Repeater](../screen-components/repeater.md) — consumes FormRepeaterConfiguration
+- [Flow Form](../screen-components/flow-form.md): consumes FormConfiguration
+- [Repeater](../screen-components/repeater.md): consumes FormRepeaterConfiguration

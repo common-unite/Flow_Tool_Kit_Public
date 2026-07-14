@@ -45,6 +45,6 @@ Advanced videos assume familiarity with Flow Tool Kit basics. Start with the [Fo
 
 ## Related Pages
 
-- [Experience Cloud](../experience-cloud/experience-cloud-components.md) — full written documentation
-- [Permission Sets](../getting-started/permission-sets.md) — permission set details
-- [FAQ & Troubleshooting](../faq-troubleshooting/troubleshooting.md) — common issues and solutions
+- [Experience Cloud](../experience-cloud/experience-cloud-components.md): full written documentation
+- [Permission Sets](../getting-started/permission-sets.md): permission set details
+- [FAQ & Troubleshooting](../faq-troubleshooting/troubleshooting.md): common issues and solutions

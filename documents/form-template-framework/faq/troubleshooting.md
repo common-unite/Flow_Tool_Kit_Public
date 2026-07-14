@@ -29,7 +29,7 @@
 
 **Check**:
 1. Open the `Form_Template_Page__c` records and verify the Position field values
-2. Pages are sorted numerically by position — gaps are fine (10, 20, 30) but duplicates cause unpredictable order
+2. Pages are sorted numerically by position; gaps are fine (10, 20, 30) but duplicates cause unpredictable order
 3. If using page-level conditional logic, hidden pages may shift the apparent order
 
 ## Conditional Page Logic Not Working
@@ -37,9 +37,9 @@
 **Symptom**: A page that should be hidden still appears, or a page that should appear is skipped.
 
 **Check**:
-1. Page conditions can only reference fields from **previous** pages — not the current page or future pages
+1. Page conditions can only reference fields from **previous** pages, not the current page or future pages
 2. Verify the field API name in the condition matches exactly (case-sensitive for picklist values)
-3. Check whether the condition uses AND or OR logic — AND requires all conditions true, OR requires any one
+3. Check whether the condition uses AND or OR logic: AND requires all conditions true, OR requires any one
 
 ## Submission Conversion Fails
 
@@ -48,7 +48,7 @@
 **Check**:
 1. Review the `Form_Submission_Conversion_Log__c` records for error messages
 2. Verify the target object and field mappings in the conversion rules
-3. Check required fields on the target object — if any mapped fields are blank in the submission, the insert may fail
+3. Check required fields on the target object; if any mapped fields are blank in the submission, the insert may fail
 4. For custom conversion flows, check the Flow's fault path for error details
 5. Ensure the running user has Create permission on the target objects
 
@@ -64,6 +64,6 @@
 
 ## Related Pages
 
-- [Form Template FAQ](faq.md) — common questions
-- [General Troubleshooting](../../faq-troubleshooting/troubleshooting.md) — non-template-specific issues
-- [Known Limitations](../../faq-troubleshooting/known-limitations.md) — platform constraints
+- [Form Template FAQ](faq.md): common questions
+- [General Troubleshooting](../../faq-troubleshooting/troubleshooting.md): non-template-specific issues
+- [Known Limitations](../../faq-troubleshooting/known-limitations.md): platform constraints
