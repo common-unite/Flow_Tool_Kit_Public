@@ -64,10 +64,10 @@ For reCAPTCHA v3 (and recommended for v2):
 
 1. Navigate to the reCAPTCHA configuration in Flow Tool Kit.
 2. Enter:
-   * **Site Key** — the public key from Google
-   * **Secret Key** — the private key from Google
-   * **Version** — v2 or v3
-   * **Score Threshold** (v3 only) — minimum score to accept (0.0-1.0, recommended: 0.5)
+   * **Site Key**: the public key from Google
+   * **Secret Key**: the private key from Google
+   * **Version**: v2 or v3
+   * **Score Threshold** (v3 only): minimum score to accept (0.0-1.0, recommended: 0.5)
 
 ### Grant Guest User Access to the External Credential
 
@@ -112,7 +112,7 @@ Granting access to the external credential principal alone is **not** enough. Sa
 
 ### reCAPTCHA v3 (Invisible)
 
-1. reCAPTCHA v3 runs silently in the background — no user interaction.
+1. reCAPTCHA v3 runs silently in the background, with no user interaction.
 2. Google assigns a score from 0.0 (likely bot) to 1.0 (likely human).
 3. Flow Tool Kit checks the score against your threshold.
 4. If the score is above the threshold, submission proceeds.
@@ -126,12 +126,12 @@ Granting access to the external credential principal alone is **not** enough. Sa
 | "Invalid site key"                                                                         | Domain mismatch                                                                                                                                                                                                                                                                           | Add your exact domain to the Google reCAPTCHA site registration                                                                                                                                                                                                                                                                       |
 | All submissions blocked (v3)                                                               | Score threshold too high                                                                                                                                                                                                                                                                  | Lower the threshold (try 0.3-0.5)                                                                                                                                                                                                                                                                                                     |
 | Works in sandbox, not production                                                           | Different domains                                                                                                                                                                                                                                                                         | Register the production domain with Google                                                                                                                                                                                                                                                                                            |
-| "Timeout or duplicate" error                                                               | Token expired                                                                                                                                                                                                                                                                             | Tokens are valid for 2 minutes — check for slow form submissions                                                                                                                                                                                                                                                                      |
-| `You don't have read permissions on the User External Credential object` (guest user only) | Guest user's permission set is missing **Read** on the `UserExternalCredential` standard object. Granting External Credential Principal Access alone is not sufficient — Salesforce still queries `UserExternalCredential` to resolve the principal at callout time.                      | Follow [Grant Guest User Access to the External Credential](google-recaptcha-setup.md#grant-guest-user-access-to-the-external-credential) above. Most common cause: permission set was created but never assigned via **Public Access Settings → Manage Assignments**, or the `UserExternalCredential` object read was never granted. |
-| Works in one org, fails in another with the External Credential error                      | Partial setup in the broken org — typically missing one of: `UserExternalCredential` read, guest assignment on the Site, the **Let guest users make callouts using Named Credentials** session setting, or the `FlowToolKit` namespace in the Named Credential's Allowed Namespaces list. | Diff both orgs against the checklist in [Grant Guest User Access to the External Credential](google-recaptcha-setup.md#grant-guest-user-access-to-the-external-credential).                                                                                                                                                           |
+| "Timeout or duplicate" error                                                               | Token expired                                                                                                                                                                                                                                                                             | Tokens are valid for 2 minutes; check for slow form submissions                                                                                                                                                                                                                                                                      |
+| `You don't have read permissions on the User External Credential object` (guest user only) | Guest user's permission set is missing **Read** on the `UserExternalCredential` standard object. Granting External Credential Principal Access alone is not sufficient; Salesforce still queries `UserExternalCredential` to resolve the principal at callout time.                      | Follow [Grant Guest User Access to the External Credential](google-recaptcha-setup.md#grant-guest-user-access-to-the-external-credential) above. Most common cause: permission set was created but never assigned via **Public Access Settings → Manage Assignments**, or the `UserExternalCredential` object read was never granted. |
+| Works in one org, fails in another with the External Credential error                      | Partial setup in the broken org, typically missing one of: `UserExternalCredential` read, guest assignment on the Site, the **Let guest users make callouts using Named Credentials** session setting, or the `FlowToolKit` namespace in the Named Credential's Allowed Namespaces list. | Diff both orgs against the checklist in [Grant Guest User Access to the External Credential](google-recaptcha-setup.md#grant-guest-user-access-to-the-external-credential).                                                                                                                                                           |
 
 ## Related Pages
 
-* [Add reCAPTCHA (How-To)](../how-to-guides/add-recaptcha.md) — quick setup guide
-* [reCAPTCHA & Security Reference](../form-configuration/recaptcha-security.md) — configuration reference
-* [Deploy to Experience Cloud](../how-to-guides/deploy-to-experience-cloud.md) — EC deployment guide
+* [Add reCAPTCHA (How-To)](../how-to-guides/add-recaptcha.md): quick setup guide
+* [reCAPTCHA & Security Reference](../form-configuration/recaptcha-security.md): configuration reference
+* [Deploy to Experience Cloud](../how-to-guides/deploy-to-experience-cloud.md): EC deployment guide

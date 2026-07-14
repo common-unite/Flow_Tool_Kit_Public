@@ -1,6 +1,6 @@
 # Prefill Templates
 
-> Set default field values on a Form Template record — no Flow logic required. Pre-populate visible fields and inject backend values for data conversion.
+> Set default field values on a Form Template record, no Flow logic required. Pre-populate visible fields and inject backend values for data conversion.
 
 ## Video Walkthroughs
 
@@ -10,7 +10,7 @@
 
 ## Overview
 
-Pre-fill templates let you configure default field values directly on a Form Template record. When the form loads, those values are automatically populated — both visible fields (name, email type) and backend fields (campaign ID, lead source) that drive data conversion. This eliminates the need for Flow assignment elements or complex flow logic.
+Pre-fill templates let you configure default field values directly on a Form Template record. When the form loads, those values are automatically populated: both visible fields (name, email type) and backend fields (campaign ID, lead source) that drive data conversion. This eliminates the need for Flow assignment elements or complex flow logic.
 
 ![Pre-fill template editor on a form template record](../.gitbook/assets/prefill-template-editor.png)
 
@@ -45,7 +45,7 @@ Set Email Type to "Work" and Phone Type to "Work" so users don't have to select 
 
 ### 2. Campaign Member Injection
 
-Pre-fill the Campaign ID and Campaign Member Status (e.g., "New Volunteer") as backend values. When the form submission converts, the system automatically creates a Campaign Member with the correct status — the user never sees these fields.
+Pre-fill the Campaign ID and Campaign Member Status (e.g., "New Volunteer") as backend values. When the form submission converts, the system automatically creates a Campaign Member with the correct status; the user never sees these fields.
 
 ### 3. Lead Source Tracking
 
@@ -57,14 +57,14 @@ Build a single form template and use pre-fill values to customize it for differe
 
 ## Tips & Considerations
 
-* **No Flow needed** — pre-fill values are configured entirely on the Form Template record. You can create dozens of form solutions without ever opening Salesforce Flow.
-* **Backend values are powerful** — the most impactful pre-fill values are often ones users never see: campaign assignments, lead sources, and data conversion parameters.
-* **Overridable** — users can change pre-filled visible values on the form. Backend values that aren't on the form cannot be changed by users.
-* **Works with save progress** — pre-filled values persist across save-and-resume sessions.
+* **No Flow needed**: pre-fill values are configured entirely on the Form Template record. You can create dozens of form solutions without ever opening Salesforce Flow.
+* **Backend values are powerful**: the most impactful pre-fill values are often ones users never see: campaign assignments, lead sources, and data conversion parameters.
+* **Overridable**: users can change pre-filled visible values on the form. Backend values that aren't on the form cannot be changed by users.
+* **Works with save progress**: pre-filled values persist across save-and-resume sessions.
 
 ## Related Pages
 
-* [Form Templates](form-templates.md) — form template record configuration
-* [Campaign Integration](campaign-integration.md) — linking templates to campaigns
-* [Submission Conversion](submission-conversion.md) — how pre-filled values drive data conversion
-* [Overview](overview.md) — Form Template Framework overview
+* [Form Templates](form-templates.md): form template record configuration
+* [Campaign Integration](campaign-integration.md): linking templates to campaigns
+* [Submission Conversion](submission-conversion.md): how pre-filled values drive data conversion
+* [Overview](overview.md): Form Template Framework overview

@@ -47,12 +47,12 @@ If you need more than one condition:
 
 1. Click **Add Condition** again to add more conditions.
 2. Set the **Logic Type**:
-   * **AND** — all conditions must be true (more restrictive)
-   * **OR** — any one condition must be true (more permissive)
+   * **AND**: all conditions must be true (more restrictive)
+   * **OR**: any one condition must be true (more permissive)
 
-**Example — AND logic**: Show "Emergency Contact" section when Status = "Active" AND Department = "Field Operations"
+**Example (AND logic)**: Show "Emergency Contact" section when Status = "Active" AND Department = "Field Operations"
 
-**Example — OR logic**: Show "Details" field when Category = "Other" OR Category = "Custom"
+**Example (OR logic)**: Show "Details" field when Category = "Other" OR Category = "Custom"
 
 ## Step 5: Save and Test
 
@@ -64,7 +64,7 @@ If you need more than one condition:
 
 ### Field-Based Conditions
 
-The most common type — the target is shown/hidden based on another field's value on the same form.
+The most common type: the target is shown/hidden based on another field's value on the same form.
 
 | Operator     | Description        | Example                       |
 | ------------ | ------------------ | ----------------------------- |
@@ -131,10 +131,10 @@ Show internal fields only for staff:
 | -------------------- | ---------------------------------------------------------------------------- |
 | Condition not firing | Check the field API name (not label) and value case sensitivity              |
 | Field always hidden  | Check if AND logic requires conditions that can't all be true simultaneously |
-| Changes not visible  | Clear form cache — navigate to `your-org/apex/FlowToolKit__CacheFlow`        |
+| Changes not visible  | Clear form cache: navigate to `your-org/apex/FlowToolKit__CacheFlow`        |
 
 ## Related Pages
 
-* [Conditional Logic Reference](../form-configuration/conditional-logic.md) — all operators, properties, and advanced configuration
-* [Build a Form](build-a-form.md) — create a form from scratch
-* [Form Builder Reference](../screen-components/form-builder.md) — full editor documentation
+* [Conditional Logic Reference](../form-configuration/conditional-logic.md): all operators, properties, and advanced configuration
+* [Build a Form](build-a-form.md): create a form from scratch
+* [Form Builder Reference](../screen-components/form-builder.md): full editor documentation

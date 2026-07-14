@@ -76,7 +76,7 @@ handleSave() {
 
 **Important**: Set `bubbles: true` and `composed: true` so the event crosses shadow DOM boundaries and reaches the form.
 
-The form handles the event exactly like a standard field change — validation rules, formula recalculation, and record output updates all fire automatically.
+The form handles the event exactly like a standard field change: validation rules, formula recalculation, and record output updates all fire automatically.
 
 ## Validation
 
@@ -137,6 +137,6 @@ When the form is in review mode, your component receives `review = true`. Use th
 ## Limitations
 
 - The target LWC must be deployed to the same org
-- Lightning Web Security (LWS) is required — orgs using Lightning Locker Service cannot use this feature
+- Lightning Web Security (LWS) is required; orgs using Lightning Locker Service cannot use this feature
 - The component name must be fully qualified (e.g., `c:myComponent`, not just `myComponent`)
-- Dynamic imports require a network roundtrip on first load — the framework does not prefetch the component
+- Dynamic imports require a network roundtrip on first load; the framework does not prefetch the component

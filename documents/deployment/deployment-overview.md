@@ -4,12 +4,12 @@
 
 ## Overview
 
-When you build forms, templates, themes, and labels in Flow Tool Kit, the configuration is stored as **Custom Metadata Type** (CMDT) records. These records live in the org where you created them — they don't automatically appear in other orgs.
+When you build forms, templates, themes, and labels in Flow Tool Kit, the configuration is stored as **Custom Metadata Type** (CMDT) records. These records live in the org where you created them; they don't automatically appear in other orgs.
 
 To move your forms between environments (sandbox → production, org A → org B), you need to **deploy the CMDT records** using standard Salesforce deployment tools.
 
 {% hint style="info" %}
-**Deploy ≠ Install.** The Flow Tool Kit managed package is installed once (from AppExchange). Deployment is about moving the **form configuration** you've built — the metadata records that define your forms, sections, fields, themes, and labels.
+**Deploy ≠ Install.** The Flow Tool Kit managed package is installed once (from AppExchange). Deployment is about moving the **form configuration** you've built: the metadata records that define your forms, sections, fields, themes, and labels.
 {% endhint %}
 
 ## What Needs to Be Deployed
@@ -28,12 +28,12 @@ To move your forms between environments (sandbox → production, org A → org B
 | `Form_Template_Page_Section__c` | Sections within pages | If used |
 
 {% hint style="warning" %}
-**Dependencies matter.** Sections reference Forms, Fields reference Sections, and Conditions reference Logic rules. Deploy them together or in dependency order — Forms first, then Sections, then Fields.
+**Dependencies matter.** Sections reference Forms, Fields reference Sections, and Conditions reference Logic rules. Deploy them together or in dependency order: Forms first, then Sections, then Fields.
 {% endhint %}
 
 ## Why Not Automatic?
 
-CMDT records are org-specific. Unlike managed package code (which updates automatically when you upgrade the package), your form configurations are unique to your org. Salesforce doesn't have a mechanism to automatically sync CMDT records between orgs — that's by design, since your sandbox forms may differ from production.
+CMDT records are org-specific. Unlike managed package code (which updates automatically when you upgrade the package), your form configurations are unique to your org. Salesforce doesn't have a mechanism to automatically sync CMDT records between orgs; that's by design, since your sandbox forms may differ from production.
 
 ## Deployment Methods
 
@@ -46,7 +46,7 @@ CMDT records are org-specific. Unlike managed package code (which updates automa
 
 ## Next Steps
 
-- [Deploying Metadata](deploying-metadata.md) — step-by-step for each method
-- [Deploying to Production](deploying-to-production.md) — production-specific checklist
-- [Deploying to Experience Cloud](deploying-to-experience-cloud.md) — EC-specific considerations
-- [Upgrading Versions](upgrading-versions.md) — upgrading the managed package
+- [Deploying Metadata](deploying-metadata.md): step-by-step for each method
+- [Deploying to Production](deploying-to-production.md): production-specific checklist
+- [Deploying to Experience Cloud](deploying-to-experience-cloud.md): EC-specific considerations
+- [Upgrading Versions](upgrading-versions.md): upgrading the managed package

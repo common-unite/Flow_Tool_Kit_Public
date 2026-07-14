@@ -4,7 +4,7 @@
 
 ## Overview
 
-Lightning Out lets you embed Lightning Web Components (including Flow Tool Kit forms) on websites outside of Salesforce — your corporate website, a custom portal, or any web application. Users interact with the form without ever seeing the Salesforce UI.
+Lightning Out lets you embed Lightning Web Components (including Flow Tool Kit forms) on websites outside of Salesforce: your corporate website, a custom portal, or any web application. Users interact with the form without ever seeing the Salesforce UI.
 
 ## Video Walkthrough
 
@@ -76,6 +76,6 @@ Add the Lightning Out JavaScript to your external website:
 
 ## Related Pages
 
-* [Deploy to Experience Cloud](../how-to-guides/deploy-to-experience-cloud.md) — alternative for public forms
-* [Experience Cloud Components](../experience-cloud/experience-cloud-components.md) — EC component reference
-* [Google reCAPTCHA Setup](google-recaptcha-setup.md) — bot protection for external forms
+* [Deploy to Experience Cloud](../how-to-guides/deploy-to-experience-cloud.md): alternative for public forms
+* [Experience Cloud Components](../experience-cloud/experience-cloud-components.md): EC component reference
+* [Google reCAPTCHA Setup](google-recaptcha-setup.md): bot protection for external forms

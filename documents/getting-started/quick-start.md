@@ -14,12 +14,12 @@
 
 Open the **App Launcher** (waffle icon) and search for **Form Builder**. Click the Form Builder tab.
 
-You'll see the Form Builder interface — this is where you create and manage all your form components.
+You'll see the Form Builder interface; this is where you create and manage all your form components.
 
 ## Step 2: Create a New Form Component
 
 1. Click **New Form**.
-2. Select an object — for this guide, choose **Contact**.
+2. Select an object; for this guide, choose **Contact**.
 3. Give your form component a name (e.g., "Contact Intake Form").
 4. Click **Create**.
 
@@ -31,18 +31,18 @@ Every form component needs at least one section to hold fields.
 
 1. Click **Add Section**.
 2. Name it "Contact Information" (or leave the default).
-3. Set the number of columns — **2 columns** works well for most forms.
+3. Set the number of columns; **2 columns** works well for most forms.
 
 ## Step 4: Add Fields
 
 1. The field panel shows all available fields for your selected object.
-2. **Drag fields** into your section — start with: First Name, Last Name, Email, Phone, and Account.
+2. **Drag fields** into your section; start with: First Name, Last Name, Email, Phone, and Account.
 3. Fields snap into the column layout automatically.
 
 ![Assigning fields to a form section](../.gitbook/assets/form-builder-field-assignment.png)
 
 {% hint style="info" %}
-**Tip**: The Account field automatically renders as a Lookup field — users can search for and select an existing account.
+**Tip**: The Account field automatically renders as a Lookup field; users can search for and select an existing account.
 {% endhint %}
 
 ## Step 5: Configure a Field (Optional)
@@ -83,8 +83,8 @@ Click **Debug** or **Run** in Flow Builder to preview your form. You should see 
 
 You've built your first form component. Here's where to go from here:
 
-* [Core Concepts](core-concepts.md) — understand form components, sections, fields, and how they connect
-* [Form Builder Reference](../screen-components/form-builder.md) — all Form Builder features in detail
-* [Flow Form Reference](../screen-components/flow-form.md) — all Flow Form properties and options
-* [Conditional Logic](../form-configuration/conditional-logic.md) — show/hide fields based on values
-* [Themes and Styling](../form-configuration/themes-labels-styling.md) — customize the look of your forms
+* [Core Concepts](core-concepts.md): understand form components, sections, fields, and how they connect
+* [Form Builder Reference](../screen-components/form-builder.md): all Form Builder features in detail
+* [Flow Form Reference](../screen-components/flow-form.md): all Flow Form properties and options
+* [Conditional Logic](../form-configuration/conditional-logic.md): show/hide fields based on values
+* [Themes and Styling](../form-configuration/themes-labels-styling.md): customize the look of your forms

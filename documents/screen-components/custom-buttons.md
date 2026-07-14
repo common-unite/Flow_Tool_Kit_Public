@@ -1,10 +1,10 @@
 # Custom Buttons
 
-> Replace or extend the default Flow navigation buttons with fully configurable custom buttons — including modals, reCAPTCHA, auto-actions, and docked footers.
+> Replace or extend the default Flow navigation buttons with fully configurable custom buttons, including modals, reCAPTCHA, auto-actions, and docked footers.
 
 ## Overview
 
-Form (Buttons) replaces the standard "Next", "Previous", and "Finish" buttons on a Flow Screen with custom buttons that you configure. Each button can trigger Flow navigation, open a confirmation modal, validate forms, integrate with reCAPTCHA, or fire on a timer — giving you complete control over the user experience.
+Form (Buttons) replaces the standard "Next", "Previous", and "Finish" buttons on a Flow Screen with custom buttons that you configure. Each button can trigger Flow navigation, open a confirmation modal, validate forms, integrate with reCAPTCHA, or fire on a timer, giving you complete control over the user experience.
 
 You can configure up to 5 buttons directly in the property editor, or pass an Apex-Defined `Button[]` collection for dynamic button generation. Buttons communicate with other Flow Tool Kit components (Flow Form, Header, Data Table) via the FlowButton message channel, enabling features like form validation before navigation.
 
@@ -20,11 +20,11 @@ You can configure up to 5 buttons directly in the property editor, or pass an Ap
 
 ![Custom buttons with docked footer](../.gitbook/assets/docked-button-disabled.png)
 
-1. **Add to Screen** — In Flow Builder, drag "Form (Buttons)" onto your screen element.
-2. **Enable a Button** — In the property editor, enable Button 1 and set its label (e.g., "Save & Continue").
-3. **Set the Action Type** — Choose the button type: NEXT (navigate forward), BACK (navigate back), FINISH (end flow), or TRIGGER (fire an event without navigating).
-4. **Optional: Add a Modal** — Enable the confirmation modal to show a dialog before the action executes.
-5. **Use the Output** — After the screen, check `buttonClickedLabel` or `buttonClickedValue` to determine which button was clicked.
+1. **Add to Screen**: In Flow Builder, drag "Form (Buttons)" onto your screen element.
+2. **Enable a Button**: In the property editor, enable Button 1 and set its label (e.g., "Save & Continue").
+3. **Set the Action Type**: Choose the button type: NEXT (navigate forward), BACK (navigate back), FINISH (end flow), or TRIGGER (fire an event without navigating).
+4. **Optional: Add a Modal**: Enable the confirmation modal to show a dialog before the action executes.
+5. **Use the Output**: After the screen, check `buttonClickedLabel` or `buttonClickedValue` to determine which button was clicked.
 
 ![Button enabled after form validation passes](../.gitbook/assets/button-enabled-after-validation.png)
 
@@ -34,15 +34,15 @@ You can configure up to 5 buttons directly in the property editor, or pass an Ap
 
 | Property                | Type                     | Required | Default | Description                                                                          |
 | ----------------------- | ------------------------ | -------- | ------- | ------------------------------------------------------------------------------------ |
-| `buttons`               | Button\[] (Apex-Defined) | No       | —       | Collection of Button objects for dynamic button generation (overrides manual config) |
+| `buttons`               | Button\[] (Apex-Defined) | No       | -       | Collection of Button objects for dynamic button generation (overrides manual config) |
 | `buttonAlignment`       | String                   | No       | center  | Horizontal alignment: `start`, `center`, or `end`                                    |
 | `numberOfButtonsToShow` | Integer                  | No       | 3       | Number of buttons visible before extras go into an overflow menu                     |
 | `groupButtons`          | Boolean                  | No       | false   | Group buttons together without spacing (button group style)                          |
 | `docked`                | Boolean                  | No       | false   | Display buttons in a docked footer at the bottom of the screen                       |
 | `footer`                | Boolean                  | No       | false   | Display buttons in a standard footer                                                 |
 | `disableButtons`        | Boolean                  | No       | false   | Disable all buttons                                                                  |
-| `showAsPath`            | Boolean                  | No       | —       | Display buttons as a Salesforce Path-style progress indicator                        |
-| `currentStage`          | String                   | No       | —       | Current stage name when displayed as a Path                                          |
+| `showAsPath`            | Boolean                  | No       | -       | Display buttons as a Salesforce Path-style progress indicator                        |
+| `currentStage`          | String                   | No       | -       | Current stage name when displayed as a Path                                          |
 
 #### Per-Button Properties (repeated for buttons 1-5)
 
@@ -55,20 +55,20 @@ Each button (1-5) has the following properties. Button 1 uses the base property 
 | `label`                   | String  | Continue            | Button display text                                                                                               |
 | `value`                   | String  | Button              | Value returned in `buttonClickedValue` when clicked                                                               |
 | `variant`                 | String  | neutral             | SLDS button variant: `neutral`, `brand`, `destructive`, `success`, `brand-outline`, `destructive-text`, `inverse` |
-| `iconName`                | String  | —                   | SLDS icon name (e.g., "utility:save")                                                                             |
+| `iconName`                | String  | -                   | SLDS icon name (e.g., "utility:save")                                                                             |
 | `iconPosition`            | String  | Right               | Icon position: `Left` or `Right`                                                                                  |
-| `triggerName`             | String  | —                   | Name used with TRIGGER type for message channel communication                                                     |
+| `triggerName`             | String  | -                   | Name used with TRIGGER type for message channel communication                                                     |
 | `hideButton`              | Boolean | false               | Conditionally hide this button                                                                                    |
 | `bypassValidation`        | Boolean | false               | Skip form validation when this button is clicked                                                                  |
 | `enableModal`             | Boolean | false               | Show a confirmation modal before executing the action                                                             |
-| `modalHeading`            | String  | —                   | Modal title text                                                                                                  |
-| `modalSubheading`         | String  | —                   | Modal subtitle text                                                                                               |
-| `modalBody`               | String  | —                   | Modal body content                                                                                                |
+| `modalHeading`            | String  | -                   | Modal title text                                                                                                  |
+| `modalSubheading`         | String  | -                   | Modal subtitle text                                                                                               |
+| `modalBody`               | String  | -                   | Modal body content                                                                                                |
 | `modalTheme`              | String  | slds-theme\_default | SLDS theme class for the modal                                                                                    |
 | `modalConfirmButtonLabel` | String  | Confirm             | Label for the modal confirm button                                                                                |
 | `modalCancelButtonLabel`  | String  | Cancel              | Label for the modal cancel button                                                                                 |
 | `reCAPTCHA_Enabled`       | Boolean | false               | Require reCAPTCHA verification before this button's action                                                        |
-| `reCAPTCHA_Threshold`     | Integer | —                   | Minimum reCAPTCHA score (0-100) required to proceed                                                               |
+| `reCAPTCHA_Threshold`     | Integer | -                   | Minimum reCAPTCHA score (0-100) required to proceed                                                               |
 | `enable_AutoAction`       | Boolean | false               | Auto-click this button after a timeout                                                                            |
 | `autoActionTimeout`       | String  | 10000               | Milliseconds before the auto-action fires                                                                         |
 
@@ -86,11 +86,11 @@ Each button (1-5) has the following properties. Button 1 uses the base property 
 
 **Button Types**:
 
-* **NEXT** — Navigates to the next screen (equivalent to standard Next button)
-* **BACK** — Navigates to the previous screen
-* **FINISH** — Ends the flow (equivalent to standard Finish button)
-* **TRIGGER** — Fires a message channel event without navigating. Use the `triggerName` to identify which trigger was fired. Other components can listen for this trigger.
-* **URL** — Navigates to an external URL
+* **NEXT**: Navigates to the next screen (equivalent to standard Next button)
+* **BACK**: Navigates to the previous screen
+* **FINISH**: Ends the flow (equivalent to standard Finish button)
+* **TRIGGER**: Fires a message channel event without navigating. Use the `triggerName` to identify which trigger was fired. Other components can listen for this trigger.
+* **URL**: Navigates to an external URL
 
 **Validation Integration**: By default, buttons that navigate (NEXT, FINISH) trigger form validation on all Flow Form components on the screen. Set `bypassValidation=true` to skip validation (useful for "Save as Draft" or "Cancel" buttons).
 

@@ -2,16 +2,16 @@
 
 **Build one form. Use it everywhere.**
 
-Form Template Sources connect your forms to the records that drive them. A single registration form can power hundreds of campaigns, events, programs, or cohorts — each with its own name, dates, branding, pre-filled values, and confirmation messaging. No duplicating templates. No maintaining parallel forms. Just one form, configured per record.
+Form Template Sources connect your forms to the records that drive them. A single registration form can power hundreds of campaigns, events, programs, or cohorts, each with its own name, dates, branding, pre-filled values, and confirmation messaging. No duplicating templates. No maintaining parallel forms. Just one form, configured per record.
 
 Think about what this unlocks:
 
-* **Event Registration** — one form template, reused across every event. Each event record controls its own registration dates, theme, and confirmation message.
-* **Program Enrollment** — a program intake form that pulls the program name, eligibility dates, and pre-filled details directly from the program record.
-* **Grant Applications** — a single application form connected to each funding opportunity, with deadlines and instructions driven by the grant record.
-* **Membership Signups** — membership tiers drive different pre-fill values and confirmation emails, all from the same form.
-* **Volunteer Signups** — each volunteer opportunity controls when its signup opens and closes, what the form says, and what the confirmation email contains.
-* **Cohort Registration** — cohort records drive registration windows and pre-populate cohort-specific details into the form.
+* **Event Registration**: one form template, reused across every event. Each event record controls its own registration dates, theme, and confirmation message.
+* **Program Enrollment**: a program intake form that pulls the program name, eligibility dates, and pre-filled details directly from the program record.
+* **Grant Applications**: a single application form connected to each funding opportunity, with deadlines and instructions driven by the grant record.
+* **Membership Signups**: membership tiers drive different pre-fill values and confirmation emails, all from the same form.
+* **Volunteer Signups**: each volunteer opportunity controls when its signup opens and closes, what the form says, and what the confirmation email contains.
+* **Cohort Registration**: cohort records drive registration windows and pre-populate cohort-specific details into the form.
 
 The pattern works with any standard or custom object. If you can create a record in Salesforce, you can connect a form to it.
 
@@ -36,15 +36,15 @@ When the Form Template component receives a source record Id (instead of a Form 
 5. Swaps any populated override values into the form configuration
 6. Stamps `Source_Id__c` on the Form Submission so it can trace back to the source
 
-If a mapped field is blank on the source record, the Form Template's own value is used as the fallback. This means you only need to override what's different — everything else inherits from the template.
+If a mapped field is blank on the source record, the Form Template's own value is used as the fallback. This means you only need to override what's different; everything else inherits from the template.
 
 ### Where Forms Load From Source Records
 
 The Form Template component can be placed on:
 
-* **Lightning Record Pages** — drop it on a Campaign page, and it automatically detects the source configuration and renders the form
-* **Experience Cloud Pages** — the source record Id is passed via the page context
-* **Flow Screens** — pass any source record Id into the component's `recordId` property
+* **Lightning Record Pages**: drop it on a Campaign page, and it automatically detects the source configuration and renders the form
+* **Experience Cloud Pages**: the source record Id is passed via the page context
+* **Flow Screens**: pass any source record Id into the component's `recordId` property
 
 Admins direct users to the source record using custom buttons, navigation menu items, or email links. When the user arrives, the form loads with that record's overrides applied.
 
@@ -52,16 +52,16 @@ Admins direct users to the source record using custom buttons, navigation menu i
 
 Every form submission loaded from a source record is stamped with:
 
-* **Source Id** (`Source_Id__c`) — always populated with the source record Id. This is a text field that stores the Id regardless of the source object type. Used at runtime to re-apply source overrides when a user resumes a saved submission. Also available in conversion Flows to query the source record for related data — for example, looking up the event location, program coordinator, or grant requirements to display within the form or drive downstream automation.
-* **Source Lookup Field** (optional) — a configurable lookup field on Form Submission that points directly back to the source record (e.g., `Campaign__c`). Useful for reports, list views, related lists on the source record, and platform event-driven conversion flows.
+* **Source Id** (`Source_Id__c`): always populated with the source record Id. This is a text field that stores the Id regardless of the source object type. Used at runtime to re-apply source overrides when a user resumes a saved submission. Also available in conversion Flows to query the source record for related data; for example, looking up the event location, program coordinator, or grant requirements to display within the form or drive downstream automation.
+* **Source Lookup Field** (optional): a configurable lookup field on Form Submission that points directly back to the source record (e.g., `Campaign__c`). Useful for reports, list views, related lists on the source record, and platform event-driven conversion flows.
 
 ### Confirmation Email Resolution
 
 When a form submission triggers a confirmation email, the system dynamically resolves which email template to use:
 
-1. **Platform event override** — if the conversion event specifies a template, it takes highest priority
-2. **Source record override** — the `Get Source Email Template` action queries the source record's configured email template field via the Form Template Source metadata
-3. **Form Template default** — falls back to the template's own email template setting
+1. **Platform event override**: if the conversion event specifies a template, it takes highest priority
+2. **Source record override**: the `Get Source Email Template` action queries the source record's configured email template field via the Form Template Source metadata
+3. **Form Template default**: falls back to the template's own email template setting
 
 This chain is handled automatically by the `(Form Submission) Convert | Utility | Send Email | Overridable` flow. The flow is overridable, so admins can customize the email logic for their org.
 
@@ -74,7 +74,7 @@ This chain is handled automatically by the `(Form Submission) Convert | Utility 
 
 ### Step 1: Create Fields on the Source Object
 
-Add custom fields to the source object for each override you want to support. Only the **Form Template lookup** is required — all other fields are optional. Start with just the fields you need and add more later.
+Add custom fields to the source object for each override you want to support. Only the **Form Template lookup** is required; all other fields are optional. Start with just the fields you need and add more later.
 
 | Override                 | Field Type                     | Example (Campaign)                    |
 | ------------------------ | ------------------------------ | ------------------------------------- |
@@ -128,12 +128,12 @@ The component automatically detects the Form Template Source metadata for the cu
 
 Open a source record (e.g., a Campaign) and use the Form Template Source Editor to:
 
-1. **Details** — assign a Form Template, set the form name, and choose a theme
-2. **Availability** — toggle active, set start/end dates, and write an offline message
-3. **Prefill Values** — select and configure a pre-fill template with default field values
-4. **Confirmation Message** — write the message shown after submission
-5. **Email Template** — select the confirmation email template
-6. **Preview Form** — open a live preview of the form as users will see it
+1. **Details**: assign a Form Template, set the form name, and choose a theme
+2. **Availability**: toggle active, set start/end dates, and write an offline message
+3. **Prefill Values**: select and configure a pre-fill template with default field values
+4. **Confirmation Message**: write the message shown after submission
+5. **Email Template**: select the confirmation email template
+6. **Preview Form**: open a live preview of the form as users will see it
 
 Changes auto-save when switching tabs. The Save Changes button is available for manual saves and is disabled when there are no pending changes.
 
@@ -168,7 +168,7 @@ One record per source object. All field mappings use `MetadataRelationship` type
 | Component                     | Where to Find                                           | Description                                                                                   |
 | ----------------------------- | ------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | Form (Template Source Editor) | Lightning App Builder > Custom components               | Tabbed editor placed on source record pages                                                   |
-| Form (Template)               | Lightning App Builder > Custom components / Flow Screen | Core form renderer — detects source records automatically when placed on a source record page |
+| Form (Template)               | Lightning App Builder > Custom components / Flow Screen | Core form renderer; detects source records automatically when placed on a source record page |
 
 ### Flow Actions
 
@@ -180,10 +180,10 @@ One record per source object. All field mappings use `MetadataRelationship` type
 
 | Flow                                                              | Description                                                                                                                                                                                                                                                              |
 | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| (Form Submission) Convert \| Utility \| Send Email \| Overridable | Handles confirmation and save-progress emails. Dynamically resolves the email template from the source record before falling back to the Form Template default. This flow is **overridable** — admins can create an override to customize the email logic for their org. |
+| (Form Submission) Convert \| Utility \| Send Email \| Overridable | Handles confirmation and save-progress emails. Dynamically resolves the email template from the source record before falling back to the Form Template default. This flow is **overridable**; admins can create an override to customize the email logic for their org. |
 
 ### How Source Resolution Works
 
 When the Form Template component receives a record Id that isn't a Form Template or Form Submission, it treats it as a source record. The system queries the `Form_Template_Source__mdt` metadata for the record's object type, loads the mapped Form Template, and replaces any populated override values (name, dates, theme, pre-fill template, messages). If a field isn't mapped or is blank on the source record, the Form Template's own value is used.
 
-For confirmation emails, the `Get Source Email Template` action follows the same pattern — it reads the email template field mapping from the metadata, queries the source record, and returns the template developer name. The send email flow uses this in a fallback chain: platform event override > source record override > Form Template default.
+For confirmation emails, the `Get Source Email Template` action follows the same pattern: it reads the email template field mapping from the metadata, queries the source record, and returns the template developer name. The send email flow uses this in a fallback chain: platform event override > source record override > Form Template default.

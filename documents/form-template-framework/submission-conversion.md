@@ -1,6 +1,6 @@
 # Submission Conversion
 
-> Transform completed Form Submissions into Salesforce records — Accounts, Contacts, Leads, Cases, or custom objects.
+> Transform completed Form Submissions into Salesforce records: Accounts, Contacts, Leads, Cases, or custom objects.
 
 ## Video Walkthrough
 
@@ -67,7 +67,7 @@ Every conversion attempt is logged in `Form_Submission_Conversion_Log__c`:
 | **Status**        | Success or Error                    |
 | **Message**       | Details about the conversion result |
 
-The log provides a complete audit trail — useful for debugging failed conversions and reporting on conversion rates.
+The log provides a complete audit trail, useful for debugging failed conversions and reporting on conversion rates.
 
 ## Error Handling
 
@@ -79,7 +79,7 @@ When a conversion fails (missing required fields, validation rule violations, du
 
 ## Related Pages
 
-* [Form Submissions](form-submissions.md) — submission object reference
-* [Use Form Submissions](how-to/use-form-submissions.md) — end-to-end guide
-* [Overridable Conversion Flows](how-to/overridable-conversion-flows.md) — custom conversion logic
-* [Form Submission Actions](../invocable-actions/form-submission-actions.md) — invocable actions for logging events
+* [Form Submissions](form-submissions.md): submission object reference
+* [Use Form Submissions](how-to/use-form-submissions.md): end-to-end guide
+* [Overridable Conversion Flows](how-to/overridable-conversion-flows.md): custom conversion logic
+* [Form Submission Actions](../invocable-actions/form-submission-actions.md): invocable actions for logging events

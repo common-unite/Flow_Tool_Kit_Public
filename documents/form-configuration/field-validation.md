@@ -1,6 +1,6 @@
 # Field Validation
 
-> Enforce required fields, read-only states, minimum/maximum values, and regex patterns — manually or dynamically through conditional rules.
+> Enforce required fields, read-only states, minimum/maximum values, and regex patterns, manually or dynamically through conditional rules.
 
 ## Video Walkthroughs
 
@@ -10,7 +10,7 @@
 
 ## Overview
 
-Flow Tool Kit provides field-level validation that goes beyond standard Salesforce validation rules. Set fields as required or read-only, define min/max constraints for text length, number values, and date ranges, and apply regex patterns — all configured in Form Builder with real-time client-side enforcement.
+Flow Tool Kit provides field-level validation that goes beyond standard Salesforce validation rules. Set fields as required or read-only, define min/max constraints for text length, number values, and date ranges, and apply regex patterns, all configured in Form Builder with real-time client-side enforcement.
 
 ## Required & Read-Only Fields
 
@@ -42,7 +42,7 @@ Fields can be dynamically required or disabled based on conditional rules:
 
 ### Read-Only Behavior
 
-* Multi-select picklist fields displayed as read-only show **only the selected values** (not the full option list) — useful for displaying completed form results.
+* Multi-select picklist fields displayed as read-only show **only the selected values** (not the full option list), useful for displaying completed form results.
 * Conditional rules can combine with manual settings: a field can be normally optional but become required based on another field's value.
 
 ## Text Length Validation (String, Email, TextArea)
@@ -55,9 +55,9 @@ Set a minimum character count. When the user enters fewer characters and leaves 
 
 ### Maximum Length
 
-By default, the maximum is inherited from the object schema (e.g., 80 characters for Account Name). You can override it to a **shorter** value — the object schema maximum is the hard ceiling and cannot be exceeded.
+By default, the maximum is inherited from the object schema (e.g., 80 characters for Account Name). You can override it to a **shorter** value; the object schema maximum is the hard ceiling and cannot be exceeded.
 
-When the user reaches the maximum, input stops — they cannot type beyond the limit.
+When the user reaches the maximum, input stops; they cannot type beyond the limit.
 
 ![String field min/max configuration](../.gitbook/assets/string-min-max-config.png)
 
@@ -65,7 +65,7 @@ When the user reaches the maximum, input stops — they cannot type beyond the l
 
 ### TextArea Character Counter
 
-Text area and long text area fields automatically display a character counter as the user types (e.g., "7 of 200"). No configuration needed — the counter appears automatically.
+Text area and long text area fields automatically display a character counter as the user types (e.g., "7 of 200"). No configuration needed; the counter appears automatically.
 
 You can also set a custom **height** (CSS value, e.g., `250px`) to control the initial textarea size. Users can still manually resize.
 
@@ -84,7 +84,7 @@ Number and currency fields support min/max validation with two modes:
 
 **Example**: An "Allocation Amount" field with max set to reference a "Remaining Balance" formula field. Entering more than the remaining balance shows "this number is too high."
 
-Field-relative validation is dynamic — as the referenced field's value changes, the validation boundary updates automatically.
+Field-relative validation is dynamic: as the referenced field's value changes, the validation boundary updates automatically.
 
 **Percent fields** enter Min/Max on the whole-number scale that percent fields store: 10 means 10% and 100 means 100%. Releases before 3.241 captured these on the decimal scale (0.1 for 10%), so percent Min/Max values saved earlier should be re-entered once after upgrading.
 
@@ -112,13 +112,13 @@ The date picker visually **greys out** dates outside the valid range, preventing
 String and email fields support **regular expression** validation:
 
 1. Enter a regex pattern in the **Field Format (Regular Expression)** field.
-2. Enter a **Custom Formatting Alert Message** — the user-friendly error shown when the value doesn't match.
+2. Enter a **Custom Formatting Alert Message**, the user-friendly error shown when the value doesn't match.
 
 **Example**: An email field with regex `.*@salesforce\.com` and message "You must provide a Salesforce email address."
 
 ## Phone Validation
 
-When **phone masking** is enabled (default), min/max length validation is enforced automatically — users cannot submit a partial phone number.
+When **phone masking** is enabled (default), min/max length validation is enforced automatically; users cannot submit a partial phone number.
 
 When masking is disabled, use regex validation for custom phone format enforcement. See [Field Type Settings](field-type-settings.md) for phone masking details.
 
@@ -126,14 +126,14 @@ When masking is disabled, use regex validation for custom phone format enforceme
 
 ## Tips & Considerations
 
-* **Client-Side Enforcement**: All validation runs in the browser in real-time — no server round-trips for basic checks.
+* **Client-Side Enforcement**: All validation runs in the browser in real-time, with no server round-trips for basic checks.
 * **Object Schema Safety**: The Form Builder never allows a maximum length to exceed the object schema's limit. If you try, it warns you and caps the value.
 * **Conditional + Manual**: Conditional required/disabled rules work alongside manual toggles. A field can be manually optional but conditionally required.
-* **Formula Fields as Boundaries**: Formula fields make excellent min/max references for number validation — combine with [formula recalculation](formula-recalculation.md) for real-time feedback.
+* **Formula Fields as Boundaries**: Formula fields make excellent min/max references for number validation; combine with [formula recalculation](formula-recalculation.md) for real-time feedback.
 
 ## Related Pages
 
-* [Input Field Configuration](input-field-configuration.md) — field configuration overview
-* [Field Type Settings](field-type-settings.md) — per-type display overrides
-* [Formula Recalculation](formula-recalculation.md) — live formula updates
-* [Conditional Logic](conditional-logic.md) — show/hide/require/disable rules
+* [Input Field Configuration](input-field-configuration.md): field configuration overview
+* [Field Type Settings](field-type-settings.md): per-type display overrides
+* [Formula Recalculation](formula-recalculation.md): live formula updates
+* [Conditional Logic](conditional-logic.md): show/hide/require/disable rules

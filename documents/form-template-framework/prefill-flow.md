@@ -1,17 +1,17 @@
 # Prefill Flow
 
-The **Prefill Flow** lets you run an autolaunched Flow when a Form Template first loads, populating fields and seeding repeater/table sections with logic you control — no Apex required. The Flow runs server-side, queries any records the running user can see, and returns a Form Submission that becomes the form's starting state.
+The **Prefill Flow** lets you run an autolaunched Flow when a Form Template first loads, populating fields and seeding repeater/table sections with logic you control, no Apex required. The Flow runs server-side, queries any records the running user can see, and returns a Form Submission that becomes the form's starting state.
 
 This replaces the older pattern of wrapping `formTemplate` in a Screen Flow just to run a Get Records before render. Drop `formTemplate` directly on an Experience Cloud or Lightning page, point its Form Template at a Prefill Flow, and the form prefills itself.
 
 ## When the Prefill Flow runs
 
-The Flow runs exactly once, on the **initial load of a fresh Form Submission** (no Id yet). On resumed drafts (an existing Form Submission re-loaded by Id), the Flow does **not** run — the draft's persisted values are the source of truth on that path.
+The Flow runs exactly once, on the **initial load of a fresh Form Submission** (no Id yet). On resumed drafts (an existing Form Submission re-loaded by Id), the Flow does **not** run; the draft's persisted values are the source of truth on that path.
 
 ## Configuring a Form Template
 
 1. Open the Form Template record.
-2. In the **Default Form Values** section, set the **Prefill Flow** picklist to the API name of the autolaunched Flow you want to run. The base package ships with `(Form) Prefill | Template` (the starter) and `Bypass` (the default — no prefill flow runs).
+2. In the **Default Form Values** section, set the **Prefill Flow** picklist to the API name of the autolaunched Flow you want to run. The base package ships with `(Form) Prefill | Template` (the starter) and `Bypass` (the default: no prefill flow runs).
 3. Save.
 
 Every page or component bound to this Form Template inherits the prefill behavior. You don't configure it per-placement.
@@ -25,7 +25,7 @@ Your prefill Flow must accept one input variable and return at least one output 
 | Variable | Direction | Type | Required | Purpose |
 | --- | --- | --- | --- | --- |
 | `record` | Input | SObject `Form_Submission__c` | Yes | The Form Submission after defaults + URL-param prefill, so your Flow can read existing values and decide whether to keep, overwrite, or fall back. |
-| `prefillRecord` | Output | SObject `Form_Submission__c` | Optional | Fields set here overwrite the local Form Submission. Missing or null is a silent bypass — the form renders with whatever was already prefilled. |
+| `prefillRecord` | Output | SObject `Form_Submission__c` | Optional | Fields set here overwrite the local Form Submission. Missing or null is a silent bypass; the form renders with whatever was already prefilled. |
 | `prefillRelatedRecords` | Output | Collection of SObject `Form_Submission__c` | Optional | Seeds repeater or table sections. Each entry's `Internal_SectionId__c` tells the form which section it belongs to (see [Section Tag routing](#section-tag-routing) below). |
 | `hasError` | Output | Boolean | Optional (default false) | When `true`, the form stops loading and the error illustration shows instead. Use this to gate form load on conditions only your Flow knows about. |
 | `errorMessage` | Output | String (rich text supported) | Optional | When `hasError = true`, this string renders as the illustration subtitle. Supports HTML formatting and Flow merge fields. |
@@ -38,7 +38,7 @@ The starter Flow:
 
 1. Looks up the running user's Contact (matches by `$User.ContactId`, the Form Submission's `Contact_1__c`, or the Form Submission's `Account__c` via OR logic).
 2. Looks up the Contact's Account.
-3. A **Switch** decision guards downstream work — only proceeds when both Contact and Account exist (so anonymous guests with no Contact safely no-op).
+3. A **Switch** decision guards downstream work, only proceeding when both Contact and Account exist (so anonymous guests with no Contact safely no-op).
 4. The **Pre-fill Mappings** Transform builds `prefillRecord` with `Contact1_First_Name__c`, `Contact1_Last_Name__c`, `Contact1_Phone__c`, `Contact1_Email__c`, plus Account fields (`Company__c`, `Company_Phone__c`, `Website__c`, `Description__c`).
 5. A second **Alternate Contacts** Transform builds a collection of related Form Submissions for every other Contact on the Account, with `Internal_SectionId__c = "Contacts"` so they route to the section tagged `Contacts`.
 6. Assignment writes `prefillRecord` to the output and `Add`s the alternate contacts collection to `prefillRelatedRecords`.
@@ -47,7 +47,7 @@ The starter Flow:
 
 ## Section Tag routing
 
-`prefillRelatedRecords` needs to know which repeater or table section each record belongs to. Sections have a runtime `Form_Template_Page_Section__c.Id` that changes every time the template is copied or migrated — a bad value to hard-code in a Flow.
+`prefillRelatedRecords` needs to know which repeater or table section each record belongs to. Sections have a runtime `Form_Template_Page_Section__c.Id` that changes every time the template is copied or migrated, a bad value to hard-code in a Flow.
 
 **Use Section Tags instead.** Each Form Page Section has a new **Section Tag** picklist field. Pick a stable identifier like `Contacts`, `Tasks`, `Cases`, or `Opportunities` (or add your own value to the `Data_Conversion_Tag_s` global value set).
 
@@ -63,41 +63,41 @@ A trigger enforces Section Tag uniqueness within a Form Template, so you can't a
 
 When your Flow detects a condition that should block the user from filling out the form, set `hasError = true` and `errorMessage`. The starter Flow ships this pattern active for the duplicate-submission case:
 
-1. After Contact + Account lookups, the Flow queries `Previous_Form_Submission` — Form Submissions matching this Contact, this Form Template, and submitted status.
+1. After Contact + Account lookups, the Flow queries `Previous_Form_Submission`: Form Submissions matching this Contact, this Form Template, and submitted status.
 2. The Switch decision adds an `Already_Submitted` rule: when `Previous_Form_Submission IsNull = false`, route to an Assignment that sets `hasError = true` and `errorMessage` to a rich-text template referencing `{!Contact.FirstName}`, `{!Previous_Form_Submission.Form_Template__r.Name}`, and `{!Previous_Form_Submission.Submission_Date__c}`.
 3. The form replaces itself with the error illustration showing the personalized message.
 
 Extend this pattern for any condition: license checks, eligibility windows, application-status gates. Each new rule routes to its own Assignment element that sets `hasError + errorMessage` before terminating.
 
-## Two starter flows ship — pick autolaunched or screen
+## Two starter flows ship: pick autolaunched or screen
 
 As of v3.231 the package ships **two** starter prefill flows with identical underlying logic. Admins pick which API name to put in `Form_Template__c.Prefill_Flow_Api_Name__c`:
 
 | Starter | Type | When to use |
 | --- | --- | --- |
 | `Form_Submission_Prefill` | Autolaunched | Default. Runs server-side with no UI. The formTemplate LWC's `formTemplateFlowModal` hosts it; for autolaunched flows the modal stays hidden behind the spinner state and closes once outputs return. Zero UX cost. |
-| `Form_Prefill_w_Screen_Template` | Screen Flow | Same logic as the autolaunched starter, plus **sample screens** demonstrating where admins can plug in user validation inputs and custom error messages. Use when you want to display screens before the form template renders — intro/welcome screens, terms-of-service acceptance, custom validation prompts, etc. **If the user bypasses or clicks through the screens to finish, the form loads normally** — screens only block the form load if an admin's clone explicitly sets `hasError=true` and the configured error message. |
+| `Form_Prefill_w_Screen_Template` | Screen Flow | Same logic as the autolaunched starter, plus **sample screens** demonstrating where admins can plug in user validation inputs and custom error messages. Use when you want to display screens before the form template renders: intro/welcome screens, terms-of-service acceptance, custom validation prompts, etc. **If the user bypasses or clicks through the screens to finish, the form loads normally**; screens only block the form load if an admin's clone explicitly sets `hasError=true` and the configured error message. |
 
-Both starter flows expose the same input (`record` — Form_Submission) and output variables (`prefillRecord`, `prefillRelatedRecords`, `stages`, `hasError`, `errorMessage`), so swapping between them on a given Form Template requires no LWC or controller changes.
+Both starter flows expose the same input (`record`: Form_Submission) and output variables (`prefillRecord`, `prefillRelatedRecords`, `stages`, `hasError`, `errorMessage`), so swapping between them on a given Form Template requires no LWC or controller changes.
 
 ## Cloning the starter to customize
 
-Both starter Flows are shipped as **Template flows** (`isTemplate=true`) — you'll see a Clone affordance in Setup → Flows. To customize:
+Both starter Flows are shipped as **Template flows** (`isTemplate=true`); you'll see a Clone affordance in Setup → Flows. To customize:
 
 1. Open the starter Flow in Flow Builder (pick the autolaunched or screen-flow starter depending on whether you want UI screens).
 2. Click **Save As** → **A New Flow** to clone into your namespace.
-3. Edit your clone (Contact lookup, Transforms, error gating, screens — all yours).
+3. Edit your clone (Contact lookup, Transforms, error gating, screens; all yours).
 4. Activate the clone.
 5. Add your clone's API name to the `Form_Template__c.Prefill_Flow_Api_Name__c` picklist values via Setup → Object Manager → Form Template → Fields & Relationships → Prefill Flow → New Picklist Value.
 6. Point your Form Template at the clone.
 
 ## Surgical assignment vs. bulk copy
 
-**Do not** drop a Transform that maps every field of `record` onto `prefillRecord`. This is the most common admin mistake. Any field present on `prefillRecord` overwrites the corresponding field on the live Form Submission — including the ones the Form Template's own prefill record and URL parameter mappings already set. Bulk copying wipes those out.
+**Do not** drop a Transform that maps every field of `record` onto `prefillRecord`. This is the most common admin mistake. Any field present on `prefillRecord` overwrites the corresponding field on the live Form Submission, including the ones the Form Template's own prefill record and URL parameter mappings already set. Bulk copying wipes those out.
 
 Instead: each Transform element should map only the fields your Flow is responsible for computing. Leave every other field untouched on `prefillRecord` so the existing prefill values flow through unchanged.
 
-If you want a field set conditionally — *"use the Contact's email if we have one, otherwise keep whatever was already prefilled"* — use a formula resource with `BLANKVALUE`:
+If you want a field set conditionally (*"use the Contact's email if we have one, otherwise keep whatever was already prefilled"*), use a formula resource with `BLANKVALUE`:
 
 ```
 BLANKVALUE({!Contact.Email}, {!record.Contact1_Email__c})
@@ -111,13 +111,13 @@ URL parameters on a guest community page are public and tamperable. Don't carry 
 
 **Recommended pattern when you must carry an identifier in a URL:** add a custom Text field on the source object (e.g. `Contact.Prefill_Token__c`, length 22, External Id, Case-sensitive, Unique). Populate it via a record-triggered Flow on insert. Merge the field into your email templates (`{!Contact.Prefill_Token__c}`). Your prefill Flow's Get Records filter matches by the token field instead of by Id.
 
-A 22-character base-62 random token has ~131 bits of entropy — non-enumerable and non-guessable for any practical attacker. No encryption, no HMAC, no shared secret to manage, no expiration logic.
+A 22-character base-62 random token has ~131 bits of entropy, non-enumerable and non-guessable for any practical attacker. No encryption, no HMAC, no shared secret to manage, no expiration logic.
 
 What this pattern doesn't protect: leaked URLs (forwarded emails, screenshots). Rotate the token field on the affected record to invalidate the old link.
 
 ## Guest users and the upsert override
 
-When a guest user fills out a form on a guest community, they can INSERT a new Form Submission (Salesforce allows that), but they cannot UPDATE one in user mode (Salesforce sharing blocks it). The **`Form_Submission_Upsert`** Flow exists as the documented escape hatch — but **the package ships it in user mode**.
+When a guest user fills out a form on a guest community, they can INSERT a new Form Submission (Salesforce allows that), but they cannot UPDATE one in user mode (Salesforce sharing blocks it). The **`Form_Submission_Upsert`** Flow exists as the documented escape hatch, but **the package ships it in user mode**.
 
 **FlowToolKit is a managed package and cannot ship any Flow or Apex that elevates sharing.** Every Flow in the package, including this one, runs in user mode by default. The Flow defines the *interface*; if you need actual elevation, you override.
 
@@ -128,13 +128,13 @@ To enable guest-user updates:
 3. Wire your override through the standard FlowToolKit override mechanism so the `formTemplate` LWC invokes your clone instead.
 4. Document the security review: keep `without sharing` to the smallest scope, validate the inbound `record` shape and ownership before persisting, log anything unexpected.
 
-Salesforce and the Flow Tool Kit managed package are NOT responsible for data exposure or destructive DML introduced by a subscriber override. The override mechanism gives you full control over the DML — the security review is on you.
+Salesforce and the Flow Tool Kit managed package are NOT responsible for data exposure or destructive DML introduced by a subscriber override. The override mechanism gives you full control over the DML; the security review is on you.
 
 ## Troubleshooting
 
 ### "I added a Prefill Flow and now my URL parameters stopped working"
 
-Your Flow is bulk-copying `record` onto `prefillRecord`, which overwrites every field — including the ones URL parameters set. **Fix:** open your Transform elements and remove every `transformValueActions` entry except the fields your Flow is responsible for computing.
+Your Flow is bulk-copying `record` onto `prefillRecord`, which overwrites every field, including the ones URL parameters set. **Fix:** open your Transform elements and remove every `transformValueActions` entry except the fields your Flow is responsible for computing.
 
 ### "My prefilled rows in the repeater are wiped out when the user edits"
 
@@ -146,11 +146,11 @@ The picklist value points to a Flow that doesn't exist or isn't active. **Fix:**
 
 ### "Prefill Flow Error: returned an error"
 
-Your Flow's body threw an error during execution. **Fix:** open the browser console while the form loads — the LWC logs `event.detail` from the Flow runtime, which includes the error and the failing element. Cross-check against Setup → Process Automation → Paused and Failed Flow Interviews if needed.
+Your Flow's body threw an error during execution. **Fix:** open the browser console while the form loads; the LWC logs `event.detail` from the Flow runtime, which includes the error and the failing element. Cross-check against Setup → Process Automation → Paused and Failed Flow Interviews if needed.
 
 ### "Flow finishes but no prefill happens"
 
-`prefillRecord` is missing from the Flow's outputs, OR your Switch/Decision logic isn't reaching the Transform that sets it. This is treated as a silent bypass (not an error) — the form renders normally with current values. **Fix:** confirm at least one path through your Flow reaches an Assignment that writes to `prefillRecord`, and that the output variable name is exactly `prefillRecord` (case-sensitive).
+`prefillRecord` is missing from the Flow's outputs, OR your Switch/Decision logic isn't reaching the Transform that sets it. This is treated as a silent bypass (not an error); the form renders normally with current values. **Fix:** confirm at least one path through your Flow reaches an Assignment that writes to `prefillRecord`, and that the output variable name is exactly `prefillRecord` (case-sensitive).
 
 ### "Guest user can't save the form"
 
@@ -158,4 +158,4 @@ The Form Submission already has an Id and Salesforce sharing blocks the guest UP
 
 ## Security disclaimer
 
-Salesforce and the Flow Tool Kit managed package are NOT responsible for data exposed through misconfigured or intentionally relaxed prefill Flows. The client org is responsible for reviewing every Flow it authors against the data exposure model of the surrounding page — authenticated user, guest user, internal user — and applying appropriate sharing posture (user mode by default, elevation only with deliberate review).
+Salesforce and the Flow Tool Kit managed package are NOT responsible for data exposed through misconfigured or intentionally relaxed prefill Flows. The client org is responsible for reviewing every Flow it authors against the data exposure model of the surrounding page (authenticated user, guest user, internal user) and applying appropriate sharing posture (user mode by default, elevation only with deliberate review).

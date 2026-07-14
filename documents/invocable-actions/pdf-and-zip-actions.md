@@ -80,5 +80,5 @@ Combines multiple ContentDocuments into a single zip file and creates it as a ne
 
 ## Related Pages
 
-- [Create PDF from Submission](../form-template-framework/how-to/create-pdf-from-submission.md) — step-by-step guide
-- [File Upload Actions](file-upload-actions.md) — serialize and deserialize file collections
+- [Create PDF from Submission](../form-template-framework/how-to/create-pdf-from-submission.md): step-by-step guide
+- [File Upload Actions](file-upload-actions.md): serialize and deserialize file collections

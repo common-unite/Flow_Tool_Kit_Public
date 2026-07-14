@@ -1,6 +1,6 @@
 # Set Up Email Notifications
 
-> Send automated emails when forms are submitted — to the submitter, an admin, or both.
+> Send automated emails when forms are submitted: to the submitter, an admin, or both.
 
 {% hint style="info" %}
 **Prerequisites**: A Form Template with submissions. See [Build a Multi-Page Form](build-multi-page-form.md).
@@ -10,9 +10,9 @@
 
 Flow Tool Kit can send automated email notifications when a form submission occurs. Common use cases:
 
-* **Confirmation to submitter** — "Thank you, we received your application"
-* **Alert to admin** — "New submission received for \[Template Name]"
-* **PDF attachment** — include the submission PDF in the email
+* **Confirmation to submitter**: "Thank you, we received your application"
+* **Alert to admin**: "New submission received for \[Template Name]"
+* **PDF attachment**: include the submission PDF in the email
 
 ## Video Walkthrough
 
@@ -61,12 +61,12 @@ Create Salesforce email templates for your notifications:
 **Email deliverability**: Ensure your org's email deliverability is set to "All Email" (Setup → Deliverability). Sandbox orgs default to "System Email Only" which blocks non-system emails.
 {% endhint %}
 
-* **Test in sandbox first** — email notifications in production can't be undone
-* **Use org-wide email addresses** — set a professional "From" address instead of the running user's email
-* **Rate limits** — Salesforce has daily email limits per org. High-volume forms may hit these limits.
+* **Test in sandbox first**: email notifications in production can't be undone
+* **Use org-wide email addresses**: set a professional "From" address instead of the running user's email
+* **Rate limits**: Salesforce has daily email limits per org. High-volume forms may hit these limits.
 
 ## Related Pages
 
-* [Use Form Submissions](use-form-submissions.md) — submission lifecycle
-* [Create PDF from Submission](create-pdf-from-submission.md) — attach PDFs to emails
-* [Build a Multi-Page Form](build-multi-page-form.md) — template creation
+* [Use Form Submissions](use-form-submissions.md): submission lifecycle
+* [Create PDF from Submission](create-pdf-from-submission.md): attach PDFs to emails
+* [Build a Multi-Page Form](build-multi-page-form.md): template creation

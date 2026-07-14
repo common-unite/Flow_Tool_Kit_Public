@@ -48,9 +48,9 @@ Call this action multiple times in sequence, passing the output collection back 
 
 Build a button collection by chaining actions:
 
-1. **Action 1**: "Add New Button" — type=NEXT, label="Save & Continue", variant=brand → outputs `buttons`
-2. **Action 2**: "Add New Button" — buttons=`{!Action1.buttons}`, type=BACK, label="Go Back", variant=neutral → outputs `buttons`
-3. **Action 3**: "Add New Button" — buttons=`{!Action2.buttons}`, type=TRIGGER, label="Cancel", enableModal=true → outputs `buttons`
+1. **Action 1**: "Add New Button" with type=NEXT, label="Save & Continue", variant=brand → outputs `buttons`
+2. **Action 2**: "Add New Button" with buttons=`{!Action1.buttons}`, type=BACK, label="Go Back", variant=neutral → outputs `buttons`
+3. **Action 3**: "Add New Button" with buttons=`{!Action2.buttons}`, type=TRIGGER, label="Cancel", enableModal=true → outputs `buttons`
 4. **Screen**: Pass `{!Action3.buttons}` to the Custom Buttons component's `buttons` input
 
 {% hint style="info" %}
@@ -59,5 +59,5 @@ Build a button collection by chaining actions:
 
 ## Related Pages
 
-- [Custom Buttons](../screen-components/custom-buttons.md) — renders button collections
-- [Header](../screen-components/header.md) — can also host button collections
+- [Custom Buttons](../screen-components/custom-buttons.md): renders button collections
+- [Header](../screen-components/header.md): can also host button collections

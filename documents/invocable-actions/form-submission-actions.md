@@ -67,6 +67,6 @@ Call this action after creating records from a submission:
 
 ## Related Pages
 
-- [Form Submissions](../form-template-framework/form-submissions.md) — submission lifecycle
-- [Overridable Conversion Flows](../form-template-framework/how-to/overridable-conversion-flows.md) — custom conversion logic
-- [Use Form Submissions](../form-template-framework/how-to/use-form-submissions.md) — end-to-end guide
+- [Form Submissions](../form-template-framework/form-submissions.md): submission lifecycle
+- [Overridable Conversion Flows](../form-template-framework/how-to/overridable-conversion-flows.md): custom conversion logic
+- [Use Form Submissions](../form-template-framework/how-to/use-form-submissions.md): end-to-end guide

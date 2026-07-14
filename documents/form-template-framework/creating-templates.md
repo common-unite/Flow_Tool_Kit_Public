@@ -13,22 +13,22 @@ Before building a template, create the individual form components that each sect
 
 1. Open **Form Builder** from the App Launcher
 2. Create a form component for each logical section of your multi-page form (e.g., "Personal Info", "Employment", "Education")
-3. Each form component is tied to a single object — cross-object templates use different form components per section
+3. Each form component is tied to a single object; cross-object templates use different form components per section
 
 ## Step 2: Create the Template Record
 
 1. Navigate to the **Form Templates** tab (or create a `Form_Template__c` record directly)
 2. Set the template **Name** (e.g., "Grant Application")
 3. Configure template-level settings:
-   - **Active** — whether the template is available for use
-   - **Save and Resume** — enable progress saving
-   - **Form Availability** — date range and condition controls
+   - **Active**: whether the template is available for use
+   - **Save and Resume**: enable progress saving
+   - **Form Availability**: date range and condition controls
 
 ## Step 3: Add Pages
 
 Create `Form_Template_Page__c` records linked to your template:
 
-1. Set the **Position** field to control page order (e.g., 10, 20, 30 — gaps are fine)
+1. Set the **Position** field to control page order (e.g., 10, 20, 30; gaps are fine)
 2. Set the **Label** to the page title displayed in navigation (e.g., "Personal Information")
 3. Optionally configure page-level conditional logic to show/hide pages based on field values from previous pages
 
@@ -38,7 +38,7 @@ Create `Form_Template_Page_Section__c` records linked to each page:
 
 1. Set the **Position** field for section ordering within the page
 2. Set the **Form** field to the QualifiedApiName of the form component this section should render
-3. Each section renders one form component — a page can have multiple sections for multi-form layouts
+3. Each section renders one form component; a page can have multiple sections for multi-form layouts
 
 ## Step 5: Add to a Flow
 
@@ -64,12 +64,12 @@ Grant Application (Form_Template__c)
 
 ## Tips
 
-- **Use descriptive form component names** — form components are referenced by QualifiedApiName in template sections, so clear naming helps during setup
-- **Page numbering with gaps** — use 10, 20, 30 instead of 1, 2, 3, so you can insert pages later without renumbering
-- **Start simple** — build with 2-3 pages first, test the flow, then add more pages
+- **Use descriptive form component names**: form components are referenced by QualifiedApiName in template sections, so clear naming helps during setup
+- **Page numbering with gaps**: use 10, 20, 30 instead of 1, 2, 3, so you can insert pages later without renumbering
+- **Start simple**: build with 2-3 pages first, test the flow, then add more pages
 
 ## Related Pages
 
-- [Form Templates Reference](form-templates.md) — component properties
-- [Build Multi-Page Form](how-to/build-multi-page-form.md) — detailed walkthrough
-- [Pages and Sections](pages-and-sections.md) — page configuration details
+- [Form Templates Reference](form-templates.md): component properties
+- [Build Multi-Page Form](how-to/build-multi-page-form.md): detailed walkthrough
+- [Pages and Sections](pages-and-sections.md): page configuration details

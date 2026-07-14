@@ -2,27 +2,28 @@
 
 > The latest features and improvements in Flow Tool Kit.
 
-## Latest Release: v3.240
+## Latest Release: v3.241
 
-The survey release: build question grids, scored assessments, and modern card-based pickers without leaving Form Builder.
+Interactive number inputs, smarter field pickers, and an important save-flow fix every subscriber org should take.
 
 Key highlights from recent releases:
 
+- **Number display types** (v3.241): number, currency, and percent fields as a Stepper (minus/plus with a configurable increment), a Slider, or Preset Amount chips with an optional custom-value input, currency and percent formatting intact in every mode
+- **Dynamic selector display types** (v3.241): fields named for icons, email templates, image assets, or style sheets get real pickers, including the complete current SLDS icon set
+- **Form template save-flow fix** (v3.241): the packaged save flow now ships active; form template saves for standard and guest users work out of the box; if your users hit save errors on templates, this fix alone is worth the upgrade
+- **Text fields as text areas + read-only clamp** (v3.241): any Text field can render multi-line, and Maximum Height clamps long read-only content into a scrollable box
 - **Likert Matrix sections** (v3.240): survey-style question grids with a shared answer scale, two modes (Picklist and scored Number), a live total row, and optional stamping of the running score into a number field
-- **Survey Buttons display type** (v3.240): any picklist as vertical full-width option cards with brand-tinted selection, on every form factor
-- **Visual Picker display type** (v3.240): picklist and multiselect options as selectable cards showing an SLDS icon or public image asset, with hover label reveal and brand-colored icons
-- **Form component flow-save fix** (v3.239): newly added screen components write valid Record references again on flows created at newer API versions; if you skipped 3.239, this fix alone is worth the upgrade
-- **Form Template autosave** (v3.239): silent, interaction-driven draft saving with debounce and checkpoint modes
-- **Custom picklist option labels** (v3.239): per-form display labels with live merge-field support, stored values untouched
+- **Survey Buttons + Visual Picker display types** (v3.240): picklists as full-width option cards or icon/image cards with brand-tinted selection
 
 {% hint style="info" %}
-See the [full release notes for v3.240](../release-notes/release-3.240.md) for the complete list of changes.
+See the [full release notes for v3.241](../release-notes/release-3.241.md) for the complete list of changes.
 {% endhint %}
 
 ## Previous Releases
 
 | Version | Highlights |
 |---------|-----------|
+| [v3.241](../release-notes/release-3.241.md) | Number display types, dynamic selectors, save-flow fix, section overlap fix |
 | [v3.240](../release-notes/release-3.240.md) | Likert Matrix sections, Survey Buttons, Visual Picker |
 | [v3.239](../release-notes/release-3.239.md) | Critical flow-save fix, autosave, option labels, style sheets, stage indicators |
 | [v3.238](../release-notes/release-3.238.md) | Upgrade-safe (unrestricted) config picklists |

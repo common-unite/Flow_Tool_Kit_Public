@@ -1,6 +1,6 @@
 # Get URL Parameters
 
-> Extract URL query parameters from the current page URL on Flow Screens — useful for Experience Cloud and Lightning Out.
+> Extract URL query parameters from the current page URL on Flow Screens, useful for Experience Cloud and Lightning Out.
 
 ## Overview
 
@@ -10,7 +10,7 @@ The component supports standard parameter names (`pv1` through `pv9`), UTM marke
 
 ## Where to Use It
 
-- **Flow Screen** (utility — no visible UI)
+- **Flow Screen** (utility: no visible UI)
 
 ## Video Walkthrough
 

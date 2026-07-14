@@ -23,12 +23,12 @@ Form__mdt
 
 | CMDT | Purpose | Key Fields |
 |------|---------|-----------|
-| **Form__mdt** | Form definition — name, object, settings | Object, FormType, Active |
-| **Form_Section__mdt** | Section within a form — layout and grouping | Form (lookup), Position, Columns |
-| **Form_Field__mdt** | Field within a section — configuration and display | Section (lookup), FieldName, Position, Required, ReadOnly |
-| **Form_Conditional_Logic__mdt** | Visibility rule — when to show/hide a target | Form (lookup), LogicType (AND/OR), Target |
+| **Form__mdt** | Form definition: name, object, settings | Object, FormType, Active |
+| **Form_Section__mdt** | Section within a form: layout and grouping | Form (lookup), Position, Columns |
+| **Form_Field__mdt** | Field within a section: configuration and display | Section (lookup), FieldName, Position, Required, ReadOnly |
+| **Form_Conditional_Logic__mdt** | Visibility rule: when to show/hide a target | Form (lookup), LogicType (AND/OR), Target |
 | **Form_Conditional_Logic_Condition__mdt** | Individual condition within a logic rule | Logic (lookup), FieldName, Operator, Value |
-| **Form_Style_Sheet__mdt** | Theme — visual styling | Colors, fonts, spacing |
+| **Form_Style_Sheet__mdt** | Theme: visual styling | Colors, fonts, spacing |
 | **Form_Labels__mdt** | Label overrides and translations | Field, Language, LabelText |
 
 ### Additional Configuration CMDTs
@@ -41,7 +41,7 @@ Form__mdt
 
 ## Custom Objects (Runtime Data)
 
-These store runtime data — templates, submissions, and conversion logs.
+These store runtime data: templates, submissions, and conversion logs.
 
 ### Form Template Framework
 
@@ -103,13 +103,13 @@ Form_Template__c
 | Form__mdt (CMDT) | Read | Read | Read |
 | Form_Template__c | CRUD | CRUD | Read |
 | Form_Submission__c | CRUD | CRUD | Create/Read |
-| Form_Submission_Conversion_Log__c | CRUD | CRUD | — |
+| Form_Submission_Conversion_Log__c | CRUD | CRUD | None |
 | Form_Component__c | CRUD | CRUD | Read |
 
 See [Permission Sets](../getting-started/permission-sets.md) for full details.
 
 ## Related Pages
 
-- [Custom Metadata Types Reference](../form-configuration/custom-metadata-types.md) — CMDT details
-- [Core Concepts](../getting-started/core-concepts.md) — how building blocks fit together
-- [Deployment Overview](../deployment/deployment-overview.md) — deploying metadata between orgs
+- [Custom Metadata Types Reference](../form-configuration/custom-metadata-types.md): CMDT details
+- [Core Concepts](../getting-started/core-concepts.md): how building blocks fit together
+- [Deployment Overview](../deployment/deployment-overview.md): deploying metadata between orgs

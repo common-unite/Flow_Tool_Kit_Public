@@ -1,16 +1,16 @@
 # Experience Cloud Components
 
-> Lightning Data Service-powered components for displaying and editing records on Experience Cloud pages — using Flow Tool Kit forms without requiring a Flow.
+> Lightning Data Service-powered components for displaying and editing records on Experience Cloud pages, using Flow Tool Kit forms without requiring a Flow.
 
 ## Overview
 
 Form (Dynamic Component) brings Flow Tool Kit's form rendering to Experience Cloud pages without requiring a Screen Flow. It uses Lightning Data Service (LDS) to read and write record data directly, and displays forms using the same Form metadata you build in Form Builder.
 
-This component is designed specifically for Experience Cloud sites where you need record display or editing capabilities on community pages. Unlike the Dynamic Flow Display (which embeds a full Flow), Dynamic Component renders a form directly on the page with LDS handling all data operations — making it lighter, faster, and more tightly integrated with the page context.
+This component is designed specifically for Experience Cloud sites where you need record display or editing capabilities on community pages. Unlike the Dynamic Flow Display (which embeds a full Flow), Dynamic Component renders a form directly on the page with LDS handling all data operations, making it lighter, faster, and more tightly integrated with the page context.
 
 ## Where to Use It
 
-* **Experience Cloud** (Community Page and Default) — this is an Experience Cloud-only component
+* **Experience Cloud** (Community Page and Default): this is an Experience Cloud-only component
 
 ## Video Walkthroughs
 
@@ -22,11 +22,11 @@ This component is designed specifically for Experience Cloud sites where you nee
 
 ![Flowless component on an Experience Cloud page](../.gitbook/assets/flowless-form-on-record-page.png)
 
-1. **Build a Form** — In Form Builder, create a Form for the object you want to display/edit.
-2. **Add to Experience Cloud Page** — In Experience Builder, drag "Form (Dynamic Component)" onto your page.
-3. **Configure via Property Editor** — The custom property editor opens automatically. Select your object, form, and display options.
-4. **Set Record Context** — The component automatically binds to `{!recordId}` and `{!objectApiName}` from the page context.
-5. **Publish** — Publish your Experience Cloud site.
+1. **Build a Form**: In Form Builder, create a Form for the object you want to display/edit.
+2. **Add to Experience Cloud Page**: In Experience Builder, drag "Form (Dynamic Component)" onto your page.
+3. **Configure via Property Editor**: The custom property editor opens automatically. Select your object, form, and display options.
+4. **Set Record Context**: The component automatically binds to `{!recordId}` and `{!objectApiName}` from the page context.
+5. **Publish**: Publish your Experience Cloud site.
 
 ![Experience Builder with Form component](../.gitbook/assets/flowless-experience-builder.png)
 
@@ -75,9 +75,9 @@ This component has no Flow outputs (it operates via LDS, not Flow).
 
 **Display Types**: Like Dynamic Flow, the component supports three display modes:
 
-* **Component** — Inline form on the page
-* **Modal** — Form in a dialog
-* **Button** — Button that opens the form in a modal when clicked
+* **Component**: Inline form on the page
+* **Modal**: Form in a dialog
+* **Button**: Button that opens the form in a modal when clicked
 
 ## Works With
 
@@ -96,7 +96,7 @@ Replace the standard record detail component on an Experience Cloud record page 
 
 ### 2. Quick Edit Button
 
-Set `displayType=button` with a label like "Edit Details". Users click to open a styled form in a modal, make changes, and save — all via LDS without a page reload.
+Set `displayType=button` with a label like "Edit Details". Users click to open a styled form in a modal, make changes, and save, all via LDS without a page reload.
 
 ### 3. Read-Only Summary
 
@@ -109,4 +109,4 @@ Enable read-only mode to display a formatted, themed summary of record data. Use
 * **Automatic Context**: `recordId` and `objectApiName` are automatically bound from the page context. You typically don't need to set these manually.
 * **No Apex Needed**: LDS handles all data operations. This is simpler to set up but means you can't run custom Apex logic during save. For complex save operations, use a Flow-based approach instead.
 * **RelaxedCSP**: The component declares `lightningCommunity__RelaxedCSP` capability for proper styling and functionality in Experience Cloud.
-* **Form Configuration Modes**: The property editor supports both Form Component selection (metadata reference) and custom JSON form definitions — the same modes available in Form Builder.
+* **Form Configuration Modes**: The property editor supports both Form Component selection (metadata reference) and custom JSON form definitions, the same modes available in Form Builder.

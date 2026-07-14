@@ -10,7 +10,7 @@
 
 ## Overview
 
-Flow Tool Kit lets you override how standard Salesforce field types display on your forms. Convert a boolean toggle into radio buttons, transform a picklist into a star rating, or turn a rich text field into a signature pad — all through the Form Builder without code.
+Flow Tool Kit lets you override how standard Salesforce field types display on your forms. Convert a boolean toggle into radio buttons, transform a picklist into a star rating, or turn a rich text field into a signature pad, all through the Form Builder without code.
 
 ## Boolean / Checkbox Fields
 
@@ -23,7 +23,7 @@ By default, boolean fields display as a modern **toggle switch**. You can overri
 | **Picklist**         | Dropdown with True/False options                                                                                   |
 | **Radio**            | Radio button group with True/False options                                                                         |
 | **Buttons**          | Button group (same as picklist button overrides)                                                                   |
-| **Attestation**      | Consent/certification card — a checkbox beside a rich-text statement in a brand-themed box that fills when checked |
+| **Attestation**      | Consent/certification card: a checkbox beside a rich-text statement in a brand-themed box that fills when checked |
 
 ![Boolean display type options](../.gitbook/assets/boolean-display-types.png)
 
@@ -31,8 +31,8 @@ By default, boolean fields display as a modern **toggle switch**. You can overri
 
 When using Picklist, Radio, or Buttons display types, you can override the option labels (for real picklist and multiselect fields, see [Picklist Option Labels](picklist-option-labels.md) for per-value custom labels with merge-field support):
 
-* **True Label Override** — e.g., "Yes", "Agree", "Accept"
-* **False Label Override** — e.g., "No", "Disagree", "Decline"
+* **True Label Override**: e.g., "Yes", "Agree", "Accept"
+* **False Label Override**: e.g., "No", "Disagree", "Decline"
 
 The underlying value is always boolean `true`/`false` regardless of the display label.
 
@@ -40,7 +40,7 @@ The underlying value is always boolean `true`/`false` regardless of the display 
 
 ### Making Booleans Required
 
-The toggle and checkbox display types have a UX limitation with required fields — they default to `false`, so "required" effectively means "must be true." Use the **Picklist** or **Radio** display type instead: the field loads with no value selected, so requiring a selection forces an intentional choice between true and false.
+The toggle and checkbox display types have a UX limitation with required fields: they default to `false`, so "required" effectively means "must be true." Use the **Picklist** or **Radio** display type instead: the field loads with no value selected, so requiring a selection forces an intentional choice between true and false.
 
 ### Attestation Selector
 
@@ -48,7 +48,7 @@ The **Attestation** display type renders a boolean as a consent/certification **
 
 ![Selecting the Attestation display type and the card rendering in the preview](../.gitbook/assets/188-attestation-selector-demo.gif)
 
-Unlike the other display types, Attestation replaces the plain **Custom Label** with a **Rich Text Label** field — write the full attestation statement (formatting, links, and merge fields) there. When you choose Attestation, the Form Builder hides the label, help text, prepend/append, and prompt inputs, since the rich-text statement is the only visible content. Leave the rich text blank and the field's standard label is used instead.
+Unlike the other display types, Attestation replaces the plain **Custom Label** with a **Rich Text Label** field: write the full attestation statement (formatting, links, and merge fields) there. When you choose Attestation, the Form Builder hides the label, help text, prepend/append, and prompt inputs, since the rich-text statement is the only visible content. Leave the rich text blank and the field's standard label is used instead.
 
 ![A checked attestation card on a branded form](../.gitbook/assets/188-attestation-selector.png)
 
@@ -60,7 +60,7 @@ The card's border and fill follow your org's brand color across internal Lightni
 
 ### Phone Masking
 
-Phone masking is **enabled by default** with US standard format: `(XXX) XXX-XXXX`. Users type digits only — parentheses, spaces, and dashes are inserted automatically.
+Phone masking is **enabled by default** with US standard format: `(XXX) XXX-XXXX`. Users type digits only; parentheses, spaces, and dashes are inserted automatically.
 
 ![Phone masking auto-format in action](../.gitbook/assets/phone-masking-auto-format.png)
 
@@ -73,7 +73,7 @@ Phone masking is **enabled by default** with US standard format: `(XXX) XXX-XXXX
 | US Standard (default) | `(555) 555-5555`                        |
 | Dashes Only           | `555-555-5555`                          |
 | Additional formats    | Available in the Phone Masking picklist |
-| None                  | Disables masking — accepts any input    |
+| None                  | Disables masking; accepts any input    |
 
 ### Phone Validation
 
@@ -91,8 +91,8 @@ If you need a phone format not in the list, contact Common Unite to request new 
 
 ### Length Validation
 
-* **Minimum Length**: Validates on blur — shows "entry is too short" error if below the minimum.
-* **Maximum Length**: Defaults from the object schema. Can be overridden to a shorter value. Input stops at the limit — users cannot type beyond it.
+* **Minimum Length**: Validates on blur; shows "entry is too short" error if below the minimum.
+* **Maximum Length**: Defaults from the object schema. Can be overridden to a shorter value. Input stops at the limit; users cannot type beyond it.
 
 ![String min/max length configuration](../.gitbook/assets/string-min-max-config.png)
 
@@ -135,7 +135,7 @@ The field's currency or percent formatting applies in every mode, and the standa
 
 ### Min, Max, and Step
 
-The field's **Min** and **Max** values bound the stepper's clamping and the slider's range. The **Step** value sets how much the Stepper buttons and Slider move per step — set Step to `1` so a stepper counts by whole dollars instead of pennies. Step is an increment only: it never restricts what a respondent can type, so a Step of 5 still allows 12.50 to be entered directly.
+The field's **Min** and **Max** values bound the stepper's clamping and the slider's range. The **Step** value sets how much the Stepper buttons and Slider move per step: set Step to `1` so a stepper counts by whole dollars instead of pennies. Step is an increment only: it never restricts what a respondent can type, so a Step of 5 still allows 12.50 to be entered directly.
 
 ![A stepper with Min 1, Max 100, and Step 1 incrementing the Quantity field](../.gitbook/assets/254-number-stepper-demo.gif)
 
@@ -145,7 +145,7 @@ A slider with no Min/Max set runs 0 to 100; setting Min and Max (and an optional
 
 ### Preset Amounts
 
-Choose **Preset Amounts** and click **Edit Preset Amounts** to open the editor. Each preset is a label/value pair — the label is the chip respondents see, the value is the number saved into the field. Reorder or delete rows, and turn on **Allow Custom Values** to offer an **Other** chip:
+Choose **Preset Amounts** and click **Edit Preset Amounts** to open the editor. Each preset is a label/value pair: the label is the chip respondents see, the value is the number saved into the field. Reorder or delete rows, and turn on **Allow Custom Values** to offer an **Other** chip:
 
 * Selecting **Other** reveals a free-entry input (its placeholder defaults to "Custom {label}", overridable via the field's Placeholder setting).
 * A value that matches no preset automatically selects **Other** and shows the input, so a prefilled or unusual amount is never orphaned.
@@ -252,14 +252,14 @@ Convert a **Rich Text** field into a drawable signature pad for collecting e-sig
 
 ## Tips & Considerations
 
-* **All overrides are purely visual** — the underlying Salesforce field type and data format don't change. A boolean displayed as "Yes/No" radio buttons still stores `true`/`false`.
-* **Signature pad requires a Rich Text field** — this is not available on other field types.
-* **Phone masking is enabled by default** — turn it off explicitly if you don't want auto-formatting.
-* **Rating selectors work with any picklist** — the number of icons matches the number of picklist values automatically.
+* **All overrides are purely visual**: the underlying Salesforce field type and data format don't change. A boolean displayed as "Yes/No" radio buttons still stores `true`/`false`.
+* **Signature pad requires a Rich Text field**: this is not available on other field types.
+* **Phone masking is enabled by default**: turn it off explicitly if you don't want auto-formatting.
+* **Rating selectors work with any picklist**: the number of icons matches the number of picklist values automatically.
 
 ## Related Pages
 
-* [Input Field Configuration](input-field-configuration.md) — field configuration overview
-* [Field Validation](field-validation.md) — min/max, regex, required rules
-* [Field Labels & Help Text](field-labels-help-text.md) — label customization
-* [Conditional Logic](conditional-logic.md) — show/hide/require/disable rules
+* [Input Field Configuration](input-field-configuration.md): field configuration overview
+* [Field Validation](field-validation.md): min/max, regex, required rules
+* [Field Labels & Help Text](field-labels-help-text.md): label customization
+* [Conditional Logic](conditional-logic.md): show/hide/require/disable rules

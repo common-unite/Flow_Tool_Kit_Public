@@ -1,6 +1,6 @@
 # Form Availability
 
-> Control when and to whom Form Templates are available — date ranges, active toggles, and access conditions.
+> Control when and to whom Form Templates are available: date ranges, active toggles, and access conditions.
 
 ## Overview
 
@@ -16,14 +16,14 @@ Form Availability settings on `Form_Template__c` records control whether a templ
 
 ### Active Toggle
 
-The simplest control — set the template's **Active** field to true or false. Inactive templates are not rendered by the Form Template component.
+The simplest control: set the template's **Active** field to true or false. Inactive templates are not rendered by the Form Template component.
 
 ### Date Ranges
 
 Configure start and end dates to make templates available only during specific windows:
 
-* **Available From** — template becomes active on this date
-* **Available Until** — template deactivates after this date
+* **Available From**: template becomes active on this date
+* **Available Until**: template deactivates after this date
 * Useful for time-limited applications, seasonal surveys, and event registration forms
 
 ### Access Conditions
@@ -38,7 +38,7 @@ Set "Available From" to January 1 and "Available Until" to March 31. The applica
 
 ### 2. Phased Rollout
 
-Create multiple templates and stagger their availability dates. As one template expires, the next one activates — useful for phased program enrollment.
+Create multiple templates and stagger their availability dates. As one template expires, the next one activates, useful for phased program enrollment.
 
 ### 3. Emergency Deactivation
 
@@ -47,10 +47,10 @@ Toggle **Active** to false to immediately take a template offline. The form stop
 ## Tips
 
 * **Existing Submissions**: Deactivating a template does not affect existing submission records. Users who already started the form cannot resume it, but their data is preserved.
-* **Experience Cloud**: Ensure your site's Flow handles the case where a template is inactive — display a message instead of a blank screen.
+* **Experience Cloud**: Ensure your site's Flow handles the case where a template is inactive: display a message instead of a blank screen.
 * **Testing**: When building new templates, keep them inactive until testing is complete, then activate for production use.
 
 ## Related Pages
 
-* [Creating Templates](creating-templates.md) — template setup
-* [Form Templates Reference](form-templates.md) — component properties
+* [Creating Templates](creating-templates.md): template setup
+* [Form Templates Reference](form-templates.md): component properties

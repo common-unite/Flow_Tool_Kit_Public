@@ -3,7 +3,7 @@
 
 ## Overview
 
-These actions handle serialization — converting Salesforce records to JSON strings and back. This is essential for storing record data in text fields (like Form Submissions), passing complex data between systems, and processing multi-step form data.
+These actions handle serialization: converting Salesforce records to JSON strings and back. This is essential for storing record data in text fields (like Form Submissions), passing complex data between systems, and processing multi-step form data.
 
 All actions appear under the **Flow Tool Kit** category in Flow Builder.
 
@@ -36,7 +36,7 @@ Serialize a Contact record → `{"FirstName":"Jane","LastName":"Smith","Email":"
 
 **Action Name**: `JSON | Deserialize SObject String`
 
-Convert a JSON string back into a Salesforce record. The inverse of Serialize — takes a previously serialized JSON string and recreates the SObject record.
+Convert a JSON string back into a Salesforce record. The inverse of Serialize: takes a previously serialized JSON string and recreates the SObject record.
 
 #### Inputs
 

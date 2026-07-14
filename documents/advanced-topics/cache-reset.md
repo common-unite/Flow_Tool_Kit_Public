@@ -4,7 +4,7 @@
 
 ## Overview
 
-Flow Tool Kit caches form metadata for performance — instead of querying Custom Metadata Types on every form load, it stores parsed form definitions in the platform cache. This makes forms load faster but means changes in Form Builder aren't instantly visible at runtime.
+Flow Tool Kit caches form metadata for performance: instead of querying Custom Metadata Types on every form load, it stores parsed form definitions in the platform cache. This makes forms load faster but means changes in Form Builder aren't instantly visible at runtime.
 
 ## When to Reset Cache
 
@@ -64,11 +64,11 @@ This forces the browser to reload all JavaScript and CSS, which can resolve disp
 | Error messages | No | Check form setup and object access |
 
 {% hint style="warning" %}
-**Cache reset affects all users.** After a reset, the first form load for each user will be slightly slower as the cache is rebuilt. This is temporary — subsequent loads are fast again.
+**Cache reset affects all users.** After a reset, the first form load for each user will be slightly slower as the cache is rebuilt. This is temporary; subsequent loads are fast again.
 {% endhint %}
 
 ## Related Pages
 
-- [Troubleshooting](../faq-troubleshooting/troubleshooting.md) — common issues and solutions
-- [Deploying Metadata](../deployment/deploying-metadata.md) — post-deployment cache clearing
-- [Upgrading Versions](../deployment/upgrading-versions.md) — post-upgrade steps
+- [Troubleshooting](../faq-troubleshooting/troubleshooting.md): common issues and solutions
+- [Deploying Metadata](../deployment/deploying-metadata.md): post-deployment cache clearing
+- [Upgrading Versions](../deployment/upgrading-versions.md): post-upgrade steps

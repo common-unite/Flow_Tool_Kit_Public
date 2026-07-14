@@ -1,26 +1,26 @@
 # Url Parameter Mapping
 
-**Capture data from URLs automatically — no Flow required.**
+**Capture data from URLs automatically, no Flow required.**
 
-URL Parameter Mapping lets admins configure a Form Template to read values from the page URL and populate them directly onto new Form Submissions. Map UTM tracking codes, referral IDs, pre-filled field values, or any custom parameter — all without wrapping the form in a Flow.
+URL Parameter Mapping lets admins configure a Form Template to read values from the page URL and populate them directly onto new Form Submissions. Map UTM tracking codes, referral IDs, pre-filled field values, or any custom parameter, all without wrapping the form in a Flow.
 
-This is especially powerful with [Form Template Sources](form-template-sources.md). When a user clicks a campaign link with tracking parameters, the form loads with the campaign's overrides AND the URL parameters are captured on the submission — giving you full attribution in a single click.
+This is especially powerful with [Form Template Sources](form-template-sources.md). When a user clicks a campaign link with tracking parameters, the form loads with the campaign's overrides AND the URL parameters are captured on the submission, giving you full attribution in a single click.
 
 ![URL Parameter Mapping Editor](../.gitbook/assets/url-param-mapping-editor.png)
 
 ## Use Cases
 
-* **Marketing Attribution** — capture `utm_source`, `utm_campaign`, `utm_medium` on every submission for reporting
-* **Referral Tracking** — pass a referral code via `pv1` and map it to a custom field on Form Submission
-* **Pre-filled Fields** — include a donor ID or account number in the URL to pre-populate form fields
-* **Campaign Linking** — pass a Campaign ID via `pv2` and map it directly to a lookup field
-* **A/B Testing** — use `utm_content` to track which link variant drove the submission
-* **Payment Flows** — capture `payment_intent` from Stripe redirect URLs
+* **Marketing Attribution**: capture `utm_source`, `utm_campaign`, `utm_medium` on every submission for reporting
+* **Referral Tracking**: pass a referral code via `pv1` and map it to a custom field on Form Submission
+* **Pre-filled Fields**: include a donor ID or account number in the URL to pre-populate form fields
+* **Campaign Linking**: pass a Campaign ID via `pv2` and map it directly to a lookup field
+* **A/B Testing**: use `utm_content` to track which link variant drove the submission
+* **Payment Flows**: capture `payment_intent` from Stripe redirect URLs
 
 ## How It Works
 
 1. Admin opens a Form Template record and clicks the **URL Parameter Mapping** quick action
-2. The editor modal opens — select Form Submission fields and map each one to a URL parameter key
+2. The editor modal opens; select Form Submission fields and map each one to a URL parameter key
 3. Save the mappings (stored as JSON on the Form Template record)
 4. When a user loads the form via a URL with matching parameters, the values are automatically assigned to the new Form Submission
 
@@ -40,10 +40,10 @@ The form submission is created with all three fields pre-populated.
 
 ### Rules
 
-* **New submissions only** — URL parameters are only applied when creating a new Form Submission. Resuming a saved submission never overwrites existing values.
-* **Non-Flow context only** — when the form runs inside a Flow, use the existing `Form (Get Url Parameters)` screen component instead. URL Parameter Mapping is for forms loaded directly on record pages or Experience Cloud.
-* **One param, many fields** — the same URL parameter can be mapped to multiple Form Submission fields (e.g., map `pv1` to both `Referral_Code__c` and `Campaign_Source__c`).
-* **Intelligent type coercion** — URL parameters are strings, but the system automatically converts values to match the target field type (numbers, booleans, dates, lookups).
+* **New submissions only**: URL parameters are only applied when creating a new Form Submission. Resuming a saved submission never overwrites existing values.
+* **Non-Flow context only**: when the form runs inside a Flow, use the existing `Form (Get Url Parameters)` screen component instead. URL Parameter Mapping is for forms loaded directly on record pages or Experience Cloud.
+* **One param, many fields**: the same URL parameter can be mapped to multiple Form Submission fields (e.g., map `pv1` to both `Referral_Code__c` and `Campaign_Source__c`).
+* **Intelligent type coercion**: URL parameters are strings, but the system automatically converts values to match the target field type (numbers, booleans, dates, lookups).
 
 ### Type Coercion
 
@@ -58,7 +58,7 @@ The form submission is created with all three fields pre-populated.
 | Lookup (Id)               | Direct assignment        | `pv1=001xx000003DGbr` → record Id          |
 | Picklist                  | Direct assignment        | `pv1=Option A` → `"Option A"`              |
 
-Invalid values (e.g., `"abc"` for a number field) are silently skipped — the field is left blank rather than causing an error.
+Invalid values (e.g., `"abc"` for a number field) are silently skipped; the field is left blank rather than causing an error.
 
 ## Admin Setup
 
@@ -74,8 +74,8 @@ Navigate to a Form Template record and click **URL Parameter Mapping** in the ac
 
 In the editor modal:
 
-1. **Select a field** from the dropdown — shows all updateable Form Submission fields (internal/system fields are filtered out)
-2. **Choose the URL parameter** from the combobox — select which URL param key populates this field
+1. **Select a field** from the dropdown: shows all updateable Form Submission fields (internal/system fields are filtered out)
+2. **Choose the URL parameter** from the combobox: select which URL param key populates this field
 3. **Repeat** for each field you want to capture
 4. Click **Save Mappings**
 

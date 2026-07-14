@@ -3,7 +3,7 @@
 
 ## Overview
 
-Flow Tool Kit includes actions for working with files in Flows — generating PDFs from Visualforce pages, combining multiple files into zip archives, and serializing/deserializing file upload data. These actions extend Salesforce's file handling capabilities for common admin scenarios.
+Flow Tool Kit includes actions for working with files in Flows: generating PDFs from Visualforce pages, combining multiple files into zip archives, and serializing/deserializing file upload data. These actions extend Salesforce's file handling capabilities for common admin scenarios.
 
 All actions appear under the **Flow Tool Kit** category in Flow Builder.
 

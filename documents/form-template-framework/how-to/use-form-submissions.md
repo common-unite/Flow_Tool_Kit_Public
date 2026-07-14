@@ -89,7 +89,7 @@ See [Advanced Topics: Overridable Flows](https://github.com/common-unite/cUnite_
 
 ## Related Pages
 
-* [Form Submissions Reference](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-submissions.md) — full reference
-* [Build a Multi-Page Form](build-multi-page-form.md) — template creation
-* [Create PDF from Submission](create-pdf-from-submission.md) — generate PDFs
-* [Set Up Email Notifications](set-up-email-notifications.md) — notify on submission
+* [Form Submissions Reference](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-submissions.md): full reference
+* [Build a Multi-Page Form](build-multi-page-form.md): template creation
+* [Create PDF from Submission](create-pdf-from-submission.md): generate PDFs
+* [Set Up Email Notifications](set-up-email-notifications.md): notify on submission

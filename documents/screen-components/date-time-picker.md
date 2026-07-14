@@ -26,29 +26,29 @@ The component is ideal for appointment booking, event scheduling, resource avail
 
 | Property                 | Type                   | Required | Default                | Description                                                   |
 | ------------------------ | ---------------------- | -------- | ---------------------- | ------------------------------------------------------------- |
-| `prefillRecords`         | SObject\[] (Generic T) | Yes      | —                      | Collection of records containing DateTime values to display   |
-| `object`                 | String                 | No       | —                      | SObject API name                                              |
-| `startDateTimeFieldName` | String                 | Yes      | —                      | Field API name of the DateTime field on the records           |
-| `selectorLabelFieldName` | String                 | No       | —                      | Field API name to use as the display label for each time slot |
-| `disabledFieldName`      | String                 | No       | —                      | Boolean field API name — when true, the time slot is disabled |
-| `themeFieldName`         | String                 | No       | —                      | String field API name for per-record theme styling            |
+| `prefillRecords`         | SObject\[] (Generic T) | Yes      | -                      | Collection of records containing DateTime values to display   |
+| `object`                 | String                 | No       | -                      | SObject API name                                              |
+| `startDateTimeFieldName` | String                 | Yes      | -                      | Field API name of the DateTime field on the records           |
+| `selectorLabelFieldName` | String                 | No       | -                      | Field API name to use as the display label for each time slot |
+| `disabledFieldName`      | String                 | No       | -                      | Boolean field API name: when true, the time slot is disabled |
+| `themeFieldName`         | String                 | No       | -                      | String field API name for per-record theme styling            |
 | `label`                  | String                 | No       | Select a Date and Time | Calendar title/label                                          |
 | `required`               | Boolean                | No       | false                  | Require at least one selection                                |
 | `maxSelection`           | Integer                | No       | 1                      | Maximum number of selections allowed                          |
-| `selectedStartDate`      | Date                   | No       | —                      | Override the initially displayed date                         |
+| `selectedStartDate`      | Date                   | No       | -                      | Override the initially displayed date                         |
 
 ### Display Options
 
 | Property                  | Type    | Default | Description                                   |
 | ------------------------- | ------- | ------- | --------------------------------------------- |
-| `hideCalendarOnSelection` | Boolean | —       | Hide the calendar after a selection is made   |
-| `hide`                    | Boolean | —       | Hide the entire calendar component            |
-| `hidePills`               | Boolean | —       | Hide selected record pills                    |
-| `hideSelectors`           | Boolean | —       | Hide time slot selectors                      |
-| `hideTimeZone`            | Boolean | —       | Hide the time zone display                    |
-| `navigateOnSelect`        | Boolean | —       | Auto-navigate to the next screen on selection |
-| `topMargin`               | String  | —       | Top margin SLDS class                         |
-| `bottomMargin`            | String  | —       | Bottom margin SLDS class                      |
+| `hideCalendarOnSelection` | Boolean | -       | Hide the calendar after a selection is made   |
+| `hide`                    | Boolean | -       | Hide the entire calendar component            |
+| `hidePills`               | Boolean | -       | Hide selected record pills                    |
+| `hideSelectors`           | Boolean | -       | Hide time slot selectors                      |
+| `hideTimeZone`            | Boolean | -       | Hide the time zone display                    |
+| `navigateOnSelect`        | Boolean | -       | Auto-navigate to the next screen on selection |
+| `topMargin`               | String  | -       | Top margin SLDS class                         |
+| `bottomMargin`            | String  | -       | Bottom margin SLDS class                      |
 
 ### Schedule Mode
 
@@ -83,9 +83,9 @@ Query available appointment slots, pass them as `prefillRecords`. Set `maxSelect
 
 Set `maxSelection` to allow multiple selections. Users pick several dates for a multi-session event. Process `selectedRecords` to create event records for each date.
 
-### 3. Schedule Mode — Office Hours
+### 3. Schedule Mode: Office Hours
 
-Use Schedule Mode to generate available slots: set `times` to office hours, `daysOfWeek` to weekdays, and `skipDates` for holidays. No prefill records needed — the component generates the calendar from the schedule definition.
+Use Schedule Mode to generate available slots: set `times` to office hours, `daysOfWeek` to weekdays, and `skipDates` for holidays. No prefill records needed; the component generates the calendar from the schedule definition.
 
 ## Tips & Considerations
 

@@ -30,7 +30,7 @@ Reviews help other admins discover Flow Tool Kit and help us understand what's w
 
 Need help implementing Flow Tool Kit or building custom solutions?
 
-**[Flow Wizards — AppExchange Consulting](https://appexchange.salesforce.com/appxConsultingListingDetail?listingId=86d0282b-a980-462e-a4a2-49167365bc50)**
+**[Flow Wizards: AppExchange Consulting](https://appexchange.salesforce.com/appxConsultingListingDetail?listingId=86d0282b-a980-462e-a4a2-49167365bc50)**
 
 Services include:
 - Custom Flow development and form configuration
@@ -40,6 +40,6 @@ Services include:
 
 ## Related Pages
 
-- [Installation](../getting-started/installation.md) — first-time setup guide
-- [Upgrading Versions](../deployment/upgrading-versions.md) — upgrading to new versions
-- [Community & Resources](community-resources.md) — blog posts, videos, and social links
+- [Installation](../getting-started/installation.md): first-time setup guide
+- [Upgrading Versions](../deployment/upgrading-versions.md): upgrading to new versions
+- [Community & Resources](community-resources.md): blog posts, videos, and social links

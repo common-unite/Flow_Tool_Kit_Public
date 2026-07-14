@@ -1,6 +1,6 @@
 # Use Section Dividers
 
-> Turn a plain divider into one of 12 designed styles — a labeled rule, a brand bookmark, a centered icon, and more — all themed from your Form Theme.
+> Turn a plain divider into one of 12 designed styles (a labeled rule, a brand bookmark, a centered icon, and more), all themed from your Form Theme.
 
 {% hint style="info" %}
 **Prerequisites**: A form built in the **Form Builder** with at least one **Divider** section. Colors come from the form's **Form Theme**, so assign a theme to see your brand applied.
@@ -8,7 +8,7 @@
 
 ## What It's For
 
-A **Divider** section breaks a form into visual segments. Instead of only a plain line, you can pick a **Divider Style** that adds a label, an icon, or a decorative treatment — useful for section headings, step separators, or simply a more polished form. Every style is drawn with Lightning Design System building blocks and colored entirely from your Form Theme, so dividers match the rest of your form automatically.
+A **Divider** section breaks a form into visual segments. Instead of only a plain line, you can pick a **Divider Style** that adds a label, an icon, or a decorative treatment, useful for section headings, step separators, or simply a more polished form. Every style is drawn with Lightning Design System building blocks and colored entirely from your Form Theme, so dividers match the rest of your form automatically.
 
 ![A themed divider rendering on a form](../.gitbook/assets/147-divider-render-demo.gif)
 
@@ -41,17 +41,17 @@ Open the divider section's **Divider Style** panel and choose a style from the *
 
 ## Step 3: Add a Label (and Subtitle / Icon)
 
-* **Label** — type the text shown by the style. The label supports **rich text**, so you can add your own styling tags. Text is shown exactly as you type it — if you want it uppercase, type it uppercase.
-* **Icon** — for the **Compact** and **Centered Icon** styles, an **Icon** picker appears. Choose any SLDS icon (e.g. `utility:flag`). If you leave it blank, no icon is shown.
-* **Subtitle** — the **Compact** style also shows the section's subtitle beneath the label.
+* **Label**: type the text shown by the style. The label supports **rich text**, so you can add your own styling tags. Text is shown exactly as you type it; if you want it uppercase, type it uppercase.
+* **Icon**: for the **Compact** and **Centered Icon** styles, an **Icon** picker appears. Choose any SLDS icon (e.g. `utility:flag`). If you leave it blank, no icon is shown.
+* **Subtitle**: the **Compact** style also shows the section's subtitle beneath the label.
 
 {% hint style="info" %}
-The label, subtitle, and icon reuse the divider section's existing **Title**, **Subtitle**, and **Icon** fields — so merge fields like `{!Account.Name}` resolve in a divider label just as they do in a header.
+The label, subtitle, and icon reuse the divider section's existing **Title**, **Subtitle**, and **Icon** fields, so merge fields like `{!Account.Name}` resolve in a divider label just as they do in a header.
 {% endhint %}
 
 ## Theming
 
-Dividers take **all** of their color and thickness from the assigned Form Theme — there are no per-divider color settings:
+Dividers take **all** of their color and thickness from the assigned Form Theme; there are no per-divider color settings:
 
 | Theme field                     | Controls                                        |
 | ------------------------------- | ----------------------------------------------- |
@@ -62,7 +62,7 @@ Dividers take **all** of their color and thickness from the assigned Form Theme 
 | **Heading Icon Color**          | Icon and chevron color                          |
 | **Heading Subtitle Font Color** | Subtitle text                                   |
 
-If a theme leaves one of these blank, the divider falls back to your site's branding automatically — Experience Cloud (LWR and Aura) and internal Lightning brand colors — before any hardcoded default.
+If a theme leaves one of these blank, the divider falls back to your site's branding automatically, Experience Cloud (LWR and Aura) and internal Lightning brand colors, before any hardcoded default.
 
 {% hint style="success" %}
 Because color and size are theme-driven, changing your Form Theme restyles every divider on the form at once.

@@ -1,6 +1,6 @@
 # Overview
 
-> Multi-page forms with built-in navigation, save-and-resume, submissions, and conversion — powered by a template record structure.
+> Multi-page forms with built-in navigation, save-and-resume, submissions, and conversion, powered by a template record structure.
 
 ## Video Introduction
 
@@ -14,7 +14,7 @@ The Form Template Framework extends Flow Tool Kit beyond single-screen form comp
 
 | Scenario                                                        | Use Form Components | Use Form Templates |
 | --------------------------------------------------------------- | :-----------------: | :----------------: |
-| Simple data entry — one object, one screen                      |         Yes         |                    |
+| Simple data entry: one object, one screen                      |         Yes         |                    |
 | Multi-page intake or application                                |                     |         Yes        |
 | Save and resume across sessions                                 |                     |         Yes        |
 | Submission review and approval workflows                        |                     |         Yes        |
@@ -41,15 +41,15 @@ Each template contains **pages**, and each page contains **sections**. Each sect
 
 ## Key Capabilities
 
-* **Multi-page navigation** — forward, backward, and page-level conditional logic
-* **Save and resume** — authenticated users can save progress and return later
-* **Form Submissions** — structured storage of user responses as `Form_Submission__c` records
-* **Submission conversion** — transform submissions into Salesforce records (Account, Contact, Lead, etc.)
-* **Overridable conversion flows** — replace default conversion with custom Flow logic
-* **Email notifications** — trigger notifications on submission events
-* **PDF generation** — create PDF documents from completed submissions
-* **Campaign integration** — link submissions to Salesforce Campaigns
-* **Form availability** — control when templates are active via date ranges and conditions
+* **Multi-page navigation**: forward, backward, and page-level conditional logic
+* **Save and resume**: authenticated users can save progress and return later
+* **Form Submissions**: structured storage of user responses as `Form_Submission__c` records
+* **Submission conversion**: transform submissions into Salesforce records (Account, Contact, Lead, etc.)
+* **Overridable conversion flows**: replace default conversion with custom Flow logic
+* **Email notifications**: trigger notifications on submission events
+* **PDF generation**: create PDF documents from completed submissions
+* **Campaign integration**: link submissions to Salesforce Campaigns
+* **Form availability**: control when templates are active via date ranges and conditions
 
 ## Section Map
 
@@ -70,6 +70,6 @@ Each template contains **pages**, and each page contains **sections**. Each sect
 
 ## Related Pages
 
-* [Core Concepts](../getting-started/core-concepts.md) — how form components and templates compare
-* [Data Model](../advanced-topics/data-model.md) — complete object and field reference
-* [Videos: Form Templates](../videos/videos-form-templates.md) — video walkthroughs
+* [Core Concepts](../getting-started/core-concepts.md): how form components and templates compare
+* [Data Model](../advanced-topics/data-model.md): complete object and field reference
+* [Videos: Form Templates](../videos/videos-form-templates.md): video walkthroughs

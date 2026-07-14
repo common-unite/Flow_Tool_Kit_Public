@@ -36,30 +36,30 @@ This is especially useful for long intake forms, applications, surveys, and any 
 
 | Property         | Type                     | Required | Default | Description                                              |
 | ---------------- | ------------------------ | -------- | ------- | -------------------------------------------------------- |
-| `recordId`       | String                   | Yes      | —       | The Id of the Form Template record (`Form_Template__c`)  |
+| `recordId`       | String                   | Yes      | None    | The Id of the Form Template record (`Form_Template__c`)  |
 | `isFlow`         | Boolean                  | Yes      | false   | Set to true when used inside a Flow                      |
-| `disableAll`     | Boolean                  | No       | —       | Read-only mode; disables all form editing                |
-| `currentPageId`  | String                   | No       | —       | Id of the current page (for resuming at a specific page) |
-| `formSubmission` | Form\_Submission\_\_c    | No       | —       | Existing Form Submission record (for save-and-resume)    |
-| `relatedRecords` | Form\_Submission\_\_c\[] | No       | —       | Collection of related submission records                 |
+| `disableAll`     | Boolean                  | No       | None    | Read-only mode; disables all form editing                |
+| `currentPageId`  | String                   | No       | None    | Id of the current page (for resuming at a specific page) |
+| `formSubmission` | Form\_Submission\_\_c    | No       | None    | Existing Form Submission record (for save-and-resume)    |
+| `relatedRecords` | Form\_Submission\_\_c\[] | No       | None    | Collection of related submission records                 |
 
 ### Inputs (Record/App/Home Page)
 
 | Property           | Type    | Required | Default | Description                                                                                                                                                                          |
 | ------------------ | ------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `recordId`         | String  | No       | —       | Form Template, Form Submission, or any record Id (auto-set on Record Pages)                                                                                                          |
-| `relatedFieldName` | String  | No       | —       | A Form Template / Form Submission lookup reachable from the page's record; on Record Pages this is a picklist of every qualifying field on the object, its parents, and grandparents |
-| `fixedTemplateId`  | String  | No       | —       | Form Template to load when nothing else resolves (picklist of all templates); also loads directly when no Record Id is provided on App/Home pages                                    |
-| `disableAll`       | Boolean | No       | —       | Read-only mode                                                                                                                                                                       |
+| `recordId`         | String  | No       | None    | Form Template, Form Submission, or any record Id (auto-set on Record Pages)                                                                                                          |
+| `relatedFieldName` | String  | No       | None    | A Form Template / Form Submission lookup reachable from the page's record; on Record Pages this is a picklist of every qualifying field on the object, its parents, and grandparents |
+| `fixedTemplateId`  | String  | No       | None    | Form Template to load when nothing else resolves (picklist of all templates); also loads directly when no Record Id is provided on App/Home pages                                    |
+| `disableAll`       | Boolean | No       | None    | Read-only mode                                                                                                                                                                       |
 
 ### Inputs (Experience Cloud)
 
 | Property           | Type    | Required | Default     | Description                                                                                                |
 | ------------------ | ------- | -------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
 | `recordId`         | String  | Yes      | {!recordId} | Form Template, Form Submission, or any record Id                                                           |
-| `relatedFieldName` | String  | No       | —           | Related field path entered as text (e.g. `Contact.FlowToolKit__Latest_Form_Submission__c`)                 |
-| `fixedTemplateId`  | String  | No       | —           | Form Template record Id to load when the Record Id resolves to no template or submission (entered as text) |
-| `disableAll`       | Boolean | No       | —           | Read-only mode                                                                                             |
+| `relatedFieldName` | String  | No       | None        | Related field path entered as text (e.g. `Contact.FlowToolKit__Latest_Form_Submission__c`)                 |
+| `fixedTemplateId`  | String  | No       | None        | Form Template record Id to load when the Record Id resolves to no template or submission (entered as text) |
+| `disableAll`       | Boolean | No       | None        | Read-only mode                                                                                             |
 
 ### Outputs (Flow Screen)
 

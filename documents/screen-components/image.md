@@ -26,16 +26,16 @@ Use it for branding, instructional graphics, splash screens, or any scenario whe
 
 | Property           | Type    | Required | Default | Description                                                  |
 | ------------------ | ------- | -------- | ------- | ------------------------------------------------------------ |
-| `contentAssetName` | String  | No       | —       | DeveloperName of a Salesforce Content Asset                  |
-| `customImageLink`  | String  | No       | —       | External URL or relative path to an image                    |
-| `isSvg`            | Boolean | No       | —       | Set to true when the content asset is an SVG                 |
-| `overlayHexColor`  | String  | No       | —       | Hex color for an overlay on top of the image                 |
-| `overlayOpacity`   | Integer | No       | —       | Opacity of the overlay (0-100)                               |
-| `imageStyle`       | String  | No       | —       | Custom CSS styles applied to the image element               |
-| `customRichText`   | String  | No       | —       | Rich text HTML rendered on top of the image                  |
-| `serverURL`        | String  | No       | —       | Salesforce server URL (for Experience Cloud path resolution) |
-| `topMargin`        | String  | No       | —       | Top margin SLDS class                                        |
-| `bottomMargin`     | String  | No       | —       | Bottom margin SLDS class                                     |
+| `contentAssetName` | String  | No       | -       | DeveloperName of a Salesforce Content Asset                  |
+| `customImageLink`  | String  | No       | -       | External URL or relative path to an image                    |
+| `isSvg`            | Boolean | No       | -       | Set to true when the content asset is an SVG                 |
+| `overlayHexColor`  | String  | No       | -       | Hex color for an overlay on top of the image                 |
+| `overlayOpacity`   | Integer | No       | -       | Opacity of the overlay (0-100)                               |
+| `imageStyle`       | String  | No       | -       | Custom CSS styles applied to the image element               |
+| `customRichText`   | String  | No       | -       | Rich text HTML rendered on top of the image                  |
+| `serverURL`        | String  | No       | -       | Salesforce server URL (for Experience Cloud path resolution) |
+| `topMargin`        | String  | No       | -       | Top margin SLDS class                                        |
+| `bottomMargin`     | String  | No       | -       | Bottom margin SLDS class                                     |
 
 ## Common Patterns
 
@@ -54,5 +54,5 @@ Combine an image with `overlayHexColor` and `overlayOpacity` to create a darkene
 ## Tips & Considerations
 
 * **Content Asset vs URL**: Content Assets are packaged and deployed with your metadata. External URLs require network access and may be blocked by CSP settings in Experience Cloud.
-* **SVG Support**: Set `isSvg=true` for Content Assets that are SVG files — the component handles SVG rendering differently than raster images.
+* **SVG Support**: Set `isSvg=true` for Content Assets that are SVG files; the component handles SVG rendering differently than raster images.
 * **Experience Cloud**: Set `serverURL` to resolve Content Asset paths correctly in Experience Cloud contexts.

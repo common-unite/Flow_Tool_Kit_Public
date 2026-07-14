@@ -16,7 +16,7 @@
 
 ![Repeater displaying contact cards](../.gitbook/assets/repeater-contact-cards.png)
 
-Repeating sections (table repeaters) let users add multiple rows of data within a form — think line items on an order, attendees at an event, or multiple addresses. Instead of pre-defining a fixed number of fields, users add rows as needed.
+Repeating sections (table repeaters) let users add multiple rows of data within a form: think line items on an order, attendees at an event, or multiple addresses. Instead of pre-defining a fixed number of fields, users add rows as needed.
 
 ![Repeater drag and drop reordering](../.gitbook/assets/repeater-drag-arrange.gif)
 
@@ -24,7 +24,7 @@ Repeating sections (table repeaters) let users add multiple rows of data within 
 
 1. Open your form in **Form Builder**.
 2. Add a section and configure it as a **Repeating Section** (table repeater type).
-3. Add the fields that make up each row — these become the columns.
+3. Add the fields that make up each row; these become the columns.
 
 For example, for order line items:
 
@@ -52,10 +52,10 @@ The repeating section outputs a **collection** of records. After the form screen
 
 ## Tips
 
-* **Keep rows simple** — 3-5 columns per row works best. Too many columns make the repeater hard to use on smaller screens.
-* **Set reasonable limits** — use Min/Max to prevent empty submissions and unreasonable row counts.
-* **Default rows** — start with 1 row pre-populated so users understand the format.
-* **Validation** — required fields within the repeater apply to each row individually.
+* **Keep rows simple**: 3-5 columns per row works best. Too many columns make the repeater hard to use on smaller screens.
+* **Set reasonable limits**: use Min/Max to prevent empty submissions and unreasonable row counts.
+* **Default rows**: start with 1 row pre-populated so users understand the format.
+* **Validation**: required fields within the repeater apply to each row individually.
 
 ## Common Patterns
 
@@ -68,6 +68,6 @@ The repeating section outputs a **collection** of records. After the form screen
 
 ## Related Pages
 
-* [Data Table](../screen-components/data-table.md) — alternative for managing record collections
-* [Form Components](../form-configuration/form-components-system.md) — all field types
-* [Build a Form](build-a-form.md) — form creation basics
+* [Data Table](../screen-components/data-table.md): alternative for managing record collections
+* [Form Components](../form-configuration/form-components-system.md): all field types
+* [Build a Form](build-a-form.md): form creation basics

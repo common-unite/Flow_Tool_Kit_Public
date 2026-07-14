@@ -14,7 +14,7 @@
 
 ## Overview
 
-Flow Tool Kit can generate PDF documents from form submission data — useful for applications, receipts, confirmation letters, and records that need to be shared or archived as files.
+Flow Tool Kit can generate PDF documents from form submission data, useful for applications, receipts, confirmation letters, and records that need to be shared or archived as files.
 
 ![PDF default layout from form submission](../../.gitbook/assets/pdf-default-layout.png)
 
@@ -57,18 +57,18 @@ For custom PDF workflows, use the PDF Generation invocable action in any Flow:
 1. Add an **Action** element to your Flow.
 2. Search for the PDF Generation action.
 3. Configure:
-   * **Submission ID** — the Form Submission record to generate the PDF from
-   * **Template** — optional PDF template settings
+   * **Submission ID**: the Form Submission record to generate the PDF from
+   * **Template**: optional PDF template settings
 4. The action returns the ContentDocument ID of the generated PDF.
 
 ## Tips
 
-* **Branding** — customize the PDF header with your organization's logo and colors
-* **Distribution** — combine with [Email Notifications](set-up-email-notifications.md) to automatically email the PDF to the submitter or an internal team
-* **Archival** — PDFs provide a point-in-time snapshot of the submission data, even if the original records are later modified
+* **Branding**: customize the PDF header with your organization's logo and colors
+* **Distribution**: combine with [Email Notifications](set-up-email-notifications.md) to automatically email the PDF to the submitter or an internal team
+* **Archival**: PDFs provide a point-in-time snapshot of the submission data, even if the original records are later modified
 
 ## Related Pages
 
-* [Use Form Submissions](use-form-submissions.md) — submission lifecycle
-* [Set Up Email Notifications](set-up-email-notifications.md) — email PDFs automatically
-* [Invocable Actions](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/invocable-actions/record-operations.md) — all Flow actions
+* [Use Form Submissions](use-form-submissions.md): submission lifecycle
+* [Set Up Email Notifications](set-up-email-notifications.md): email PDFs automatically
+* [Invocable Actions](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/invocable-actions/record-operations.md): all Flow actions

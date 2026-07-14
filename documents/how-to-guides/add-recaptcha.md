@@ -3,7 +3,7 @@
 > Protect public-facing forms from bots with Google reCAPTCHA.
 
 {% hint style="info" %}
-**Prerequisites**: A form deployed on an Experience Cloud site. reCAPTCHA is only needed for public-facing forms — internal Lightning forms don't need it.
+**Prerequisites**: A form deployed on an Experience Cloud site. reCAPTCHA is only needed for public-facing forms; internal Lightning forms don't need it.
 {% endhint %}
 
 ## Video Walkthrough
@@ -60,7 +60,7 @@ On the permission set assigned to your guest user, grant all of:
 
 Then assign the permission set via **Experience Workspaces → Administration → Pages → Go to Force.com → Public Access Settings → Manage Assignments**. Also verify **Setup → Session Settings → Let guest users make callouts using Named Credentials** is enabled.
 
-See [Google reCAPTCHA Setup — Grant Guest User Access](../advanced-topics/google-recaptcha-setup.md#grant-guest-user-access-to-the-external-credential) for the full checklist.
+See [Google reCAPTCHA Setup: Grant Guest User Access](../advanced-topics/google-recaptcha-setup.md#grant-guest-user-access-to-the-external-credential) for the full checklist.
 
 ## Step 3: Enable reCAPTCHA on Your Form
 
@@ -80,7 +80,7 @@ See [Google reCAPTCHA Setup — Grant Guest User Access](../advanced-topics/goog
 
 |                     | v2 (Checkbox)                      | v3 (Invisible)                           |
 | ------------------- | ---------------------------------- | ---------------------------------------- |
-| **User Experience** | User clicks a checkbox             | No user interaction — runs in background |
+| **User Experience** | User clicks a checkbox             | No user interaction; runs in background |
 | **When to Use**     | When you want visible verification | When you want seamless UX                |
 | **Scoring**         | Pass/fail                          | Score 0.0-1.0 (you set the threshold)    |
 | **Complexity**      | Simpler to set up                  | Requires threshold tuning                |
@@ -93,7 +93,7 @@ See [Google reCAPTCHA Setup — Grant Guest User Access](../advanced-topics/goog
 
 | Issue                                                                                        | Fix                                                                                                                                                                                                                                                                                       |
 | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| reCAPTCHA widget doesn't load                                                                | Check CSP Trusted Sites — `https://www.google.com` must be trusted                                                                                                                                                                                                                        |
+| reCAPTCHA widget doesn't load                                                                | Check CSP Trusted Sites: `https://www.google.com` must be trusted                                                                                                                                                                                                                        |
 | "Invalid site key" error                                                                     | Verify the site key matches your domain in the Google reCAPTCHA console                                                                                                                                                                                                                   |
 | All submissions blocked                                                                      | Check the secret key is correct. For v3, lower the score threshold.                                                                                                                                                                                                                       |
 | Works in sandbox, not production                                                             | Add the production domain to the Google reCAPTCHA site registration                                                                                                                                                                                                                       |
@@ -101,7 +101,7 @@ See [Google reCAPTCHA Setup — Grant Guest User Access](../advanced-topics/goog
 
 ## Related Pages
 
-* [reCAPTCHA & Security Reference](../form-configuration/recaptcha-security.md) — full configuration details
-* [Google reCAPTCHA Setup (Advanced)](../advanced-topics/google-recaptcha-setup.md) — detailed setup guide
-* [Deploy to Experience Cloud](deploy-to-experience-cloud.md) — Experience Cloud form deployment
-* [Guest User Permissions](../experience-cloud/experience-cloud-components.md) — required permissions for guest users
+* [reCAPTCHA & Security Reference](../form-configuration/recaptcha-security.md): full configuration details
+* [Google reCAPTCHA Setup (Advanced)](../advanced-topics/google-recaptcha-setup.md): detailed setup guide
+* [Deploy to Experience Cloud](deploy-to-experience-cloud.md): Experience Cloud form deployment
+* [Guest User Permissions](../experience-cloud/experience-cloud-components.md): required permissions for guest users

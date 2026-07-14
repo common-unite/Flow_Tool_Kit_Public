@@ -1,10 +1,10 @@
 # Repeater
 
-> Display and manage a repeating collection of form components on a Flow Screen — add, edit, delete, clone, reorder, and select records.
+> Display and manage a repeating collection of form components on a Flow Screen: add, edit, delete, clone, reorder, and select records.
 
 ## Overview
 
-Form (Repeater) renders a collection of records, each displayed using the same form component layout. Users can add new records, edit existing ones, delete, clone, reorder, and select records — all within a single Flow Screen. It's the form-based equivalent of Data Table but displays each record as a full form component instead of a table row.
+Form (Repeater) renders a collection of records, each displayed using the same form component layout. Users can add new records, edit existing ones, delete, clone, reorder, and select records, all within a single Flow Screen. It's the form-based equivalent of Data Table but displays each record as a full form component instead of a table row.
 
 Repeater is ideal for scenarios where each record needs a rich editing experience: line items with complex fields, repeating sections in applications, or any parent-child relationship where inline table editing isn't enough.
 
@@ -38,14 +38,14 @@ Users can arrange records by dragging them into the desired order.
 
 | Property                     | Type                                     | Required | Default | Description                                                                |
 | ---------------------------- | ---------------------------------------- | -------- | ------- | -------------------------------------------------------------------------- |
-| `formRepeaterConfiguration`  | FormRepeaterConfiguration (Apex-Defined) | No       | —       | Configuration object from the "Configure Form (Repeater)" invocable action |
-| `formQualifiedApiName`       | String                                   | No       | —       | QualifiedApiName of the form component to render for each record           |
-| `object`                     | String                                   | No       | —       | SObject API name                                                           |
-| `recordTemplate`             | SObject (Generic T)                      | No       | —       | Template record with default values for new records                        |
-| `formJSON`                   | String                                   | No       | —       | Form definition as JSON (alternative to metadata)                          |
+| `formRepeaterConfiguration`  | FormRepeaterConfiguration (Apex-Defined) | No       | -       | Configuration object from the "Configure Form (Repeater)" invocable action |
+| `formQualifiedApiName`       | String                                   | No       | -       | QualifiedApiName of the form component to render for each record           |
+| `object`                     | String                                   | No       | -       | SObject API name                                                           |
+| `recordTemplate`             | SObject (Generic T)                      | No       | -       | Template record with default values for new records                        |
+| `formJSON`                   | String                                   | No       | -       | Form definition as JSON (alternative to metadata)                          |
 | `formJsonEnabled`            | Boolean                                  | No       | false   | Use `formJSON` instead of `formQualifiedApiName`                           |
 | `dynamicFormSelectorEnabled` | Boolean                                  | No       | false   | Allow dynamic form component selection                                     |
-| `languageOverride`           | String                                   | No       | —       | ISO language code override                                                 |
+| `languageOverride`           | String                                   | No       | -       | ISO language code override                                                 |
 | `max`                        | Integer                                  | No       | 5       | Maximum number of records allowed                                          |
 | `min`                        | Integer                                  | No       | 1       | Minimum number of records required                                         |
 
@@ -53,14 +53,14 @@ Users can arrange records by dragging them into the desired order.
 
 | Property           | Type    | Default | Description                    |
 | ------------------ | ------- | ------- | ------------------------------ |
-| `allowNew`         | Boolean | —       | Show the "New" button          |
-| `allowEdit`        | Boolean | —       | Show the "Edit" button         |
-| `allowDelete`      | Boolean | —       | Show the "Delete" button       |
-| `allowClone`       | Boolean | —       | Show the "Clone" button        |
-| `allowReposition`  | Boolean | —       | Show reorder (up/down) buttons |
-| `allowImport`      | Boolean | —       | Show the "Import" button       |
-| `allowSelect`      | Boolean | —       | Allow record selection         |
-| `allowViewDetails` | Boolean | —       | Show "View Details" action     |
+| `allowNew`         | Boolean | -       | Show the "New" button          |
+| `allowEdit`        | Boolean | -       | Show the "Edit" button         |
+| `allowDelete`      | Boolean | -       | Show the "Delete" button       |
+| `allowClone`       | Boolean | -       | Show the "Clone" button        |
+| `allowReposition`  | Boolean | -       | Show reorder (up/down) buttons |
+| `allowImport`      | Boolean | -       | Show the "Import" button       |
+| `allowSelect`      | Boolean | -       | Allow record selection         |
+| `allowViewDetails` | Boolean | -       | Show "View Details" action     |
 
 ### Action Labels
 
@@ -119,28 +119,28 @@ Users can arrange records by dragging them into the desired order.
 
 | Property                      | Type    | Default             | Description                           |
 | ----------------------------- | ------- | ------------------- | ------------------------------------- |
-| `title`                       | String  | —                   | Header title                          |
-| `subtitle`                    | String  | —                   | Header subtitle                       |
-| `helpText`                    | String  | —                   | Help text                             |
-| `iconName`                    | String  | —                   | SLDS icon name                        |
-| `richText`                    | String  | —                   | Rich text HTML content                |
+| `title`                       | String  | -                   | Header title                          |
+| `subtitle`                    | String  | -                   | Header subtitle                       |
+| `helpText`                    | String  | -                   | Help text                             |
+| `iconName`                    | String  | -                   | SLDS icon name                        |
+| `richText`                    | String  | -                   | Rich text HTML content                |
 | `showHeader`                  | Boolean | true                | Show the header                       |
-| `themeOverrideName`           | String  | —                   | Theme for form sections               |
-| `themeHeaderName`             | String  | —                   | Theme for the header                  |
+| `themeOverrideName`           | String  | -                   | Theme for form sections               |
+| `themeHeaderName`             | String  | -                   | Theme for the header                  |
 | `enableAccordion`             | Boolean | false               | Display each record as an accordion   |
 | `wrapInAccordion`             | Boolean | false               | Wrap entire repeater in an accordion  |
 | `dynamicHeaders`              | Boolean | false               | Use dynamic header content per record |
-| `accordionTitle`              | String  | —                   | Accordion header text                 |
-| `subtitleTemplate`            | String  | —                   | Template string for record subtitles  |
-| `iconNameTemplate`            | String  | —                   | Template string for record icons      |
+| `accordionTitle`              | String  | -                   | Accordion header text                 |
+| `subtitleTemplate`            | String  | -                   | Template string for record subtitles  |
+| `iconNameTemplate`            | String  | -                   | Template string for record icons      |
 | `preventAccordionClose`       | Boolean | false               | Keep at least one accordion open      |
 | `closedOnLoad`                | Boolean | false               | Start with accordions collapsed       |
-| `hideDivider`                 | Boolean | —                   | Hide divider between records          |
-| `displayRepeaterButtonsAbove` | Boolean | —                   | Show action buttons above records     |
-| `smallSize`                   | Integer | —                   | Column size on small screens          |
-| `mediumSize`                  | Integer | —                   | Column size on medium screens         |
-| `largeSize`                   | Integer | —                   | Column size on large screens          |
-| `topMargin`                   | String  | —                   | Top margin SLDS class                 |
+| `hideDivider`                 | Boolean | -                   | Hide divider between records          |
+| `displayRepeaterButtonsAbove` | Boolean | -                   | Show action buttons above records     |
+| `smallSize`                   | Integer | -                   | Column size on small screens          |
+| `mediumSize`                  | Integer | -                   | Column size on medium screens         |
+| `largeSize`                   | Integer | -                   | Column size on large screens          |
+| `topMargin`                   | String  | -                   | Top margin SLDS class                 |
 | `bottomMargin`                | String  | slds-m-bottom\_none | Bottom margin SLDS class              |
 
 ### Validation & Behavior
@@ -153,7 +153,7 @@ Users can arrange records by dragging them into the desired order.
 | `disableAllHeaders`         | Boolean | false   | Disable section headers            |
 | `displayPrompts`            | Boolean | false   | Show field help prompts            |
 | `preventValidationBypass`   | Boolean | false   | Prevent validation bypass          |
-| `stampFormQualifiedApiName` | Boolean | —       | Stamp the form name on each record |
+| `stampFormQualifiedApiName` | Boolean | -       | Stamp the form name on each record |
 
 ## Common Patterns
 
@@ -163,7 +163,7 @@ Prefill with existing line items. Enable New, Edit, Delete. After the screen, pr
 
 ### 2. Multi-Record Application Sections
 
-Use as a repeating section in a longer form — e.g., "Employment History" where users add multiple jobs. Set `min=1` and `max=5`.
+Use as a repeating section in a longer form, e.g., "Employment History" where users add multiple jobs. Set `min=1` and `max=5`.
 
 ### 3. Record Selection List
 
@@ -172,6 +172,6 @@ Enable `allowSelect` and display records as selectable cards. Use `selectedRecor
 ## Tips & Considerations
 
 * **Configuration Action**: Use the "Configure Form (Repeater)" invocable action to set all repeater properties in a single step, then pass the result to `formRepeaterConfiguration`.
-* **Accordion Display**: For complex records, enable `enableAccordion` so each record collapses into a compact header — reduces visual clutter with many records.
+* **Accordion Display**: For complex records, enable `enableAccordion` so each record collapses into a compact header, which reduces visual clutter with many records.
 * **Responsive Layout**: Use `smallSize`, `mediumSize`, and `largeSize` to control how many records display per row on different screen sizes.
 * **Reordering**: When `allowReposition` is enabled, specify `repositionFieldApiName` to indicate which numeric field stores the position value.

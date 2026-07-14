@@ -5,7 +5,7 @@
 
 Flow Tool Kit integrates Google reCAPTCHA v3 to protect forms from automated bot submissions. This is particularly important for Experience Cloud (community) forms where unauthenticated guest users can access your flows.
 
-reCAPTCHA v3 works invisibly — it scores user interactions in the background without presenting a challenge (no "select all traffic lights" puzzles). Each interaction gets a score from 0.0 (likely a bot) to 1.0 (likely a human). You configure a threshold score, and the button action only proceeds if the user's score meets or exceeds it.
+reCAPTCHA v3 works invisibly: it scores user interactions in the background without presenting a challenge (no "select all traffic lights" puzzles). Each interaction gets a score from 0.0 (likely a bot) to 1.0 (likely a human). You configure a threshold score, and the button action only proceeds if the user's score meets or exceeds it.
 
 ## Where to Configure
 
@@ -13,11 +13,11 @@ reCAPTCHA is configured **per-button** on the Custom Buttons component. Each but
 
 ## Quick Start
 
-1. **Set Up reCAPTCHA** — Register your site with Google reCAPTCHA v3 and obtain site and secret keys.
-2. **Configure in Salesforce** — Store the reCAPTCHA keys in your Salesforce org's custom settings or metadata (see setup section below).
-3. **Enable on Button** — In the Custom Buttons property editor, enable `reCAPTCHA_Enabled` on the button that should be protected.
-4. **Set Threshold** — Set `reCAPTCHA_Threshold` to your desired minimum score (e.g., 50 for 0.5 score).
-5. **Deploy** — Publish your Experience Cloud site. reCAPTCHA verification runs when the protected button is clicked.
+1. **Set Up reCAPTCHA**: Register your site with Google reCAPTCHA v3 and obtain site and secret keys.
+2. **Configure in Salesforce**: Store the reCAPTCHA keys in your Salesforce org's custom settings or metadata (see setup section below).
+3. **Enable on Button**: In the Custom Buttons property editor, enable `reCAPTCHA_Enabled` on the button that should be protected.
+4. **Set Threshold**: Set `reCAPTCHA_Threshold` to your desired minimum score (e.g., 50 for 0.5 score).
+5. **Deploy**: Publish your Experience Cloud site. reCAPTCHA verification runs when the protected button is clicked.
 
 ## Properties
 
@@ -26,7 +26,7 @@ These properties are available on each button (1-5) in the Custom Buttons compon
 | Property | Type | Default | Description |
 |---|---|---|---|
 | `reCAPTCHA_Enabled` | Boolean | false | Enable reCAPTCHA verification for this button |
-| `reCAPTCHA_Threshold` | Integer | — | Minimum score (0-100) required to proceed. Maps to Google's 0.0-1.0 scale (e.g., 50 = 0.5) |
+| `reCAPTCHA_Threshold` | Integer | None | Minimum score (0-100) required to proceed. Maps to Google's 0.0-1.0 scale (e.g., 50 = 0.5) |
 
 ## How It Works
 
@@ -50,9 +50,9 @@ These properties are available on each button (1-5) in the Custom Buttons compon
 | Component | Integration |
 |---|---|
 | **Custom Buttons** | reCAPTCHA is configured per-button on the buttons component |
-| **Flow Form** | Form validation still runs before reCAPTCHA — both must pass |
+| **Flow Form** | Form validation still runs before reCAPTCHA; both must pass |
 | **Data Table** | Table buttons can also enable reCAPTCHA |
-| **Experience Cloud** | Primary use case — protecting public-facing community forms |
+| **Experience Cloud** | Primary use case: protecting public-facing community forms |
 
 ## Common Patterns
 
@@ -70,7 +70,7 @@ For internal Lightning flows (not Experience Cloud), you typically don't need re
 - **Experience Cloud Only (Practical)**: While reCAPTCHA technically works in any context, it's only practically useful in Experience Cloud where guest/unauthenticated users can access forms. Internal Lightning users are already authenticated.
 - **v3 is Invisible**: reCAPTCHA v3 does not present visual challenges to users. It works entirely in the background. Users won't see any CAPTCHA UI.
 - **Per-Button Control**: You can enable reCAPTCHA on your Submit button while leaving Back, Cancel, and Save Draft buttons unprotected. This provides security without adding friction to non-submission actions.
-- **Form Validation First**: Flow Form validation runs before reCAPTCHA. If the form has validation errors, they're shown first — the reCAPTCHA check only happens when the form is valid.
+- **Form Validation First**: Flow Form validation runs before reCAPTCHA. If the form has validation errors, they're shown first; the reCAPTCHA check only happens when the form is valid.
 - **Score Tuning**: Start with a threshold of 50 and adjust based on your experience. If you're getting false positives (real users blocked), lower the threshold. If bots are getting through, raise it.
 - **Google Account Required**: You need a Google Cloud account to register your site and obtain reCAPTCHA v3 keys.
 - **Network Dependency**: reCAPTCHA requires network access to Google's servers. If users are behind strict firewalls that block Google, reCAPTCHA may not work.

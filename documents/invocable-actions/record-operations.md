@@ -1,9 +1,9 @@
 # Record Operation Actions
-> Invocable Actions for advanced record operations in Flows — upsert with duplicate bypass, future DML, record merging, lead conversion, new records with defaults, duplicate checking, and record querying.
+> Invocable Actions for advanced record operations in Flows: upsert with duplicate bypass, future DML, record merging, lead conversion, new records with defaults, duplicate checking, and record querying.
 
 ## Overview
 
-Flow Tool Kit provides several Invocable Actions that extend Salesforce's standard Flow record operations. These actions handle scenarios that standard Flow elements can't — like upserting while bypassing duplicate rules, performing DML in a future context, merging records, converting leads, and creating new records with calculated defaults.
+Flow Tool Kit provides several Invocable Actions that extend Salesforce's standard Flow record operations. These actions handle scenarios that standard Flow elements can't, like upserting while bypassing duplicate rules, performing DML in a future context, merging records, converting leads, and creating new records with calculated defaults.
 
 All actions appear under the **Flow Tool Kit** category in Flow Builder's Action element.
 
@@ -47,7 +47,7 @@ Perform DML operations asynchronously using `@future`. This is useful when you n
 
 #### Outputs
 
-None — the operation runs asynchronously.
+None. The operation runs asynchronously.
 
 ---
 
@@ -61,7 +61,7 @@ Merge duplicate Account, Contact, Case, or Lead records. The winning record abso
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `mergeToRecord` | SObject | Yes | The "winning" record — other records merge into this one |
+| `mergeToRecord` | SObject | Yes | The "winning" record; other records merge into this one |
 | `duplicateRecords` | SObject[] | Yes | Collection of "losing" records to merge into the winner |
 
 #### Outputs
@@ -107,7 +107,7 @@ Convert a Lead into a Contact and Account (and optionally an Opportunity). Provi
 
 **Action Name**: `New Record with Defaults`
 
-Create a new record variable with all default values set and formula fields calculated. This gives you a properly initialized record template — something standard Flow's "Create Records" element can't do without saving first.
+Create a new record variable with all default values set and formula fields calculated. This gives you a properly initialized record template, something standard Flow's "Create Records" element can't do without saving first.
 
 *Has a Custom Property Editor for visual configuration.*
 
@@ -188,7 +188,7 @@ Use Salesforce's duplicate rules to find potential duplicate records. Returns ma
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `template` | SObject | Yes | Record template — non-null field values become query conditions |
+| `template` | SObject | Yes | Record template; non-null field values become query conditions |
 | `returnLimit` | Integer | Yes | Maximum records to return (default: 10,000) |
 
 #### Outputs
@@ -221,7 +221,7 @@ Return the active record types accessible to the running user for a given object
 ## Tips & Considerations
 
 - **Bypass Duplicate Rules**: Use judiciously. Bypassing duplicate rules can create data quality issues. Consider logging when duplicates are bypassed.
-- **Future DML**: Operations run asynchronously — you can't use the result immediately in the same flow. Use for fire-and-forget scenarios.
+- **Future DML**: Operations run asynchronously; you can't use the result immediately in the same flow. Use for fire-and-forget scenarios.
 - **Merge Limits**: Salesforce allows merging up to 3 records at a time (1 winner + 2 losers for most objects).
 - **Lead Conversion Status**: If `convertedStatus` is not specified, the action uses the first converted status it finds. Ensure your org has a converted Lead Status defined.
-- **Query Security**: The Query Records action's `allObjects`, `allFields`, and `allData` flags bypass security — use them only when appropriate and understand the implications.
+- **Query Security**: The Query Records action's `allObjects`, `allFields`, and `allData` flags bypass security; use them only when appropriate and understand the implications.
