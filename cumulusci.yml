@@ -287,6 +287,11 @@ orgs:
             days: 30
             namespaced: True
 
+        feature_sprint-2026-07b:
+            config_file: orgs/dev.json
+            days: 14
+            namespaced: True
+
         feature_get-sobject-type-invocable:
             config_file: orgs/dev.json
             days: 30
