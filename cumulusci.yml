@@ -67,11 +67,21 @@ flows:
 
     config_dev:
         steps:
+            89:
+                task: deploy
+                description: Deploy grant application demo form components (#263)
+                options:
+                    path: unpackaged/config/forms/grant-application
             90:
                 task: snowfakery
                 description: Load standard test data (Form Template + Campaigns)
                 options:
                     recipe: datasets/default/sample_data.recipe.yml
+            91:
+                task: execute_anon
+                description: Bind grant demo components and remove auto-default page/sections (#263)
+                options:
+                    path: scripts/grant_demo_cleanup.apex
 
     dev_org:
         steps:

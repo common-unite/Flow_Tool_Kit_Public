@@ -96,6 +96,7 @@
 * [Creating Templates](form-template-framework/creating-templates.md)
 * [Form Availability](form-template-framework/form-availability.md)
 * [Form Submissions](form-template-framework/form-submissions.md)
+* [Form Template Sources](form-template-framework/form-template-sources.md)
 * [Form Templates](form-template-framework/form-templates.md)
 * [Merge Submissions](form-template-framework/merge-submissions.md)
 * [Overview](form-template-framework/overview.md)
@@ -105,6 +106,7 @@
 * [Prefill Templates](form-template-framework/prefill-templates.md)
 * [Stages Mode](form-template-framework/stages-mode.md)
 * [Submission Conversion](form-template-framework/submission-conversion.md)
+* [Url Parameter Mapping](form-template-framework/url-parameter-mapping.md)
 
 ### How-To Guides
 
@@ -175,12 +177,8 @@
 * [Release 3.239](release-notes/release-3.239.md)
 * [Release 3.240](release-notes/release-3.240.md)
 * [Release 3.241](release-notes/release-3.241.md)
+* [Release 4.0](release-notes/release-4.0.md)
 
 ## Platform
 
 * [Message Channels](platform/message-channels.md)
-
-## Form Templates
-
-* [Form Template Sources](form-templates/form-template-sources.md)
-* [Url Parameter Mapping](form-templates/url-parameter-mapping.md)
