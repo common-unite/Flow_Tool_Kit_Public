@@ -2,9 +2,24 @@
 
 > The latest features and improvements in Flow Tool Kit.
 
-## Latest Release: v3.241
+## Latest Release: v4.0
 
-Interactive number inputs, smarter field pickers, and an important save-flow fix every subscriber org should take.
+Flow Tool Kit 4.0 marks a major milestone: forty-six releases of new capability rolled into one recommended version. The [4.0 release notes](../release-notes/release-4.0.md) collate everything shipped since 3.196, led by eight spotlight features:
+
+- **Stages Mode**: long forms as a non-linear stage overview with statuses, time estimates, collaborative progress records, and a [live public demo](https://common-unite.my.site.com/s/form-template/a0fRQ000003mUy9/affordable-housing-land-trust-application?language=en_US)
+- **Save & Resume + Autosave**: silent draft saves plus single-use emailed resume links
+- **The Survey Suite**: Likert Matrix sections, Survey Buttons, and Visual Picker cards
+- **Number inputs, grown up**: steppers, sliders, and preset amount chips
+- **Iframe Embed Mode**: any form on any website, with reCAPTCHA and auto-resizing
+- **Prefill Flow + Guest Save Override**: extend prefill, validation, and guest saves with Flow, not code
+- **Form Template Sources**: one template powering hundreds of campaigns, events, or programs
+- **Per-Template Style Sheets**: scoped CSS per template with an upgrade-safe starter
+
+{% hint style="info" %}
+See the [full 4.0 release notes](../release-notes/release-4.0.md) for every new feature, improvement, and fix since 3.196.
+{% endhint %}
+
+### v3.241 highlights
 
 Key highlights from recent releases:
 
@@ -15,14 +30,11 @@ Key highlights from recent releases:
 - **Likert Matrix sections** (v3.240): survey-style question grids with a shared answer scale, two modes (Picklist and scored Number), a live total row, and optional stamping of the running score into a number field
 - **Survey Buttons + Visual Picker display types** (v3.240): picklists as full-width option cards or icon/image cards with brand-tinted selection
 
-{% hint style="info" %}
-See the [full release notes for v3.241](../release-notes/release-3.241.md) for the complete list of changes.
-{% endhint %}
-
 ## Previous Releases
 
 | Version | Highlights |
 |---------|-----------|
+| [v4.0](../release-notes/release-4.0.md) | Cumulative milestone release: Stages Mode, Save & Resume, Survey Suite, number inputs, iframe embed, prefill flow, template sources, style sheets |
 | [v3.241](../release-notes/release-3.241.md) | Number display types, dynamic selectors, save-flow fix, section overlap fix |
 | [v3.240](../release-notes/release-3.240.md) | Likert Matrix sections, Survey Buttons, Visual Picker |
 | [v3.239](../release-notes/release-3.239.md) | Critical flow-save fix, autosave, option labels, style sheets, stage indicators |
