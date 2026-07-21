@@ -21,7 +21,7 @@ Field values mapped to target object(s)
     ↓ Records created
 Form_Submission_Conversion_Log__c entries recorded
     ↓ Status updated
-Form Submission (Status: Converted)
+Form Submission (Status: Complete)
 ```
 
 ## Conversion Methods
@@ -55,6 +55,21 @@ A single submission can convert to multiple objects. For example, a grant applic
 
 Each target object has its own conversion rule, field mapping, and status tracking.
 
+## The Conversion Event Action
+
+Every step of the pipeline runs through one invocable action — **Form Template | Conversion Event** — called in one of four modes:
+
+| Mode                     | What it does                                                                                                       |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| **Start**                | Kicks off the pipeline: resets every conversion status to Ready and sends the submission to its controller flow    |
+| **Convert to Record**    | Dispatches the submission to a conversion flow (packaged default or your override) that builds one record          |
+| **Log**                  | Records a step's outcome — success or error — and optionally stamps a status field and the created record's lookup |
+| **Return to Controller** | Hands control back so the controller evaluates the next rule                                                       |
+
+The packaged flows are ordinary autolaunched flows built from these calls, so customizing conversion means cloning a readable flow and editing it — the action's property editor guides each mode's inputs, including a grouped conversion-flow picker and automatic binding of the standard `FormSubmission`/`FormTemplate` variables.
+
+Campaign Member conversion chains directly from the Contact and Lead upserts: as soon as a person converts, their membership follows — no separate controller pass.
+
 ## Conversion Log
 
 Every conversion attempt is logged in `Form_Submission_Conversion_Log__c`:
@@ -67,7 +82,7 @@ Every conversion attempt is logged in `Form_Submission_Conversion_Log__c`:
 | **Status**        | Success or Error                    |
 | **Message**       | Details about the conversion result |
 
-The log provides a complete audit trail, useful for debugging failed conversions and reporting on conversion rates.
+Dispatch steps are silent, so the log reads chronologically: **Start once, each outcome (Created / Matched / Updated or an error), then Finish.** Related-record rows log against both the row and its parent submission, so parent-level monitoring covers every row.
 
 ## Error Handling
 

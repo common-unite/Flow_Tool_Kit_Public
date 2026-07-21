@@ -30,16 +30,11 @@ The default conversion:
 
 ## Step 2: Create Your Custom Flow
 
-1. Create a new **Auto-Launched Flow** in Flow Builder.
-2. Add the required input variables (match the interface the conversion expects):
-
-| Variable       | Type | Description                   |
-| -------------- | ---- | ----------------------------- |
-| `submissionId` | Text | The Form Submission record ID |
-| `templateId`   | Text | The Form Template record ID   |
-
-3. Add your custom logic: query the submission data, create/update records as needed.
-4. Save and activate the Flow.
+1. Create a new **Auto-Launched Flow** in Flow Builder (or clone a packaged `| Template` starter, which arrives pre-wired).
+2. Add the ONE required input variable: an input, non-collection record variable of type **Form Submission Convert** (`FlowToolKit__Form_Submission_Convert__e`). Any variable name works; the dispatcher detects it and passes the platform event in. This is the entire dispatch contract.
+3. Call the packaged **(Form Submission) Convert | Utility | Setup | Overridable** subflow first: it returns the Form Submission, parent, Form Template, page section, and matching-rule settings, and handles start-of-conversion logging.
+4. Add your custom logic (a Transform element mapping submission fields to your target is the packaged pattern), log the outcome with the **Form Template | Log Conversion Event** action, and hand control back by enabling the action's *Dispatch Return Event* on your success log.
+5. Save and activate the Flow.
 
 ## Step 3: Configure the Override
 
