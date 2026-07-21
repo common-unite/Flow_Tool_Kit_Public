@@ -20,6 +20,12 @@
 - **Runaway protection (#295)**: a per-run dispatch counter refuses a misconfigured flow after five identical dispatches — with a log entry explaining which flow looped and why. Fails open: the guard can never be the reason a conversion stops.
 - **Chain stalls fixed**: the Account update path now returns to the controller like its siblings, and the related-records sweep resolves each row's flow from the loop's own section.
 
+## 🖥️ Form runtime fixes
+
+- **Duplicate matching restored (#297)**: the setup flow's matching-rules routing now keys on the event's lookup field, so the template's Contact/Lead/Account matching rules apply to every primary conversion again instead of silently creating duplicates.
+- **Review page renders in read-only mode (#293)**: read-only forms no longer blank every field on the Review page — values always render, and formula fields appear on review in every mode.
+- **Field selectors stop vanishing (#292)**: the Style Sheet, Theme, Image, Icon, Email Template, and Form Component selectors no longer flash and silently disappear in subscriber orgs. They wait for permissions to resolve, show only to users whose field-level security allows editing, and report load errors instead of unmounting.
+
 ## 🧰 Also in this release
 
 - **Preview sections render full width again (#298)**: record-page previews stopped stretching tables to infinity and shrink-wrapping narrow sections.
