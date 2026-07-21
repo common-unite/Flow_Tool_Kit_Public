@@ -178,6 +178,8 @@
 * [Release 3.240](release-notes/release-3.240.md)
 * [Release 3.241](release-notes/release-3.241.md)
 * [Release 4.0](release-notes/release-4.0.md)
+* [Release 4.1](release-notes/release-4.1.md)
+* [Release 4.2](release-notes/release-4.2.md)
 
 ## Platform
 

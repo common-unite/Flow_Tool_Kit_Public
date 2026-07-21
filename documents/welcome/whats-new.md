@@ -2,7 +2,11 @@
 
 > The latest features and improvements in Flow Tool Kit.
 
-## Latest Release: v4.0
+## Latest Release: v4.1
+
+99 ready-made Form Submission fields (132 to 231) so new forms need zero field creation: generic question shapes, rating-scale batteries sized for instant Likert sections, nonprofit staples, and demographics, all with full value sets and permission set coverage. Plus a thirteen-component grant application demo, the guest first-save fix, and record forms working on objects without MRU. See the [4.1 release notes](../release-notes/release-4.1.md).
+
+## The 4.0 Milestone
 
 Flow Tool Kit 4.0 marks a major milestone: forty-six releases of new capability rolled into one recommended version. The [4.0 release notes](../release-notes/release-4.0.md) collate everything shipped since 3.196, led by eight spotlight features:
 

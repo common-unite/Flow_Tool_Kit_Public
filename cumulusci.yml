@@ -112,22 +112,28 @@ flows:
                 options:
                     path: datasets/dev/setup_testing_aura_site.apex
                 ignore_failure: True
+            10:
+                task: execute_anon
+                description: Resolve conversion-test related-record section markers to real section Ids (Snowfakery cannot write an Id into the Text field Internal_SectionId__c)
+                options:
+                    path: scripts/seed-conversion-related-records.apex
+                ignore_failure: True
 
     npc_dev_org:
         description: Set up an NPC scratch org with Grantmaking, OmniStudio, Action Plans, and Experience Cloud. Replicates dev_org (dependencies, deploy force-app, sample data, permission sets) but skips update_admin_profile (fails on PersonAccounts) and the Testing Aura EC site (NPC org uses the Grantmaking Portal instead).
         group: Flow Tool Kit
         steps:
-            # Replicate dev_org's structure — cannot use dev_org as subflow because CCI can't disable nested tasks via flow step options
+            # Replicate dev_org's structure - cannot use dev_org as subflow because CCI can't disable nested tasks via flow step options
             1:
                 flow: dependencies
             2:
                 flow: deploy_unmanaged
-            # Inline the parts of config_dev we want — SKIP update_admin_profile (fails with "record type Account.Business_Account not found" on PersonAccount orgs)
+            # Inline the parts of config_dev we want - SKIP update_admin_profile (fails with "record type Account.Business_Account not found" on PersonAccount orgs)
             3:
                 task: deploy_post
                 options:
                     path: unpackaged/post
-            # Assign project permission sets — update_admin_profile (skipped above) would normally grant FLS on namespaced fields to the admin profile. Form_Builder_Admin provides FLS via permission set instead.
+            # Assign project permission sets - update_admin_profile (skipped above) would normally grant FLS on namespaced fields to the admin profile. Form_Builder_Admin provides FLS via permission set instead.
             4:
                 task: assign_permission_sets
                 options:
@@ -136,7 +142,7 @@ flows:
                 task: deploy
                 options:
                     path: force-app-post
-            # Skip default snowfakery (datasets/default/sample_data.recipe.yml) — NPC orgs have strict State/Country Picklists which break fake: state_abbr. NPC has its own sample data pipeline (steps 11.1–11.3).
+            # Skip default snowfakery (datasets/default/sample_data.recipe.yml) - NPC orgs have strict State/Country Picklists which break fake: state_abbr. NPC has its own sample data pipeline (steps 11.1–11.3).
             6:
                 task: snapshot_changes
             # NPC Permission Set Licenses
