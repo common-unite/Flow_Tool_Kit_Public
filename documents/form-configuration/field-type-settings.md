@@ -186,6 +186,34 @@ Select a picklist field and set **Picklist Display Type** to **Survey Buttons** 
 
 ![Survey Buttons rendering a Conversion Status picklist as option cards](../.gitbook/assets/246-survey-buttons.png)
 
+## Multiselect Picklist Fields
+
+Multiselect picklist fields render in four display types - **Multiselect Checkbox**, **Multiselect Checkbox (w/ Select All)**, **Multiselect Badge**, and **Combobox** - plus the **Visual Picker**. All of them share the behaviors below.
+
+### Exclusive Values
+
+Some answers rule out every other answer. When a multiselect option's value matches one of the exclusive values below (matching is case-insensitive), selecting it **clears every other selection and locks the remaining options** until it is unchecked:
+
+- `None of the Above`
+- `None`
+- `Prefer not to say`
+- `Prefer not to answer`
+- `Prefer not to disclose`
+- `Not Applicable`
+- `N/A`
+
+No configuration is needed - name the picklist value one of these and the behavior applies automatically in every display type. Two exclusive values in the same picklist mutually exclude each other by the same rule.
+
+![Selecting Prefer not to say clears and locks the other options](../.gitbook/assets/305-exclusive-multiselect-values-demo.gif)
+
+### All of the Above
+
+`All of the Above` works in reverse: selecting it selects **every non-exclusive option**, exactly like the Select All button, and unchecking it clears the selection.
+
+### Select All and Exclusive Values
+
+The **Multiselect Checkbox (w/ Select All)** display type hides its synthetic Select All button whenever the picklist contains an exclusive value - Select All and "Prefer not to say" could never sensibly coexist. Remove the exclusive value from the picklist and the button returns.
+
 ## Dynamic Selector Overrides
 
 Certain fields are really references in disguise: a text field that stores an SLDS icon name, an email template, a public image asset, or a style sheet. When a field's **API name** signals one of these purposes, Form Builder dynamically offers the matching selector as a display type, and the respondent (usually an admin filling out a configuration form) picks from a real list instead of typing a raw value.

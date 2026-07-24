@@ -282,7 +282,7 @@ Same `pv9` parameter the resume-link flow uses. The Form Template's URL mapping 
 | `Stages_Email_Me_Resume_Link` | "Email me a resume link" | The button label in the stages header |
 | `Stages_Draft_Saved` | "Draft saved" | Prefix before the relative "N minutes ago" time |
 | `Stages_Resume_Link_Sent` | "Resume link email sent" | Success toast after clicking the button |
-| `Stages_Resume_Link_Error` | "Could not send resume link — please try again." | Error toast if the stamping/save fails |
+| `Stages_Resume_Link_Error` | "Could not send resume link - please try again." | Error toast if the stamping/save fails |
 
 Override the wording via Setup → Custom Labels; translate via Translation Workbench. Same pattern as the broader Stages-mode label inventory above.
 
@@ -394,6 +394,16 @@ Every user-facing string in the Stages overview is sourced from a Custom Label, 
 - **Override wording** for English only: Setup → Custom Labels → search "Stages_" → edit Value.
 - **Translate** to another language: Setup → Translation Workbench → Translate → pick "Custom Label" → choose label → enter translation. The runtime picks up the user's locale automatically; no code or formula change.
 - **Why this matters:** the previous hardcoded strings were not overridable or translatable. After v3.231 every Stages-mode surface is admin-controlled.
+
+## Non-Linear Navigation (Without Stages Mode)
+
+Stages Mode is inherently non-linear: respondents can always jump between pages. The **Non-Linear Navigation** template setting brings that same freedom to templates that keep the default linear layout.
+
+When enabled, clicking any page in the **vertical stage indicator** jumps straight to it - no validation gate on leaving a page (required-field enforcement stays at submit), and moving between pages updates the respondent's `Form_Submission_Stage__c` records exactly as Stages Mode does.
+
+**The toggle is only available when the Stage Indicator Type is `vertical` and Stages Mode is not enabled.** Stages Mode ignores the setting entirely because its navigation is already unrestricted, and the other indicator types (base, path, footer variants) keep the default linear behavior: backward clicks always work, forward clicks reach only visited pages.
+
+![The Non-Linear Navigation toggle in Form Template Settings, available with the vertical indicator selected](../.gitbook/assets/301-non-linear-navigation-toggle.png)
 
 ## Related
 

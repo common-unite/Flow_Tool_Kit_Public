@@ -39,6 +39,7 @@ This is especially useful for long intake forms, applications, surveys, and any 
 | `recordId`       | String                   | Yes      | None    | The Id of the Form Template record (`Form_Template__c`)  |
 | `isFlow`         | Boolean                  | Yes      | false   | Set to true when used inside a Flow                      |
 | `disableAll`     | Boolean                  | No       | None    | Read-only mode; disables all form editing                |
+| `reviewMode`     | Boolean                  | No       | None    | Loads the review page as the only page: every answer summarized, no indicators or page navigation. See [Review Mode](how-to/host-form-on-record-page.md#review-mode-the-whole-submission-at-a-glance) |
 | `currentPageId`  | String                   | No       | None    | Id of the current page (for resuming at a specific page) |
 | `formSubmission` | Form\_Submission\_\_c    | No       | None    | Existing Form Submission record (for save-and-resume)    |
 | `relatedRecords` | Form\_Submission\_\_c\[] | No       | None    | Collection of related submission records                 |
@@ -51,6 +52,7 @@ This is especially useful for long intake forms, applications, surveys, and any 
 | `relatedFieldName` | String  | No       | None    | A Form Template / Form Submission lookup reachable from the page's record; on Record Pages this is a picklist of every qualifying field on the object, its parents, and grandparents |
 | `fixedTemplateId`  | String  | No       | None    | Form Template to load when nothing else resolves (picklist of all templates); also loads directly when no Record Id is provided on App/Home pages                                    |
 | `disableAll`       | Boolean | No       | None    | Read-only mode                                                                                                                                                                       |
+| `reviewMode`       | Boolean | No       | None    | Loads the review page as the only page: every answer summarized, no indicators or page navigation. Not available in Experience Cloud. See [Review Mode](how-to/host-form-on-record-page.md#review-mode-the-whole-submission-at-a-glance) |
 
 ### Inputs (Experience Cloud)
 
@@ -114,6 +116,10 @@ Build a long survey template. Pass a `formSubmission` record to persist progress
 ### 3. Read-Only Template Viewer
 
 Set `disableAll=true` to display a completed template in read-only mode. Useful for review screens or displaying submitted data on record pages.
+
+### 4. Submission Review Panel (Review Mode)
+
+Set `reviewMode=true` on a Form Submission record page (or pass a submission into a Flow screen) and the component becomes an internal review panel: the review page loads as the only page, summarizing every answer with per-section Edit. Combine with `disableAll` for a sealed, view-only summary. Full behavior: [Review Mode](how-to/host-form-on-record-page.md#review-mode-the-whole-submission-at-a-glance).
 
 ## Tips & Considerations
 
