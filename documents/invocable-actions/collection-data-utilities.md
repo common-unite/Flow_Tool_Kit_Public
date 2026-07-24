@@ -114,15 +114,27 @@ Remove null field values from a record variable. This prevents overwriting exist
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `record` | SObject | Yes | Record to strip nulls from |
+| `Nullable Fields (CSV or JSON)` | String | No | Field API names that are allowed to clear the target when blank or null. Accepts a comma-separated string (`Email, Phone`) or an object-keyed JSON map (`{"Contact":["Email"],"Lead":"Company,Title"}`) whose entry matching the record's object applies. Checkboxes listed here are set to `false` when unchecked (checkboxes cannot hold null). |
 
 #### Outputs
 
 | Parameter | Type | Description |
 |---|---|---|
-| `record` | SObject | Record with only non-null field values |
+| `record` | SObject | Record with only non-null field values, plus explicit nulls (or `false`) for any listed nullable fields that arrived blank |
 
 #### Example
 After a Flow Form screen where the user only edits 3 of 20 fields, the other 17 fields are null on the output record. Without stripping nulls, updating the record would overwrite those 17 fields with blanks. Strip Null Values removes the null fields so only the 3 edited fields are included in the update.
+
+#### Nullable Fields
+
+Sometimes a blank answer *is* the answer - a respondent clearing their phone number should clear the record. Passing those field API names in `Nullable Fields (CSV or JSON)` inverts the default for just those fields: a blank or null value on the input record is written through as an explicit `null` (checkboxes become `false`), while every other field keeps the strip-null protection.
+
+The input takes either shape:
+
+- **CSV** - `Email, Phone` - simple to build in a Flow formula or Text Template; every listed name applies to the record being stripped.
+- **JSON map** - `{"Account":["Phone"],"Contact":["Email","Title"]}` - one string that serves multiple objects; only the entry matching the stripped record's object applies (a `"*"` key applies to any object). This is the shape the [Nullable Fields selector](../form-template-framework/submission-conversion.md#nullable-fields-clearing-values-with-blank-answers) writes.
+
+**Errors are loud by design.** A name that is not a field on the record's object, a field that is not updateable, or a value that starts with `{` but is not valid JSON all fault the Flow with a `Nullable Fields:` error naming the problem - misconfigurations surface instead of silently skipping. Blank input, a bare comma, an empty JSON map (`{}`), and entries for other objects are safe no-ops.
 
 ---
 

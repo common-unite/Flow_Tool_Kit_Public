@@ -48,6 +48,39 @@ Pick a template from the dropdown, which lists every Form Template by name. It l
 2. Visit a record where your chosen mechanism resolves, and confirm the form renders and saves.
 3. Visit a record where it does not resolve (a contact with no submission yet, for instance) and confirm you get either your fallback template or the "No Form Found" state, whichever you configured.
 
+## Review Mode: the whole submission at a glance
+
+**Review Mode** turns the component into an internal review panel. Enable the checkbox on the component and, instead of the page-by-page form, the **review page loads as the only page**: every answer from every page, grouped under its page and section headings, with nothing else around it - no stage indicators, no page navigation, no button bar. It is built for the staff side of the desk: an admin or reviewer opens a Form Submission record and reads the entire response top to bottom without clicking through pages.
+
+### Where it works
+
+* **Lightning record pages** - the primary home. Drop the component on the Form Submission record page (or resolve a submission via Related Field Name from any object) and check **Review Mode**.
+* **App and Home pages** - same checkbox, paired with a Record Id or Related Field Name that resolves to a submission.
+* **Flow screens** - available as an input-only property, for embedding a review step inside an internal Flow. In Flow, the component's navigation buttons remain (your Flow's navigation depends on them).
+* **Not Experience Cloud** - Review Mode is an internal tool and is deliberately not offered on community pages.
+
+Review Mode does not require the template's **Enable Review Screen** setting - the review page is generated on the fly for any template, whether or not respondents ever see a review step.
+
+### Viewing vs. editing
+
+The **Read Only** property decides which of two tools you get:
+
+* **Review Mode + Read Only: a sealed summary.** Every answer displays as read-only text. Each section offers a **View** button that opens the section in a modal for a closer look; nothing can be changed. This is the "quickly see what they answered" configuration for staff who should not touch the data.
+* **Review Mode alone: review and correct.** Sections offer **Edit** instead. Clicking it opens the section in a modal titled with the section's own header (or the form component's header, for component sections):
+  * **Save** validates the section first - a cleared required field shows its error on the field (attestation cards turn red with the message beneath), and the modal stays open until the errors are fixed. A valid Save persists the changes to the Form Submission immediately; no separate Submit is needed for corrections.
+  * **Cancel** (or the X) discards the modal's changes entirely - the answers roll back to exactly what they were when the modal opened, including fields that were first filled in inside the modal.
+
+There is deliberately no button bar in Review Mode outside of Flows: with one page and modal-scoped saving, Return and Update had nothing left to do.
+
+### Suggested setup
+
+The two-property recipe for a submission review panel:
+
+1. On the **Form Submission record page**, add **Form (Template)** - the component resolves the page's own submission automatically.
+2. Check **Review Mode**; check **Read Only** as well if reviewers should look but not touch.
+
+On other objects, pair Review Mode with a **Related Field Name** such as `Contact > Latest Form Submission` and the record page becomes "what did this person answer," one click from anywhere their record is open.
+
 ## App Pages, Home Pages, and Experience Cloud
 
 * **App and Home pages** have no record context. Set **Form Template** (the same fallback property) and the component loads that template directly. You can also pass a specific Record Id property if the page should always show one template or submission.
@@ -55,7 +88,7 @@ Pick a template from the dropdown, which lists every Form Template by name. It l
 
 ## Tips
 
-* **Read Only** turns any of these configurations into a display surface: great for showing a submitted application on the record page for staff review.
+* **Read Only** turns any of these configurations into a display surface: great for showing a submitted application on the record page for staff review. Pair it with **Review Mode** (above) to collapse the whole submission onto a single summary page.
 * **The resolution order is your friend**: configure both a Related Field Name and a Fallback on the same page, and each record gets its own submission when one exists, with new visitors falling back to a fresh form.
 * **Reporting**: submissions born from the source mapping or the fallback carry the hosting record's id in `Source_Id__c`, so "submissions from this Campaign's page" is one filter away.
 

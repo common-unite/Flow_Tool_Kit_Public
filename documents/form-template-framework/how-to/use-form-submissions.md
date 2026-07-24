@@ -30,13 +30,17 @@ Form submissions are built into the Form Template Framework. When a user complet
 2. View a list of all submissions for your templates.
 3. Click a submission to see the complete data the user entered.
 
-### Review Mode
+### The Review Screen (respondent-facing)
 
-Submissions can be displayed in read-only review mode before final submission:
+Templates can end with a review step for the person filling out the form, enabled in **Form Template Settings → Review Screen**:
 
-* The last page of the template can show a summary of all pages
-* Users review their data and either go back to edit or confirm submission
-* This is configured in the template settings
+* A summary of every page's answers renders before final submission
+* Respondents jump back to any section with its Edit button, make the change, and return
+* Submit remains the final action
+
+### Review Mode (internal reviewers)
+
+For the staff side, the **Form (Template)** component has a **Review Mode** checkbox: on a Form Submission record page it loads that same review summary as the *only* page - every answer at a glance, no page navigation - so an internal user reads the whole response without clicking through the form. Combine with **Read Only** for a sealed view, or leave it off to correct answers section-by-section, where each modal Save validates and persists immediately. Full behavior and setup: [Review Mode](host-form-on-record-page.md#review-mode-the-whole-submission-at-a-glance).
 
 ## Step 3: Convert Submissions to Records
 
