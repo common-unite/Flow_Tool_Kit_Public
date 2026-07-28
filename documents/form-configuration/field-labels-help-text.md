@@ -69,6 +69,26 @@ Merge fields also work inside **picklist option labels**: rename any picklist or
 
 **Numbered Questions**: Use `Question {{fieldnumber}}: {{Label}}` as the custom label to auto-number survey questions. Numbering is scoped to each form component and skips hidden fields, so questions never show gaps and re-flow when fields are reordered or conditionally hidden. Repeating sections number each instance from 1. `{{fieldnumber}}` and `{{sectionnumber}}` work in labels, help text, prompts, and placeholders.
 
+### Formatting Merge Values
+
+Add a format prefix inside the braces to render a raw stored value in a friendlier, localized form. Dates and currency use the running user's locale, so the same form reads naturally for every audience.
+
+| Format                              | Renders                                    | Example output (en-US)      |
+| ----------------------------------- | ------------------------------------------ | --------------------------- |
+| `{{$date.Start_Date__c}}`           | Localized long date (date only)            | `July 26, 2026`             |
+| `{{$dateShort.Start_Date__c}}`      | Localized short numeric date               | `7/26/2026`                 |
+| `{{$datetime.Created__c}}`          | Localized date and time                    | `July 26, 2026, 3:45 PM`    |
+| `{{$time.Reminder_Time__c}}`        | Localized time only                        | `3:45 PM`                   |
+| `{{$number.Attendees__c}}`          | Thousands grouping                         | `1,250`                     |
+| `{{$number.Score__c.toFixed(2)}}`   | Grouping with a fixed number of decimals   | `1,250.00`                  |
+| `{{$currency.Amount__c}}`           | Currency in the user's currency and locale | `$1,250.50`                 |
+
+You can also transform text with `{{Field__c.replaceAll('old','new')}}`.
+
+{% hint style="info" %}
+Date-only fields never shift a day: a `2026-07-26` value renders as July 26 in every timezone. Datetime and time formats display in the viewer's timezone. Currency uses the org's currency in a single-currency org, or the running user's currency in a multi-currency org.
+{% endhint %}
+
 ## Prepend & Append Text
 
 Add text or symbols before or after the input field:

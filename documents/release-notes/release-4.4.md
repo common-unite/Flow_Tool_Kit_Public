@@ -1,6 +1,4 @@
-# Release 4.4 (Draft)
-
-> In progress on `feature/review-mode-non-linear-navigation`. Entries accumulate here as the branch's features verify.
+# Release 4.4
 
 ## 🆕 Non-Linear Navigation without Stages Mode (#301)
 
@@ -68,3 +66,21 @@ The template shows the selection as badges grouped by object, with inline remove
 ## 🛠 Likert matrix now accepts answers from guest users (#319)
 
 Guest (unauthenticated) visitors on Experience Cloud sites saw likert matrix rows render read-only and could not select any option, even with full field-level edit access granted. Salesforce never grants guest users record *update* permission, and the matrix was checking that edit-mode permission for everyone; every other input type was unaffected because standard create-mode forms check *create* permission instead. Likert rows (and the running-total score) now treat a field as writable when the user can set it on either create or update, so guests answer normally while genuinely read-only users still see a locked matrix.
+
+## ⚡ Faster Experience Cloud form loading (#314)
+
+A ground-up performance pass on the form template runtime for public sites. Measured on a 7-page grant application template as a returning guest visitor: **page load dropped from ~5.6s to ~3.2s**, and **entering a step dropped from ~8.5s to ~1.5s**. The engine now platform-caches the expensive form-metadata lookups that previously ran on every page view, starts its main server call earlier instead of waiting on record-schema round trips, and quietly pre-warms every form on the template during the idle moments after the page loads - so clicking into a never-visited step usually needs no server trip at all. Every optimization ships with equivalence tests proving the engine emits byte-identical form definitions.
+
+**Two notes for admins:** (1) these gains rely on Platform Cache - make sure your org allocates capacity to the `FlowToolKit.FormComponents` partition (Setup → Platform Cache), or the engine falls back to uncached queries on every load. (2) The very first page load after installing an upgrade compiles component definitions server-side (~7s once per org); load your public form page once after upgrading so a real visitor doesn't pay it.
+
+## 🛠 Form Template theme colors reach every button and indicator (#311)
+
+Assigning a theme to a Form Template now propagates its brand and border colors to the parts of the template that previously ignored them: stage-mode buttons, the docked footer buttons (including hover, pressed, and focus states of both filled and outline styles), and the vertical stage indicator's current-step marker. Section-level theme overrides still win locally, exactly as before.
+
+## 🛠 Long-text fields no longer show a required error the moment you click in (#312)
+
+Focusing an empty required long-text, textarea, or rich-text input flashed the "complete this field" error immediately on focus. Validation for the focused field now waits for focus-out, matching how every other input type behaves.
+
+## 🛠 Guest save failures now explain the fix (#313)
+
+When a guest submission failed because the Form Submission Upsert flow was left running in Default Mode, the error surfaced as a raw `CANNOT_INSERT_UPDATE_ACTIVATE_ENTITY` fault. That situation is now detected and translated into a plain-language message pointing at the fix: run the flow elevated (System Context Without Sharing).
