@@ -184,7 +184,20 @@ One record per source object. All field mappings use `MetadataRelationship` type
 
 ### How Source Resolution Works
 
-When the Form Template component receives a record Id that isn't a Form Template or Form Submission, it treats it as a source record. The system queries the `Form_Template_Source__mdt` metadata for the record's object type, loads the mapped Form Template, and replaces any populated override values (name, dates, theme, pre-fill template, messages). If a field isn't mapped or is blank on the source record, the Form Template's own value is used.
+When the Form Template component receives a record Id that isn't a Form Template or Form Submission, it treats it as a source record. The system queries the `Form_Template_Source__mdt` metadata for the record's object type, loads the mapped Form Template, and replaces any populated override values (name, subtitle, banner image URL, submit button label, dates, theme, pre-fill template, messages). If a field isn't mapped or is blank on the source record, the Form Template's own value is used.
+
+### Source Field Mappings (dynamic values from the source record)
+
+Where a **Pre-fill Template** seeds every submission with the same fixed defaults, **Source Field Mappings** copy values from the source record itself onto each submission - per record. Map any source-object field onto a Form Submission field by building the mappings visually on the configurator's Pre-fill tab; the mappings are stored as JSON on a long-text field on the source object (chosen as the **Prefill Mapping Field** on the metadata record). The picker supports **relationship traversal up to five hops** (`Parent.Parent.Name`) and **basic type matching** - a text source maps to text targets, a boolean to a boolean, a lookup to a same-object lookup or any text field. Mapped submission fields are removed from the picker so each target holds a single mapping.
+
+![Source Field Mappings Demo](../.gitbook/assets/source-field-mappings-demo.gif)
+
+Each mapping is **Prefill** or **Live**:
+
+- **Prefill** (the default) stamps the value on **new submissions only**, after the Pre-fill Template (so the source wins) and before URL parameters (which stay strongest). A respondent resuming an in-progress submission keeps their own edits.
+- **Live** re-copies the value onto the submission on **every** load - new and resumed - always overwriting. Use Live for values that should always reflect the current source record (a campaign's current owner, status, or amount) and for on-screen display text: map a source field onto one of the rich-text `Source_Text_1/2/3__c` fields as Live, then surface it with the `{{FlowToolKit__Source_Text_1__c}}`, `{{FlowToolKit__Source_Text_2__c}}`, or `{{FlowToolKit__Source_Text_3__c}}` merge fields.
+
+Malformed JSON or an unknown field name is skipped with a debug log rather than blocking the visitor's form.
 
 For confirmation emails, the `Get Source Email Template` action follows the same pattern: it reads the email template field mapping from the metadata, queries the source record, and returns the template developer name. The send email flow uses this in a fallback chain: platform event override > source record override > Form Template default.
 

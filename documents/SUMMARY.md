@@ -181,6 +181,7 @@
 * [Release 4.1](release-notes/release-4.1.md)
 * [Release 4.2](release-notes/release-4.2.md)
 * [Release 4.4](release-notes/release-4.4.md)
+* [Release 4.5](release-notes/release-4.5.md)
 
 ## Platform
 

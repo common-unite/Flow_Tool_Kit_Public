@@ -118,6 +118,18 @@ flows:
                 options:
                     path: scripts/seed-conversion-related-records.apex
                 ignore_failure: True
+            11:
+                task: deploy
+                description: Design block showcase page on the Testing Aura site. No-ops until scratch-org/showcase/experiences has been captured once, see its README.
+                options:
+                    path: scratch-org/showcase
+                ignore_failure: True
+            12:
+                task: publish_community
+                description: Republish so the showcase page is visible to the guest user
+                options:
+                    name: Testing Aura
+                ignore_failure: True
 
     npc_dev_org:
         description: Set up an NPC scratch org with Grantmaking, OmniStudio, Action Plans, and Experience Cloud. Replicates dev_org (dependencies, deploy force-app, sample data, permission sets) but skips update_admin_profile (fails on PersonAccounts) and the Testing Aura EC site (NPC org uses the Grantmaking Portal instead).
