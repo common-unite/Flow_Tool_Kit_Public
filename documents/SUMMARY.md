@@ -182,6 +182,7 @@
 * [Release 4.2](release-notes/release-4.2.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.5](release-notes/release-4.5.md)
+* [Release 4.6](release-notes/release-4.6.md)
 
 ## Platform
 
