@@ -34,7 +34,7 @@ Pages are sorted by the **Position** field (ascending numeric). Best practice:
 
 ## Section Structure
 
-Each `Form_Template_Page_Section__c` record represents one component within a page. A page can have multiple sections, each rendering a different component. A section's **Component Type** (set in the page section configurator) determines what it renders: a Field Set, Repeater, or Table form component, a **Flow** (see [Flow Sections](pages-and-sections.md#flow-sections) below), a custom **Lightning Web Component**, or static **Display Text**.
+Each `Form_Template_Page_Section__c` record represents one component within a page. A page can have multiple sections, each rendering a different component. A section's **Component Type** (set in the page section configurator) determines what it renders: a Field Set, Repeater, or Table form component, a **Flow** (see [Flow Sections](pages-and-sections.md#flow-sections) below), a custom **Lightning Web Component** (see [LWC Section Type](../advanced-topics/lwc-section-type.md), which can also read and write the section's related records), or static **Display Text**.
 
 ### Section Fields
 
