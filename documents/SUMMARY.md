@@ -87,7 +87,7 @@
 * [Form Configuration Actions](invocable-actions/form-configuration-actions.md)
 * [Form Submission Actions](invocable-actions/form-submission-actions.md)
 * [JSON Serialization](invocable-actions/json-serialization.md)
-* [Pdf And Zip Actions](invocable-actions/pdf-and-zip-actions.md)
+* [PDF and Zip Actions](invocable-actions/pdf-and-zip-actions.md)
 * [Record Operations](invocable-actions/record-operations.md)
 
 ## Form Template Framework
@@ -107,7 +107,7 @@
 * [Prefill Templates](form-template-framework/prefill-templates.md)
 * [Stages Mode](form-template-framework/stages-mode.md)
 * [Submission Conversion](form-template-framework/submission-conversion.md)
-* [Url Parameter Mapping](form-template-framework/url-parameter-mapping.md)
+* [URL Parameter Mapping](form-template-framework/url-parameter-mapping.md)
 
 ### How-To Guides
 
@@ -128,6 +128,7 @@
 
 * [Dynamic Flow Display](experience-cloud/dynamic-flow-display.md)
 * [Experience Cloud Components](experience-cloud/experience-cloud-components.md)
+* [Styling Design Blocks](experience-cloud/styling-design-blocks.md)
 
 ## Advanced Topics
 
@@ -136,7 +137,7 @@
 * [Google reCAPTCHA Setup](advanced-topics/google-recaptcha-setup.md)
 * [Iframe Embed](advanced-topics/iframe-embed.md)
 * [Lightning Out](advanced-topics/lightning-out.md)
-* [Lwc Section Type](advanced-topics/lwc-section-type.md)
+* [LWC Section Type](advanced-topics/lwc-section-type.md)
 
 ## FAQ & Troubleshooting
 
@@ -180,11 +181,14 @@
 * [Release 3.241](release-notes/release-3.241.md)
 * [Release 4.0](release-notes/release-4.0.md)
 * [Release 4.1](release-notes/release-4.1.md)
+* [Release 4.10](release-notes/release-4.10.md)
 * [Release 4.2](release-notes/release-4.2.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
 * [Release 4.7](release-notes/release-4.7.md)
+* [Release 4.8](release-notes/release-4.8.md)
+* [Release 4.9](release-notes/release-4.9.md)
 
 ## Platform
 
