@@ -133,6 +133,7 @@
 ## Advanced Topics
 
 * [Cache Reset](advanced-topics/cache-reset.md)
+* [Custom Labels](advanced-topics/custom-labels.md)
 * [Data Model](advanced-topics/data-model.md)
 * [Google reCAPTCHA Setup](advanced-topics/google-recaptcha-setup.md)
 * [Iframe Embed](advanced-topics/iframe-embed.md)
