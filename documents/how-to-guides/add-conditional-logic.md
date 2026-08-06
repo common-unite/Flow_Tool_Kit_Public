@@ -131,7 +131,7 @@ Show internal fields only for staff:
 | -------------------- | ---------------------------------------------------------------------------- |
 | Condition not firing | Check the field API name (not label) and value case sensitivity              |
 | Field always hidden  | Check if AND logic requires conditions that can't all be true simultaneously |
-| Changes not visible  | Clear form cache: navigate to `your-org/apex/FlowToolKit__CacheFlow`        |
+| Changes not visible  | Clear form cache: **Reset Form Cache** in Form Builder                      |
 
 ## Related Pages
 

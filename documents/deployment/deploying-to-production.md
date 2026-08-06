@@ -44,7 +44,7 @@ Ensure all fields referenced by your forms exist in production:
 
 1. **Deploy CMDT records** using your preferred method (see [Deploying Metadata](deploying-metadata.md)).
 2. **Deploy any related metadata**: Flows, custom fields, or permission changes that depend on or use the forms.
-3. **Clear the form cache**: navigate to `your-org/apex/FlowToolKit__CacheFlow` to ensure production picks up the new metadata.
+3. **Clear the form cache**: open **Form Builder** and click **Reset Form Cache** so production picks up the new metadata. This also re-warms your screen flows, which the deploy re-colded.
 
 ## Post-Deployment Verification
 
