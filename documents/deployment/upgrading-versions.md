@@ -24,6 +24,14 @@ Flow Tool Kit is a managed package installed from AppExchange. When a new versio
 
 ## Post-Upgrade Steps
 
+### 0. LWR sites: add the Component Support block
+
+If you run an **LWR** Experience site (Build Your Own / Microsite) that shows a Flow Tool Kit form,
+place the **FlowToolKit LWR Support** component on it and publish. Without it the form area
+can stay blank with an `LWR3008` error in the browser console. Aura sites and Lightning pages need no
+change. See [LWR Sites: Add the Component Support Block](../experience-cloud/lwr-site-component-support.md).
+
+
 ### 1. Verify Permission Sets
 
 New versions may add Apex classes, objects, or fields that need to be in permission sets:
@@ -32,11 +40,19 @@ New versions may add Apex classes, objects, or fields that need to be in permiss
 2. Open each Flow Tool Kit permission set (Admin, Manager, Flow User).
 3. Verify they have the latest entries; the managed package update should handle this automatically.
 
-### 2. Clear Form Cache
+### 2. Clear Form Cache and Re-Warm
 
-After upgrading, clear the form cache to ensure the new package code uses fresh metadata:
+After upgrading, clear the form cache so the new package code reads fresh metadata:
 
-Navigate to: `your-org/apex/FlowToolKit__CacheFlow`
+Open **Form Builder** and click **Reset Form Cache**. The button requires the **Form Component Admin** custom permission.
+
+An upgrade also discards every warmed screen flow in the org, because the components themselves are replaced. The Reset Form Cache button re-warms them as part of the same job. If you upgraded during business hours and did not use the button, run this from Developer Console → Execute Anonymous so your next visitor does not pay the full cold start:
+
+```apex
+FlowToolKit.CacheFlowController.resetFlowCache();
+```
+
+See [Schedule Flow Cache Warming](../how-to-guides/schedule-flow-cache-warming.md) for the daily job that keeps this from being a manual step.
 
 ### 3. Test Your Forms
 
@@ -57,7 +73,8 @@ Review the release notes for new features you may want to enable:
 | Issue | Fix |
 |-------|-----|
 | "Insufficient access" errors after upgrade | Re-check permission set assignments; new classes may have been added |
-| Forms look different after upgrade | Clear browser cache (Cmd+Shift+R / Ctrl+Shift+R) and form cache |
+| Forms look different after upgrade | Clear browser cache (Cmd+Shift+R / Ctrl+Shift+R), then **Reset Form Cache** in Form Builder |
+| First form load is very slow after upgrade | Expected - the upgrade re-colds every flow. Re-warm as in step 2 |
 | New features not appearing | Verify the upgrade completed successfully in Setup → Installed Packages |
 | Flows with Flow Tool Kit components won't save | A new required property may have been added; check release notes |
 

@@ -45,8 +45,11 @@ The Form Template component can be placed on:
 * **Lightning Record Pages**: drop it on a Campaign page, and it automatically detects the source configuration and renders the form
 * **Experience Cloud Pages**: the source record Id is passed via the page context
 * **Flow Screens**: pass any source record Id into the component's `recordId` property
+* **A standalone page, via the URL**: add `?sourceId=<record Id>` to any page hosting the component, and the form loads under that record's source configuration with no record context of its own. On a Lightning app or Home page use `?c__sourceId=` instead, because Lightning strips query parameters that are not namespaced
 
 Admins direct users to the source record using custom buttons, navigation menu items, or email links. When the user arrives, the form loads with that record's overrides applied.
+
+The `sourceId` parameter is the option to reach for when the form lives on its own site page rather than on the source record. A single page can then serve every Campaign, with the link deciding which source configuration applies. It needs no mapping setup, it outranks a Form Template configured on the component, and an unrecognised id falls back to that configured template with no overrides rather than erroring. See [URL Parameter Mapping](url-parameter-mapping.md#the-reserved-sourceid-parameter) for the full rules.
 
 ### Form Submission Tracking
 

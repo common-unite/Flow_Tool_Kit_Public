@@ -83,6 +83,53 @@ flows:
                 options:
                     path: scripts/grant_demo_cleanup.apex
 
+    # #405 perf baselines: mirrors what a subscriber gets from the MetaDeploy install plan,
+    # plus the Testing Aura EC site as the standalone-formTemplate control surface,
+    # plus the fixed perf test assets (forms + PERF flows).
+    # install_prod is inlined (like npc_dev_org) because its config_managed includes
+    # load_sample_data, which fails in this repo (no datasets/default/default.dataset.sql)
+    # and CCI can't disable nested tasks via flow step options.
+    perf_baseline_org:
+        steps:
+            0.1:
+                flow: dependencies
+            0.2:
+                task: install_managed
+            0.3:
+                task: deploy_post
+            0.4:
+                task: update_admin_profile
+            2:
+                task: deploy
+                options:
+                    path: force-app-post
+            3:
+                task: assign_permission_sets
+                options:
+                    api_names: Form_Builder_Admin,Form_Flow_User
+            4:
+                task: deploy
+                options:
+                    path: unpackaged/config/perf
+            5:
+                task: create_community
+                options:
+                    template: Build Your Own
+                    name: Testing Aura
+                    url_path_prefix: testing
+                ignore_failure: True
+            6:
+                task: publish_community
+                options:
+                    name: Testing Aura
+                ignore_failure: True
+            7:
+                task: execute_anon
+                description: Configure Testing Aura guest user permissions
+                options:
+                    path: datasets/dev/setup_testing_aura_site.apex
+                ignore_failure: True
+
     dev_org:
         steps:
             5:
@@ -315,6 +362,12 @@ orgs:
             days: 30
             namespaced: True
 
+        # Subscriber-sim org for #405 screen-flow perf baselines: released package INSTALLED, not source.
+        # Deliberately non-namespaced - extension packages (Stripe, UnofficialSF) require the installed base.
+        perf_baseline:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: False
 
         feature_sprint-2026-08:
             config_file: orgs/dev.json

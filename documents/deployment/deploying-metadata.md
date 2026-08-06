@@ -116,7 +116,11 @@ After deploying, verify in the target org:
 2. Open each form; verify sections, fields, and conditional logic are correct.
 3. Test a Flow using the deployed form; verify runtime rendering.
 4. If using themes, verify the styling appears correctly.
-5. Clear the form cache if changes aren't visible: navigate to `your-org/apex/FlowToolKit__CacheFlow`.
+5. Clear the form cache if changes aren't visible: open **Form Builder** and click **Reset Form Cache** (requires the **Form Component Admin** custom permission).
+
+{% hint style="info" %}
+Any metadata deploy re-colds every screen flow in the org, not only the ones you deployed. The next visitor to each flow pays a first-load penalty of 20 seconds or more. See [Schedule Flow Cache Warming](../how-to-guides/schedule-flow-cache-warming.md).
+{% endhint %}
 
 ## Related Pages
 

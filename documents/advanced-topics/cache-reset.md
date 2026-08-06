@@ -17,19 +17,22 @@ Reset the cache when:
 
 ## How to Reset
 
-### Method 1: CacheFlow Visualforce Page
+### Method 1: The Reset Form Cache button
 
-Navigate to:
-```
-https://your-org.lightning.force.com/apex/FlowToolKit__CacheFlow
-```
+Open **Form Builder** and click **Reset Form Cache** in the toolbar.
 
-This page clears all cached form data. After clearing:
-- The next form load will query fresh metadata
-- All users will see the updated forms
+This is the only supported way to clear the cache on demand. It empties the cache partition, re-saves every form definition, and then re-warms your screen flows in the same job. After it finishes:
+- The next form load queries fresh metadata
+- All users see the updated forms
+
+The button is visible only to users with the **Form Component Admin** custom permission.
 
 {% hint style="info" %}
-**Tip**: Bookmark the CacheFlow page for quick access. Only users with the **Form Builder Admin** permission set can access it.
+**The job is asynchronous.** The toast reports a Job Id; the cache is not clear until that batch finishes. Track it in Setup → **Apex Jobs**.
+{% endhint %}
+
+{% hint style="warning" %}
+Do not use `/apex/FlowToolKit__CacheFlow` for this. Earlier versions of this page documented that URL as a cache reset; it is not one. That page is the internal render surface used by the flow warming job and clears nothing when you visit it.
 {% endhint %}
 
 ### Method 2: Wait for Automatic Refresh
@@ -52,6 +55,20 @@ This forces the browser to reload all JavaScript and CSS, which can resolve disp
 | **Conditional logic** | Parsed logic rules and conditions | Next evaluation uses fresh rules |
 | **Themes** | Parsed style sheet metadata | Next render applies fresh styles |
 
+## Two different caches
+
+Flow Tool Kit performance involves two caches that are easy to confuse. Resetting one does nothing for the other.
+
+| | Form metadata cache | Screen flow compile cache |
+|---|---|---|
+| **Holds** | Parsed form, logic, theme and label definitions | The platform's compiled screen flows and component definitions |
+| **Owned by** | Flow Tool Kit (platform cache partition) | Salesforce |
+| **Symptom when cold or stale** | Form shows *old* configuration | Form is *slow* to load - 20 seconds or more |
+| **You want to** | **Reset** it, so it re-reads metadata | **Warm** it, so nobody waits |
+| **How** | Reset Form Cache button, this page | [Schedule Flow Cache Warming](../how-to-guides/schedule-flow-cache-warming.md) |
+
+If forms are showing outdated *content*, reset. If forms are showing correct content *slowly*, warming is what you need.
+
 ## Troubleshooting
 
 | Symptom | Likely Cache Issue? | Action |
@@ -62,6 +79,7 @@ This forces the browser to reload all JavaScript and CSS, which can resolve disp
 | Theme colors wrong | Yes | Reset cache |
 | Form not loading at all | No | Check permissions and configuration |
 | Error messages | No | Check form setup and object access |
+| Form correct but takes 20+ seconds on first load each day | No | Schedule flow cache warming |
 
 {% hint style="warning" %}
 **Cache reset affects all users.** After a reset, the first form load for each user will be slightly slower as the cache is rebuilt. This is temporary; subsequent loads are fast again.
@@ -69,6 +87,7 @@ This forces the browser to reload all JavaScript and CSS, which can resolve disp
 
 ## Related Pages
 
+- [Schedule Flow Cache Warming](../how-to-guides/schedule-flow-cache-warming.md): the daily job that pre-pays screen flow load cost
 - [Troubleshooting](../faq-troubleshooting/troubleshooting.md): common issues and solutions
 - [Deploying Metadata](../deployment/deploying-metadata.md): post-deployment cache clearing
 - [Upgrading Versions](../deployment/upgrading-versions.md): post-upgrade steps

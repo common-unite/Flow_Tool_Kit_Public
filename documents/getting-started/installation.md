@@ -53,6 +53,24 @@ If you see the Form Builder tab and can create a form, Flow Tool Kit is installe
 **Can't see the Form Builder tab?** Make sure you've assigned the **Form Builder Admin** or **Form Builder Manager** permission set. The tab is only visible to users with the correct permissions.
 {% endhint %}
 
+## Schedule the Daily Warmer
+
+Do this once, before you go live. It is the single highest-impact performance step for Flow Tool Kit.
+
+Salesforce recompiles every screen flow on its first run of the day, which costs a real person 20 seconds or more of waiting. Flow Tool Kit ships a scheduled job that pays that cost overnight instead. As of 4.13 it warms your own screen flows too, not only the packaged ones.
+
+1. Setup → **Apex Classes** → **Schedule Apex**.
+2. Job Name: `Cache_FlowToolKit_Components`.
+3. Apex Class: `FormCacheResetIterable_Batch`.
+4. Frequency: **daily**, before your earliest users start work (for example 5:00 AM).
+5. Save.
+
+Schedule it as yourself, an active administrator. Full detail, including how to verify it ran and how to extend per-flow warming to your own flows, is in [Schedule Flow Cache Warming](../how-to-guides/schedule-flow-cache-warming.md).
+
+{% hint style="warning" %}
+**Upgrading rather than installing fresh?** Check Setup → **Scheduled Jobs** for an existing `Cache_FlowToolKit_Components` entry. If its **Submitted By** column is blank, it was created automatically by an old installer, has never worked, and needs to be deleted and re-created by you.
+{% endhint %}
+
 ## Next Steps
 
 - [Quick Start Guide](quick-start.md): build your first real form in 5 minutes

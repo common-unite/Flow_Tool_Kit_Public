@@ -61,7 +61,7 @@ Form Builder Manager users can:
 
 Form Builder Manager users **cannot**:
 
-* Reset the form cache (CacheFlow page)
+* Reset the form cache (the **Reset Form Cache** button in Form Builder, gated on the **Form Component Admin** custom permission)
 * Clone/export/import Form Templates via Visualforce pages
 * Access Salesforce Setup pages
 * Modify metadata
@@ -101,7 +101,7 @@ Form Flow User grants access to these invocable action classes:
 | Manage Form Templates          |  Yes  |   Yes   |     No    |
 | Review/convert submissions     |  Yes  |   Yes   |     No    |
 | Use Invocable Actions in Flows |  Yes  |   Yes   |    Yes    |
-| Reset form cache (CacheFlow)   |  Yes  |    No   |     No    |
+| Reset form cache               |  Yes  |    No   |     No    |
 | Import/export templates (VF)   |  Yes  |    No   |     No    |
 | View Setup                     |  Yes  |    No   |     No    |
 | Custom tab access              |  Yes  |    No   |     No    |

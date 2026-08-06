@@ -25,6 +25,7 @@
 * [Deploy to Experience Cloud](how-to-guides/deploy-to-experience-cloud.md)
 * [Merge Duplicate Records](how-to-guides/merge-duplicate-records.md)
 * [Override New And Edit With A Form](how-to-guides/override-new-and-edit-with-a-form.md)
+* [Schedule Flow Cache Warming](how-to-guides/schedule-flow-cache-warming.md)
 * [Set Up File Uploads](how-to-guides/set-up-file-uploads.md)
 * [Use Data Tables](how-to-guides/use-data-tables.md)
 * [Use Repeating Sections](how-to-guides/use-repeating-sections.md)
@@ -129,6 +130,7 @@
 * [Dynamic Flow Display](experience-cloud/dynamic-flow-display.md)
 * [Experience Cloud Components](experience-cloud/experience-cloud-components.md)
 * [Styling Design Blocks](experience-cloud/styling-design-blocks.md)
+* [LWR Sites: Component Support Block](experience-cloud/lwr-site-component-support.md)
 
 ## Advanced Topics
 

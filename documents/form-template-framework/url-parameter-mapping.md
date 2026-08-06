@@ -38,6 +38,35 @@ With mappings:
 
 The form submission is created with all three fields pre-populated.
 
+## The reserved `sourceId` parameter
+
+`sourceId` is **not** a mapping. It is a reserved parameter the form reads before anything else, and it tells the form which record's [Form Template Source](form-template-sources.md) config to load under:
+
+```
+https://yoursite.com/apply?sourceId=701xx0000000ABC
+```
+
+Point it at a source record (a Campaign, say) and the form resolves that record's source configuration on the **first** load: the Form Template it nominates, its prefill and live field mappings, its field overrides, the source lookup field, and the `Source Id` stamp on the submission.
+
+### Which spelling to use where
+
+| Where the form lives | Use | Why |
+| --- | --- | --- |
+| Experience Cloud (LWR or Aura), Visualforce, any standalone page | `?sourceId=` | The parameter survives to the page untouched |
+| Lightning app page, Home page, record page | `?c__sourceId=` | **Lightning Experience deletes query parameters that are not namespaced** with `c__`, so a plain `sourceId` never reaches the form |
+
+The form accepts either spelling, so you never have to think about it beyond picking the right one for the surface. The same constraint applies to the mapped parameters below (`pv1`, `utm_source` and so on) on a Lightning page.
+
+> If you paste a link with `?sourceId=` into a Lightning page and nothing happens, look at the address bar. If the parameter has vanished from the URL, Lightning stripped it and you need the `c__` prefix.
+
+* **No setup required.** Unlike the mappings below, `sourceId` needs no entry in the URL Parameter Mapping editor. It works on any placement.
+* **It outranks a fixed Form Template.** If the component is configured with a template and the URL supplies a `sourceId`, the source decides the template. The configured template is the fallback for when no `sourceId` is present.
+* **A hosting record still wins.** On a record page, the record the form is sitting on takes precedence over the URL.
+* **A bad id degrades quietly.** An unrecognised or tampered id falls back to the configured template with no source overrides applied, rather than erroring.
+* **Not available in iframe embeds.** The embed page names its Form Template directly, so `sourceId` has no effect there.
+
+> Mapping a parameter to the `Source Id` field through the editor below does **not** do this. That only writes the value onto the submission after the form has already resolved; use the reserved `sourceId` parameter to actually load under a source.
+
 ### Rules
 
 * **New submissions only**: URL parameters are only applied when creating a new Form Submission. Resuming a saved submission never overwrites existing values.

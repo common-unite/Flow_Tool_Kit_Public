@@ -70,8 +70,20 @@
 **Causes & Solutions**:
 
 1. **Wait 5 minutes**: Form metadata is cached for performance. Changes may take a few minutes to propagate.
-2. **Clear the cache manually**: Navigate to the **CacheFlow** Visualforce page to force a cache reset: `your-org-url/apex/FlowToolKit__CacheFlow`
+2. **Clear the cache manually**: open **Form Builder** and click **Reset Form Cache**. The button requires the **Form Component Admin** custom permission, and the reset runs as a background job - track it in Setup → **Apex Jobs**. See [Cache Reset](../advanced-topics/cache-reset.md).
 3. **Hard refresh the browser**: Sometimes the browser caches old component JavaScript (Cmd+Shift+R / Ctrl+Shift+R).
+
+{% hint style="warning" %}
+Visiting `/apex/FlowToolKit__CacheFlow` does **not** reset the cache, despite what earlier versions of these docs said. That page is the internal render surface used by the flow warming job.
+{% endhint %}
+
+## Forms Are Correct but Slow on the First Load Each Day
+
+**Symptom**: The form shows the right content, but the first person to open it each morning waits 20 seconds or more. Everyone after that gets it instantly, until the next morning.
+
+This is not a cache staleness problem and resetting the form cache will not help. Salesforce recompiles each screen flow on its first run of the day, and after any metadata deploy in your org.
+
+**Solution**: schedule the daily warmer so a background job pays that cost before your users arrive. See [Schedule Flow Cache Warming](../how-to-guides/schedule-flow-cache-warming.md).
 
 ## Deployment Fails for Form Metadata
 

@@ -24,11 +24,51 @@ Your prefill Flow must accept one input variable and return at least one output 
 
 | Variable | Direction | Type | Required | Purpose |
 | --- | --- | --- | --- | --- |
-| `record` | Input | SObject `Form_Submission__c` | Yes | The Form Submission after defaults + URL-param prefill, so your Flow can read existing values and decide whether to keep, overwrite, or fall back. |
-| `prefillRecord` | Output | SObject `Form_Submission__c` | Optional | Fields set here overwrite the local Form Submission. Missing or null is a silent bypass; the form renders with whatever was already prefilled. |
+| `record` | Input | SObject `Form_Submission__c` | Yes | The Form Submission after **every** prefill layer has been applied (see [What `record` contains](#what-record-contains) below), so your Flow can read existing values and decide whether to keep, overwrite, or fall back. |
+| `prefillRecord` | Output | SObject `Form_Submission__c` | Optional | Merged field-by-field over the local Form Submission: fields you set win, fields you leave out keep their existing value. Missing or null is a silent bypass; the form renders with whatever was already prefilled. |
 | `prefillRelatedRecords` | Output | Collection of SObject `Form_Submission__c` | Optional | Seeds repeater or table sections. Each entry's `Internal_SectionId__c` tells the form which section it belongs to (see [Section Tag routing](#section-tag-routing) below). |
 | `hasError` | Output | Boolean | Optional (default false) | When `true`, the form stops loading and the error illustration shows instead. Use this to gate form load on conditions only your Flow knows about. |
 | `errorMessage` | Output | String (rich text supported) | Optional | When `hasError = true`, this string renders as the illustration subtitle. Supports HTML formatting and Flow merge fields. |
+
+## What `record` contains
+
+Your Flow runs **last**, after every other prefill layer. By the time `record` reaches you it already holds, weakest first:
+
+| # | Layer | Applies to |
+| --- | --- | --- |
+| 1 | **Prefill Values** JSON, **or** the **Prefill Template** record, **or** record-create defaults (whichever is configured; they are mutually exclusive, and all three are skipped when Skip Prefill is on) | New submissions |
+| 2 | Framework stamps: Status, Form Template, Unique Id, Form Start Date Time | New submissions |
+| 3 | Source Id and the source lookup field, when the form was reached through a [source record](form-template-sources.md) | New submissions |
+| 4 | **Source prefill mappings** from the Form Template Source config | New submissions |
+| 5 | **[URL parameter mappings](url-parameter-mapping.md)** | New submissions, non-Flow only |
+| 6 | **Source live mappings**, which re-stamp on every load | New **and** resumed |
+
+Because you run last, you can see and override anything above. Because the output is merged rather than substituted, you only have to set what you actually want to change.
+
+> On a resumed draft none of this happens: the Prefill Flow does not run at all, and the saved values plus live mappings are the source of truth. Once an applicant has started a form, their prefill is locked.
+
+## How `prefillRecord` is merged
+
+The form merges your output **by field presence, not by value**:
+
+* A field you set on `prefillRecord` replaces the existing value.
+* A field you leave alone keeps whatever layers 1 to 6 put there.
+* A field you set to **blank or null still counts as set**, and will clear the existing value.
+
+That last point is the one that catches people out. "Not setting a field" and "setting a field to null" are different things, and only the first one is safe.
+
+### The Get Records trap
+
+Assigning a **queried record** straight to `prefillRecord` is the usual way admins hit this:
+
+```
+Get Records → Contact_Submission
+Assignment  → prefillRecord = Contact_Submission     ← every queried field, nulls included
+```
+
+A queried record carries **every field in the query**, and any field that is empty in the database arrives as null. Merging that wipes the URL parameters, source mappings and Prefill Template values the form had already seeded.
+
+Use a Transform (below) that maps only the fields you own, or seed `prefillRecord` from `record` first and then modify it, so untouched fields keep their prefilled values.
 
 ## Recommended pattern: surgical mapping via Transform
 
