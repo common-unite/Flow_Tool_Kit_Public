@@ -15,7 +15,7 @@ There are **two separate costs**, and the warmer addresses them differently. Und
 | **Shared component definitions** | Compiling the Flow Tool Kit components themselves - the form renderer, tables, lookups, repeating sections and so on. Shared by every flow that uses them. | The first flow of the day to touch a given component | **Automatic.** The packaged Warm Up flow (below) - no setup beyond scheduling the job |
 | **Per-flow compile** | Compiling one specific flow definition. Charged separately for every flow, every morning. | The first visitor to each individual flow | Only for flows listed on a Visualforce page - ours are; yours need `CacheFlowLocal` |
 
-Outcomes are written to the debug log (`CACHEFLOW_WARM` lines - see "Confirm it is working"), and the running user receives an email summary only when warming failures occur.
+Outcomes are written to the debug log (`CACHEFLOW_WARM` lines - see "Confirm it is working"). The job never emails anyone: it runs daily across every screen flow in your org, so a notification on failure would reach you every morning.
 
 ## The Warm Up flow: your own flows get faster too
 
@@ -73,7 +73,7 @@ Warming is invisible by design, so verify it rather than assume it. After a sche
 
 A final `CACHEFLOW_WARM_SUMMARY` line totals all three. Outcomes are **verified from what actually rendered**, never assumed - a flow is only reported as warmed if the page returned real content.
 
-If any flow fails to render, the user who scheduled the job receives an email listing them. No email means no failures.
+Failures appear as a `CACHEFLOW_WARM_FAILURES` line naming each flow. Nothing is emailed, so check the log after a run when you want to confirm the outcome.
 
 ## Re-run warming after changes
 
