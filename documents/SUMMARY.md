@@ -23,6 +23,7 @@
 * [Configure Lookup Fields](how-to-guides/configure-lookup-fields.md)
 * [Configure Themes And Styling](how-to-guides/configure-themes-and-styling.md)
 * [Deploy to Experience Cloud](how-to-guides/deploy-to-experience-cloud.md)
+* [Edit A Related Record](how-to-guides/edit-a-related-record.md)
 * [Merge Duplicate Records](how-to-guides/merge-duplicate-records.md)
 * [Override New And Edit With A Form](how-to-guides/override-new-and-edit-with-a-form.md)
 * [Schedule Flow Cache Warming](how-to-guides/schedule-flow-cache-warming.md)
@@ -129,8 +130,8 @@
 
 * [Dynamic Flow Display](experience-cloud/dynamic-flow-display.md)
 * [Experience Cloud Components](experience-cloud/experience-cloud-components.md)
+* [Lwr Site Component Support](experience-cloud/lwr-site-component-support.md)
 * [Styling Design Blocks](experience-cloud/styling-design-blocks.md)
-* [LWR Sites: Component Support Block](experience-cloud/lwr-site-component-support.md)
 
 ## Advanced Topics
 
@@ -185,6 +186,7 @@
 * [Release 4.0](release-notes/release-4.0.md)
 * [Release 4.1](release-notes/release-4.1.md)
 * [Release 4.10](release-notes/release-4.10.md)
+* [Release 4.14](release-notes/release-4.14.md)
 * [Release 4.2](release-notes/release-4.2.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.5](release-notes/release-4.5.md)
