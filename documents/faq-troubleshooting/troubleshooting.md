@@ -118,6 +118,24 @@ This is not a cache staleness problem and resetting the form cache will not help
 
 See [Experience Cloud](../experience-cloud/experience-cloud-components.md) for full guest user setup guidance.
 
+## Save Progress Fails or the Confirmation Page Never Appears
+
+**Symptom**: a user clicks **Save Progress** and sees "An error occurred while trying to update the record. Please try again." Clicking **Submit** saves nothing and the confirmation page never appears. The same form works for administrators, and for guest users on a public site.
+
+**Who it affects**: any user whose only Flow Tool Kit permission set is **Form Flow User**. That includes internal Salesforce users who are not administrators and have not been given Form Builder Manager, as well as Partner Community and Customer Community users. It is reported most often on Experience Cloud, because community users are rarely assigned a builder permission set.
+
+**Cause**: **Form Flow User** grants Create and Read but not Update on **Form Submission** and **Form Submission Stage**. It has to, because it must remain assignable to the Guest User, and Salesforce does not allow a guest user to hold the Edit object permission. Guest saves avoid the problem because they run through a server-side upsert flow. Everyone else is saved with a direct record update, which requires Update permission.
+
+**Solution**:
+
+1. Create a permission set in your org granting **Edit** on `FlowToolKit__Form_Submission__c` and `FlowToolKit__Form_Submission_Stage__c`. Field-level access is already covered by Form Flow User.
+2. Assign it **in addition to** Form Flow User to every user who fills out forms.
+3. Do not assign it to the Guest User. Salesforce blocks that assignment and guests do not need it.
+
+**Also check**: Form Submission uses a **Private** external sharing model. The user must own the submission or have it shared with them. This matters when one person resumes a submission that someone else created.
+
+See [Permission Sets](../getting-started/permission-sets.md) for the full explanation.
+
 ## Related Pages
 
 * [FAQ](../form-template-framework/faq/faq.md): quick answers to common questions

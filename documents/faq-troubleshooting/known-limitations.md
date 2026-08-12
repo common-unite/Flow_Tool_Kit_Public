@@ -62,6 +62,7 @@ For Form Template Framework constraints (Save & Resume, conversion, page-level c
 
 - **Lightning Locker Service performance**: if LWS is not enabled, form components with large datasets will be significantly slower due to proxy wrapping. Always enable Lightning Web Security for best performance.
 - **Guest user limitations**: guest users cannot access all Apex classes or objects. Carefully configure the guest user profile.
+- **Form Flow User cannot update submissions on its own**: it grants Create and Read but not Update on Form Submission and Form Submission Stage, because it must remain assignable to the Guest User and Salesforce does not allow a guest user to hold the Edit object permission. Any user whose only Flow Tool Kit permission set is Form Flow User therefore needs a permission set of your own granting Edit on those two objects, or Save Progress fails and the confirmation page never appears. This affects non-administrator internal users as well as Partner and Customer Community users; it is listed here because Experience Cloud is where it is usually noticed. See [Permission Sets](../getting-started/permission-sets.md).
 - **CSP restrictions**: external resources (reCAPTCHA, custom fonts, external APIs) require CSP Trusted Site entries.
 
 ### Deployment

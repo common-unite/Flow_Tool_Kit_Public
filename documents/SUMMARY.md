@@ -187,6 +187,8 @@
 * [Release 4.1](release-notes/release-4.1.md)
 * [Release 4.10](release-notes/release-4.10.md)
 * [Release 4.14](release-notes/release-4.14.md)
+* [Release 4.15](release-notes/release-4.15.md)
+* [Release 4.16](release-notes/release-4.16.md)
 * [Release 4.2](release-notes/release-4.2.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.5](release-notes/release-4.5.md)
