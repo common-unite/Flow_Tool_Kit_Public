@@ -92,12 +92,44 @@ Form Flow User grants access to these invocable action classes:
 **Common mistake**: Forgetting to assign Form Flow User to end users. If a user can't see form fields or gets "Insufficient access" errors when filling out a form in a Flow, check their permission set assignment first.
 {% endhint %}
 
+### Create and Read Only on Submission Records
+
+Form Flow User grants **Create and Read, but not Update**, on **Form Submission** and **Form Submission Stage**.
+
+This is deliberate and cannot be changed in the packaged permission set. Form Flow User must stay assignable to the Experience Cloud **Guest User**, and Salesforce does not allow a guest user to hold the Edit or Delete object permission. A permission set that granted Edit could not be assigned to the guest user at all, which would break every public form.
+
+Guest users are unaffected by the missing Update permission, because the form runtime saves guest submissions through a server-side upsert flow rather than a direct record update.
+
+{% hint style="warning" %}
+**Anyone whose only Flow Tool Kit permission set is Form Flow User needs one more permission set.**
+
+This is not specific to Experience Cloud. It affects internal Salesforce users who are not administrators and have not been given Form Builder Manager exactly as much as it affects Partner Community and Customer Community users. It simply surfaces most often on Experience Cloud, because community users are rarely assigned a builder permission set.
+
+All of these users are saved with a direct record update, which requires Update. If they hold only Form Flow User, that update is refused.
+
+**Symptoms**
+
+* **Save Progress** fails with "An error occurred while trying to update the record. Please try again."
+* **Submit** saves nothing and the confirmation page never appears, because the save is rejected before the success step runs.
+* The same form works correctly for internal users and for guests.
+
+**Fix**: create a permission set in your own org that grants **Edit** on `FlowToolKit__Form_Submission__c` and `FlowToolKit__Form_Submission_Stage__c`, then assign it alongside Form Flow User to every user who fills out forms. Field-level access is already granted by Form Flow User, so the two object permissions are all you need to add.
+
+**Do not assign that permission set to the Guest User.** Salesforce blocks the assignment, and guests do not need it.
+{% endhint %}
+
+Users holding **Form Builder Admin** or **Form Builder Manager** are unaffected, because both grant full CRUD on these objects. That is why this does not show up in most internal testing.
+
+Record-level access still applies on top of object permissions. **Form Submission** uses a **Private** external sharing model, so a user can update a submission they own. If your process has one person resume a submission that someone else created, add a sharing rule or Apex sharing as well.
+
 ## Comparison Matrix
 
 | Capability                     | Admin | Manager | Flow User |
 | ------------------------------ | :---: | :-----: | :-------: |
 | Build forms in Form Builder    |  Yes  |   Yes   |     No    |
 | Fill out forms in Flows        |  Yes  |   Yes   |    Yes    |
+| Create a new submission        |  Yes  |   Yes   |    Yes    |
+| Update an existing submission  |  Yes  |   Yes   |     No    |
 | Manage Form Templates          |  Yes  |   Yes   |     No    |
 | Review/convert submissions     |  Yes  |   Yes   |     No    |
 | Use Invocable Actions in Flows |  Yes  |   Yes   |    Yes    |

@@ -60,6 +60,7 @@ To change the English wording, edit the label's **Value** rather than adding a t
 | Label API Name | Display Value | Used By | Purpose |
 |---|---|---|---|
 | `Cancel` | Cancel | buttonsCustom, flowDataTable | Cancel |
+| `Confirmation_Default` | Your response has been submitted. | formTemplate | Confirmation page body used when a Form Template has no confirmation message of its own |
 | `Cancel_Refresh` | Cancel/Refresh | *not currently referenced* | Cancel/Refresh |
 | `Next_Page` | Next Page | buttonsCustom | Next Page |
 | `Previous_Page` | Previous Page | buttonsCustom | Previous Page |
@@ -74,12 +75,15 @@ To change the English wording, edit the label's **Value** rather than adding a t
 |---|---|---|---|
 | `Error_Additional_Errors` | There are ({0}) additional errors | flowForm *(via base)* | Suffix noting further errors beyond those listed. {0} is the count. |
 | `Error_Campaign_Member_Status` | Campaign Member Status Error! | flowForm *(via base)* | Toast title when Campaign Member Status options cannot be resolved |
+| `Error_Fix_Before_Submit` | Please correct the highlighted fields before continuing. | formTemplate | Toast body when a page or review screen cannot be submitted because fields are still invalid |
+| `Error_Save_Record_Not_Identified` | We could not save your changes. Please refresh the page and try again. | formTemplate | Toast body when a save is abandoned because the record to update could not be identified. Pairs with the `Error_Save_Failed` title. |
 | `Error_Component_Loading` | Component is still loading: Please try again | flowForm *(via base)* | Shown when the respondent advances before the form has finished loading |
 | `Error_Form_Load` | Form Load Error | flowForm *(via base)*, flowFormRepeat *(via base)* | Toast title when the form metadata fails to load |
 | `Error_Formula_Recalculation` | Formula Recalculation Error | flowForm *(via base)* | Toast title when live formula recalculation fails |
 | `Error_Hierarchy_Assignment` | Hierarchy Assignment Error | flowForm *(via base)* | Toast title when a hierarchy field assignment fails |
 | `Error_Hierarchy_Validation` | Hierarchy Assignment Validation Errors | flowForm *(via base)* | Toast title when hierarchy assignment returns validation errors |
-| `Error_Object_Access` | Object Access Error! | flowDataTable *(via base)*, flowForm *(via base)*, flowFormLookup *(via base)*, flowFormRepeat *(via base)* | Toast title when the running user cannot access the form's object |
+| `Error_No_Edit_Access` | You do not have edit access to {0}. Your administrator must grant Edit permission on this object before your progress can be saved. | formTemplate | Toast body when the running user cannot update the records a save requires. {0} is the object label, or a comma separated list of them. See [Permission Sets](../getting-started/permission-sets.md) |
+| `Error_Object_Access` | Object Access Error! | flowDataTable *(via base)*, flowForm *(via base)*, flowFormLookup *(via base)*, flowFormRepeat *(via base)*, formTemplate | Toast title when the running user cannot access the form's object |
 | `Error_Prefill_Flow` | Prefill Flow Error | formTemplate *(via base)* | Toast title when the prefill flow fails |
 | `Error_Record_Load` | Record Load Error | flowForm *(via base)* | Toast title when the parent record fails to load |
 | `Error_Resolve_Validation` | Resolve Validation Errors | flowForm *(via base)*, flowFormRepeat *(via base)* | Toast title listing outstanding field validation errors |

@@ -1,5 +1,12 @@
 # Release 4.14
 
+> **Withdrawn. Do not install 4.14.0.1.** It was promoted but cannot be installed over 4.13.0.2:
+> `formSectionTheme` had two `@api` properties removed, and a managed package may never drop a public
+> property (#514). A promoted 2GP version cannot be deleted, so it remains in the package's version
+> list; its GitHub release pages are hidden.
+>
+> **Everything below shipped in [4.15](release-4.15.md)**, along with the fix. Upgrade straight to 4.15.0.2.
+
 > This note currently covers four of the issues in 4.14. The remaining slate (#405, #410, #427, #429, #430, #431, #432-#437, #438, #439, #440, #450, #451, #460, #467) is still to be written up.
 
 ## 🆕 Radio Buttons (Separated), and the first button-style display type for multi-select (#456)
