@@ -374,6 +374,13 @@ orgs:
             days: 30
             namespaced: True
 
+        # #513 Form Design Kit: renders the showcase form so Phase 2 can capture
+        # real markup and screenshots from the running renderer.
+        feature_form-design-kit:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: True
+
         feature_get-sobject-type-invocable:
             config_file: orgs/dev.json
             days: 30
