@@ -60,8 +60,9 @@
 {% endhint %}
 
 1. **Enable Lightning Web Security**: Go to **Setup → Session Settings** and enable "Use Lightning Web Security for Lightning web components." Test all components (especially Aura and third-party packages) for compatibility before enabling in production.
-2. **Reduce record count**: If displaying large collections in Data Table, paginate or filter server-side.
-3. **Check CSP Trusted Sites**: Missing Content Security Policy entries can cause resources to load slowly or fail silently.
+2. **Verify secure and persistent browser caching is on**: **Setup → Session Settings → Caching → "Enable secure and persistent browser caching to improve performance."** With it on, browsers keep Lightning component definitions and server responses across visits, so repeat page loads render the form with little or no server traffic. With it off, every visit re-downloads and re-fetches everything - the whole site feels several seconds slower on every load. It is on by default in production but can be switched off, and orgs created from scratch-org definitions frequently disable it deliberately (the definition key is `mobileSettings.enableS1EncryptedStoragePref2: false`), which also makes any performance testing on such orgs read far slower than what subscribers experience.
+3. **Reduce record count**: If displaying large collections in Data Table, paginate or filter server-side.
+4. **Check CSP Trusted Sites**: Missing Content Security Policy entries can cause resources to load slowly or fail silently.
 
 ## Form Cache Is Stale
 
