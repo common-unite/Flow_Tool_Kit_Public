@@ -199,6 +199,7 @@
 * [Release 4.22](release-notes/release-4.22.md)
 * [Release 4.23](release-notes/release-4.23.md)
 * [Release 4.24](release-notes/release-4.24.md)
+* [Release 4.25](release-notes/release-4.25.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
