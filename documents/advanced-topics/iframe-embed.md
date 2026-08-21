@@ -120,6 +120,7 @@ Setting clickjack protection to "No protection" sounds alarming, but it's safe f
 | **"Page not found" in iframe**                     | Guest user doesn't have the permission set                                                                         | Assign **Form Flow User** to the site's guest user                                                      |
 | **Lightning Out fails to load**                    | Digital Experiences not enabled                                                                                    | Go to Setup > Digital Experiences > Settings > Enable Digital Experiences                               |
 | **Form loads but confirmation page doesn't show**  | This is a known issue when `@salesforce/user/isGuest` returns false in Lightning Out (fixed in the latest version) | Update to the latest version of Flow Tool Kit                                                           |
+| **Record Form loads blank, no error shown**        | The site guest user has no Create permission on the object (the Form Flow User permission set grants no object access)   | Grant Create and Read on the object to the site's guest user profile; the latest version shows a permission notice instead of a blank form |
 | **Iframe doesn't resize with form content**        | The generated snippet includes auto-resize JavaScript                                                              | Make sure the full snippet (including the `<script>` tag) is pasted into your page                      |
 
 ## Security Considerations
