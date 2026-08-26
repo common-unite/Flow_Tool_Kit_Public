@@ -381,6 +381,12 @@ orgs:
 
 
 
+        # Sprint org for sprint/2026-08-26.
+        sprint_2026-08-26:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: True
+
         npc:
             config_file: orgs/npc.json
             days: 30
