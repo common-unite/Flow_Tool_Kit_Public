@@ -1,0 +1,11 @@
+# Release 4.29
+
+A data-integrity fix for integrations reading **Form Submission → External Id**, and the **View Receipt** button on payment confirmations.
+
+- **External Id is populated again on new responses** (#614): before 3.241, every new Form Submission stamped its generated key into **External Id**. #256 moved that key to the new **Unique Id** field and **External Id** simply stopped being written, so any integration keyed on it has received a null for every response created since. Nothing in the package reads the field, so nothing surfaced the problem. New responses now mirror **Unique Id** into **External Id**, and so do related-record rows created inside a form. A response created between 3.241 and 4.28 heals itself: opening it populates **External Id** and the value persists on its next save.
+- **Responses from that window that are never reopened keep a null External Id.** If your integration needs the history, a one-time data load covers them: set `ExternalId__c = UniqueId__c` where `ExternalId__c` is null and `UniqueId__c` is not. Responses created **before** 3.241 are deliberately left alone, because their **External Id** is the original key your integration already references and overwriting it would break that reference.
+- **View Receipt on the confirmation** (#615): when a payment-required form completes and the response carries a receipt URL, the confirmation message now shows a **View Receipt** button that opens the receipt in a new tab. This matches the button the Stripe payment component shows when it is placed directly on an Experience Cloud page. Responses with no receipt URL, which includes setup-mode and some subscription flows, show nothing extra.
+- **Translatable receipt copy**: the button label is a custom label (`View_Receipt`) under the **Form** category in **Setup → Translate**.
+- **The receipt button requires the Stripe Connector Accelerator**, in a release that is still in progress. Until that ships, the button stays hidden because no receipt URL is written. It is safe to upgrade now; nothing else about the confirmation changes.
+
+Admins: load your public form pages, including any embedded form URLs, once after upgrading; the first visit pays the component compile so a real visitor does not.
