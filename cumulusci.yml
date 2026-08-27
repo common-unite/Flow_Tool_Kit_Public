@@ -453,6 +453,13 @@ orgs:
 
 
 
+        # #74 NPC PersonAccount conversion: subscriber-shaped NPC org for the conversion addon, which
+        # ships inside force-app-npc and reuses no base source, so the package is installed, never deployed.
+        feature_npc-person-account-conversion:
+            config_file: orgs/npc.json
+            days: 30
+            namespaced: False
+
         # Subscriber-style NPC org: latest RELEASED Flow Tool Kit installed (never source), non-namespaced,
         # so force-app-npc is built and deployed exactly as a client would. Community is deliberately not created here.
         npc_subscriber:
