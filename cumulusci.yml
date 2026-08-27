@@ -308,6 +308,78 @@ flows:
                 options:
                     tag_name: "latest"
 
+    # Subscriber-style NPC org (org: npc_subscriber). Installs the latest released Flow Tool Kit via install_managed,
+    # then the NPC licenses/permission sets, force-app-npc configuration and sample data - mirrors npc_dev_org steps 7-11.3
+    # verbatim. update_admin_profile is skipped (fails on PersonAccounts); the Grantmaking Portal community is NOT created.
+    npc_subscriber_org:
+        description: Subscriber-style NPC org - latest released Flow Tool Kit INSTALLED (non-namespaced), NPC licenses and permission sets, force-app-npc configuration, stage definitions and sample data. No community.
+        steps:
+            1:
+                flow: dependencies
+            2:
+                task: install_managed
+            3:
+                task: deploy_post
+                options:
+                    path: unpackaged/post
+            4:
+                task: deploy
+                options:
+                    path: force-app-post
+            5:
+                task: assign_permission_sets
+                options:
+                    api_names: Form_Builder_Admin,Form_Flow_User
+            6:
+                task: assign_permission_set_licenses
+                options:
+                    api_names: OmniStudioDesigner,ActionPlansPsl,GrantmakingPsl,FundraisingAccessPsl,ProgramManagementPsl,DynamicAssessmentPsl,GroupMembershipPsl,DocumentChecklistPsl,CarePlansPermissionSetLicense,IndustriesAssessmentPsl
+                ignore_failure: True
+            # NPC Permission Sets
+            7:
+                task: assign_permission_sets
+                options:
+                    api_names: OmniStudioAdmin,OmniStudioExecution,ActionPlans,GrantmakingManager,FundraisingAccess,AdvancedProgramManagement,DynamicAssessmentPsl,GroupMembershipPsl,AnalyticsStoreUser,DocumentChecklist,CarePlansPermissionSetLicense,IndustriesAssessmentPermissionSet,IndustriesInteractionSummaryPsl,Fundraising_Admin
+                ignore_failure: True
+            # NPC Admin Setup
+            8:
+                task: execute_anon
+                options:
+                    path: datasets/npc/setup_admin_user.apex
+                ignore_failure: True
+            # Deploy NPC metadata
+            9:
+                task: deploy
+                options:
+                    path: force-app-npc
+                ui_options:
+                    name: "Deploy NPC Configuration (fields, profiles, LWC, Apex, Flows, FlexiPages, List Views, Settings, Sharing)"
+            # NPC Stage Definitions
+            10:
+                task: execute_anon
+                options:
+                    path: datasets/npc/load_npc_stage_definitions.apex
+                ignore_failure: True
+            # NPC Sample Data (Snowfakery)
+            10.1:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: datasets/npc/npc_sample_data.recipe.yml
+                ignore_failure: True
+            # NPC Sample Accounts
+            10.2:
+                task: execute_anon
+                options:
+                    path: datasets/npc/load_npc_sample_accounts.apex
+                ignore_failure: True
+            # NPC Sample Data (Apex)
+            10.3:
+                task: execute_anon
+                options:
+                    path: datasets/npc/load_npc_sample_data.apex
+                ignore_failure: True
+            # Create Grantmaking Community
+
 tasks:
 
     export_form:
@@ -381,11 +453,12 @@ orgs:
 
 
 
-        # Sprint org for sprint/2026-08-26.
-        sprint_2026-08-26:
-            config_file: orgs/dev.json
+        # Subscriber-style NPC org: latest RELEASED Flow Tool Kit installed (never source), non-namespaced,
+        # so force-app-npc is built and deployed exactly as a client would. Community is deliberately not created here.
+        npc_subscriber:
+            config_file: orgs/npc.json
             days: 30
-            namespaced: True
+            namespaced: False
 
         npc:
             config_file: orgs/npc.json
