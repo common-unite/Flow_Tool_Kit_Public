@@ -70,6 +70,10 @@ Run business rules before conversion: check for duplicates, validate against ext
 * Always handle errors gracefully: log failures to a custom object or send admin notifications
 * Keep the override Flow focused; delegate complex sub-tasks to subflows
 
+## A worked example
+
+The [Nonprofit Cloud Extension](../../nonprofit-cloud/overview.md) is this mechanism used at full scale: it overrides the controller and three conversion steps to build Person Accounts, Households, memberships and family relationships, while leaving every other rule on the standard flows. Its [Customizing](../../nonprofit-cloud/customizing.md) page sets out the contract a replacement flow has to honour, which applies to any override, not only the Nonprofit Cloud ones.
+
 ## Related Pages
 
 * [Use Form Submissions](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/how-to-guides/use-form-submissions.md): submission lifecycle

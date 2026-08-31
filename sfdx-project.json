@@ -11,6 +11,10 @@
     {
       "path": "force-app-npc",
       "default": false
+    },
+    {
+      "path": "force-app-npc-conversion",
+      "default": false
     }
   ],
   "namespace": "FlowToolKit",

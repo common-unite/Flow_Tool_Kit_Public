@@ -143,8 +143,13 @@ When a conversion fails (missing required fields, validation rule violations, du
 2. The submission status reflects the failure
 3. The submission can be corrected and re-converted
 
+## Nonprofit Cloud
+
+Nonprofit Cloud models people and families differently: a person is a Person Account, a family is a Household with a Party Relationship Group, and membership and family relationships are records in their own right. The **Nonprofit Cloud Extension** teaches this pipeline that shape, using the same Conversion Rules, statuses, logs and Reprocess described above. See the [Nonprofit Cloud Extension overview](../nonprofit-cloud/overview.md).
+
 ## Related Pages
 
+* [Nonprofit Cloud Extension](../nonprofit-cloud/overview.md): Person Accounts, Households and relationships
 * [Form Submissions](form-submissions.md): submission object reference
 * [Use Form Submissions](how-to/use-form-submissions.md): end-to-end guide
 * [Overridable Conversion Flows](how-to/overridable-conversion-flows.md): custom conversion logic

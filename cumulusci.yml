@@ -311,8 +311,75 @@ flows:
     # Subscriber-style NPC org (org: npc_subscriber). Installs the latest released Flow Tool Kit via install_managed,
     # then the NPC licenses/permission sets, force-app-npc configuration and sample data - mirrors npc_dev_org steps 7-11.3
     # verbatim. update_admin_profile is skipped (fails on PersonAccounts); the Grantmaking Portal community is NOT created.
+    npc_conversion_post_install:
+        description: Post-install content for the NPC conversion extension - everything the extension cannot ship because the base package owns it. Picklist values (Conversion Rules incl. Account is Household, Account record types Household and Organization, the PersonAccount contact record type as the value set's default, the NPC_Person_Account_Match Contact matching rule), their Conversion Type mapping, and the four Conversion Mapping Default repoints from unpackaged/npc-conversion-post. PersonAccount and NPC_Person_Account_Match are flagged as value-level defaults, which a subscriber may set; they take effect only once the base stops shipping these fields with a formula default (the formula wins on insert and cannot be changed or removed post-install - Cannot modify managed object, field=DefaultValue). Until then the engines resolve -- Use Default -- to the person record type and always name the NPC matching rule themselves. Run after the extension is installed in a subscriber; in the namespaced extension-development org run npc_conversion_config instead.
+        steps:
+            1:
+                task: add_npc_conversion_rules
+            2:
+                task: add_npc_conversion_rule_dependencies
+            3:
+                task: add_npc_account_record_types
+            4:
+                task: add_npc_contact_record_type
+            5:
+                task: add_npc_contact_matching_rule
+            6:
+                task: deploy_npc_conversion_post
+
+    npc_conversion_config:
+        description: Dev loop for the namespaced extension-development org - deploy the extension source (flows, permission set, matching rules, test class), then the same post-install content a subscriber gets, with the picklist tasks in managed False mode because that org retrieves base fields under bare names.
+        steps:
+            1:
+                task: deploy_npc_conversion
+            2:
+                flow: npc_conversion_post_install
+                options:
+                    add_npc_conversion_rules:
+                        managed: False
+                    add_npc_conversion_rule_dependencies:
+                        managed: False
+                    add_npc_account_record_types:
+                        managed: False
+                    add_npc_contact_record_type:
+                        managed: False
+                    add_npc_contact_matching_rule:
+                        managed: False
+
+    npc_conversion_dev_org:
+        description: EXTENSION-DEVELOPMENT org build - the full subscriber-style NPC org (npc_subscriber_org), then the extension SOURCE and its post-install content (npc_conversion_config). Run against the namespaced feature org for the dev loop. For the package-based install a customer would get, run npc_conversion_install instead.
+        steps:
+            1:
+                flow: npc_subscriber_org
+            2:
+                flow: npc_conversion_config
+
+    npc_conversion_install:
+        description: FULL PACKAGE-BASED INSTALL of the NPC conversion solution, the way a customer receives it - the latest released Flow Tool Kit base, the pinned NPC extension package version (bump install_npc_conversion after each build), the NPC Person Account matching and duplicate rules as subscriber-owned metadata (they were deliberately kept out of the package so admins can edit them), then every post-install update the packages cannot carry - Conversion Rules picklist values including Account is Household, their Conversion Type mapping, the Household and Organization Account record types, the PersonAccount contact record type default, the NPC_Person_Account_Match matching-rule value, and the four Conversion Mapping Default repoints. Run against a subscriber-style NPC org that already has the NPC licenses, permission sets and force-app-npc configuration (npc_subscriber_org builds one). The current extension version is skip-validation, so it installs only in orgs on the cUnite_PBO Dev Hub until a validated build exists.
+        steps:
+            1:
+                flow: dependencies
+            2:
+                task: install_managed
+            3:
+                task: install_npc_conversion
+            4:
+                task: deploy_npc_matching_rule
+            5:
+                task: deploy_npc_duplicate_rule
+            6:
+                flow: npc_conversion_post_install
+
+    npc_subscriber_install_org:
+        description: End-to-end install-test org - build the subscriber-style NPC org from scratch (npc_subscriber_org), then run the full package-based install on top (npc_conversion_install). The closest scratch-org approximation of a real customer install.
+        steps:
+            1:
+                flow: npc_subscriber_org
+            2:
+                flow: npc_conversion_install
+
     npc_subscriber_org:
-        description: Subscriber-style NPC org - latest released Flow Tool Kit INSTALLED (non-namespaced), NPC licenses and permission sets, force-app-npc configuration, stage definitions and sample data. No community.
+        description: NPC org with the latest released Flow Tool Kit INSTALLED (works for a non-namespaced subscriber org and for the namespaced extension-development org - local NPC names carry %%%NAMESPACED_ORG%%% tokens), NPC licenses and permission sets, force-app-npc configuration, stage definitions and sample data. No community.
         steps:
             1:
                 flow: dependencies
@@ -385,6 +452,155 @@ tasks:
     export_form:
         class_path: cci_flowtoolkit_tasks.export_form.ExportFormMetadata
 
+    create_npc_package_version:
+        description: Build a 2GP managed version of the NPC conversion extension package (Flow Tool Kit - AFNP | NPC Extension, namespace FlowToolKit, same as the base) from force-app-npc-conversion, depending on the released base version. The package source carries no namespace tokens, so nothing is injected - the namespace is simply the project's. Run against npc_release, whose definition file gives the build org the PersonAccounts and Industries features the metadata needs.
+        class_path: cci_flowtoolkit_tasks.extension_package.CreateExtensionPackageVersion
+        options:
+            package_type: Managed
+            package_name: "Flow Tool Kit: AFNP | NPC Extension"
+            package_path: force-app-npc-conversion
+            dependencies:
+                - 04tRQ000000AXCPYA4
+            version_base: 1.0.0
+            version_type: build
+            skip_validation: False
+            force_upload: True
+
+    install_npc_conversion:
+        description: Install the pinned NPC conversion extension package version into a subscriber-style org. PIN BUMP REQUIRED - after every create_npc_package_version run, update the version option to the new SubscriberPackageVersionId. Current pin 1.0.0.1, built skip-validation (installable only in orgs on the cUnite_PBO Dev Hub; the platform validates during install instead of during build).
+        class_path: cumulusci.tasks.salesforce.InstallPackageVersion
+        options:
+            name: "Flow Tool Kit: AFNP | NPC Extension"
+            namespace: FlowToolKit
+            version: 04tRQ000000AZCbYAO
+
+    deploy_npc_matching_rule:
+        description: Deploy the NPC_Person_Account_Match matching rule (force-app-npc) as subscriber-owned metadata. Kept out of the extension package on purpose - a packaged rule cannot be edited by the admin who has to tune matching. Deployed in its own step because matching-rule activation is asynchronous and the duplicate rule that references it must deploy after.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: force-app-npc/main/default/matchingRules
+
+    deploy_npc_duplicate_rule:
+        description: Deploy the NPC_Person_Account_Duplicate_Rule duplicate rule (force-app-npc) referencing the NPC_Person_Account_Match matching rule - run deploy_npc_matching_rule first.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: force-app-npc/main/default/duplicateRules
+
+    add_npc_conversion_rules:
+        description: Add the NPC conversion rule values (Account is Household, Create Relationships, and the four Contact1/Contact2 household membership sub-rules Is Primary Group / Included In Group) to the installed package's restricted Conversion Rules picklist. Half of the job - run add_npc_conversion_rule_dependencies next or the values are valid under no Conversion Type. Namespace tokens - run with -o managed False in the namespaced extension-development org.
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        options:
+            picklists:
+                - "%%%NAMESPACE%%%Form_Template__c.%%%NAMESPACE%%%Conversion_Rules__c"
+            entries:
+                - fullName: Account is Household
+                  label: Account is Household
+                - fullName: Create Relationships
+                  label: Create Relationships
+                - fullName: Contact1 👉 Is Primary Group
+                  label: Contact1 👉 Is Primary Group
+                - fullName: Contact1 👉 Included In Group
+                  label: Contact1 👉 Included In Group
+                - fullName: Contact2 👉 Is Primary Group
+                  label: Contact2 👉 Is Primary Group
+                - fullName: Contact2 👉 Included In Group
+                  label: Contact2 👉 Included In Group
+
+    add_npc_conversion_rule_dependencies:
+        description: Map the NPC conversion rule values to the Conversion Types they are selectable under (Contact(s), Account, Other), and make the packaged Account rule and the Contact1/Contact2 Add to Account sub-rules selectable on Contact(s) templates too - a Nonprofit Cloud contact form that builds a Household needs the Account rule, and the NPC controller reads Contact1 Add to Account to run people before the Household. Conversion Rules is a dependent picklist, so an unmapped value is hidden in the UI and rejected by DML.
+        class_path: cci_flowtoolkit_tasks.picklist_dependency.AddPicklistDependencies
+        options:
+            object_api_name: "%%%NAMESPACE%%%Form_Template__c"
+            field_api_name: "%%%NAMESPACE%%%Conversion_Rules__c"
+            controlling_field_api_name: "%%%NAMESPACE%%%Conversion_Type__c"
+            dependencies:
+                - value: Account
+                  controlling_values:
+                      - Contact(s)
+                - value: Contact1 👉 Add to Account
+                  controlling_values:
+                      - Contact(s)
+                - value: Contact2 👉 Add to Account
+                  controlling_values:
+                      - Contact(s)
+                - value: Account is Household
+                  controlling_values:
+                      - Contact(s)
+                      - Account
+                      - Other
+                - value: Create Relationships
+                  controlling_values:
+                      - Contact(s)
+                      - Account
+                      - Other
+                - value: Contact1 👉 Is Primary Group
+                  controlling_values:
+                      - Contact(s)
+                      - Account
+                      - Other
+                - value: Contact1 👉 Included In Group
+                  controlling_values:
+                      - Contact(s)
+                      - Account
+                      - Other
+                - value: Contact2 👉 Is Primary Group
+                  controlling_values:
+                      - Contact(s)
+                      - Account
+                      - Other
+                - value: Contact2 👉 Included In Group
+                  controlling_values:
+                      - Contact(s)
+                      - Account
+                      - Other
+
+    add_npc_account_record_types:
+        description: Add Household and Organization to the Form Template's restricted Account (Record Type) picklist. Household turns Household mode on in the NPC controller (the Household engine then also stamps a Household-named Account record type when the org has one); Organization names the org's organisation record type for business conversions. A name with no matching record type degrades to the org default, never fails.
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        options:
+            picklists:
+                - "%%%NAMESPACE%%%Form_Template__c.%%%NAMESPACE%%%Account_Record_Type__c"
+            entries:
+                - fullName: Household
+                  label: Household
+                - fullName: Organization
+                  label: Organization
+
+    add_npc_contact_record_type:
+        description: Add PersonAccount to the Contact (Record Type) global value set (shared by the Form Template and Page Section fields) and make it the set's default. The Person Account engine resolves it to the org's active person record type on Account.
+        class_path: cci_flowtoolkit_tasks.global_value_set.AddGlobalValueSetEntries
+        options:
+            api_names:
+                - "%%%NAMESPACE%%%Contact_Record_Type"
+            entries:
+                - fullName: PersonAccount
+                  label: PersonAccount
+                  default: True
+
+    add_npc_contact_matching_rule:
+        description: Add the extension's NPC_Person_Account_Match matching rule to the Contact Matching Rules picklists on the Form Template and the Page Section, flagged as the value-level default, so admins can see and choose the rule the Person Account engine matches with.
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        options:
+            picklists:
+                - "%%%NAMESPACE%%%Form_Template__c.%%%NAMESPACE%%%Contact_Matching_Rules__c"
+                - "%%%NAMESPACE%%%Form_Template_Page_Section__c.%%%NAMESPACE%%%Contact_Matching_Rules__c"
+            entries:
+                - fullName: NPC_Person_Account_Match
+                  label: NPC_Person_Account_Match
+                  default: True
+
+    deploy_npc_conversion_post:
+        description: Repoint the four packaged Form Template Conversion Mapping Default records (Controller, Account, Primary_Contact, Alternate_Contact) at the NPC flows by deploying subscriber edits of the records themselves - Flow_API_Name__c is SubscriberControlled, and the record filenames carry the ___NAMESPACE___ token so the deploy targets FlowToolKit__Account and friends, never bare-named local twins. A bare-named twin is fatal, not cosmetic - CMT getAll()/getInstance() throw System.ListException (Row with duplicate DeveloperName) when a packaged and local record share a DeveloperName, which kills every conversion (proven in npc_subscriber, 2026-08-31).
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/npc-conversion-post
+
+    deploy_npc_conversion:
+        description: Deploy the NPC conversion extension source (force-app-npc-conversion) - flows and permission set only; CMT records and picklist values are separate post-install steps
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: force-app-npc-conversion
+
     check_lws_enabled:
         class_path: tasks.check_lws_enabled.CheckLWSEnabled
         description: Check if Lightning Web Security (LWS) is enabled
@@ -453,12 +669,17 @@ orgs:
 
 
 
-        # #74 NPC PersonAccount conversion: subscriber-shaped NPC org for the conversion addon, which
-        # ships inside force-app-npc and reuses no base source, so the package is installed, never deployed.
+        # #74 NPC PersonAccount conversion: EXTENSION-DEVELOPMENT org. Namespaced (FlowToolKit) with the released
+        # base package INSTALLED (never source-deployed), so the NPC conversion flows are built and packaged as a
+        # same-namespace 2GP extension. Local NPC metadata is namespace-agnostic through %%%NAMESPACED_ORG%%% tokens.
+        npc_release:
+            config_file: orgs/npc.json
+            days: 1
+            namespaced: True
         feature_npc-person-account-conversion:
             config_file: orgs/npc.json
             days: 30
-            namespaced: False
+            namespaced: True
 
         # Subscriber-style NPC org: latest RELEASED Flow Tool Kit installed (never source), non-namespaced,
         # so force-app-npc is built and deployed exactly as a client would. Community is deliberately not created here.

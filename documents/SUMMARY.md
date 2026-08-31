@@ -127,6 +127,14 @@
 * [FAQ](form-template-framework/faq/faq.md)
 * [Troubleshooting](form-template-framework/faq/troubleshooting.md)
 
+## Nonprofit Cloud
+
+* [Overview](nonprofit-cloud/overview.md)
+* [Installation](nonprofit-cloud/installation.md)
+* [Configuration](nonprofit-cloud/configuration.md)
+* [Conversion Flows](nonprofit-cloud/conversion-flows.md)
+* [Customizing](nonprofit-cloud/customizing.md)
+
 ## Experience Cloud
 
 * [Dynamic Flow Display](experience-cloud/dynamic-flow-display.md)
@@ -204,6 +212,8 @@
 * [Release 4.28](release-notes/release-4.28.md)
 * [Release 4.29](release-notes/release-4.29.md)
 * [Release 4.30](release-notes/release-4.30.md)
+* [Release 4.31](release-notes/release-4.31.md)
+* [Release 4.32](release-notes/release-4.32.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
