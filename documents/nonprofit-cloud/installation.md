@@ -13,9 +13,6 @@ Confirm all four of these. The install will not correct any of them for you.
 3. **An Account record type exists for households.** Any name works. Naming it `Household` means the packaged configuration will find it with no extra work.
 4. **Flow Tool Kit 4.31.0.1 or later is installed.** The extension declares the base package as a dependency, so an older version stops the install with a missing-dependency error.
 
-{% hint style="warning" %}
-The current extension version is a **beta build**. It installs only in orgs connected to the Common Unite Dev Hub, and it cannot be installed in a production org until a promoted version is published. Contact Common Unite for the current installable version link.
-{% endhint %}
 
 ## Step 1: Install the Flow Tool Kit base package
 
@@ -23,10 +20,18 @@ If the base package is not already installed, or is older than 4.31.0.1, install
 
 ## Step 2: Install the extension package
 
-Open the install URL for the current version in a browser while logged in to the target org:
+The current released version is **1.2.0.1** (`04tRQ000000AaevYAC`). Open the matching install URL in a browser while logged in to the target org.
+
+**Sandbox and scratch orgs:**
 
 ```
-https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000AZCbYAO
+https://test.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000AaevYAC
+```
+
+**Production and Developer Edition orgs:**
+
+```
+https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000AaevYAC
 ```
 
 Choose **Install for Admins Only** unless you have a reason to do otherwise. The conversion flows run in system context under the Automated Process user, so they do not depend on which profiles the package is installed for.

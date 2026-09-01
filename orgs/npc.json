@@ -83,7 +83,7 @@
       "defaultRecordType": "default"
     },
     "account": {
-      "defaultRecordType": "default"
+      "defaultRecordType": "Organization"
     }
   }
 }
