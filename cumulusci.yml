@@ -467,12 +467,12 @@ tasks:
             force_upload: True
 
     install_npc_conversion:
-        description: Install the pinned NPC conversion extension package version into a subscriber-style org. PIN BUMP REQUIRED - after every create_npc_package_version run, update the version option to the new SubscriberPackageVersionId. Current pin 1.0.0.1, built skip-validation (installable only in orgs on the cUnite_PBO Dev Hub; the platform validates during install instead of during build).
+        description: Install the pinned NPC conversion extension package version into a subscriber-style org. PIN BUMP REQUIRED - after every package build, update the version option to the new SubscriberPackageVersionId. Current pin 1.2.0.1, RELEASED (built with validation via the native sf CLI - see the force-app-npc-conversion entry in sfdx-project.json; cci's create_package_version cannot send unpackagedMetadata or apexTestAccess, so the validated build goes through sf package version create).
         class_path: cumulusci.tasks.salesforce.InstallPackageVersion
         options:
             name: "Flow Tool Kit: AFNP | NPC Extension"
             namespace: FlowToolKit
-            version: 04tRQ000000AZCbYAO
+            version: 04tRQ000000AaevYAC
 
     deploy_npc_matching_rule:
         description: Deploy the NPC_Person_Account_Match matching rule (force-app-npc) as subscriber-owned metadata. Kept out of the extension package on purpose - a packaged rule cannot be edited by the admin who has to tune matching. Deployed in its own step because matching-rule activation is asynchronous and the duplicate rule that references it must deploy after.

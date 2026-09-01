@@ -14,7 +14,28 @@
     },
     {
       "path": "force-app-npc-conversion",
-      "default": false
+      "default": false,
+      "apexTestAccess": {
+        "permissionSets": [
+          "GroupMembershipPsl"
+        ],
+        "permissionSetLicenses": [
+          "GroupMembershipPsl"
+        ]
+      },
+      "package": "Flow Tool Kit: AFNP | NPC Extension",
+      "versionName": "NPC Extension 1.2",
+      "versionNumber": "1.2.0.NEXT",
+      "definitionFile": "orgs/npc.json",
+      "dependencies": [
+        {
+          "package": "Flow Tool Kit base 4.31"
+        }
+      ],
+      "unpackagedMetadata": {
+        "path": "unpackaged/npc-build-test"
+      },
+      "ancestorVersion": "HIGHEST"
     }
   ],
   "namespace": "FlowToolKit",
@@ -24,6 +45,8 @@
     "FlowToolKit": "04tRQ0000002NerYAE",
     "Documentation Support": "0Ho4W000000PBO4SAO",
     "Documentation Support@0.7.0-1": "04t4W000002Z1TPQA0",
-    "Documentation Support@0.8.0-1": "04tRQ0000002NgTYAU"
+    "Documentation Support@0.8.0-1": "04tRQ0000002NgTYAU",
+    "Flow Tool Kit: AFNP | NPC Extension": "0HoRQ00000003E10AI",
+    "Flow Tool Kit base 4.31": "04tRQ000000AXCPYA4"
   }
 }
