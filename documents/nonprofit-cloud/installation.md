@@ -20,18 +20,18 @@ If the base package is not already installed, or is older than 4.31.0.1, install
 
 ## Step 2: Install the extension package
 
-The current released version is **1.2.0.1** (`04tRQ000000AaevYAC`). Open the matching install URL in a browser while logged in to the target org.
+The current released version is **1.3.0.1** (`04tRQ000000AawfYAC`). Open the matching install URL in a browser while logged in to the target org.
 
 **Sandbox and scratch orgs:**
 
 ```
-https://test.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000AaevYAC
+https://test.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000AawfYAC
 ```
 
 **Production and Developer Edition orgs:**
 
 ```
-https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000AaevYAC
+https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000AawfYAC
 ```
 
 Choose **Install for Admins Only** unless you have a reason to do otherwise. The conversion flows run in system context under the Automated Process user, so they do not depend on which profiles the package is installed for.
