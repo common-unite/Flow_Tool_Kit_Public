@@ -31,6 +31,9 @@ plans:
             - when: "not tasks.check_enhanced_email()['is_enabled']"
               action: error
               message: "Enhanced Email must be enabled. Go to Setup → Enhanced Email to enable it. Flow Tool Kit requires Enhanced Email as a package dependency."
+            - when: "tasks.check_base_installed()['is_installed']"
+              action: warn
+              message: "Flow Tool Kit is already installed in this org. You can re-run setup, but the one-time post-install components will be skipped so your customizations are preserved."
         steps:
             1:
                 flow: dependencies
@@ -44,7 +47,10 @@ plans:
                     path: force-app-post
                 ui_options:
                     name: "Deploy Post-Install Components"
-                    is_required: True
+                checks:
+                    - when: "tasks.check_base_installed()['is_installed']"
+                      action: skip
+                      message: "Flow Tool Kit is already installed, so its one-time post-install components are skipped. This preserves any changes you have made to the style override template."
 
     # AFNP / Nonprofit Cloud orgs. Everything the vanilla plan does, plus the NPC conversion
     # extension and the post-install content the packages cannot carry.
@@ -73,12 +79,15 @@ plans:
             - when: "not tasks.check_enhanced_email()['is_enabled']"
               action: error
               message: "Enhanced Email must be enabled. Go to Setup → Enhanced Email to enable it. Flow Tool Kit requires Enhanced Email as a package dependency."
-            - when: "'PartyRelationshipGroup' not in tasks.check_sobjects_available()"
+            - when: "'PartyRelationshipGroup' not in tasks.check_sobjects_available()['sobjects']"
               action: error
               message: "This org does not have Nonprofit Cloud. PartyRelationshipGroup was not found in the schema. Install Flow Tool Kit with the standard plan instead."
-            - when: "'ContactContactRelation' not in tasks.check_sobjects_available()"
+            - when: "'ContactContactRelation' not in tasks.check_sobjects_available()['sobjects']"
               action: error
               message: "This org does not have Nonprofit Cloud relationships enabled. ContactContactRelation was not found in the schema. Install Flow Tool Kit with the standard plan instead."
+            - when: "tasks.check_base_installed()['is_installed']"
+              action: warn
+              message: "Flow Tool Kit is already installed in this org. You can re-run setup, but the one-time post-install components will be skipped so your customizations are preserved."
         steps:
             1:
                 flow: dependencies
@@ -92,7 +101,10 @@ plans:
                     path: force-app-post
                 ui_options:
                     name: "Deploy Post-Install Components"
-                    is_required: True
+                checks:
+                    - when: "tasks.check_base_installed()['is_installed']"
+                      action: skip
+                      message: "Flow Tool Kit is already installed, so its one-time post-install components are skipped. This preserves any changes you have made to the style override template."
             5:
                 task: install_npc_conversion
                 ui_options:
@@ -688,6 +700,16 @@ tasks:
     check_lws_enabled:
         class_path: tasks.check_lws_enabled.CheckLWSEnabled
         description: Check if Lightning Web Security (LWS) is enabled
+
+    check_sobjects_available:
+        class_path: tasks.check_sobjects_available.CheckSObjectsAvailable
+        description: Preflight - list the sobject API names available in the target org (gates the NPC plan on Nonprofit Cloud objects being present)
+
+    check_base_installed:
+        class_path: tasks.check_package_installed.CheckPackageInstalled
+        description: Preflight - is the base Flow Tool Kit package already installed? Gates the one-time post-install content so a re-run does not overwrite a subscriber's customized style override.
+        options:
+            package_name: "Flow Tool Kit: Form and Table Builder"
 
     check_enhanced_email:
         class_path: tasks.check_enhanced_email.CheckEnhancedEmailEnabled
