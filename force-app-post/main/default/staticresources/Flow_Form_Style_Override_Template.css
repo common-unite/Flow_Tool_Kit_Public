@@ -1,0 +1,129 @@
+/* Flow_Form_Style_Override_Template */
+
+.flowForm {
+    /* ---------- CSS ---------- */
+    .h {
+        background: #1E3A5C; color: #fff;
+        display: flex; flex-wrap: wrap; align-items: center;
+        gap: clamp(14px, 3vw, 24px);
+        padding: clamp(18px, 5vw, 34px) clamp(18px, 5vw, 44px);
+    }
+    .h .badge   { width: clamp(64px, 17vw, 118px); height: auto; flex: none; }
+    .h .txt     { flex: 1 1 240px; min-width: 0; }
+    .h .eyebrow { font: 700 clamp(11px, 2.7vw, 14px)/1.2 'Libre Franklin'; letter-spacing:.22em; text-transform:uppercase; color:#F2C75A; }
+    .h .title   { font: 400 clamp(26px, 7vw, 44px)/1.02 'Alfa Slab One'; margin-top: 8px; }
+    .h .sub     { font: 600 clamp(13px, 3.3vw, 18px)/1.45 'Libre Franklin'; margin-top: 8px; color:#cdd6e2; }
+
+    /* phones: stack and center */
+    @media (max-width: 430px) {
+        .h { flex-direction: column; text-align: center; }
+        .h .txt { flex: none; }
+    }
+}
+
+
+
+.form-template-container .flowForm {
+    --radio-size: 1rem;
+    --button-radius: 0.5rem;
+    --lwc-formLabelFontSize: 1rem;
+    --brand-color : var(--lwc-brandPrimary,rgb(1, 118, 211));
+    --brand-light : var(--lwc-brandPrimaryTransparent,rgba(1, 118, 211,0.10));
+    --brandAccessible : var(--lwc-brandAccessible,rgba(1, 118, 211));
+    --lwc-borderRadiusMedium: 0.5rem;
+    --labelSize: 1.15rem;
+    --labelWeight: 700;
+
+    .flowForm-field {
+        padding-top: 1rem;
+    }
+
+    .flow-form-help-below-label {
+        font-size: 15px;
+    }
+    .slds-text-title_bold {
+        font-size: var(--labelSize);
+        font-weight: var(--labelWeight);
+    }
+
+    .slds-input,
+    .slds-textarea,
+    .slds-input_faux,
+    .slds-input[disabled] {
+        color: var(--labelColor);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 15px;
+        line-height: 2.3rem;
+        border-radius: var(--button-radius,0.5rem);
+        border: 2px solid rgb(201, 205, 214);
+        background-color: rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        transform: scale(1);
+        transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .attestation-card {
+        border: 2px solid rgb(201, 205, 214);
+    }
+
+    .slds-input:focus,
+    .slds-textarea:focus,
+    .slds-input_faux:focus {
+        border-color: var(--brandAccessible);
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0px 0px 0px 3px var(--brand-light);
+        transform: scale(1.01);
+        font-size: 18px;
+    }
+
+    .slds-has-error .slds-input,
+    .slds-textarea .slds-input,
+    .slds-input_faux .slds-input {
+        background-color: rgba(255, 0, 0, 0.05);
+    }
+
+    .slds-checkbox .slds-checkbox_faux,
+    .slds-checkbox .slds-checkbox--faux,
+    .slds-radio__label .slds-radio_faux {
+        width: var(--radio-size,1.3rem);
+        height: var(--radio-size,1.3rem);
+    }
+    .slds-checkbox .slds-checkbox__label .slds-form-element__label,
+    .slds-radio__label .slds-form-element__label {
+        font-size: 1rem;
+    }
+
+    .slds-radio_button-group,
+    .slds-radio--button-group {
+        border: 2px solid rgb(201, 205, 214);
+    }
+
+    .slds-radio_button-group,
+    .slds-radio--button-group,
+    .slds-radio_button {
+        font-size: var(--labelSize);
+        font-weight: var(--labelWeight);
+        line-height: 3rem;
+        /* border-radius: var(--button-radius,0.5rem); */
+    }
+
+    .slds-button_brand {
+
+    }
+
+    .slds-radio_button:first-child > .slds-radio_button__label {
+
+    }
+
+    .slds-radio_button:last-child > .slds-radio_button__label {
+
+    }
+
+    .slds-radio_button [type='radio']:checked + .slds-radio_button__label {
+
+    }
+    .slds-radio_button [type='radio']:checked + .slds-radio_button__label:hover {
+
+    }
+}

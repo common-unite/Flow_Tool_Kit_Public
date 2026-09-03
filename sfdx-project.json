@@ -24,12 +24,12 @@
         ]
       },
       "package": "Flow Tool Kit: AFNP | NPC Extension",
-      "versionName": "NPC Extension 1.2",
-      "versionNumber": "1.2.0.NEXT",
+      "versionName": "NPC Extension 1.5",
+      "versionNumber": "1.5.0.NEXT",
       "definitionFile": "orgs/npc.json",
       "dependencies": [
         {
-          "package": "Flow Tool Kit base 4.31"
+          "package": "Flow Tool Kit base 4.33"
         }
       ],
       "unpackagedMetadata": {
@@ -47,6 +47,9 @@
     "Documentation Support@0.7.0-1": "04t4W000002Z1TPQA0",
     "Documentation Support@0.8.0-1": "04tRQ0000002NgTYAU",
     "Flow Tool Kit: AFNP | NPC Extension": "0HoRQ00000003E10AI",
-    "Flow Tool Kit base 4.31": "04tRQ000000AXCPYA4"
+    "Flow Tool Kit base 4.31": "04tRQ000000AXCPYA4",
+    "Flow Tool Kit base 4.33": "04tRQ000000Aav3YAC",
+    "Flow Tool Kit: AFNP | NPC Extension@1.4.0-1": "04tRQ000000AbKrYAK",
+    "Flow Tool Kit: AFNP | NPC Extension@1.5.0-1": "04tRQ000000AcFJYA0"
   }
 }

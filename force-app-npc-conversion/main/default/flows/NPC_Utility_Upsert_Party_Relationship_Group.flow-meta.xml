@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>The group this Account already has, if any; its Id and start date are carried into the map. Reads through the (NPC) Get Party Relationship Group Apex action rather than a Get Records element, because package validation runs in a build org that cannot hold the Group Membership licence and refuses the native element there (#628). A clone of this flow can use a plain Get Records instead - a subscriber org has the licence assigned.</description>
+        <name>getPartyRelationshipGroup</name>
+        <label>Party Relationship Group</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>NPC_GetPartyRelationshipGroup_Invocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Group_Field_Map</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Assign_Error</targetReference>
+        </faultConnector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>accountId</name>
+            <value>
+                <elementReference>AccountId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>groupType</name>
+            <value>
+                <elementReference>Resolved_Type</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>NPC_GetPartyRelationshipGroup_Invocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Inserted or updated by the Id the map carries. Writes through the typed (NPC) Upsert Party Relationship Group Apex action rather than a Create element, because package validation refuses a native PartyRelationshipGroup create in the licence-less build org (#628), and this object's enum picklists (Type, Status) cannot cross the Flow action input boundary, so both travel as the action's own Group Type and Group Status inputs. A clone of this flow can use a plain Create element instead - a subscriber org has the licence assigned.</description>
+        <name>Upsert_Group</name>
+        <label>Upsert Party Relationship Group</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>NPC_UpsertPartyGroup_Invocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Assign_Outputs</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Assign_Error</targetReference>
+        </faultConnector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>groupStatus</name>
+            <value>
+                <elementReference>Resolved_Status</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>groupType</name>
+            <value>
+                <elementReference>Resolved_Type</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>partyRelationshipGroup</name>
+            <value>
+                <elementReference>Group_Field_Map</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>NPC_UpsertPartyGroup_Invocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Something failed to save. Instead of crashing, the flow returns HasError = true and the platform's error text, and lets the caller decide what to log or show.</description>
+        <name>Assign_Error</name>
+        <label>Report the failure</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>HasError</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ErrorMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Fills in the field a brand-new group still needs from the flow: its name (the caller's, or the Account's own name). Its status travels on the upsert action's Group Status input.</description>
+        <name>Assign_New_Group_Fields</name>
+        <label>Assign New Group Fields</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Group_Field_Map.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Resolved_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Upsert_Group</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Hands the group's Id back to the caller.</description>
+        <name>Assign_Outputs</name>
+        <label>Assign Outputs</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>PartyRelationshipGroupId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Upsert_Group.partyRelationshipGroup.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ConversionStatus</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ConversionStatusValue</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>Was there no existing group? Only then do Name and Status get filled in, so an existing group is never renamed or re-statused by accident.</description>
+        <name>Switch_New_Group</name>
+        <label>Switch</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Upsert_Group</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>It already exists</defaultConnectorLabel>
+        <rules>
+            <name>New_Group</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getPartyRelationshipGroup.partyRelationshipGroup</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_New_Group_Fields</targetReference>
+            </connector>
+            <label>A new group</label>
+        </rules>
+    </decisions>
+    <description>WHAT IT DOES: Makes sure an Account has a Party Relationship Group (Nonprofit Cloud's way of saying "this Account is a Household") and hands back the group's Id. Safe to run any number of times: it never creates a second group.
+
+HOW IT WORKS, STEP BY STEP:
+1. Reads the Account, mainly for its name.
+2. Looks for a group of the requested type (Household unless you say otherwise) already on that Account.
+3. Builds the group in the Group (Field Map) transform. The existing group's Id is mapped in, which is the trick that makes step 4 an update instead of a duplicate; the start date is kept and the end date cleared, so a group that had been closed comes back to life.
+4. Saves it with a small typed Apex action that upserts on Id: blank Id means insert, a real Id means update. Name and Status are only filled in for a brand-new group, so a group an admin renamed keeps its name.
+5. Returns PartyRelationshipGroupId, or HasError plus ErrorMessage when a save failed.
+
+WHERE IT FITS: The NPC Account engine calls this when a form template runs in Household mode, right after the Household Account is saved. It knows nothing about forms, so you can also call it from your own flows whenever you need to guarantee an Account carries a Household group. It never writes logs; whatever calls it decides how to report a failure.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Created when no existing group was found, Updated otherwise: decided by the same lookup that made the save an update.</description>
+        <name>ConversionStatusValue</name>
+        <dataType>String</dataType>
+        <expression>if(IsBlank({!getPartyRelationshipGroup.partyRelationshipGroup.Id}),'Created','Updated')</expression>
+    </formulas>
+    <formulas>
+        <description>The name for a new group: what the caller asked for, otherwise the Account's own name.</description>
+        <name>Resolved_Name</name>
+        <dataType>String</dataType>
+        <expression>BLANKVALUE({!GroupName}, {!getAccount.Name})</expression>
+    </formulas>
+    <formulas>
+        <description>Active unless the caller asked for another status. Only used for a brand-new group.</description>
+        <name>Resolved_Status</name>
+        <dataType>String</dataType>
+        <expression>BLANKVALUE({!GroupStatus}, 'Active')</expression>
+    </formulas>
+    <formulas>
+        <description>Household unless the caller asked for another type. BLANKVALUE means: use the input when it is filled in, otherwise the default.</description>
+        <name>Resolved_Type</name>
+        <dataType>String</dataType>
+        <expression>BLANKVALUE({!GroupType}, 'Household')</expression>
+    </formulas>
+    <interviewLabel>(NPC) Utility | Upsert | Party Relationship Group {!$Flow.CurrentDateTime}</interviewLabel>
+    <isOverridable>true</isOverridable>
+    <label>(NPC) Utility | Upsert | Party Relationship Group</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Read for its name, which names the group when the caller passes none.</description>
+        <name>getAccount</name>
+        <label>Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>getPartyRelationshipGroup</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Assign_Error</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>AccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>getAccount</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <transforms>
+        <description>What a group carries. Status is set to Active on every save, so a group that had been closed comes back with the family; the Name is deliberately absent and is added below only when the group is new, so an existing group is never renamed out from under an admin. Change what a group carries here.</description>
+        <name>Group_Field_Map</name>
+        <label>Group (Field Map)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Switch_New_Group</targetReference>
+        </connector>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <objectType>PartyRelationshipGroup</objectType>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <outputFieldApiName>Id</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>getPartyRelationshipGroup.partyRelationshipGroup.Id</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>AccountId</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>AccountId</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>StartDate</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>Date</formulaDataType>
+                    <formulaExpression>BlankValue({!getPartyRelationshipGroup.partyRelationshipGroup.StartDate},TODAY())</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>EndDate</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>Date</formulaDataType>
+                    <formulaExpression>null</formulaExpression>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <variables>
+        <description>The Account the group belongs to. Required.</description>
+        <name>AccountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Output: Created when this run made the group, Updated when the Account already had one. The caller logs it so the Conversion Log speaks the framework's own vocabulary.</description>
+        <name>ConversionStatus</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>What failed, in one sentence, for the caller to log or show.</description>
+        <name>ErrorMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Name for the group when one has to be created. Defaults to the Account's name. An existing group is never renamed.</description>
+        <name>GroupName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Status for a new group. Defaults to Active. An existing group is set to Active whatever this says, so a closed group comes back with the family.</description>
+        <name>GroupStatus</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Party group type. Defaults to Household.</description>
+        <name>GroupType</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>True when a step failed. The caller decides what to do; this flow never logs.</description>
+        <name>HasError</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>The group the Account now has.</description>
+        <name>PartyRelationshipGroupId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

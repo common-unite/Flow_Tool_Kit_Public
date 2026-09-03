@@ -133,6 +133,8 @@ Read-only, and answers one question: which household does this person already be
 
 It reads the person's active **indirect** memberships, because a Person Account's direct relation points at itself rather than at a household. It then asks in a single query which of those Accounts carries an active Household group, oldest first, so a person who somehow belongs to two households is answered with the one they joined first. Finding nothing is an answer, not an error: it simply means the person is new or is in no household.
 
+It returns the Household's **Account Id**, deliberately not the group record itself: a populated Party Relationship Group crossing a subflow's output boundary crashes the packaged runtime, so the record never leaves the flow and callers query what more they need.
+
 ## Logging and reprocessing
 
 Every pass writes to the submission's **Conversion Logs** related list. A successful pass records what was created, matched or updated. A failure records a short, fixed message naming the step that failed, along with the flow it happened in.
@@ -148,5 +150,7 @@ Failures are deliberately non-terminal. When a pass fails, the rule's status is 
 **Blank answers never erase data by default.** If you need a blank answer to clear a field, list that field in the template's Nullable Fields setting.
 
 **Multiple matches stop rather than guess.** If matching finds several candidate people, the pass stops with a `Multiple Matches` status and waits for a human. Turn on the template's most-confident-match setting only if you would rather it chose.
+
+**Some operations run through small Apex actions on purpose.** Package validation cannot compile a native flow element that reads Party Relationship Groups or creates group and relationship records, so those specific operations run through typed Apex actions inside the extension. Each affected element's description says so, and a clone of a utility in your own org can use the plain native element instead, because your org holds the Group Membership licence that the packaging environment cannot.
 
 **Addresses are opt-in.** Address blocks map only when the matching address sub-rule is on, so a household's curated address is not overwritten by a form that did not ask for one. If your org uses State and Country/Territory picklists, see [Configuration, step 8](configuration.md#step-8-check-your-address-fields).

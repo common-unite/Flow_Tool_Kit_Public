@@ -14,6 +14,12 @@ sources:
             github: 'https://github.com/SFDO-Tooling/Snowfakery'
 
 plans:
+    # install_prod is INLINED in both plans, not referenced as a flow. Its nested config_managed
+    # runs load_sample_data, which fails here because datasets/default/default.dataset.sql does
+    # not exist, and CCI cannot disable a nested task from a flow step. Referencing install_prod
+    # would ship a step that fails for every subscriber. Same reason perf_baseline_org inlines it.
+    # deploy_post is dropped with it: unpackaged/post/config holds only a wildcard package.xml
+    # with no metadata, so it deploys nothing.
     install:
         slug: install
         title: Install Flow Tool Kit
@@ -27,22 +33,104 @@ plans:
               message: "Enhanced Email must be enabled. Go to Setup → Enhanced Email to enable it. Flow Tool Kit requires Enhanced Email as a package dependency."
         steps:
             1:
-                flow: install_prod
+                flow: dependencies
             2:
+                task: install_managed
+            3:
+                task: update_admin_profile
+            4:
                 task: deploy
                 options:
                     path: force-app-post
                 ui_options:
                     name: "Deploy Post-Install Components"
                     is_required: True
+
+    # AFNP / Nonprofit Cloud orgs. Everything the vanilla plan does, plus the NPC conversion
+    # extension and the post-install content the packages cannot carry.
+    #
+    # Steps 6-11 are gated to a FIRST install. add_npc_conversion_rule_dependencies rewrites the
+    # Conversion Rules dependency matrix, which a subscriber is free to edit, so re-running it
+    # would discard their work. The gate is repeated on every one of the six steps on purpose:
+    # a `checks:` block on a `flow:` step is SILENTLY DROPPED (cumulusci/core/flowrunner.py:645
+    # merges checks only inside the `if "task" in step_config` branch), so `flow:
+    # npc_conversion_post_install` with one check would have gated nothing.
+    #
+    # The gate queries InstalledSubscriberPackage by package NAME. The extension shares the
+    # FlowToolKit namespace with the base package, so the usual
+    # `'<namespace>' in tasks.get_installed_packages()` idiom is already true after the base
+    # installs and would skip the setup on a genuine first install.
+    npc:
+        slug: npc
+        title: Install Flow Tool Kit for Nonprofit Cloud
+        tier: secondary
+        preflight_message: "This installs Flow Tool Kit together with the Nonprofit Cloud conversion extension, which converts form submissions into Person Accounts, households and relationships. Install it in a Nonprofit Cloud org only. Before running it, activate the Standard Person Account Matching Rule and then its duplicate rule in Setup: they ship inactive and no API can activate them."
+        post_install_message: "Flow Tool Kit and the Nonprofit Cloud conversion extension are installed. The Conversion Rules picklist values, Account and Contact record types, matching-rule value and Conversion Mapping Defaults have been applied. That setup content runs only on a first installation, so any changes you make to the Conversion Rules dependency matrix are preserved on later upgrades."
+        checks:
+            - when: "not tasks.check_lws_enabled()['is_enabled']"
+              action: error
+              message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
+            - when: "not tasks.check_enhanced_email()['is_enabled']"
+              action: error
+              message: "Enhanced Email must be enabled. Go to Setup → Enhanced Email to enable it. Flow Tool Kit requires Enhanced Email as a package dependency."
+            - when: "'PartyRelationshipGroup' not in tasks.check_sobjects_available()"
+              action: error
+              message: "This org does not have Nonprofit Cloud. PartyRelationshipGroup was not found in the schema. Install Flow Tool Kit with the standard plan instead."
+            - when: "'ContactContactRelation' not in tasks.check_sobjects_available()"
+              action: error
+              message: "This org does not have Nonprofit Cloud relationships enabled. ContactContactRelation was not found in the schema. Install Flow Tool Kit with the standard plan instead."
+        steps:
+            1:
+                flow: dependencies
+            2:
+                task: install_managed
             3:
+                task: update_admin_profile
+            4:
                 task: deploy
                 options:
-                    path: unpackaged/post/config
+                    path: force-app-post
                 ui_options:
-                    name: "Deploy Default Configuration (Custom Metadata)"
-                    is_required: False
-                    is_recommended: True
+                    name: "Deploy Post-Install Components"
+                    is_required: True
+            5:
+                task: install_npc_conversion
+                ui_options:
+                    name: "Install Nonprofit Cloud Conversion Extension"
+                    is_required: True
+            6:
+                task: add_npc_conversion_rules
+                ui_options:
+                    name: "Add Conversion Rules Picklist Values"
+                checks: &npc_first_install_only
+                    - when: "tasks.check_npc_conversion_installed()['is_installed']"
+                      action: skip
+                      message: "The Nonprofit Cloud conversion extension is already installed, so its one-time setup content is skipped. This preserves any changes you have made to the Conversion Rules dependency matrix."
+            7:
+                task: add_npc_conversion_rule_dependencies
+                ui_options:
+                    name: "Map Conversion Rules to their Conversion Types"
+                checks: *npc_first_install_only
+            8:
+                task: add_npc_account_record_types
+                ui_options:
+                    name: "Add Household and Organization Account Record Types"
+                checks: *npc_first_install_only
+            9:
+                task: add_npc_contact_record_type
+                ui_options:
+                    name: "Set Person Account as the Default Contact Record Type"
+                checks: *npc_first_install_only
+            10:
+                task: add_npc_contact_matching_rule
+                ui_options:
+                    name: "Add the Person Account Matching Rule Value"
+                checks: *npc_first_install_only
+            11:
+                task: deploy_npc_conversion_post
+                ui_options:
+                    name: "Apply Conversion Mapping Defaults"
+                checks: *npc_first_install_only
 
     upgrade:
         slug: upgrade
@@ -355,7 +443,7 @@ flows:
                 flow: npc_conversion_config
 
     npc_conversion_install:
-        description: FULL PACKAGE-BASED INSTALL of the NPC conversion solution, the way a customer receives it - the latest released Flow Tool Kit base, the pinned NPC extension package version (bump install_npc_conversion after each build), the NPC Person Account matching and duplicate rules as subscriber-owned metadata (they were deliberately kept out of the package so admins can edit them), then every post-install update the packages cannot carry - Conversion Rules picklist values including Account is Household, their Conversion Type mapping, the Household and Organization Account record types, the PersonAccount contact record type default, the NPC_Person_Account_Match matching-rule value, and the four Conversion Mapping Default repoints. Run against a subscriber-style NPC org that already has the NPC licenses, permission sets and force-app-npc configuration (npc_subscriber_org builds one). The current extension version is skip-validation, so it installs only in orgs on the cUnite_PBO Dev Hub until a validated build exists.
+        description: FULL PACKAGE-BASED INSTALL of the NPC conversion solution, the way a customer receives it - the latest released Flow Tool Kit base, the pinned NPC extension package version (bump install_npc_conversion after each build), then every post-install update the packages cannot carry. PREREQUISITE the flow cannot perform - activate the Standard Person Account Matching Rule, then its duplicate rule, in Setup; they ship inactive and no API can activate a standard rule (#631) - Conversion Rules picklist values including Account is Household, their Conversion Type mapping, the Household and Organization Account record types, the PersonAccount contact record type default, the NPC_Person_Account_Match matching-rule value, and the four Conversion Mapping Default repoints. Run against a subscriber-style NPC org that already has the NPC licenses, permission sets and force-app-npc configuration (npc_subscriber_org builds one). The current extension version is skip-validation, so it installs only in orgs on the cUnite_PBO Dev Hub until a validated build exists.
         steps:
             1:
                 flow: dependencies
@@ -364,10 +452,6 @@ flows:
             3:
                 task: install_npc_conversion
             4:
-                task: deploy_npc_matching_rule
-            5:
-                task: deploy_npc_duplicate_rule
-            6:
                 flow: npc_conversion_post_install
 
     npc_subscriber_install_org:
@@ -467,12 +551,12 @@ tasks:
             force_upload: True
 
     install_npc_conversion:
-        description: Install the pinned NPC conversion extension package version into a subscriber-style org. PIN BUMP REQUIRED - after every package build, update the version option to the new SubscriberPackageVersionId. Current pin 1.2.0.1, RELEASED (built with validation via the native sf CLI - see the force-app-npc-conversion entry in sfdx-project.json; cci's create_package_version cannot send unpackagedMetadata or apexTestAccess, so the validated build goes through sf package version create).
+        description: Install the pinned NPC conversion extension package version into a subscriber-style org. PIN BUMP REQUIRED - after every package build, update the version option to the new SubscriberPackageVersionId. Current pin 1.5.0.1, RELEASED against base 4.33 (built with validation via the native sf CLI - see the force-app-npc-conversion entry in sfdx-project.json; cci's create_package_version cannot send unpackagedMetadata or apexTestAccess, so the validated build goes through sf package version create).
         class_path: cumulusci.tasks.salesforce.InstallPackageVersion
         options:
             name: "Flow Tool Kit: AFNP | NPC Extension"
             namespace: FlowToolKit
-            version: 04tRQ000000AaevYAC
+            version: 04tRQ000000AcFJYA0
 
     deploy_npc_matching_rule:
         description: Deploy the NPC_Person_Account_Match matching rule (force-app-npc) as subscriber-owned metadata. Kept out of the extension package on purpose - a packaged rule cannot be edited by the admin who has to tune matching. Deployed in its own step because matching-rule activation is asynchronous and the duplicate rule that references it must deploy after.
@@ -508,7 +592,7 @@ tasks:
 
     add_npc_conversion_rule_dependencies:
         description: Map the NPC conversion rule values to the Conversion Types they are selectable under (Contact(s), Account, Other), and make the packaged Account rule and the Contact1/Contact2 Add to Account sub-rules selectable on Contact(s) templates too - a Nonprofit Cloud contact form that builds a Household needs the Account rule, and the NPC controller reads Contact1 Add to Account to run people before the Household. Conversion Rules is a dependent picklist, so an unmapped value is hidden in the UI and rejected by DML.
-        class_path: cci_flowtoolkit_tasks.picklist_dependency.AddPicklistDependencies
+        class_path: tasks.picklist_dependency.AddPicklistDependencies
         options:
             object_api_name: "%%%NAMESPACE%%%Form_Template__c"
             field_api_name: "%%%NAMESPACE%%%Conversion_Rules__c"
@@ -568,7 +652,7 @@ tasks:
 
     add_npc_contact_record_type:
         description: Add PersonAccount to the Contact (Record Type) global value set (shared by the Form Template and Page Section fields) and make it the set's default. The Person Account engine resolves it to the org's active person record type on Account.
-        class_path: cci_flowtoolkit_tasks.global_value_set.AddGlobalValueSetEntries
+        class_path: tasks.global_value_set.AddGlobalValueSetEntries
         options:
             api_names:
                 - "%%%NAMESPACE%%%Contact_Record_Type"
@@ -578,15 +662,15 @@ tasks:
                   default: True
 
     add_npc_contact_matching_rule:
-        description: Add the extension's NPC_Person_Account_Match matching rule to the Contact Matching Rules picklists on the Form Template and the Page Section, flagged as the value-level default, so admins can see and choose the rule the Person Account engine matches with.
+        description: Add the Standard Person Account Matching Rule to the Contact Matching Rules picklists on the Form Template and the Page Section, flagged as the value-level default, so admins can see and choose the rule the Person Account engine matches with. The rule ships in every Person Accounts org but INACTIVE - activation (Setup, matching rule first, then its duplicate rule) is an install prerequisite; no API can activate a standard rule (#631).
         class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
         options:
             picklists:
                 - "%%%NAMESPACE%%%Form_Template__c.%%%NAMESPACE%%%Contact_Matching_Rules__c"
                 - "%%%NAMESPACE%%%Form_Template_Page_Section__c.%%%NAMESPACE%%%Contact_Matching_Rules__c"
             entries:
-                - fullName: NPC_Person_Account_Match
-                  label: NPC_Person_Account_Match
+                - fullName: Standard_PersonAccount_Match_Rule_v1_0
+                  label: Standard_PersonAccount_Match_Rule_v1_0
                   default: True
 
     deploy_npc_conversion_post:
@@ -609,6 +693,12 @@ tasks:
         class_path: tasks.check_enhanced_email.CheckEnhancedEmailEnabled
         description: Check if Enhanced Email is enabled
 
+    check_npc_conversion_installed:
+        class_path: tasks.check_package_installed.CheckPackageInstalled
+        description: Preflight check - is the NPC conversion extension already installed? Gates the one-time post-install content on the npc plan. The extension shares the FlowToolKit namespace with the base, so get_installed_packages cannot tell them apart and this queries InstalledSubscriberPackage by package name instead.
+        options:
+            package_name: "Flow Tool Kit: AFNP | NPC Extension"
+
     create_package_version:
         options:
             post_install_script: InstallScript
@@ -619,7 +709,32 @@ tasks:
             branch: "main"
             create_release: true
             release_body: true
-            include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md","documents/" ]
+            # Everything the MetaDeploy install plans reference must ship to the public repo:
+            # tasks/ holds the preflight check classes and the two vendored metadata-ETL tasks,
+            # force-app-post and unpackaged/npc-conversion-post are deployed by plan steps.
+            # Deploying a path the mirror never received fails at INSTALL time, not at publish time.
+            include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md","documents/",
+                       "tasks/","force-app-post/","force-app-npc-conversion/",
+                       "unpackaged/npc-conversion-post/" ]
+
+    # Installer-only publish, decoupled from a base package release. Pushes the current master
+    # content to Flow_Tool_Kit_Public@main as a plain commit: no tag, no release, repeatable.
+    # Run after any change to plans, tasks/ or the unpackaged directories the plans reference.
+    # Then, in a clone of the public repo, tag the installer revision (release/4.33.0.2, .3, ...)
+    # and run metadeploy_publish against it. Tag ONLY, never a GitHub release: get_latest_tag
+    # reads Releases, so a release on an installer tag would make install_managed resolve a
+    # package version that was never built.
+    publish_installers:
+        description: Push current master to Flow_Tool_Kit_Public without cutting a release. For MetaDeploy plan, preflight task and unpackaged-content changes that do not warrant a new base package version.
+        class_path: cumulusci.tasks.github.publish.PublishSubtree
+        options:
+            repo_url: "https://github.com/common-unite/Flow_Tool_Kit_Public"
+            branch: "main"
+            ref: heads/master
+            create_release: False
+            include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md","documents/",
+                       "tasks/","force-app-post/","force-app-npc-conversion/",
+                       "unpackaged/npc-conversion-post/" ]
 
     robot:
         options:
