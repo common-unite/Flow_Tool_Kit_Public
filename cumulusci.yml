@@ -725,14 +725,14 @@ tasks:
     # reads Releases, so a release on an installer tag would make install_managed resolve a
     # package version that was never built.
     publish_installers:
-        description: Push current master to Flow_Tool_Kit_Public without cutting a release. For MetaDeploy plan, preflight task and unpackaged-content changes that do not warrant a new base package version.
+        description: Push the MetaDeploy installer payload from current master to the Flow_Tool_Kit_Public 'installer' branch without cutting a release. Deliberately EXCLUDES documents/ (235 MB of screenshots that main keeps as the public image host) because MetaDeploy reads the whole tagged tree into memory on every preflight; tag release/<base>.<n> from this branch.
         class_path: cumulusci.tasks.github.publish.PublishSubtree
         options:
             repo_url: "https://github.com/common-unite/Flow_Tool_Kit_Public"
-            branch: "main"
+            branch: "installer"
             ref: heads/master
             create_release: False
-            include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md","documents/",
+            include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md",
                        "tasks/","force-app-post/","force-app-npc-conversion/",
                        "unpackaged/npc-conversion-post/" ]
 
