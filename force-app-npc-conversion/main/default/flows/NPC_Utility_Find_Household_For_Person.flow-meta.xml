@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <actionCalls>
+        <description>Which of those Accounts is a Household. One query over all of them, oldest first, so a person in more than one Household is answered with the one they joined first. Reads through the (NPC) Get Party Relationship Group Apex action rather than a Get Records element, because package validation runs in a build org that cannot hold the Group Membership licence and refuses the native element there (#628). A clone of this flow can use a plain Get Records instead - a subscriber org has the licence assigned.</description>
+        <name>getPartyRelationshipGroup</name>
+        <label>Party Relationship Group</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>NPC_GetPartyRelationshipGroup_Invocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Switch_Group_Found</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Assign_Error</targetReference>
+        </faultConnector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>accountIds</name>
+            <value>
+                <elementReference>All_Account_Ids</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>groupType</name>
+            <value>
+                <stringValue>Household</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>status</name>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>NPC_GetPartyRelationshipGroup_Invocable</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <assignments>
+        <description>A query failed. The flow returns HasError = true and the platform&apos;s error text, and lets the caller decide what to log or show.</description>
+        <name>Assign_Error</name>
+        <label>Report the failure</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>HasError</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ErrorMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>Hands back the Household&apos;s Account Id.</description>
+        <name>Assign_Outputs</name>
+        <label>Assign Outputs</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>HouseholdAccountId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>getPartyRelationshipGroup.partyRelationshipGroup.AccountId</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>Did any of the person&apos;s Accounts turn out to be a Household? If yes, return it; if not, the person is in no Household yet.</description>
+        <name>Switch_Group_Found</name>
+        <label>Switch</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Household</defaultConnectorLabel>
+        <rules>
+            <name>Group_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getPartyRelationshipGroup.partyRelationshipGroup</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Outputs</targetReference>
+            </connector>
+            <label>Household found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>What did the caller give us? A Contact Id goes straight to memberships, an email goes through the person lookup first, and neither means there is nothing to find.</description>
+        <name>Switch_Have_Contact</name>
+        <label>Switch</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Neither, nothing to find</defaultConnectorLabel>
+        <rules>
+            <name>Have_Contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>ContactId</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getAccountContactRelations</targetReference>
+            </connector>
+            <label>Yes, by Id</label>
+        </rules>
+        <rules>
+            <name>Have_Email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Email</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getPersonAccount</targetReference>
+            </connector>
+            <label>Only an email</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Did the email match a Person Account? No match means a brand-new person, and the flow simply returns nothing.</description>
+        <name>Switch_Person_Found</name>
+        <label>Switch</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Person Account</defaultConnectorLabel>
+        <rules>
+            <name>Person_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getPersonAccount</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getAccountContactRelations</targetReference>
+            </connector>
+            <label>Person found</label>
+        </rules>
+    </decisions>
+    <description>WHAT IT DOES: Answers one question: which Household does this person already belong to? Give it a Contact Id, an email address, or both, and it returns the Household Account and its Party Relationship Group, or nothing when the person is new or in no Household.
+
+HOW IT WORKS, STEP BY STEP:
+1. If you passed a Contact Id, it goes straight to the memberships. If you only passed an email, it first finds the Person Account with that email; no match means the person is new, and the flow returns empty-handed (that is an answer, not an error).
+2. Reads the person&apos;s active memberships. Only indirect relations are considered, because a Person Account&apos;s direct relation points at itself, never at a Household.
+3. Collects the Account Ids of those memberships with a small transform, then asks in ONE query which of them carries an active Household group, oldest first. That sort matters: a person in two Households is answered with the one they joined first.
+4. Returns the Household&apos;s Account Id. The group record itself deliberately never leaves this flow: a populated Party Relationship Group crossing a subflow&apos;s output boundary crashes the packaged (managed) runtime with an internal Salesforce error, so callers get the Id and query what more they need.
+
+WHERE IT FITS: The NPC Account engine calls this when Contact 1 of a Household-mode form has just converted and the submission has no Account yet: a returning family keeps the Household they have instead of getting a duplicate. It is form-agnostic and read-only, so it is safe to call from anywhere. It never writes logs; it returns HasError and ErrorMessage instead.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>The Contact the memberships are read for: the one the caller passed, or the one found by email.</description>
+        <name>Resolved_Contact_Id</name>
+        <dataType>String</dataType>
+        <expression>BLANKVALUE({!ContactId}, {!getPersonAccount.PersonContactId})</expression>
+    </formulas>
+    <interviewLabel>(NPC) Utility | Find | Household for a Person {!$Flow.CurrentDateTime}</interviewLabel>
+    <isOverridable>true</isOverridable>
+    <label>(NPC) Utility | Find | Household for a Person</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Indirect relations only: a Person Account&apos;s direct relation is to itself, never to a Household.</description>
+        <name>getAccountContactRelations</name>
+        <label>Account Contact Relations</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>All_Account_Ids</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Assign_Error</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ContactId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Resolved_Contact_Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>IsDirect</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>AccountContactRelation</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>AccountId</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Finds the person by email when the caller does not know their Contact Id. Person Accounts carry the email on PersonEmail.</description>
+        <name>getPersonAccount</name>
+        <label>Person Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Switch_Person_Found</targetReference>
+        </connector>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Assign_Error</targetReference>
+        </faultConnector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsPersonAccount</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>PersonEmail</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Email</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>PersonContactId</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Switch_Have_Contact</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <transforms>
+        <description>Projects the Accounts the person belongs to into a list of Ids, so one query can ask which of them is a Household. It has to be the membership&apos;s AccountId: the group is looked up by Account, not by membership.</description>
+        <name>All_Account_Ids</name>
+        <label>All Account Ids</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>getPartyRelationshipGroup</targetReference>
+        </connector>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>getAccountContactRelations[$EachItem].AccountId</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <variables>
+        <description>The person, when the caller already knows them.</description>
+        <name>ContactId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Their email address, used to find the Person Account when no Contact Id is known.</description>
+        <name>Email</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>What failed, in one sentence, for the caller to log or show.</description>
+        <name>ErrorMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>True when a step failed. The caller decides what to do; this flow never logs.</description>
+        <name>HasError</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <description>The Household they belong to; blank when there is none.</description>
+        <name>HouseholdAccountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

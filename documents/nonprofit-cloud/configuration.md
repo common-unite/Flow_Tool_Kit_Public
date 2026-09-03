@@ -104,7 +104,7 @@ So that admins can select the Person Account matching rule on a template, add it
 - **Setup → Object Manager → Form Template → Fields & Relationships → Contact Matching Rules**
 - **Setup → Object Manager → Form Template Page Section → Fields & Relationships → Contact Matching Rules**
 
-Add the value `NPC_Person_Account_Match` to each. The value is the matching rule's API name, which is how the conversion engine passes it to the duplicate-matching action.
+Add the value `Standard_PersonAccount_Match_Rule_v1_0` to each. The value is the matching rule's API name, which is how the conversion engine passes it to the duplicate-matching action.
 
 ## Step 7: Configure a Form Template
 
@@ -115,7 +115,7 @@ With the setup above in place, a household intake template is configured like th
 | Conversion Type | `Contact(s)` | The form is about people, and this controls which rules are offered. |
 | Contact (Record Type) | `PersonAccount` | Everyone the form creates is a Person Account. |
 | Account (Record Type) | `Household` | The Account this form builds is a Household. |
-| Contact Matching Rules | `NPC_Person_Account_Match` | Returning people are matched and updated rather than duplicated. |
+| Contact Matching Rules | `Standard_PersonAccount_Match_Rule_v1_0` | Returning people are matched and updated rather than duplicated. |
 | Conversion Rules | See below | What the submission should build. |
 
 A full household intake selects these Conversion Rules:

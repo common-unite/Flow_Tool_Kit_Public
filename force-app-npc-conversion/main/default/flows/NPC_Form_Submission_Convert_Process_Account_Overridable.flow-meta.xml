@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Stamps the record type the template names, or the Household type in Household mode.</description>
+        <name>Assign_Record_Type</name>
+        <label>Stamp record type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>Account_Field_Map.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>getRecordType.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Upsert_Account</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Queries the configured Account record type only when the template names one; the literal -- Use Default -- value is a sentinel meaning the running user&apos;s default record type, so no lookup is needed.</description>
+        <name>Switch_Record_Type</name>
+        <label>Switch</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Upsert_Account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>continue</defaultConnectorLabel>
+        <rules>
+            <name>Query_Record_Type</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FormTemplate.Account_Record_Type__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FormTemplate.Account_Record_Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>-- Use Default --</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getRecordType</targetReference>
+            </connector>
+            <label>Query Record Type</label>
+        </rules>
+    </decisions>
+    <description>WHAT IT DOES: Turns a form&apos;s company answers into the Account record for the Account rule - a business, or, in Household mode, the family&apos;s Household - and hands it to the NPC Account engine. This is the mapping step: it decides which form fields land in which Account fields, and nothing else.
+
+HOW IT WORKS, STEP BY STEP:
+1. Setup loads the submission, template and section from the platform event.
+2. The Account (Field Map) transform maps the company fields: name, phone, website, and the billing and shipping addresses only when the template&apos;s address sub-rules are on. The Name is special in Household mode: the Company if the form captured one, otherwise &quot;&lt;Contact 1&apos;s last name&gt; Household&quot;, which is how a family&apos;s Household gets its name.
+3. If the template names an Account record type, it is looked up and stamped onto the record; the literal -- Use Default -- means the org default applies.
+4. The record goes to the single NPC Account engine with the template&apos;s Account matching rules, and the engine does the rest: strip, match, save, log, and for a Household the group and memberships.
+
+WHERE IT FITS: Installed by the Account record of Form Template Conversion Mapping Default. In Household mode the controller holds this rule back until Contact 1 exists, so a returning family&apos;s Household is found through the person before a new one is ever created. To change the company field mapping, clone this flow and adjust the transform. NOTE ON COUNTRY AND STATE PICKLISTS: rendering Country and State as picklists on a form requires the Custom Address fields feature to be enabled and configured on the Form Submission object; the answers then arrive on the custom Address field&apos;s components instead of the plain text fields this map reads, so update the address lines of this field map accordingly.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>True when the template enables Account Set Billing Address. The address rules are separate from the base Account rule so admins can create or match Accounts without letting form data overwrite curated billing addresses.</description>
+        <name>AssignBillingAddress</name>
+        <dataType>Boolean</dataType>
+        <expression>INCLUDES({!FormTemplate.Conversion_Rules__c},&apos;Account 👉 Set Billing Address&apos;)</expression>
+    </formulas>
+    <formulas>
+        <description>True when the template enables Account Set Shipping Address; kept separate from the base rule for the same reason as billing.</description>
+        <name>AssignShippingAddress</name>
+        <dataType>Boolean</dataType>
+        <expression>INCLUDES({!FormTemplate.Conversion_Rules__c},&apos;Account 👉 Set Shipping Address&apos;)</expression>
+    </formulas>
+    <formulas>
+        <description>Household mode: the template asks for a Household through the Account is Household rule or a Household Account record type. Same test as the NPC engine and controller.</description>
+        <name>Household_Mode</name>
+        <dataType>Boolean</dataType>
+        <expression>INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Account is Household&apos;) || CONTAINS(TEXT({!FormTemplate.Account_Record_Type__c}), &apos;Household&apos;)</expression>
+    </formulas>
+    <formulas>
+        <description>The Account name: the Company when the form captured one; for a Household without a Company, &quot;&lt;Contact 1 last name&gt; Household&quot;. Blank means the Account cannot be named.</description>
+        <name>Household_Name</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!FormSubmission.Company__c})), {!FormSubmission.Company__c}, IF(AND({!Household_Mode}, NOT(ISBLANK({!FormSubmission.Contact1_Last_Name__c}))), {!FormSubmission.Contact1_Last_Name__c} &amp; &quot; Household&quot;, &quot;&quot;))</expression>
+    </formulas>
+    <interviewLabel>(NPC) Convert | Process | Account | Overridable {!$Flow.CurrentDateTime}</interviewLabel>
+    <isOverridable>true</isOverridable>
+    <label>(NPC) Convert | Process | Account | Overridable</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Loads the active record type by developer name from the template. An inactive or deleted record type resolves to nothing and the Account saves with the default instead of failing.</description>
+        <name>getRecordType</name>
+        <label>Record Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Record_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FormTemplate.Account_Record_Type__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Account</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Setup</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Shared front door: loads the submission and template and resolves the Account matching rule settings before the field map runs. Custom clones should keep this call first; everything downstream assumes its outputs.</description>
+        <name>Setup</name>
+        <label>Setup</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Account_Field_Map</targetReference>
+        </connector>
+        <flowName>Form_Submission_Convert_Setup</flowName>
+        <inputAssignments>
+            <name>Debug_EventName</name>
+            <value>
+                <stringValue>Account</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Debug_EventType</name>
+            <value>
+                <stringValue>FlowToolKit__Account__c</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>DebugRecord</name>
+            <value>
+                <elementReference>DebugRecord</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PlatformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>FormSubmission</assignToReference>
+            <name>FormSubmission</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>FormTemplate</assignToReference>
+            <name>FormTemplate</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>PageSection</assignToReference>
+            <name>PageSection</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>ParentFormSubmission</assignToReference>
+            <name>ParentFormSubmission</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>PlatformEvent</assignToReference>
+            <name>PlatformEvent</name>
+        </outputAssignments>
+    </subflows>
+    <subflows>
+        <description>The single NPC Account engine: matching, save, logs, and for a Household its group and members.</description>
+        <name>Upsert_Account</name>
+        <label>Upsert Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>NPC_Form_Submission_Convert_Upsert_Account_Overridable</flowName>
+        <inputAssignments>
+            <name>Account</name>
+            <value>
+                <elementReference>Account_Field_Map</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>FormSubmission</name>
+            <value>
+                <elementReference>FormSubmission</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>FormTemplate</name>
+            <value>
+                <elementReference>FormTemplate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Matching_Rule_Names</name>
+            <value>
+                <elementReference>FormTemplate.Account_Matching_Rules__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PageSection</name>
+            <value>
+                <elementReference>PageSection</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ParentFormSubmission</name>
+            <value>
+                <elementReference>ParentFormSubmission</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PlatformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Update_Most_Confident_Match</name>
+            <value>
+                <elementReference>FormTemplate.Update_Most_Confident_Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>Account_Field_Map</assignToReference>
+            <name>Account</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>FormSubmission</assignToReference>
+            <name>FormSubmission</name>
+        </outputAssignments>
+    </subflows>
+    <transforms>
+        <description>THE clone target for custom Account mappings. Maps the submission&apos;s company fields onto the Account, applying billing and shipping addresses only when those conversion rules are enabled on the template. Values assigned here may still be blank; the Upsert Account subflow strips nulls afterward, so a blank answer never erases data on a matched Account. Add or change mappings here and leave the rest of the flow intact.</description>
+        <name>Account_Field_Map</name>
+        <label>Account (Field Map)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Switch_Record_Type</targetReference>
+        </connector>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <objectType>Account</objectType>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <outputFieldApiName>Id</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Account__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Website</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Website__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Phone</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Company_Phone__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Name</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>Household_Name</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Latest_Form_Submission__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Id</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>ShippingCity</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignShippingAddress}, 
+{!FormSubmission.City__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>ShippingCountry</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignShippingAddress}, 
+{!FormSubmission.Country__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>ShippingState</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignShippingAddress}, 
+{!FormSubmission.State_Province__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>ShippingStreet</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignShippingAddress}, 
+{!FormSubmission.Street__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>ShippingPostalCode</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignShippingAddress}, 
+{!FormSubmission.Postal_Code__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>BillingCity</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignBillingAddress}, 
+{!FormSubmission.City__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>BillingCountry</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignBillingAddress}, 
+{!FormSubmission.Country__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>BillingPostalCode</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignBillingAddress}, 
+{!FormSubmission.Postal_Code__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>BillingState</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignBillingAddress}, 
+{!FormSubmission.State_Province__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>BillingStreet</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignBillingAddress}, 
+{!FormSubmission.Street__c},
+null)</formulaExpression>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <variables>
+        <description>Debug only: supply a Form Submission to run this flow in Flow Builder without a platform event.</description>
+        <name>DebugRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission__c</objectType>
+    </variables>
+    <variables>
+        <description>The submission being converted, loaded by Setup.</description>
+        <name>FormSubmission</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission__c</objectType>
+    </variables>
+    <variables>
+        <description>The template, read for the address sub-rules, the record type and Household mode.</description>
+        <name>FormTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Template__c</objectType>
+    </variables>
+    <variables>
+        <description>The capturing section when a repeater row converts; blank on a main submission.</description>
+        <name>PageSection</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Template_Page_Section__c</objectType>
+    </variables>
+    <variables>
+        <description>The main submission when this pass converts a repeater row; blank otherwise.</description>
+        <name>ParentFormSubmission</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission__c</objectType>
+    </variables>
+    <variables>
+        <description>The Account event (EventName Account, Type Account__c) from the controller&apos;s Convert Organization rule. Setup uses EventName to resolve the template&apos;s Account matching rules; the Log action uses Type to pick the Account status and lookup fields. An override must stay an active autolaunched flow with a Form_Submission_Convert__e input variable.</description>
+        <name>PlatformEvent</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission_Convert__e</objectType>
+    </variables>
+</Flow>

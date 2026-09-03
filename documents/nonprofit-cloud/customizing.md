@@ -112,9 +112,12 @@ When the Account has no primary member yet, the person being added takes that se
 | --- | --- | --- |
 | In | `ContactId` | Use when you already know the person |
 | In | `Email` | Used to find the Person Account when no Contact Id is known |
-| Out | `HouseholdAccountId` | Blank when there is none |
-| Out | `PartyRelationshipGroup` | The group record itself, so you need not query it again |
+| Out | `HouseholdAccountId` | The Household's Account Id; blank when there is none |
 | Out | `HasError`, `ErrorMessage` | |
+
+{% hint style="info" %}
+The utility deliberately returns the **Id, not the group record**. A populated Party Relationship Group crossing a subflow's output boundary crashes the packaged runtime with an internal Salesforce error, so callers take the Id and query whatever else they need. The same rule applies to your own flows on this object: pass its records between flows by Id.
+{% endhint %}
 
 *Read-only and safe to call from anywhere: deduplication checks, intake screens, reporting flows.*
 

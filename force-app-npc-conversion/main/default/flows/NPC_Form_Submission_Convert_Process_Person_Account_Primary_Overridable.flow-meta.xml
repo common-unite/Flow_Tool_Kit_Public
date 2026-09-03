@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <constants>
+        <description>The API name of the submission&apos;s Contact 1 lookup; the address sub-rule formulas use it to tell which slot this pass converts.</description>
+        <name>Contact1_FieldApiName</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>FlowToolKit__Contact_1__c</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <description>The API name of the submission&apos;s Contact 2 lookup, for the same slot test.</description>
+        <name>Contact2_FieldApiName</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>FlowToolKit__Contact_2__c</stringValue>
+        </value>
+    </constants>
+    <description>WHAT IT DOES: Turns a form&apos;s Contact 1 answers (the person filling in the form) into a Person Account and hands it to the NPC Account engine. This is the mapping step: it decides which form fields land in which Account fields, and nothing else.
+
+HOW IT WORKS, STEP BY STEP:
+1. Setup loads the submission, template and section from the platform event.
+2. Two small lookups prepare the record: the org&apos;s active person account Record Type, and the Person Account Contact 1 already points at (so a re-run updates rather than duplicates).
+3. The Person Account (Field Map) transform is the heart of the flow and the reason to clone it: every line maps one form answer onto one Account field. The names, email, phone, birthdate and title always map; the mailing and other address blocks map only when the template&apos;s address sub-rules are on, so curated addresses are not overwritten by blank form answers. IsPersonAccount, the record type and the existing Id and PersonContactId ride along so the engine knows exactly what it is saving.
+4. The record goes to the single NPC Account engine, together with the template&apos;s Contact matching rules, and the engine does the rest: strip, match, save, log, follow-ups.
+
+WHERE IT FITS: Installed by the Primary Contact record of Form Template Conversion Mapping Default. To change WHICH FIELDS a person gets from a form, clone this flow, adjust the transform, and point the template&apos;s override hook (or the custom metadata) at your clone; matching and saving behaviour lives in the engine, not here. NOTE ON COUNTRY AND STATE PICKLISTS: rendering Country and State as picklists on a form requires the Custom Address fields feature to be enabled and configured on the Form Submission object; the answers then arrive on the custom Address field&apos;s components instead of the plain text fields this map reads, so update the address lines of this field map accordingly.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>True when the Contact 1 or Contact 2 Set Mailing Address conversion rule is enabled (from the page section for related rows, otherwise the template); gates the mailing address mappings in the field map.</description>
+        <name>AssignMailingAddress</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!PlatformEvent.Type__c} == {!Contact1_FieldApiName},
+IF({!FormSubmission.Internal_Is_Related_Record__c},
+ISPICKVAL({!PageSection.Conversion_Rule__c},&apos;Contact1 👉 Set Mailing Address&apos;),
+INCLUDES({!FormSubmission.Form_Template__r.Conversion_Rules__c},&apos;Contact1 👉 Set Mailing Address&apos;)
+),
+IF({!PlatformEvent.Type__c} == {!Contact2_FieldApiName},
+if({!FormSubmission.Internal_Is_Related_Record__c},
+ISPICKVAL({!PageSection.Conversion_Rule__c},&apos;Contact2 👉 Set Mailing Address&apos;),
+INCLUDES({!FormSubmission.Form_Template__r.Conversion_Rules__c},&apos;Contact2 👉 Set Mailing Address&apos;)
+),
+false))</expression>
+    </formulas>
+    <formulas>
+        <description>True when the Contact 1 or Contact 2 Set Other Address conversion rule is enabled (from the page section for related rows, otherwise the template); gates the other address mappings in the field map.</description>
+        <name>AssignOtherAddress</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!PlatformEvent.Type__c} == {!Contact1_FieldApiName},
+IF({!FormSubmission.Internal_Is_Related_Record__c},
+ISPICKVAL({!PageSection.Conversion_Rule__c},&apos;Contact1 👉 Set Other Address&apos;),
+INCLUDES({!FormSubmission.Form_Template__r.Conversion_Rules__c},&apos;Contact1 👉 Set Other Address&apos;)
+),
+IF({!PlatformEvent.Type__c} == {!Contact2_FieldApiName},
+if({!FormSubmission.Internal_Is_Related_Record__c},
+ISPICKVAL({!PageSection.Conversion_Rule__c},&apos;Contact2 👉 Set Other Address&apos;),
+INCLUDES({!FormSubmission.Form_Template__r.Conversion_Rules__c},&apos;Contact2 👉 Set Other Address&apos;)
+),
+false))</expression>
+    </formulas>
+    <interviewLabel>(NPC) Convert | Process | Person Account Primary | Overridable {!$Flow.CurrentDateTime}</interviewLabel>
+    <isOverridable>true</isOverridable>
+    <label>(NPC) Convert | Process | Person Account Primary | Overridable</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>The Person Account Contact 1 already points at, if any. Its Id and PersonContactId ride into the field map, which is what makes a re-run an update instead of a duplicate.</description>
+        <name>getPersonAccount</name>
+        <label>Person Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Person_Account_Field_Map</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>PersonContactId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FormSubmission.Contact_1__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsPersonAccount</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>getRecordType.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>PersonContactId</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>PersonAccount</description>
+        <name>getRecordType</name>
+        <label>Record Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>getPersonAccount</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsPersonType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Setup</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Keep this call first: it resolves the submission, template, parent, section, and matching settings your logic and the shared subflow expect.</description>
+        <name>Setup</name>
+        <label>Setup</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>getRecordType</targetReference>
+        </connector>
+        <flowName>Form_Submission_Convert_Setup</flowName>
+        <inputAssignments>
+            <name>Debug_EventName</name>
+            <value>
+                <stringValue>Contact</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Debug_EventType</name>
+            <value>
+                <elementReference>Contact1_FieldApiName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>DebugRecord</name>
+            <value>
+                <elementReference>DebugRecord</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PlatformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>FormSubmission</assignToReference>
+            <name>FormSubmission</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>FormTemplate</assignToReference>
+            <name>FormTemplate</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>Matching_Rule_Names</assignToReference>
+            <name>MatchingRuleNames</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>PageSection</assignToReference>
+            <name>PageSection</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>ParentFormSubmission</assignToReference>
+            <name>ParentFormSubmission</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>PlatformEvent</assignToReference>
+            <name>PlatformEvent</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>Update_Most_Confident_Match</assignToReference>
+            <name>UpdateMostConfidentMatch</name>
+        </outputAssignments>
+    </subflows>
+    <subflows>
+        <description>The shared Contact engine. Keep it and customize only the Transform for mapping changes; replace it only if you are taking over duplicate handling, stamping, logging, and the return event yourself.</description>
+        <name>Upsert_Person_Account</name>
+        <label>Upsert Person Account</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>NPC_Form_Submission_Convert_Upsert_Account_Overridable</flowName>
+        <inputAssignments>
+            <name>Account</name>
+            <value>
+                <elementReference>Person_Account_Field_Map</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>FormSubmission</name>
+            <value>
+                <elementReference>FormSubmission</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>FormTemplate</name>
+            <value>
+                <elementReference>FormTemplate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Matching_Rule_Names</name>
+            <value>
+                <elementReference>Matching_Rule_Names</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PageSection</name>
+            <value>
+                <elementReference>PageSection</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ParentFormSubmission</name>
+            <value>
+                <elementReference>ParentFormSubmission</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PlatformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Update_Most_Confident_Match</name>
+            <value>
+                <elementReference>Update_Most_Confident_Match</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <transforms>
+        <description>Map values from Form Submission to the primary contact</description>
+        <name>Person_Account_Field_Map</name>
+        <label>Person Account (Field Map)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Upsert_Person_Account</targetReference>
+        </connector>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <objectType>Account</objectType>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <outputFieldApiName>FirstName</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_First_Name__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>LastName</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Last_Name__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonMobilePhone</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_MobilePhone__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonEmail</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Email__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonBirthdate</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Birthdate__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Phone</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Phone__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonTitle</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Title__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Latest_Form_Submission__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Id</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonMailingStreet</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.Street__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonMailingState</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.State_Province__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonMailingPostalCode</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.Postal_Code__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonMailingCountry</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.Country__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonMailingCity</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.City__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonOtherCity</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.City__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonOtherCountry</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.Country__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonOtherPostalCode</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.Postal_Code__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonOtherState</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.State_Province__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonOtherStreet</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.Street__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Latest_Form_Submission__pc</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Id</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Id</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>getPersonAccount.Id</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>PersonContactId</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>getPersonAccount.PersonContactId</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>IsPersonAccount</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>MiddleName</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Middle_Name__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Salutation</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Salutation__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>RecordTypeId</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>getRecordType.Id</elementReference>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <variables>
+        <description>Debug affordance: supply a Form Submission to run the clone in Flow Builder without an event.</description>
+        <name>DebugRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission__c</objectType>
+    </variables>
+    <variables>
+        <description>Populated by Setup, not an input: the submission (or related row) being converted.</description>
+        <name>FormSubmission</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission__c</objectType>
+    </variables>
+    <variables>
+        <description>Populated by the Setup subflow: the Form Template that owns the conversion configuration.</description>
+        <name>FormTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Template__c</objectType>
+    </variables>
+    <variables>
+        <description>Populated by the Setup subflow: the duplicate matching rule API names configured for Contacts, passed to the Upsert Contact subflow&apos;s duplicate checker.</description>
+        <name>Matching_Rule_Names</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Populated by Setup for related rows only; its settings override the template for the row.</description>
+        <name>PageSection</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Template_Page_Section__c</objectType>
+    </variables>
+    <variables>
+        <description>Populated by the Setup subflow: the parent Form Submission when the converting record is a related submission row; blank otherwise.</description>
+        <name>ParentFormSubmission</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission__c</objectType>
+    </variables>
+    <variables>
+        <description>The Contact event your clone receives; Type names the Contact lookup being converted and drives which status and lookup fields stamp. Keep this input variable or the dispatcher cannot launch the clone.</description>
+        <name>PlatformEvent</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission_Convert__e</objectType>
+    </variables>
+    <variables>
+        <description>Populated by the Setup subflow: the template&apos;s setting to update the single most confident duplicate match instead of logging a Multiple Matches error.</description>
+        <name>Update_Most_Confident_Match</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+</Flow>
