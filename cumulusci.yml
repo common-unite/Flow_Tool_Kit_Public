@@ -37,16 +37,23 @@ plans:
         steps:
             1:
                 flow: dependencies
+                ui_options:
+                    description: "Installs any packages Flow Tool Kit depends on before the app itself. Most orgs already have these, in which case nothing is deployed here."
             2:
                 task: install_managed
+                ui_options:
+                    description: "Installs the Flow Tool Kit managed package: the form and table builder, its runtime engine, and all supporting metadata. If this exact version is already installed, the step is skipped automatically."
             3:
                 task: update_admin_profile
+                ui_options:
+                    description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
             4:
                 task: deploy
                 options:
                     path: force-app-post
                 ui_options:
                     name: "Deploy Post-Install Components"
+                    description: "Deploys the editable style-override template, a starting-point stylesheet you can customize to brand your forms. It seeds a working example rather than a blank sheet. First install only; a re-run is skipped so your styling customizations are preserved."
                 checks:
                     - when: "tasks.check_base_installed()['is_installed']"
                       action: skip
@@ -91,16 +98,23 @@ plans:
         steps:
             1:
                 flow: dependencies
+                ui_options:
+                    description: "Installs any packages Flow Tool Kit depends on before the app itself. Most orgs already have these, in which case nothing is deployed here."
             2:
                 task: install_managed
+                ui_options:
+                    description: "Installs the Flow Tool Kit managed package: the form and table builder, its runtime engine, and all supporting metadata. If this exact version is already installed, the step is skipped automatically."
             3:
                 task: update_admin_profile
+                ui_options:
+                    description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
             4:
                 task: deploy
                 options:
                     path: force-app-post
                 ui_options:
                     name: "Deploy Post-Install Components"
+                    description: "Deploys the editable style-override template, a starting-point stylesheet you can customize to brand your forms. It seeds a working example rather than a blank sheet. First install only; a re-run is skipped so your styling customizations are preserved."
                 checks:
                     - when: "tasks.check_base_installed()['is_installed']"
                       action: skip
@@ -109,11 +123,13 @@ plans:
                 task: install_npc_conversion
                 ui_options:
                     name: "Install Nonprofit Cloud Conversion Extension"
+                    description: "Installs the Nonprofit Cloud Conversion extension, which teaches the conversion engine how to map form submissions into NPC Person Account and relationship records. The base package is org-model-agnostic; this extension adds the NPC-specific behavior. It shares the FlowToolKit namespace with the base package."
                     is_required: True
             6:
                 task: add_npc_conversion_rules
                 ui_options:
                     name: "Add Conversion Rules Picklist Values"
+                    description: "Adds the conversion rule options (Account is Household, Create Relationships, and the four household-membership sub-rules) to the package restricted Conversion Rules picklist. The engine reads these to decide how to route each submission. First install only; a re-run is skipped so your dependency-matrix edits are kept."
                 checks: &npc_first_install_only
                     - when: "tasks.check_npc_conversion_installed()['is_installed']"
                       action: skip
@@ -122,26 +138,25 @@ plans:
                 task: add_npc_conversion_rule_dependencies
                 ui_options:
                     name: "Map Conversion Rules to their Conversion Types"
-                checks: *npc_first_install_only
-            8:
-                task: add_npc_account_record_types
-                ui_options:
-                    name: "Add Household and Organization Account Record Types"
+                    description: "Maps each conversion rule to the Conversion Type it applies under, in the restricted dependency matrix. Without this the rule values exist but are valid under no type, so the engine cannot use them. Pairs with the previous step. First install only."
                 checks: *npc_first_install_only
             9:
                 task: add_npc_contact_record_type
                 ui_options:
                     name: "Set Person Account as the Default Contact Record Type"
+                    description: "Adds PersonAccount to the Contact (Record Type) options and marks it the default, so new form templates convert contacts as Person Accounts, the NPC contact model. First install only. Person Accounts must be enabled in your org."
                 checks: *npc_first_install_only
             10:
                 task: add_npc_contact_matching_rule
                 ui_options:
                     name: "Add the Person Account Matching Rule Value"
+                    description: "Adds the standard Person Account matching rule to the Contact Matching Rules options so the engine updates an existing contact instead of creating a duplicate. Note: this matching rule ships INACTIVE in every Person Accounts org; activate it in Setup (the matching rule, then its duplicate rule) as an install prerequisite. First install only."
                 checks: *npc_first_install_only
             11:
                 task: deploy_npc_conversion_post
                 ui_options:
                     name: "Apply Conversion Mapping Defaults"
+                    description: "Points the four Conversion Mapping Default records at the NPC conversion flows, wiring the extension engine into the form framework. This is the connection that makes conversions run the NPC logic. First install only; a re-run is skipped so your Conversion Rules dependency-matrix edits are preserved."
                 checks: *npc_first_install_only
 
     upgrade:
@@ -418,8 +433,6 @@ flows:
                 task: add_npc_conversion_rules
             2:
                 task: add_npc_conversion_rule_dependencies
-            3:
-                task: add_npc_account_record_types
             4:
                 task: add_npc_contact_record_type
             5:
@@ -439,12 +452,14 @@ flows:
                         managed: False
                     add_npc_conversion_rule_dependencies:
                         managed: False
-                    add_npc_account_record_types:
-                        managed: False
                     add_npc_contact_record_type:
                         managed: False
                     add_npc_contact_matching_rule:
                         managed: False
+            3:
+                task: add_npc_account_record_types
+                options:
+                    managed: False
 
     npc_conversion_dev_org:
         description: EXTENSION-DEVELOPMENT org build - the full subscriber-style NPC org (npc_subscriber_org), then the extension SOURCE and its post-install content (npc_conversion_config). Run against the namespaced feature org for the dev loop. For the package-based install a customer would get, run npc_conversion_install instead.
