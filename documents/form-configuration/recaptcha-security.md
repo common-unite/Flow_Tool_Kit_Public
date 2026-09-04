@@ -14,9 +14,9 @@ reCAPTCHA is configured **per-button** on the Custom Buttons component. Each but
 ## Quick Start
 
 1. **Set Up reCAPTCHA**: Register your site with Google reCAPTCHA v3 and obtain site and secret keys.
-2. **Configure in Salesforce**: Store the reCAPTCHA keys in your Salesforce org's custom settings or metadata (see setup section below).
+2. **Configure in Salesforce**: put the **secret key** in the `GoogleRecaptcha` External Credential's `secret_key` principal parameter, and the **site key** in Flow Tool Kit Settings plus your site's head markup. Full recipe: [Google reCAPTCHA Setup](../advanced-topics/google-recaptcha-setup.md).
 3. **Enable on Button**: In the Custom Buttons property editor, enable `reCAPTCHA_Enabled` on the button that should be protected.
-4. **Set Threshold**: Set `reCAPTCHA_Threshold` to your desired minimum score (e.g., 50 for 0.5 score).
+4. **Set Threshold**: Set `reCAPTCHA_Threshold` to your desired minimum score on Google's own scale, 0.0 to 1.0 (default 0.5).
 5. **Deploy**: Publish your Experience Cloud site. reCAPTCHA verification runs when the protected button is clicked.
 
 ## Properties
@@ -26,11 +26,11 @@ These properties are available on each button (1-5) in the Custom Buttons compon
 | Property | Type | Default | Description |
 |---|---|---|---|
 | `reCAPTCHA_Enabled` | Boolean | false | Enable reCAPTCHA verification for this button |
-| `reCAPTCHA_Threshold` | Integer | None | Minimum score (0-100) required to proceed. Maps to Google's 0.0-1.0 scale (e.g., 50 = 0.5) |
+| `reCAPTCHA_Threshold` | Number | 0.5 | Minimum score required to proceed, on Google's 0.0-1.0 scale. The click proceeds when the returned score is at or above this value |
 
 ## How It Works
 
-1. **Page Load**: When a screen with reCAPTCHA-enabled buttons loads, the reCAPTCHA v3 script initializes in the background.
+1. **Page Load**: the reCAPTCHA v3 script, loaded from your site's head markup (or automatically on the iframe embed page), initializes in the background.
 2. **User Interaction**: As the user fills out the form, reCAPTCHA v3 monitors their behavior (mouse movements, typing patterns, interaction timing) to build a risk score.
 3. **Button Click**: When the user clicks a reCAPTCHA-enabled button, the component requests a verification token from Google.
 4. **Server Verification**: The token is sent to Salesforce, which verifies it with Google's API and receives the score.
@@ -40,10 +40,10 @@ These properties are available on each button (1-5) in the Custom Buttons compon
 
 | Score Range | Interpretation | Recommended Use |
 |---|---|---|
-| 70-100 (0.7-1.0) | Very likely human | Standard forms |
-| 50-69 (0.5-0.69) | Probably human | Low-risk forms |
-| 30-49 (0.3-0.49) | Suspicious | May need additional verification |
-| 0-29 (0.0-0.29) | Likely bot | Should be blocked |
+| 0.7-1.0 | Very likely human | Standard forms |
+| 0.5-0.69 | Probably human | Low-risk forms |
+| 0.3-0.49 | Suspicious | May need additional verification |
+| 0.0-0.29 | Likely bot | Should be blocked |
 
 ## Works With
 
