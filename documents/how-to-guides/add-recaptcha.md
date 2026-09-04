@@ -19,11 +19,10 @@ When your forms are exposed on Experience Cloud sites (especially to unauthentic
 ## Step 1: Get reCAPTCHA Keys from Google
 
 1. Go to the [Google reCAPTCHA admin console](https://www.google.com/recaptcha/admin).
-2. Click **+** to register a new site.
-3. Choose **reCAPTCHA v2** ("I'm not a robot" checkbox) or **reCAPTCHA v3** (invisible scoring).
-4. Add your Experience Cloud site domain under **Domains** (e.g., `yourorg.my.site.com`).
-5. Click **Submit**.
-6. Copy your **Site Key** and **Secret Key**.
+2. Click **+** to register a new site with type **reCAPTCHA v3** (Flow Tool Kit uses v3's invisible scoring; there is no checkbox variant).
+3. Add your Experience Cloud site domain under **Domains** (e.g., `yourorg.my.site.com`).
+4. Click **Submit**.
+5. Copy your **Site Key** and **Secret Key**.
 
 ## Step 2: Configure in Salesforce
 
@@ -33,18 +32,17 @@ When your forms are exposed on Experience Cloud sites (especially to unauthentic
 2. Add `https://www.google.com` as a trusted site.
 3. Enable all relevant permissions (Connect, Script, Style).
 
-### Create Named Credential (for reCAPTCHA v3 / server-side validation)
+### Create the External Credential and Named Credential
 
-1. Go to **Setup → Named Credentials**.
-2. Create a credential for the reCAPTCHA verification endpoint:
-   * **URL**: `https://www.google.com/recaptcha/api/siteverify`
-   * **Authentication**: No authentication (the secret key is sent as a parameter)
+The **secret key lives in an External Credential**, never in a setting. Exact names matter; the package's Apex references them directly.
 
-### Store Keys in Custom Metadata
+1. **Setup → Named Credentials → External Credentials**: create `GoogleRecaptcha`, protocol **Custom**. Add a Named Principal called `External Form User`, and on it an authentication parameter named `secret_key` whose value is your Google Secret Key.
+2. **Setup → Named Credentials**: create Named Credential `GoogleRecaptcha`, URL `https://www.google.com/recaptcha/api/siteverify`, using the external credential from step 1, with **Allow Formulas in HTTP Body** checked, and `FlowToolKit` added under Allowed Namespaces.
 
-1. Navigate to the reCAPTCHA configuration in Flow Tool Kit settings.
-2. Enter your **Site Key** and **Secret Key**.
-3. Select the reCAPTCHA version (v2 or v3).
+### Set the Site Key
+
+1. **Setup → Custom Settings → Flow Tool Kit Settings → Manage**: set **Google reCAPTCHA Site Key** (this drives iframe embeds automatically).
+2. For Experience Cloud sites, add the reCAPTCHA script and event bridge to the site's **Settings → Advanced → Edit Head Markup**, then publish. The exact snippet is in [Google reCAPTCHA Setup, Step 4](../advanced-topics/google-recaptcha-setup.md#step-4-set-the-site-key). Skipping this is the most common setup miss, and its symptom is a sticky "reCAPTCHA Timeout" toast 10 seconds after a protected button is clicked.
 
 ### Grant Guest User Permissions (required for Experience Cloud)
 
@@ -60,42 +58,30 @@ On the permission set assigned to your guest user, grant all of:
 
 Then assign the permission set via **Experience Workspaces → Administration → Pages → Go to Force.com → Public Access Settings → Manage Assignments**. Also verify **Setup → Session Settings → Let guest users make callouts using Named Credentials** is enabled.
 
-See [Google reCAPTCHA Setup: Grant Guest User Access](../advanced-topics/google-recaptcha-setup.md#grant-guest-user-access-to-the-external-credential) for the full checklist.
+See [Google reCAPTCHA Setup: Grant Guest User Access](../advanced-topics/google-recaptcha-setup.md#step-5-grant-guest-user-access) for the full checklist.
 
-## Step 3: Enable reCAPTCHA on Your Form
+## Step 3: Enable reCAPTCHA on Your Buttons
 
-1. Open the form in **Form Builder** or configure via the form's CMDT settings.
-2. Enable the reCAPTCHA option.
-3. Set the reCAPTCHA configuration reference.
+reCAPTCHA is configured **per button**, not per form. In the Custom Buttons property editor:
+
+1. Enable **reCAPTCHA** on the button that submits data (Next or Submit).
+2. Set the **reCAPTCHA Threshold** as a score from 0.0 to 1.0 (default 0.5); the click proceeds only when Google's score meets it.
 
 ## Step 4: Test
 
-1. Open your Experience Cloud site as a guest user (use an incognito browser window).
-2. Fill out the form.
-3. For v2: verify the "I'm not a robot" checkbox appears and works.
-4. For v3: verify the form submits successfully (reCAPTCHA score is validated server-side).
-5. Verify that bot-like submissions are blocked.
-
-## reCAPTCHA v2 vs v3
-
-|                     | v2 (Checkbox)                      | v3 (Invisible)                           |
-| ------------------- | ---------------------------------- | ---------------------------------------- |
-| **User Experience** | User clicks a checkbox             | No user interaction; runs in background |
-| **When to Use**     | When you want visible verification | When you want seamless UX                |
-| **Scoring**         | Pass/fail                          | Score 0.0-1.0 (you set the threshold)    |
-| **Complexity**      | Simpler to set up                  | Requires threshold tuning                |
-
-{% hint style="info" %}
-**Recommendation**: Start with reCAPTCHA v2 for simplicity. Move to v3 if the checkbox friction is unacceptable for your users.
-{% endhint %}
+1. Open your Experience Cloud site as a guest (private browser window).
+2. Fill out the form and click the protected button; the form should submit with no visible challenge (v3 is invisible).
+3. If a sticky **reCAPTCHA Timeout** toast appears after ~10 seconds, the head-markup script from Step 2 is missing or carries the wrong site key.
+4. The submission's button metadata records the returned score, so you can confirm verification really ran.
 
 ## Troubleshooting
 
 | Issue                                                                                        | Fix                                                                                                                                                                                                                                                                                       |
 | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| reCAPTCHA widget doesn't load                                                                | Check CSP Trusted Sites: `https://www.google.com` must be trusted                                                                                                                                                                                                                        |
+| Sticky **reCAPTCHA Timeout** toast on click                                                  | The site's head markup script is missing, unpublished, or has the wrong site key                                                                                                                                                                                                         |
+| reCAPTCHA script doesn't load                                                                | Check CSP Trusted Sites: `https://www.google.com` and `https://www.gstatic.com` must be trusted                                                                                                                                                                                          |
 | "Invalid site key" error                                                                     | Verify the site key matches your domain in the Google reCAPTCHA console                                                                                                                                                                                                                   |
-| All submissions blocked                                                                      | Check the secret key is correct. For v3, lower the score threshold.                                                                                                                                                                                                                       |
+| All submissions blocked                                                                      | Check the `secret_key` parameter on the external credential principal, and lower the button threshold (scale is 0.0 to 1.0)                                                                                                                                                              |
 | Works in sandbox, not production                                                             | Add the production domain to the Google reCAPTCHA site registration                                                                                                                                                                                                                       |
 | `You don't have read permissions on the User External Credential object` on guest-user click | Guest user permission set is missing **Read** on the `UserExternalCredential` standard object. Granting the External Credential Principal alone is not sufficient. See [Grant Guest User Permissions](add-recaptcha.md#grant-guest-user-permissions-required-for-experience-cloud) above. |
 
