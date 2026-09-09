@@ -27,6 +27,12 @@ By default, boolean fields display as a modern **toggle switch**. You can overri
 
 ![Boolean display type options](../.gitbook/assets/boolean-display-types.png)
 
+### Unanswered Boolean questions
+
+A Boolean displayed as a picklist, radio, buttons or attestation is a question with a Yes and a No, and it can be required. It shows nothing selected while the record holds no value, and shows No only when the record holds `false`: a value an admin set on purpose, or one a previous save committed. The one place a stored `false` is not an answer is a Prefill Template record, where a checkbox the admin never ticked is stored as `false` because a checkbox cannot be empty; the form drops those when it seeds a new submission, so the question opens unanswered. A ticked box on the Prefill Template still carries through as a deliberate Yes.
+
+A saved submission that is reopened keeps every stored `false`, so a required question that must survive Save Progress unanswered needs a picklist field with Yes and No values rather than a checkbox.
+
 ### Custom True/False Labels
 
 When using Picklist, Radio, or Buttons display types, you can override the option labels (for real picklist and multiselect fields, see [Picklist Option Labels](picklist-option-labels.md) for per-value custom labels with merge-field support):
@@ -189,6 +195,12 @@ Select a picklist field and set **Picklist Display Type** to **Survey Buttons** 
 ## Multiselect Picklist Fields
 
 Multiselect picklist fields render in four display types - **Multiselect Checkbox**, **Multiselect Checkbox (w/ Select All)**, **Multiselect Badge**, and **Combobox** - plus the **Visual Picker**. All of them share the behaviors below.
+
+### Read-only Display
+
+By default a multiselect that is read-only shows only its selected values, or *None Selected*: selected pills for the badge display type, checked boxes for the checkbox types. That is the display every existing org was built on, so it stays the default.
+
+An org can switch to showing every value. In Setup, open **Custom Settings**, then **Flow Tool Kit Settings**, then **Manage**, and turn on **Multiselect: Show All When Read Only** at the organization level (or for a profile or user, since the setting is hierarchical). With it on, a read-only multiselect shows all of its values: the badge and standard types render every value as a pill with the selected ones in the brand colour and the rest greyed, and the checkbox types show every box with the selected ones checked. It applies wherever a multiselect is read-only, whether a conditional logic rule set it Read Only, the field is marked read-only in the component, the field cannot be updated, or the whole form is placed read-only.
 
 ### Exclusive Values
 

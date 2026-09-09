@@ -81,7 +81,7 @@ A flow built from scratch will **not** appear, because it lacks that variable co
 
 A flow section works in both linear and [Stages mode](stages-mode.md). The form template passes the **effective** button labels into the flow, so they match what the runtime expects:
 
-* **Linear mode**: `buttonLabel_Back` / `buttonLabel_Next` carry the page's configured labels. When the flow finishes, the form advances to the next page (or submits on the last page).
+* **Linear mode**: `buttonLabel_Back` / `buttonLabel_Next` carry the page's configured labels. When the flow finishes, the form reads which button ended it: the Back label returns to the previous page, the Save Progress label saves in place, and any other label advances to the next page (or submits on the last page).
 * **Stages mode**: the labels become **Return** (`buttonLabel_Back`) and **Mark Complete** (`buttonLabel_Next` / `buttonLabel_Finish`). When the flow finishes, the stage is marked **Done** and the user returns to the stages overview; **Return** sends them back to the overview without completing the stage.
 
 > The `buttonLabel_Next` value feeds both the Next and Finish inputs: your flow shows **Next** on intermediate screens and **Finish** on its last screen, and finishing returns control to the form.
@@ -98,7 +98,7 @@ The form template hands data to the flow through the input variables and reads i
 
 * **`record`**: the main `Form_Submission__c` values the section collected.
 * **`relatedRecords`**: the child rows (repeater/table) the section manages. Stamp `Internal_SectionId__c = {!section.Id}` on each so the form keeps them grouped with this section.
-* **`buttonClickedLabel`**: set this to the label of the button the user clicked; it's how the form knows the flow finished on a forward action and should advance the page.
+* **`buttonClickedLabel`**: set this to the label of the button the user clicked, exactly as the form passed it in. The form matches it against the labels it gave you: `buttonLabel_Back` goes back (or returns to the stages overview), `buttonLabel_SaveProgress` saves without advancing, and anything else is the forward action. A hard-coded label that does not match one of the inputs is treated as forward, so keep the buttons bound to the label variables.
 * **`isValid`**: let the form know whether the flow's own screens validated.
 
 **Return the saved record Ids when you upsert.** Whenever a Screen Action saves (Save Progress, or a step that writes mid-flow), assign the **Id that the upsert returns back onto the record(s) in your flow's collection**: `record.Id`, and the Id of each row in `relatedRecords`. This is required because `FlowToolKit__ExternalId__c` (the upsert key the form stamps on every row) is a **unique** field:

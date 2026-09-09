@@ -68,6 +68,8 @@ When a form submission triggers a confirmation email, the system dynamically res
 
 This chain is handled automatically by the `(Form Submission) Convert | Utility | Send Email | Overridable` flow. The flow is overridable, so admins can customize the email logic for their org.
 
+Once the template is resolved, the flow renders it with the **Render Email Template** action against the converted Contact 1 or Lead 1 as recipient and the Form Submission as related record, then sends the merged subject and HTML as a rich body. Rendering in the action rather than in Send Email is what lets a **Lead** recipient use a template with Form Submission merge fields; Send Email alone only merges a related record for Contact recipients, which used to fail Lead-converting forms with *We don't recognize the field prefix FlowToolKit__Form_Submission__c*.
+
 ## Admin Setup
 
 ### Prerequisites
@@ -178,6 +180,7 @@ One record per source object. All field mappings use `MetadataRelationship` type
 | Action                    | Category      | Description                                                                                                                                                                                                                                              |
 | ------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Get Source Email Template | Flow Tool Kit | Resolves the confirmation email template name from a Form Template Source record. Pass the `Source_Id__c` from a Form Submission and the action returns the email template developer name configured on the source record, or null if no mapping exists. |
+| Render Email Template     | Flow Tool Kit | Renders a stored email template against a recipient (Contact or Lead) and a related record such as the Form Submission, returning the merged subject and bodies for a plain rich-body send. Used by the send flow so Lead recipients can merge Form Submission fields. See [Form Submission Actions](../invocable-actions/form-submission-actions.md#render-email-template). |
 
 ### Flows
 
