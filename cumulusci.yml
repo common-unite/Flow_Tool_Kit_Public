@@ -33,7 +33,7 @@ plans:
               message: "Enhanced Email must be enabled. Go to Setup → Enhanced Email to enable it. Flow Tool Kit requires Enhanced Email as a package dependency."
             - when: "tasks.check_base_installed()['is_installed']"
               action: warn
-              message: "Flow Tool Kit is already installed in this org. You can re-run setup, but the one-time post-install components will be skipped so your customizations are preserved."
+              message: "Flow Tool Kit is already installed in this org. Re-running setup updates the package version and the System Administrator permissions; nothing else in your org is changed."
         steps:
             1:
                 flow: dependencies
@@ -47,17 +47,6 @@ plans:
                 task: update_admin_profile
                 ui_options:
                     description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
-            4:
-                task: deploy
-                options:
-                    path: force-app-post
-                ui_options:
-                    name: "Deploy Post-Install Components"
-                    description: "Deploys the editable style-override template, a starting-point stylesheet you can customize to brand your forms. It seeds a working example rather than a blank sheet. First install only; a re-run is skipped so your styling customizations are preserved."
-                checks:
-                    - when: "tasks.check_base_installed()['is_installed']"
-                      action: skip
-                      message: "Flow Tool Kit is already installed, so its one-time post-install components are skipped. This preserves any changes you have made to the style override template."
 
     # AFNP / Nonprofit Cloud orgs. Everything the vanilla plan does, plus the NPC conversion
     # extension and the post-install content the packages cannot carry.
@@ -108,17 +97,6 @@ plans:
                 task: update_admin_profile
                 ui_options:
                     description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
-            4:
-                task: deploy
-                options:
-                    path: force-app-post
-                ui_options:
-                    name: "Deploy Post-Install Components"
-                    description: "Deploys the editable style-override template, a starting-point stylesheet you can customize to brand your forms. It seeds a working example rather than a blank sheet. First install only; a re-run is skipped so your styling customizations are preserved."
-                checks:
-                    - when: "tasks.check_base_installed()['is_installed']"
-                      action: skip
-                      message: "Flow Tool Kit is already installed, so its one-time post-install components are skipped. This preserves any changes you have made to the style override template."
             5:
                 task: install_npc_conversion
                 ui_options:
@@ -722,7 +700,7 @@ tasks:
 
     check_base_installed:
         class_path: tasks.check_package_installed.CheckPackageInstalled
-        description: Preflight - is the base Flow Tool Kit package already installed? Gates the one-time post-install content so a re-run does not overwrite a subscriber's customized style override.
+        description: Preflight - is the base Flow Tool Kit package already installed? Gates the one-time post-install content on the npc plan so a re-run does not overwrite a subscriber's customizations.
         options:
             package_name: "Flow Tool Kit: Form and Table Builder"
 
@@ -802,14 +780,6 @@ orgs:
             days: 30
             namespaced: True
 
-        # Subscriber-sim org for #405 screen-flow perf baselines: released package INSTALLED, not source.
-        # Deliberately non-namespaced - extension packages (Stripe, UnofficialSF) require the installed base.
-        perf_baseline:
-            config_file: orgs/dev.json
-            days: 30
-            namespaced: False
-
-
         # #513 Form Design Kit: renders the showcase form so Phase 2 can capture
         # real markup and screenshots from the running renderer.
         feature_form-design-kit:
@@ -844,4 +814,6 @@ orgs:
             config_file: orgs/npc.json
             days: 30
             namespaced: True
+
+        # Sprint 2026-09-04, second org: Nonprofit Cloud built FROM SOURCE so the extension can be proven against a base field that no released version carries yet (Contact1_Primary_Contact__c).
 
