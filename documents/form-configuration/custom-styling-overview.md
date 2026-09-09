@@ -51,7 +51,7 @@ You can also target the injected class from an org-wide style sheet or Experienc
 
 ### Starting point: the override template
 
-The packaged static resource **`Flow_Form_Style_Override_Template`** is a worked example of supported selectors and CSS custom properties (`--brand-color`, `--radio-size`, `--button-radius`, `--labelSize`, `--labelWeight`, and more). Copy it into your own static resource and edit from there.
+The example sheet **`Flow_Form_Style_Override_Template`** ([view it on GitHub](https://github.com/common-unite/cUnite_FormBuilder/blob/master/force-app-post/main/default/staticresources/Flow_Form_Style_Override_Template.css)) is a worked example of supported selectors and CSS custom properties (`--brand-color`, `--radio-size`, `--button-radius`, `--labelSize`, `--labelWeight`, and more). It is not installed with the package; copy it into your own static resource and edit from there.
 
 ### Rules of the road
 

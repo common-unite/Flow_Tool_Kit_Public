@@ -47,8 +47,9 @@ Never assign to these. They are set for you, and they arrive wrapped in the LWC 
 | `disableAll` | Boolean | both | `true` when the form is read-only. |
 | `relatedRecords` | Array | page sections | This section's related Form Submission rows. Already filtered to your section, with rows marked for deletion removed. |
 | `recordTemplate` | Object | page sections | A blank related record, pre-stamped with everything a new row needs. Never build one by hand. |
+| `section` | Object | page sections | The section's own `Form_Template_Page_Section__c` record, keyed by field API name, exactly as the admin configured it: `FlowToolKit__FormQualifiedApiName__c`, `FlowToolKit__Section_Tag__c`, the divider fields, and the rest. Passed down rather than looked up, so a guest user needs no read access on the section object and your component waits on no query before its first render. |
 
-On the Form Component surface the two related-record properties keep their defaults: `relatedRecords` is `[]` and `recordTemplate` is `{}`. Declaring all six is therefore safe, and lets you write one component that works in both places.
+On the Form Component surface the page-section properties keep their defaults: `relatedRecords` is `[]`, `recordTemplate` is `{}` and `section` is `{}`. Declaring all seven is therefore safe, and lets you write one component that works in both places.
 
 ### Outputs
 
@@ -79,6 +80,7 @@ export default class MyCustomWidget extends LightningElement {
     @api disableAll = false;
     @api relatedRecords = [];
     @api recordTemplate = {};
+    @api section = {};
 
     get isReadOnly() {
         return this.review === true || this.disableAll === true;
@@ -132,6 +134,87 @@ handleSave() {
 ```
 
 The form handles this exactly like a standard field change. Validation, formula recalculation, page conditional logic, autosave, and record output all fire automatically.
+
+## Rendering the admin's form component
+
+The recommended pattern for a page section is not to hand-write inputs at all. Every `lightning-input` you write throws away the labels, help text, widths, ordering, picklist rendering, conditional logic, theme, translations and validation the admin already configured, and it moves the field list into JavaScript where only a deploy can change it.
+
+Instead, read the form component the admin attached to the section from `section`, render it with the package's own form engine, and let your component own only its behaviour: a calculation, an eligibility rule, a lookup against an external service, a signature pad.
+
+```html
+<template>
+    <FlowToolKit-flow-form
+            is-extension
+            data-section-form
+            form-qualified-api-name={formQualifiedApiName}
+            object={objectApiName}
+            record={record}
+            transformation-record={derivedValues}
+            review={review}
+            disable-all={disableAll}
+            onrecordchange={handleRecordChange}>
+    </FlowToolKit-flow-form>
+</template>
+```
+
+```javascript
+import { LightningElement, api } from 'lwc';
+
+const HOUSEHOLD_SIZE_FIELD = 'FlowToolKit__Number_Question_1__c';
+const ANNUAL_INCOME_FIELD = 'FlowToolKit__Currency_Question_1__c';
+const MEMBERSHIP_TIER_FIELD = 'FlowToolKit__Text_Question_1__c';
+
+export default class HouseholdMembershipSection extends LightningElement {
+    @api record;
+    @api objectApiName;
+    @api review = false;
+    @api disableAll = false;
+    @api relatedRecords = [];
+    @api recordTemplate = {};
+    @api section = {};
+
+    derivedValues = {};
+
+    get formQualifiedApiName() {
+        return (this.section || {}).FlowToolKit__FormQualifiedApiName__c || '';
+    }
+
+    handleRecordChange(event) {
+        const changed = event.detail || {};
+        const previous = this.record || {};
+        Object.keys(changed)
+            .filter(fieldApiName => changed[fieldApiName] !== previous[fieldApiName])
+            .forEach(fieldApiName => this.dispatchFieldChange(fieldApiName, changed[fieldApiName]));
+        this.derivedValues = { [MEMBERSHIP_TIER_FIELD]: this.tierFor(changed[HOUSEHOLD_SIZE_FIELD], changed[ANNUAL_INCOME_FIELD]) };
+    }
+
+    dispatchFieldChange(fieldApiName, value) {
+        this.dispatchEvent(new CustomEvent('formfieldchange', {
+            detail: { fieldApiName, value },
+            bubbles: true,
+            composed: true
+        }));
+    }
+
+    tierFor(householdSize, annualIncome) {
+        // the part that is genuinely code
+    }
+
+    @api validate() {
+        const form = this.template.querySelector('[data-section-form]');
+        return form ? form.validate() : { isValid: true };
+    }
+}
+```
+
+How the pieces fit:
+
+- `FlowToolKit-flow-form` is the namespaced tag for the package's `flowForm`, which is exposed for subscriber composition. `form-qualified-api-name` selects the admin's form component; `object` and `record` give it the submission to edit.
+- `is-extension` makes the form report edits through a plain `recordchange` event carrying the whole record, instead of the Flow attribute event it uses on a Flow screen. Forward each changed field to the host form as a `formfieldchange`, and the host handles it exactly like a standard field change.
+- `transformation-record` is the write-back channel for values your code derives. Pass an object keyed by field API name; the form applies it and ignores a value that already matches, so there is no feedback loop.
+- `validate()` on the form runs the builder-configured required-field checks, so validation stays with the admin and your component only delegates.
+
+The section type therefore stops meaning "draw your own UI" and starts meaning "render the admin's form and add behaviour to it". The field list stays in Form Builder, where an admin can change it without a deploy.
 
 ## Managing related records
 
@@ -272,6 +355,7 @@ Permissioning your own component is your responsibility.
 - Dynamic imports cost a network roundtrip on first load; the framework does not prefetch
 - One `formfieldchange` per field. Batching multiple field updates into a single event is not supported
 - Related records are page sections only, and are always scoped to the section that owns them
+- `section` is page sections only. A Form Component section has no section record, so the property stays `{}` there
 
 ## Reference implementation
 

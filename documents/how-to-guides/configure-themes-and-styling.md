@@ -90,7 +90,7 @@ When one Form Template needs styling beyond what its theme offers, assign it a C
 ![Assigning a per-template style sheet](../.gitbook/assets/221-style-sheet-selector-demo.gif)
 
 {% hint style="info" %}
-**Tip**: Start from the packaged `Flow_Form_Style_Override_Template` static resource; it demonstrates the supported selectors and CSS variables. Don't use `@import` (sheets containing it are skipped), and write `:root { ... }` to style the template container itself. See the [Custom Styling Overview](../form-configuration/custom-styling-overview.md) for how all the styling options fit together.
+**Tip**: Start from the example `Flow_Form_Style_Override_Template` sheet ([on GitHub](https://github.com/common-unite/cUnite_FormBuilder/blob/master/force-app-post/main/default/staticresources/Flow_Form_Style_Override_Template.css)); it demonstrates the supported selectors and CSS variables. Don't use `@import` (sheets containing it are skipped), and write `:root { ... }` to style the template container itself. See the [Custom Styling Overview](../form-configuration/custom-styling-overview.md) for how all the styling options fit together.
 {% endhint %}
 
 ## Theme Best Practices

@@ -85,7 +85,7 @@ One engine saves every Account the extension produces, whether it is a person, a
 5. **Log the outcome**, stamping the submission's status and lookup fields for this rule, which is how the controller knows the rule is finished.
 
 {% hint style="info" %}
-**People are always matched with the Person Account rule.** A standard Contact matching rule can never match a Person Account, so the engine adds `NPC_Person_Account_Match` to whatever the template configured whenever it is saving a person. Organisations match on exactly what the template configured, unchanged.
+**People are always matched with the Person Account rule.** A standard Contact matching rule can never match a Person Account, so the engine adds `NPC_Person_Account_Match` to whatever the template or section configured whenever it is saving a person, even when that configuration already names the Standard Person Account Matching Rule: the standard rule ships inactive until an admin activates it in Setup, and the extension's own rule is what guarantees a returning person is found by email. Organisations match on exactly what the template configured, unchanged.
 {% endhint %}
 
 **The follow-up router.** After a successful save, one decision decides what else this pass should do. Every follow-up returns to that decision when it finishes, each one fires at most once per pass, and when nothing is left the flow returns control to the controller. The follow-ups, in order:
@@ -115,6 +115,7 @@ Puts a Contact in an Account with the membership flags you ask for. Salesforce a
 Its careful handling of the two "primary" flags is worth understanding, because the platform treats them very differently:
 
 - **`IsPrimaryMember`** is group-centric: who is the household's principal person. **Salesforce enforces one per Account.** If the seat is free, the person being added takes it. If someone else holds it and you have asked for this person, the current holder is demoted first and then this person is promoted, so your request is honoured without ever tripping the platform's rule.
+- **Choosing the head of household from the form.** Base package 4.34 adds `Form_Submission__c.Contact1_Primary_Contact__c` and `Contact2_Primary_Contact__c`, checkboxes meaning "this person on this row is the household's primary member". Map the Contact 1 flag to a "Head of household?" question or set it from a Prefill Template on the main row; carry the Contact 2 flag on the repeater row form when the applicant is a child and the parent listed as a relative is the head. The Household engine asks for the primary seat only for a flagged row: that person takes it and the previous holder is demoted, so a Household always has exactly one primary member. With no flag anywhere, the first person added to the Household keeps the seat, and a later pass never takes it back.
 - **`IsPrimaryGroup`** is person-centric: which household this person's information rolls up to. **Salesforce does not enforce one per person**, so nothing stops a person from having two primary groups, which reporting will not expect. Pass `ClearOtherPrimaryGroups` alongside `IsPrimaryGroup` and the flow demotes every other membership that person has.
 
 ### Upsert Contact Contact Relation
