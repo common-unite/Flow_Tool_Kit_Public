@@ -227,6 +227,31 @@ private class NPC_Conversion_Test {
         }
     }
 
+    /**The Primary Contact flag on a relative's row: that person takes the household's primary seat and the head is demoted, and a reprocess of the unflagged main submission never takes it back.**/
+    @IsTest
+    static void primaryContactFlag_onRelativeRow_makesThatPersonPrimaryAndKeepsItOnReprocess() {
+        Id parentId = submitFamily('Haddad', 'omar', new List<Relative>{
+            new Relative('Layla', 'Haddad', 'layla', 'Spouse or Partner', true),
+            new Relative('Sami', 'Haddad', 'sami', 'Child')});
+
+        Test.startTest();
+        runConversion();
+        Id household = reload(parentId).Account__c;
+        List<AccountContactRelation> primariesAfterFirstRun = [SELECT Contact.FirstName FROM AccountContactRelation WHERE AccountId = :household AND IsPrimaryMember = true];
+        System.assertEquals(1, primariesAfterFirstRun.size(), 'Exactly one primary member after the flagged relative converts');
+        System.assertEquals('Layla', primariesAfterFirstRun[0].Contact.FirstName, 'The flagged relative holds the primary seat; the head who created the Household was demoted');
+
+        startAgain(parentId);
+        runConversion();
+        Test.stopTest();
+
+        List<AccountContactRelation> primariesAfterReprocess = [SELECT Contact.FirstName FROM AccountContactRelation WHERE AccountId = :household AND IsPrimaryMember = true];
+        System.assertEquals(1, primariesAfterReprocess.size(), 'Still exactly one primary member after a reprocess');
+        System.assertEquals('Layla', primariesAfterReprocess[0].Contact.FirstName, 'An unflagged main submission does not take the seat back on reprocess');
+        System.assertEquals(3, [SELECT COUNT() FROM AccountContactRelation WHERE AccountId = :household], 'Head, wife and son are members');
+        System.assert(!hasLogWithStatus(parentId, 'Error'), 'A clean run writes no Error log');
+    }
+
     @IsTest
     static void accountOnly_householdWithoutPeople_createsAccountAndGroup() {
         Id templateId = [SELECT Id FROM Form_Template__c WHERE Name = 'NPC Household Only'].Id;
@@ -251,9 +276,13 @@ private class NPC_Conversion_Test {
     // ---- helpers ----
 
     private class Relative {
-        String firstName; String lastName; String emailKey; String relationship;
+        String firstName; String lastName; String emailKey; String relationship; Boolean primary = false;
         Relative(String firstName, String lastName, String emailKey, String relationship) {
             this.firstName = firstName; this.lastName = lastName; this.emailKey = emailKey; this.relationship = relationship;
+        }
+        Relative(String firstName, String lastName, String emailKey, String relationship, Boolean primary) {
+            this(firstName, lastName, emailKey, relationship);
+            this.primary = primary;
         }
     }
 
@@ -272,7 +301,8 @@ private class NPC_Conversion_Test {
             rows.add(new Form_Submission__c(Form_Template__c = template.Id, Parent_Form_Submission__c = parent.Id, Internal_Is_Related_Record__c = true, Internal_SectionId__c = section.Id,
                 Status__c = 'Submitted', Submission_Date__c = System.now(),
                 Contact2_First_Name__c = relative.firstName, Contact2_Last_Name__c = relative.lastName,
-                Contact2_Email__c = relative.emailKey + '.' + relative.lastName.toLowerCase() + '.test@example.com', Contact2_Relationship_to_Contact1__c = relative.relationship));
+                Contact2_Email__c = relative.emailKey + '.' + relative.lastName.toLowerCase() + '.test@example.com', Contact2_Relationship_to_Contact1__c = relative.relationship,
+                Contact2_Primary_Contact__c = relative.primary));
         }
         insert rows;
         parent.Status__c = 'Submitted';
