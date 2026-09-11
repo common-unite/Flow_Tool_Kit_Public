@@ -271,6 +271,117 @@ flows:
                     name: Testing Aura
                 ignore_failure: True
 
+    # Reusable NPC platform layer. Deploys NO product source, so other repos can
+    # consume it as a step:  flow: formbuilder:npc_org_setup
+    # Anything that source-deploys this package's own force-app belongs in
+    # npc_dev_org below, never here - a consumer installs the base as a MANAGED
+    # dependency and must not get it deployed unmanaged on top. See #659.
+    # Reusable NPC platform layer. Deploys NO product source, so other repos can
+    # consume it as a step:  flow: formbuilder:npc_org_setup
+    # Anything that source-deploys this package's own force-app belongs in
+    # npc_dev_org below, never here - a consumer installs the base as a MANAGED
+    # dependency and must not get it deployed unmanaged on top.
+    # The Grantmaking Portal lives in npc_org_setup_portal so consumers that build
+    # their own community (the Stripe Connector builds "Stripe Marketing") do not
+    # pay for one they discard. See #659.
+    npc_org_setup:
+        description: NPC platform layer for any repo that needs an NPC scratch org - permission set licenses and sets, admin setup, NPC metadata, stage definitions and sample data. Deploys no product source and creates no community.
+        group: Flow Tool Kit
+        steps:
+            # NPC Permission Set Licenses
+            1:
+                task: assign_permission_set_licenses
+                options:
+                    api_names: OmniStudioDesigner,ActionPlansPsl,GrantmakingPsl,FundraisingAccessPsl,ProgramManagementPsl,DynamicAssessmentPsl,GroupMembershipPsl,DocumentChecklistPsl,CarePlansPermissionSetLicense,IndustriesAssessmentPsl
+                ignore_failure: True
+            # NPC Permission Sets
+            2:
+                task: assign_permission_sets
+                options:
+                    api_names: OmniStudioAdmin,OmniStudioExecution,ActionPlans,GrantmakingManager,FundraisingAccess,AdvancedProgramManagement,DynamicAssessmentPsl,GroupMembershipPsl,AnalyticsStoreUser,DocumentChecklist,CarePlansPermissionSetLicense,IndustriesAssessmentPermissionSet,IndustriesInteractionSummaryPsl,Fundraising_Admin
+                ignore_failure: True
+            # NPC Admin Setup
+            3:
+                task: execute_anon
+                options:
+                    path: datasets/npc/setup_admin_user.apex
+                ignore_failure: True
+            # NPC metadata: fields, profiles, LWC, Apex, Flows, FlexiPages, List Views, Settings, Sharing
+            4:
+                task: deploy
+                options:
+                    path: force-app-npc
+                ui_options:
+                    name: "Deploy NPC Configuration (fields, profiles, LWC, Apex, Flows, FlexiPages, List Views, Settings, Sharing)"
+            # NPC Stage Definitions
+            5:
+                task: execute_anon
+                options:
+                    path: datasets/npc/load_npc_stage_definitions.apex
+                ignore_failure: True
+            # NPC Sample Data (Snowfakery)
+            6:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: datasets/npc/npc_sample_data.recipe.yml
+                ignore_failure: True
+            # NPC Sample Accounts
+            7:
+                task: execute_anon
+                options:
+                    path: datasets/npc/load_npc_sample_accounts.apex
+                ignore_failure: True
+            # NPC Sample Data (Apex)
+            8:
+                task: execute_anon
+                options:
+                    path: datasets/npc/load_npc_sample_data.apex
+                ignore_failure: True
+
+    # Grantmaking Portal half of the NPC platform layer. Separate from npc_org_setup
+    # because add_network_members and create_portal_users both need the community to
+    # exist, and consumers with their own community do not want this at all. See #659.
+    npc_org_setup_portal:
+        description: Grantmaking Portal for an NPC org - creates and publishes the community, deploys the EC navigation, then adds network members and portal users. Run after npc_org_setup.
+        group: Flow Tool Kit
+        steps:
+            1:
+                task: create_community
+                options:
+                    template: Grantmaking
+                    name: Grantmaking Portal
+                    url_path_prefix: grantmaking
+                ignore_failure: True
+            2:
+                task: publish_community
+                options:
+                    name: Grantmaking Portal
+                ignore_failure: True
+            # EC Navigation (post-community)
+            3:
+                task: deploy
+                options:
+                    path: unpackaged/npc-post-community
+                ui_options:
+                    name: "Deploy EC Navigation Menu (post-community)"
+                ignore_failure: True
+            4:
+                task: publish_community
+                options:
+                    name: Grantmaking Portal
+                ignore_failure: True
+            # Network Members + Portal Users (need the community to exist)
+            5:
+                task: execute_anon
+                options:
+                    path: datasets/npc/add_network_members.apex
+                ignore_failure: True
+            6:
+                task: execute_anon
+                options:
+                    path: datasets/npc/create_portal_users.apex
+                ignore_failure: True
+
     npc_dev_org:
         description: Set up an NPC scratch org with Grantmaking, OmniStudio, Action Plans, and Experience Cloud. Replicates dev_org (dependencies, deploy force-app, sample data, permission sets) but skips update_admin_profile (fails on PersonAccounts) and the Testing Aura EC site (NPC org uses the Grantmaking Portal instead).
         group: Flow Tool Kit
@@ -294,96 +405,15 @@ flows:
                 task: deploy
                 options:
                     path: force-app-post
-            # Skip default snowfakery (datasets/default/sample_data.recipe.yml) - NPC orgs have strict State/Country Picklists which break fake: state_abbr. NPC has its own sample data pipeline (steps 11.1–11.3).
+            # Skip default snowfakery (datasets/default/sample_data.recipe.yml) - NPC orgs have strict State/Country Picklists which break fake: state_abbr. NPC has its own sample data pipeline (inside npc_org_setup).
             6:
                 task: snapshot_changes
-            # NPC Permission Set Licenses
+            # Everything NPC that is not this package's own source
             7:
-                task: assign_permission_set_licenses
-                options:
-                    api_names: OmniStudioDesigner,ActionPlansPsl,GrantmakingPsl,FundraisingAccessPsl,ProgramManagementPsl,DynamicAssessmentPsl,GroupMembershipPsl,DocumentChecklistPsl,CarePlansPermissionSetLicense,IndustriesAssessmentPsl
-                ignore_failure: True
-            # NPC Permission Sets
+                flow: npc_org_setup
             8:
-                task: assign_permission_sets
-                options:
-                    api_names: OmniStudioAdmin,OmniStudioExecution,ActionPlans,GrantmakingManager,FundraisingAccess,AdvancedProgramManagement,DynamicAssessmentPsl,GroupMembershipPsl,AnalyticsStoreUser,DocumentChecklist,CarePlansPermissionSetLicense,IndustriesAssessmentPermissionSet,IndustriesInteractionSummaryPsl,Fundraising_Admin
-                ignore_failure: True
-            # NPC Admin Setup
+                flow: npc_org_setup_portal
             9:
-                task: execute_anon
-                options:
-                    path: datasets/npc/setup_admin_user.apex
-                ignore_failure: True
-            # Deploy NPC metadata
-            10:
-                task: deploy
-                options:
-                    path: force-app-npc
-                ui_options:
-                    name: "Deploy NPC Configuration (fields, profiles, LWC, Apex, Flows, FlexiPages, List Views, Settings, Sharing)"
-            # NPC Stage Definitions
-            11:
-                task: execute_anon
-                options:
-                    path: datasets/npc/load_npc_stage_definitions.apex
-                ignore_failure: True
-            # NPC Sample Data (Snowfakery)
-            11.1:
-                task: generate_and_load_from_yaml
-                options:
-                    generator_yaml: datasets/npc/npc_sample_data.recipe.yml
-                ignore_failure: True
-            # NPC Sample Accounts
-            11.2:
-                task: execute_anon
-                options:
-                    path: datasets/npc/load_npc_sample_accounts.apex
-                ignore_failure: True
-            # NPC Sample Data (Apex)
-            11.3:
-                task: execute_anon
-                options:
-                    path: datasets/npc/load_npc_sample_data.apex
-                ignore_failure: True
-            # Create Grantmaking Community
-            12:
-                task: create_community
-                options:
-                    template: Grantmaking
-                    name: Grantmaking Portal
-                    url_path_prefix: grantmaking
-                ignore_failure: True
-            13:
-                task: publish_community
-                options:
-                    name: Grantmaking Portal
-                ignore_failure: True
-            # Deploy EC Navigation (post-community)
-            13.1:
-                task: deploy
-                options:
-                    path: unpackaged/npc-post-community
-                ui_options:
-                    name: "Deploy EC Navigation Menu (post-community)"
-                ignore_failure: True
-            13.2:
-                task: publish_community
-                options:
-                    name: Grantmaking Portal
-                ignore_failure: True
-            # Network Members + Portal Users
-            14:
-                task: execute_anon
-                options:
-                    path: datasets/npc/add_network_members.apex
-                ignore_failure: True
-            15:
-                task: execute_anon
-                options:
-                    path: datasets/npc/create_portal_users.apex
-                ignore_failure: True
-            16:
                 task: snapshot_changes
 
     release_2gp_beta:
@@ -486,55 +516,9 @@ flows:
                 task: assign_permission_sets
                 options:
                     api_names: Form_Builder_Admin,Form_Flow_User
+            # Shared NPC platform layer, identical to what npc_dev_org runs (#659).
             6:
-                task: assign_permission_set_licenses
-                options:
-                    api_names: OmniStudioDesigner,ActionPlansPsl,GrantmakingPsl,FundraisingAccessPsl,ProgramManagementPsl,DynamicAssessmentPsl,GroupMembershipPsl,DocumentChecklistPsl,CarePlansPermissionSetLicense,IndustriesAssessmentPsl
-                ignore_failure: True
-            # NPC Permission Sets
-            7:
-                task: assign_permission_sets
-                options:
-                    api_names: OmniStudioAdmin,OmniStudioExecution,ActionPlans,GrantmakingManager,FundraisingAccess,AdvancedProgramManagement,DynamicAssessmentPsl,GroupMembershipPsl,AnalyticsStoreUser,DocumentChecklist,CarePlansPermissionSetLicense,IndustriesAssessmentPermissionSet,IndustriesInteractionSummaryPsl,Fundraising_Admin
-                ignore_failure: True
-            # NPC Admin Setup
-            8:
-                task: execute_anon
-                options:
-                    path: datasets/npc/setup_admin_user.apex
-                ignore_failure: True
-            # Deploy NPC metadata
-            9:
-                task: deploy
-                options:
-                    path: force-app-npc
-                ui_options:
-                    name: "Deploy NPC Configuration (fields, profiles, LWC, Apex, Flows, FlexiPages, List Views, Settings, Sharing)"
-            # NPC Stage Definitions
-            10:
-                task: execute_anon
-                options:
-                    path: datasets/npc/load_npc_stage_definitions.apex
-                ignore_failure: True
-            # NPC Sample Data (Snowfakery)
-            10.1:
-                task: generate_and_load_from_yaml
-                options:
-                    generator_yaml: datasets/npc/npc_sample_data.recipe.yml
-                ignore_failure: True
-            # NPC Sample Accounts
-            10.2:
-                task: execute_anon
-                options:
-                    path: datasets/npc/load_npc_sample_accounts.apex
-                ignore_failure: True
-            # NPC Sample Data (Apex)
-            10.3:
-                task: execute_anon
-                options:
-                    path: datasets/npc/load_npc_sample_data.apex
-                ignore_failure: True
-            # Create Grantmaking Community
+                flow: npc_org_setup
 
 tasks:
 
@@ -780,6 +764,19 @@ orgs:
             days: 30
             namespaced: True
 
+        sprint_2026-09-09_npc:
+            config_file: orgs/npc.json
+            days: 30
+            namespaced: True
+
+        # Sprint 2026-09-09 BASE-PACKAGE org: force-app is source-deployed, nothing installed.
+        # The _npc sibling above has the released base package INSTALLED, so base components are
+        # managed there and cannot be source-deployed (#657 testing needs this one instead).
+        sprint_2026-09-09:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: True
+
         # #513 Form Design Kit: renders the showcase form so Phase 2 can capture
         # real markup and screenshots from the running renderer.
         feature_form-design-kit:
@@ -794,8 +791,13 @@ orgs:
         # #74 NPC PersonAccount conversion: EXTENSION-DEVELOPMENT org. Namespaced (FlowToolKit) with the released
         # base package INSTALLED (never source-deployed), so the NPC conversion flows are built and packaged as a
         # same-namespace 2GP extension. Local NPC metadata is namespace-agnostic through %%%NAMESPACED_ORG%%% tokens.
+        #
+        # Deliberately NOT on the canonical orgs/npc.json. This is a 2GP BUILD org, and a package
+        # build should not change shape underneath us as the shared dev shape evolves. orgs/npc-release.json
+        # is frozen at the Developer/24-feature shape every released version was built on. Change it only
+        # when the packaged metadata actually needs a new feature, and rebuild to prove it. See #659.
         npc_release:
-            config_file: orgs/npc.json
+            config_file: orgs/npc-release.json
             days: 1
             namespaced: True
         feature_npc-person-account-conversion:
@@ -809,6 +811,16 @@ orgs:
             config_file: orgs/npc.json
             days: 30
             namespaced: False
+
+        # CANONICAL NPC org shape. Copies live in flowtoolkit_Budget/orgs/npc.json and
+
+        # FlowToolKit_Stripe_Connector_Accelerator/orgs/npc.json. CumulusCI cannot share a
+
+        # scratch org definition across repos - get_namespace only resolves sources, and
+
+        # scratch_org_config opens config_file as a plain local path before any flow runs.
+
+        # So change it HERE first, then copy to the other two. See #659.
 
         npc:
             config_file: orgs/npc.json
