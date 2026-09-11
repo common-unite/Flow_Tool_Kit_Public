@@ -29,7 +29,7 @@
       "definitionFile": "orgs/npc.json",
       "dependencies": [
         {
-          "package": "Flow Tool Kit base 4.33"
+          "package": "Flow Tool Kit base 4.34"
         }
       ],
       "unpackagedMetadata": {
@@ -50,6 +50,7 @@
     "Flow Tool Kit base 4.31": "04tRQ000000AXCPYA4",
     "Flow Tool Kit base 4.33": "04tRQ000000Aav3YAC",
     "Flow Tool Kit: AFNP | NPC Extension@1.4.0-1": "04tRQ000000AbKrYAK",
-    "Flow Tool Kit: AFNP | NPC Extension@1.5.0-1": "04tRQ000000AcFJYA0"
+    "Flow Tool Kit: AFNP | NPC Extension@1.5.0-1": "04tRQ000000AcFJYA0",
+    "Flow Tool Kit base 4.34": "04tRQ000000AjBxYAK"
   }
 }

@@ -1,40 +1,32 @@
 {
-  "orgName": "Flow Tool Kit - NPC Dev Org",
-  "edition": "Enterprise",
+  "orgName": "Form Builder - NPC Extension Build Org",
+  "edition": "Developer",
+  "adminEmail": "bobby@common-unite.com",
   "hasSampleData": false,
   "features": [
-    "AccountingSubledgerGrowthEdition",
-    "AnalyticsQueryService",
+    "PlatformCache",
+    "ProviderFreePlatformCache",
     "ArcGraphCommunity",
     "Assessments",
     "BusinessRulesEngine",
     "Communities",
     "ContactsToMultipleAccounts",
-    "CustomerCommunityPlus",
     "DataProcessingEngine",
     "DecisionTable",
     "DefaultWorkflowUser",
     "DocGenInd",
     "DocumentChecklist",
     "EnableSetPasswordInApi",
-    "ExperienceBundle",
     "Fundraising",
     "Grantmaking",
     "IndustriesActionPlan",
-    "IndustriesSalesExcellenceAddOn",
-    "IndustriesServiceExcellenceAddOn",
     "MarketingUser",
     "NonprofitCloudCaseManagementUser",
     "OmnistudioDesigner",
     "OmnistudioRuntime",
     "OutcomeManagement",
-    "PartnerCommunity",
     "PersonAccounts",
-    "PlatformCache",
     "ProgramManagement",
-    "ProviderFreePlatformCache",
-    "PublicSector",
-    "PublicSectorAccess",
     "StateAndCountryPicklist"
   ],
   "settings": {
@@ -78,14 +70,11 @@
       "enableCompliantDataSharingForFundingAward": true,
       "enableCompliantDataSharingForFundingOpportunity": true,
       "enableCompliantDataSharingForIndividualApplication": true,
-      "enableCompliantDataSharingForIndividualApplicationTask": true,
-      "enableFundraising": true,
-      "enableGiftEntryGrid": true
+      "enableCompliantDataSharingForIndividualApplicationTask": true
     },
     "communitiesSettings": {
       "enableCommunityWorkspaces": true,
-      "enableNetworksEnabled": true,
-      "enableOotbProfExtUserOpsEnable": true
+      "enableNetworksEnabled": true
     },
     "experienceBundleSettings": {
       "enableExperienceBundleMetadata": true
@@ -93,9 +82,6 @@
     "nameSettings": {
       "enableMiddleName": true,
       "enableNameSuffix": true
-    },
-    "languageSettings": {
-      "enableTranslationWorkbench": true
     }
   },
   "objectSettings": {
@@ -103,7 +89,7 @@
       "defaultRecordType": "default"
     },
     "account": {
-      "defaultRecordType": "default"
+      "defaultRecordType": "Organization"
     }
   }
 }
