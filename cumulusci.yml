@@ -281,18 +281,20 @@ flows:
     # Anything that source-deploys this package's own force-app belongs in
     # npc_dev_org below, never here - a consumer installs the base as a MANAGED
     # dependency and must not get it deployed unmanaged on top.
-    # The Grantmaking Portal lives in npc_org_setup_portal so consumers that build
-    # their own community (the Stripe Connector builds "Stripe Marketing") do not
-    # pay for one they discard. See #659.
+    # This is THE single NPC plan. Every NPC project consumes this one flow and gets
+    # an identical org: features, permission sets, NPC metadata, Grantmaking sample
+    # data, Fundraising demo data, and the Grantmaking Portal. npc_dev_org and
+    # npc_subscriber_org differ ONLY in whether base is source-deployed or installed
+    # as the released managed package. See #659.
     npc_org_setup:
-        description: NPC platform layer for any repo that needs an NPC scratch org - permission set licenses and sets, admin setup, NPC metadata, stage definitions and sample data. Deploys no product source and creates no community.
+        description: THE NPC plan. Permission set licenses and sets, admin setup, NPC metadata, stage definitions, Grantmaking sample data, Fundraising demo data and the Grantmaking Portal. Deploys no product source, so any repo can consume it as a formbuilder subflow.
         group: Flow Tool Kit
         steps:
             # NPC Permission Set Licenses
             1:
                 task: assign_permission_set_licenses
                 options:
-                    api_names: OmniStudioDesigner,ActionPlansPsl,GrantmakingPsl,FundraisingAccessPsl,ProgramManagementPsl,DynamicAssessmentPsl,GroupMembershipPsl,DocumentChecklistPsl,CarePlansPermissionSetLicense,IndustriesAssessmentPsl
+                    api_names: OmniStudioDesigner,ActionPlansPsl,GrantmakingPsl,FundraisingAccessPsl,ProgramManagementPsl,DynamicAssessmentPsl,GroupMembershipPsl,DocumentChecklistPsl,CarePlansPermissionSetLicense,IndustriesAssessmentPsl,CompliantDataSharingPsl
                 ignore_failure: True
             # NPC Permission Sets
             2:
@@ -313,6 +315,14 @@ flows:
                     path: force-app-npc
                 ui_options:
                     name: "Deploy NPC Configuration (fields, profiles, LWC, Apex, Flows, FlexiPages, List Views, Settings, Sharing)"
+            # Compliant Data Sharing. Ships in force-app-npc (step 4) and must be assigned
+            # BEFORE the sample data runs: a user without UseCompliantDataSharing cannot be
+            # added as a participant on an Application, Budget, Award or Account.
+            4.5:
+                task: assign_permission_sets
+                options:
+                    api_names: NPC_Compliant_Data_Sharing
+                ignore_failure: True
             # NPC Stage Definitions
             5:
                 task: execute_anon
@@ -337,49 +347,62 @@ flows:
                 options:
                     path: datasets/npc/load_npc_sample_data.apex
                 ignore_failure: True
-
-    # Grantmaking Portal half of the NPC platform layer. Separate from npc_org_setup
-    # because add_network_members and create_portal_users both need the community to
-    # exist, and consumers with their own community do not want this at all. See #659.
-    npc_org_setup_portal:
-        description: Grantmaking Portal for an NPC org - creates and publishes the community, deploys the EC navigation, then adds network members and portal users. Run after npc_org_setup.
-        group: Flow Tool Kit
-        steps:
-            1:
+            # NPC Fundraising demo data. Standard fields only, so it loads anywhere
+            # Fundraising is on. Every NPC org gets the same Gift records (#659).
+            9:
+                task: generate_and_load_from_yaml
+                options:
+                    generator_yaml: datasets/npc/npc_fundraising_data.recipe.yml
+                ignore_failure: True
+            # Statuses Salesforce refuses on insert: processed batches and Gift Entries
+            10:
+                task: execute_anon
+                options:
+                    path: datasets/npc/promote_fundraising_statuses.apex
+                ignore_failure: True
+            # Grantmaking Portal
+            11:
                 task: create_community
                 options:
                     template: Grantmaking
                     name: Grantmaking Portal
                     url_path_prefix: grantmaking
                 ignore_failure: True
-            2:
+            12:
                 task: publish_community
                 options:
                     name: Grantmaking Portal
                 ignore_failure: True
             # EC Navigation (post-community)
-            3:
+            13:
                 task: deploy
                 options:
                     path: unpackaged/npc-post-community
                 ui_options:
                     name: "Deploy EC Navigation Menu (post-community)"
                 ignore_failure: True
-            4:
+            14:
                 task: publish_community
                 options:
                     name: Grantmaking Portal
                 ignore_failure: True
             # Network Members + Portal Users (need the community to exist)
-            5:
+            15:
                 task: execute_anon
                 options:
                     path: datasets/npc/add_network_members.apex
                 ignore_failure: True
-            6:
+            16:
                 task: execute_anon
                 options:
                     path: datasets/npc/create_portal_users.apex
+                ignore_failure: True
+            # Partner Community user plus up to five Customer Community (High Volume
+            # Customer Portal) users, so the portal can be exercised from every side.
+            17:
+                task: execute_anon
+                options:
+                    path: datasets/npc/create_community_users.apex
                 ignore_failure: True
 
     npc_dev_org:
@@ -412,8 +435,6 @@ flows:
             7:
                 flow: npc_org_setup
             8:
-                flow: npc_org_setup_portal
-            9:
                 task: snapshot_changes
 
     release_2gp_beta:
@@ -764,7 +785,21 @@ orgs:
             days: 30
             namespaced: True
 
+        # Sprint 2026-09-13: BASE-PACKAGE sprint org (force-app source-deployed, nothing installed).
+        sprint_2026-09-13:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: True
+
         sprint_2026-09-09_npc:
+            config_file: orgs/npc.json
+            days: 30
+            namespaced: True
+
+        # Sprint 2026-09-11: NPC EXTENSION-DEVELOPMENT org for #662 (the conversion engine must stop
+        # injecting Person Account matching rules when the Contact record type is not PersonAccount).
+        # Build with npc_conversion_dev_org so the extension runs from SOURCE against an installed base.
+        sprint_2026-09-11_npc:
             config_file: orgs/npc.json
             days: 30
             namespaced: True
