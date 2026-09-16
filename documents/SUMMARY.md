@@ -217,6 +217,7 @@
 * [Release 4.33](release-notes/release-4.33.md)
 * [Release 4.34](release-notes/release-4.34.md)
 * [Release 4.35](release-notes/release-4.35.md)
+* [Release 4.36](release-notes/release-4.36.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
