@@ -785,8 +785,7 @@ orgs:
             days: 30
             namespaced: True
 
-        # Sprint 2026-09-13: BASE-PACKAGE sprint org (force-app source-deployed, nothing installed).
-        sprint_2026-09-13:
+        sprint_2026-09-16:
             config_file: orgs/dev.json
             days: 30
             namespaced: True
