@@ -241,6 +241,7 @@
 * [Release 4.36](release-notes/release-4.36.md)
 * [Release 4.37](release-notes/release-4.37.md)
 * [Release 4.38](release-notes/release-4.38.md)
+* [Release 4.39](release-notes/release-4.39.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
@@ -248,6 +249,7 @@
 * [Release 4.8](release-notes/release-4.8.md)
 * [Release 4.9](release-notes/release-4.9.md)
 * [Unreleased Conditional Payment](release-notes/unreleased-conditional-payment.md)
+* [Unreleased Payment Settings Namespace](release-notes/unreleased-payment-settings-namespace.md)
 
 ## Platform
 
