@@ -135,6 +135,26 @@
 * [Conversion Flows](nonprofit-cloud/conversion-flows.md)
 * [Customizing](nonprofit-cloud/customizing.md)
 
+## NPSP
+
+* [Configuration](npsp/configuration.md)
+* [Conversion Flows](npsp/conversion-flows.md)
+* [Customizing](npsp/customizing.md)
+* [Installation](npsp/installation.md)
+* [Overview](npsp/overview.md)
+
+## Duplicate Management
+
+* [Overview](duplicate-management/overview.md)
+* [Installation](duplicate-management/installation.md)
+* [Setup](duplicate-management/setup.md)
+* [Components](duplicate-management/components.md)
+* [Rebuilding Duplicate Record Sets](duplicate-management/rebuilding-duplicate-sets.md)
+* [Reviewing and Merging](duplicate-management/reviewing-and-merging.md)
+* [Reporting and Tasks](duplicate-management/reporting-and-tasks.md)
+* [Customizing the Review](duplicate-management/customizing-the-review.md)
+* [How It Works](duplicate-management/how-it-works.md)
+
 ## Experience Cloud
 
 * [Dynamic Flow Display](experience-cloud/dynamic-flow-display.md)
@@ -218,6 +238,7 @@
 * [Release 4.34](release-notes/release-4.34.md)
 * [Release 4.35](release-notes/release-4.35.md)
 * [Release 4.36](release-notes/release-4.36.md)
+* [Release 4.37](release-notes/release-4.37.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)

@@ -6,7 +6,7 @@
 
 Flow Tool Kit's base conversion pipeline creates business Accounts and Contacts: the classic Salesforce shape, where a person is a Contact attached to a company. Nonprofit Cloud uses a different shape. A person is a **Person Account**, a family is a **Household** (a Party Relationship Group record), belonging to that family is an **Account Contact Relation**, and "Maria is Tom's daughter" is a **Contact Contact Relation**.
 
-The **Flow Tool Kit: AFNP | NPC Extension** package teaches the conversion pipeline that second shape. It is a managed extension package that installs on top of the base package and shares its namespace, so everything you already know about Form Templates, Conversion Rules, conversion logs and Reprocess works exactly the same way. What changes is which flows do the work.
+The **Flow Tool Kit: NPC | Form Template Extension** package teaches the conversion pipeline that second shape. It is a managed extension package that installs on top of the base package and shares its namespace, so everything you already know about Form Templates, Conversion Rules, conversion logs and Reprocess works exactly the same way. What changes is which flows do the work.
 
 {% hint style="info" %}
 Nothing in the base package is replaced or modified. The extension adds new flows and points four configuration records at them. If you uninstall the extension, pointing those four records back at the packaged flows restores standard behaviour.

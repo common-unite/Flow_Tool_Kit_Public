@@ -19,6 +19,10 @@ Form Builder is available as a Lightning Tab and can also be embedded on Record 
 
 {% embed url="https://vimeo.com/732620945" %}
 
+The redesigned Sections tree and the Live Editor, where fields are edited, moved, resized and removed straight on the preview:
+
+{% embed url="https://vimeo.com/1228428000" %}
+
 ## Quick Start
 
 ![Form Builder interface with field assignment panel](../.gitbook/assets/form-builder-field-assignment.png)

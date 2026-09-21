@@ -1,0 +1,54 @@
+{
+  "orgName": "Flow Tool Kit - NPSP Dev Org",
+  "edition": "Developer",
+  "adminEmail": "bobby@common-unite.com",
+  "hasSampleData": false,
+  "features": [
+    "PlatformCache",
+    "ProviderFreePlatformCache",
+    "ContactsToMultipleAccounts",
+    "DefaultWorkflowUser",
+    "EnableSetPasswordInApi",
+    "MarketingUser"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    },
+    "chatterSettings": {
+      "enableChatter": true
+    },
+    "apexSettings": {
+      "enableDisableParallelApexTesting": true
+    },
+    "userManagementSettings": {
+      "enableNewProfileUI": true
+    },
+    "securitySettings": {
+      "enableAdminLoginAsAnyUser": true,
+      "sessionSettings": {
+        "forceRelogin": false
+      }
+    },
+    "enhancedNotesSettings": {
+      "enableEnhancedNotes": true
+    },
+    "flowSettings": {
+      "enableFlowPauseEnabled": true
+    },
+    "languageSettings": {
+      "enableTranslationWorkbench": true
+    }
+  },
+  "objectSettings": {
+    "account": {
+      "defaultRecordType": "HH_Account"
+    },
+    "opportunity": {
+      "defaultRecordType": "NPSP_Default"
+    }
+  }
+}

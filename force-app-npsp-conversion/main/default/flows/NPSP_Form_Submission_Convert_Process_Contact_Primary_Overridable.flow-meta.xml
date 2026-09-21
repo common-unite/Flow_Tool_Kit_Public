@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <constants>
+        <name>Contact1_FieldApiName</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>FlowToolKit__Contact_1__c</stringValue>
+        </value>
+    </constants>
+    <constants>
+        <name>Contact2_FieldApiName</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>FlowToolKit__Contact_2__c</stringValue>
+        </value>
+    </constants>
+    <description>WHAT IT DOES: Turns a form&apos;s Contact 1 answers (the person filling in the form) into a Contact and hands it to the NPSP Contact engine. This is the mapping step: it decides which form fields land in which Contact fields, and nothing else.
+
+HOW IT WORKS, STEP BY STEP:
+1. Setup loads the submission, template and section from the platform event. The Related Records step also dispatches repeater and table rows captured for this contact to this flow, one event per row.
+2. The Contact (Field Map) transform is the heart of the flow and the reason to clone it: every line maps one form answer onto one Contact field. NPSP&apos;s contact preferences are filled the NPSP way: the email lands in Personal, Work or Alternate Email by the form&apos;s Email Type (Other becomes Alternate) and Preferred Email follows it, and the phone lands in Home, Mobile or Work Phone by Phone Type with Preferred Phone following. Do Not Contact is set, never cleared, when the Do Not Call box is checked. The address blocks map only when the template&apos;s address sub-rules are on, so curated addresses are not overwritten by blank form answers.
+3. The map never sets the Contact&apos;s Account. In NPSP that link is the Household, and the engine owns it: a new Contact 1 gets its Household from NPSP, and in Household mode every other person joins the Household already on the submission.
+4. The record goes to the NPSP Contact engine together with the template&apos;s Contact matching rules, and the engine does the rest: strip, match, save, Household, log, follow-ups.
+
+WHERE IT FITS: Installed by the Primary Contact record of Form Template Conversion Mapping Default. To change WHICH FIELDS a person gets from a form, clone this flow, adjust the transform, and point the template&apos;s override hook (FlowApiName_Contact1__c) or the custom metadata at your clone; matching, saving and Household behaviour live in the engine, not here.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>True when the Set Mailing Address rule is enabled (section-level for related rows, template-level otherwise). Address mapping is opt-in so matching an existing Contact does not silently overwrite a curated mailing address.</description>
+        <name>AssignMailingAddress</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!PlatformEvent.Type__c} == {!Contact1_FieldApiName},
+IF({!FormSubmission.Internal_Is_Related_Record__c},
+ISPICKVAL({!PageSection.Conversion_Rule__c},&apos;Contact1 👉 Set Mailing Address&apos;),
+INCLUDES({!FormSubmission.Form_Template__r.Conversion_Rules__c},&apos;Contact1 👉 Set Mailing Address&apos;)
+),
+IF({!PlatformEvent.Type__c} == {!Contact2_FieldApiName},
+if({!FormSubmission.Internal_Is_Related_Record__c},
+ISPICKVAL({!PageSection.Conversion_Rule__c},&apos;Contact2 👉 Set Mailing Address&apos;),
+INCLUDES({!FormSubmission.Form_Template__r.Conversion_Rules__c},&apos;Contact2 👉 Set Mailing Address&apos;)
+),
+false))</expression>
+    </formulas>
+    <formulas>
+        <description>True when the Set Other Address rule is enabled; same opt-in rationale as mailing.</description>
+        <name>AssignOtherAddress</name>
+        <dataType>Boolean</dataType>
+        <expression>IF({!PlatformEvent.Type__c} == {!Contact1_FieldApiName},
+IF({!FormSubmission.Internal_Is_Related_Record__c},
+ISPICKVAL({!PageSection.Conversion_Rule__c},&apos;Contact1 👉 Set Other Address&apos;),
+INCLUDES({!FormSubmission.Form_Template__r.Conversion_Rules__c},&apos;Contact1 👉 Set Other Address&apos;)
+),
+IF({!PlatformEvent.Type__c} == {!Contact2_FieldApiName},
+if({!FormSubmission.Internal_Is_Related_Record__c},
+ISPICKVAL({!PageSection.Conversion_Rule__c},&apos;Contact2 👉 Set Other Address&apos;),
+INCLUDES({!FormSubmission.Form_Template__r.Conversion_Rules__c},&apos;Contact2 👉 Set Other Address&apos;)
+),
+false))</expression>
+    </formulas>
+    <interviewLabel>(NPSP) Convert | Process | Contact Primary | Overridable {!$Flow.CurrentDateTime}</interviewLabel>
+    <isOverridable>true</isOverridable>
+    <label>(NPSP) Convert | Process | Contact Primary | Overridable</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Setup</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <description>Shared front door: resolves the Contact matching rules and Update Most Confident Match setting (template-level here, section-level when the Related Records step retargets a row through this flow) before the field map runs.</description>
+        <name>Setup</name>
+        <label>Setup</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Primary_Contact_Field_Map</targetReference>
+        </connector>
+        <flowName>Form_Submission_Convert_Setup</flowName>
+        <inputAssignments>
+            <name>Debug_EventName</name>
+            <value>
+                <stringValue>Contact</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Debug_EventType</name>
+            <value>
+                <elementReference>Contact1_FieldApiName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>DebugRecord</name>
+            <value>
+                <elementReference>DebugRecord</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PlatformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputAssignments>
+        <outputAssignments>
+            <assignToReference>FormSubmission</assignToReference>
+            <name>FormSubmission</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>FormTemplate</assignToReference>
+            <name>FormTemplate</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>Matching_Rule_Names</assignToReference>
+            <name>MatchingRuleNames</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>PageSection</assignToReference>
+            <name>PageSection</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>ParentFormSubmission</assignToReference>
+            <name>ParentFormSubmission</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>PlatformEvent</assignToReference>
+            <name>PlatformEvent</name>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>Update_Most_Confident_Match</assignToReference>
+            <name>UpdateMostConfidentMatch</name>
+        </outputAssignments>
+    </subflows>
+    <subflows>
+        <description>The shared Contact engine: strip nulls, duplicate check with the resolved matching rules, update the single or most confident match or insert bypassing duplicate rules, stamp the submission&apos;s Contact 1 fields, log, and publish the follow-up events (Campaign Member for related rows with Add to Campaign, otherwise the controller return). Keep this call in wrappers and change only the field map.</description>
+        <name>Upsert_Contact</name>
+        <label>Upsert Contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>NPSP_Form_Submission_Convert_Upsert_Contact_Overridable</flowName>
+        <inputAssignments>
+            <name>Contact</name>
+            <value>
+                <elementReference>Primary_Contact_Field_Map</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>FormSubmission</name>
+            <value>
+                <elementReference>FormSubmission</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>FormTemplate</name>
+            <value>
+                <elementReference>FormTemplate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Matching_Rule_Names</name>
+            <value>
+                <elementReference>Matching_Rule_Names</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PageSection</name>
+            <value>
+                <elementReference>PageSection</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>ParentFormSubmission</name>
+            <value>
+                <elementReference>ParentFormSubmission</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PlatformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Update_Most_Confident_Match</name>
+            <value>
+                <elementReference>Update_Most_Confident_Match</elementReference>
+            </value>
+        </inputAssignments>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </subflows>
+    <transforms>
+        <description>Map values from Form Submission to the primary contact</description>
+        <name>Primary_Contact_Field_Map</name>
+        <label>Primary Contact (Field Map)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Upsert_Contact</targetReference>
+        </connector>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <objectType>Contact</objectType>
+        <scale>0</scale>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <transformValues>
+            <transformValueActions>
+                <outputFieldApiName>FirstName</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_First_Name__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>LastName</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Last_Name__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Email</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Email__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Birthdate</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Birthdate__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Phone</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Phone__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Title</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact1_Title__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Id</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Contact_1__c</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>Latest_Form_Submission__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <elementReference>FormSubmission.Id</elementReference>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>MailingStreet</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.Street__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>MailingState</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.State_Province__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>MailingPostalCode</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.Postal_Code__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>MailingCountry</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.Country__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>MailingCity</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignMailingAddress},{!FormSubmission.City__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>OtherCity</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.City__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>OtherCountry</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.Country__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>OtherPostalCode</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.Postal_Code__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>OtherState</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.State_Province__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>OtherStreet</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF({!AssignOtherAddress},{!FormSubmission.Street__c},null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>npe01__Preferred_Email__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF(ISBLANK(TEXT({!FormSubmission.Contact1_Email_Type__c})), null, IF(TEXT({!FormSubmission.Contact1_Email_Type__c}) = &apos;Other&apos;, &apos;Alternate&apos;, TEXT({!FormSubmission.Contact1_Email_Type__c})))</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>npe01__HomeEmail__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF(TEXT({!FormSubmission.Contact1_Email_Type__c}) = &apos;Personal&apos;, {!FormSubmission.Contact1_Email__c}, null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>npe01__WorkEmail__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF(TEXT({!FormSubmission.Contact1_Email_Type__c}) = &apos;Work&apos;, {!FormSubmission.Contact1_Email__c}, null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>npe01__AlternateEmail__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF(TEXT({!FormSubmission.Contact1_Email_Type__c}) = &apos;Other&apos;, {!FormSubmission.Contact1_Email__c}, null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>npe01__PreferredPhone__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF(ISBLANK(TEXT({!FormSubmission.Contact1_Phone_Type__c})), null, TEXT({!FormSubmission.Contact1_Phone_Type__c}))</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>HomePhone</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF(TEXT({!FormSubmission.Contact1_Phone_Type__c}) = &apos;Home&apos;, {!FormSubmission.Contact1_Phone__c}, null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>MobilePhone</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>BLANKVALUE({!FormSubmission.Contact1_MobilePhone__c}, IF(TEXT({!FormSubmission.Contact1_Phone_Type__c}) = &apos;Mobile&apos;, {!FormSubmission.Contact1_Phone__c}, null))</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>npe01__WorkPhone__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>IF(TEXT({!FormSubmission.Contact1_Phone_Type__c}) = &apos;Work&apos;, {!FormSubmission.Contact1_Phone__c}, null)</formulaExpression>
+                </value>
+            </transformValueActions>
+            <transformValueActions>
+                <outputFieldApiName>npsp__Do_Not_Contact__c</outputFieldApiName>
+                <transformType>Map</transformType>
+                <value>
+                    <formulaDataType>Boolean</formulaDataType>
+                    <formulaExpression>IF({!FormSubmission.Contact1_DoNotCall__c}, true, null)</formulaExpression>
+                </value>
+            </transformValueActions>
+        </transformValues>
+    </transforms>
+    <variables>
+        <description>Debug affordance: supply a Form Submission to run this step in Flow Builder without an event; Setup fabricates the event from it.</description>
+        <name>DebugRecord</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission__c</objectType>
+    </variables>
+    <variables>
+        <description>Populated by Setup, not an input: the submission (or related row) being converted. Its ContactN fields feed the Transform; a custom wrapper reads it the same way.</description>
+        <name>FormSubmission</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission__c</objectType>
+    </variables>
+    <variables>
+        <description>Populated by the Setup subflow: the Form Template that owns the conversion configuration.</description>
+        <name>FormTemplate</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Template__c</objectType>
+    </variables>
+    <variables>
+        <description>Populated by the Setup subflow: the duplicate matching rule API names configured for Contacts, passed to the Upsert Contact subflow&apos;s duplicate checker.</description>
+        <name>Matching_Rule_Names</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Populated by Setup for related rows only: the capturing section, whose record type, matching rules, and address toggles override the template for this row.</description>
+        <name>PageSection</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Template_Page_Section__c</objectType>
+    </variables>
+    <variables>
+        <description>Populated by the Setup subflow: the parent Form Submission when the converting record is a related submission row; blank otherwise.</description>
+        <name>ParentFormSubmission</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission__c</objectType>
+    </variables>
+    <variables>
+        <description>The Contact 1 event (EventName Contact, Type Contact_1__c). Type is what makes the shared subflow stamp the Contact 1 status and lookup rather than Contact 2. An override must keep a Form_Submission_Convert__e input variable.</description>
+        <name>PlatformEvent</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Form_Submission_Convert__e</objectType>
+    </variables>
+    <variables>
+        <description>Populated by the Setup subflow: the template&apos;s setting to update the single most confident duplicate match instead of logging a Multiple Matches error.</description>
+        <name>Update_Most_Confident_Match</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+</Flow>

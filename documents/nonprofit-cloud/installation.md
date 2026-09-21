@@ -82,7 +82,7 @@ That flow installs the latest released base package, installs the pinned extensi
 
 Before moving on, confirm each of these:
 
-- Setup → **Installed Packages** lists both **Flow Tool Kit: Form and Table Builder** (4.31.0.1 or later) and **Flow Tool Kit: AFNP | NPC Extension**.
+- Setup → **Installed Packages** lists both **Flow Tool Kit: Form and Table Builder** (4.31.0.1 or later) and **Flow Tool Kit: NPC | Form Template Extension**.
 - Setup → **Flows**, filtered for `NPC`, shows nine flows, all **Active**.
 - Setup → **Matching Rules** shows **Standard Person Account Matching Rule** as **Active**.
 - Setup → **Duplicate Rules** shows **Standard Person Account Duplicate Rule** as **Active**.

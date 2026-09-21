@@ -137,6 +137,79 @@ plans:
                     description: "Points the four Conversion Mapping Default records at the NPC conversion flows, wiring the extension engine into the form framework. This is the connection that makes conversions run the NPC logic. First install only; a re-run is skipped so your Conversion Rules dependency-matrix edits are preserved."
                 checks: *npc_first_install_only
 
+    # NPSP orgs (#676). Everything the vanilla plan does, plus the NPSP conversion extension and the
+    # post-install content the packages cannot carry. Mirrors the npc plan: the same first-install gate is
+    # repeated on every setup step, because a `checks:` block on a `flow:` step is silently dropped.
+    # The gate queries InstalledSubscriberPackage by package NAME (shared FlowToolKit namespace).
+    npsp:
+        slug: npsp
+        title: Install Flow Tool Kit for NPSP
+        tier: additional
+        preflight_message: "This installs Flow Tool Kit together with the NPSP conversion extension, which converts form submissions into NPSP Households, Organizations, affiliations and primary contacts. Install it in an org with the Nonprofit Success Pack (NPSP) and the Household Account model."
+        post_install_message: "Flow Tool Kit and the NPSP conversion extension are installed. The Conversion Rules mapping for Contact(s) templates, the Household and Organization Account record type values, the NPSP matching rule value and the Conversion Mapping Defaults have been applied. That setup content runs only on a first installation, so any changes you make to the Conversion Rules dependency matrix are preserved on later upgrades."
+        checks:
+            - when: "not tasks.check_lws_enabled()['is_enabled']"
+              action: error
+              message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
+            - when: "not tasks.check_enhanced_email()['is_enabled']"
+              action: error
+              message: "Enhanced Email must be enabled. Go to Setup → Enhanced Email to enable it. Flow Tool Kit requires Enhanced Email as a package dependency."
+            - when: "'npe5__Affiliation__c' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "This org does not have the Nonprofit Success Pack. npe5__Affiliation__c (NPSP Affiliations) was not found in the schema. Install NPSP first, or install Flow Tool Kit with the standard plan instead."
+            - when: "'npe01__Contacts_And_Orgs_Settings__c' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "This org does not have NPSP Contacts and Organizations. npe01__Contacts_And_Orgs_Settings__c was not found in the schema. Install NPSP first, or install Flow Tool Kit with the standard plan instead."
+            - when: "tasks.check_base_installed()['is_installed']"
+              action: warn
+              message: "Flow Tool Kit is already installed in this org. You can re-run setup, but the one-time post-install components will be skipped so your customizations are preserved."
+        steps:
+            1:
+                flow: dependencies
+                ui_options:
+                    description: "Installs any packages Flow Tool Kit depends on before the app itself. Most orgs already have these, in which case nothing is deployed here."
+            2:
+                task: install_managed
+                ui_options:
+                    description: "Installs the Flow Tool Kit managed package: the form and table builder, its runtime engine, and all supporting metadata. If this exact version is already installed, the step is skipped automatically."
+            3:
+                task: update_admin_profile
+                ui_options:
+                    description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
+            4:
+                task: install_npsp_conversion
+                ui_options:
+                    name: "Install NPSP Conversion Extension"
+                    description: "Installs the NPSP Conversion extension, which teaches the conversion engine the NPSP data model: NPSP builds each Household, family members join it, and people are linked to Organizations through affiliations. The base package is org-model-agnostic; this extension adds the NPSP-specific behavior. It shares the FlowToolKit namespace with the base package."
+                    is_required: True
+            5:
+                task: add_npsp_conversion_rule_dependencies
+                ui_options:
+                    name: "Map Conversion Rules to their Conversion Types"
+                    description: "Makes the Account rule and the Contact1 and Contact2 Add to Account rules selectable on Contact(s) templates, in the restricted dependency matrix. Without this those rules cannot be chosen on a people-first NPSP template. First install only; a re-run is skipped so your dependency-matrix edits are kept."
+                checks: &npsp_first_install_only
+                    - when: "tasks.check_npsp_conversion_installed()['is_installed']"
+                      action: skip
+                      message: "The NPSP conversion extension is already installed, so its one-time setup content is skipped. This preserves any changes you have made to the Conversion Rules dependency matrix."
+            6:
+                task: add_npsp_account_record_types
+                ui_options:
+                    name: "Add the Household and Organization Account Record Types"
+                    description: "Adds NPSP's Household (HH_Account) and Organization Account record types to the Account (Record Type) options on the Form Template. Choosing Household is what turns Household mode on: family members convert into one NPSP Household. First install only."
+                checks: *npsp_first_install_only
+            7:
+                task: add_npsp_matching_rules
+                ui_options:
+                    name: "Add the NPSP Contact Matching Rule Value"
+                    description: "Adds the NPSP Contact Personal Email Match rule to the Contact Matching Rules options on the Form Template and the Page Section, so admins can choose it for conversions. A matching rule only finds duplicates through an active duplicate rule that uses it, which is your org configuration. First install only."
+                checks: *npsp_first_install_only
+            8:
+                task: deploy_npsp_conversion_post
+                ui_options:
+                    name: "Apply Conversion Mapping Defaults"
+                    description: "Points the Controller, Primary Contact and Alternate Contact Conversion Mapping Default records at the NPSP conversion flows, wiring the extension into the form framework. This is the connection that makes conversions run the NPSP logic. First install only; a re-run is skipped so your customizations are preserved."
+                checks: *npsp_first_install_only
+
     upgrade:
         slug: upgrade
         title: Upgrade Flow Tool Kit
@@ -518,6 +591,112 @@ flows:
             2:
                 flow: npc_conversion_install
 
+    # Subscriber-style NPSP org (#676): the NPSP managed stack from GitHub (Contacts & Organizations,
+    # Households, Recurring Donations, Relationships, Affiliations, NPSP), the latest released Flow Tool Kit
+    # via install_managed, then the same base post-install content npc_subscriber_org deploys. No Person
+    # Accounts, no Industries features. NPSP's own install creates the HH_Account and Organization record types.
+    npsp_subscriber_org:
+        description: Subscriber-style NPSP org - the NPSP managed package stack, the latest released Flow Tool Kit base, its post-install content and permission sets. The base for NPSP extension development (npsp_conversion_dev_org).
+        group: Flow Tool Kit
+        steps:
+            1:
+                flow: dependencies
+            2:
+                task: update_dependencies
+                options:
+                    dependencies:
+                        - github: https://github.com/SalesforceFoundation/NPSP
+            3:
+                task: install_managed
+            4:
+                task: deploy_post
+                options:
+                    path: unpackaged/post
+            5:
+                task: deploy
+                options:
+                    path: force-app-post
+            6:
+                task: assign_permission_sets
+                options:
+                    api_names: Form_Builder_Admin,Form_Flow_User
+            # The GitHub NPSP install ships only NPSP_Default on Opportunity and leaves the NPSP Account record types
+            # invisible to the admin profile, so demo data could not be created without this config.
+            7:
+                task: deploy
+                options:
+                    path: unpackaged/npsp-dev-config
+            8:
+                task: execute_anon
+                description: NPSP demo data - households built by NPSP, organizations, affiliations, donations and grants
+                options:
+                    path: datasets/npsp/load_npsp_sample_data.apex
+
+    npsp_conversion_post_install:
+        description: Post-install content for the NPSP conversion extension (#676) - everything the extension cannot ship because the base package owns it. The Conversion Type mapping that makes the Account rule and the Contact1/Contact2 Add to Account rules selectable on Contact(s) templates, NPSP's HH_Account (Household) and Organization values on the Account record type picklist (HH_Account is what turns Household mode on), NPSP's Contact matching rule on the Contact Matching Rules picklists, and the Controller, Primary_Contact and Alternate_Contact Conversion Mapping Default repoints from unpackaged/npsp-conversion-post. Run after the extension is installed in a subscriber; in the namespaced extension-development org run npsp_conversion_config instead.
+        group: Flow Tool Kit
+        steps:
+            1:
+                task: add_npsp_conversion_rule_dependencies
+            2:
+                task: add_npsp_account_record_types
+            3:
+                task: add_npsp_matching_rules
+            4:
+                task: deploy_npsp_conversion_post
+
+    npsp_conversion_config:
+        description: Extension-development configuration for the NPSP conversion extension (#676) - deploy the extension source, then the post-install content with managed False, because the namespaced dev org owns the namespace.
+        group: Flow Tool Kit
+        steps:
+            1:
+                task: deploy_npsp_conversion
+            2:
+                flow: npsp_conversion_post_install
+                options:
+                    add_npsp_conversion_rule_dependencies:
+                        managed: False
+                    add_npsp_account_record_types:
+                        managed: False
+                    add_npsp_matching_rules:
+                        managed: False
+
+    npsp_conversion_dev_org:
+        description: EXTENSION-DEVELOPMENT org build for the NPSP conversion extension (#676) - the subscriber-style NPSP org (npsp_subscriber_org), then the extension SOURCE and its post-install content (npsp_conversion_config).
+        group: Flow Tool Kit
+        steps:
+            1:
+                flow: npsp_subscriber_org
+            2:
+                flow: npsp_conversion_config
+            3:
+                task: execute_anon
+                description: NPSP fixture Form Templates (Household Intake, Organization Intake) on the Default conversion flows, which the repointed defaults resolve to the NPSP flows
+                options:
+                    path: datasets/npsp/load_npsp_form_templates.apex
+
+    npsp_conversion_install:
+        description: FULL PACKAGE-BASED INSTALL of the NPSP conversion solution (#676), the way a customer receives it - the latest released Flow Tool Kit base, the pinned NPSP extension package version (bump install_npsp_conversion after each build), then every post-install update the packages cannot carry (npsp_conversion_post_install). Run against a subscriber-style NPSP org (npsp_subscriber_org builds one).
+        group: Flow Tool Kit
+        steps:
+            1:
+                flow: dependencies
+            2:
+                task: install_managed
+            3:
+                task: install_npsp_conversion
+            4:
+                flow: npsp_conversion_post_install
+
+    npsp_subscriber_install_org:
+        description: End-to-end install-test org for the NPSP conversion extension (#676) - build the subscriber-style NPSP org from scratch (npsp_subscriber_org), then the full package-based install on top (npsp_conversion_install). The closest scratch-org approximation of a real customer install.
+        group: Flow Tool Kit
+        steps:
+            1:
+                flow: npsp_subscriber_org
+            2:
+                flow: npsp_conversion_install
+
     npc_subscriber_org:
         description: NPC org with the latest released Flow Tool Kit INSTALLED (works for a non-namespaced subscriber org and for the namespaced extension-development org - local NPC names carry %%%NAMESPACED_ORG%%% tokens), NPC licenses and permission sets, force-app-npc configuration, stage definitions and sample data. No community.
         steps:
@@ -547,14 +726,34 @@ tasks:
         class_path: cci_flowtoolkit_tasks.export_form.ExportFormMetadata
 
     create_npc_package_version:
-        description: Build a 2GP managed version of the NPC conversion extension package (Flow Tool Kit - AFNP | NPC Extension, namespace FlowToolKit, same as the base) from force-app-npc-conversion, depending on the released base version. The package source carries no namespace tokens, so nothing is injected - the namespace is simply the project's. Run against npc_release, whose definition file gives the build org the PersonAccounts and Industries features the metadata needs.
+        description: Build a 2GP managed version of the NPC conversion extension package (Flow Tool Kit - NPC | Form Template Extension, namespace FlowToolKit, same as the base) from force-app-npc-conversion, depending on the released base version. The package source carries no namespace tokens, so nothing is injected - the namespace is simply the project's. Run against npc_release, whose definition file gives the build org the PersonAccounts and Industries features the metadata needs.
         class_path: cci_flowtoolkit_tasks.extension_package.CreateExtensionPackageVersion
         options:
             package_type: Managed
-            package_name: "Flow Tool Kit: AFNP | NPC Extension"
+            package_name: "Flow Tool Kit: NPC | Form Template Extension"
             package_path: force-app-npc-conversion
             dependencies:
-                - 04tRQ000000AXCPYA4
+                - 04tRQ000000AjBxYAK
+            version_base: 1.0.0
+            version_type: build
+            skip_validation: False
+            force_upload: True
+
+    create_npsp_package_version:
+        description: Build a 2GP managed version of the NPSP Form Template extension package (Flow Tool Kit - NPSP | Form Template Extension, namespace FlowToolKit, same as the base) from force-app-npsp-conversion. FALLBACK PATH ONLY - this task cannot send unpackagedMetadata, and the version needs unpackaged/npsp-build-test for its tests, so the real build runs through the native sf CLI off the force-app-npsp-conversion entry in sfdx-project.json. Dependencies are the six NPSP packages in install order and then the released base; keep them in step with that entry.
+        class_path: cci_flowtoolkit_tasks.extension_package.CreateExtensionPackageVersion
+        options:
+            package_type: Managed
+            package_name: "Flow Tool Kit: NPSP | Form Template Extension"
+            package_path: force-app-npsp-conversion
+            dependencies:
+                - 04t4w0000004ALTAA2
+                - 04t4w000000gfNKAAY
+                - 04t4w000000gfNFAAY
+                - 04t4w000001A00cAAC
+                - 04t4w000000tQ1HAAU
+                - 04tKd000000el3CIAQ
+                - 04tRQ000000AjBxYAK
             version_base: 1.0.0
             version_type: build
             skip_validation: False
@@ -564,7 +763,7 @@ tasks:
         description: Install the pinned NPC conversion extension package version into a subscriber-style org. PIN BUMP REQUIRED - after every package build, update the version option to the new SubscriberPackageVersionId. Current pin 1.5.0.1, RELEASED against base 4.33 (built with validation via the native sf CLI - see the force-app-npc-conversion entry in sfdx-project.json; cci's create_package_version cannot send unpackagedMetadata or apexTestAccess, so the validated build goes through sf package version create).
         class_path: cumulusci.tasks.salesforce.InstallPackageVersion
         options:
-            name: "Flow Tool Kit: AFNP | NPC Extension"
+            name: "Flow Tool Kit: NPC | Form Template Extension"
             namespace: FlowToolKit
             version: 04tRQ000000AcFJYA0
 
@@ -695,6 +894,73 @@ tasks:
         options:
             path: force-app-npc-conversion
 
+    add_npsp_conversion_rule_dependencies:
+        description: Make the packaged Account rule and the Contact1/Contact2 Add to Account sub-rules selectable on Contact(s) templates (#676) - an NPSP household intake converts people first and then updates their Household through the Account rule, and an organization intake affiliates its people through Add to Account. Household mode itself needs no rule value in NPSP; it hinges on the template's Account record type being HH_Account. Conversion Rules is a dependent picklist, so an unmapped value is hidden in the UI and rejected by DML.
+        class_path: tasks.picklist_dependency.AddPicklistDependencies
+        options:
+            object_api_name: "%%%NAMESPACE%%%Form_Template__c"
+            field_api_name: "%%%NAMESPACE%%%Conversion_Rules__c"
+            controlling_field_api_name: "%%%NAMESPACE%%%Conversion_Type__c"
+            dependencies:
+                - value: Account
+                  controlling_values:
+                      - Contact(s)
+                - value: Contact1 👉 Add to Account
+                  controlling_values:
+                      - Contact(s)
+                - value: Contact2 👉 Add to Account
+                  controlling_values:
+                      - Contact(s)
+
+    add_npsp_matching_rules:
+        description: Add the Contact matching rule that ships with NPSP, NPSP_Contact_Personal_Email_Match (First Name, Last Name and Personal Email), to the Contact Matching Rules picklists on the Form Template and the Page Section (#676), so admins can choose it for conversions. The value is the rule's name without the npsp__ prefix, which is how Salesforce's duplicate check reports it. NPSP ships no Account matching rule. Duplicate rules are org configuration and are not added here.
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        options:
+            picklists:
+                - "%%%NAMESPACE%%%Form_Template__c.%%%NAMESPACE%%%Contact_Matching_Rules__c"
+                - "%%%NAMESPACE%%%Form_Template_Page_Section__c.%%%NAMESPACE%%%Contact_Matching_Rules__c"
+            entries:
+                - fullName: NPSP_Contact_Personal_Email_Match
+                  label: NPSP_Contact_Personal_Email_Match
+
+    add_npsp_account_record_types:
+        description: Add NPSP's Account record types to the Form Template's restricted Account (Record Type) picklist (#676) - HH_Account (label Household), which also turns Household mode on in the NPSP controller and engine, and Organization. The stored value is the record type DeveloperName, so the engines resolve it by exact name.
+        class_path: cumulusci.tasks.metadata_etl.picklists.AddPicklistEntries
+        options:
+            picklists:
+                - "%%%NAMESPACE%%%Form_Template__c.%%%NAMESPACE%%%Account_Record_Type__c"
+            entries:
+                - fullName: HH_Account
+                  label: Household
+                - fullName: Organization
+                  label: Organization
+
+    deploy_npsp_conversion_post:
+        description: Repoint the packaged Form Template Conversion Mapping Default records (Controller, Primary_Contact, Alternate_Contact) at the NPSP flows (#676) by deploying subscriber edits of the records themselves - Flow_API_Name__c is SubscriberControlled and the filenames carry the ___NAMESPACE___ token, so the deploy targets FlowToolKit__Controller and friends, never bare-named local twins (a twin makes CMT getAll() throw and kills every conversion).
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/npsp-conversion-post
+
+    deploy_npsp_conversion:
+        description: Deploy the NPSP conversion extension source (force-app-npsp-conversion, #676) - flows only; CMT repoints and picklist values are separate post-install steps.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: force-app-npsp-conversion
+
+    install_npsp_conversion:
+        description: Install the pinned NPSP Form Template extension package version into a subscriber-style NPSP org. PIN REQUIRED - set the version option to the SubscriberPackageVersionId after the first build and bump it after every build.
+        class_path: cumulusci.tasks.salesforce.InstallPackageVersion
+        options:
+            name: "Flow Tool Kit: NPSP | Form Template Extension"
+            namespace: FlowToolKit
+            version: 04tRQ000000AwHFYA0
+
+    check_npsp_conversion_installed:
+        class_path: tasks.check_package_installed.CheckPackageInstalled
+        description: Preflight check - is the NPSP Form Template extension already installed? Gates the one-time post-install content on the npsp plan. The extension shares the FlowToolKit namespace with the base, so this queries InstalledSubscriberPackage by package name instead.
+        options:
+            package_name: "Flow Tool Kit: NPSP | Form Template Extension"
+
     check_lws_enabled:
         class_path: tasks.check_lws_enabled.CheckLWSEnabled
         description: Check if Lightning Web Security (LWS) is enabled
@@ -715,9 +981,9 @@ tasks:
 
     check_npc_conversion_installed:
         class_path: tasks.check_package_installed.CheckPackageInstalled
-        description: Preflight check - is the NPC conversion extension already installed? Gates the one-time post-install content on the npc plan. The extension shares the FlowToolKit namespace with the base, so get_installed_packages cannot tell them apart and this queries InstalledSubscriberPackage by package name instead.
+        description: Preflight check - is the NPC Form Template extension already installed? Gates the one-time post-install content on the npc plan. The extension shares the FlowToolKit namespace with the base, so get_installed_packages cannot tell them apart and this queries InstalledSubscriberPackage by package name instead.
         options:
-            package_name: "Flow Tool Kit: AFNP | NPC Extension"
+            package_name: "Flow Tool Kit: NPC | Form Template Extension"
 
     create_package_version:
         options:
@@ -731,11 +997,11 @@ tasks:
             release_body: true
             # Everything the MetaDeploy install plans reference must ship to the public repo:
             # tasks/ holds the preflight check classes and the two vendored metadata-ETL tasks,
-            # force-app-post and unpackaged/npc-conversion-post are deployed by plan steps.
+            # force-app-post and the two unpackaged conversion-post directories are deployed by plan steps.
             # Deploying a path the mirror never received fails at INSTALL time, not at publish time.
             include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md","documents/",
-                       "tasks/","force-app-post/","force-app-npc-conversion/",
-                       "unpackaged/npc-conversion-post/" ]
+                       "tasks/","force-app-post/","force-app-npc-conversion/","force-app-npsp-conversion/",
+                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/" ]
 
     # Installer-only publish, decoupled from a base package release. Pushes the current master
     # content to Flow_Tool_Kit_Public@main as a plain commit: no tag, no release, repeatable.
@@ -753,8 +1019,8 @@ tasks:
             ref: heads/master
             create_release: False
             include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md",
-                       "tasks/","force-app-post/","force-app-npc-conversion/",
-                       "unpackaged/npc-conversion-post/" ]
+                       "tasks/","force-app-post/","force-app-npc-conversion/","force-app-npsp-conversion/",
+                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/" ]
 
     robot:
         options:
@@ -774,6 +1040,11 @@ tasks:
 
 orgs:
     scratch:
+        npsp_dev:
+            config_file: orgs/npsp.json
+            days: 30
+            namespaced: True
+
         build:
             config_file: orgs/build.json
 
@@ -785,7 +1056,12 @@ orgs:
             days: 30
             namespaced: True
 
-        sprint_2026-09-16:
+        sprint_2026-09-17:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: True
+
+        sprint_2026-09-21:
             config_file: orgs/dev.json
             days: 30
             namespaced: True

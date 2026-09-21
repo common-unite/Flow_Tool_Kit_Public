@@ -103,6 +103,7 @@
 | 936800651 | Checkbox Fields | field-type-settings (NEW) | |
 | 936810577 | Phone Fields | field-type-settings (NEW) | |
 | 1105787202 | File Upload Deep Dive | file-uploads (NEW) | |
+| 1228428000 | Form Builder Live Editor (Sections tree, edit on the preview) | form-builder | |
 
 ## Video Embed Corrections (Applied)
 
