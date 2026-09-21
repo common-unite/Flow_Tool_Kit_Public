@@ -19,7 +19,7 @@ Register in ``cumulusci.yml``::
         check_npc_conversion_installed:
             class_path: tasks.check_package_installed.CheckPackageInstalled
             options:
-                package_name: "Flow Tool Kit: AFNP | NPC Extension"
+                package_name: "Flow Tool Kit: NPC | Form Template Extension"
 """
 
 from cumulusci.tasks.salesforce import BaseSalesforceApiTask

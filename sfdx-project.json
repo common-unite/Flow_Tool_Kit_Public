@@ -1,6 +1,10 @@
 {
   "packageDirectories": [
     {
+      "path": "force-app-kccg",
+      "default": false
+    },
+    {
       "path": "force-app",
       "default": true
     },
@@ -13,6 +17,41 @@
       "default": false
     },
     {
+      "path": "force-app-npsp-conversion",
+      "default": false,
+      "package": "Flow Tool Kit: NPSP | Form Template Extension",
+      "versionName": "NPSP Form Template Extension 1.0",
+      "versionNumber": "1.0.0.NEXT",
+      "definitionFile": "orgs/npsp.json",
+      "dependencies": [
+        {
+          "package": "NPSP npe01 Contacts and Organizations 3.23"
+        },
+        {
+          "package": "NPSP npo02 Households 3.19"
+        },
+        {
+          "package": "NPSP npe03 Recurring Donations 3.26"
+        },
+        {
+          "package": "NPSP npe4 Relationships 3.16"
+        },
+        {
+          "package": "NPSP npe5 Affiliations 3.14"
+        },
+        {
+          "package": "NPSP Nonprofit Success Pack 3.237"
+        },
+        {
+          "package": "Flow Tool Kit base 4.34"
+        }
+      ],
+      "unpackagedMetadata": {
+        "path": "unpackaged/npsp-build-test"
+      },
+      "ancestorVersion": "HIGHEST"
+    },
+    {
       "path": "force-app-npc-conversion",
       "default": false,
       "apexTestAccess": {
@@ -23,13 +62,13 @@
           "GroupMembershipPsl"
         ]
       },
-      "package": "Flow Tool Kit: AFNP | NPC Extension",
-      "versionName": "NPC Extension 1.5",
+      "package": "Flow Tool Kit: NPC | Form Template Extension",
+      "versionName": "NPC Form Template Extension 1.5",
       "versionNumber": "1.5.0.NEXT",
       "definitionFile": "orgs/npc.json",
       "dependencies": [
         {
-          "package": "Flow Tool Kit base 4.33"
+          "package": "Flow Tool Kit base 4.34"
         }
       ],
       "unpackagedMetadata": {
@@ -46,10 +85,19 @@
     "Documentation Support": "0Ho4W000000PBO4SAO",
     "Documentation Support@0.7.0-1": "04t4W000002Z1TPQA0",
     "Documentation Support@0.8.0-1": "04tRQ0000002NgTYAU",
-    "Flow Tool Kit: AFNP | NPC Extension": "0HoRQ00000003E10AI",
+    "Flow Tool Kit: NPC | Form Template Extension": "0HoRQ00000003E10AI",
     "Flow Tool Kit base 4.31": "04tRQ000000AXCPYA4",
     "Flow Tool Kit base 4.33": "04tRQ000000Aav3YAC",
-    "Flow Tool Kit: AFNP | NPC Extension@1.4.0-1": "04tRQ000000AbKrYAK",
-    "Flow Tool Kit: AFNP | NPC Extension@1.5.0-1": "04tRQ000000AcFJYA0"
+    "Flow Tool Kit: NPC | Form Template Extension@1.4.0-1": "04tRQ000000AbKrYAK",
+    "Flow Tool Kit: NPC | Form Template Extension@1.5.0-1": "04tRQ000000AcFJYA0",
+    "Flow Tool Kit base 4.34": "04tRQ000000AjBxYAK",
+    "Flow Tool Kit: NPSP | Form Template Extension": "0HoRQ00000003Fd0AI",
+    "NPSP npe01 Contacts and Organizations 3.23": "04t4w0000004ALTAA2",
+    "NPSP npo02 Households 3.19": "04t4w000000gfNKAAY",
+    "NPSP npe03 Recurring Donations 3.26": "04t4w000000gfNFAAY",
+    "NPSP npe4 Relationships 3.16": "04t4w000001A00cAAC",
+    "NPSP npe5 Affiliations 3.14": "04t4w000000tQ1HAAU",
+    "NPSP Nonprofit Success Pack 3.237": "04tKd000000el3CIAQ",
+    "Flow Tool Kit: NPSP | Form Template Extension@1.0.0-1": "04tRQ000000AwHFYA0"
   }
 }
