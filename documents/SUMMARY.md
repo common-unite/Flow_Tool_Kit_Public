@@ -32,7 +32,7 @@
 * [Use Repeating Sections](how-to-guides/use-repeating-sections.md)
 * [Use Rich Text Message Cards](how-to-guides/use-rich-text-message-cards.md)
 * [Use Section Dividers](how-to-guides/use-section-dividers.md)
-* [Use Section Header Styles](how-to-guides/use-section-header-styles.md)
+* [Section Frame and Header](how-to-guides/section-frame-and-header.md)
 * [Use The Icon Selector](how-to-guides/use-the-icon-selector.md)
 
 ## Deployment
@@ -243,6 +243,7 @@
 * [Release 4.38](release-notes/release-4.38.md)
 * [Release 4.39](release-notes/release-4.39.md)
 * [Release 4.4](release-notes/release-4.4.md)
+* [Release 4.40](release-notes/release-4.40.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
 * [Release 4.7](release-notes/release-4.7.md)
