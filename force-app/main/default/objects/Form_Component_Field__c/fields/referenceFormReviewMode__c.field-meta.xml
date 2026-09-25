@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>referenceFormReviewMode__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Opens the embedded submission in Review Mode, exactly like the form runtime component&apos;s Review Mode checkbox on a Lightning record page (#291/#544). The review page becomes the only page: a summary of every answer with no stage indicators or page navigation. Applies to the View/Edit Form Submission override only; ignored for Start New Form, standard, and component override types.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Opens the submission as a read-style summary of every answer instead of the full multi-page form. Respondents can still edit answers from the summary unless the form is otherwise read only.</inlineHelpText>
+    <label>referenceFormReviewMode</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

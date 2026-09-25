@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Internal_Confirmation_Last_Sent__c</fullName>
+    <description>This is an internal field used to track the date and time that the confirmation email was last sent. When a template has &quot;Send Confirmation&quot; enabled and an assigned email template, and when a new form submission is received and marked as &quot;Submitted,&quot; a confirmation email will be sent to the selected email addresses. Resetting this field to null will also trigger the Confirmation Email to be sent.</description>
+    <label>Confirmation Last Sent</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

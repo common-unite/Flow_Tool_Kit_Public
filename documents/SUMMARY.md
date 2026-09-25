@@ -1,6 +1,5 @@
 # Table of Contents
 
-* [Form_builder_truncation_investigation](form_builder_truncation_investigation.md)
 * [Video Mapping](video-mapping.md)
 
 ## Welcome
@@ -27,12 +26,12 @@
 * [Merge Duplicate Records](how-to-guides/merge-duplicate-records.md)
 * [Override New And Edit With A Form](how-to-guides/override-new-and-edit-with-a-form.md)
 * [Schedule Flow Cache Warming](how-to-guides/schedule-flow-cache-warming.md)
+* [Section Frame And Header](how-to-guides/section-frame-and-header.md)
 * [Set Up File Uploads](how-to-guides/set-up-file-uploads.md)
 * [Use Data Tables](how-to-guides/use-data-tables.md)
 * [Use Repeating Sections](how-to-guides/use-repeating-sections.md)
 * [Use Rich Text Message Cards](how-to-guides/use-rich-text-message-cards.md)
 * [Use Section Dividers](how-to-guides/use-section-dividers.md)
-* [Section Frame and Header](how-to-guides/section-frame-and-header.md)
 * [Use The Icon Selector](how-to-guides/use-the-icon-selector.md)
 
 ## Deployment
@@ -244,12 +243,16 @@
 * [Release 4.39](release-notes/release-4.39.md)
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.40](release-notes/release-4.40.md)
+* [Release 4.41](release-notes/release-4.41.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
 * [Release 4.7](release-notes/release-4.7.md)
 * [Release 4.8](release-notes/release-4.8.md)
 * [Release 4.9](release-notes/release-4.9.md)
 * [Unreleased Conditional Payment](release-notes/unreleased-conditional-payment.md)
+* [Unreleased Conditional Performance](release-notes/unreleased-conditional-performance.md)
+* [Unreleased Guest Dictionary 699](release-notes/unreleased-guest-dictionary-699.md)
+* [Unreleased Hosted Payment Record 716](release-notes/unreleased-hosted-payment-record-716.md)
 * [Unreleased Payment Settings Namespace](release-notes/unreleased-payment-settings-namespace.md)
 
 ## Platform

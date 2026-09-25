@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Style__c</fullName>
+    <label>Header Style</label>
+    <description>How a section draws its header when Header Display is Header. Classic is the standard header; Outlined draws a border round the whole section with the title on the top line. Blank is treated as Classic.</description>
+    <inlineHelpText>How the header sits in the section frame. Title on border (stored as outlined) needs a Box or Shadow frame. See Section Frame and Header in the docs.</inlineHelpText>
+    <type>Picklist</type>
+    <required>false</required>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>classic</fullName><default>false</default><label>Classic</label></value>
+            <value><fullName>outlined</fullName><default>false</default><label>Outlined</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

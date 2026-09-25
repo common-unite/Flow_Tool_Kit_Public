@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Repeater_Hide_Divider__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, hides the divider drawn between repeater rows. Passed as hide-divider to c-flow-form-repeat. Applies to Repeater sections only.</description>
+    <inlineHelpText>Turn on to remove the divider line shown between each repeated entry. Applies only to Repeater sections.</inlineHelpText>
+    <label>Hide Divider</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

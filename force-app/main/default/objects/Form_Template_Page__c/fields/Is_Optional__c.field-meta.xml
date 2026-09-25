@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Optional__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Stages Mode flag. When checked, the page's stage card shows an 'Optional' badge and the page is excluded from the required-step completion totals shown in the stages overview. formTemplate.js sets the stage's view status to 'optional' when no persisted status exists, and the auto-created Form_Submission_Stage__c starts in 'Optional' status. Toggling it after stages are auto-created does not retroactively restatus existing stage records. No effect in the linear runtime. Default false.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this to mark the page optional in Stages Mode — its card shows an 'Optional' badge and it is left out of the required-steps progress count. This only affects Stages-mode templates, and changing it later will not restatus stage records already created on existing submissions.</inlineHelpText>
+    <label>Is Optional</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

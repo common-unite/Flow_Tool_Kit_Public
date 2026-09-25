@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Table_Display_Row_Numbers__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, c-flow-data-table renders a leading row-number column (show-row-number-column). Applies to Table sections only.</description>
+    <inlineHelpText>Turn on to show a numbered column down the left side of the table. Applies to Table sections only.</inlineHelpText>
+    <label>Display Row Numbers</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

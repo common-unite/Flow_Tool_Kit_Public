@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conversion_Dispatch_Counts__c</fullName>
+    <description>Internal loop-protection counter: a JSON map of Flow Api Name to the number of times the dispatch trigger has launched it for this submission in the current run. Reset when a Start event fires. Written only by the Form_Submission_Convert trigger via FormSubmission_LoopGuard; not for admin use.</description>
+    <inlineHelpText>Internal plumbing for conversion loop protection. Do not edit.</inlineHelpText>
+    <label>Conversion Dispatch Counts</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

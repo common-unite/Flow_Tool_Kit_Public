@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Prefill_Flow__c</fullName>
+    <description>API name of an autolaunched Prefill Flow. New submissions launched from this Campaign run this flow instead of the one on the Form Template, so one template can serve many Campaigns each prefilling differently. Use it for prefill the Source Field Mappings cannot express because it needs a query rather than a field path. Blank falls back to Form_Template__c.Prefill_Flow_Api_Name__c. Unrestricted picklist per the managed-package value-propagation rule (#222): flow api names are org-specific, so the admin adds the values their org actually has.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pick the autolaunched flow to prefill new submissions started from this Campaign, and it runs instead of the flow set on the Form Template. Leave it blank to keep using the template&apos;s own flow. Reach for this only when a field mapping cannot get there, such as copying from an earlier submission or from a filtered set of related records. An administrator maintains the available flows on this picklist.</inlineHelpText>
+    <label>Form Prefill Flow</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>-- None --</fullName>
+                <default>true</default>
+                <label>-- None --</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

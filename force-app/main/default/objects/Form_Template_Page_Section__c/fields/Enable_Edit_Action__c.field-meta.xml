@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enable_Edit_Action__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, exposes the Edit row action on Repeater and Table sections. Passed as allow-edit to c-flow-form-repeat / c-flow-data-table. Button text comes from Edit Action Button Label and the edit modal uses Edit Action Modal Title/Subtitle.</description>
+    <inlineHelpText>Turn on to let users edit existing rows in this repeater or table. Customize the button and modal wording with the Edit Action Button Label and Edit Action Modal fields.</inlineHelpText>
+    <label>Enable Edit Action</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

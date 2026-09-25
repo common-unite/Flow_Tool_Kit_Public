@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Review_Page_Label__c</fullName>
+    <defaultValue>&quot;Review&quot;</defaultValue>
+    <description>Heading text the formTemplate runtime shows on the final review page (rendered when Enable Review Screen is on). Also feeds the page's tab/indicator label. Plain text.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the title shown on the review page (e.g. "Review &amp; Submit"). Used for the page heading and its progress-indicator label.</inlineHelpText>
+    <label>Review Page Label</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

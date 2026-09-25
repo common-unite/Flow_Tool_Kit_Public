@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>isTable__c</fullName>
+    <formula>ISPICKVAL(Component_Type__c,&apos;Table&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <description>Formula checkbox: ISPICKVAL(Component_Type__c,'Table'). Read by the formTemplatePageSection LWC to render this section through c-flow-data-table (editable grid). System-derived from Component Type; not directly editable.</description>
+    <inlineHelpText>Read-only indicator that is checked automatically when Component Type is Table. You do not set this directly; change the Component Type to control it.</inlineHelpText>
+    <label>isTable</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

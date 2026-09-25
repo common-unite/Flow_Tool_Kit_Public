@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_Indicator_Type__c</fullName>
+    <defaultValue>&apos;vertical&apos;</defaultValue>
+    <description>Selects the progress-indicator UI the formTemplate runtime renders across pages: vertical (left rail), base (horizontal dots), path (SLDS path), or the footer-docked footer base / footer path variants. Most styles require 3+ pages; vertical also adapts at narrow widths. Ignored when Hide Stage Indicator is true.</description>
+    <inlineHelpText>Pick how multi-page progress is shown: vertical rail, horizontal steps (base), a path bar (path), or footer-docked versions. Most styles appear once the form has three or more pages.</inlineHelpText>
+    <label>Stage Indicator Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>vertical</fullName>
+                <default>true</default>
+                <label>vertical</label>
+            </value>
+            <value>
+                <fullName>base</fullName>
+                <default>false</default>
+                <label>base</label>
+            </value>
+            <value>
+                <fullName>path</fullName>
+                <default>false</default>
+                <label>path</label>
+            </value>
+            <value>
+                <fullName>footer base</fullName>
+                <default>false</default>
+                <label>footer base</label>
+            </value>
+            <value>
+                <fullName>footer path</fullName>
+                <default>false</default>
+                <label>footer path</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

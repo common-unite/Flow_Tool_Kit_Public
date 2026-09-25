@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>sectionTheme__c</fullName>
+    <defaultValue>&apos;clean&apos;</defaultValue>
+    <description>The section frame: clean (None), box, shadow, or visualPicker, which makes the section selectable inside a repeater instead of framing it. Shown in the Form Builder as Section Frame. Header Style Title on border (outlined) needs box or shadow.</description>
+    <inlineHelpText>The box around the section: clean (None), box or shadow. visualPicker makes the section selectable in a repeater. See Section Frame and Header in the docs.</inlineHelpText>
+    <label>class</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>shadow</fullName>
+                <default>false</default>
+                <label>shadow</label>
+            </value>
+            <value>
+                <fullName>clean</fullName>
+                <default>true</default>
+                <label>clean</label>
+            </value>
+            <value>
+                <fullName>box</fullName>
+                <default>false</default>
+                <label>box</label>
+            </value>
+            <value>
+                <fullName>visualPicker</fullName>
+                <default>false</default>
+                <label>visualPicker</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

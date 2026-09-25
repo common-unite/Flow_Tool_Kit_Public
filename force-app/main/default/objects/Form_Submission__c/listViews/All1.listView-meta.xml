@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All1</fullName>
+    <columns>NAME</columns>
+    <columns>Form_Template__c</columns>
+    <columns>Contact_1__c</columns>
+    <columns>Status__c</columns>
+    <columns>Last_Saved_Date__c</columns>
+    <columns>Submission_Date__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Internal_Is_Related_Record__c</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>IsPrefillTemplate__c</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <label>All</label>
+</ListView>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Banner_Image_URL__c</fullName>
+    <description>Fully qualified URL of an externally hosted banner image rendered across the top of the form. Use this when the banner is served from a CMS, static resource URL, or external host rather than referenced via Form Banner Image.</description>
+    <externalId>false</externalId>
+    <formula>If( ISBLANK(Form_Banner_Image__c),&apos;&apos;,
+
+IF( CONTAINS($Api.Enterprise_Server_URL_100,&apos;/sfsites/c&apos;),
+
+&apos;/sfsites/c&apos;+Form_Banner_Image__c,
+
+LEFT($Api.Enterprise_Server_URL_100,FIND(&apos;/services/Soap/&apos;, $Api.Enterprise_Server_URL_100)-1)+Form_Banner_Image__c
+
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Paste the full https URL of the banner image to show at the top of the form (e.g. a hosted or static-resource link). Leave blank for no banner.</inlineHelpText>
+    <label>Form Banner Image URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

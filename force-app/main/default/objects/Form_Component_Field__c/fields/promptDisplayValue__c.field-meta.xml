@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>promptDisplayValue__c</fullName>
+    <defaultValue>&apos;custom&apos;</defaultValue>
+    <label>promptDisplayValue</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>helptext</fullName>
+                <default>false</default>
+                <label>helptext</label>
+            </value>
+            <value>
+                <fullName>custom</fullName>
+                <default>true</default>
+                <label>custom</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

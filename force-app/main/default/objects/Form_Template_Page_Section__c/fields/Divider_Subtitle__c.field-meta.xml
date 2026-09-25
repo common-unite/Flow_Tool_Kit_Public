@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Divider_Subtitle__c</fullName>
+    <label>Divider Subtitle</label>
+    <description>Optional subtitle rendered under the divider. Supports rich text.</description>
+    <inlineHelpText>Add optional rich-text shown beneath the divider's title for divider sections that support a subtitle. Keep it short — a sentence of supporting context — since the divider is a visual break, not a content block; leave blank to show the title alone.</inlineHelpText>
+    <length>5000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

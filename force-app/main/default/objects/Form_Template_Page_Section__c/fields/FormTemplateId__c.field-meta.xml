@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FormTemplateId__c</fullName>
+    <description>Formula text: CASESAFEID(Form_Template_Page__r.Form_Template__c). Surfaces the grandparent Form Template Id directly on the section without a Page-lookup query, available in before-insert/before-update contexts. Used by triggers/utilities (e.g. enforcing Section Tag uniqueness within a template) and reporting. System-derived; not editable.</description>
+    <externalId>false</externalId>
+    <formula>CASESAFEID(Form_Template_Page__r.Form_Template__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Read-only Id of the Form Template this section ultimately belongs to, calculated from the parent page. It updates automatically; you do not set it.</inlineHelpText>
+    <label>FormTemplateId</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

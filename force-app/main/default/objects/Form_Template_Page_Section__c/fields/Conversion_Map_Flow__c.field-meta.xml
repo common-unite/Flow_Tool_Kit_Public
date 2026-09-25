@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conversion_Map_Flow__c</fullName>
+    <defaultValue>&apos;Default&apos;</defaultValue>
+    <description>Override the default mapping Flow with a custom Flow. When adding new picklist options ensure the picklist value is set to the API name of the Flow that should be called, the picklist label can be a User friendly value.</description>
+    <inlineHelpText>Override the field-mapping Flow used to convert this section's data by selecting the API name of a custom autolaunched Flow (add it as a picklist value). Leave blank to use the package's default mapping Flow for the target object.</inlineHelpText>
+    <label>Conversion Map Flow</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Conversion_Rule__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Default</fullName>
+                <default>false</default>
+                <label>Default</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Bypass</controllingFieldValue>
+            <controllingFieldValue>Contact1</controllingFieldValue>
+            <controllingFieldValue>Contact1 👉 Set Mailing Address</controllingFieldValue>
+            <controllingFieldValue>Contact1 👉 Set Other Address</controllingFieldValue>
+            <controllingFieldValue>Contact2</controllingFieldValue>
+            <controllingFieldValue>Contact2 👉 Set Mailing Address</controllingFieldValue>
+            <controllingFieldValue>Contact2 👉 Set Other Address</controllingFieldValue>
+            <controllingFieldValue>Lead1</controllingFieldValue>
+            <controllingFieldValue>Lead2</controllingFieldValue>
+            <controllingFieldValue>Case</controllingFieldValue>
+            <valueName>Default</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

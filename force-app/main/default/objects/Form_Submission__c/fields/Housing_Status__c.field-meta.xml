@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Housing_Status__c</fullName>
+    <description>Demographic answer for program eligibility and grant reporting (Housing Status).</description>
+    <label>Housing Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Own</fullName>
+                <default>false</default>
+                <label>Own</label>
+            </value>
+            <value>
+                <fullName>Rent</fullName>
+                <default>false</default>
+                <label>Rent</label>
+            </value>
+            <value>
+                <fullName>Living with Family or Friends</fullName>
+                <default>false</default>
+                <label>Living with Family or Friends</label>
+            </value>
+            <value>
+                <fullName>Transitional Housing</fullName>
+                <default>false</default>
+                <label>Transitional Housing</label>
+            </value>
+            <value>
+                <fullName>Unhoused</fullName>
+                <default>false</default>
+                <label>Unhoused</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EventName__c</fullName>
+    <defaultValue>&quot;convert&quot;</defaultValue>
+    <description>Categorises the event for logging and for branching inside the conversion flows. Values in use include Convert, Account, Contact, Lead, Case, Opportunity and Campaign Member. This field does NOT control dispatch: no flow is platform-event triggered, and the dispatcher routes solely on Flow Api Name.</description>
+    <externalId>false</externalId>
+    <isFilteringDisabled>false</isFilteringDisabled>
+    <isNameField>false</isNameField>
+    <isSortingDisabled>false</isSortingDisabled>
+    <label>EventName</label>
+    <length>255</length>
+    <required>true</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

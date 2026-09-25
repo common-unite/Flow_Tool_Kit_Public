@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FlowApiName__c</fullName>
+    <description>API name of the Screen Flow this section embeds when Component Type is Flow. Passed to c-flow-form-screen-flow as flow-api-name. The page section editor's Flow picklist lists only active flows built from the (Form) Flow Section template (FormPageSectionConfigurator_Controller.getFlowSectionTemplates), which carry the record/recordId/navigation-button input-output contract the form runtime exchanges; flows built from scratch will not appear but a previously saved value is still shown.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Active flows built from the Form Flow Section template. Select the Screen Flow to embed in this section; it must be Active and created from that template so it exchanges the form's record and navigation data.</inlineHelpText>
+    <label>FlowApiName</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alternative_Field__c</fullName>
+    <description>Likert Matrix sections (#144, Number mode): API name of an updateable number field on the form object that stores the running total score. The matrix dispatches a formfieldchange for this field whenever an answer changes while Show_Total_Score__c is enabled, and clears it to null when no rows are answered. The builder offers only updateable number-typed fields that are not matrix rows. Distinct from Form_Component_Field__c.Alternative_Field__c, which overrides a field's related-field mapping.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Optional field that saves the matrix total score to the record whenever an answer changes. Choose a number field that is not one of the matrix rows; leave blank to show the total without saving it.</inlineHelpText>
+    <label>Alternative Field</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

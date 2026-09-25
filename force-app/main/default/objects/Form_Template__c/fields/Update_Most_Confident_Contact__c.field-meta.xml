@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Update_Most_Confident_Contact__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Works with the Contact matching used during conversion in the Form_Submission_Convert_Upsert_Contact_Overridable flow. When matching returns multiple Contact candidates, enabling this updates the highest-confidence match instead of skipping it or creating a duplicate; leave it off to require a single unambiguous match.</description>
+    <inlineHelpText>When your matching rules return multiple Contact matches during conversion, update the highest-confidence match instead of skipping it or creating a duplicate. Leave it off to require a single unambiguous match before any update is made.</inlineHelpText>
+    <label>Update Most Confident (Contact)</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

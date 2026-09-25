@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Template_Page__c</fullName>
+    <description>Master-detail to the parent Form_Template_Page__c. Establishes the page this section belongs to and, through the page, the owning Form Template (see FormTemplateId formula). Required; deleting the page deletes its sections.</description>
+    <inlineHelpText>The Form Template Page this section lives on. It is set when the section is created within a page and determines where the section appears.</inlineHelpText>
+    <label>Form Template Page</label>
+    <referenceTo>Form_Template_Page__c</referenceTo>
+    <relationshipLabel>Form Template Page Sections</relationshipLabel>
+    <relationshipName>Form_Template_Page_Sections</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

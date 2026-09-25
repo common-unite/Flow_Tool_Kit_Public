@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Template__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Form Templates can be loaded from a Campaign record page. The Campaign can override the default Pre-fill Template values and form availability. The Campaign fields IsActive, StartDate, and EndDate will determine if a form is available for submissions when it is loaded from a Campaign page.</description>
+    <label>Form Template</label>
+    <referenceTo>Form_Template__c</referenceTo>
+    <relationshipLabel>Campaigns</relationshipLabel>
+    <relationshipName>Campaigns</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

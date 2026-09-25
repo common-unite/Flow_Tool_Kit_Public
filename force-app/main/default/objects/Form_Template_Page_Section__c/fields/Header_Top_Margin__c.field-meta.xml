@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Top_Margin__c</fullName>
+    <defaultValue>&apos;slds-m-top_small&apos;</defaultValue>
+    <description>SLDS top-margin utility class (slds-m-top_none through slds-m-top_large) applied above the section header when Show Header is checked. Passed as top-margin to the section's form/header component. Defaults to slds-m-top_small to match the base margin section headers receive in the Form Builder and Flow screens.</description>
+    <inlineHelpText>Choose how much space appears above the section header. Larger values push the header down from whatever is above it; requires Show Header.</inlineHelpText>
+    <label>Top Margin</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>slds-m-top_none</fullName>
+                <default>false</default>
+                <label>none</label>
+            </value>
+            <value>
+                <fullName>slds-m-top_xxx-small</fullName>
+                <default>false</default>
+                <label>xxx-small</label>
+            </value>
+            <value>
+                <fullName>slds-m-top_xx-small</fullName>
+                <default>false</default>
+                <label>xx-small</label>
+            </value>
+            <value>
+                <fullName>slds-m-top_x-small</fullName>
+                <default>false</default>
+                <label>x-small</label>
+            </value>
+            <value>
+                <fullName>slds-m-top_small</fullName>
+                <default>true</default>
+                <label>small</label>
+            </value>
+            <value>
+                <fullName>slds-m-top_medium</fullName>
+                <default>false</default>
+                <label>medium</label>
+            </value>
+            <value>
+                <fullName>slds-m-top_large</fullName>
+                <default>false</default>
+                <label>large</label>
+            </value>
+            <value>
+                <fullName>slds-m-top_x-large</fullName>
+                <default>false</default>
+                <label>x-large</label>
+            </value>
+            <value>
+                <fullName>slds-m-top_xx-large</fullName>
+                <default>false</default>
+                <label>xx-large</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

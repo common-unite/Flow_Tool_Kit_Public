@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Confirmation__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When enabled, a confirmation email is sent as a submission is received, through the Form_Submission_Convert_Utility_Send_Email_Overridable flow. The template is resolved from Email Template Name (Confirmation) (or a Form Template Source override) and the recipients from Recipients (Confirmation Email).</description>
+    <inlineHelpText>When enabled, a confirmation email is sent automatically as soon as a new submission is received. Choose the recipients in Recipients (Confirmation Email) and set the template in the Email Templates component on this page; leave it off if no email should be sent.</inlineHelpText>
+    <label>Send Confirmation Email</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

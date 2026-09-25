@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conversion_Status__c</fullName>
+    <description>Required Values 👇
+
+Ready
+In Progress
+Matched
+Multiple Matches
+Created
+Updated
+Deserialized
+Lead Converted
+Error
+Bypassed</description>
+    <label>Conversion Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Conversion_Status</valueSetName>
+    </valueSet>
+</CustomField>

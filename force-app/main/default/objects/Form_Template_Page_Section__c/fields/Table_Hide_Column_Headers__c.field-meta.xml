@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Table_Hide_Column_Headers__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, hides the table's column header row (hide-table-header on c-flow-data-table). Applies to Table sections only.</description>
+    <inlineHelpText>Turn on to hide the column header row at the top of the table. Applies to Table sections only.</inlineHelpText>
+    <label>Hide Column Header(s)</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

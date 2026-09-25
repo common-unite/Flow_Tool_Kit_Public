@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Header__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, the section renders a header above its content. For Field Set/Repeater/Table the header is drawn inside c-flow-form / c-flow-form-repeat / c-flow-data-table; for Flow, Display Text, and Lightning Web Component types it is drawn by c-header. The header uses Header Title, Subtitle, Icon Name, Top Margin, Header Text, and Header Text Variant. Defaults to false.</description>
+    <inlineHelpText>Turn on to show a header (title, subtitle, icon, and optional rich text) above this section's content. The header's text and icon come from the Header fields on the Header tab; leave off for a header-less section.</inlineHelpText>
+    <label>Display Header</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

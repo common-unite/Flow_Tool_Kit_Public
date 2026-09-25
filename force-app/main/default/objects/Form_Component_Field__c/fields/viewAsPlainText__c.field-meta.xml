@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>viewAsPlainText__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>System Field: When enabled edit/add html to the field&apos;s rich text label input (builder-only preference; does not affect runtime).</description>
+    <label>viewAsPlainText</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

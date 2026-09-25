@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submit_Button_Label__c</fullName>
+    <defaultValue>&apos;Submit Form&apos;</defaultValue>
+    <description>Template-level label for the form's true final submit button, so the submit wording no longer borrows from the last page's Button_Label__c (#244). Renders on the review page's submit button, on the Stages Mode overview button when all required stages are complete and no review screen is enabled, and on the effective last visible page's forward button in the linear runtime when no review screen is enabled — conditional page rules can hide the authored final page, so the runtime resolves the last VISIBLE page (formTemplate.js lastRealPage). Blank falls back to the effective last page's Button Label and then to Submit, preserving pre-#244 behavior for upgraded templates. Unrestricted picklist per the packaging value-propagation rule; values resolve through getPicklistValues so Translation Workbench translations apply.</description>
+    <inlineHelpText>Choose the wording for the form's final submit button, such as Submit Form or Submit Application. It appears on the review page and, when no review screen is enabled, wherever the form is submitted. Leave it blank to keep using the last page's Button Label.</inlineHelpText>
+    <label>Submit Button Label</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Submit</fullName>
+                <default>false</default>
+                <label>Submit</label>
+            </value>
+            <value>
+                <fullName>Submit Form</fullName>
+                <default>true</default>
+                <label>Submit Form</label>
+            </value>
+            <value>
+                <fullName>Submit Application</fullName>
+                <default>false</default>
+                <label>Submit Application</label>
+            </value>
+            <value>
+                <fullName>Submit Registration</fullName>
+                <default>false</default>
+                <label>Submit Registration</label>
+            </value>
+            <value>
+                <fullName>Submit Payment</fullName>
+                <default>false</default>
+                <label>Submit Payment</label>
+            </value>
+            <value>
+                <fullName>Save</fullName>
+                <default>false</default>
+                <label>Save</label>
+            </value>
+            <value>
+                <fullName>Save Proposal</fullName>
+                <default>false</default>
+                <label>Save Proposal</label>
+            </value>
+            <value>
+                <fullName>Register</fullName>
+                <default>false</default>
+                <label>Register</label>
+            </value>
+            <value>
+                <fullName>Apply Now</fullName>
+                <default>false</default>
+                <label>Apply Now</label>
+            </value>
+            <value>
+                <fullName>Update</fullName>
+                <default>false</default>
+                <label>Update</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Skip_Prefill__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When true, the formTemplate runtime does not apply Prefill Values to new Form Submissions, and the before-trigger does not auto-create a Prefill Template on insert. Use to disable template-level prefill while keeping URL parameter mapping and prefill Flows in play.</description>
+    <inlineHelpText>When enabled, new submissions skip all pre-fill, so neither the Pre-fill Template nor the Pre-fill Flow runs. Use it to force a completely blank form even when a pre-fill source is configured.</inlineHelpText>
+    <label>Skip Prefill</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

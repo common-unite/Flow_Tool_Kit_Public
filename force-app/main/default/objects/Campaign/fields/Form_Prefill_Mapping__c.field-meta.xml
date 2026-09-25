@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Prefill_Mapping__c</fullName>
+    <description>Source prefill mapping JSON, keyed by Form Submission field: {"FlowToolKit__Company__c":"Name"}. New submissions launched from this Campaign copy the mapped Campaign values onto the submission, winning over the Pre-fill Template. Managed by the Source Field Mappings builder on the Pre-fill tab of the source configurator.</description>
+    <label>Form Prefill Mapping</label>
+    <length>32768</length>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

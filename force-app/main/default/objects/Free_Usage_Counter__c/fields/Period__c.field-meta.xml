@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Period__c</fullName>
+    <description>Calendar month (yyyy-MM) the current count applies to. When a new month arrives the count resets to zero on the next qualifying insert.</description>
+    <externalId>false</externalId>
+    <label>Period</label>
+    <length>7</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

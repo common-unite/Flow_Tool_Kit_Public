@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Update_Most_Confident_Contact__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Per-section override of Contact duplicate-match resolution, read by Form_Submission_Convert_Setup (getPageSection branch, falling back to the Form Template's value). When the Contact Matching Rules return more than one match, true updates the most confident match instead of creating a new Contact during conversion.</description>
+    <inlineHelpText>When the Contact matching rules find several possible matches during conversion, turn this on to update the most confident match rather than create a new Contact. This setting applies to just this section and otherwise inherits the Form Template's setting.</inlineHelpText>
+    <label>Update Most Confident (Contact)</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Score_Label__c</fullName>
+    <description>Label rendered beside the Likert Matrix total row's score when Show_Total_Score__c is on (#144), for example "GAD-7 total" or "Satisfaction score". Blank falls back to a generic Total Score label at runtime. Plain text; renders through the standard label merge pipeline so {{merge}} fields resolve.</description>
+    <inlineHelpText>The wording shown next to the total under the matrix, such as GAD-7 Total or Satisfaction Score. Leave blank for a generic Total Score label.</inlineHelpText>
+    <label>Total Score Label</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

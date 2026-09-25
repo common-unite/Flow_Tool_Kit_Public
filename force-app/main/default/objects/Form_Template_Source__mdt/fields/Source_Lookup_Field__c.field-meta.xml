@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source_Lookup_Field__c</fullName>
+    <description>Optional. API name of a lookup field on Form_Submission__c that points back to this source object (e.g., FlowToolKit__Campaign__c). When set, the source record Id is stamped on the submission via this lookup in addition to Source_Id__c. Useful for reports, list views, and platform event conversion flows. Source_Id__c is always populated regardless of this setting.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Source Lookup Field</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Table_Disable_Row_Action_Indicators__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, hides the per-row action indicators (disable-row-action-indicators on c-flow-data-table), the small affordances that flag which rows have available actions. Applies to Table sections only.</description>
+    <inlineHelpText>Turn on to hide the small per-row action indicators in the table. Applies to Table sections only.</inlineHelpText>
+    <label>Disable Row Indicator&apos;s</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Illustration_Type__c</fullName>
+    <label>Illustration Type</label>
+    <description>The SLDS illustration scene rendered by an illustration section. Values mirror the displayIllustration component's type list.</description>
+    <inlineHelpText>Choose the illustration scene shown by this section.</inlineHelpText>
+    <type>Picklist</type>
+    <required>false</required>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Base</fullName><default>true</default><label>Base</label></value>
+            <value><fullName>Camping</fullName><default>false</default><label>Camping</label></value>
+            <value><fullName>Maintenance</fullName><default>false</default><label>Maintenance</label></value>
+            <value><fullName>Desert</fullName><default>false</default><label>Desert</label></value>
+            <value><fullName>Road</fullName><default>false</default><label>Road</label></value>
+            <value><fullName>No Access</fullName><default>false</default><label>No Access</label></value>
+            <value><fullName>Balloon</fullName><default>false</default><label>Balloon</label></value>
+            <value><fullName>Lightning</fullName><default>false</default><label>Lightning</label></value>
+            <value><fullName>Axe</fullName><default>false</default><label>Axe</label></value>
+            <value><fullName>Not Available</fullName><default>false</default><label>Not Available</label></value>
+            <value><fullName>Fishing</fullName><default>false</default><label>Fishing</label></value>
+            <value><fullName>Mountain</fullName><default>false</default><label>Mountain</label></value>
+            <value><fullName>No Events</fullName><default>false</default><label>No Events</label></value>
+            <value><fullName>No Tasks</fullName><default>false</default><label>No Tasks</label></value>
+            <value><fullName>Setup</fullName><default>false</default><label>Setup</label></value>
+            <value><fullName>Gone Fishing</fullName><default>false</default><label>Gone Fishing</label></value>
+            <value><fullName>No Access #2</fullName><default>false</default><label>No Access #2</label></value>
+            <value><fullName>No Content</fullName><default>false</default><label>No Content</label></value>
+            <value><fullName>No Preview</fullName><default>false</default><label>No Preview</label></value>
+            <value><fullName>Preview</fullName><default>false</default><label>Preview</label></value>
+            <value><fullName>Research</fullName><default>false</default><label>Research</label></value>
+            <value><fullName>Approval</fullName><default>false</default><label>Approval</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

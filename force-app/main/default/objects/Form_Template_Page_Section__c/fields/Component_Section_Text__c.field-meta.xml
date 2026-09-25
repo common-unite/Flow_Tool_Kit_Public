@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Component_Section_Text__c</fullName>
+    <description>Rich text rendered by this section. For Display Text sections it is the section's body, shown through c-flow-form-rich-text. For other component types it renders as intro text above the form (showIntroText). Supports {{merge}} fields resolved against the live Form Submission record (liveRecord falling back to the prefill record), so values update as the user types. Honors Message Variant for status-card styling.</description>
+    <inlineHelpText>Rich text shown in this section: it is the body of a Display Text section, or intro copy above the form for other types. You can use merge fields that read from the form's values, and pair it with Message Variant to style it as an info, warning, error, or success card.</inlineHelpText>
+    <label>Section Text</label>
+    <length>32000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

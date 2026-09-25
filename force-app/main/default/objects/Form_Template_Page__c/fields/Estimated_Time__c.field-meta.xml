@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Estimated_Time__c</fullName>
+    <description>Optional time estimate in whole minutes shown as a chip on this page's stage card in Stages Mode (formTemplate.js renders `${value} min`). The stages overview also sums these across pages to compute the total time remaining shown at the top. Leave blank to omit the chip for this stage. Number(3,0) — enter 4 to display '4 min'. Queried onto Form_Submission_Stage__c via FormTemplate_Utility. No effect in the linear runtime.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter a whole number of minutes (e.g. 4) to show a time-estimate chip on this page's card in the Stages view. The overview also adds these up to show total time remaining; leave it blank to hide the chip for this stage.</inlineHelpText>
+    <label>Estimated Time (Minutes)</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

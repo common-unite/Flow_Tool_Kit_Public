@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_Question_2__c</fullName>
+    <description>Generic date answer slot. A simple landing spot for one-off date questions: give it a custom label on the form, without building an explicit field for every question.</description>
+    <label>Date Question 2</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subtitle_Field__c</fullName>
+    <description>Field on the source object to use as the form subtitle, overriding Form_Template__c.Form_Template_Subtitle__c.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Subtitle Field</label>
+    <metadataRelationshipControllingField>Form_Template_Source__mdt.Source_Object__c</metadataRelationshipControllingField>
+    <referenceTo>FieldDefinition</referenceTo>
+    <relationshipLabel>Form Template Sources (Subtitle)</relationshipLabel>
+    <relationshipName>Form_Template_Sources_Subtitle</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Button_Alignment__c</fullName>
+    <defaultValue>&apos;center&apos;</defaultValue>
+    <description>Controls horizontal alignment of the navigation buttons (Previous / Next / Finish / Save Progress) rendered by the formTemplate runtime. Maps to start, center (default), end, spread, or space justification.</description>
+    <inlineHelpText>Choose how the navigation buttons line up at the bottom of each page: start, center, end, spread, or evenly spaced. Center is the default.</inlineHelpText>
+    <label>Button Alignment</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>start</fullName>
+                <default>false</default>
+                <label>Left</label>
+            </value>
+            <value>
+                <fullName>center</fullName>
+                <default>true</default>
+                <label>Center</label>
+            </value>
+            <value>
+                <fullName>end</fullName>
+                <default>false</default>
+                <label>Right</label>
+            </value>
+            <value>
+                <fullName>spread</fullName>
+                <default>false</default>
+                <label>Spread</label>
+            </value>
+            <value>
+                <fullName>space</fullName>
+                <default>false</default>
+                <label>Space</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>hideHeaders__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When enabled on a Component Section, suppresses all section headers from the referenced component when rendered inside the parent form.</description>
+    <label>Hide Headers</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

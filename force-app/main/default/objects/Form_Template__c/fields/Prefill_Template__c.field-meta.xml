@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prefill_Template__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lookup to a Prefill record-type Form_Submission__c whose field values seed every new Form Submission for this template (no Flow required). The before-trigger auto-creates one Prefill template on insert unless Skip Prefill is on or the record is a clone (SourceId populated). Skipped at runtime when Skip Prefill is true.</description>
+    <inlineHelpText>When assigned, the linked Form Submission record supplies default values for every new submission of this template, with no code required. The record must have Is Prefill Template set to TRUE, and multiple templates can share the same pre-fill record.</inlineHelpText>
+    <label>Pre-fill Template</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <filterItems>
+            <field>Form_Submission__c.IsPrefillTemplate__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <filterItems>
+            <field>Form_Submission__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Pre-fill Template</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Form_Submission__c</referenceTo>
+    <relationshipLabel>Assigned to Form Templates</relationshipLabel>
+    <relationshipName>Form_Templates</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

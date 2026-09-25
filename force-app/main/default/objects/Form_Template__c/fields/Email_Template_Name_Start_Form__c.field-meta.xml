@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Template_Name_Start_Form__c</fullName>
+    <description>Developer name of the Salesforce EmailTemplate used by the Form_Submission_Send_Start_Link autolaunched flow when a new Form Submission is inserted with Internal_Unique_Token__c populated (the admin-initiated invitation pattern). Leave blank to opt this template out of the invitation send — the package will not send an email for inserts on Form Templates where this field is blank.</description>
+    <inlineHelpText>DeveloperName of the Salesforce EmailTemplate to use when the package sends an admin-initiated start-form invitation email. Leave blank to opt out — no invitation email is sent for inserts on this template.</inlineHelpText>
+    <label>Email Template Name (Start Form)</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Details__c</fullName>
+    <description>Rich-text instructions rendered inside the page body, above the page's sections, by the formTemplatePageSection LWC (lightning-formatted-rich-text bound to Details__c). Use it for guidance the respondent reads while filling the page — what to enter, document requirements, eligibility notes. Distinct from Description (the Stages-view card subtitle) and from Page Title / Page Footer. Shows in both the linear and Stages runtimes whenever the page is open. Also surfaced in the FormTemplate_PDF_Controller output. HTML field.</description>
+    <inlineHelpText>Add rich-text instructions that appear in the page body above the form sections, guiding the respondent as they complete this page. Use it for help text, document requirements, or eligibility notes; unlike Description, this shows on the page itself in both linear and Stages runtimes.</inlineHelpText>
+    <label>Details</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

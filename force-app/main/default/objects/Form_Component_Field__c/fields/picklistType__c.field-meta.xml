@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>picklistType__c</fullName>
+    <defaultValue>&apos;standard&apos;</defaultValue>
+    <label>picklistType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>standard</fullName>
+                <default>true</default>
+                <label>standard</label>
+            </value>
+            <value>
+                <fullName>radio</fullName>
+                <default>false</default>
+                <label>radio</label>
+            </value>
+            <value>
+                <fullName>radiobuttons</fullName>
+                <default>false</default>
+                <label>radiobuttons</label>
+            </value>
+            <value>
+                <fullName>separatedbuttons</fullName>
+                <default>false</default>
+                <label>Radio Buttons (Separated)</label>
+            </value>
+            <value>
+                <fullName>iconbuttons</fullName>
+                <default>false</default>
+                <label>iconbuttons</label>
+            </value>
+            <value>
+                <fullName>pathbuttons</fullName>
+                <default>false</default>
+                <label>pathbuttons</label>
+            </value>
+            <value>
+                <fullName>multiselectcheckbox</fullName>
+                <default>false</default>
+                <label>multiselectcheckbox</label>
+            </value>
+            <value>
+                <fullName>multiselectbadge</fullName>
+                <default>false</default>
+                <label>multiselectbadge</label>
+            </value>
+            <value>
+                <fullName>selectallmultiselectcheckbox</fullName>
+                <default>false</default>
+                <label>selectallmultiselectcheckbox</label>
+            </value>
+            <value>
+                <fullName>combobox</fullName>
+                <default>false</default>
+                <label>Combobox</label>
+            </value>
+            <value>
+                <fullName>surveybuttons</fullName>
+                <default>false</default>
+                <label>Survey Buttons</label>
+            </value>
+            <value>
+                <fullName>visualpicker</fullName>
+                <default>false</default>
+                <label>Visual Picker</label>
+            </value>
+            <value>
+                <fullName>iconselector</fullName>
+                <default>false</default>
+                <label>Icon Selector</label>
+            </value>
+            <value>
+                <fullName>emailtemplateselector</fullName>
+                <default>false</default>
+                <label>Email Template Selector</label>
+            </value>
+            <value>
+                <fullName>imageassetselector</fullName>
+                <default>false</default>
+                <label>Image Asset Selector</label>
+            </value>
+            <value>
+                <fullName>stylesheetselector</fullName>
+                <default>false</default>
+                <label>Style Sheet Selector</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conversion_Rules__c</fullName>
+    <description>Multi-select set of conversion directives evaluated (with Contains) by the Process Form Submission convert Flows to decide which records to build from a submission — e.g. Contact1, Contact2, Account, Lead1/Lead2, Create Case, Opportunity, and address/Campaign-Member sub-actions. Options are filtered by the controlling Conversion Type. Numbered suffixes (Contact1 vs Contact2) map to the primary and secondary record on the submission.</description>
+    <inlineHelpText>Select every record the submission should create or update on conversion (Contact, second Contact, Account, Lead, Case, Opportunity, address and Campaign Member options). The available choices depend on the Conversion Type you picked.</inlineHelpText>
+    <label>Conversion Rules</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Conversion_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account</fullName>
+                <default>false</default>
+                <label>Account</label>
+            </value>
+            <value>
+                <fullName>Account 👉 Set Billing Address</fullName>
+                <default>false</default>
+                <label>Account 👉 Set Billing Address</label>
+            </value>
+            <value>
+                <fullName>Account 👉 Set Shipping Address</fullName>
+                <default>false</default>
+                <label>Account 👉 Set Shipping Address</label>
+            </value>
+            <value>
+                <fullName>Contact1</fullName>
+                <default>false</default>
+                <label>Contact1</label>
+            </value>
+            <value>
+                <fullName>Contact1 👉 Set Mailing Address</fullName>
+                <default>false</default>
+                <label>Contact1 👉 Set Mailing Address</label>
+            </value>
+            <value>
+                <fullName>Contact1 👉 Set Other Address</fullName>
+                <default>false</default>
+                <label>Contact1 👉 Set Other Address</label>
+            </value>
+            <value>
+                <fullName>Contact1 👉 Add to Account</fullName>
+                <default>false</default>
+                <label>Contact1 👉 Add to Account</label>
+            </value>
+            <value>
+                <fullName>Contact1 👉 Create Campaign Member</fullName>
+                <default>false</default>
+                <label>Contact1 👉 Create Campaign Member</label>
+            </value>
+            <value>
+                <fullName>Contact2</fullName>
+                <default>false</default>
+                <label>Contact2</label>
+            </value>
+            <value>
+                <fullName>Contact2 👉 Set Mailing Address</fullName>
+                <default>false</default>
+                <label>Contact2 👉 Set Mailing Address</label>
+            </value>
+            <value>
+                <fullName>Contact2 👉 Set Other Address</fullName>
+                <default>false</default>
+                <label>Contact2 👉 Set Other Address</label>
+            </value>
+            <value>
+                <fullName>Contact2 👉 Add to Account</fullName>
+                <default>false</default>
+                <label>Contact2 👉 Add to Account</label>
+            </value>
+            <value>
+                <fullName>Contact2 👉 Create Campaign Member</fullName>
+                <default>false</default>
+                <label>Contact2 👉 Create Campaign Member</label>
+            </value>
+            <value>
+                <fullName>Lead1</fullName>
+                <default>false</default>
+                <label>Lead1</label>
+            </value>
+            <value>
+                <fullName>Lead1 👉 Create Campaign Member</fullName>
+                <default>false</default>
+                <label>Lead1 👉 Create Campaign Member</label>
+            </value>
+            <value>
+                <fullName>Lead2</fullName>
+                <default>false</default>
+                <label>Lead2</label>
+            </value>
+            <value>
+                <fullName>Lead2 👉 Create Campaign Member</fullName>
+                <default>false</default>
+                <label>Lead2 👉 Create Campaign Member</label>
+            </value>
+            <value>
+                <fullName>Create Case</fullName>
+                <default>false</default>
+                <label>Create Case</label>
+            </value>
+            <value>
+                <fullName>Opportunity 💰</fullName>
+                <default>false</default>
+                <label>Opportunity 💰</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Lead(s)</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Lead1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead(s)</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Lead1 👉 Create Campaign Member</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead(s)</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Lead2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead(s)</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Lead2 👉 Create Campaign Member</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead(s)</controllingFieldValue>
+            <controllingFieldValue>Contact(s)</controllingFieldValue>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Create Case</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contact(s)</controllingFieldValue>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contact(s)</controllingFieldValue>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact1 👉 Set Mailing Address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contact(s)</controllingFieldValue>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact1 👉 Set Other Address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contact(s)</controllingFieldValue>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact1 👉 Create Campaign Member</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contact(s)</controllingFieldValue>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contact(s)</controllingFieldValue>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact2 👉 Set Mailing Address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contact(s)</controllingFieldValue>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact2 👉 Set Other Address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contact(s)</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact2 👉 Create Campaign Member</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Account</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Account 👉 Set Billing Address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Account 👉 Set Shipping Address</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact1 👉 Add to Account</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Contact2 👉 Add to Account</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Account</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Opportunity 💰</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

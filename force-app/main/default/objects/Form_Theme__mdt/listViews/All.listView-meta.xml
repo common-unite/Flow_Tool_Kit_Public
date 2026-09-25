@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>MasterLabel</columns>
+    <columns>DeveloperName</columns>
+    <columns>formBackgroundColor__c</columns>
+    <columns>sectionBackgroundColor__c</columns>
+    <columns>borderColor__c</columns>
+    <columns>borderRadius__c</columns>
+    <columns>borderSize__c</columns>
+    <columns>headingBackgroundColor__c</columns>
+    <columns>headingFontColor__c</columns>
+    <columns>headingIconColor__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Delete__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>All</label>
+</ListView>

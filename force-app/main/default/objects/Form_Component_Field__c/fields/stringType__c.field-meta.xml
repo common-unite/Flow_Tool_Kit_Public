@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>stringType__c</fullName>
+    <defaultValue>&apos;standard&apos;</defaultValue>
+    <description>String field display override (#250, #249), following the per-datatype *Type__c override family (picklistType__c, longTextType__c, richTextType__c). standard renders the normal single-line input; textarea renders the string as a lightning-textarea honoring textAreaMinHeight__c / textAreaMaxHeight__c. Selector values (icon, form component, email template, image asset, style sheet) are offered dynamically in Form Builder only for fields whose API name matches the selector&apos;s semantic pattern; the chosen selector writes a plain string value that rides the form&apos;s normal save.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Overrides how a text field displays on the form. Text Area renders a multi-line input with configurable minimum and maximum height. Selector options appear only for fields whose API name matches the selector&apos;s purpose.</inlineHelpText>
+    <label>stringType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>standard</fullName>
+                <default>true</default>
+                <label>standard</label>
+            </value>
+            <value>
+                <fullName>textarea</fullName>
+                <default>false</default>
+                <label>Text Area</label>
+            </value>
+            <value>
+                <fullName>iconselector</fullName>
+                <default>false</default>
+                <label>Icon Selector</label>
+            </value>
+            <value>
+                <fullName>emailtemplateselector</fullName>
+                <default>false</default>
+                <label>Email Template Selector</label>
+            </value>
+            <value>
+                <fullName>imageassetselector</fullName>
+                <default>false</default>
+                <label>Image Asset Selector</label>
+            </value>
+            <value>
+                <fullName>stylesheetselector</fullName>
+                <default>false</default>
+                <label>Style Sheet Selector</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

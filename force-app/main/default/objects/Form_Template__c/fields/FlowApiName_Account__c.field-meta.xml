@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FlowApiName_Account__c</fullName>
+    <description>API name of the autolaunched Flow that builds/updates the Account during conversion. The Form_Submission_Convert__e trigger resolves it (namespace-tolerant), confirms it is an active autolaunched Flow with a Form_Submission_Convert__e input variable, and invokes it. Blank uses the package's default Account conversion Flow.</description>
+    <externalId>false</externalId>
+    <formula>IF(BlankValue(TEXT(Conversion_Map_Flow_Account__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Account.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow_Account__c))</formula>
+    <inlineHelpText>Advanced override: API name of the Flow that creates or updates the Account when a submission converts. Leave blank to use the default Account conversion Flow.</inlineHelpText>
+    <label>FlowApiName (Account)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

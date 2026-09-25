@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Start_Date__c</fullName>
+    <description>Optional datetime that opens an availability window. The formTemplate runtime blocks rendering and shows the Offline Message while now is before this value; leave blank for no start gate. Combined with Close Date this schedules a time-limited form.</description>
+    <inlineHelpText>The form only accepts submissions on or after this date and time. Leave it blank to make the form available immediately; it pairs with Close Date to define an availability window.</inlineHelpText>
+    <label>Start Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

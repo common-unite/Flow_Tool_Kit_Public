@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FlowApiName_Contact2__c</fullName>
+    <description>API name of the autolaunched Flow that builds/updates the secondary Contact (Contact2) during conversion. Resolved and invoked by the Form_Submission_Convert__e trigger; must be an active autolaunched Flow accepting a Form_Submission_Convert__e input. Blank uses the package default.</description>
+    <externalId>false</externalId>
+    <formula>IF(BlankValue(TEXT(Conversion_Map_Flow_Contact2__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Alternate_Contact.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow_Contact2__c))</formula>
+    <inlineHelpText>Advanced override: API name of the Flow that creates or updates the second Contact on conversion. Leave blank to use the default Contact conversion Flow.</inlineHelpText>
+    <label>FlowApiName (Contact2)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,6 +1,6 @@
 # Unreleased: conditional logic performance (#687)
 
-Form Template conditional show and hide is fast again. One toggle on a large template used to trigger hundreds of messages and full rule passes across every section; now the sections only announce real changes, the template only pushes real changes, and a pushed record applies only what differs. On the KCCG membership template one toggle's script work dropped from 1.1 to 2.3 seconds to under 0.4 seconds.
+Form Template conditional show and hide is fast again. One toggle on a large template used to trigger hundreds of messages and full rule passes across every section; now the sections only announce real changes, the template only pushes real changes, and a pushed record applies only what differs. On a large membership template one toggle's script work dropped from 1.1 to 2.3 seconds to under 0.4 seconds.
 
 ## What changed for subscribers
 

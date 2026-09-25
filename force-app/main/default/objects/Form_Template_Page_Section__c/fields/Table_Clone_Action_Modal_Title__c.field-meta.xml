@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Table_Clone_Action_Modal_Title__c</fullName>
+    <description>Heading for the clone-record modal on Table sections, passed as clone-record-modal-heading to c-flow-data-table. Applies only to Table component types when Enable Clone Action is checked.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Title for the popup that opens when a user duplicates a row in a Table section. Applies to Tables only and requires Enable Clone Action.</inlineHelpText>
+    <label>Modal Title</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

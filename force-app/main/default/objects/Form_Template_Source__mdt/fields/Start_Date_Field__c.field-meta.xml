@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Start_Date_Field__c</fullName>
+    <description>Date or DateTime field on the source object for when submissions open. Overrides Form_Template__c.Start_Date__c with date merging logic.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Start Date Field</label>
+    <metadataRelationshipControllingField>Form_Template_Source__mdt.Source_Object__c</metadataRelationshipControllingField>
+    <referenceTo>FieldDefinition</referenceTo>
+    <relationshipLabel>Form Template Sources (Start Date)</relationshipLabel>
+    <relationshipName>Form_Template_Sources_Start</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

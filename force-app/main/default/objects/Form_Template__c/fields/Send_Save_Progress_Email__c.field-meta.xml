@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Save_Progress_Email__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When enabled, an email will be sent immediately after a form is saved</description>
+    <inlineHelpText>Turn on to email users a confirmation each time they save their progress. Set the message with the Email Template Name (Saved) field.</inlineHelpText>
+    <label>Send Save Progress Email</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

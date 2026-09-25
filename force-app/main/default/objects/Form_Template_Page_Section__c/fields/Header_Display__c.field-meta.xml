@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Display__c</fullName>
+    <defaultValue>&quot;Header&quot;</defaultValue>
+    <description>How the page section renders its header when Show Header is enabled: the standard header card, or a divider in the style chosen in Header Divider Style.</description>
+    <inlineHelpText>Choose how this section&apos;s header is rendered. &quot;Header&quot; renders the standard header card; &quot;Divider&quot; renders the header&apos;s icon, title and subtitle in the divider style selected in Header Divider Style.</inlineHelpText>
+    <label>Header Display</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Header</fullName>
+                <default>true</default>
+                <label>Header</label>
+            </value>
+            <value>
+                <fullName>Divider</fullName>
+                <default>false</default>
+                <label>Divider</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

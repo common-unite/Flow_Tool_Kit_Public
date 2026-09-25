@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Override Flow and Form Styles with a local Style Sheet (Static Resource).</description>
+    <label>Form_Style_Sheet</label>
+    <pluralLabel>Form_Style_Sheets</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

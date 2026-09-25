@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Min__c</fullName>
+    <defaultValue>1</defaultValue>
+    <description>Minimum number of child rows required for Repeater and Table sections. Passed as min to c-flow-form-repeat and c-flow-data-table, which enforce the floor and gate delete actions. Leave blank for no minimum.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The fewest rows a user must have in this repeater or table. Users cannot delete below this count; leave blank to set no minimum.</inlineHelpText>
+    <label>Min</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

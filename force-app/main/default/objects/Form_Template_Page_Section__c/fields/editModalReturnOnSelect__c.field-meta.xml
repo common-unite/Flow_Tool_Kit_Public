@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>editModalReturnOnSelect__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Repeater configuration flag. When true, clicking the select button inside the repeater edit modal commits and closes the modal immediately (handleEditModalCancel) and hides the separate Return button. Passed into the repeater configuration via edit-modal-return-on-select on c-flow-form-repeat. Use for pick-and-return style selection rather than open-ended editing.</description>
+    <inlineHelpText>Turn on so that selecting a record inside the repeater's edit popup immediately saves and closes it. Leave off to keep the popup open with a separate Return button until the user is done.</inlineHelpText>
+    <label>Return on Select</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

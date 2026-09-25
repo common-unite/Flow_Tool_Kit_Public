@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assigned_User__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Per-stage responsible user. Optional — Customer Community Plus admins can reassign within their Account to delegate stages across a team. Master-detail sharing on the parent submission means any qualified user can edit the stage regardless of who is assigned.</description>
+    <inlineHelpText>The user responsible for this stage. Optional. Reassign to delegate the stage to another user.</inlineHelpText>
+    <label>Assigned User</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Assigned Form Submission Stages</relationshipLabel>
+    <relationshipName>Assigned_Form_Submission_Stages</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

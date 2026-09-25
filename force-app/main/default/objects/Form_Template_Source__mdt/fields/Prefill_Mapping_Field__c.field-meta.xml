@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prefill_Mapping_Field__c</fullName>
+    <description>Long text field on the source object that stores the source prefill mapping JSON, keyed by target: {"FlowToolKit__Company__c":"Name"} maps the source record's Name onto the submission's Company on every NEW submission. Mapped values are resolved at load, win over the Prefill Template, and are edited through the Source Field Mappings builder on the configurator's Pre-fill tab.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>Choose a long text field on the source object to hold the field mapping JSON. Admins build the mappings visually on the Pre-fill tab of the source configurator; each new submission then copies the mapped source values, overriding any Pre-fill Template defaults.</inlineHelpText>
+    <label>Prefill Mapping Field</label>
+    <metadataRelationshipControllingField>Form_Template_Source__mdt.Source_Object__c</metadataRelationshipControllingField>
+    <referenceTo>FieldDefinition</referenceTo>
+    <relationshipLabel>Form Template Sources (Prefill Mapping)</relationshipLabel>
+    <relationshipName>Form_Template_Sources_Prefill_Mapping</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

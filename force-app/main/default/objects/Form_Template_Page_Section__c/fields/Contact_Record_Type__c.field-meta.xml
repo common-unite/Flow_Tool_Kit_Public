@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Record_Type__c</fullName>
+    <description>Record type applied to Contacts created from this section's related records during conversion. Read in Form_Submission_Convert_Upsert_Contact_Overridable as the section's own value; a blank leaves RecordTypeId unset so Salesforce assigns the converting user's default Contact record type. The section never inherits the Form Template's Contact Record Type.</description>
+    <inlineHelpText>Pick the record type for Contacts this section creates. Leave blank to use the converting user's default Contact record type.</inlineHelpText>
+    <label>Contact (Record Type)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Contact_Record_Type</valueSetName>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>booleanType__c</fullName>
+    <defaultValue>&apos;default&apos;</defaultValue>
+    <description>Defaults to Toggle</description>
+    <label>booleanType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>checkbox</fullName>
+                <default>false</default>
+                <label>checkbox</label>
+            </value>
+            <value>
+                <fullName>picklist</fullName>
+                <default>false</default>
+                <label>picklist</label>
+            </value>
+            <value>
+                <fullName>radio</fullName>
+                <default>false</default>
+                <label>radio</label>
+            </value>
+            <value>
+                <fullName>radiobuttons</fullName>
+                <default>false</default>
+                <label>radiobuttons</label>
+            </value>
+            <value>
+                <fullName>attestation</fullName>
+                <default>false</default>
+                <label>attestation</label>
+            </value>
+            <value>
+                <fullName>default</fullName>
+                <default>true</default>
+                <label>default</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

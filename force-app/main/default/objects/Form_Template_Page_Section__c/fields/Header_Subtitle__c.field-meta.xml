@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Subtitle__c</fullName>
+    <description>Header subtitle rich text shown beneath the Header Title when Show Header is checked. Passed as subtitle to the section's form/header component.</description>
+    <inlineHelpText>Smaller supporting text shown under the header title. Requires Show Header to be on.</inlineHelpText>
+    <label>Subtitle</label>
+    <length>5000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

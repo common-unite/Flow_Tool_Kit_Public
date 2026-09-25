@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prefill_Values__c</fullName>
+    <description>Serialized JSON snapshot of the Prefill Template's field values. On load of a fresh Form Submission the formTemplate runtime parses this and applies it as the submission's starting state, unless Skip Prefill is true. Maintained by the prefill editor; not edited by hand.</description>
+    <inlineHelpText>Holds the saved default values applied to new form submissions. Managed automatically by the Edit Prefilled Template editor; you normally do not edit this raw JSON directly.</inlineHelpText>
+    <label>Prefill Values</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

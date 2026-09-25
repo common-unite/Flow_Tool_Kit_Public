@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Data_Conversion_Tag_s__c</fullName>
+    <defaultValue>&quot;Default&quot;</defaultValue>
+    <description>Optional tags for this template. They are NOT consumed by the package's conversion engine - no packaged flow or Apex reads them. They are stamped onto each new submission's Internal_Data_Conversion_Tag_s__c by the sample Global Form Submission Utility flows (force-app-demo, unpackaged) or by your own automation, so you can branch your own record-triggered Flows on which template produced a submission. A page section can override these per section via Form_Template_Page_Section__c.Data_Conversion_Tag_s__c.</description>
+    <inlineHelpText>Optional tags stamped onto each submission from this template - by the sample submission-utility flow or your own automation. Reference them in your own record-triggered Flow entry conditions to route or process submissions by template; the package's built-in conversion does not read them.</inlineHelpText>
+    <label>Data Conversion Tag(s)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Data_Conversion_Tag_s</valueSetName>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

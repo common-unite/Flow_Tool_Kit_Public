@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Position__c</fullName>
+    <defaultValue>0</defaultValue>
+    <description>Numeric display order of this section within its Form Template Page (ascending). Drives the section sequence on the page; combined with the page's Position into the SortPosition formula. Defaults to 0. Use increments (10, 20, 30) to leave room for insertions.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The order this section appears within its page, sorted lowest to highest. Use spaced numbers like 10, 20, 30 so you can insert sections later without renumbering.</inlineHelpText>
+    <label>Position</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

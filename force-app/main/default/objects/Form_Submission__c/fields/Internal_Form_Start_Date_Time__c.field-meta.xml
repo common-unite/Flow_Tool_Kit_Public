@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Internal_Form_Start_Date_Time__c</fullName>
+    <description>This is an internal field used to track the moment a new form spins up, which is when the respondent's session begins. CreatedDate only reflects the record insert, and deferred-save and autosave-off configurations can delay that insert well past the true start, so use this field as the anchor for time-to-complete and abandonment reporting. It is stamped once and never overwritten on resume, Save Progress, autosave or submit. Prefill templates are never stamped, and the value is never carried into a submission seeded from a prefill template.</description>
+    <label>Form Start Date Time</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

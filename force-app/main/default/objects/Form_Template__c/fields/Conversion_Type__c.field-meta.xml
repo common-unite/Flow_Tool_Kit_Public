@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conversion_Type__c</fullName>
+    <defaultValue>&apos;Bypass&apos;</defaultValue>
+    <description>Top-level data-conversion mode for submissions of this template and the controlling field for Conversion Rules. Bypass (default) runs no conversion; Lead(s), Contact(s), Account, or Other unlock the matching Conversion Rules options that the convert Flows evaluate to decide which target objects to create.</description>
+    <inlineHelpText>Pick what a completed submission should become: Bypass (do nothing), Lead(s), Contact(s), Account, or Other. Your choice unlocks the relevant Conversion Rules below.</inlineHelpText>
+    <label>Conversion Type</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bypass</fullName>
+                <default>true</default>
+                <label>Bypass</label>
+            </value>
+            <value>
+                <fullName>Lead(s)</fullName>
+                <default>false</default>
+                <label>Lead(s)</label>
+            </value>
+            <value>
+                <fullName>Contact(s)</fullName>
+                <default>false</default>
+                <label>Contact(s)</label>
+            </value>
+            <value>
+                <fullName>Account</fullName>
+                <default>false</default>
+                <label>Account</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

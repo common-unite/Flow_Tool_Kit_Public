@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Template_Name_Confirmation__c</fullName>
+    <description>DeveloperName of the Salesforce EmailTemplate the confirmation Flow uses to build the email sent when a new submission is received. Resolved at send time (falls back to a source-resolved template if present). Requires Send Confirmation Email enabled.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the Developer Name of the Salesforce email template used for the confirmation email sent after a submission. Set the template's object type to Form Submission so its merge fields resolve, or leave blank to use the package's default confirmation body.</inlineHelpText>
+    <label>Email Template Name (Confirmation)</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

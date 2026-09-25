@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FlowApiName__c</fullName>
+    <description>API name of the Autolaunched Flow to pass this event into. REQUIRED: the dispatcher routes solely on this value and does nothing with an event that leaves it blank. Naming the flow is what keeps each conversion step a plain autolaunched flow, which can be debugged and can call subflows.</description>
+    <externalId>false</externalId>
+    <isFilteringDisabled>false</isFilteringDisabled>
+    <isNameField>false</isNameField>
+    <isSortingDisabled>false</isSortingDisabled>
+    <label>Flow Api Name</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

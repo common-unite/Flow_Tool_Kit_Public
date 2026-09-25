@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>numberPresets__c</fullName>
+    <description>Preset amount configuration for numberType__c = presetamounts (#254): JSON object {"enableCustomValues": boolean, "options": [{"label": "$25", "value": 25}, ...]}, edited via the Edit Preset Amounts modal in Form Builder. flowFormNumberInput renders one chip per option (active when the field value matches) and shows the inline custom input when enableCustomValues is true or the current value matches no option. There is never an Other button.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Quick-pick amounts for a numeric field, managed from the Edit Preset Amounts editor in Form Builder. Each option pairs a label with the number it stores; enable custom values to always offer a free-entry input beside the chips.</inlineHelpText>
+    <label>Number Presets</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>6</visibleLines>
+</CustomField>

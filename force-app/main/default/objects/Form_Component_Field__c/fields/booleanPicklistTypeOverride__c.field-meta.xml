@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>booleanPicklistTypeOverride__c</fullName>
+    <defaultValue>&apos;default&apos;</defaultValue>
+    <description>Defaults to True/False</description>
+    <label>booleanPicklistTypeOverride</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Active/Inactive</fullName>
+                <default>false</default>
+                <label>Active/Inactive</label>
+            </value>
+            <value>
+                <fullName>Yes/No</fullName>
+                <default>false</default>
+                <label>Yes/No</label>
+            </value>
+            <value>
+                <fullName>Enabled/Disabled</fullName>
+                <default>false</default>
+                <label>Enabled/Disabled</label>
+            </value>
+            <value>
+                <fullName>Valid/Invalid</fullName>
+                <default>false</default>
+                <label>Valid/Invalid</label>
+            </value>
+            <value>
+                <fullName>On/Off</fullName>
+                <default>false</default>
+                <label>On/Off</label>
+            </value>
+            <value>
+                <fullName>default</fullName>
+                <default>true</default>
+                <label>default</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

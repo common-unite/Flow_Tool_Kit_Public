@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Table_New_Action_Modal_Title__c</fullName>
+    <description>Heading for the new-record modal on Table sections, passed as new-record-modal-heading to c-flow-data-table. Applies only to Table component types when Enable New Action is checked (repeaters add rows inline, not via this modal).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Title for the popup that opens when a user adds a new row to a Table section. Applies to Tables only and requires Enable New Action.</inlineHelpText>
+    <label>Modal Title</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

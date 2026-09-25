@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Component_Type__c</fullName>
+    <defaultValue>&apos;Field Set&apos;</defaultValue>
+    <description>Picklist that drives what this section renders: Field Set, Repeater, Table, Flow, Lightning Web Component, or Display Text. The formTemplatePageSection LWC reads this (via the derived isFieldSet/isRepeater/isTable/isFlow formula checkboxes and direct equality for LWC/Display Text) to pick its render branch. Field Set/Repeater/Table render a Form Component; Flow renders a Screen Flow; Lightning Web Component renders the component named in lwcComponentName; Display Text renders only rich text. Set in the page section configurator's Component tab.</description>
+    <inlineHelpText>Pick what this section displays: a Field Set, Repeater, or Table form component, an embedded Screen Flow, a custom Lightning Web Component, or static Display Text. Your choice controls which source field becomes visible (Form, Flow, or component name) and which Customize tabs appear.</inlineHelpText>
+    <label>Component Type</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Field Set</fullName>
+                <default>true</default>
+                <label>Field Set</label>
+            </value>
+            <value>
+                <fullName>Repeater</fullName>
+                <default>false</default>
+                <label>Repeater</label>
+            </value>
+            <value>
+                <fullName>Table</fullName>
+                <default>false</default>
+                <label>Table</label>
+            </value>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+            <value>
+                <fullName>Lightning Web Component</fullName>
+                <default>false</default>
+                <label>LWC</label>
+            </value>
+            <value>
+                <fullName>Display Text</fullName>
+                <default>false</default>
+                <label>Display Text</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

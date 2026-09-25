@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Style__c</fullName>
+    <label>Header Style</label>
+    <description>Where the page section title sits when the header is shown as Header: classic (above the content, inside the frame) or outlined (Title on border, on the frame's top line). Blank is treated as Classic. Unrestricted so values added in later releases save in upgraded orgs.</description>
+    <inlineHelpText>How the header sits in the section frame. Title on border (stored as outlined) needs a Box or Shadow frame. See Section Frame and Header in the docs.</inlineHelpText>
+    <type>Picklist</type>
+    <required>false</required>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>classic</fullName><default>false</default><label>Classic</label></value>
+            <value><fullName>outlined</fullName><default>false</default><label>Title on border</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

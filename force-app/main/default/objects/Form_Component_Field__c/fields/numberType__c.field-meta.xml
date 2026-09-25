@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>numberType__c</fullName>
+    <defaultValue>&apos;standard&apos;</defaultValue>
+    <description>Numeric field display override (#254), following the per-datatype *Type__c override family. Applies to number, currency, and percent fields: standard renders the normal input; stepper renders minus/plus buttons flanking the formatted input; slider renders a lightning-slider with a formatted readout (bounds from the field&apos;s Min/Max params, percent defaulting 0-100); presetamounts renders admin-defined amount chips from numberPresets__c with an inline custom input.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Overrides how a numeric field displays on the form. Stepper adds minus and plus buttons, Slider renders a draggable range with a readout, and Preset Amounts offers configured quick-pick values. The field&apos;s currency or percent formatting applies in every mode.</inlineHelpText>
+    <label>numberType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>standard</fullName>
+                <default>true</default>
+                <label>standard</label>
+            </value>
+            <value>
+                <fullName>stepper</fullName>
+                <default>false</default>
+                <label>Stepper</label>
+            </value>
+            <value>
+                <fullName>slider</fullName>
+                <default>false</default>
+                <label>Slider</label>
+            </value>
+            <value>
+                <fullName>presetamounts</fullName>
+                <default>false</default>
+                <label>Preset Amounts</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

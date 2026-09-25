@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>referenceFormComponent__c</fullName>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>referenceFormComponent</label>
+    <referenceTo>Form__mdt</referenceTo>
+    <relationshipLabel>Relationship Field Overrides</relationshipLabel>
+    <relationshipName>referenceComponents</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

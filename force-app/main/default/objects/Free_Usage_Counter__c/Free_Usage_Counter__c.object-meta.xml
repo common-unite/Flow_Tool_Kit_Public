@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Internal hidden free-version metering. Holds a monotonic per-month Form Submission counter that survives record deletion, so the free cap cannot be reset by deleting submissions after they are processed. Protected: not accessible to subscribers.</description>
+    <enableFeeds>false</enableFeeds>
+    <label>Free Usage Counter</label>
+    <visibility>Protected</visibility>
+</CustomObject>

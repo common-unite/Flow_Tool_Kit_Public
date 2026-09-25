@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Banner_Image__c</fullName>
+    <description>Stores the relative path to this page's banner/header image, set on the Form Template record page through the formImageSelector component (selectorLabel 'Banner/Header Image'). The companion Form Banner Image URL formula turns this stored path into an absolute, renderable URL. Text(255). Configured per page in the builder UI; the form runtime does not currently render this directly, so its primary role is to feed the URL formula and the record-page preview.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Use the Banner/Header Image selector on the page record to set this — it stores the chosen image path for the page. The Form Banner Image URL field automatically turns this path into a full, displayable image URL; you normally set this through the selector rather than typing a path.</inlineHelpText>
+    <label>Form Banner Image</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

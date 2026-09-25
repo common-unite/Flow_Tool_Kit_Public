@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>step__c</fullName>
+    <description>Admin-configured step INCREMENT for numeric fields (#254): drives the stepper&apos;s minus/plus buttons and the slider&apos;s granularity via flowFormField.stepIncrement. Deliberately NEVER applied as the native input step attribute, which validates typed values against multiples (step 1 would reject 10.50); the inputs keep the schema-derived step for validation. Stored as a raw number string like min__c/max__c; blank falls back to the schema-derived step.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>How much the Stepper buttons and Slider move per step. Typed values are never restricted to multiples of this amount. Leave blank to step by the field&apos;s smallest decimal increment.</inlineHelpText>
+    <label>step</label>
+    <length>40</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

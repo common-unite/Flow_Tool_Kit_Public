@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Component_Section15__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lookup to a Form_Template_Page_Section__c assigned to this page as 'Section 15' — the highest of the 15 numbered section-assignment slots. The formTemplatePageSection LWC maps the slot name 'Section 15' to this lookup (PAGE_SECTION_FIELD_MAP) to resolve and render the assigned section component on the record-page builder. Reaching this slot means the page is at its 15-section cap (#168); component-visibility rules max out at 10 filters, so the 15 lookups are also collapsed into the Has Assigned Sections formula. Managed by the page section configurator — assign and reorder sections there rather than editing these lookups directly. Delete constraint Set Null.</description>
+    <inlineHelpText>This holds the section component placed in slot 15, the last available slot on a page; the page section configurator sets and reorders these slots for you. A page caps at 15 numbered section slots (Section 1 to Section 15) — if you need more, split the content across additional pages rather than editing these lookups by hand.</inlineHelpText>
+    <label>Form Component Section (15)</label>
+    <referenceTo>Form_Template_Page_Section__c</referenceTo>
+    <relationshipLabel>Form Template Pages</relationshipLabel>
+    <relationshipName>Form_Template_Pages_15</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

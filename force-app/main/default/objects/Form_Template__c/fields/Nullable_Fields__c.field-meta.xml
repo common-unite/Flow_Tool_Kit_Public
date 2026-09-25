@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nullable_Fields__c</fullName>
+    <description>Field API names that bypass the Strip Null Values default during conversion mapping: when a listed field arrives blank or null, the target value is cleared (checkboxes are set to false, since they cannot hold null). Stores either a comma-separated list of bare names or the object-keyed JSON map the Nullable Fields selector writes ({"Contact":["Email"]}); the Strip Null Values action accepts both via its Nullable Fields (CSV or JSON) input and applies only the entry matching the stripped record's object. Names that are not valid updateable fields, and JSON that does not parse, throw a conversion error rather than being silently skipped.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Fields whose values may be cleared by this template's conversion mapping when the form leaves them blank. By default blank answers never overwrite existing data; add a field here to allow clearing it. Use the Edit Nullable Fields selector to pick valid fields per object safely.</inlineHelpText>
+    <label>Nullable Fields</label>
+    <length>4000</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

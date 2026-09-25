@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Linear_Navigation__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Consulted by the formTemplate LWC only when Stage_Indicator_Type__c is vertical and Stages_Mode__c is false: makes the vertical rail's steps clickable so respondents can jump between pages, reusing the Stages Mode navigation path including Form_Submission_Stage__c writes. Stages Mode is inherently non-linear and ignores this flag.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Let respondents jump between pages by clicking the vertical stage indicator, without turning on Stages Mode. Requires Stage Indicator Type to be vertical; Stages Mode already allows free navigation, so this setting only matters when Stages Mode is off.</inlineHelpText>
+    <label>Non-Linear Navigation</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

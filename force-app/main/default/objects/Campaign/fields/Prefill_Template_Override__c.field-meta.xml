@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prefill_Template_Override__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>When assigned, if a form is loaded from a Campaign record page, the form uses this pre-fill template to load default values instead of the template assigned within the Form Template.</description>
+    <label>Pre-fill Template (Override)</label>
+    <referenceTo>Form_Submission__c</referenceTo>
+    <relationshipLabel>Campaign (Pre-fill overrides)</relationshipLabel>
+    <relationshipName>Campaigns</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

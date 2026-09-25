@@ -25,5 +25,3 @@ The same bug class exists in four other CMT-subquery sites that are exposed thro
 - `Utilities_Form.queryFormSections`: `Form_Section__mdt → fields__r`
 - `Utilities_Form.queryFormLogic`: `Form_Conditional_Logic__mdt → conditions__r`
 - `Utilities.queryAllLabelsWithTranslations`: `Form_Label__mdt → Form_Label_Translations__r`
-
-Full investigation and audit notes live in [`documents/form_builder_truncation_investigation.md`](../form_builder_truncation_investigation.md).

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This event is published upon a successful deployment.</description>
+    <eventType>HighVolume</eventType>
+    <label>Form Builder Deployment</label>
+    <pluralLabel>Form Builder Deployments</pluralLabel>
+    <publishBehavior>PublishAfterCommit</publishBehavior>
+</CustomObject>

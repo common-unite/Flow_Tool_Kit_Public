@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Add_to_Campaign__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Per-section flag read by Form_Submission_Convert_Upsert_Contact_Overridable and Upsert_Lead_Overridable (Switch_Add_to_Campaign on PageSection.Add_to_Campaign__c). When true, the converted Contact/Lead for this section is added as a Campaign Member to the submission's campaign during conversion. Pairs with the template's campaign and member-status pre-fill values.</description>
+    <inlineHelpText>Turn on so the Contact or Lead created from this section is added as a Campaign Member during conversion. The campaign and member status come from the Form Template's campaign settings; leave off to skip campaign membership for this section.</inlineHelpText>
+    <label>Add to Campaign</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

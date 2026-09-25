@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Likert_Mode__c</fullName>
+    <defaultValue>&apos;Picklist&apos;</defaultValue>
+    <description>Drives which fields a Likert Matrix section (sectionType__c = likertSection, #144) offers and how its answer scale is defined. Picklist restricts the section's field multiselect to picklist fields and derives the matrix columns from the FIRST field's option labels (layered with picklistOptionLabels__c overrides and the picklistOptionOverrides__c enabled subset); Number restricts to number fields and reads the admin-defined scale from Likert_Scale__c, storing the mapped numeric value. Consumed by flowFormLikertMatrix and the Form Builder section editor; carried to Form_Section__mdt via the config__c JSON like every section setting.</description>
+    <inlineHelpText>Choose what kind of fields this matrix collects. Picklist builds the answer columns from your picklist's option labels and stores the option values; Number lets you define your own labeled scale where each column saves a number you map to it.</inlineHelpText>
+    <label>Likert Mode</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Picklist</fullName>
+                <default>true</default>
+                <label>Picklist</label>
+            </value>
+            <value>
+                <fullName>Number</fullName>
+                <default>false</default>
+                <label>Number</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

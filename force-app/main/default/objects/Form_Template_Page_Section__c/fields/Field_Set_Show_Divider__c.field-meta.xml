@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Set_Show_Divider__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Controls divider display for the section. For Field Set sections it passes show-field-set-divider into c-flow-form, which draws the divider inside the form. For all OTHER component types the formTemplatePageSection LWC reads this flag (showSectionDivider) and draws a page-section-level divider via c-form-section-theme, positioned by Divider Position and styled by Divider Style/Title/Subtitle/Icon/Vertical Margin. Defaults to false.</description>
+    <inlineHelpText>Turn on to show a divider line for this section. Configure its look with the Divider Style, Title, Subtitle, Icon, Position, and Margin fields on the Divider tab.</inlineHelpText>
+    <label>Show Divider</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

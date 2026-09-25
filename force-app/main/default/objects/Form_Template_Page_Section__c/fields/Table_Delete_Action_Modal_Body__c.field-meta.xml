@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Table_Delete_Action_Modal_Body__c</fullName>
+    <description>Rich-text body of the delete-confirmation modal on Table sections, passed as delete-modal-body to c-flow-data-table. Use it to warn the user before a row is removed. Applies only to Table component types when Enable Delete Action is checked.</description>
+    <inlineHelpText>The message inside the delete-confirmation popup, such as a warning that the row cannot be recovered. Applies to Tables only and requires Enable Delete Action.</inlineHelpText>
+    <label>Modal Body Text</label>
+    <length>10000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

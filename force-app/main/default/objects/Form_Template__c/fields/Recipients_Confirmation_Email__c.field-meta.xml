@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recipients_Confirmation_Email__c</fullName>
+    <description>Multi-select picklist driving which addresses the confirmation-email Flow sends to. Values (Email, Email (Company), Alternate Contact) are matched with Contains in the Send Email overridable Flow against the converted submission's contacts. Requires Send Confirmation Email enabled.</description>
+    <inlineHelpText>Select which email fields on the submission should receive the confirmation email, such as Email, Email (Company), or Alternate Contact. This applies only when Send Confirmation Email is enabled.</inlineHelpText>
+    <label>Recipients (Confirmation Email)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Alternate Contact</fullName>
+                <default>false</default>
+                <label>Alternate Contact</label>
+            </value>
+            <value>
+                <fullName>Email (Company)</fullName>
+                <default>false</default>
+                <label>Email (Company)</label>
+            </value>
+            <value>
+                <fullName>Email</fullName>
+                <default>false</default>
+                <label>Email</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

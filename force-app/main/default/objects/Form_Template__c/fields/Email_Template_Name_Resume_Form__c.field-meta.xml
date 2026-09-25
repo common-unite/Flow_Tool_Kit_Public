@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Template_Name_Resume_Form__c</fullName>
+    <description>Developer name of the Salesforce EmailTemplate used by the Form_Submission_Send_Resume_Link autolaunched flow when a respondent clicks Email me a resume link. Resolved at send time via the submission's Form_Template relationship. Leave blank to fall back to the minimal inline body the package ships.</description>
+    <inlineHelpText>DeveloperName of the Salesforce EmailTemplate to use when sending the respondent a resume link. Leave blank to use the package&apos;s minimal default body.</inlineHelpText>
+    <label>Email Template Name (Resume Form)</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

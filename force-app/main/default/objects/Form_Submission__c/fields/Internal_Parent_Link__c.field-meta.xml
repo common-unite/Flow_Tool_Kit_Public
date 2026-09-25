@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Internal_Parent_Link__c</fullName>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(
+/** 🔗 The Link path is set here 🔗 **/
+&apos;/&apos;&amp;BlankValue(Parent_Form_Submission__c,Form_Template__c), 
+
+/** 📝 Display Form Template 📝 **/
+IF(Not(IsBlank( Form_Template__c)),Form_Template__r.Name,
+
+/** 🗂️ Display Parent Submission 🗂️ **/
+IF(Not(IsBlank(Parent_Form_Submission__c)), &apos;Submission (&apos;+Name+&apos;)&apos;,
+
+&apos;Unknown&apos;)),
+&apos;_self&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Parent Template/Submission</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

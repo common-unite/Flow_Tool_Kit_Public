@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Banner_Image__c</fullName>
+    <description>Reference to the banner image displayed across the top of the rendered form (resolved by the runtime/theme). Stored as a 255-character identifier; for an externally hosted image, use Form Banner Image URL instead.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the banner image shown at the top of the form. Use Form Banner Image URL if your image is hosted at an external link.</inlineHelpText>
+    <label>Form Banner Image</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

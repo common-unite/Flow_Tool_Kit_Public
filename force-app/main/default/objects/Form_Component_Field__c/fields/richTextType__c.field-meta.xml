@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>richTextType__c</fullName>
+    <defaultValue>&apos;standard&apos;</defaultValue>
+    <label>richTextType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>standard</fullName>
+                <default>true</default>
+                <label>standard</label>
+            </value>
+            <value>
+                <fullName>signaturePad</fullName>
+                <default>false</default>
+                <label>signaturePad</label>
+            </value>
+            <value>
+                <fullName>imageUpload</fullName>
+                <default>false</default>
+                <label>imageUpload</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
