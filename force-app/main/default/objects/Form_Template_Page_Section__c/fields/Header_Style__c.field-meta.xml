@@ -11,7 +11,10 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value><fullName>classic</fullName><default>false</default><label>Classic</label></value>
+            <value><fullName>classicSpread</fullName><default>false</default><label>Classic Spread</label></value>
+            <value><fullName>card</fullName><default>false</default><label>Card</label></value>
             <value><fullName>outlined</fullName><default>false</default><label>Title on border</label></value>
+            <value><fullName>hero</fullName><default>false</default><label>Stacked</label></value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

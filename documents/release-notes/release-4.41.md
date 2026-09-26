@@ -16,7 +16,7 @@ Faster conditional logic on Form Templates, Section Frames with four header styl
 
 ## Guest and Flow fixes
 
-- **Guest form loads with a subscriber field twin** (#699). Guest visitors got "Form Load Error" when a subscriber field shared its API name with a packaged Flow Tool Kit field. The field dictionary now resolves fields by durable id with no relationship traversal, runs in user mode, and rebuilds in 85 ms instead of 1,153 ms in the reference org.
+- **Guest form loads with a subscriber field twin** (#699): NOT fixed in this release. The field dictionary now resolves fields by durable id with no relationship traversal and rebuilds in 85 ms instead of 1,153 ms in the reference org, but the guest "Form Load Error" remains: any user-mode query that returns a form field row pointing at a subscriber field shadowed by a packaged twin still fails inside the package. #699 is reopened and a follow-up release will carry the fix.
 - **Flow Transform picklist values reach every record action** (#712). A Transform element hands picklist and multi-select picklist values to Apex as Flow types. Strip Null Values silently dropped multi-select values, and the other record-taking actions could corrupt or reject them. Every invocable that takes a record now converts those values before touching the record. Proven on an autolaunched flow.
 
 ## After upgrading

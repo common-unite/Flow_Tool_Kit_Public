@@ -52,6 +52,6 @@ Query records that might be duplicates (e.g., Contacts with similar names). Disp
 
 ## Tips & Considerations
 
-* **Supported Objects**: The Merge Records invocable action (used after comparison) supports Account, Contact, Case, and Lead. The comparison component itself works with any object.
+* **Supported Objects**: The Merge Records invocable action (used after comparison) supports Account, Contact, Lead and Individual, and Case when the org has Case Merge turned on (Setup, Case Merge). The comparison component itself works with any object.
 * **Result vs Primary**: `result` contains only the fields the user changed (for partial updates). `primaryRecord` contains all fields (for full record replacement).
 * **Pre-filtering**: Always pre-filter records before displaying. Comparing more than 5 records at once becomes difficult for users.

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Period__c</fullName>
-    <description>Deprecated by #727: the window is now Window_Start__c and Window_Type__c, computed in the org's time zone. Kept because a released field cannot be deleted.</description>
+    <fullName>Window_Type__c</fullName>
+    <description>#727: Monthly or Annual. Changes when the annual allowance is granted or revoked, and the change starts the count at zero.</description>
     <externalId>false</externalId>
-    <label>Period</label>
-    <length>7</length>
+    <label>Window Type</label>
+    <length>10</length>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Text</type>

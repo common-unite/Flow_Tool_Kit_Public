@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Footer__c</fullName>
+    <description>Stacked header style only: rich text that is always the last part of the header, under the title, body and tags. Merge fields are resolved.</description>
+    <inlineHelpText>Stacked header only: text that always sits at the bottom of the header. Merge fields work here.</inlineHelpText>
+    <label>Header Footer</label>
+    <length>5000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

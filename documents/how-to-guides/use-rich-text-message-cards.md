@@ -1,6 +1,6 @@
 # Use Rich Text Message Cards
 
-> Turn any Rich Text section into a themed status card (info, warning, error, or success) with a colored left edge, a tinted fill, and a status icon.
+> Turn any Rich Text section into a themed status card (info, warning, error, or success) with a colored left edge, a tinted fill, and a status icon, or set it apart with a Highlight rule.
 
 {% hint style="info" %}
 **Prerequisites**: A form built in the **Form Builder** with a **Rich Text** section.
@@ -21,6 +21,7 @@ A Rich Text section normally renders as plain text. With a **Message Variant**, 
 | **Warning** | Amber card with a warning icon |
 | **Error**   | Red card with an error icon    |
 | **Success** | Green card with a success icon |
+| **Highlight** | A brand-colored rule down the left edge, no card, fill or icon |
 
 ## Step 1: Add a Rich Text Section
 
@@ -32,7 +33,7 @@ Expand the **Section Rich/Plain Text** panel and choose a **Message Variant**. L
 
 ## Step 3: Write the Message
 
-Use the rich text editor to write your message. A bold first line reads as the card's heading, followed by the body. The text supports rich formatting and resolves merge fields (e.g. `{!Account.Name}`), just like a header.
+Use the rich text editor to write your message. A bold first line reads as the card's heading, followed by the body. The text supports rich formatting and resolves merge fields (e.g. `{{FlowToolKit__Contact1_First_Name__c}}`), just like a header.
 
 **Example (Info):**
 
@@ -40,9 +41,21 @@ Use the rich text editor to write your message. A bold first line reads as the c
 
 ![The Info variant rendered on a form](../.gitbook/assets/148-message-variant-info-card.png)
 
+## Highlight
+
+**Highlight** sets a passage apart without making it look like a status message. It draws a single rule in your brand color down the left edge of the text, with no box, fill or icon, so it reads as part of the form rather than as an alert. Use it for a policy, a deadline or a note the reader should not skip, where Info would suggest something is wrong.
+
+![A Highlight passage inside a framed section](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/719-highlight-block.png)
+
+The rule sits on the same edge as the fields, so the text lines up with the inputs below it.
+
+![Choosing Highlight in the Form Builder](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/719-highlight-block-demo.gif)
+
+**Form Template page sections** have the same choice. In the page section's **Customize** window, a **Display Text** section's **Message Variant** includes Highlight, and so does **Header Text Variant**, which styles the text shown with a section's header.
+
 ## Theming
 
-The card takes its accent color from your org's SLDS status tokens: no per-card color settings. Each variant maps to a standard status color (info/warning/error/success), and when a token isn't present in a given runtime it falls back through the Experience Cloud (`--dxp-*`) and Lightning (`--lwc-*`) tokens to a sensible default, so the card looks right everywhere it renders.
+The card takes its accent color from your org's SLDS status tokens: no per-card color settings. Highlight's rule takes the org's or site's brand color (`--lwc-brandPrimary`). Each variant maps to a standard status color (info/warning/error/success), and when a token isn't present in a given runtime it falls back through the Experience Cloud (`--dxp-*`) and Lightning (`--lwc-*`) tokens to a sensible default, so the card looks right everywhere it renders.
 
 {% hint style="success" %}
 Because the colors are token-driven, the card automatically matches a branded Experience Cloud site's status palette.

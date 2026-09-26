@@ -10,6 +10,7 @@
 ## Getting Started
 
 * [Core Concepts](getting-started/core-concepts.md)
+* [Free Version](getting-started/free-version.md)
 * [Installation](getting-started/installation.md)
 * [Permission Sets](getting-started/permission-sets.md)
 * [Quick Start](getting-started/quick-start.md)
@@ -109,6 +110,7 @@
 * [Prefill Templates](form-template-framework/prefill-templates.md)
 * [Stages Mode](form-template-framework/stages-mode.md)
 * [Submission Conversion](form-template-framework/submission-conversion.md)
+* [Template Page Section Merge Fields](form-template-framework/template-page-section-merge-fields.md)
 * [URL Parameter Mapping](form-template-framework/url-parameter-mapping.md)
 
 ### How-To Guides
@@ -244,16 +246,12 @@
 * [Release 4.4](release-notes/release-4.4.md)
 * [Release 4.40](release-notes/release-4.40.md)
 * [Release 4.41](release-notes/release-4.41.md)
+* [Release 4.42](release-notes/release-4.42.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
 * [Release 4.7](release-notes/release-4.7.md)
 * [Release 4.8](release-notes/release-4.8.md)
 * [Release 4.9](release-notes/release-4.9.md)
-* [Unreleased Conditional Payment](release-notes/unreleased-conditional-payment.md)
-* [Unreleased Conditional Performance](release-notes/unreleased-conditional-performance.md)
-* [Unreleased Guest Dictionary 699](release-notes/unreleased-guest-dictionary-699.md)
-* [Unreleased Hosted Payment Record 716](release-notes/unreleased-hosted-payment-record-716.md)
-* [Unreleased Payment Settings Namespace](release-notes/unreleased-payment-settings-namespace.md)
 
 ## Platform
 

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Message_Variant__c</fullName>
     <label>Message Variant</label>
-    <description>Renders a Rich Text section as a themed message card (info, warning, error, success). "Default" renders plain rich text.</description>
+    <description>Renders a Rich Text section as a themed message card (info, warning, error, success), or as Highlight text with a brand-colour left rule. "Default" renders plain rich text.</description>
     <inlineHelpText>Choose a status style to render this rich text as a message card. "Default" keeps it as plain rich text.</inlineHelpText>
     <type>Picklist</type>
     <required>false</required>
@@ -15,6 +15,7 @@
             <value><fullName>warning</fullName><default>false</default><label>Warning</label></value>
             <value><fullName>error</fullName><default>false</default><label>Error</label></value>
             <value><fullName>success</fullName><default>false</default><label>Success</label></value>
+            <value><fullName>highlight</fullName><default>false</default><label>Highlight</label></value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

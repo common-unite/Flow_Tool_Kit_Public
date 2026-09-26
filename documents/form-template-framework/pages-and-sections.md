@@ -131,3 +131,4 @@ Page 3 ("Spouse Information") is only shown when the "Marital Status" field on P
 * [Creating Templates](creating-templates.md): step-by-step template creation
 * [Form Templates Reference](form-templates.md): screen component properties
 * [Page Conditional Logic](page-conditional-logic.md): detailed conditional logic guide
+* [Template, Page and Section Merge Fields](template-page-section-merge-fields.md): `$Template`, `$Page` and `$Section` values in headers and text

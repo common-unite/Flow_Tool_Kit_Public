@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Tags__c</fullName>
+    <description>Stacked header style only: tags drawn as pills, separated by semicolons (Raised beds; Growing support). Merge fields are resolved before the split.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Stacked header only: tags shown as pills, separated by semicolons.</inlineHelpText>
+    <label>Header Tags</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -59,8 +59,10 @@ Page 5: Spouse Information (shown when Marital Status = "Married")
 * **Test all paths**: with conditional pages, users can take different routes through the form. Test each combination to ensure navigation works correctly
 * **Default values**: if a skipped page has required fields, ensure your Flow handles the absence of those values downstream
 * **Page numbering**: use gaps (10, 20, 30) so you can insert conditional pages between existing ones
+* **Show respondents where they are**: `Page {{$Page.Number}} of {{$Page.Count}}` in a section header counts only the pages the respondent can see, and recounts when a rule hides or restores a page. See [Template, Page and Section Merge Fields](template-page-section-merge-fields.md)
 
 ## Related Pages
 
 * [Pages and Sections](pages-and-sections.md): page structure reference
+* [Template, Page and Section Merge Fields](template-page-section-merge-fields.md): visible page number and count
 * [Conditional Logic](../form-configuration/conditional-logic.md): field-level conditional logic (within a single form component)

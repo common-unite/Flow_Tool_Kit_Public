@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Lead__c</fullName>
+    <description>Stacked header style only: the rich text body under the title. Merge fields are resolved.</description>
+    <inlineHelpText>Stacked header only: the lead sentence under the title. Merge fields work here.</inlineHelpText>
+    <label>Header Lead</label>
+    <length>5000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

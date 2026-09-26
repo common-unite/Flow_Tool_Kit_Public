@@ -37,6 +37,11 @@
                 <default>false</default>
                 <label>Success</label>
             </value>
+            <value>
+                <fullName>highlight</fullName>
+                <default>false</default>
+                <label>Highlight</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

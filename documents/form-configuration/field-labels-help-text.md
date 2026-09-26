@@ -122,5 +122,6 @@ Use `{{HelpText}}` in a custom label or prompt message to repurpose the schema h
 
 * [Input Field Configuration](input-field-configuration.md): field configuration overview
 * [Prompt Messages](prompt-messages.md): rich text prompts on field focus
+* [Template, Page and Section Merge Fields](../form-template-framework/template-page-section-merge-fields.md): `$Template`, `$Page` and `$Section` merge fields for Form Template headers and text
 * [Themes, Labels & Styling](themes-labels-styling.md): theme-level label and translation configuration
 * [Field Width & Responsiveness](field-width-responsiveness.md): label position affects layout at different widths

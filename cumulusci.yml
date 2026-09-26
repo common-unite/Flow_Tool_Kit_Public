@@ -43,6 +43,10 @@ plans:
                 task: install_managed
                 ui_options:
                     description: "Installs the Flow Tool Kit managed package: the form and table builder, its runtime engine, and all supporting metadata. If this exact version is already installed, the step is skipped automatically."
+            2.5:
+                task: sync_packaged_picklist_values
+                ui_options:
+                    description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -93,6 +97,10 @@ plans:
                 task: install_managed
                 ui_options:
                     description: "Installs the Flow Tool Kit managed package: the form and table builder, its runtime engine, and all supporting metadata. If this exact version is already installed, the step is skipped automatically."
+            2.5:
+                task: sync_packaged_picklist_values
+                ui_options:
+                    description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -172,6 +180,10 @@ plans:
                 task: install_managed
                 ui_options:
                     description: "Installs the Flow Tool Kit managed package: the form and table builder, its runtime engine, and all supporting metadata. If this exact version is already installed, the step is skipped automatically."
+            2.5:
+                task: sync_packaged_picklist_values
+                ui_options:
+                    description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -228,6 +240,10 @@ plans:
                 task: update_dependencies
             2:
                 task: install_managed
+            2.5:
+                task: sync_packaged_picklist_values
+                ui_options:
+                    description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
 
 flows:
 
@@ -961,6 +977,10 @@ tasks:
         options:
             package_name: "Flow Tool Kit: NPSP | Form Template Extension"
 
+    sync_packaged_picklist_values:
+        description: "Adds every picklist value the package ships (fields, record type assignments, global value sets) that the org is missing, reading the package source at the release tag. Add-only; never removes, relabels, reorders or changes defaults. New managed picklist values reach fresh installs only, so upgraded orgs need this (#696, #723)."
+        class_path: tasks.sync_picklist_values.SyncPackagedPicklistValues
+        group: Flow Tool Kit installer
     check_lws_enabled:
         class_path: tasks.check_lws_enabled.CheckLWSEnabled
         description: Check if Lightning Web Security (LWS) is enabled
@@ -1001,7 +1021,8 @@ tasks:
             # Deploying a path the mirror never received fails at INSTALL time, not at publish time.
             include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md","documents/",
                        "tasks/","force-app-post/","force-app-npc-conversion/","force-app-npsp-conversion/",
-                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/" ]
+                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/",
+                       "force-app/main/default/objects/","force-app/main/default/globalValueSets/" ]
 
     # Installer-only publish, decoupled from a base package release. Pushes the current master
     # content to Flow_Tool_Kit_Public@main as a plain commit: no tag, no release, repeatable.
@@ -1020,7 +1041,8 @@ tasks:
             create_release: False
             include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md",
                        "tasks/","force-app-post/","force-app-npc-conversion/","force-app-npsp-conversion/",
-                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/" ]
+                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/",
+                       "force-app/main/default/objects/","force-app/main/default/globalValueSets/" ]
 
     robot:
         options:

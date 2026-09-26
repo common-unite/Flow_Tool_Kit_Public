@@ -55,7 +55,7 @@ None. The operation runs asynchronously.
 
 **Action Name**: `Merge Records`
 
-Merge duplicate Account, Contact, Case, or Lead records. The winning record absorbs the child records and field values from the losing records.
+Merge duplicate Account, Contact, Lead, Individual or Case records (Case only when the org has Case Merge turned on). The winning record absorbs the child records and field values from the losing records.
 
 #### Inputs
 
