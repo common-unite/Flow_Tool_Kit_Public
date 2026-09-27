@@ -17,7 +17,6 @@ The Stacked section header and Highlight text, template and page merge fields, a
   - Where a form references a local field that a Flow Tool Kit field shadows, the form uses the packaged field of the same name, and field-level security decides who sees it: grant read on the packaged field to the users who need it. The log names the shadowed field at WARN level so you can repoint the form field.
   - A field the user cannot read is left out of the form, exactly as before.
   - The field dictionary is built per request and never shared, and builds in about 85 ms instead of about 1.1 s.
-- **Source email template reads the source record in user mode.** The action that finds a source record's email template no longer bypasses the running user's access.
 
 ## Forms and components
 
