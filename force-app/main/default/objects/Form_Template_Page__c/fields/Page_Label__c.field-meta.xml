@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Page_Label__c</fullName>
+    <description>The page's title. In the linear runtime it is the navigation/tab label and the page heading; formTemplate.js also uses it as the identity key when matching the clicked progress indicator back to a page (handleIndicatorClicked finds the page whose Page_Label equals the event detail) and to label the Back button as the previous page. In Stages Mode it is the title on the page's stage card. Required. Because it doubles as the navigation match key, keep labels unique within a template to avoid ambiguous navigation.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter a short, descriptive title for this page (e.g. 'Personal Information') — it appears in the navigation/progress indicator and as the page heading, and on the stage card in Stages Mode. Keep each page's label unique within the template, because the form also uses the label to match progress-indicator clicks to the right page.</inlineHelpText>
+    <label>Page Label</label>
+    <length>255</length>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

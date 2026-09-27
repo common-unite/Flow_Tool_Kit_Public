@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Review_Page_Button_Label__c</fullName>
+    <defaultValue>&apos;Continue to Review&apos;</defaultValue>
+    <description>Labels the button that OPENS the review page when Enable_Review_Screen__c is on: the Stages Mode overview button once all required stages are complete, and the effective last visible page's forward button in the linear runtime. The submit button ON the review page is labeled by Submit_Button_Label__c. Blank falls back to the Stages_Continue_To_Review custom label. Repurposed in #244 — before that this field labeled the review page's submit button, so subscriber orgs upgrading with a populated value will see that wording move to the open-review button and should set Submit Button Label. Unrestricted so future values propagate; values resolve through getPicklistValues for Translation Workbench support.</description>
+    <inlineHelpText>Choose the wording on the button that opens the review page, such as Continue to Review or Review &amp; Submit. Respondents click it after finishing the form pages; the final submit wording on the review page itself comes from the Submit Button Label field.</inlineHelpText>
+    <label>Review Page Button Label</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Continue to Review</fullName>
+                <default>true</default>
+                <label>Continue to Review</label>
+            </value>
+            <value>
+                <fullName>Continue to Final Review</fullName>
+                <default>false</default>
+                <label>Continue to Final Review</label>
+            </value>
+            <value>
+                <fullName>Review &amp; Submit</fullName>
+                <default>false</default>
+                <label>Review &amp; Submit</label>
+            </value>
+            <value>
+                <fullName>Review Answers</fullName>
+                <default>false</default>
+                <label>Review Answers</label>
+            </value>
+            <value>
+                <fullName>Submit</fullName>
+                <default>false</default>
+                <label>Submit</label>
+            </value>
+            <value>
+                <fullName>Save</fullName>
+                <default>false</default>
+                <label>Save</label>
+            </value>
+            <value>
+                <fullName>Submit Form</fullName>
+                <default>false</default>
+                <label>Submit Form</label>
+            </value>
+            <value>
+                <fullName>Submit Application</fullName>
+                <default>false</default>
+                <label>Submit Application</label>
+            </value>
+            <value>
+                <fullName>Save Proposal</fullName>
+                <default>false</default>
+                <label>Save Proposal</label>
+            </value>
+            <value>
+                <fullName>Submit Registration</fullName>
+                <default>false</default>
+                <label>Submit Registration</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

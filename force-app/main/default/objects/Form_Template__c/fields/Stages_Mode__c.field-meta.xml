@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stages_Mode__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When true, the formTemplate LWC renders this Form Template as a non-linear Stages view (a stepper showing all pages with status, time estimate, and per-stage action). When false, the form renders with the existing linear page-by-page navigation.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Render this Form Template as a non-linear stepper (Form Stages view) where respondents see all pages at once and can jump between them. Leave unchecked for the default linear page-by-page navigation.</inlineHelpText>
+    <label>Stages Mode</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>headingBackgroundGradient__c</fullName>
+    <defaultValue>false</defaultValue>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>When enabled, the Heading Background Color is applied as a gradient instead of a solid color.</inlineHelpText>
+    <label>headingBackgroundGradient</label>
+    <type>Checkbox</type>
+</CustomField>

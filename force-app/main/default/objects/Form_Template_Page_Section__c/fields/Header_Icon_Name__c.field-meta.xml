@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Icon_Name__c</fullName>
+    <description>SLDS icon name (e.g. utility:user or standard:account) displayed in the section header when Show Header is checked. Passed as icon-name to the section's form/header component.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>An SLDS icon to show in the header, entered as category:name such as utility:user. Requires Show Header; leave blank for no icon.</inlineHelpText>
+    <label>Header Icon</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

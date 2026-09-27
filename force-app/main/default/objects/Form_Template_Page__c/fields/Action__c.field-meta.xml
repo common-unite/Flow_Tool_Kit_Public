@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Action__c</fullName>
+    <defaultValue>&quot;Bypass&quot;</defaultValue>
+    <description>Flow-mode only field (the screen component runs with isFlow=true inside a Screen Flow). When a non-blank value (currently 'Bypass') is set, the formTemplate LWC treats moving forward off this page as a Flow navigation event: instead of advancing the page internally it dispatches FlowNavigationNext/Finish so the surrounding Screen Flow regains control after this page. Evaluated in formTemplate.js next-page logic alongside Auto Save and the Save Progress signal (priorPage[Action__c] truthy check). Leave blank for self-contained templates that never hand control back to the Flow mid-form. Has no effect when the template renders standalone (isFlow false) or in Stages Mode.</description>
+    <inlineHelpText>Leave blank unless this Form Template runs inside a Screen Flow and you need that Flow to take over when the respondent moves forward from this page. Selecting a value makes the form fire a Flow Next/Finish navigation off this page so your surrounding Flow can run an action; it has no effect on standalone or Stages-mode templates.</inlineHelpText>
+    <label>Flow Action</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bypass</fullName>
+                <default>false</default>
+                <label>Bypass</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

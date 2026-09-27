@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Template_Footer_Text__c</fullName>
+    <description>Rich text stored for the template footer region. Use the dedicated footer Form component (FormQualifiedApiName (Footer)) for the rendered runtime footer; this field holds simple HTML footer content where a full Form component is not configured.</description>
+    <inlineHelpText>Add formatted footer content (disclaimers, contact info, links) to show at the bottom of the form. For richer footers, configure a footer Form component instead.</inlineHelpText>
+    <label>Template Footer Text</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Likert_Scale__c</fullName>
+    <description>JSON array defining the answer scale for a Likert Matrix section in Number mode (#144): ordered entries of {"label", "value", "help"} where label renders as the column header, value is the number stored into the row's field when that column is selected, and help (optional) surfaces as a tooltip on the header. Edited through the builder's scale editor modal; ignored in Picklist mode (columns come from the first field's option set there). Carried to Form_Section__mdt via config__c JSON.</description>
+    <inlineHelpText>Defines your Number-mode answer scale as ordered columns of label, stored number, and optional help text. Edit it with the scale editor in Form Builder rather than by hand; in Picklist mode this is ignored because the columns come from your picklist's options.</inlineHelpText>
+    <label>Likert Scale</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

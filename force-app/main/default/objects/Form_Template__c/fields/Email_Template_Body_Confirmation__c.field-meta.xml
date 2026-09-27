@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Template_Body_Confirmation__c</fullName>
+    <description>Rich-text inline body used by the confirmation email Flow when no EmailTemplate DeveloperName is provided in Email Template Name (Confirmation). Provides an admin-editable fallback message without creating an EmailTemplate record.</description>
+    <inlineHelpText>Optional inline email body used for the confirmation email when no Email Template Name (Confirmation) is set. Use this for a quick custom message without building a full EmailTemplate.</inlineHelpText>
+    <label>Email Template Body (Confirmation)</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Section_Tag__c</fullName>
+    <description>Stable identifier for this Page Section. Used by prefill Flows (and the embedded Flow Screen relatedRecords input path) to route related Form Submission records to the correct repeater or table section without hard-coding runtime Ids. Trigger enforces uniqueness within a single Form Template.</description>
+    <inlineHelpText>Stable identifier for this section. Prefill Flows use this tag (rather than the runtime section Id) to target this section, making prefill migration-safe. Must be unique within the Form Template.</inlineHelpText>
+    <label>Section Tag</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Data_Conversion_Tag_s</valueSetName>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Table_Row_Style__c</fullName>
+    <description>Picklist controlling table row styling: hideBorders, slds-table_striped, or slds-table_col-bordered. Passed as table-row-class to c-flow-data-table. Applies to Table sections only.</description>
+    <inlineHelpText>Choose how Table rows look: striped, column-bordered, or borderless. Applies to Table sections only.</inlineHelpText>
+    <label>Row Style</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>hideBorders</fullName>
+                <default>false</default>
+                <label>Hide Borders</label>
+            </value>
+            <value>
+                <fullName>slds-table_striped</fullName>
+                <default>false</default>
+                <label>Striped Rows</label>
+            </value>
+            <value>
+                <fullName>slds-table_col-bordered</fullName>
+                <default>false</default>
+                <label>Bordered Columns</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

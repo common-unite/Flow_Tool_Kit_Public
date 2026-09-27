@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Banner_Image_URL_Field__c</fullName>
+    <description>Field on the source object holding an image URL to use as the form banner, overriding Form_Template__c.Form_Banner_Image_URL__c. Lets each source record present its own hero image on a shared template.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Banner Image URL Field</label>
+    <metadataRelationshipControllingField>Form_Template_Source__mdt.Source_Object__c</metadataRelationshipControllingField>
+    <referenceTo>FieldDefinition</referenceTo>
+    <relationshipLabel>Form Template Sources (Banner Image URL)</relationshipLabel>
+    <relationshipName>Form_Template_Sources_Banner_Image_URL</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

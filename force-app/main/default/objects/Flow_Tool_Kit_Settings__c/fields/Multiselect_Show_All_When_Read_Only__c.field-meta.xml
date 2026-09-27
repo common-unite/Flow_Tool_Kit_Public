@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Multiselect_Show_All_When_Read_Only__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Opt-in. Off (the default, and how every existing org behaves): a multiselect rendered read-only shows only its selected values, or None Selected. On: a read-only multiselect shows every value, with the selected ones marked - pills in the brand color for the badge display type, checked boxes for the checkbox types - and the unselected ones greyed. Applies wherever a multiselect is read-only: conditional logic, a read-only field setting, a field that cannot be updated, or a form placed read-only.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When on, a read-only multiselect shows every value as a pill or checkbox, with the selected ones in the brand color, instead of only the selected values. Off keeps the current display: selected values only.</inlineHelpText>
+    <label>Multiselect: Show All When Read Only</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

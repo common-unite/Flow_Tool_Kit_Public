@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>helpTextDisplay__c</fullName>
+    <defaultValue>&apos;Hover Bubble&apos;</defaultValue>
+    <description>Controls how this field's help text is displayed: the standard hover info-icon bubble, as a subtitle directly below the label, or in a line below the input field. Ignored when help text is disabled.</description>
+    <inlineHelpText>Choose how help text appears: Hover Bubble shows the standard info-icon tooltip, Below Label renders it as a lighter subtitle under the field label, and Below Field shows it directly beneath the input. Has no effect when Disable Help Text is on.</inlineHelpText>
+    <label>helpTextDisplay</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hover Bubble</fullName>
+                <default>true</default>
+                <label>Hover Bubble</label>
+            </value>
+            <value>
+                <fullName>Below Label</fullName>
+                <default>false</default>
+                <label>Below Label</label>
+            </value>
+            <value>
+                <fullName>Below Field</fullName>
+                <default>false</default>
+                <label>Below Field</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

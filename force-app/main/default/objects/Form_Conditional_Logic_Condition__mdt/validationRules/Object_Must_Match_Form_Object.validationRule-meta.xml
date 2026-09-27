@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Object_Must_Match_Form_Object</fullName>
+    <active>false</active>
+    <errorConditionFormula>Object__r.DeveloperName != Form__r.Form_Object__r.Object__r.DeveloperName</errorConditionFormula>
+    <errorDisplayField>Object__c</errorDisplayField>
+    <errorMessage>This Object must equal the related Forms defined Object.</errorMessage>
+</ValidationRule>

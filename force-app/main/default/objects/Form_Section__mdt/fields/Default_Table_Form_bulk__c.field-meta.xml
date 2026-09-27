@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Table_Form_bulk__c</fullName>
+    <description>This form is used to edit records in bulk within a datatable component</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Default Table Form (bulk)</label>
+    <referenceTo>Form__mdt</referenceTo>
+    <relationshipLabel>Default Tables (bulk)</relationshipLabel>
+    <relationshipName>DefaultBulkForms</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

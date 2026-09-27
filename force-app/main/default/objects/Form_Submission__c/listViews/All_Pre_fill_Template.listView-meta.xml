@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Pre_fill_Template</fullName>
+    <booleanFilter>1 OR 2</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Tag_Internal__c</columns>
+    <columns>Internal_Description__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Form_Submission__c.Prefill</value>
+    </filters>
+    <filters>
+        <field>IsPrefillTemplate__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>All Pre-fill Templates</label>
+</ListView>

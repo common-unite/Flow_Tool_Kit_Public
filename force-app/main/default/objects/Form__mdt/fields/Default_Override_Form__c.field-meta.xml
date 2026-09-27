@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Override_Form__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When enabled, this form is used by the New and Edit standard action overrides for its object. Only one form per object can be the default; enabling it on another form turns this one off automatically.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>Turn this on to make this the form that opens when someone clicks New or Edit on this object. Only one form per object can be the default, so switching it on here switches it off on any other form for the same object.</inlineHelpText>
+    <label>Default Override Form</label>
+    <type>Checkbox</type>
+</CustomField>

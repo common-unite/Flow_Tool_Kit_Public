@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Tags_Position__c</fullName>
+    <description>Stacked header style only: where the Header Tags pills sit. Below the body (the default when blank), above the eyebrow, above the pretitle or above the title. Unrestricted so values added in later releases save in upgraded orgs.</description>
+    <inlineHelpText>Where the tag pills sit in a Stacked header: below the body, above the eyebrow, above the pretitle or above the title.</inlineHelpText>
+    <label>Header Tags Position</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>belowLead</fullName><default>false</default><label>Below body</label></value>
+            <value><fullName>aboveEyebrow</fullName><default>false</default><label>Above eyebrow</label></value>
+            <value><fullName>aboveKicker</fullName><default>false</default><label>Above pretitle</label></value>
+            <value><fullName>aboveTitle</fullName><default>false</default><label>Above title</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

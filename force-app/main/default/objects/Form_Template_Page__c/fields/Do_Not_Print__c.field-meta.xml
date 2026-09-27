@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Do_Not_Print__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>PDF rendering exclusion flag (#584). When checked, FormTemplate_PDF_Controller skips this page entirely, regardless of runtime conditional-logic visibility - screen-only content such as instructions or internal-review pages stays out of the printed submission. Applies to every PDF render mode including template previews.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this to leave the page out of the Form Submission PDF, even when it is visible on screen. Use it for instructions, acknowledgements, or internal content that should not appear in the printed record.</inlineHelpText>
+    <label>Do Not Print</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

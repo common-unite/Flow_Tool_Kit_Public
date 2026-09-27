@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Required__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When true, marks this template as requiring payment, gating submission completion behind a paid step (used with the Price Book and payment integration). Drives whether the form enforces a payment before the submission is treated as complete.</description>
+    <inlineHelpText>Check if users must pay to complete this form. Set the Price Book to control pricing. Leave unchecked for forms that don't collect payment.</inlineHelpText>
+    <label>Payment Required</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

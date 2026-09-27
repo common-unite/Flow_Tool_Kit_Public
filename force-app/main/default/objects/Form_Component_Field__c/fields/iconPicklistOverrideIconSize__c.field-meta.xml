@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>iconPicklistOverrideIconSize__c</fullName>
+    <defaultValue>&apos;small&apos;</defaultValue>
+    <label>iconPicklistOverrideIconSize</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>small</fullName>
+                <default>true</default>
+                <label>small</label>
+            </value>
+            <value>
+                <fullName>medium</fullName>
+                <default>false</default>
+                <label>medium</label>
+            </value>
+            <value>
+                <fullName>large</fullName>
+                <default>false</default>
+                <label>large</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

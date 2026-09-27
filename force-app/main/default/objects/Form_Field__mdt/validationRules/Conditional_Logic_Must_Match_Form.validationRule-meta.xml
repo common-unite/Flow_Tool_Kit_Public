@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conditional_Logic_Must_Match_Form</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT(ISBLANK(conditionalLogic__c)),
+NOT(ISBLANK(Form__c)),
+Form__c != conditionalLogic__r.Form__c
+)</errorConditionFormula>
+    <errorDisplayField>conditionalLogic__c</errorDisplayField>
+    <errorMessage>Conditional Logic must be related to Form</errorMessage>
+</ValidationRule>

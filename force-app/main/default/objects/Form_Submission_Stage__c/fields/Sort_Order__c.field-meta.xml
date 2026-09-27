@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sort_Order__c</fullName>
+    <description>Computed from the linked Form Template Page&apos;s Position. Used by the stages-list LWC to render in admin-defined order. No trigger needed to keep in sync — the formula re-evaluates when admins reorder pages.</description>
+    <externalId>false</externalId>
+    <formula>Form_Template_Page__r.Position__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Mirrors the linked page&apos;s Position so the stages overview renders in the admin-defined order. Reorder pages on the Form Template — this field updates automatically; no trigger needed.</inlineHelpText>
+    <label>Sort Order</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

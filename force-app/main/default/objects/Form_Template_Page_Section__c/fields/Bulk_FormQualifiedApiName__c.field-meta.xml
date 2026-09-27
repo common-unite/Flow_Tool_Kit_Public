@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bulk_FormQualifiedApiName__c</fullName>
+    <description>QualifiedApiName of a Form Component used for the Table section's bulk (multi-row) edit experience. Passed as override-table-form-bulk-name to c-flow-data-table. Leave blank if no separate bulk-edit form is needed.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Optional Form to use when users bulk-edit several Table rows at once. Leave blank if you do not offer bulk editing on this table.</inlineHelpText>
+    <label>Bulk_FormQualifiedApiName</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

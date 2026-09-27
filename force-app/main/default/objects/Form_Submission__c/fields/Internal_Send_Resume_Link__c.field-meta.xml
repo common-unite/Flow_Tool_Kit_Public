@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Internal_Send_Resume_Link__c</fullName>
+    <description>Datetime stamped by the formTemplate LWC when the respondent clicks Email me a resume link. The Form_Submission trigger watches this field — when it transitions to a non-blank value, the trigger generates a cryptographically random Internal_Unique_Token__c. Cleared by Form_Submission_Prefill on resume-link consumption, by the trigger when Submission_Date__c is stamped, and by the scheduled Form_Submission_Expire_Resume_Tokens flow after the configured window.</description>
+    <inlineHelpText>Stamped with the current datetime when the respondent clicks &quot;Email me a resume link&quot; in the stages overview. Triggers the Form_Submission trigger to generate Internal_Unique_Token__c and the Form_Submission_Send_Resume_Link flow to send the email. Cleared on consumption, on form submission, and on scheduled expiration.</inlineHelpText>
+    <label>Send Resume Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

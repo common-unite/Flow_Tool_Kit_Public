@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>referenceFieldOverrideType__c</fullName>
+    <defaultValue>&apos;standard&apos;</defaultValue>
+    <description>Lookup (reference) field display override. standard renders the normal lookup input. component replaces it with an inline Form Component rendering the referenced record, driven by referenceFormComponent__c and Alternative_Field__c. startnewform and vieweditsubmission (#391) replace it with the form runtime (c-form-template), and are offered in Form Builder only when the lookup targets Form_Template__c or Form_Submission__c respectively. startnewform passes the HOST record&apos;s Id as recordId and the lookup value as fixedTemplateId, so Form_Template_Source__mdt source configuration resolves and falls back to the lookup&apos;s template; vieweditsubmission passes the lookup value. Rendering is suppressed when the host record Id equals the lookup value, which would otherwise recurse.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Overrides how a lookup field displays on the form. Form Component renders the referenced record inline through a nested form. Start New Form and View/Edit Form Submission render the full form runtime in place of the lookup, and appear only when the lookup points at a Form Template or a Form Submission.</inlineHelpText>
+    <label>referenceFieldOverrideType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>standard</fullName>
+                <default>true</default>
+                <label>standard</label>
+            </value>
+            <value>
+                <fullName>component</fullName>
+                <default>false</default>
+                <label>component</label>
+            </value>
+            <value>
+                <fullName>startnewform</fullName>
+                <default>false</default>
+                <label>Start New Form</label>
+            </value>
+            <value>
+                <fullName>vieweditsubmission</fullName>
+                <default>false</default>
+                <label>View/Edit Form Submission</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

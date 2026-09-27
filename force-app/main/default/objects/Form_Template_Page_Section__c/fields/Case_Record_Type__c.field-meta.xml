@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Record_Type__c</fullName>
+    <description>Record type applied to Cases created from this section's related records during conversion. Read in Form_Submission_Convert_Process_Case_Overridable as the section's own value, resolved from developer name to a RecordType; a blank leaves RecordTypeId unset so Salesforce assigns the converting user's default Case record type. The section never inherits the Form Template's Case Record Type.</description>
+    <inlineHelpText>Pick the record type for Cases this section creates. Leave blank to use the converting user's default Case record type.</inlineHelpText>
+    <label>Case (Record Type)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Case_Record_Type</valueSetName>
+    </valueSet>
+</CustomField>

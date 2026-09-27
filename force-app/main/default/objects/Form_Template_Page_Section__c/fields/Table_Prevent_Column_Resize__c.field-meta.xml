@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Table_Prevent_Column_Resize__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, disables drag-to-resize on table columns (disable-column-resize on c-flow-data-table), locking column widths. Applies to Table sections only.</description>
+    <inlineHelpText>Turn on to stop users from dragging table column borders to resize them. Applies to Table sections only.</inlineHelpText>
+    <label>Prevent Column Resize</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

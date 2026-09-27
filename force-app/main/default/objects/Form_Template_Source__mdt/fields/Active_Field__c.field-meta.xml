@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Field__c</fullName>
+    <description>Boolean field on the source object that controls whether the source record is accepting submissions. Maps to Form_Template__c.IsActive__c.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Active Field</label>
+    <metadataRelationshipControllingField>Form_Template_Source__mdt.Source_Object__c</metadataRelationshipControllingField>
+    <referenceTo>FieldDefinition</referenceTo>
+    <relationshipLabel>Form Template Sources (Active)</relationshipLabel>
+    <relationshipName>Form_Template_Sources_Active</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Data_Conversion_Tag_s__c</fullName>
+    <defaultValue>&quot;Default&quot;</defaultValue>
+    <description>Per-section override of the Form Template's Data Conversion Tags. NOT consumed by the package's conversion engine; stamped onto the submission's Internal_Data_Conversion_Tag_s__c (by the sample Global Form Submission Utility flow in force-app-demo, or your own automation) for use in your own record-triggered Flow entry conditions. The section value takes precedence; the sample flow falls back to the template's tags when this is blank.</description>
+    <inlineHelpText>Optionally tag just this section's data, overriding the template-level Data Conversion Tags. These get stamped onto the submission for use in your own downstream record-triggered Flows; leave blank to inherit the template's tags.</inlineHelpText>
+    <label>Data Conversion Tag(s)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Data_Conversion_Tag_s</valueSetName>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

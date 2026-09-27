@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_Date_Field__c</fullName>
+    <description>Date or DateTime field on the source object for when submissions close. Overrides Form_Template__c.Close_Date__c with date merging logic.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>End Date Field</label>
+    <metadataRelationshipControllingField>Form_Template_Source__mdt.Source_Object__c</metadataRelationshipControllingField>
+    <referenceTo>FieldDefinition</referenceTo>
+    <relationshipLabel>Form Template Sources (End Date)</relationshipLabel>
+    <relationshipName>Form_Template_Sources_End</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allow_Save_Progress__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When true, the formTemplate runtime exposes a Save Progress affordance so an authenticated user can persist a draft Form Submission and resume later. Hidden once the submission has a Submission Date (already submitted) or in read-only (disableAll) mode.</description>
+    <inlineHelpText>When enabled, a Save Progress button appears in the form so respondents can save and come back later. Their in-progress submission is committed with a status of Saved, and they resume exactly where they left off on their next visit.</inlineHelpText>
+    <label>Allow Save Progress</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

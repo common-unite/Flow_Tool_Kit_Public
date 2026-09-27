@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Default</fullName>
+        <default>false</default>
+        <label>Default</label>
+    </customValue>
+    <customValue>
+        <fullName>Contacts</fullName>
+        <default>false</default>
+        <label>Contacts</label>
+    </customValue>
+    <customValue>
+        <fullName>Tasks</fullName>
+        <default>false</default>
+        <label>Tasks</label>
+    </customValue>
+    <customValue>
+        <fullName>Cases</fullName>
+        <default>false</default>
+        <label>Cases</label>
+    </customValue>
+    <customValue>
+        <fullName>Opportunities</fullName>
+        <default>false</default>
+        <label>Opportunities</label>
+    </customValue>
+    <description>These values are stamped on all Form Submissions and serve as the shared section-purpose vocabulary used by both Form_Template_Page_Section__c.Data_Conversion_Tag_s__c (multi-select, drives Flow trigger entry conditions) and Form_Template_Page_Section__c.Section_Tag__c (single-value, drives prefill routing). Reference these tags within Flow trigger entry conditions.</description>
+    <masterLabel>Data Conversion Tag(s)</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

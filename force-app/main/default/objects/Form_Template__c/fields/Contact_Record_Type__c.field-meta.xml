@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Record_Type__c</fullName>
+    <description>Record type applied to Contacts created during conversion. The convert Flow reads this to stamp RecordTypeId; leave on the default option to let Salesforce assign the running user's default Contact record type.</description>
+    <inlineHelpText>Pick the record type for Contacts this form creates. Leave on the default option to use the standard default for the converting user.</inlineHelpText>
+    <label>Contact (Record Type)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Contact_Record_Type</valueSetName>
+    </valueSet>
+</CustomField>

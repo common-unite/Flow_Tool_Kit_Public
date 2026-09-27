@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Matching_Rules__c</fullName>
+    <description>Selects which duplicate/matching rule(s) the conversion Setup Flow uses to find an existing Account to update before creating a new one. Multi-select; evaluated by the Account upsert convert Flow. Works with Update Most Confident (Account) when several matches are returned.</description>
+    <inlineHelpText>Choose the matching/duplicate rules used to find an existing Account before a new one is created on conversion. Combine with Update Most Confident (Account) to control which match wins.</inlineHelpText>
+    <label>Account Matching Rules</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Standard_Account_Match_Rule_v1_0</fullName>
+                <default>true</default>
+                <label>Standard_Account_Match_Rule_v1_0</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

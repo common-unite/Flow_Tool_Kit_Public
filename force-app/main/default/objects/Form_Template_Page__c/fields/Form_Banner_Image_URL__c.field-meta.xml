@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Banner_Image_URL__c</fullName>
+    <description>Formula that converts the relative path in Form Banner Image into a fully-qualified, renderable image URL. It prefixes '/sfsites/c' for Experience Cloud/CDN contexts, otherwise derives the org base URL from $Api.Enterprise_Server_URL_100; returns blank when Form Banner Image is empty. Read-only — there is nothing to enter. Use this field (not the raw path field) anywhere an absolute banner URL is needed for display.</description>
+    <externalId>false</externalId>
+    <formula>If( ISBLANK(Form_Banner_Image__c),&apos;&apos;,
+
+IF( CONTAINS($Api.Enterprise_Server_URL_100,&apos;/sfsites/c&apos;),
+
+&apos;/sfsites/c&apos;+Form_Banner_Image__c,
+
+LEFT($Api.Enterprise_Server_URL_100,FIND(&apos;/services/Soap/&apos;, $Api.Enterprise_Server_URL_100)-1)+Form_Banner_Image__c
+
+))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This read-only field automatically builds the full image URL from the Form Banner Image path, so you never edit it directly. It returns blank when no banner image is set; reference this field rather than the raw path whenever you need a displayable URL.</inlineHelpText>
+    <label>Form Banner Image URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

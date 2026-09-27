@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Description__c</fullName>
+    <description>Subtitle text rendered under the page title on this page's stage card in Stages Mode. The formTemplate LWC reads it into each stage's description (page[Description__c]) when building the stages overview, and FormTemplate_Utility queries it onto the Form_Submission_Stage__c rows. Keep it to one or two short sentences — a rationale or summary that helps a respondent decide whether to open this stage. Has no effect in the linear page-by-page runtime, where pages are shown one at a time and there is no overview card. Long Text Area, 500 characters.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter a one- or two-sentence subtitle that appears under the page title on its Stages-view card. A short summary of what the stage covers helps respondents decide whether to start it; this text only shows when the parent Form Template is in Stages Mode.</inlineHelpText>
+    <label>Description</label>
+    <length>500</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

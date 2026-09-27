@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Close_Date__c</fullName>
+    <description>Optional datetime that closes an availability window. The formTemplate runtime blocks rendering and shows the Offline Message once now is past this value; leave blank for no end gate. Pair with Start Date for seasonal or application-window forms.</description>
+    <inlineHelpText>After this date and time the form stops accepting new submissions and shows your Offline Message instead. Leave it blank to keep the form open indefinitely; it pairs with Start Date to define an availability window.</inlineHelpText>
+    <label>Close Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

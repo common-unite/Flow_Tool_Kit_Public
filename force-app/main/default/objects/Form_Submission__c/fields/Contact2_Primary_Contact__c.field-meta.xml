@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact2_Primary_Contact__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Marks Contact 2 of this row as the household's primary member (the head of household) for Nonprofit Cloud Household conversion. On the main submission Contact 2 is the second person; on a related row of a Contact 2 repeater it is the relative, so this is the flag to carry when the applicant is a child and the parent on the repeater row is the head. The base package never writes household memberships, so the field is inert here; the Nonprofit Cloud extension's Household engine reads it: the membership written for a flagged row takes the primary seat and the previous primary member of that Household is demoted, so a Household always has exactly one. When no row is flagged, the first person added to the Household stays its primary member.</description>
+    <label>Primary Contact</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

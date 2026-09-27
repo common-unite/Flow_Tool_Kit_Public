@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Save__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, moving forward off this page auto-saves the in-progress submission. The formTemplate LWC's next-page handler treats Auto Save the same as a Save Progress click (priorPage[Auto_Save__c] === true), persisting the current Form_Submission__c values before advancing. Use it on pages that gather data you don't want to lose if the respondent abandons the form, without making them click Save Progress. Requires Allow Save Progress to be enabled on the parent Form Template so the save path exists. In Stages Mode, returning to the overview already saves, so this is mainly for the linear page-by-page runtime.</description>
+    <inlineHelpText>Check this to silently save the respondent's progress whenever they move forward from this page, so nothing is lost if they leave mid-form. The parent Form Template must have Allow Save Progress enabled for the save to run; in linear mode the respondent will not see a Save button being clicked.</inlineHelpText>
+    <label>Auto Save</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

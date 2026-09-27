@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Theme_Field__c</fullName>
+    <description>Text field on the source object for the theme developer name. Overrides Form_Template__c.Theme__c.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Theme Field</label>
+    <metadataRelationshipControllingField>Form_Template_Source__mdt.Source_Object__c</metadataRelationshipControllingField>
+    <referenceTo>FieldDefinition</referenceTo>
+    <relationshipLabel>Form Template Sources (Theme)</relationshipLabel>
+    <relationshipName>Form_Template_Sources_Theme</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

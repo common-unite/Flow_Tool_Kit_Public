@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Page_Footer__c</fullName>
+    <description>Rich-text content rendered at the bottom of the page body, below the page's sections, by the formTemplatePageSection LWC (lightning-formatted-rich-text bound to Page_Footer__c). Use it for closing notes, disclaimers, attestations, or links shown after the respondent has filled the page's fields. Also included in FormTemplate_PDF_Controller output. Distinct from the template-level navigation footer/buttons. HTML field.</description>
+    <inlineHelpText>Add rich text that appears at the bottom of the page, below its form sections — good for disclaimers, attestations, or closing instructions. This is the page body footer, separate from the form's navigation buttons; leave it blank if the page needs no closing content.</inlineHelpText>
+    <label>Page Footer</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

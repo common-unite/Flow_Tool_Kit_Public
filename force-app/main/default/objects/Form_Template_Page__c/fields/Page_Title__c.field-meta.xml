@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Page_Title__c</fullName>
+    <description>Rich-text heading rendered at the top of the page body, above the page's sections, by the formTemplatePageSection LWC (lightning-formatted-rich-text bound to Page_Title__c). Use it for a formatted on-page headline or intro that is richer than the plain-text Page Label. Distinct from Page Label (the navigation/stage label) and Details (instructional body text). Also surfaced in FormTemplate_PDF_Controller output. HTML field.</description>
+    <inlineHelpText>Add a formatted heading or intro shown at the top of the page body, above the sections — use it when you want styled text richer than the plain Page Label. This is on-page content, separate from the Page Label that drives the navigation indicator; leave it blank to show just the sections.</inlineHelpText>
+    <label>Page Title</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

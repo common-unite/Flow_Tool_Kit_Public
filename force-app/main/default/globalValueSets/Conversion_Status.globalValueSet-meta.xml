@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Ready</fullName>
+        <default>true</default>
+        <label>Ready</label>
+    </customValue>
+    <customValue>
+        <fullName>In Progress</fullName>
+        <default>false</default>
+        <label>In Progress</label>
+    </customValue>
+    <customValue>
+        <fullName>Matched</fullName>
+        <default>false</default>
+        <label>Matched</label>
+    </customValue>
+    <customValue>
+        <fullName>Multiple Matches</fullName>
+        <default>false</default>
+        <label>Multiple Matches</label>
+    </customValue>
+    <customValue>
+        <fullName>Created</fullName>
+        <default>false</default>
+        <label>Created</label>
+    </customValue>
+    <customValue>
+        <fullName>Updated</fullName>
+        <default>false</default>
+        <label>Updated</label>
+    </customValue>
+    <customValue>
+        <fullName>Deserialized</fullName>
+        <default>false</default>
+        <label>Deserialized</label>
+    </customValue>
+    <customValue>
+        <fullName>Lead Converted</fullName>
+        <default>false</default>
+        <label>Lead Converted</label>
+    </customValue>
+    <customValue>
+        <fullName>Email Sent</fullName>
+        <default>false</default>
+        <label>Email Sent</label>
+    </customValue>
+    <customValue>
+        <fullName>Error</fullName>
+        <default>false</default>
+        <label>Error</label>
+    </customValue>
+    <customValue>
+        <fullName>Bypassed</fullName>
+        <default>false</default>
+        <label>Bypassed</label>
+    </customValue>
+    <description>This is used within Form Template framework. Assigned to lookup conversion status fields.</description>
+    <masterLabel>Conversion Status</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

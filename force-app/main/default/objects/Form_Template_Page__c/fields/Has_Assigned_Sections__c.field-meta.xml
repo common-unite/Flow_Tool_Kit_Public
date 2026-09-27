@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Has_Assigned_Sections__c</fullName>
+    <description>Read-only formula that is TRUE when at least one of the 15 Form Component Section lookups is populated. It exists because Lightning component-visibility rules cap at 10 filters, so the 15 section lookups are collapsed into this single flag to drive the record page's empty-state visibility (show the 'add a section' prompt when FALSE, the section UI when TRUE). Maintained automatically by the formula engine; no input.</description>
+    <externalId>false</externalId>
+    <formula>NOT(
+  ISBLANK(Form_Component_Section1__c) &amp;&amp;
+  ISBLANK(Form_Component_Section2__c) &amp;&amp;
+  ISBLANK(Form_Component_Section3__c) &amp;&amp;
+  ISBLANK(Form_Component_Section4__c) &amp;&amp;
+  ISBLANK(Form_Component_Section5__c) &amp;&amp;
+  ISBLANK(Form_Component_Section6__c) &amp;&amp;
+  ISBLANK(Form_Component_Section7__c) &amp;&amp;
+  ISBLANK(Form_Component_Section8__c) &amp;&amp;
+  ISBLANK(Form_Component_Section9__c) &amp;&amp;
+  ISBLANK(Form_Component_Section10__c) &amp;&amp;
+  ISBLANK(Form_Component_Section11__c) &amp;&amp;
+  ISBLANK(Form_Component_Section12__c) &amp;&amp;
+  ISBLANK(Form_Component_Section13__c) &amp;&amp;
+  ISBLANK(Form_Component_Section14__c) &amp;&amp;
+  ISBLANK(Form_Component_Section15__c)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This read-only checkbox is automatically TRUE once the page has at least one assigned section component. It is what the record page uses to switch between the empty-state prompt and the section editor, so there is nothing to enter here.</inlineHelpText>
+    <label>Has Assigned Sections</label>
+    <type>Checkbox</type>
+</CustomField>

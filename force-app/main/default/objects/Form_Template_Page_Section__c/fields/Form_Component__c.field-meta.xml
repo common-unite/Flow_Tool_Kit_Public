@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Component__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lookup to the Form_Component__c record this section is associated with. Provides a relationship to the Form Component definition used by the section; the runtime renders by FormQualifiedApiName / FormConfigJSON rather than dereferencing this lookup. Typically set by the configurator when a Form Component is chosen.</description>
+    <inlineHelpText>Reference to the Form Component this section is based on. It is normally set for you when you choose a Form in the configurator; you usually do not edit it directly.</inlineHelpText>
+    <label>Form Component</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Form_Component__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Record Component</value>
+        </filterItems>
+        <filterItems>
+            <field>Form_Component__c.ObjectApiName__c</field>
+            <operation>equals</operation>
+            <value>FlowToolKit__Form_Submission__c</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Form_Component__c</referenceTo>
+    <relationshipLabel>Form Template Page Sections</relationshipLabel>
+    <relationshipName>Form_Template_Page_Sections</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

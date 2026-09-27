@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enable_Review_Screen__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When enabled the Form will display a final review page with all questions displayed</description>
+    <inlineHelpText>Turn on to add a read-only review page at the end of the form where respondents see all their answers before submitting. Each section includes an Edit button so they can jump back, make a change, and return to the review step.</inlineHelpText>
+    <label>Enable Review Screen</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

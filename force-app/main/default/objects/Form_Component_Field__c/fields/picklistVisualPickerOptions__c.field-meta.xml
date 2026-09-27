@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>picklistVisualPickerOptions__c</fullName>
+    <description>JSON map of picklist API value to visual picker media ({"apiValue":{"type":"icon","icon":"utility:favorite"}} or {"apiValue":{"type":"asset","asset":"AssetName"}}), edited via the Customize Visual Picker modal in Form Builder when picklistType__c is visualpicker (#247). flowFormVisualPicker renders each option as an SLDS visual picker card showing the mapped SLDS icon or public image asset; values without an entry fall back to a default icon. Custom display labels continue to live in picklistOptionLabels__c so the merge pipeline and translations apply to the hover/caption label unchanged.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Maps picklist values to the icon or public image asset shown on their visual picker card, managed from the Customize Visual Picker editor in Form Builder. Values without an entry show a default icon; option labels are still managed alongside the media in the same editor.</inlineHelpText>
+    <label>Picklist Visual Picker Options</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>6</visibleLines>
+</CustomField>

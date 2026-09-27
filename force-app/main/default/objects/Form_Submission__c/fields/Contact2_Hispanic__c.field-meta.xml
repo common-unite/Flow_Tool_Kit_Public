@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact2_Hispanic__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Census-style ethnicity flag asked separately from race: Hispanic or Latino origin as its own yes/no question. Complements Contact2_Race_Ethnicity_Multiselect__c.</description>
+    <externalId>false</externalId>
+    <label>Hispanic or Latino</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

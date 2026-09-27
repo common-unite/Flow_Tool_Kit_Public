@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bottom_Margin__c</fullName>
+    <defaultValue>&apos;slds-m-bottom_none&apos;</defaultValue>
+    <description>SLDS bottom-margin utility class (slds-m-bottom_none through slds-m-bottom_large). For Field Set/Repeater/Table it is passed into the form component (bottom-margin) which applies it; for Display Text and Lightning Web Component the formTemplatePageSection LWC applies it on the section wrapper. Defaults to slds-m-bottom_none.</description>
+    <inlineHelpText>Choose how much vertical space appears below this entire section. Larger values separate it from the section below; defaults to none.</inlineHelpText>
+    <label>Bottom Margin</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>slds-m-bottom_none</fullName>
+                <default>true</default>
+                <label>none</label>
+            </value>
+            <value>
+                <fullName>slds-m-bottom_xxx-small</fullName>
+                <default>false</default>
+                <label>xxx-small</label>
+            </value>
+            <value>
+                <fullName>slds-m-bottom_xx-small</fullName>
+                <default>false</default>
+                <label>xx-small</label>
+            </value>
+            <value>
+                <fullName>slds-m-bottom_x-small</fullName>
+                <default>false</default>
+                <label>x-small</label>
+            </value>
+            <value>
+                <fullName>slds-m-bottom_small</fullName>
+                <default>false</default>
+                <label>small</label>
+            </value>
+            <value>
+                <fullName>slds-m-bottom_medium</fullName>
+                <default>false</default>
+                <label>medium</label>
+            </value>
+            <value>
+                <fullName>slds-m-bottom_large</fullName>
+                <default>false</default>
+                <label>large</label>
+            </value>
+            <value>
+                <fullName>slds-m-bottom_x-large</fullName>
+                <default>false</default>
+                <label>x-large</label>
+            </value>
+            <value>
+                <fullName>slds-m-bottom_xx-large</fullName>
+                <default>false</default>
+                <label>xx-large</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prefill_Flow_Field__c</fullName>
+    <description>Field on the source object that holds the API name of an autolaunched Prefill Flow. Overrides Form_Template__c.Prefill_Flow_Api_Name__c so one Form Template can be reused across many source records, each running its own prefill flow. Use it for prefill a field mapping cannot express, because it needs a query rather than a field path: a prior year&apos;s submission, a filtered related record, or a set of related records. Blank on the source record leaves the template&apos;s own flow in place. An unrestricted picklist maintained by an administrator is the recommended field type - a free-text field accepts any string, and a name that matches no active flow fails at runtime with nothing to catch it at save time. The packaged Campaign.Form_Prefill_Flow__c field is built this way as the reference implementation.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>Choose the field on the source object holding the API name of an autolaunched Prefill Flow; whatever flow it names runs instead of the one on the Form Template, so one form can prefill differently per record. Make that field an unrestricted picklist you maintain rather than free text, so users pick from flows you approved and cannot mistype a name that fails only once a respondent opens the form. Leave the source field blank to keep the template&apos;s own flow.</inlineHelpText>
+    <label>Prefill Flow Field</label>
+    <metadataRelationshipControllingField>Form_Template_Source__mdt.Source_Object__c</metadataRelationshipControllingField>
+    <referenceTo>FieldDefinition</referenceTo>
+    <relationshipLabel>Form Template Sources (Prefill Flow)</relationshipLabel>
+    <relationshipName>Form_Template_Sources_Prefill_Flow</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hide__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, this page is excluded from the runtime. FormTemplate_Utility appends 'Hide__c != TRUE' to the page query (except when cloning, where hidden pages are still copied), so a hidden page is never returned to the formTemplate LWC and never appears in the form, navigation, or stages overview. Use it to retire a page without deleting it or losing its sections and conditional logic. Default false.</description>
+    <inlineHelpText>Check this to remove the page from the live form without deleting it — the runtime query skips hidden pages, so respondents never see it. Use it to retire or temporarily pull a page while keeping its sections and settings intact; uncheck to bring it back.</inlineHelpText>
+    <label>Hide Page</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

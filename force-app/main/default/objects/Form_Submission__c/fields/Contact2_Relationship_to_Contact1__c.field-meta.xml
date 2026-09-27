@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact2_Relationship_to_Contact1__c</fullName>
+    <description>How the second contact is related to the first contact. Covers parent/guardian capture on youth and program intake forms as well as emergency contact, spouse and co-applicant use of the Contact2 family. Unrestricted so subscribers can add their own values. Replaces the retired Contact2_Relationship__c field.</description>
+    <label>Relationship</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Mother</fullName>
+                <default>false</default>
+                <label>Mother</label>
+            </value>
+            <value>
+                <fullName>Father</fullName>
+                <default>false</default>
+                <label>Father</label>
+            </value>
+            <value>
+                <fullName>Stepparent</fullName>
+                <default>false</default>
+                <label>Stepparent</label>
+            </value>
+            <value>
+                <fullName>Legal Guardian</fullName>
+                <default>false</default>
+                <label>Legal Guardian</label>
+            </value>
+            <value>
+                <fullName>Foster Parent</fullName>
+                <default>false</default>
+                <label>Foster Parent</label>
+            </value>
+            <value>
+                <fullName>Grandparent</fullName>
+                <default>false</default>
+                <label>Grandparent</label>
+            </value>
+            <value>
+                <fullName>Spouse or Partner</fullName>
+                <default>false</default>
+                <label>Spouse or Partner</label>
+            </value>
+            <value>
+                <fullName>Sibling</fullName>
+                <default>false</default>
+                <label>Sibling</label>
+            </value>
+            <value>
+                <fullName>Child</fullName>
+                <default>false</default>
+                <label>Child</label>
+            </value>
+            <value>
+                <fullName>Friend</fullName>
+                <default>false</default>
+                <label>Friend</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

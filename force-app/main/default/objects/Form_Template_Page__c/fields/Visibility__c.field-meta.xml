@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Visibility__c</fullName>
+    <defaultValue>&apos;Both&apos;</defaultValue>
+    <description>Audience filter for the page. FormTemplate_Utility builds a visibility set from the running user's type and includes the page only when its Visibility is in that set: 'Both' always shows; 'Internal Only' shows for Standard (internal Salesforce) users; 'External Only' shows for Experience Cloud / guest users. Cloning ignores this filter and copies all pages. Restricted picklist, default 'Both', required. Use it to serve different page sets to staff vs. portal respondents from one template.</description>
+    <inlineHelpText>Choose who sees this page: Both (everyone), Internal Only (logged-in Salesforce/staff users), or External Only (Experience Cloud/portal respondents). Use it to show or hide a page based on audience from a single template; leave it on Both unless a page is meant for only one group.</inlineHelpText>
+    <label>Visibility</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Both</fullName>
+                <default>true</default>
+                <label>Both</label>
+            </value>
+            <value>
+                <fullName>Internal Only</fullName>
+                <default>false</default>
+                <label>Internal Only</label>
+            </value>
+            <value>
+                <fullName>External Only</fullName>
+                <default>false</default>
+                <label>External Only</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

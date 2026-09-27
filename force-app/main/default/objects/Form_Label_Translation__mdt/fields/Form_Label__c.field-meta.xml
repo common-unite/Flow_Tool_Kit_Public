@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Label__c</fullName>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Form Label</label>
+    <referenceTo>Form_Label__mdt</referenceTo>
+    <relationshipLabel>Form Label Translations</relationshipLabel>
+    <relationshipName>Form_Label_Translations</relationshipName>
+    <required>true</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

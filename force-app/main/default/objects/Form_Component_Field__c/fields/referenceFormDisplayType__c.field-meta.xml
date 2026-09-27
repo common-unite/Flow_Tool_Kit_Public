@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>referenceFormDisplayType__c</fullName>
+    <defaultValue>&apos;inline&apos;</defaultValue>
+    <description>How a Start New Form or View/Edit Form Submission lookup override renders (#391). inline renders c-form-template in place of the lookup input, matching how the component override renders its nested form. modal renders a button instead, labelled by referenceFormButtonLabel__c, which opens the form in a modal headed by referenceFormModalHeader__c / referenceFormModalSubheader__c. Ignored when referenceFieldOverrideType__c is standard or component.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Controls whether the form renders directly on the page or behind a button that opens it in a modal. Inline is the default and keeps the form always visible. Choose Modal when the embedded form is long and would otherwise dominate the page.</inlineHelpText>
+    <label>referenceFormDisplayType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>inline</fullName>
+                <default>true</default>
+                <label>Inline</label>
+            </value>
+            <value>
+                <fullName>modal</fullName>
+                <default>false</default>
+                <label>Button / Modal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

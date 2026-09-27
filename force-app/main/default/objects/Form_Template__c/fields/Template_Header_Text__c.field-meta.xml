@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Template_Header_Text__c</fullName>
+    <description>Rich text stored for the template header region. Use the dedicated header Form component (FormQualifiedApiName (Header)) for the rendered runtime header; this field holds simple HTML header content where a full Form component is not configured.</description>
+    <inlineHelpText>Add formatted header content (title, intro copy, branding) to show at the top of the form. For richer headers, configure a header Form component instead.</inlineHelpText>
+    <label>Template Header Text</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

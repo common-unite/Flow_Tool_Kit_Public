@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FormQualifiedApiName_Footer__c</fullName>
+    <description>QualifiedApiName of a Form (Form__mdt, object Form_Template) that the formTemplate runtime renders as the form's footer band below the pages. Use this for a fully designed, themed footer instead of plain Footer Text.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Enter the API name of the Form component to render as this template's footer. Leave blank for no Form-driven footer.</inlineHelpText>
+    <label>FormQualifiedApiName (Footer)</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

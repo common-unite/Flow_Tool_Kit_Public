@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>displayType__c</fullName>
+    <defaultValue>&apos;SHOW&apos;</defaultValue>
+    <label>displayType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>HIDE</fullName>
+                <default>false</default>
+                <label>HIDE</label>
+            </value>
+            <value>
+                <fullName>SHOW</fullName>
+                <default>true</default>
+                <label>SHOW</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

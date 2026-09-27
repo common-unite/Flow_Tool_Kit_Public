@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>referenceFormModalSubheader__c</fullName>
+    <description>Secondary line shown beneath the heading in the modal opened by a Start New Form or View/Edit Form Submission lookup override (#391). Left out entirely when blank. Applies only when referenceFormDisplayType__c is modal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Optional subtitle displayed under the modal title, useful for a short instruction. Leave blank to show no subtitle. Has no effect when the display type is Inline.</inlineHelpText>
+    <label>referenceFormModalSubheader</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

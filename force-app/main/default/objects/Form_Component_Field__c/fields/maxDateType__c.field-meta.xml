@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>maxDateType__c</fullName>
+    <defaultValue>&apos;specific&apos;</defaultValue>
+    <description>This is used for Dates, Date-Times, and Numbers</description>
+    <label>maxType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>specificDate</fullName>
+                <default>false</default>
+                <label>specificDate</label>
+            </value>
+            <value>
+                <fullName>today</fullName>
+                <default>false</default>
+                <label>today</label>
+            </value>
+            <value>
+                <fullName>fieldValue</fullName>
+                <default>false</default>
+                <label>fieldValue</label>
+            </value>
+            <value>
+                <fullName>specific</fullName>
+                <default>true</default>
+                <label>specific</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

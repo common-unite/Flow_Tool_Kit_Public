@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Table_Hide_Footer__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When checked, hides the table's footer area (hide-table-footer on c-flow-data-table), which holds row-count and action summaries. Applies to Table sections only.</description>
+    <inlineHelpText>Turn on to hide the footer beneath the table. Applies to Table sections only.</inlineHelpText>
+    <label>Hide Footer</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

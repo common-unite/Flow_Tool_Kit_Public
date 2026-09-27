@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Theme__c</fullName>
+    <description>Developer name of the Form_Theme__mdt applied by the formTemplate runtime to every form rendered within this template, driving colors, fonts, and styling via CSS custom properties. Leave blank to inherit the default theme.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the developer name of the Form Theme to brand this template's colors and fonts. All pages and sections inherit it. Leave blank to use the default theme.</inlineHelpText>
+    <label>Theme</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Confirmation_Page_Message__c</fullName>
+    <description>Rich text rendered on the confirmation (wrap-up) page after submission. Supports merge labels resolved against the Form Submission at runtime. A default message is seeded on new templates; ignored when Skip Confirmation Page is true.</description>
+    <inlineHelpText>Write the thank-you message users see after submitting (next steps, timelines, follow-up). Supports formatting and merge fields. A starter message is added automatically for new templates.</inlineHelpText>
+    <label>Confirmation Page Message</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Total_Score__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Renders the total row beneath a Likert Matrix section (#144): a live running sum of the answered rows' numeric values with an answered count and a Partial flag while incomplete. The total recomputes from the row fields' current values on every change and is display only unless Alternative_Field__c names a number field to store the running score. Sums Number-mode mapped values always; in Picklist mode rows contribute only when their stored option value is numeric. Label configured via Total_Score_Label__c.</description>
+    <inlineHelpText>Show a live total under the matrix that adds up the selected answers, with an answered count while the matrix is incomplete. Select a Total Score Field to also save the score to the record; otherwise the total is display only.</inlineHelpText>
+    <label>Show Total Score</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

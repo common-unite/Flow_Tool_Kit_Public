@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>phoneMask__c</fullName>
+    <defaultValue>&apos;(xxx) xxx-xxxx&apos;</defaultValue>
+    <label>phoneMask</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>none</fullName>
+                <default>false</default>
+                <label>none</label>
+            </value>
+            <value>
+                <fullName>(xxx) xxx-xxxx</fullName>
+                <default>true</default>
+                <label>(xxx) xxx-xxxx</label>
+            </value>
+            <value>
+                <fullName>xxx-xxx-xxxx</fullName>
+                <default>false</default>
+                <label>xxx-xxx-xxxx</label>
+            </value>
+            <value>
+                <fullName>xx xxxx xxxx</fullName>
+                <default>false</default>
+                <label>xx xxxx xxxx</label>
+            </value>
+            <value>
+                <fullName>xxxx xxx xxx</fullName>
+                <default>false</default>
+                <label>xxxx xxx xxx</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

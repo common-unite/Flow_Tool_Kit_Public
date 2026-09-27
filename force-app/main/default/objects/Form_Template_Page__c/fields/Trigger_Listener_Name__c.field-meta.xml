@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Trigger_Listener_Name__c</fullName>
+    <description>Names a button trigger this page listens for, enabling button-driven forward navigation. When a FLOW_BUTTON message arrives whose triggerName matches this value, formTemplate.js treats it as the page's forward action (handleButtonMessage / next-page flow), so a custom button inside a section can advance the form instead of the standard Next button. Primarily used in Flow mode (isFlow) to coordinate a section's own button with page navigation. Text(255). Leave blank to use only the standard navigation buttons.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the trigger name of a button (from a Buttons component on this page) that should move the form forward when clicked, instead of the standard Next button. The name must exactly match the button's trigger; leave it blank if the page should advance only via the normal navigation buttons.</inlineHelpText>
+    <label>Trigger Listener Name</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

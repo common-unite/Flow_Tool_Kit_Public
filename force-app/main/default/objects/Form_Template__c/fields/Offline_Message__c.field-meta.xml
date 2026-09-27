@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Offline_Message__c</fullName>
+    <description>Rich text shown by the formTemplate runtime in place of the form whenever the template is unavailable (Active unchecked, or now is outside the Start Date / Close Date window). Supports HTML formatting.</description>
+    <inlineHelpText>The rich-text message shown to visitors when the form is not accepting submissions, such as before the Start Date, after the Close Date, or while the template is inactive. Use it to explain why the form is unavailable and when it will reopen.</inlineHelpText>
+    <label>Offline Message</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

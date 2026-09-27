@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Text__c</fullName>
+    <description>Rich text rendered inside the section header (below title/subtitle) when Show Header is checked, passed as rich-text to the form/header component. Styled by Header Text Variant as a default block or an info/warning/error/success message card.</description>
+    <inlineHelpText>Additional rich text shown within the section header. Combine it with Header Text Variant to present it as a colored info, warning, error, or success card; requires Show Header.</inlineHelpText>
+    <label>Header Text</label>
+    <length>130000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

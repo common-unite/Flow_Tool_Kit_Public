@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Template_Subtitle__c</fullName>
+    <description>Optional subtitle text the formTemplate runtime renders beneath the template name in the form header. Plain text only.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Add a short subtitle shown under the form title to give users context or instructions. Leave blank for no subtitle.</inlineHelpText>
+    <label>Form Template Subtitle</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

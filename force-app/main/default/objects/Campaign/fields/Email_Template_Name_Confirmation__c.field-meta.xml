@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Template_Name_Confirmation__c</fullName>
+    <description>Campaign-level email template developer name for confirmation emails. Resolved at send time via the submission's Campaign relationship, not swapped in the controller.</description>
+    <label>Email Template Name (Confirmation)</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

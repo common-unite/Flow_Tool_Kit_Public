@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Divider_Vertical_Margin__c</fullName>
+    <defaultValue>&apos;slds-m-vertical_none&apos;</defaultValue>
+    <description>Additional vertical margin applied above and below the section divider, on top of the divider&apos;s built-in spacing. Defaults to none.</description>
+    <inlineHelpText>Adds extra space above and below the divider. The divider includes comfortable spacing by default; none adds nothing extra.</inlineHelpText>
+    <label>Divider Vertical Margin</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>slds-m-vertical_none</fullName>
+                <default>true</default>
+                <label>slds-m-vertical_none</label>
+            </value>
+            <value>
+                <fullName>slds-m-vertical_xxx-small</fullName>
+                <default>false</default>
+                <label>slds-m-vertical_xxx-small</label>
+            </value>
+            <value>
+                <fullName>slds-m-vertical_xx-small</fullName>
+                <default>false</default>
+                <label>slds-m-vertical_xx-small</label>
+            </value>
+            <value>
+                <fullName>slds-m-vertical_x-small</fullName>
+                <default>false</default>
+                <label>slds-m-vertical_x-small</label>
+            </value>
+            <value>
+                <fullName>slds-m-vertical_small</fullName>
+                <default>false</default>
+                <label>slds-m-vertical_small</label>
+            </value>
+            <value>
+                <fullName>slds-m-vertical_medium</fullName>
+                <default>false</default>
+                <label>slds-m-vertical_medium</label>
+            </value>
+            <value>
+                <fullName>slds-m-vertical_large</fullName>
+                <default>false</default>
+                <label>slds-m-vertical_large</label>
+            </value>
+            <value>
+                <fullName>slds-m-vertical_x-large</fullName>
+                <default>false</default>
+                <label>slds-m-vertical_x-large</label>
+            </value>
+            <value>
+                <fullName>slds-m-vertical_xx-large</fullName>
+                <default>false</default>
+                <label>slds-m-vertical_xx-large</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

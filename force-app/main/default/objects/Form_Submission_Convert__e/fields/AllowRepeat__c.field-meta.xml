@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllowRepeat__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When FALSE, an Email Template will not be sent more than once per Form Submission. Set this value to true to allow sending the email multiple times.</description>
+    <isFilteringDisabled>false</isFilteringDisabled>
+    <isNameField>false</isNameField>
+    <isSortingDisabled>false</isSortingDisabled>
+    <label>AllowRepeat</label>
+    <type>Checkbox</type>
+</CustomField>

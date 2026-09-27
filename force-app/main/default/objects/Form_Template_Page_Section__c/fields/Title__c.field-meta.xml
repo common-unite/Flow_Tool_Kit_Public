@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Title__c</fullName>
+    <defaultValue>&apos;New Page Section&apos;</defaultValue>
+    <description>Internal name for this page section, defaulting to 'New Page Section'. Used as the section's label in the page section configurator and Customize modal navigation (sectionTitle); it is not rendered to end users on the form. Edit it inline in the Component tab.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>A short name for this section used only in the builder to identify it in the configurator list. It is not shown to people filling out the form; use the Header fields for visible titles.</inlineHelpText>
+    <label>Title</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>longTextType__c</fullName>
+    <defaultValue>&apos;default&apos;</defaultValue>
+    <label>longTextType</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>default</fullName>
+                <default>true</default>
+                <label>default</label>
+            </value>
+            <value>
+                <fullName>fileUpload</fullName>
+                <default>false</default>
+                <label>fileUpload</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

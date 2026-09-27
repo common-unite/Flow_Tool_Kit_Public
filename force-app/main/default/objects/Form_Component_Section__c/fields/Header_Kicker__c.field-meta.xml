@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Kicker__c</fullName>
+    <description>Stacked header style only: a short rich text line (the pretitle) between the eyebrow (the subtitle) and the title, such as the program or organisation name. Merge fields are resolved.</description>
+    <inlineHelpText>Stacked header only: a short line between the eyebrow and the title, such as the program name. Merge fields work here.</inlineHelpText>
+    <label>Header Kicker</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

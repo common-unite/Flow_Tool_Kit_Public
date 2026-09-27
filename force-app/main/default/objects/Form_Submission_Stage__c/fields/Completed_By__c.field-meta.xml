@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completed_By__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>User who marked this stage Done. Stamped by the LWC at the same time as Completed_Date__c.</description>
+    <inlineHelpText>User who marked this stage as Done. Set automatically when status flips to Done; cleared if status flips back.</inlineHelpText>
+    <label>Completed By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Completed Form Submission Stages</relationshipLabel>
+    <relationshipName>Completed_Form_Submission_Stages</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

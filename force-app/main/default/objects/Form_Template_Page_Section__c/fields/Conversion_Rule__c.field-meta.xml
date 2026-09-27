@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conversion_Rule__c</fullName>
+    <defaultValue>&apos;Bypass&apos;</defaultValue>
+    <description>Per-section conversion directive read by the Form_Submission_Convert_Setup and Process_*_Overridable convert flows to decide which record this section's data builds - e.g. Contact1/Contact2 (with Mailing/Other address sub-actions), Lead1/Lead2, or Case. Bypass skips conversion for this section; the numbered suffixes map to the primary vs secondary record on the submission.</description>
+    <inlineHelpText>Choose what this section's data should convert into - for example Contact1, Contact2, Lead1, or Case - or Bypass to skip it. The numbered options (Contact1 vs Contact2) target the primary and secondary record on the submission.</inlineHelpText>
+    <label>Conversion Rule</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bypass</fullName>
+                <default>true</default>
+                <label>Bypass</label>
+            </value>
+            <value>
+                <fullName>Contact1</fullName>
+                <default>false</default>
+                <label>Contact1</label>
+            </value>
+            <value>
+                <fullName>Contact1 👉 Set Mailing Address</fullName>
+                <default>false</default>
+                <label>Contact1 👉 Set Mailing Address</label>
+            </value>
+            <value>
+                <fullName>Contact1 👉 Set Other Address</fullName>
+                <default>false</default>
+                <label>Contact1 👉 Set Other Address</label>
+            </value>
+            <value>
+                <fullName>Contact2</fullName>
+                <default>false</default>
+                <label>Contact2</label>
+            </value>
+            <value>
+                <fullName>Contact2 👉 Set Mailing Address</fullName>
+                <default>false</default>
+                <label>Contact2 👉 Set Mailing Address</label>
+            </value>
+            <value>
+                <fullName>Contact2 👉 Set Other Address</fullName>
+                <default>false</default>
+                <label>Contact2 👉 Set Other Address</label>
+            </value>
+            <value>
+                <fullName>Lead1</fullName>
+                <default>false</default>
+                <label>Lead1</label>
+            </value>
+            <value>
+                <fullName>Lead2</fullName>
+                <default>false</default>
+                <label>Lead2</label>
+            </value>
+            <value>
+                <fullName>Case</fullName>
+                <default>false</default>
+                <label>Case</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

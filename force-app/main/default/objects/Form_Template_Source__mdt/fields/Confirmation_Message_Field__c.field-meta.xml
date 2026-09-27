@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Confirmation_Message_Field__c</fullName>
+    <description>Html or Text field on the source object for the confirmation page message. Overrides Form_Template__c.Confirmation_Page_Message__c.</description>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Confirmation Message Field</label>
+    <metadataRelationshipControllingField>Form_Template_Source__mdt.Source_Object__c</metadataRelationshipControllingField>
+    <referenceTo>FieldDefinition</referenceTo>
+    <relationshipLabel>Form Template Sources (Confirmation)</relationshipLabel>
+    <relationshipName>Form_Template_Sources_Confirm</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

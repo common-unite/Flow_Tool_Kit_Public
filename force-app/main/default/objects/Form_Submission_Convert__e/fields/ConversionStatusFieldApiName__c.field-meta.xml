@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ConversionStatusFieldApiName__c</fullName>
+    <description>API name of the conversion status picklist on the Form Submission to stamp for this step, for example FlowToolKit__Conversion_Status_Contact_1__c. Set it here and the Log Conversion Event action reads it from the event, so the flow does not need a formula to derive it from Type. Leave blank to keep today&apos;s behaviour: the flow passes the field name to the action itself.</description>
+    <externalId>false</externalId>
+    <isFilteringDisabled>false</isFilteringDisabled>
+    <isNameField>false</isNameField>
+    <isSortingDisabled>false</isSortingDisabled>
+    <label>Conversion Status Field Api Name</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

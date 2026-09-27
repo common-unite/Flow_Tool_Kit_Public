@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alternate_FormQualifiedApiName__c</fullName>
+    <description>QualifiedApiName of an alternate Form Component used for a Table section's single-row New/Edit modal, distinct from the form that supplies the table's columns. Passed as override-table-form-name to c-flow-data-table. Leave blank to edit rows with the table's own source form.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Optional Form to use for the single-row add/edit popup on a Table section, when you want a different layout than the table's columns. Leave blank to reuse the table's source form.</inlineHelpText>
+    <label>Alternate_FormQualifiedApiName</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

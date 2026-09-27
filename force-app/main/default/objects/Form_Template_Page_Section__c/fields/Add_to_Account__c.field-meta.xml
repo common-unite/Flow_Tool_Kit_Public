@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Add_to_Account__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Per-section flag read by Form_Submission_Convert_Upsert_Contact_Overridable (Switch_Add_to_Account on PageSection.Add_to_Account__c). When true, the converted Contact for this section is associated to the Account produced by conversion. Use to control whether each section's Contact is linked to the Account.</description>
+    <inlineHelpText>Turn on so the Contact created from this section is linked to the converted Account. Leave off if this section's Contact should not be added to the Account.</inlineHelpText>
+    <label>Add to Account</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>referenceFormModalHeader__c</fullName>
+    <description>Heading shown at the top of the modal opened by a Start New Form or View/Edit Form Submission lookup override (#391). When blank the modal falls back to the field label. Applies only when referenceFormDisplayType__c is modal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Optional title for the modal that holds the form. If left blank the field label is used instead. Has no effect when the display type is Inline.</inlineHelpText>
+    <label>referenceFormModalHeader</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

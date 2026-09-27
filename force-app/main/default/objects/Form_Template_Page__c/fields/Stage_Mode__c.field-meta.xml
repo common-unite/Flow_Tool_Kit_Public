@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_Mode__c</fullName>
+    <description>Formula checkbox mirroring the parent template's Stages_Mode__c (Form_Template__r.Stages_Mode__c, blanks treated as unchecked). Gives each page a read-only per-record flag so runtime components, Flows, list views, and reports can branch on stage behavior without traversing to the Form Template. Populated automatically; never written directly.</description>
+    <formula>Form_Template__r.Stages_Mode__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Shows whether this page's Form Template runs in Stages Mode, where pages are presented as stages that can be completed in any order from a landing overview. This value is calculated automatically from the parent Form Template and cannot be edited here — to change it, update Stages Mode on the Form Template record.</inlineHelpText>
+    <label>Stage Mode</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

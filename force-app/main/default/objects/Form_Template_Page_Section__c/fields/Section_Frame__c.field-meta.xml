@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Section_Frame__c</fullName>
+    <label>Section Frame</label>
+    <description>The box drawn round the page section: clean (None), box or shadow. Blank is treated as None. Header Style Title on border (outlined) needs box or shadow. Unrestricted so values added in later releases save in upgraded orgs.</description>
+    <inlineHelpText>The box around the section: None, Box or Shadow. See Section Frame and Header in the docs.</inlineHelpText>
+    <type>Picklist</type>
+    <required>false</required>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>clean</fullName><default>false</default><label>None</label></value>
+            <value><fullName>box</fullName><default>false</default><label>Box</label></value>
+            <value><fullName>shadow</fullName><default>false</default><label>Shadow</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

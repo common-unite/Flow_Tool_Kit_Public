@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Review_Page_Subtitle__c</fullName>
+    <defaultValue>&apos;Please review the information below.&apos;</defaultValue>
+    <description>Subtitle text the formTemplate runtime shows beneath the heading on the final review page. Plain text.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Add a short instruction shown beneath the review-page title, such as Please confirm your answers before submitting. Use it to reassure respondents they can still edit each section before the final submit.</inlineHelpText>
+    <label>Review Page Subtitle</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

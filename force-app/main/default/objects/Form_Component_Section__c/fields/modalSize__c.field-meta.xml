@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>modalSize__c</fullName>
+    <defaultValue>&apos;large&apos;</defaultValue>
+    <label>Modal Size</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>small</fullName>
+                <default>false</default>
+                <label>small</label>
+            </value>
+            <value>
+                <fullName>medium</fullName>
+                <default>false</default>
+                <label>medium</label>
+            </value>
+            <value>
+                <fullName>large</fullName>
+                <default>true</default>
+                <label>large</label>
+            </value>
+            <value>
+                <fullName>full</fullName>
+                <default>false</default>
+                <label>full</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

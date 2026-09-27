@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>minute__c</fullName>
+    <defaultValue>&apos;numeric&apos;</defaultValue>
+    <label>minute</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>numeric</fullName>
+                <default>true</default>
+                <label>numeric</label>
+            </value>
+            <value>
+                <fullName>2-digit</fullName>
+                <default>false</default>
+                <label>2-digit</label>
+            </value>
+            <value>
+                <fullName>hide</fullName>
+                <default>false</default>
+                <label>hide</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

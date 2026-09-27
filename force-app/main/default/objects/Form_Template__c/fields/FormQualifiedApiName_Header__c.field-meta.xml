@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FormQualifiedApiName_Header__c</fullName>
+    <description>QualifiedApiName of a Form (Form__mdt, object Form_Template) that the formTemplate runtime renders as the form's header band above the pages. On insert the trigger seeds the shipped Form_Header_Demo when blank. Use this for a fully designed, themed header instead of plain Header Text.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the API name of the Form component to render as this template's header. A default header is added for new templates; replace it with your own header Form to customize branding.</inlineHelpText>
+    <label>FormQualifiedApiName (Header)</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FlowApiName_Related__c</fullName>
+    <description>The conversion flow the Related Records sweep dispatches this section’s captured rows to. Resolves the section’s Conversion Map Flow override when one is selected, else the packaged default for the Conversion Rule from Form Template Conversion Mapping Default custom metadata. Formula — not directly settable.</description>
+    <externalId>false</externalId>
+    <formula>CASE(Conversion_Rule__c , 
+
+&apos;Contact1&apos;, IF(BlankValue(TEXT(Conversion_Map_Flow__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Primary_Contact.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow__c)), 
+
+&apos;Contact1 👉 Set Mailing Address&apos;, IF(BlankValue(TEXT(Conversion_Map_Flow__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Primary_Contact.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow__c)),
+
+&apos;Contact1 👉 Set Other Address&apos;, IF(BlankValue(TEXT(Conversion_Map_Flow__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Primary_Contact.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow__c)),
+
+&apos;Contact2&apos;, IF(BlankValue(TEXT(Conversion_Map_Flow__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Alternate_Contact.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow__c)),
+
+&apos;Contact2 👉 Set Mailing Address&apos;, IF(BlankValue(TEXT(Conversion_Map_Flow__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Alternate_Contact.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow__c)),
+
+&apos;Contact2 👉 Set Other Address&apos;, IF(BlankValue(TEXT(Conversion_Map_Flow__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Alternate_Contact.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow__c)),
+
+&apos;Lead1&apos;, IF(BlankValue(TEXT(Conversion_Map_Flow__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Primary_Lead.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow__c)),
+
+&apos;Lead2&apos;, IF(BlankValue(TEXT(Conversion_Map_Flow__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Alternate_Lead.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow__c)),
+
+&apos;Case&apos;, IF(BlankValue(TEXT(Conversion_Map_Flow__c),&apos;Default&apos;) == &apos;Default&apos;,
+$CustomMetadata.Form_Template_Conversion_Mapping_Default__mdt.Case.Flow_API_Name__c,
+TEXT(Conversion_Map_Flow__c)),
+
+&apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>The flow that converts this section's repeater or table rows, resolved from the Conversion Rule and the Conversion Map Flow override. Read-only formula used by the Related Records conversion step.</inlineHelpText>
+    <label>FlowApiName (Related)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

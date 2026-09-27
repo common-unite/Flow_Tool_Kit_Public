@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enable_Autosave__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Enables silent autosave for this template's runtime form: the in-progress Form Submission is persisted automatically as the respondent works, paced by Autosave_Mode__c (an Upon Change debounce or a timed checkpoint clock). Reuses the Save Progress save paths (LDS for authenticated users, the Form_Submission_Upsert overridable flow for guests/iframes) and creates the initial draft when none exists. No effect when the form template is embedded in a Flow screen (saves there occur through flow navigation).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Automatically saves the respondent's in-progress submission as they work, so partially completed forms are never lost. Autosave runs quietly in the background with the same behavior as the Save Progress button and also creates the initial draft; choose the pacing with Autosave Mode.</inlineHelpText>
+    <label>Enable Autosave</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
