@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Kicker__c</fullName>
+    <description>#733: Stacked page header pretitle, the line between the eyebrow and the title. Rich text with merge fields.</description>
+    <inlineHelpText>Stacked only. A short line directly above the title.</inlineHelpText>
+    <label>Header Kicker</label>
+    <length>5000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

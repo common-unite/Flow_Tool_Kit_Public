@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Header__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>#733: shows the page header above this page's sections. The header is drawn by c-header from the Header fields on this page.</description>
+    <inlineHelpText>Turn on to show a header at the top of this page, above its sections.</inlineHelpText>
+    <label>Display Header</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
