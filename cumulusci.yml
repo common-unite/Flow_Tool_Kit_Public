@@ -1078,12 +1078,7 @@ orgs:
             days: 30
             namespaced: True
 
-        sprint_2026-09-17:
-            config_file: orgs/dev.json
-            days: 30
-            namespaced: True
-
-        sprint_2026-09-21:
+        sprint_2026-09-27:
             config_file: orgs/dev.json
             days: 30
             namespaced: True

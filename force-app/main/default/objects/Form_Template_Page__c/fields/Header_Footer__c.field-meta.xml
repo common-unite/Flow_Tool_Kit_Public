@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Footer__c</fullName>
+    <description>#733: Stacked page header footer line, the last line of the header. Rich text with merge fields.</description>
+    <inlineHelpText>Stacked only. A closing line at the bottom of the header.</inlineHelpText>
+    <label>Header Footer</label>
+    <length>5000</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

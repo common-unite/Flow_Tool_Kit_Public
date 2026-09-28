@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Style__c</fullName>
+    <label>Header Style</label>
+    <description>#733: how the page header is laid out: classic (icon, title and subtitle), classicSpread (the same, spread across the width) or hero (Stacked: eyebrow, pretitle, large title, body, tags and footer). Card and Title on Border are section styles and are not offered for a page.</description>
+    <inlineHelpText>Classic, Classic Spread or Stacked. Stacked adds a pretitle, body, tags and footer.</inlineHelpText>
+    <type>Picklist</type>
+    <required>false</required>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>classic</fullName><default>true</default><label>Classic</label></value>
+            <value><fullName>classicSpread</fullName><default>false</default><label>Classic Spread</label></value>
+            <value><fullName>hero</fullName><default>false</default><label>Stacked</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

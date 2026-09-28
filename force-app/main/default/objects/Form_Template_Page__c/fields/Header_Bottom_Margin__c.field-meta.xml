@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Bottom_Margin__c</fullName>
+    <description>#733: SLDS bottom-margin utility class under the Stacked page header, before the first section.</description>
+    <inlineHelpText>Stacked only. Space between the header and the first section.</inlineHelpText>
+    <label>Header Bottom Margin</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>slds-m-bottom_none</fullName><default>true</default><label>none</label></value>
+            <value><fullName>slds-m-bottom_xxx-small</fullName><default>false</default><label>xxx-small</label></value>
+            <value><fullName>slds-m-bottom_xx-small</fullName><default>false</default><label>xx-small</label></value>
+            <value><fullName>slds-m-bottom_x-small</fullName><default>false</default><label>x-small</label></value>
+            <value><fullName>slds-m-bottom_small</fullName><default>false</default><label>small</label></value>
+            <value><fullName>slds-m-bottom_medium</fullName><default>false</default><label>medium</label></value>
+            <value><fullName>slds-m-bottom_large</fullName><default>false</default><label>large</label></value>
+            <value><fullName>slds-m-bottom_x-large</fullName><default>false</default><label>x-large</label></value>
+            <value><fullName>slds-m-bottom_xx-large</fullName><default>false</default><label>xx-large</label></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
