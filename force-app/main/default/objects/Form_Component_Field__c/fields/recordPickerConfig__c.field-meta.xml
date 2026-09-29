@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>recordPickerConfig__c</fullName>
+    <description>Settings for referenceFieldOverrideType__c = recordpicker (#661): JSON object {"filter": {"criteria": [{"fieldPath", "operator", "value"}], "filterLogic"}, "displayInfo": {"primaryField", "additionalFields": [one]}, "matchingInfo": {"primaryField": {"fieldPath"}, "additionalFields": [{"fieldPath"}]}} in the shapes lightning-record-picker takes, edited through the Record Picker Settings modal in Form Builder. String filter values merge {{Field__c}} from the form record at runtime; a criterion whose merged value is blank is dropped and filterLogic is renumbered. Reaches metadata-sourced forms through Form_Field__mdt.config__c.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Filter, display and search settings for a lookup shown as a Record Picker, managed from the Record Picker Settings editor in Form Builder. Filter values can use merge fields from the form record, such as {{AccountId}}, to limit suggestions based on another answer.</inlineHelpText>
+    <label>Record Picker Config</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>6</visibleLines>
+</CustomField>

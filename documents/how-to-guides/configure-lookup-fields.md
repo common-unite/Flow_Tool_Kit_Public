@@ -102,6 +102,8 @@ Allow users to create new records directly from the lookup modal:
 
 ## Related Pages
 
+* [Use the Record Picker](use-the-record-picker.md): filtered, searchable lookups with a second detail line, and lookups for users who cannot create the record
+* [Open A Form From A Lookup](open-a-form-from-a-lookup.md): show the related record, a new form or an existing submission in place of the lookup, and control whether it opens editable
 * [Lookup Reference](../screen-components/lookup.md): all properties and configuration options
 * [Build a Form](build-a-form.md): creating forms from scratch
 * [Use Data Tables](use-data-tables.md): similar column configuration for table displays

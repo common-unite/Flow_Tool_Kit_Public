@@ -25,6 +25,7 @@
 * [Deploy to Experience Cloud](how-to-guides/deploy-to-experience-cloud.md)
 * [Edit A Related Record](how-to-guides/edit-a-related-record.md)
 * [Merge Duplicate Records](how-to-guides/merge-duplicate-records.md)
+* [Open A Form From A Lookup](how-to-guides/open-a-form-from-a-lookup.md)
 * [Override New And Edit With A Form](how-to-guides/override-new-and-edit-with-a-form.md)
 * [Schedule Flow Cache Warming](how-to-guides/schedule-flow-cache-warming.md)
 * [Section Frame And Header](how-to-guides/section-frame-and-header.md)
@@ -34,6 +35,7 @@
 * [Use Rich Text Message Cards](how-to-guides/use-rich-text-message-cards.md)
 * [Use Section Dividers](how-to-guides/use-section-dividers.md)
 * [Use The Icon Selector](how-to-guides/use-the-icon-selector.md)
+* [Use The Record Picker](how-to-guides/use-the-record-picker.md)
 
 ## Deployment
 
@@ -247,6 +249,7 @@
 * [Release 4.40](release-notes/release-4.40.md)
 * [Release 4.41](release-notes/release-4.41.md)
 * [Release 4.42](release-notes/release-4.42.md)
+* [Release 4.43](release-notes/release-4.43.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
 * [Release 4.7](release-notes/release-4.7.md)
