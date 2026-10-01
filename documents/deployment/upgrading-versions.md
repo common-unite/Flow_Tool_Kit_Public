@@ -24,12 +24,14 @@ Flow Tool Kit is a managed package installed from AppExchange. When a new versio
 
 ## Post-Upgrade Steps
 
-### 0. LWR sites: add the Component Support block
+### 0. LWR sites: publish every site
 
-If you run an **LWR** Experience site (Build Your Own / Microsite) that shows a Flow Tool Kit form,
-place the **FlowToolKit LWR Support** component on it and publish. Without it the form area
-can stay blank with an `LWR3008` error in the browser console. Aura sites and Lightning pages need no
-change. See [LWR Sites: Add the Component Support Block](../experience-cloud/lwr-site-component-support.md).
+If you run an **LWR** Experience site (Build Your Own (LWR) / Microsite) that shows a Flow Tool Kit form:
+
+1. Make sure the **FlowToolKit LWR Support** component is on the site. Without it the form area can stay blank with an `LWR3008` error in the browser console.
+2. **Publish the site.** An LWR site keeps serving the component code captured at its last publish, so an upgrade does not reach the site until you publish it.
+
+Aura sites and Lightning pages need no change. See [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-component-support.md), which also covers the guest settings LWR sites need.
 
 
 ### 1. Verify Permission Sets

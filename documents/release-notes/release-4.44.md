@@ -1,6 +1,6 @@
 # Release 4.44
 
-The Record Picker for lookup fields: filtered suggestions that follow the form's other answers, a second detail line and an extra search field, and working lookups for portal users who can edit a record but not create one.
+The Record Picker for lookup fields, and Change Field in the Form Builder. Lookups get filtered suggestions that follow the form's other answers, a second detail line and an extra search field, and work for portal users who can edit a record but not create one. Change Field points a section field at a different field while keeping its settings. This release also fixes the 4.43 upgrade failure on the Form Template Page record page.
 
 ## 🆕 Record Picker for lookups (#661)
 

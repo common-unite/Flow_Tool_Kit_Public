@@ -2,7 +2,7 @@
 
 > Turn any single-object lookup into a searchable picker with filters, a second line of detail under each suggestion, and an extra field to search on. It also gives portal users a working lookup when they can edit a record but not create one.
 
-![Setting up the Record Picker on Parent Account](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/661-record-picker-demo.gif)
+![Setting up the Record Picker on Parent Account](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/661-record-picker-demo.gif)
 
 {% hint style="info" %}
 **Prerequisites**: A form with a lookup field that points at **one** object (for example Parent Account on Account, or Account on Contact). See [Build a Form](build-a-form.md).
@@ -33,7 +33,7 @@ The Record Picker replaces the standard lookup input with Salesforce's `lightnin
 2. On the **Field** tab, set **Lookup Field Display Type** to **Record Picker**. The option only appears for lookups that point at one object.
 3. Click **Record Picker Settings**.
 
-![Record Picker Settings with a filter and suggestion fields](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/661-record-picker-settings.png)
+![Record Picker Settings with a filter and suggestion fields](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/661-record-picker-settings.png)
 
 4. Add filters and choose the suggestion fields (both explained below), then click **Save**.
 5. Save the form. The button now reads **Record Picker Settings (1 filter)** when a filter is set.
@@ -47,7 +47,7 @@ Each row is **Field**, **Operator**, **Value**. Rows combine with AND unless you
 * **For in, not in, includes and excludes**, separate values with commas.
 * **Custom path (cross-object)** filters on a related record's field, for example `Account.Type` on a Contact picker.
 
-![Suggestions narrowed to Prospect accounts by the Type answer](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/661-record-picker-filtered-results.png)
+![Suggestions narrowed to Prospect accounts by the Type answer](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/661-record-picker-filtered-results.png)
 
 ### Suggestions
 
@@ -60,13 +60,13 @@ Each row is **Field**, **Operator**, **Value**. Rows combine with AND unless you
 
 These lists offer text, email, phone, URL and picklist fields. They leave out the record ID (the picker returns nothing when ID is used) and long text fields, which cannot be searched. The picker allows **one** extra display field and **one** extra search field.
 
-![Searching by website with the website shown under each name](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/661-record-picker-search-by-website.png)
+![Searching by website with the website shown under each name](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/661-record-picker-search-by-website.png)
 
 ### Placeholder
 
 The picker shows the field's **Placeholder** if you set one on the Labels tab, otherwise "Search Accounts..." (the object's plural label), matching the standard lookup.
 
-![A picked record in the Record Picker](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/661-record-picker-selected.png)
+![A picked record in the Record Picker](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/661-record-picker-selected.png)
 
 ## When It Turns On By Itself
 

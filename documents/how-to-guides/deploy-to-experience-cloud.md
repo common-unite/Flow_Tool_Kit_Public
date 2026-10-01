@@ -51,6 +51,14 @@ If your form is accessible to unauthenticated (guest) users:
    * **Apex class access**: Grant access to Flow Tool Kit runtime classes
 3. Assign the **Form Flow User** permission set concepts (guest user profiles can't directly receive permission sets; use the profile's class and object access instead).
 
+{% hint style="info" %}
+**LWR sites** need two more guest settings (**Allow guest users to access public APIs**, and **Let guest users view asset files** when forms use image assets), and must be published after every upgrade. See [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-component-support.md).
+{% endhint %}
+
+{% hint style="info" %}
+**Flows run by guests** must be restricted to permission sets (**Override default behavior and restrict access to enabled profiles or permission sets**) and granted to the guest user through a permission set. Otherwise guests see "You do not have the level of access necessary".
+{% endhint %}
+
 {% hint style="danger" %}
 **Security**: Only grant the minimum permissions needed. Guest users should never have Write access to sensitive objects. Review the [Guest User Permissions](../experience-cloud/experience-cloud-components.md) documentation carefully.
 {% endhint %}
@@ -91,7 +99,7 @@ Flow Tool Kit may need external resources (e.g., for reCAPTCHA, file uploads):
 
 * **Caching**: form metadata is cached for performance. If changes aren't reflected, reset the cache.
 * **Record count**: limit the number of records loaded on initial page load. Use pagination for large datasets.
-* **LWR vs Aura runtime**: newer LWR-based sites have different performance characteristics than Aura-based sites.
+* **LWR vs Aura runtime**: newer LWR-based sites have different performance characteristics than Aura-based sites. See [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-component-support.md).
 
 ## Related Pages
 

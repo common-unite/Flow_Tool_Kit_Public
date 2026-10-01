@@ -45,11 +45,11 @@ Use the rich text editor to write your message. A bold first line reads as the c
 
 **Highlight** sets a passage apart without making it look like a status message. It draws a single rule in your brand color down the left edge of the text, with no box, fill or icon, so it reads as part of the form rather than as an alert. Use it for a policy, a deadline or a note the reader should not skip, where Info would suggest something is wrong.
 
-![A Highlight passage inside a framed section](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/719-highlight-block.png)
+![A Highlight passage inside a framed section](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/719-highlight-block.png)
 
 The rule sits on the same edge as the fields, so the text lines up with the inputs below it.
 
-![Choosing Highlight in the Form Builder](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/719-highlight-block-demo.gif)
+![Choosing Highlight in the Form Builder](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/719-highlight-block-demo.gif)
 
 **Form Template page sections** have the same choice. In the page section's **Customize** window, a **Display Text** section's **Message Variant** includes Highlight, and so does **Header Text Variant**, which styles the text shown with a section's header.
 

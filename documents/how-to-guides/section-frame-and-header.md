@@ -13,7 +13,7 @@ Every section has two appearance choices, and they are edited together at the to
 - **Section Frame**: whether the section has a box around it.
 - **Section Header**: how the section's title is shown, and for a header, where the title sits relative to the frame.
 
-![The Section Frame and Section Header groups on the Content tab](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/694-section-frame-editor.png)
+![The Section Frame and Section Header groups on the Content tab](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/694-section-frame-editor.png)
 
 ## Choose a Frame
 
@@ -52,13 +52,13 @@ Each style puts the section icon in a different place, and each lines up with so
 - **Title on border**: riding the top border at the right, in the theme's icon color, on the same line the fields end on.
 - **Stacked**: in the eyebrow row, before the eyebrow text and at its size.
 
-![A Title on border section with a Shadow frame](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/694-title-on-border-shadow.png)
+![A Title on border section with a Shadow frame](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/694-title-on-border-shadow.png)
 
 ## Stacked Header
 
 Stacked turns a section's header into a display header: the kind you see at the top of a landing page or an application step. Use it to open a form, a page, or an important step, where a plain title is not enough.
 
-![A Stacked header with every part filled in](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/720-stacked-header.png)
+![A Stacked header with every part filled in](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/720-stacked-header.png)
 
 ### The parts
 
@@ -75,11 +75,11 @@ Choose **Stacked** as the Header Style, and these fields appear under it. Every 
 | **Footer** | A closing line, always last, such as who to contact with questions |
 | **Header Bottom Margin** | The space between the header and the section's content |
 
-![Stacked selected in the Form Builder, with the live preview](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/720-stacked-header-form-builder.png)
+![Stacked selected in the Form Builder, with the live preview](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/720-stacked-header-form-builder.png)
 
 Every text part is rich text and accepts merge fields, including the page and template fields described in [Template, Page and Section Merge Fields](../form-template-framework/template-page-section-merge-fields.md). The inputs show as a single line until you click into one; then the full rich text editor opens.
 
-![Switching a section to Stacked and filling it in](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/720-stacked-header-demo.gif)
+![Switching a section to Stacked and filling it in](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/720-stacked-header-demo.gif)
 
 ### Spacing and colors
 
@@ -99,7 +99,7 @@ Page sections on a Form Template have the same Frame and Header Style.
 
 The same rules apply: Card and Title on border need Box or Shadow, and Frame None resets them to Classic. Stacked works with any frame; its fields are in the **Header** panel of the Customize window. With Box or Shadow, the frame wraps the whole page section: its header, intro text and the form, table, flow or component inside. With Title on border, the frame draws the page section's title and subtitle, so the form inside doesn't show a second title. The header's rich text appears at the top inside the frame.
 
-![The Frame panel in the page section Customize window](https://raw.githubusercontent.com/common-unite/cUnite_FormBuilder/master/documents/screenshots/694-page-section-frame-panel.png)
+![The Frame panel in the page section Customize window](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/694-page-section-frame-panel.png)
 
 ## How Title on Border Looks
 

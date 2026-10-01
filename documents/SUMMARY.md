@@ -250,6 +250,8 @@
 * [Release 4.41](release-notes/release-4.41.md)
 * [Release 4.42](release-notes/release-4.42.md)
 * [Release 4.43](release-notes/release-4.43.md)
+* [Release 4.44](release-notes/release-4.44.md)
+* [Release 4.45](release-notes/release-4.45.md)
 * [Release 4.5](release-notes/release-4.5.md)
 * [Release 4.6](release-notes/release-4.6.md)
 * [Release 4.7](release-notes/release-4.7.md)
