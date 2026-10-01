@@ -1062,6 +1062,11 @@ tasks:
 
 orgs:
     scratch:
+        sprint_2026-09-29:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: True
+
         npsp_dev:
             config_file: orgs/npsp.json
             days: 30
@@ -1078,11 +1083,6 @@ orgs:
             days: 30
             namespaced: True
 
-
-        sprint_2026-09-28:
-            config_file: orgs/dev.json
-            days: 30
-            namespaced: True
 
         sprint_2026-09-09_npc:
             config_file: orgs/npc.json
