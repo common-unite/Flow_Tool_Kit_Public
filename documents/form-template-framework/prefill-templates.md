@@ -55,6 +55,22 @@ Set Lead Source to identify where submissions came from (e.g., "Website", "Event
 
 Build a single form template and use pre-fill values to customize it for different contexts. Combined with [Campaign Integration](campaign-integration.md), you can serve dozens of campaigns from one template with different default values.
 
+## Who Can Read the Pre-fill Template
+
+The form reads the pre-fill template as the person loading the form. If that person cannot read the Form Submission record that holds the defaults, the form opens without them, while your own preview still shows every default because you can read the record. From 4.46 the form says so in a warning toast that stays until closed. The toast is written for you, the administrator, and carried by the person who hit it: it says the pre-fill template is not shared with them and asks them to contact you. The browser console names the record and the sharing rule that fixes it. The same applies to a pre-fill template set on a repeater or table section.
+
+Form Submission is **Private** for external users, so every site guest and every portal user needs a sharing rule that covers your pre-fill template records:
+
+1. **Setup → Sharing Settings → Form Submission Sharing Rules → New**.
+2. Rule type: **Based on criteria**.
+3. Criteria: **Is Pre-fill Template** equals **True**.
+4. Share with: the site's guest user (a guest user sharing rule) or the portal users' public group.
+5. Access level: **Read Only**.
+
+{% hint style="warning" %}
+**Write the criteria on the Is Pre-fill Template checkbox, not on the record type.** The Pre-fill Template record type is only a default: a pre-fill template record can carry any record type, and a rule written on the record type stops matching the moment someone assigns a different one. Is Pre-fill Template is the field that defines a pre-fill template, so it keeps matching whatever the record type.
+{% endhint %}
+
 ## Tips & Considerations
 
 * **No Flow needed**: pre-fill values are configured entirely on the Form Template record. You can create dozens of form solutions without ever opening Salesforce Flow.

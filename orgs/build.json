@@ -1,8 +1,13 @@
 {
   "orgName": "Form Builder - Build Test Org",
+  "release": "previous",
   "edition": "Enterprise",
-  "features": ["enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
+  "features": ["Communities", "enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
   "settings": {
+    "communitiesSettings": {
+      "enableCommunityWorkspaces": true,
+      "enableNetworksEnabled": true
+    },
     "emailAdministrationSettings": {
       "enableEnhancedEmailEnabled": true
     },

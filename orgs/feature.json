@@ -1,5 +1,6 @@
 {
   "orgName": "Form Builder - Feature Test Org",
+  "release": "previous",
   "edition": "Developer",
   "features": ["enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
   "settings": {

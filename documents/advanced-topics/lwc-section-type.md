@@ -303,7 +303,7 @@ Expose a `validate()` method and the form calls it during navigation:
 }
 ```
 
-Returning `{ isValid: false }` blocks navigation and shows the message in a toast. If your component does not implement `validate()`, the section is always treated as valid.
+Returning `{ isValid: false }` blocks navigation, shows `errorMessage` in a toast and, from 4.46, lists it in the validation summary the Form Template shows above the page. To list individual fields instead, also return `invalidItems`, an array of `{ label, text }` entries, and the summary shows one line per entry. If your component does not implement `validate()`, the section is always treated as valid.
 
 ## Review and read-only modes
 

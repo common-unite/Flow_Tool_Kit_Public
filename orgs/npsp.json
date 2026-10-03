@@ -1,5 +1,6 @@
 {
   "orgName": "Flow Tool Kit - NPSP Dev Org",
+  "release": "previous",
   "edition": "Developer",
   "adminEmail": "bobby@common-unite.com",
   "hasSampleData": false,

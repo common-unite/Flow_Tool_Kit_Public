@@ -73,9 +73,9 @@ To change the English wording, edit the label's **Value** rather than adding a t
 
 | Label API Name | Display Value | Used By | Purpose |
 |---|---|---|---|
-| `Error_Additional_Errors` | There are ({0}) additional errors | flowForm *(via base)* | Suffix noting further errors beyond those listed. {0} is the count. |
+| `Error_Additional_Errors` | There are ({0}) additional errors | flowForm *(via base)* | Toast noting further validation errors beyond the two shown. {0} is the count. |
 | `Error_Campaign_Member_Status` | Campaign Member Status Error! | flowForm *(via base)* | Toast title when Campaign Member Status options cannot be resolved |
-| `Error_Fix_Before_Submit` | Please correct the highlighted fields before continuing. | formTemplate | Toast body when a page or review screen cannot be submitted because fields are still invalid |
+| `Error_Fix_Before_Submit` | Please correct the highlighted fields before continuing. | flowForm *(via base)*, formTemplate *(via base)* | Heading of the on-page validation summary when Next, Submit or a review edit is blocked by invalid fields. The summary is built and not shown in 4.46. |
 | `Error_Save_Record_Not_Identified` | We could not save your changes. Please refresh the page and try again. | formTemplate | Toast body when a save is abandoned because the record to update could not be identified. Pairs with the `Error_Save_Failed` title. |
 | `Error_Component_Loading` | Component is still loading: Please try again | flowForm *(via base)* | Shown when the respondent advances before the form has finished loading |
 | `Error_Form_Load` | Form Load Error | flowForm *(via base)*, flowFormRepeat *(via base)* | Toast title when the form metadata fails to load |
@@ -85,8 +85,9 @@ To change the English wording, edit the label's **Value** rather than adding a t
 | `Error_No_Edit_Access` | You do not have edit access to {0}. Your administrator must grant Edit permission on this object before your progress can be saved. | formTemplate | Toast body when the running user cannot update the records a save requires. {0} is the object label, or a comma separated list of them. See [Permission Sets](../getting-started/permission-sets.md) |
 | `Error_Object_Access` | Object Access Error! | flowDataTable *(via base)*, flowForm *(via base)*, flowFormLookup *(via base)*, flowFormRepeat *(via base)*, formTemplate | Toast title when the running user cannot access the form's object |
 | `Error_Prefill_Flow` | Prefill Flow Error | formTemplate *(via base)* | Toast title when the prefill flow fails |
+| `Notice_Prefill_Unavailable` | Some default answers were not loaded because this form's pre-fill template is not shared with you. Please contact your administrator. | formTemplate *(via base)* | Body of the warning toast shown when the person filling in a form cannot read its Pre-fill Template, so they can alert the administrator; the toast stays until closed |
 | `Error_Record_Load` | Record Load Error | flowForm *(via base)* | Toast title when the parent record fails to load |
-| `Error_Resolve_Validation` | Resolve Validation Errors | flowForm *(via base)*, flowFormRepeat *(via base)* | Toast title listing outstanding field validation errors |
+| `Error_Resolve_Validation` | Resolve Validation Errors | flowForm *(via base)*, flowFormRepeat *(via base)* | Error message returned to Flow when a screen fails validation; Flow shows it below the component |
 | `Error_Retrieve_Edit_Form` | Retrieve Edit Form Error | flowFormRepeat *(via base)* | Toast title when a repeater's edit form cannot be retrieved |
 | `Error_Save_Failed` | Save Failed | formTemplate *(via base)* | Toast title when the submission fails to save |
 | `Error_Save_Flow_Flagged` | The save flow flagged an error and stopped. | formTemplate *(via base)* | Shown when the upsert override flow reports hasError without a message |
@@ -94,6 +95,8 @@ To change the English wording, edit the label's **Value** rather than adding a t
 | `Error_Select_Date_Time` | You must select at least one date and time | flowDateTimePicker | Validation message when no date and time has been chosen |
 | `Error_Selection_Required` | Selection is required! | flowDateTimePicker | Short validation message when a selection is mandatory |
 | `Error_Unexpected` | Oops! Something went wrong. | flowForm *(via base)*, formTemplate *(via base)* | Generic toast title for an unclassified failure |
+| `Validation_Section_Needs_Attention` | {0} needs attention | flowForm *(via base)*, formTemplateSection *(via base)* | Validation summary line for a section that blocked the page without naming a field. {0} is the section title. The summary is not shown in 4.46. |
+| `Validation_Summary_More` | plus ({0}) more | formTemplate *(via base)*, flowForm *(via base)* | Last line of the validation summary when more than four fields are listed. {0} is how many are not shown. The summary is not shown in 4.46. |
 | `Field_Not_Accessible` | Field is not accessible! Review FLS Permissions | flowFormField *(via base)* | Placeholder shown in place of a field the running user cannot see |
 | `Field_Not_Accessible_User` | Field is not accessible for current User: Contact your System Administrator for more details | flowFormField *(via base)* | Tooltip on an inaccessible field |
 | `Field_Not_Readable_User` | Field is not readable for current User: Contact System Administrator for more details | flowFormFieldAddress | Tooltip on an unreadable address field |
@@ -276,8 +279,8 @@ To change the English wording, edit the label's **Value** rather than adding a t
 |---|---|---|---|
 | `Error_Retrieve_Table_Form` | Retrieve Table Form Error | flowDataTable *(via base)* | Toast title when a table's row form cannot be retrieved |
 | `Error_Retrieve_Table_Form_Bulk` | Retrieve Table Form (Bulk) Error | flowDataTable *(via base)* | Toast title when a table's bulk-edit form cannot be retrieved |
-| `Error_Table_Minimum_Selection` | You must select at least ({0}) record(s) | flowDataTable *(via base)* | Toast body for the minimum row selection rule. {0} is the required count. |
-| `Error_Table_Selection_Required` | Table Selection is Required! | flowDataTable *(via base)* | Toast title when a table requires a row selection |
+| `Error_Table_Minimum_Selection` | You must select at least ({0}) record(s) | flowDataTable *(via base)* | Toast body and validation summary line for the minimum row selection rule. {0} is the required count. |
+| `Error_Table_Selection_Required` | Table Selection is Required! | flowDataTable *(via base)* | Toast title and validation summary label when a table requires a row selection |
 
 ## Summary
 

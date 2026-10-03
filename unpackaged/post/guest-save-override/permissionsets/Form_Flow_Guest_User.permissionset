@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Grants the client-owned guest save override flow. Assign to the site's guest user with Form (Flow User). Created by the Flow Tool Kit installer on a first install and never redeployed; extension installers add their guest grants here.</description>
+    <flowAccesses>
+        <enabled>true</enabled>
+        <flow>Form_Submission_Upsert_Guest</flow>
+    </flowAccesses>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Form Flow (Guest User)</label>
+</PermissionSet>

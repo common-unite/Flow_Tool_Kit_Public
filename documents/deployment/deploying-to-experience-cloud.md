@@ -39,6 +39,7 @@ For public-facing forms, the guest user profile must have:
 * [ ] **Read/Edit access** to required fields on the target object
 * [ ] **Apex class access** to Flow Tool Kit runtime classes (included in Form Flow User PS as a reference; apply equivalent to the guest profile)
 * [ ] **Read access** to `Form_Submission__c` (if using templates/submissions)
+* [ ] **Sharing rule** on `Form_Submission__c` with the criteria **Is Pre-fill Template = True**, Read Only, shared with the site guest user (if templates use Pre-fill Templates; never key the rule on the record type)
 * [ ] **Create access** to `ContentDocument` / `ContentVersion` (if file uploads are used)
 
 {% hint style="danger" %}

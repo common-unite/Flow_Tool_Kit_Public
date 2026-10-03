@@ -143,6 +143,15 @@ When a conversion fails (missing required fields, validation rule violations, du
 2. The submission status reflects the failure
 3. The submission can be corrected and re-converted
 
+## Record types and duplicate rules
+
+The Contact engine looks up the record type a template names, checks that it exists, and then saves the Contact **without** writing `RecordTypeId`. That is deliberate: a packaged flow cannot reference `RecordTypeId` on a standard object without failing to install in every org that has no record types on it, and the package has to install everywhere. Two things follow:
+
+- **A duplicate rule with a Record Type condition never sees a form conversion.** Matching runs against the Contact as the engine built it, with no record type, so a rule that requires `Record Type equals Individual` is skipped and no match is found, even when the org holds an obvious one.
+- **The saved Contact takes the running user's default record type**, not the template's.
+
+The remedy is yours, in one of two places: take the Record Type condition off the duplicate rules you want to apply to conversions, or set `RecordTypeId` in your own step-flow clone, from a Get Records on RecordType mapped in the Transform (see the NPSP and Nonprofit Cloud Customizing pages). The Nonprofit Cloud extension is not affected: Person Accounts require a record type and its step flows map it.
+
 ## Nonprofit Cloud
 
 Nonprofit Cloud models people and families differently: a person is a Person Account, a family is a Household with a Party Relationship Group, and membership and family relationships are records in their own right. The **Nonprofit Cloud Extension** teaches this pipeline that shape, using the same Conversion Rules, statuses, logs and Reprocess described above. See the [Nonprofit Cloud Extension overview](../nonprofit-cloud/overview.md).

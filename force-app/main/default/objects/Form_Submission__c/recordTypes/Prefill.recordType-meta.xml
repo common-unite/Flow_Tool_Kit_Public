@@ -52,6 +52,10 @@
             <fullName>Work</fullName>
             <default>false</default>
         </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
     </picklistValues>
     <picklistValues>
         <picklist>Contact1_Preferred_Language__c</picklist>
@@ -305,6 +309,10 @@
         </values>
         <values>
             <fullName>Work</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
             <default>false</default>
         </values>
     </picklistValues>

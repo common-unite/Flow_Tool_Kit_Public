@@ -76,6 +76,10 @@ Both map names, salutation, email, phone, birthdate and title, plus the mailing 
 
 One engine saves every person the extension produces: Contact 1, Contact 2, and every repeater or table row. It follows the packaged Contact engine step for step, so it will read familiarly.
 
+### Record types and duplicate rules
+
+Like the packaged engine, this one looks up the record type the template names, checks it exists, and then saves the Contact **without** writing `RecordTypeId`: a packaged flow that referenced it would fail to install in orgs with no Contact record types. So a Contact duplicate rule that carries a Record Type condition never matches a form conversion, and the saved Contact takes the running user's default record type. Either take the condition off the rules you want to apply, or map `RecordTypeId` in your Level 2 step-flow clone from a Get Records on RecordType ([Customizing](customizing.md#level-2-clone-a-step-flow)).
+
 **The save path:**
 
 1. **Strip blanks.** An empty form answer never erases data on an existing Contact. The template's Nullable Fields setting is the opt-out where blank genuinely means "clear this".

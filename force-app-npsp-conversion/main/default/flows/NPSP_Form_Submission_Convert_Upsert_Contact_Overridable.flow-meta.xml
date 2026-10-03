@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <description>Inserts through the bypass-duplicates action (duplicate rule header allowSave, all-or-none, run as current user): subscriber Block rules and alerts cannot interrupt the unattended transaction.</description>
+        <description>Inserts through the bypass-duplicates action (duplicate rule header allowSave, all-or-none, run as current user): subscriber Block rules and alerts cannot interrupt the unattended transaction. The record type the template names is looked up and checked but never written to the Contact, because a packaged flow cannot reference RecordTypeId without breaking installs in orgs that have no Contact record types; duplicate rules with a record type condition therefore do not see form conversions, and a subscriber step-flow clone maps the record type when it is wanted.</description>
         <name>Insert_Contact</name>
         <label>Insert Contact</label>
         <locationX>0</locationX>

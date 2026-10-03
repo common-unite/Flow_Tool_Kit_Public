@@ -42,14 +42,15 @@ Flow Tool Kit forms can be deployed on Experience Cloud sites for external users
 
 ## Step 3: Set Up Guest User Permissions
 
-If your form is accessible to unauthenticated (guest) users:
+If your form is accessible to unauthenticated (guest) users, follow these steps. For the whole setup as one checklist, see [Guest Forms Quickstart](guest-forms-quickstart.md).
 
 1. Go to **Setup → Sites → \[Your Site] → Public Access Settings**.
 2. Grant the guest user profile:
    * **Object access**: Read on the form's target object and related objects
    * **Field access**: Read/Edit on fields the form uses
    * **Apex class access**: Grant access to Flow Tool Kit runtime classes
-3. Assign the **Form Flow User** permission set concepts (guest user profiles can't directly receive permission sets; use the profile's class and object access instead).
+3. Assign the **Form Flow User** permission set to the site's guest user (**Guest User Profile → View Users →** the guest user **→ Permission Set Assignments**).
+4. If the form uses a **Pre-fill Template**, add a guest user sharing rule on **Form Submission** with the criteria **Is Pre-fill Template equals True** and Read Only access. Key the rule on that checkbox, never on the record type. See [Prefill Templates](../form-template-framework/prefill-templates.md#who-can-read-the-pre-fill-template).
 
 {% hint style="info" %}
 **LWR sites** need two more guest settings (**Allow guest users to access public APIs**, and **Let guest users view asset files** when forms use image assets), and must be published after every upgrade. See [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-component-support.md).

@@ -16,7 +16,7 @@ This is especially useful for long intake forms, applications, surveys, and any 
 
 ## Where to Use It
 
-* **Flow Screen** (with full navigation and submission support)
+* **Flow Screen** (with full navigation and submission support). Hide the screen's header and footer: the template drives its own navigation and submit, so the screen's Next and Finish buttons only confuse. The packaged (Form) Template flow hides both.
 * **App Page**
 * **Record Page**
 * **Home Page**

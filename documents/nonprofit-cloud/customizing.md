@@ -33,6 +33,7 @@ The three step flows exist precisely to be cloned. Each is a thin wrapper around
 4. **Point the pipeline at it**, either for one template or for the whole org:
    - **For one template**: set the template's Flow API Name override field for that rule to your clone's API name.
    - **For the whole org**: edit the matching Form Template Conversion Mapping Default record, exactly as in [Configuration step 5](configuration.md#step-5-repoint-the-four-conversion-mapping-records), and put your clone's API name there instead.
+   - **Or skip the pointing**: save the clone as a flow override of the packaged step flow instead of a plain copy, and every caller runs it; the picklists and mapping records keep showing the packaged name. See [Overriding Packaged Flows](../advanced-topics/overriding-packaged-flows.md).
 
 ### What a clone must keep
 

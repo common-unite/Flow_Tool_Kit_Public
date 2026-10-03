@@ -25,6 +25,9 @@ plans:
         title: Install Flow Tool Kit
         tier: primary
         checks:
+            - when: "'Network' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "Digital Experiences must be enabled before Flow Tool Kit installs or upgrades: the package includes Experience Cloud page templates for Form Template and Form Submission. In Setup, open Digital Experiences > Settings, enable Digital Experiences, then run this installer again."
             - when: "not tasks.check_lws_enabled()['is_enabled']"
               action: error
               message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
@@ -51,6 +54,17 @@ plans:
                 task: update_admin_profile
                 ui_options:
                     description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
+            3.5:
+                task: deploy_guest_save_override
+                ui_options:
+                    name: "Install the Guest Save Override (inactive)"
+                    description: "For Experience Cloud sites with guest forms. Installs a copy of the packaged save flow as a flow override that runs in System Context Without Sharing, inactive, with the permission set Form Flow (Guest User) that grants it. A guest can insert a submission but never update one or save one that points at a record the guest cannot read; this override is the documented remedy, and it is yours, not the package's. After setup: review the override, activate it, and assign the permission set to the site's guest user. First install only; a re-run is skipped so the permission set you and the extension installers add to is never replaced. Uncheck it if your org has no guest forms."
+                    is_required: False
+                    is_recommended: True
+                checks: &guest_override_first_install_only
+                    - when: "tasks.check_base_installed()['is_installed']"
+                      action: skip
+                      message: "Flow Tool Kit is already installed, so the guest save override is not deployed again. The Form Flow (Guest User) permission set stays as you and the extension installers left it."
 
     # AFNP / Nonprofit Cloud orgs. Everything the vanilla plan does, plus the NPC conversion
     # extension and the post-install content the packages cannot carry.
@@ -73,6 +87,9 @@ plans:
         preflight_message: "This installs Flow Tool Kit together with the Nonprofit Cloud conversion extension, which converts form submissions into Person Accounts, households and relationships. Install it in a Nonprofit Cloud org only. Before running it, activate the Standard Person Account Matching Rule and then its duplicate rule in Setup: they ship inactive and no API can activate them."
         post_install_message: "Flow Tool Kit and the Nonprofit Cloud conversion extension are installed. The Conversion Rules picklist values, Account and Contact record types, matching-rule value and Conversion Mapping Defaults have been applied. That setup content runs only on a first installation, so any changes you make to the Conversion Rules dependency matrix are preserved on later upgrades."
         checks:
+            - when: "'Network' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "Digital Experiences must be enabled before Flow Tool Kit installs or upgrades: the package includes Experience Cloud page templates for Form Template and Form Submission. In Setup, open Digital Experiences > Settings, enable Digital Experiences, then run this installer again."
             - when: "not tasks.check_lws_enabled()['is_enabled']"
               action: error
               message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
@@ -105,6 +122,14 @@ plans:
                 task: update_admin_profile
                 ui_options:
                     description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
+            3.5:
+                task: deploy_guest_save_override
+                ui_options:
+                    name: "Install the Guest Save Override (inactive)"
+                    description: "For Experience Cloud sites with guest forms. Installs a copy of the packaged save flow as a flow override that runs in System Context Without Sharing, inactive, with the permission set Form Flow (Guest User) that grants it. A guest can insert a submission but never update one or save one that points at a record the guest cannot read; this override is the documented remedy, and it is yours, not the package's. After setup: review the override, activate it, and assign the permission set to the site's guest user. First install only; a re-run is skipped so the permission set you and the extension installers add to is never replaced. Uncheck it if your org has no guest forms."
+                    is_required: False
+                    is_recommended: True
+                checks: *guest_override_first_install_only
             5:
                 task: install_npc_conversion
                 ui_options:
@@ -156,6 +181,9 @@ plans:
         preflight_message: "This installs Flow Tool Kit together with the NPSP conversion extension, which converts form submissions into NPSP Households, Organizations, affiliations and primary contacts. Install it in an org with the Nonprofit Success Pack (NPSP) and the Household Account model."
         post_install_message: "Flow Tool Kit and the NPSP conversion extension are installed. The Conversion Rules mapping for Contact(s) templates, the Household and Organization Account record type values, the NPSP matching rule value and the Conversion Mapping Defaults have been applied. That setup content runs only on a first installation, so any changes you make to the Conversion Rules dependency matrix are preserved on later upgrades."
         checks:
+            - when: "'Network' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "Digital Experiences must be enabled before Flow Tool Kit installs or upgrades: the package includes Experience Cloud page templates for Form Template and Form Submission. In Setup, open Digital Experiences > Settings, enable Digital Experiences, then run this installer again."
             - when: "not tasks.check_lws_enabled()['is_enabled']"
               action: error
               message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
@@ -188,6 +216,14 @@ plans:
                 task: update_admin_profile
                 ui_options:
                     description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
+            3.5:
+                task: deploy_guest_save_override
+                ui_options:
+                    name: "Install the Guest Save Override (inactive)"
+                    description: "For Experience Cloud sites with guest forms. Installs a copy of the packaged save flow as a flow override that runs in System Context Without Sharing, inactive, with the permission set Form Flow (Guest User) that grants it. A guest can insert a submission but never update one or save one that points at a record the guest cannot read; this override is the documented remedy, and it is yours, not the package's. After setup: review the override, activate it, and assign the permission set to the site's guest user. First install only; a re-run is skipped so the permission set you and the extension installers add to is never replaced. Uncheck it if your org has no guest forms."
+                    is_required: False
+                    is_recommended: True
+                checks: *guest_override_first_install_only
             4:
                 task: install_npsp_conversion
                 ui_options:
@@ -229,6 +265,9 @@ plans:
         is_listed: False
         preflight_message: "This upgrades Flow Tool Kit and its dependencies to the latest version. Existing custom metadata records will not be modified."
         checks:
+            - when: "'Network' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "Digital Experiences must be enabled before Flow Tool Kit installs or upgrades: the package includes Experience Cloud page templates for Form Template and Form Submission. In Setup, open Digital Experiences > Settings, enable Digital Experiences, then run this installer again."
             - when: "not tasks.check_lws_enabled()['is_enabled']"
               action: error
               message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
@@ -977,6 +1016,12 @@ tasks:
         options:
             package_name: "Flow Tool Kit: NPSP | Form Template Extension"
 
+    deploy_guest_save_override:
+        description: "Deploys unpackaged/post/guest-save-override: a client-owned flow override of the packaged (Form) Upsert | Overridable flow in System Mode Without Sharing, INACTIVE, plus the permission set Form Flow (Guest User) that grants it. The admin reviews it, activates it and assigns the permission set to the site's guest user; nothing in the package runs in system mode. First install only (plan check), because extension installers add their guest grants to that permission set afterwards. The flow copy is generated from the packaged source by scripts/guest-save-override.js and guarded by its Jest test."
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/post/guest-save-override
+        group: Flow Tool Kit installer
     sync_packaged_picklist_values:
         description: "Adds every picklist value the package ships (fields, record type assignments, global value sets) that the org is missing, reading the package source at the release tag. Add-only; never removes, relabels, reorders or changes defaults. New managed picklist values reach fresh installs only, so upgraded orgs need this (#696, #723)."
         class_path: tasks.sync_picklist_values.SyncPackagedPicklistValues
@@ -1021,7 +1066,7 @@ tasks:
             # Deploying a path the mirror never received fails at INSTALL time, not at publish time.
             include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md","documents/",
                        "tasks/","force-app-post/","force-app-npc-conversion/","force-app-npsp-conversion/",
-                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/",
+                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/","unpackaged/post/guest-save-override/",
                        "force-app/main/default/objects/","force-app/main/default/globalValueSets/" ]
 
     # Installer-only publish, decoupled from a base package release. Pushes the current master
@@ -1041,7 +1086,7 @@ tasks:
             create_release: False
             include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md",
                        "tasks/","force-app-post/","force-app-npc-conversion/","force-app-npsp-conversion/",
-                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/",
+                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/","unpackaged/post/guest-save-override/",
                        "force-app/main/default/objects/","force-app/main/default/globalValueSets/" ]
 
     robot:
@@ -1062,10 +1107,6 @@ tasks:
 
 orgs:
     scratch:
-        sprint_2026-09-29:
-            config_file: orgs/dev.json
-            days: 30
-            namespaced: True
 
         npsp_dev:
             config_file: orgs/npsp.json

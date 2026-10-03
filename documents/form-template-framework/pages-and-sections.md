@@ -110,6 +110,18 @@ The form template hands data to the flow through the input variables and reads i
 
 **Restart-on-invalid behaviour.** A page can hold more sections than just the flow. When the flow finishes but **another section on the page fails validation**, the form stays on the page and the flow section **re-renders, re-prefilled with the values just entered** (rather than sitting on a blank "finished" screen). The user fixes the other section and completes the flow again. Because the form has already captured the flow's `record`/`relatedRecords`, and those rows carry their Ids once you've returned them, the re-save updates the same rows instead of creating duplicates.
 
+## When Next or Submit Is Blocked
+
+When a required field is empty or a value fails validation, Next, Mark Complete and Submit stay on the page. The form shows up to three toasts for the whole screen, however many forms share it (the first two problems, then a count of the rest, which is always the last toast and covers every form, repeater row and section on the screen). Each field also keeps its own red message, and from 4.46 focus moves to the first field to fix. The toasts use Salesforce's newer toast, so they show on LWR sites and embedded forms too.
+
+- The review page lists problems from every page, each line starting with the page's label.
+- When two sections on a page have a field with the same label, each line starts with its section title.
+- A repeater lists each row's problems with the row number; a table with too few rows selected and a custom LWC section each add their own line.
+- The same summary appears inside the review page's Edit window. A Flow Form used on its own in a Flow screen shows the toasts and the red field text only: a screen can hold several forms, and only a Form Template owns a whole page.
+- The heading is the custom label `Error_Fix_Before_Submit`, so you can reword or translate it; see [Custom Labels](../advanced-topics/custom-labels.md).
+
+Save Progress and Back never validate, so they never show it.
+
 ## Page Conditional Logic
 
 Pages can be conditionally shown or hidden based on field values from **previous** pages.

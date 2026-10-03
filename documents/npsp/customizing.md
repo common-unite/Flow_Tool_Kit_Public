@@ -35,6 +35,8 @@ The two Contact step flows exist precisely to be cloned. Each is a thin wrapper 
 5. **Point the pipeline at it**, either for one template or for the whole org:
    - **For one template**: set `FlowApiName_Contact1__c` or `FlowApiName_Contact2__c` on the template to your clone's API name.
    - **For the whole org**: edit the matching Form Template Conversion Mapping Default record, exactly as in [Configuration step 4](configuration.md#step-4-repoint-the-three-conversion-mapping-records), and put your clone's API name there instead.
+   - **Or skip the pointing**: save the clone as a flow override of the packaged step flow instead of a plain copy, and every caller runs it; the picklists and mapping records keep showing the packaged name. See [Overriding Packaged Flows](../advanced-topics/overriding-packaged-flows.md).
+6. **To put a record type on the Contact**, map `RecordTypeId` in your Transform from a Get Records on RecordType. The packaged engine looks the template's record type up but never writes it; see [Record types and duplicate rules](conversion-flows.md#record-types-and-duplicate-rules).
 
 ### What a clone must keep
 

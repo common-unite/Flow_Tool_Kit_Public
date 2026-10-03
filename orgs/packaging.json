@@ -1,5 +1,6 @@
 {
   "orgName": "Form Builder - Packaging Test Org",
+  "release": "previous",
   "edition": "Enterprise",
   "features": ["enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
   "settings": {

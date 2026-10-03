@@ -8,6 +8,8 @@ This replaces the older pattern of wrapping `formTemplate` in a Screen Flow just
 
 The Flow runs exactly once, on the **initial load of a fresh Form Submission** (no Id yet). On resumed drafts (an existing Form Submission re-loaded by Id), the Flow does **not** run; the draft's persisted values are the source of truth on that path.
 
+While the Flow runs, the template shows a loading placeholder in place of its pages. The pages mount once the Flow has finished and its outputs are in the submission, so a respondent never sees a half-ready form behind the modal. A Flow with a screen shows that screen in the modal; a Flow with no screen shows the modal's spinner until it finishes.
+
 ## Configuring a Form Template
 
 1. Open the Form Template record.
@@ -157,7 +159,9 @@ What this pattern doesn't protect: leaked URLs (forwarded emails, screenshots). 
 
 ## Guest users and the upsert override
 
-When a guest user fills out a form on a guest community, they can INSERT a new Form Submission (Salesforce allows that), but they cannot UPDATE one in user mode (Salesforce sharing blocks it). The **`Form_Submission_Upsert`** Flow exists as the documented escape hatch, but **the package ships it in user mode**.
+When a guest user fills out a form on a guest community, they can INSERT a new Form Submission (Salesforce allows that), but they cannot UPDATE one in user mode (Salesforce sharing blocks it). An insert is refused too when the record points at something the guest cannot read, for example an Account or Contact stamped by a URL parameter or a prefill flow. The **`Form_Submission_Upsert`** Flow exists as the documented escape hatch, but **the package ships it in user mode**.
+
+From 4.46 a refused save is no longer silent: the flow returns the fault and the form shows it, with the raw platform message and the remedy. Before 4.46 the submission save's fault path ended the interview cleanly and the respondent saw "Submitted successfully" with no record. **A clone made before 4.46 keeps that wiring**, because Save As copies the elements as they were: open your clone, select the **Upsert** element that saves the Form Submission, and point its fault path at **Assign Error Message**, or clone the packaged flow again.
 
 **FlowToolKit is a managed package and cannot ship any Flow or Apex that elevates sharing.** Every Flow in the package, including this one, runs in user mode by default. The Flow defines the *interface*; if you need actual elevation, you override.
 
@@ -165,10 +169,30 @@ To enable guest-user updates:
 
 1. Clone `Form_Submission_Upsert` into your own namespace.
 2. Set your clone's Run In Mode to `System Mode Without Sharing` (or a more constrained scope you can defend).
-3. Wire your override through the standard FlowToolKit override mechanism so the `formTemplate` LWC invokes your clone instead.
+3. Save it as a flow override of the packaged flow (Flow Builder's **Save as flow override**), so every save runs your clone without anything pointing at it; see [Overriding Packaged Flows](../advanced-topics/overriding-packaged-flows.md), including what to check when the override is deployed with metadata.
 4. Document the security review: keep `without sharing` to the smallest scope, validate the inbound `record` shape and ownership before persisting, log anything unexpected.
 
 Salesforce and the Flow Tool Kit managed package are NOT responsible for data exposure or destructive DML introduced by a subscriber override. The override mechanism gives you full control over the DML; the security review is on you.
+
+### How a save finds an existing submission
+
+The form gives every new submission a **Unique Id** (`UniqueId__c`, an external Id that must be unique). Until the submission has a record Id, the upsert flow saves it by upserting on that Unique Id, so the same submission sent twice should land on one record. When the save succeeds, the flow returns the record with its Id, the form keeps it, and every later save updates by Id.
+
+Guests always save through this flow. Logged-in users do too when the form is embedded in another website, or when the page has repeater or table rows waiting to be saved; otherwise they save directly.
+
+Whether the upsert finds the existing record depends on who can see it: it only matches records the person saving can read. A guest cannot read a submission after saving it, because Salesforce hands guest-created records to the site's default owner.
+
+| Who saves, through which flow | A save carrying only the Unique Id of an existing submission |
+| --- | --- |
+| Guest, packaged flow (Default Mode) | Finds no match, tries to insert a new record, and is refused by the unique Unique Id: the form shows **Save Failed** with `DUPLICATE_VALUE` on Unique Id. Nothing is saved and no duplicate is created. |
+| Guest, your override in System Mode Without Sharing | Finds the existing submission, updates it, and returns its record Id. The next save updates by Id. |
+| Logged-in site member, packaged flow, who can read and edit the submission (for example its owner) | Finds it, updates it, and returns its record Id. |
+| Logged-in site member, packaged flow, who cannot read the submission | Same as a guest on the packaged flow: `DUPLICATE_VALUE`, nothing saved. |
+| Logged-in site member, your override, without a permission set granting the override | The save does not start: **Save Failed** says the person does not have permission to run the form's save process. Give the override to the same users who use the form. |
+
+Measured in a scratch org on the 4.46 build: as the site guest, and as a Customer Community Plus user holding Form Flow User plus Edit on Form Submission, both on an embedded form page.
+
+In practice the form sends a submission without its Id only when a save is repeated before the first one reports back. From 4.46 the form runs one save at a time: a second Submit started while a save is running is ignored, whichever way it arrives. A `DUPLICATE_VALUE` on Unique Id therefore means the person saving cannot see their own earlier submission: give guest forms the System Mode Without Sharing override described above.
 
 ## Troubleshooting
 
@@ -195,6 +219,10 @@ Your Flow's body threw an error during execution. **Fix:** open the browser cons
 ### "Guest user can't save the form"
 
 The Form Submission already has an Id and Salesforce sharing blocks the guest UPDATE. The default upsert override Flow runs in user mode and won't bypass this. **Fix:** clone the override Flow into your namespace with elevated sharing as described above, and wire it through the override mechanism.
+
+### "Save Failed: duplicate value found: Unique Id duplicates value on record with id"
+
+A save carried the Unique Id of a submission that already exists, and the person saving cannot see that submission, so the save tried to create it again. Nothing was saved and no duplicate was made. **Fix:** for guests, use the System Mode Without Sharing override, so the save finds the existing submission and updates it. For logged-in users, share the submission with them, or let them save through that override. See [How a save finds an existing submission](#how-a-save-finds-an-existing-submission).
 
 ## Security disclaimer
 
