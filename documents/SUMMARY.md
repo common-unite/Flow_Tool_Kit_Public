@@ -68,8 +68,6 @@
 
 * [Conditional Logic](form-configuration/conditional-logic.md)
 * [Custom Metadata Types](form-configuration/custom-metadata-types.md)
-* [Form Styles: Global Defaults and Template Overrides](form-configuration/form-styles.md)
-* [CSS Style Token Reference](form-configuration/style-token-reference.md)
 * [Custom Styling Overview](form-configuration/custom-styling-overview.md)
 * [Field Labels Help Text](form-configuration/field-labels-help-text.md)
 * [Field Type Settings](form-configuration/field-type-settings.md)
@@ -77,13 +75,15 @@
 * [Field Width Responsiveness](form-configuration/field-width-responsiveness.md)
 * [File Uploads](form-configuration/file-uploads.md)
 * [Form Components System](form-configuration/form-components-system.md)
+* [Form Styles](form-configuration/form-styles.md)
 * [Formula Recalculation](form-configuration/formula-recalculation.md)
 * [Input Field Configuration](form-configuration/input-field-configuration.md)
 * [Likert Matrix Sections](form-configuration/likert-matrix-sections.md)
-* [Record Cards](form-configuration/record-cards.md)
 * [Picklist Option Labels](form-configuration/picklist-option-labels.md)
 * [Prompt Messages](form-configuration/prompt-messages.md)
 * [reCAPTCHA & Security](form-configuration/recaptcha-security.md)
+* [Record Cards](form-configuration/record-cards.md)
+* [Style Token Reference](form-configuration/style-token-reference.md)
 * [Themes Labels Styling](form-configuration/themes-labels-styling.md)
 
 ## Invocable Actions
@@ -202,7 +202,8 @@
 
 ## Release Notes
 
-* [Form Styles - upcoming release](release-notes/form-styles-unreleased.md)
+* [Form Styles Unreleased](release-notes/form-styles-unreleased.md)
+* [Record Card Unreleased](release-notes/record-card-unreleased.md)
 * [Release 3.208](release-notes/release-3.208.md)
 * [Release 3.211](release-notes/release-3.211.md)
 * [Release 3.212](release-notes/release-3.212.md)

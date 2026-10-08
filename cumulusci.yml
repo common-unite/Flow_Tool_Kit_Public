@@ -1151,6 +1151,11 @@ orgs:
             days: 30
             namespaced: True
 
+        sprint_2026-10-08:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: True
+
         # #513 Form Design Kit: renders the showcase form so Phase 2 can capture
         # real markup and screenshots from the running renderer.
         feature_form-design-kit:

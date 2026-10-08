@@ -26,8 +26,8 @@ Use it for branding, instructional graphics, splash screens, or any scenario whe
 
 | Property           | Type    | Required | Default | Description                                                  |
 | ------------------ | ------- | -------- | ------- | ------------------------------------------------------------ |
-| `contentAssetName` | String  | No       | -       | DeveloperName of a Salesforce Content Asset                  |
-| `customImageLink`  | String  | No       | -       | External URL or relative path to an image                    |
+| `contentAssetName` | String  | No       | -       | DeveloperName of a Salesforce Content Asset, with its namespace when packaged |
+| `customImageLink`  | String  | No       | -       | A full URL, or an Asset File as `/file-asset-public/<Name>` or its name, drawn from the address the host serves |
 | `isSvg`            | Boolean | No       | -       | Set to true when the content asset is an SVG                 |
 | `overlayHexColor`  | String  | No       | -       | Hex color for an overlay on top of the image                 |
 | `overlayOpacity`   | Integer | No       | -       | Opacity of the overlay (0-100)                               |

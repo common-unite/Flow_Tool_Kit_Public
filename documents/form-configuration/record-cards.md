@@ -57,7 +57,7 @@ Some lines calculate from the stored value, so give them the plain merge field w
 - **Counts Down To** on a Countdown: a date counts to midnight at the start of that day, a date and time to the minute.
 - **End Date** on a Progress card: with no Corner Tag typed, the corner tag reads "12 days left", "1 day left", "Ends today" or "Ended".
 - **Current** and **Goal** on a Progress card: the bar fills to Current out of Goal. Formatted amounts such as `$38,420` are read correctly too.
-- **Image**: a link, a URL field, or a formula or rich text field holding an image. In the Form Builder it is the Image Override Field; on an Experience Cloud site it is the Image URL.
+- **Image**: a link, a URL field, or a formula or rich text field holding an image. In the Form Builder it is the Image Override Field; on an Experience Cloud site it is the Image URL. An Asset File written as `/file-asset-public/<Name>` or as its name is drawn from the address the page can load, on Lightning pages, in Flows, in Experience Builder and on Aura and LWR sites alike.
 
 ### Tags from a multi-select picklist
 
@@ -89,8 +89,9 @@ The image is chosen the way an Image section chooses one.
 | Setting | What it does |
 |---|---|
 | Asset Name | The Asset File the card shows. Required on Media Top and Photo Overlay, where the photo leads the card |
-| Image Override Field | Optional. When the record holds an image in this field, it is shown in place of the asset. A link, a formula or a rich text field works |
+| Image Override Field | Optional. When the record holds an image in this field, it is shown in place of the asset. A link, an Asset File as `/file-asset-public/<Name>` or its name, or a formula or rich text field holding one of those |
 | Image Height, Framed Image, Photo Overlay | Appear once an image is chosen |
+| Scrim Color | Photo Overlay only. The tint the scrim fades to and the fill under the photo, with an opacity. Empty keeps the site's navy |
 
 On Icon Lead and Centered Profile the Image group is called Photo, and appears when **Avatar** is set to Image.
 
@@ -155,7 +156,7 @@ The card's photo is chosen the way every image on a Design Block is chosen, unde
 |---|---|
 | None | No photo |
 | CMS | A published CMS image, picked with the **Overlay Image** picker below the editor |
-| URL | A full address, `resource:Name/path.png` for packaged art, or a merge field such as `{{Photo_URL__c}}` holding a link or an image |
+| URL | A full address, an Asset File as `/file-asset-public/<Name>` or its name, `resource:Name/path.png` for packaged art, or a merge field such as `{{Photo_URL__c}}` holding one of those |
 | Asset | An Asset File |
 
 **Image Alt Text**, **Image Height**, **Framed Image** and **Photo Overlay** appear once a source is chosen. Media Top and Photo Overlay lead with a photo, so a card with no image is given one of the package's background photographs at random when you choose either type; swap it under Source.
