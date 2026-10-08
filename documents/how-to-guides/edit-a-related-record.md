@@ -40,25 +40,30 @@ For a Contact page that edits the Account, build the Form Component with **Accou
 | Case | its Contact | `ContactId` |
 | Contact | a custom lookup | `FlowToolKit__Primary_Contact__c` |
 
-Use the plain field API name. A qualified name like `Contact.AccountId` is also accepted.
+Use the plain field API name. The object name in front is optional: `Contact.AccountId` means the same as `AccountId`.
 
 ### Going more than one lookup away
 
-To reach a record two lookups away, write the full path. Walk through the **relationship** name, not the Id field:
+To reach a record two lookups away, write the path. Walk through the **relationship** name, not the Id field. The page's object in front is optional here too:
 
-| Page object | To edit | Path |
-| ----------- | ------- | ---- |
-| Contact | its Account's parent Account | `Contact.Account.ParentId` |
-| Case | its Contact's Account | `Case.Contact.AccountId` |
+| Page object | To edit | Path | Also accepted |
+| ----------- | ------- | ---- | ------------- |
+| Contact | its Account's parent Account | `Account.ParentId` | `Contact.Account.ParentId` |
+| Case | its Contact's Account | `Contact.AccountId` | `Case.Contact.AccountId` |
 
 ```
-Contact.Account.ParentId      correct
-Contact.AccountId.ParentId    wrong
+Account.ParentId              correct
+Contact.Account.ParentId      correct, the same path
+AccountId.ParentId            wrong
 ```
 
-`AccountId` is the field holding the Id. `Account` is the relationship you walk through. Only the **last** segment is an Id field; everything between the object and it is a relationship name.
+`AccountId` is the field holding the Id. `Account` is the relationship you walk through. Only the **last** segment is an Id field; everything before it is a relationship name, or the page's object at the very front.
 
 To find a relationship name, open the lookup field in Setup: it is usually the field's API name without the `Id` suffix (`AccountId` gives `Account`), and for custom lookups it is the `__c` name with `__r` instead (`Primary_Contact__c` gives `Primary_Contact__r`).
+
+{% hint style="info" %}
+**Changed in v4.47.** The object name in front is optional in every case. Before v4.47 a path through a parent only worked with the object name typed: `Account.ParentId` on a Contact page was read as `ParentId` on the Contact and resolved nothing. A wrong object name in front, which older versions dropped without checking, is now read as a relationship and resolves nothing.
+{% endhint %}
 
 {% hint style="warning" %}
 **Changed in v4.14.** Before v4.14 only the plain field API name worked, even though the help text asked for `ObjectName.FieldApiName`. A component configured with the qualified form rendered nothing at all, with no error. Both forms work from v4.14 on, so existing configurations start working on upgrade with no change needed.
@@ -76,19 +81,28 @@ The two properties were also renamed for clarity in the same release: **Use Rela
 
 Understanding the order helps when it does not behave as expected:
 
-1. The component reads the page's object from the record page itself.
-2. It loads every lookup field on that object, plus the full path when you gave it one.
-3. It walks the path segment by segment to get the Id at the end. A blank lookup anywhere along the way stops the walk.
-4. It works out the object that final lookup points to and renders your form against it.
-5. Saving updates that record.
+1. The component looks up the object of the record it was given. That record decides where the path starts, whatever object name the page passes in.
+2. If the path does not already start with that object's name, the component puts it in front.
+3. It loads every lookup field on that object, plus the full path when you gave it one.
+4. It walks the path segment by segment to get the Id at the end. A blank lookup anywhere along the way stops the walk.
+5. It works out the object that final lookup points to and renders your form against it.
+6. Saving updates that record.
 
 ## Blank lookups
 
-When a lookup along the path is empty on a given record, no related record resolves and the component has nothing to edit. Give those pages a different treatment (component visibility on the page, for example) rather than expecting the form to create the missing record.
+When a lookup along the path is empty on a given record, no related record resolves and the component shows nothing. Give those pages a different treatment (component visibility on the page, for example) rather than expecting the form to create the missing record.
+
+Before v4.47 a blank one-lookup path such as `AccountId` showed an empty form with a Save button, and saving created a record that was not linked back. From v4.47 a blank lookup shows nothing, at any depth.
+
+## No record at all
+
+On a site page that gives the component no record Id, there is no lookup to follow. The component then ignores the path and shows the plain create form for the object you gave it.
 
 ## Experience Cloud
 
-The same two properties exist on the Experience Cloud version of the component and behave identically. Pass the page's record id into **Record Id** as usual; the traversal happens from there.
+The same two properties exist on the Experience Cloud version of the component and behave identically. Pass the page's record id into **Record Id** as usual; the traversal happens from there, starting at that record's object, whatever is set in **Form Object Api Name**.
+
+The **Form (Dynamic Component)** has the same setting under **Record Context**, labelled **Parent Field Api Name**.
 
 ## Template Fields Editor
 

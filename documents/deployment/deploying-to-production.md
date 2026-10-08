@@ -21,11 +21,13 @@ List all CMDT records that need to move:
 - [ ] `Form_Field__mdt` records
 - [ ] `Form_Conditional_Logic__mdt` records (if used)
 - [ ] `Form_Conditional_Logic_Condition__mdt` records (if used)
-- [ ] `Form_Style_Sheet__mdt` records (if customized)
-- [ ] `Form_Labels__mdt` records (if used)
+- [ ] `Form_Theme__mdt` records (if you created themes)
+- [ ] `Form_Style_Sheet__mdt` records and the CSS Static Resources they point to (if you use stylesheets)
+- [ ] `Form_Label__mdt` and `Form_Label_Translation__mdt` records (if used)
 - [ ] `Form_Template__c` records (if using templates)
 - [ ] `Form_Template_Page__c` records (if using templates)
 - [ ] `Form_Template_Page_Section__c` records (if using templates)
+- [ ] Saved Form Styles: these are data and are not part of the deployment. **Export** the org defaults from Global Styles and **Import** them in production. See [Move styles between orgs](../form-configuration/form-styles.md#move-styles-between-orgs)
 
 ### 3. Check Field Dependencies
 

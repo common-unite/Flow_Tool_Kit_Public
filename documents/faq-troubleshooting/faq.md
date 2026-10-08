@@ -88,8 +88,11 @@ Deploy the Custom Metadata Type records that define your form components:
 - `Form__mdt`: form component definitions
 - `Form_Section__mdt`: section definitions
 - `Form_Field__mdt`: field definitions
-- `Form_Style_Sheet__mdt`: themes (if customized)
-- `Form_Labels__mdt`: labels/translations (if used)
+- `Form_Theme__mdt`: themes (if you created any)
+- `Form_Style_Sheet__mdt`: stylesheet mappings (if used)
+- `Form_Label__mdt` and `Form_Label_Translation__mdt`: labels and translations (if used)
+
+Styles saved in Global Styles are data, not metadata. Copy them with **Export** and **Import**; see [Move styles between orgs](../form-configuration/form-styles.md#move-styles-between-orgs).
 
 See [Deployment Overview](../deployment/deployment-overview.md) for the complete deployment guide.
 

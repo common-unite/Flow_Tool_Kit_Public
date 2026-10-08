@@ -65,6 +65,8 @@ To change the English wording, edit the label's **Value** rather than adding a t
 | `Next_Page` | Next Page | buttonsCustom | Next Page |
 | `Previous_Page` | Previous Page | buttonsCustom | Previous Page |
 | `Save_Progress` | Save Progress | formTemplate | Save Progress |
+| `Saved_Successfully` | Saved Successfully! | formTemplate *(via base)*, lightningRecordFieldEdit *(via base)*, lightningRecordForm *(via base)* | Body of the success toast after a form or record is saved |
+| `Submitted_Successfully` | Submitted Successfully! | formTemplate *(via base)* | Body of the success toast after a form is submitted |
 | `Something_Went_Wrong` | Something Went Wrong | *not currently referenced* | Something Went Wrong |
 | `Submit` | Submit | buttonsCustom | Submit |
 | `Update` | Update | formTemplate | Update |

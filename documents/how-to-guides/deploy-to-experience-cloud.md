@@ -53,7 +53,7 @@ If your form is accessible to unauthenticated (guest) users, follow these steps.
 4. If the form uses a **Pre-fill Template**, add a guest user sharing rule on **Form Submission** with the criteria **Is Pre-fill Template equals True** and Read Only access. Key the rule on that checkbox, never on the record type. See [Prefill Templates](../form-template-framework/prefill-templates.md#who-can-read-the-pre-fill-template).
 
 {% hint style="info" %}
-**LWR sites** need two more guest settings (**Allow guest users to access public APIs**, and **Let guest users view asset files** when forms use image assets), and must be published after every upgrade. See [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-component-support.md).
+**LWR sites** need the **FlowToolKit LWR Support** component in the site footer, two more guest settings (**Allow guest users to access public APIs**, and **Let guest users view asset files** when forms use image assets), and must be published after every upgrade. See [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-component-support.md).
 {% endhint %}
 
 {% hint style="info" %}

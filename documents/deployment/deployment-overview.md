@@ -21,11 +21,17 @@ To move your forms between environments (sandbox → production, org A → org B
 | `Form_Field__mdt` | Fields within sections | Yes |
 | `Form_Conditional_Logic__mdt` | Conditional visibility rules | If used |
 | `Form_Conditional_Logic_Condition__mdt` | Conditions within logic rules | If used |
-| `Form_Style_Sheet__mdt` | Themes (visual styling) | If customized |
-| `Form_Labels__mdt` | Label overrides and translations | If used |
+| `Form_Theme__mdt` | Classic Themes (colors and backgrounds) | If you created themes |
+| `Form_Style_Sheet__mdt` | Stylesheet mappings (which CSS Static Resource to load); deploy the Static Resource too | If used |
+| `Form_Label__mdt` | Reusable label text | If used |
+| `Form_Label_Translation__mdt` | Label translations | If used |
 | `Form_Template__c` | Form Templates (multi-page forms) | If used |
 | `Form_Template_Page__c` | Pages within templates | If used |
 | `Form_Template_Page_Section__c` | Sections within pages | If used |
+
+{% hint style="info" %}
+**Saved Form Styles are not deployed.** The org defaults from Global Styles are data, so no deployment carries them: copy them with **Export** and **Import**. A template's Style Editor overrides are stored on the Form Template record. See [Move styles between orgs](../form-configuration/form-styles.md#move-styles-between-orgs).
+{% endhint %}
 
 {% hint style="warning" %}
 **Dependencies matter.** Sections reference Forms, Fields reference Sections, and Conditions reference Logic rules. Deploy them together or in dependency order: Forms first, then Sections, then Fields.

@@ -1,0 +1,19 @@
+/* Form Template stylesheet example.
+   Assign this file through the template's Style Sheet Selector.
+   :root is rewritten to the template container. No @import is required.
+   Normal declarations remain overridable by the style editor. */
+:root {
+    --ftk-input-surface: #f5f8fc;
+    --ftk-input-radius: 0.5rem;
+    --ftk-input-padding-inline: 0.875rem;
+    --ftk-font-size-heading: 1.5rem;
+    --ftk-section-padding-inline: 1rem;
+}
+
+/* Optional developer-owned value: uncomment only when CSS should win over
+   a normal editor value on the same root. */
+/* :root { --ftk-input-radius: 0.875rem !important; } */
+
+@media (max-width: 40rem) {
+    :root { --ftk-section-padding-inline: 0.5rem; }
+}

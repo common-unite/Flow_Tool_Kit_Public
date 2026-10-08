@@ -58,7 +58,7 @@ A **form component** is the top-level container, the reusable layout configurati
 
 **Themes** control the visual appearance of your form components: colors, fonts, spacing, and styling.
 
-* Created as `Form_Style_Sheet__mdt` Custom Metadata records
+* Created as `Form_Theme__mdt` Custom Metadata records
 * Assigned to form components in Form Builder or overridden at runtime
 * See [Themes, Labels & Styling](../form-configuration/themes-labels-styling.md)
 
@@ -66,7 +66,7 @@ A **form component** is the top-level container, the reusable layout configurati
 
 **Labels** provide language-specific text overrides for form elements. Use them for translations or custom terminology.
 
-* Created as `Form_Labels__mdt` Custom Metadata records
+* Created as `Form_Label__mdt` Custom Metadata records, with translations in `Form_Label_Translation__mdt`
 * Applied per-form-component or globally
 * See [Themes, Labels & Styling](../form-configuration/themes-labels-styling.md)
 

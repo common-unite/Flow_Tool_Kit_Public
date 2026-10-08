@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Focus_Ring__c</fullName>
+    <description>Org default for the --ftk-focus-ring style token. Visible keyboard focus; optional override Blank inherits the component default.</description>
+    <label>Focus Ring</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

@@ -9,7 +9,9 @@
 
 ## Overview
 
-Flow Tool Kit provides four mechanisms for customizing the look and text of your forms:
+Start with [Form Styles: Org Defaults and Template Overrides](form-styles.md) for the new style editor. The [CSS token reference](style-token-reference.md) covers developer-authored stylesheets. Explicit **Classic Theme** settings below still take priority for the properties they configure.
+
+Alongside that editor, Flow Tool Kit provides four mechanisms for customizing the look and text of your forms:
 
 1. **Themes** (Form_Theme__mdt): Color schemes, backgrounds, and spacing applied to form headers, sections, and fields
 2. **Labels** (Form_Label__mdt + Form_Label_Translation__mdt): Reusable, translatable text strings for field labels, help text, and other UI text
@@ -130,19 +132,19 @@ Form Labels support 87 language codes, including all major Salesforce-supported 
 
 ### What Per-Template Style Sheets Do
 
-A Form Template can carry its own CSS style sheet, applied to **that template only**, with automatic isolation. The template's record Id is injected as a CSS class on its container, and every selector in the sheet is automatically prefixed with it at load time, so the CSS cannot affect other forms, other templates, or the surrounding page. `:root` selectors map to the template container itself, the right place for CSS custom properties.
+A Form Template can carry its own CSS style sheet, applied to **that template only**, with automatic isolation. The template's record Id is injected as a CSS class on its container, and every selector in the sheet is automatically prefixed with it at load time, so selector rules target that template. This is selector scoping, not a namespace for animation or font names; use distinctive names for those assets. `:root` selectors map to the template container itself, the right place for CSS custom properties.
 
 ### How to Assign One
 
 1. **Create a Static Resource**: a single `text/css` file, or a zip containing `.css` files
-2. Open the **Form Template record page** → **Form Theme & Stylesheet** tab
+2. Open the **Form Template record page** → **Form Theme** tab
 3. Pick the sheet with the **Style Sheet Selector**; options are grouped by namespace (or Local) and then by zip file, with each resource's Description shown beneath its name
 4. The reference is stored in `Form_Template__c.Style_Sheet__c` as `ResourceName` (or `Namespace__ResourceName`, or `.../path/inside.css` for zip entries)
 
 ### Behavior Notes
 
 - The CSS text is read server-side and injected by the form: no cross-origin fetches, nothing added to `document.head`
-- **`@import` is not supported**: a sheet containing one is skipped entirely (fail-safe) rather than loaded unscoped
+- **`@import` is not supported**: imported styles are not loaded; include the required CSS directly
 - Clearing the Style Sheet field removes the injected styles on the next load
 - Content is cached (Platform Cache); after editing a resource's body, allow a few minutes or rename the resource
 - Loads **in addition to** themes and org-wide style sheets; use it for template-specific branding on top of your standard theme
@@ -189,4 +191,4 @@ Create a theme with dark `accordionBackgroundColor__c` and light `accordionFontC
 - **Background Images**: Theme image fields accept URLs. Use content assets, static resources, or external URLs. Pair with `position` and `size` fields for proper placement.
 - **Label Caching**: Labels are cached in Platform Cache (FlowToolKit.FormComponents partition) for performance. Changes may take a moment to reflect.
 - **Style Sheet Scope**: Form_Style_Sheet__mdt CSS is global; it affects all forms in the org, not just specific forms. Use specific selectors (under `.flowForm`, or under a template's injected Id class) to target only the elements you want to change.
-- **Theme vs Style Sheet**: Use themes for standard color/background customization. Use a Per-Template Style Sheet when one template needs CSS-level control. Use org-wide Style Sheets only for CSS conventions that should apply everywhere (custom animations, complex layout changes, etc.). See the [Custom Styling Overview](custom-styling-overview.md) for the full decision guide.
+- **Theme vs Style Sheet**: Use the org defaults and template overrides for standard customization, and keep explicit Classic Theme values for intentional exceptions. Use a Per-Template Style Sheet when one template needs CSS-level control. Use org-wide Style Sheets only for CSS conventions that should apply everywhere (custom animations, complex layout changes, etc.). See the [Custom Styling Overview](custom-styling-overview.md) for the full decision guide.

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Separated_Choice_Height__c</fullName>
+    <description>Org default for the --ftk-separated-choice-height style token. Separated-choice minimum height for separated choices. Specific overrides take priority over shared controls. Blank inherits the component default.</description>
+    <label>Separated-choice minimum height</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

@@ -30,6 +30,14 @@ This is especially useful for long intake forms, applications, surveys, and any 
 4. **Add to Screen**: In Flow Builder, drag "Form (Template)" onto a screen and pass the Form Template record Id.
 5. **Process Output**: After the screen, use the `currentPage`, `priorPage`, and `formSubmission` outputs to track navigation and save data.
 
+## Styles and appearance
+
+A Form Template starts from the org defaults, set in **Form Builder → Global Styles**. To make this template different, open the **Style Editor** tab in the right sidebar and change a setting; the **Preview Form** tab shows the result. Changes save by themselves and affect this template only. Clear a setting to inherit the org default again.
+
+Basics and Advanced work together. A Classic Theme you created, or a setting on a component, keeps priority for the properties it sets; the packaged Form Default theme gives way to saved styles. Custom CSS stylesheets remain supported. The editor and preview are separate Lightning components that can be placed on a custom record page.
+
+Read [Form Styles: Org Defaults and Template Overrides](../form-configuration/form-styles.md) for the full workflow and precedence rules. For developer styling, see [Custom Styling Overview](../form-configuration/custom-styling-overview.md) and the complete [CSS token reference](../form-configuration/style-token-reference.md).
+
 ## Properties
 
 ### Inputs (Flow Screen)
@@ -59,7 +67,7 @@ This is especially useful for long intake forms, applications, surveys, and any 
 | Property           | Type    | Required | Default     | Description                                                                                                |
 | ------------------ | ------- | -------- | ----------- | ---------------------------------------------------------------------------------------------------------- |
 | `recordId`         | String  | Yes      | {!recordId} | Form Template, Form Submission, or any record Id                                                           |
-| `relatedFieldName` | String  | No       | None        | Related field path entered as text (e.g. `Contact.FlowToolKit__Latest_Form_Submission__c`)                 |
+| `relatedFieldName` | String  | No       | None        | Related field path entered as text. The object name in front is optional: `FlowToolKit__Latest_Form_Submission__c` or `Contact.FlowToolKit__Latest_Form_Submission__c`; through a parent, `Account.FlowToolKit__Latest_Form_Submission__c` |
 | `fixedTemplateId`  | String  | No       | None        | Form Template record Id to load when the Record Id resolves to no template or submission (entered as text) |
 | `disableAll`       | Boolean | No       | None        | Read-only mode                                                                                             |
 

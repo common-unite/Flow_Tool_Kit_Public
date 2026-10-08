@@ -63,6 +63,12 @@ You can preview how your form will look directly within Flow Builder; no need to
 * Support for AND/OR logic combinations
 * Preview conditional behavior within the builder
 
+### Global Styles
+
+Use the **Global Styles** tab (under **More** when space is limited) to set the org defaults: the look every form starts from. **Basics** sets the overall appearance; **Advanced** fine-tunes one detail at a time without replacing Basics. The selected form component only provides the preview. While this tab is open, the bar at the bottom of the page shows **Reset org defaults**, **Cancel** and **Save org defaults** in place of the form's own buttons, and saving stores the org defaults, not the form component.
+
+This tab needs the **Form Style Defaults Manager** permission set, and saving also needs **Customize Application**. To change one Form Template only, use the **Style Editor** tab on that template's record instead. See [Form Styles: Org Defaults and Template Overrides](../form-configuration/form-styles.md) for a quick start, where saved styles apply, how the layers combine and how to move styles between orgs. Developers can use the [CSS token reference](../form-configuration/style-token-reference.md).
+
 ### Theme Assignment
 
 * Assign a theme to control visual styling

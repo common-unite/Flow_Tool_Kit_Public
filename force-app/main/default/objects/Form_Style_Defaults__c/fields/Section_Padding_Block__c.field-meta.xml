@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Section_Padding_Block__c</fullName>
+    <description>Org default for the --ftk-section-padding-block style token. Sets top and bottom padding inside form sections. Blank inherits the component default.</description>
+    <label>Section padding block</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

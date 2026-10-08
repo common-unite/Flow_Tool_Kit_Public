@@ -60,11 +60,13 @@ A section can render a **Screen Flow** instead of a form component. In the page 
 
 ### Why a picklist (and what it lists)
 
-The picklist shows **only active flows that were built from the `(Form) Flow Section | Template` flow template** (shipped in the `FlowToolKit` package). That template comes pre-wired with the input and output variables the form runtime exchanges with each section: `record`, `recordId`, `review`, the navigation button labels (`buttonLabel_Back` / `buttonLabel_Next` / `buttonLabel_Finish` / `buttonLabel_SaveProgress`), the current `stage` and `section` records, and `SectionQualifiedApiName`. A flow created from it drops into a page section and participates in form navigation, prefill, and review without any extra wiring.
+The picklist shows **active screen flows that carry the Flow Section outputs**: `isValid`, `buttonClickedLabel` and `record`, spelled exactly so and each marked available for output. Those are the values a form reads back from a section's flow. The `(Form) Flow Section | Template` flow template (shipped in the `FlowToolKit` package) has them, so a flow built from it is listed, and so is that flow after it is deployed to another org. The template comes pre-wired with the input and output variables the form runtime exchanges with each section: `record`, `recordId`, `review`, the navigation button labels (`buttonLabel_Back` / `buttonLabel_Next` / `buttonLabel_Finish` / `buttonLabel_SaveProgress`), the current `stage` and `section` records, and `SectionQualifiedApiName`. A flow created from it drops into a page section and participates in form navigation, prefill, and review without any extra wiring.
 
 The **`section`** input (the `Form_Template_Page_Section__c` record) is what lets a flow persist its own repeater/table rows correctly: stamp `Internal_SectionId__c = {!section.Id}` on each row so the form filters them back into this section on reload, and read `{!section.Form_Template_Page__c}` to set the resume page. The **`stage`** input (the current `Form_Submission_Stage__c`) lets a flow read or update stage progress in Stages mode.
 
-A flow built from scratch will **not** appear, because it lacks that variable contract. (If a section already stores a flow name that isn't template-derived, for example one saved before this requirement, it still shows in the list, labeled _"Currently selected (not a Form Flow Section template)"_, so the saved value is never lost.)
+A flow built from scratch will **not** appear unless it has those three output variables. (If a section already stores a flow name that is not listed, for example an inactive flow, it still shows in the list, labeled _"Currently selected. Not listed: it is inactive or lacks the Flow Section outputs."_, so the saved value is never lost.)
+
+When no flow qualifies, the configurator says so under the picklist instead of showing an empty list.
 
 ### Create a new flow from the template
 
@@ -75,7 +77,7 @@ A flow built from scratch will **not** appear, because it lacks that variable co
 5. **Save** and **Activate** the flow.
 6. Back in the page section configurator, set **Component Type = Flow** and choose your new flow from the picklist.
 
-> **Not seeing your flow?** Confirm it is **Active** and that it was **created from the template** (not from scratch). The picklist lists active, template-derived flows only.
+> **Not seeing your flow?** Confirm it is **Active**, that it is a screen flow, and that `isValid`, `buttonClickedLabel` and `record` still exist and are **available for output**. A flow you activated a moment ago appears after you reload the page.
 
 ### Flow sections in Stages mode
 

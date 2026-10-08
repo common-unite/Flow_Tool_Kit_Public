@@ -6,7 +6,7 @@
 
 | Do this | Why | Symptom when missing |
 | --- | --- | --- |
-| Place the **FlowToolKit LWR Support** component once, then publish | LWR bundles only the components it can see at publish time | Form area blank or spinning, `LWR3008` in the browser console |
+| Place the **FlowToolKit LWR Support** component in the site footer, then publish | LWR bundles only the components it can see at publish time | Form area blank or spinning, or a form with no fields, and `LWR3008` in the browser console |
 | Turn on **Allow guest users to access public APIs** | Forms load field details and records through Salesforce's public APIs, which LWR blocks for guests unless this is on | The form does not load for guests (for example "Unauthorized access") |
 | Turn on **Let guest users view asset files** when forms use image assets | Guests can only load asset files the site shares with them | Picker images or background images are missing for guests |
 | **Publish the site** after every Flow Tool Kit upgrade | LWR serves the component code captured at its last publish | Fixes from an upgrade do not appear on the site |
@@ -16,10 +16,15 @@ Both guest settings are under **Setup → Digital Experiences → All Sites → 
 ## Place the Component Support block
 
 1. Open your LWR site in Experience Builder.
-2. Add **FlowToolKit LWR Support** to a page that every visitor loads. The site's template footer is the usual choice, because it appears on every page.
-3. **Publish the site.** Placement alone does nothing until you publish.
+2. Drag **FlowToolKit LWR Support** into the site footer: the footer area of the theme layout, which appears on every page. Do not put it in one page's own content.
+3. If the site uses more than one theme layout, place it in the footer of each layout whose pages show a form.
+4. **Publish the site.** Placement alone does nothing until you publish.
 
 The component renders nothing. It has no properties and no visible output.
+
+**One page is not enough.** The component only helps the pages that carry it. If it sits on the Home page alone, a visitor who starts at Home and clicks through to a form sees the form, but a visitor who opens the form's page directly, from a bookmark, a link in an email or after a refresh, sees a form with no fields. The site footer covers every page, however the visitor arrives.
+
+If you cannot edit the footer, place the component on every page that shows a form instead.
 
 ### Why it is needed
 
@@ -31,17 +36,19 @@ Aura sites do not work this way. They can fetch a component definition on demand
 
 ### Which forms need it
 
-Any LWR site where a form uses one of the on-demand pieces, which includes most real forms:
+Any LWR site where a form uses one of the on-demand pieces, which includes most real forms. It is not only for Flows: a form placed straight on a page needs it too.
 
+- Every **Form (Template)**, because each section's form loads on demand
 - Lookup fields that open a search modal
 - Table and repeater sections
 - Rich text with flow buttons
+- A Form (Design Block) or Record Card button that opens a Form Template, a Flow or a Record Form
 - Record forms and inline record editing
 - Field-level selector overrides (icon, email template, image, stylesheet)
 - Illustration artwork
 - The form builder and its previews
 
-Rather than audit which of these your forms use, place the component on every LWR site that shows a form. There is no cost to placing it on a site that turns out not to need it.
+Rather than audit which of these your forms use, place the component in the footer of every LWR site that shows a form. There is no cost to placing it on a site that turns out not to need it.
 
 ## Guest users
 
@@ -72,9 +79,9 @@ An LWR site keeps serving the component code it captured at its last publish. Af
 
 ## Verifying
 
-After publishing, open a form page on the site as a real visitor would, in a private window, and check:
+After publishing, open a form page on the site as a real visitor would, in a private window. Open it by its own address, not by clicking through from another page: a page reached from inside the site can work while the same page opened directly does not. Then check:
 
-- The form renders, and the browser console has no `LWR3008` error.
+- The form renders with its fields, and the browser console has no `LWR3008` error.
 - Any Visual Picker images and background images show.
 - The paths your forms actually use work, in particular lookup search, table and repeater sections, and flows.
 
@@ -82,11 +89,13 @@ After publishing, open a form page on the site as a real visitor would, in a pri
 
 | Symptom | Likely cause |
 | --- | --- |
-| Form area blank or spinning, `LWR3008` in the console | Component Support block missing, or the site was not published after placing it |
+| Form area blank or spinning, or a form with no fields, and `LWR3008` in the console | Component Support block missing, or the site was not published after placing it |
+| A form works when you click through to it, but shows no fields from a bookmark, an emailed link or after a refresh | The Component Support block is on some pages only. Move it to the site footer and publish |
 | Guests see "Unauthorized access" or no form | **Allow guest users to access public APIs** is off |
 | Picker or background images missing for guests | **Let guest users view asset files** is off, or the site runs a version before 4.45 |
 | "You do not have the level of access necessary" where a flow should be | The flow is not restricted to permission sets and granted to the guest user |
 | An upgrade's fixes do not show on the site | The site was not published after the upgrade |
+| Form (Design Block) buttons show as plain links in the site's link color, with no fill | The LWR theme styles every link and, up to 4.46, its rule outranked the block's button and link colors. Upgrade to the release after 4.46, then publish the site. Aura sites were never affected |
 
 ## Related Pages
 

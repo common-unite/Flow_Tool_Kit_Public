@@ -101,7 +101,7 @@ Details: [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-comp
 | --- | --- |
 | "Page not found" or an empty record page | Step 3: the object page exists, its default variation holds Form (Template), and the site is published. |
 | Nothing, or "You can't view this form" | Step 5: Form Template sharing rule, and the template is Active. Step 1: the site is active. |
-| Blank or spinning form on an LWR site | Step 3: FlowToolKit LWR Support placed, and the site published. Step 8: public APIs on. |
+| Blank or spinning form, or a form with no fields, on an LWR site | Step 3: FlowToolKit LWR Support placed in the site footer, not on one page only, and the site published. Step 8: public APIs on. |
 | "You do not have permission to run this form's save process" | Step 4 and step 6: Form Flow User, and a permission set of your own that grants your override under Flow Access. |
 | "could not be updated with your current access", "linked to a record you do not have access to" or "do not have access to save" | Step 6: the override runs in System Context Without Sharing, or the URL or prefill passes a record the guest cannot read. |
 | The save still fails after you activated the override or assigned the permission set | A guest session that started earlier keeps the access it had. Test in a new private window, or log out of the site at `https://<site domain>/<site path>/secur/logout.jsp` and load the form again. |

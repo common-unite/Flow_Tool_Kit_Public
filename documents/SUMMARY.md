@@ -68,6 +68,8 @@
 
 * [Conditional Logic](form-configuration/conditional-logic.md)
 * [Custom Metadata Types](form-configuration/custom-metadata-types.md)
+* [Form Styles: Global Defaults and Template Overrides](form-configuration/form-styles.md)
+* [CSS Style Token Reference](form-configuration/style-token-reference.md)
 * [Custom Styling Overview](form-configuration/custom-styling-overview.md)
 * [Field Labels Help Text](form-configuration/field-labels-help-text.md)
 * [Field Type Settings](form-configuration/field-type-settings.md)
@@ -78,6 +80,7 @@
 * [Formula Recalculation](form-configuration/formula-recalculation.md)
 * [Input Field Configuration](form-configuration/input-field-configuration.md)
 * [Likert Matrix Sections](form-configuration/likert-matrix-sections.md)
+* [Record Cards](form-configuration/record-cards.md)
 * [Picklist Option Labels](form-configuration/picklist-option-labels.md)
 * [Prompt Messages](form-configuration/prompt-messages.md)
 * [reCAPTCHA & Security](form-configuration/recaptcha-security.md)
@@ -199,6 +202,7 @@
 
 ## Release Notes
 
+* [Form Styles - upcoming release](release-notes/form-styles-unreleased.md)
 * [Release 3.208](release-notes/release-3.208.md)
 * [Release 3.211](release-notes/release-3.211.md)
 * [Release 3.212](release-notes/release-3.212.md)

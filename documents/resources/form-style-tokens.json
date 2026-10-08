@@ -1,0 +1,2919 @@
+{
+  "version": 1,
+  "tokens": [
+    {
+      "name": "--ftk-spacing-scale",
+      "label": "Field spacing",
+      "category": "Form fields",
+      "description": "Scales only the vertical gaps between field rows.",
+      "fallback": "1",
+      "defaultValue": "1",
+      "type": "number",
+      "isScale": true,
+      "guidance": "100% keeps the original gaps; 200% doubles them. Input padding follows Input size. Section padding has a separate control under Form layout.",
+      "basic": true,
+      "cssProperty": "flex-grow",
+      "units": [
+        ""
+      ],
+      "basicControl": {
+        "min": 0,
+        "max": 800,
+        "step": 1,
+        "factor": 100,
+        "unit": "%"
+      },
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-control-scale",
+      "label": "Input size",
+      "category": "Form fields",
+      "description": "Scales inputs, their text, inner padding and icons, choice controls, and buttons together.",
+      "fallback": "1",
+      "defaultValue": "1",
+      "type": "number",
+      "isScale": true,
+      "guidance": "100% keeps original sizes. 150% makes controls and their text 50% larger. Individual Advanced overrides take priority.",
+      "basic": true,
+      "cssProperty": "flex-grow",
+      "units": [
+        ""
+      ],
+      "basicControl": {
+        "min": 50,
+        "max": 200,
+        "step": 1,
+        "factor": 100,
+        "unit": "%"
+      },
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-radius-scale",
+      "label": "Corner scale",
+      "category": "Form fields",
+      "description": "Scales the rounding of input, button, choice, and card corners.",
+      "fallback": "1",
+      "defaultValue": "1",
+      "type": "number",
+      "isScale": true,
+      "guidance": "Use 0 for square corners, 1 for original corners, or 1.25 for slightly softer corners. Circular controls stay circular. Advanced includes separate input, button, and card corners.",
+      "basic": false,
+      "cssProperty": "flex-grow",
+      "units": [
+        ""
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-font-scale",
+      "label": "Text size",
+      "category": "Text",
+      "description": "Scales field labels, help text, headings, stage text, and unformatted rich text. Input text follows Input size.",
+      "fallback": "1",
+      "defaultValue": "1",
+      "type": "number",
+      "isScale": true,
+      "guidance": "100% keeps original sizes. Explicit rich-text formatting and component sizes take priority.",
+      "basic": true,
+      "cssProperty": "flex-grow",
+      "units": [
+        ""
+      ],
+      "basicControl": {
+        "min": 75,
+        "max": 200,
+        "step": 1,
+        "factor": 100,
+        "unit": "%"
+      },
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-font-weight-label",
+      "label": "Label weight",
+      "category": "Form fields",
+      "description": "Controls how light or bold field labels appear.",
+      "fallback": "400",
+      "type": "font-weight",
+      "defaultValue": "400",
+      "basic": true,
+      "cssProperty": "font-weight",
+      "guidance": "400 is regular and 700 is bold. Available weights depend on the form font. Clear to inherit the default.",
+      "basicControl": {
+        "min": 100,
+        "max": 900,
+        "step": 1,
+        "factor": 1,
+        "unit": ""
+      },
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-border-scale",
+      "label": "Border thickness",
+      "category": "Form fields",
+      "description": "Scales input, textarea, choice, button, and section border thickness.",
+      "fallback": "1",
+      "defaultValue": "1",
+      "type": "number",
+      "isScale": true,
+      "guidance": "Try 2 for a clearer outline. Fractional pixels may round to the same displayed width. Individual border overrides take priority.",
+      "basic": true,
+      "cssProperty": "flex-grow",
+      "units": [
+        ""
+      ],
+      "basicControl": {
+        "min": 0,
+        "max": 500,
+        "step": 1,
+        "factor": 100,
+        "unit": "%"
+      },
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-section-padding-inline",
+      "label": "Horizontal padding",
+      "category": "Form layout",
+      "description": "Sets left and right padding inside form sections.",
+      "fallback": "Existing section padding",
+      "type": "length",
+      "inheritedLabel": "Existing section padding",
+      "guidance": "Set 0–128 pixels. Clear to restore existing section padding. Individual edge overrides take priority.",
+      "basic": true,
+      "cssProperty": "padding-left",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "basicControl": {
+        "min": 0,
+        "max": 128,
+        "step": 1,
+        "factor": 1,
+        "unit": "px",
+        "initial": 0
+      },
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-padding-block",
+      "label": "Vertical padding",
+      "category": "Form layout",
+      "description": "Sets top and bottom padding inside form sections.",
+      "fallback": "Existing section padding",
+      "type": "length",
+      "inheritedLabel": "Existing section padding",
+      "guidance": "Set 0–128 pixels. Clear to restore existing section padding. Individual edge overrides take priority.",
+      "basic": true,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "basicControl": {
+        "min": 0,
+        "max": 128,
+        "step": 1,
+        "factor": 1,
+        "unit": "px",
+        "initial": 0
+      },
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-layout-spacing-scale",
+      "label": "Section padding",
+      "category": "Form layout",
+      "description": "Scales padding around form sections without changing field gaps or input padding.",
+      "fallback": "1",
+      "defaultValue": "1",
+      "type": "number",
+      "isScale": true,
+      "guidance": "100% keeps original section padding. Explicit section padding overrides take priority. Header styling stays unchanged.",
+      "basic": false,
+      "cssProperty": "flex-grow",
+      "units": [
+        ""
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-primary",
+      "label": "Brand",
+      "category": "Color",
+      "description": "Primary actions and selected controls; inherits host brand unless explicitly overridden",
+      "fallback": "Existing owner/org/site brand; no new default public value",
+      "type": "color",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": true,
+      "cssProperty": "color",
+      "basicColorGroup": "Brand",
+      "basicColorOrder": 0,
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-option",
+      "label": "Choice text",
+      "category": "Color",
+      "description": "Text in radio choices, checkboxes, pills, and dropdown options. Selected brand buttons use Brand text.",
+      "fallback": "Salesforce/site default",
+      "type": "color",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": true,
+      "cssProperty": "color",
+      "basicColorGroup": "Text",
+      "basicColorOrder": 2,
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-label",
+      "label": "Field labels",
+      "category": "Color",
+      "description": "Text above or beside each field, independent of Input text and Choice text.",
+      "fallback": "Salesforce/site default",
+      "type": "color",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": true,
+      "cssProperty": "color",
+      "basicColorGroup": "Text",
+      "basicColorOrder": 1,
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-primary-hover",
+      "label": "Color Primary Hover",
+      "category": "State",
+      "description": "Primary hover shade; follows primary unless overridden; optional override",
+      "fallback": "Inherited native value; when primary is explicitly supplied: 85% primary plus black; existing Form Theme retains its legacy active shade",
+      "type": "color",
+      "inheritedLabel": "Derived from primary color",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-primary-active",
+      "label": "Selected state",
+      "category": "State",
+      "description": "Primary pressed shade; follows primary unless overridden; optional override",
+      "fallback": "Inherited native value; when primary is explicitly supplied: 80% primary plus black; existing Form Theme retains its legacy active shade",
+      "type": "color",
+      "inheritedLabel": "Derived from primary color",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-text",
+      "label": "Input text",
+      "category": "Color",
+      "description": "Text entered in inputs and textareas. Field labels, choices, and form content keep their own colors.",
+      "fallback": "Existing inherited/SLDS foreground",
+      "type": "color",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": true,
+      "cssProperty": "color",
+      "basicColorGroup": "Text",
+      "basicColorOrder": 0,
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-color-background",
+      "label": "Form background",
+      "category": "Surfaces",
+      "description": "Background behind the entire form template. Transparent lets the page background show through.",
+      "fallback": "Transparent form container; enclosing page remains visible",
+      "type": "color",
+      "defaultValue": "transparent",
+      "basic": true,
+      "cssProperty": "color",
+      "basicColorGroup": "Backgrounds",
+      "basicColorOrder": 0,
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-font-family",
+      "label": "Font",
+      "category": "Text",
+      "description": "Font for the whole form.",
+      "fallback": "Inherited font stack",
+      "type": "font-family",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": true,
+      "cssProperty": "font-family",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-font-size",
+      "label": "Body and input text size",
+      "category": "Typography",
+      "description": "Sets inherited body and input text size. Native controls may grow to fit larger text. Labels and headings have separate controls.",
+      "fallback": "Inherited font size; desktop scheduler fallback 1.25rem",
+      "type": "font-size",
+      "guidance": "To make controls taller without larger text, use Control height.",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-line-height",
+      "label": "Text line spacing",
+      "category": "Typography",
+      "description": "Line spacing for body text, rich text and multiline inputs. Headings retain independent spacing.",
+      "fallback": "Inherited body line height; some header layouts fall back to 1",
+      "type": "number or length",
+      "guidance": "Use a multiplier such as 1.5. For gaps between fields, use Additional field gap.",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "line-height",
+      "units": [
+        "",
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-focus-ring",
+      "label": "Focus Ring",
+      "category": "State",
+      "description": "Visible keyboard focus; optional override",
+      "fallback": "Inherited native focus; explicit primary derives a 2px surface gap plus 4px brand ring; existing Form Theme retains its legacy glow",
+      "type": "box-shadow",
+      "inheritedLabel": "Derived from primary color",
+      "basic": false,
+      "cssProperty": "box-shadow",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-on-primary",
+      "label": "Brand text",
+      "category": "Color",
+      "description": "Foreground on selected/primary surfaces",
+      "fallback": "Inherited native foreground; filled dividers fall back to site inverse or #ffffff",
+      "type": "color",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": true,
+      "cssProperty": "color",
+      "basicColorGroup": "Brand",
+      "basicColorOrder": 1,
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-danger",
+      "label": "Color Danger",
+      "category": "State",
+      "description": "Color of field errors: the error border, icon and message, the required mark, and the attestation error tint.",
+      "fallback": "SLDS error-base-40 fallback #ba0517",
+      "type": "color",
+      "defaultValue": "#ba0517",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-font-size-label",
+      "label": "Field label text size",
+      "category": "Labels and help",
+      "description": "Default label size",
+      "fallback": "0.75rem",
+      "type": "font-size",
+      "defaultValue": "0.75rem",
+      "scaleToken": "--ftk-font-scale",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-font-size-heading",
+      "label": "Font Size Heading",
+      "category": "Headers",
+      "description": "Section title size",
+      "fallback": "1.25rem",
+      "type": "font-size",
+      "defaultValue": "1.25rem",
+      "scaleToken": "--ftk-font-scale",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-font-weight-heading",
+      "label": "Font Weight Heading",
+      "category": "Headers",
+      "description": "Section title weight",
+      "fallback": "700",
+      "type": "font-weight",
+      "defaultValue": "700",
+      "basic": false,
+      "cssProperty": "font-weight",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-label-gap",
+      "label": "Label-to-control gap",
+      "category": "Labels and help",
+      "description": "Gap below default field labels",
+      "fallback": "0.125rem",
+      "type": "length",
+      "defaultValue": "0.125rem",
+      "basic": false,
+      "cssProperty": "margin-bottom",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-field-gap",
+      "label": "Additional field gap",
+      "category": "Spacing",
+      "description": "Additional field separation",
+      "fallback": "0",
+      "type": "length",
+      "guidance": "Adds space below fields that do not have an explicit bottom margin.",
+      "defaultValue": "0",
+      "basic": false,
+      "cssProperty": "margin-bottom",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-heading-background",
+      "label": "Heading Background",
+      "category": "Headers",
+      "description": "Default header surface",
+      "fallback": "unset",
+      "type": "color",
+      "defaultValue": "unset",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-heading-border-color",
+      "label": "Heading Border Color",
+      "category": "Headers",
+      "description": "Default header rule color",
+      "fallback": "Existing theme or accessible brand fallback",
+      "type": "color",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-heading-border-width",
+      "label": "Heading Border Width",
+      "category": "Headers",
+      "description": "Default header rule thickness",
+      "fallback": "2px",
+      "type": "border-width",
+      "defaultValue": "2px",
+      "scaleToken": "--ftk-border-scale",
+      "basic": false,
+      "cssProperty": "border-width",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-container-border-width",
+      "label": "Container Border Width",
+      "category": "Shape",
+      "description": "Decorative template framing independent of essential field boundaries",
+      "fallback": "0px on template cards",
+      "type": "border-width",
+      "defaultValue": "0px",
+      "basic": false,
+      "cssProperty": "border-width",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-font-family-heading",
+      "label": "Font Family Heading",
+      "category": "Headers",
+      "description": "Section-heading typeface independent of body copy",
+      "fallback": "Inherits native font",
+      "type": "font-family",
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "font-family",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-heading-letter-spacing",
+      "label": "Heading Letter Spacing",
+      "category": "Headers",
+      "description": "Section-heading tracking",
+      "fallback": "normal",
+      "type": "letter-spacing",
+      "defaultValue": "normal",
+      "basic": false,
+      "cssProperty": "letter-spacing",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-heading-text-transform",
+      "label": "Heading Text Transform",
+      "category": "Headers",
+      "description": "Section-heading case treatment without changing authored text",
+      "fallback": "none",
+      "type": "text-transform",
+      "defaultValue": "none",
+      "basic": false,
+      "cssProperty": "text-transform",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-footer",
+      "label": "Color Footer",
+      "category": "Color",
+      "description": "Docked action bar surface",
+      "fallback": "Native white docked footer",
+      "type": "color",
+      "defaultValue": "#ffffff",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-footer-border",
+      "label": "Color Footer Border",
+      "category": "Color",
+      "description": "Docked action bar top boundary",
+      "fallback": "No additional rule (transparent); native docked footer shadow remains",
+      "type": "color",
+      "defaultValue": "transparent",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-plain-section-padding-top",
+      "label": "Plain section padding - top",
+      "category": "Sections",
+      "type": "length",
+      "description": "Plain section padding - top for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0",
+      "fallbackTokens": [
+        "--ftk-section-padding-top",
+        "--ftk-section-padding-block"
+      ],
+      "defaultValue": "0",
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-boxed-section-padding-top",
+      "label": "Boxed section padding - top",
+      "category": "Sections",
+      "type": "length",
+      "description": "Boxed section padding - top for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0",
+      "fallbackTokens": [
+        "--ftk-section-padding-top",
+        "--ftk-section-padding-block"
+      ],
+      "defaultValue": "0",
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-plain-section-padding-right",
+      "label": "Plain section padding - right",
+      "category": "Sections",
+      "type": "length",
+      "description": "Plain section padding - right for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0.3rem",
+      "fallbackTokens": [
+        "--ftk-section-padding-right",
+        "--ftk-section-padding-inline"
+      ],
+      "defaultValue": "0.3rem",
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-boxed-section-padding-right",
+      "label": "Boxed section padding - right",
+      "category": "Sections",
+      "type": "length",
+      "description": "Boxed section padding - right for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0.4rem",
+      "fallbackTokens": [
+        "--ftk-section-padding-right",
+        "--ftk-section-padding-inline",
+        "--ftk-section-padding"
+      ],
+      "defaultValue": "0.4rem",
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-plain-section-padding-bottom",
+      "label": "Plain section padding - bottom",
+      "category": "Sections",
+      "type": "length",
+      "description": "Plain section padding - bottom for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0",
+      "fallbackTokens": [
+        "--ftk-section-padding-bottom",
+        "--ftk-section-padding-block"
+      ],
+      "defaultValue": "0",
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-boxed-section-padding-bottom",
+      "label": "Boxed section padding - bottom",
+      "category": "Sections",
+      "type": "length",
+      "description": "Boxed section padding - bottom for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0.75rem",
+      "fallbackTokens": [
+        "--ftk-section-padding-bottom",
+        "--ftk-section-padding-block",
+        "--ftk-section-padding"
+      ],
+      "defaultValue": "0.75rem",
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-plain-section-padding-left",
+      "label": "Plain section padding - left",
+      "category": "Sections",
+      "type": "length",
+      "description": "Plain section padding - left for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0.3rem",
+      "fallbackTokens": [
+        "--ftk-section-padding-left",
+        "--ftk-section-padding-inline"
+      ],
+      "defaultValue": "0.3rem",
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-boxed-section-padding-left",
+      "label": "Boxed section padding - left",
+      "category": "Sections",
+      "type": "length",
+      "description": "Boxed section padding - left for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0.4rem",
+      "fallbackTokens": [
+        "--ftk-section-padding-left",
+        "--ftk-section-padding-inline",
+        "--ftk-section-padding"
+      ],
+      "defaultValue": "0.4rem",
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-header-gap",
+      "label": "Gap below section header",
+      "category": "Sections",
+      "type": "length",
+      "description": "Gap below section header for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0.75rem",
+      "fallbackTokens": [
+        "--ftk-section-padding-top",
+        "--ftk-section-padding-block"
+      ],
+      "defaultValue": "0.75rem",
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "basic": false,
+      "cssProperty": "margin-bottom",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-radius",
+      "label": "Section corners",
+      "category": "Sections",
+      "type": "length",
+      "description": "Section corners for sections. Specific overrides take priority over shared controls.",
+      "fallback": "5px",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "5px",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-border-width",
+      "label": "Section border width",
+      "category": "Sections",
+      "type": "border-width",
+      "description": "Section border width for sections. Specific overrides take priority over shared controls.",
+      "fallback": "1px",
+      "fallbackTokens": [
+        "--ftk-border-width"
+      ],
+      "defaultValue": "1px",
+      "scaleToken": "--ftk-border-scale",
+      "basic": false,
+      "cssProperty": "border-width",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-border-color",
+      "label": "Section border color",
+      "category": "Sections",
+      "type": "color",
+      "description": "Section border color for sections. Specific overrides take priority over shared controls.",
+      "fallback": "#dddddd",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "defaultValue": "#dddddd",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-shadow",
+      "label": "Section shadow",
+      "category": "Sections",
+      "type": "box-shadow",
+      "description": "Section shadow for sections. Specific overrides take priority over shared controls.",
+      "fallback": "0 7px 10px rgba(0,0,0,0.25)",
+      "fallbackTokens": [
+        "--ftk-shadow-medium"
+      ],
+      "defaultValue": "0 7px 10px rgba(0,0,0,0.25)",
+      "basic": false,
+      "cssProperty": "box-shadow",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-header-shadow",
+      "label": "Header shadow",
+      "category": "Headers",
+      "type": "box-shadow",
+      "description": "Header shadow for headers. Specific overrides take priority over shared controls.",
+      "fallback": "0 0 3px rgba(0,0,0,0.16)",
+      "fallbackTokens": [
+        "--ftk-shadow-medium"
+      ],
+      "defaultValue": "0 0 3px rgba(0,0,0,0.16)",
+      "basic": false,
+      "cssProperty": "box-shadow",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-heading-line-height",
+      "label": "Heading line spacing",
+      "category": "Headers",
+      "type": "number or length",
+      "description": "Heading line spacing for headers. Specific overrides take priority over shared controls.",
+      "fallback": "1",
+      "defaultValue": "1",
+      "basic": false,
+      "cssProperty": "line-height",
+      "units": [
+        "",
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-header-radius",
+      "label": "Header corners",
+      "category": "Headers",
+      "type": "length",
+      "description": "Header corners for headers. Specific overrides take priority over shared controls.",
+      "fallback": "0.5rem",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "0.5rem",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-header-padding-block",
+      "label": "Header vertical padding",
+      "category": "Headers",
+      "type": "length",
+      "description": "Header vertical padding for headers. Specific overrides take priority over shared controls.",
+      "fallback": "0.5rem",
+      "fallbackTokens": [
+        "--ftk-section-padding"
+      ],
+      "defaultValue": "0.5rem",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-header-padding-left",
+      "label": "Header left padding",
+      "category": "Headers",
+      "type": "length",
+      "description": "Header left padding for headers. Specific overrides take priority over shared controls.",
+      "fallback": "0.5rem",
+      "fallbackTokens": [
+        "--ftk-section-padding-inline",
+        "--ftk-section-padding"
+      ],
+      "defaultValue": "0.8rem",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-header-padding-right",
+      "label": "Header right padding",
+      "category": "Headers",
+      "type": "length",
+      "description": "Header right padding for headers. Specific overrides take priority over shared controls.",
+      "fallback": "0",
+      "fallbackTokens": [
+        "--ftk-section-padding-inline",
+        "--ftk-section-padding"
+      ],
+      "defaultValue": "0",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-header-subtitle-color",
+      "label": "Header subtitle color",
+      "category": "Headers",
+      "type": "color",
+      "description": "Header subtitle color for headers. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-color-text-muted"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-form-card-radius",
+      "label": "Form card corners",
+      "category": "Form card",
+      "type": "length",
+      "description": "Form card corners for form card. Specific overrides take priority over shared controls.",
+      "fallback": "10px",
+      "fallbackTokens": [
+        "--ftk-radius-large",
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "10px",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-form-card-shadow-hover",
+      "label": "Form card hover shadow",
+      "category": "Form card",
+      "type": "box-shadow",
+      "description": "Form card hover shadow for form card. Specific overrides take priority over shared controls.",
+      "fallback": "0 10px 15px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.15)",
+      "fallbackTokens": [
+        "--ftk-shadow-medium"
+      ],
+      "defaultValue": "0 10px 15px rgba(0,0,0,0.2), 0 4px 6px rgba(0,0,0,0.15)",
+      "basic": false,
+      "cssProperty": "box-shadow",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-form-card-shadow",
+      "label": "Form card shadow",
+      "category": "Form card",
+      "type": "box-shadow",
+      "description": "Form card shadow for form card. Specific overrides take priority over shared controls.",
+      "fallback": "0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08)",
+      "fallbackTokens": [
+        "--ftk-shadow-medium"
+      ],
+      "defaultValue": "0 4px 6px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.08)",
+      "basic": false,
+      "cssProperty": "box-shadow",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-form-card-surface",
+      "label": "Form card background",
+      "category": "Form card",
+      "type": "color",
+      "description": "Form card background for form card. Specific overrides take priority over shared controls.",
+      "fallback": "#ffffff",
+      "fallbackTokens": [
+        "--ftk-color-surface"
+      ],
+      "defaultValue": "#ffffff",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-form-card-border-color",
+      "label": "Form card border color",
+      "category": "Form card",
+      "type": "color",
+      "description": "Form card border color for form card. Specific overrides take priority over shared controls.",
+      "fallback": "transparent",
+      "fallbackTokens": [
+        "--ftk-color-border-muted"
+      ],
+      "defaultValue": "transparent",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-help-font-size",
+      "label": "Help text size",
+      "category": "Labels and help",
+      "type": "font-size",
+      "description": "Help text size for labels and help. Specific overrides take priority over shared controls.",
+      "fallback": "0.65rem",
+      "fallbackTokens": [
+        "--ftk-font-size-small"
+      ],
+      "defaultValue": "0.65rem",
+      "scaleToken": "--ftk-font-scale",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-help-color",
+      "label": "Help text color",
+      "category": "Labels and help",
+      "type": "color",
+      "description": "Help text color for labels and help. Specific overrides take priority over shared controls.",
+      "fallback": "#939393",
+      "fallbackTokens": [
+        "--ftk-color-text-muted"
+      ],
+      "defaultValue": "#939393",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-read-only-radius",
+      "label": "Read-only text corners",
+      "category": "Text fields",
+      "type": "length",
+      "description": "Read-only text corners for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "0.25rem",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "0.25rem",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-read-only-border-width",
+      "label": "Read-only text border width",
+      "category": "Text fields",
+      "type": "border-width",
+      "description": "Read-only text border width for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "1px",
+      "fallbackTokens": [
+        "--ftk-border-width"
+      ],
+      "defaultValue": "1px",
+      "scaleToken": "--ftk-border-scale",
+      "basic": false,
+      "cssProperty": "border-width",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-read-only-border-color",
+      "label": "Read-only text border color",
+      "category": "Text fields",
+      "type": "color",
+      "description": "Read-only text border color for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "#e5e5e5",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "defaultValue": "#e5e5e5",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-survey-height",
+      "label": "Survey choice minimum height",
+      "category": "Survey choices",
+      "type": "length",
+      "description": "Survey choice minimum height for survey choices. Specific overrides take priority over shared controls.",
+      "fallback": "3rem",
+      "fallbackTokens": [
+        "--ftk-control-height"
+      ],
+      "defaultValue": "3rem",
+      "scaleToken": "--ftk-control-scale",
+      "basic": false,
+      "cssProperty": "height",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-survey-radius",
+      "label": "Survey choice corners",
+      "category": "Survey choices",
+      "type": "length",
+      "description": "Survey choice corners for survey choices. Specific overrides take priority over shared controls.",
+      "fallback": "0.625rem",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "0.625rem",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-survey-border-width",
+      "label": "Survey choice border width",
+      "category": "Survey choices",
+      "type": "border-width",
+      "description": "Survey choice border width for survey choices. Specific overrides take priority over shared controls.",
+      "fallback": "1.5px",
+      "fallbackTokens": [
+        "--ftk-border-width"
+      ],
+      "defaultValue": "1.5px",
+      "scaleToken": "--ftk-border-scale",
+      "basic": false,
+      "cssProperty": "border-width",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-survey-border-color",
+      "label": "Survey choice border color",
+      "category": "Survey choices",
+      "type": "color",
+      "description": "Survey choice border color for survey choices. Specific overrides take priority over shared controls.",
+      "fallback": "#e5e5e5",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "defaultValue": "#e5e5e5",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-survey-surface",
+      "label": "Survey choice background",
+      "category": "Survey choices",
+      "type": "color",
+      "description": "Survey choice background for survey choices. Specific overrides take priority over shared controls.",
+      "fallback": "#ffffff",
+      "fallbackTokens": [
+        "--ftk-color-control-surface"
+      ],
+      "defaultValue": "#ffffff",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-survey-padding-inline",
+      "label": "Survey horizontal padding",
+      "category": "Survey choices",
+      "type": "length",
+      "description": "Survey horizontal padding for survey choices. Specific overrides take priority over shared controls.",
+      "fallback": "0.875rem",
+      "fallbackTokens": [
+        "--ftk-input-padding-x"
+      ],
+      "defaultValue": "0.875rem",
+      "scaleToken": "--ftk-control-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-survey-padding-block",
+      "label": "Survey vertical padding",
+      "category": "Survey choices",
+      "type": "length",
+      "description": "Survey vertical padding for survey choices. Specific overrides take priority over shared controls.",
+      "fallback": "0.75rem",
+      "fallbackTokens": [
+        "--ftk-input-padding-y"
+      ],
+      "defaultValue": "0.75rem",
+      "scaleToken": "--ftk-control-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-joined-choice-padding-inline",
+      "label": "Joined-choice horizontal padding",
+      "category": "Joined choices",
+      "type": "length",
+      "description": "Joined-choice horizontal padding for joined choices. Specific overrides take priority over shared controls.",
+      "fallback": "1rem",
+      "fallbackTokens": [
+        "--ftk-input-padding-x"
+      ],
+      "defaultValue": "1rem",
+      "scaleToken": "--ftk-control-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-joined-choice-radius",
+      "label": "Joined-choice corners",
+      "category": "Joined choices",
+      "type": "length",
+      "description": "Joined-choice corners for joined choices. Specific overrides take priority over shared controls.",
+      "fallback": "0.25rem",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "0.25rem",
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-separated-choice-height",
+      "label": "Separated-choice minimum height",
+      "category": "Separated choices",
+      "type": "length",
+      "description": "Separated-choice minimum height for separated choices. Specific overrides take priority over shared controls.",
+      "fallback": "auto",
+      "fallbackTokens": [
+        "--ftk-control-height"
+      ],
+      "defaultValue": "auto",
+      "basic": false,
+      "cssProperty": "height",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-separated-choice-radius",
+      "label": "Separated-choice corners",
+      "category": "Separated choices",
+      "type": "length",
+      "description": "Separated-choice corners for separated choices. Specific overrides take priority over shared controls.",
+      "fallback": "0.25rem",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "0.25rem",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-separated-choice-line-height",
+      "label": "Separated-choice line spacing",
+      "category": "Separated choices",
+      "type": "number or length",
+      "description": "Separated-choice line spacing for separated choices. Specific overrides take priority over shared controls.",
+      "fallback": "1.875rem",
+      "fallbackTokens": [
+        "--ftk-line-height"
+      ],
+      "defaultValue": "1.875rem",
+      "basic": false,
+      "cssProperty": "line-height",
+      "units": [
+        "",
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-separated-choice-padding-inline",
+      "label": "Separated-choice horizontal padding",
+      "category": "Separated choices",
+      "type": "length",
+      "description": "Separated-choice horizontal padding for separated choices. Specific overrides take priority over shared controls.",
+      "fallback": "1rem",
+      "fallbackTokens": [
+        "--ftk-input-padding-x"
+      ],
+      "defaultValue": "1rem",
+      "scaleToken": "--ftk-control-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-separated-choice-padding-block",
+      "label": "Separated-choice vertical padding",
+      "category": "Separated choices",
+      "type": "length",
+      "description": "Separated-choice vertical padding for separated choices. Specific overrides take priority over shared controls.",
+      "fallback": "0",
+      "fallbackTokens": [
+        "--ftk-input-padding-y"
+      ],
+      "defaultValue": "0",
+      "scaleToken": "--ftk-control-scale",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-visual-choice-radius",
+      "label": "Visual-choice corners",
+      "category": "Visual choices",
+      "type": "length",
+      "description": "Visual-choice corners for visual choices. Specific overrides take priority over shared controls.",
+      "fallback": "0.625rem",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "0.625rem",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-visual-choice-border-width",
+      "label": "Visual-choice border width",
+      "category": "Visual choices",
+      "type": "border-width",
+      "description": "Visual-choice border width for visual choices. Specific overrides take priority over shared controls.",
+      "fallback": "1.5px",
+      "fallbackTokens": [
+        "--ftk-border-width"
+      ],
+      "defaultValue": "1.5px",
+      "scaleToken": "--ftk-border-scale",
+      "basic": false,
+      "cssProperty": "border-width",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-visual-choice-border-color",
+      "label": "Visual-choice border color",
+      "category": "Visual choices",
+      "type": "color",
+      "description": "Visual-choice border color for visual choices. Specific overrides take priority over shared controls.",
+      "fallback": "#e5e5e5",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "defaultValue": "#e5e5e5",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-visual-choice-surface",
+      "label": "Visual-choice background",
+      "category": "Visual choices",
+      "type": "color",
+      "description": "Visual-choice background for visual choices. Specific overrides take priority over shared controls.",
+      "fallback": "#ffffff",
+      "fallbackTokens": [
+        "--ftk-color-control-surface"
+      ],
+      "defaultValue": "#ffffff",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-radius",
+      "label": "Matrix frame corners",
+      "category": "Matrix",
+      "type": "length",
+      "description": "Matrix frame corners for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "0.5rem",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "0.5rem",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-card-radius",
+      "label": "Matrix card corners",
+      "category": "Matrix",
+      "type": "length",
+      "description": "Matrix card corners for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "0.75rem",
+      "fallbackTokens": [
+        "--ftk-radius-large"
+      ],
+      "defaultValue": "0.75rem",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-secondary-font-size",
+      "label": "Matrix secondary text size",
+      "category": "Matrix",
+      "type": "font-size",
+      "description": "Matrix secondary text size for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "0.75rem",
+      "fallbackTokens": [
+        "--ftk-font-size-small"
+      ],
+      "defaultValue": "0.75rem",
+      "scaleToken": "--ftk-font-scale",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-secondary-color",
+      "label": "Matrix secondary text color",
+      "category": "Matrix",
+      "type": "color",
+      "description": "Matrix secondary text color for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "#444444",
+      "fallbackTokens": [
+        "--ftk-color-text-muted"
+      ],
+      "defaultValue": "#444444",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-choice-border-width",
+      "label": "Matrix choice border width",
+      "category": "Matrix",
+      "type": "border-width",
+      "description": "Matrix choice border width for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "2px",
+      "fallbackTokens": [
+        "--ftk-border-width"
+      ],
+      "defaultValue": "2px",
+      "scaleToken": "--ftk-border-scale",
+      "basic": false,
+      "cssProperty": "border-width",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-choice-surface",
+      "label": "Matrix choice background",
+      "category": "Matrix",
+      "type": "color",
+      "description": "Matrix choice background for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "#ffffff",
+      "fallbackTokens": [
+        "--ftk-color-control-surface"
+      ],
+      "defaultValue": "#ffffff",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-shade",
+      "label": "Matrix shaded background",
+      "category": "Matrix",
+      "type": "color",
+      "description": "Matrix shaded background for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "#f3f3f3",
+      "fallbackTokens": [
+        "--ftk-color-surface-muted"
+      ],
+      "defaultValue": "#f3f3f3",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-border-color",
+      "label": "Matrix frame border color",
+      "category": "Matrix",
+      "type": "color",
+      "description": "Matrix frame border color for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "#e5e5e5",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "defaultValue": "#e5e5e5",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-divider-color",
+      "label": "Matrix divider color",
+      "category": "Matrix",
+      "type": "color",
+      "description": "Matrix divider color for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "#f0f0f0",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "defaultValue": "#f0f0f0",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-matrix-choice-border-color",
+      "label": "Matrix choice border color",
+      "category": "Matrix",
+      "type": "color",
+      "description": "Matrix choice border color for matrix. Specific overrides take priority over shared controls.",
+      "fallback": "#aeaeae",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "defaultValue": "#aeaeae",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-attestation-radius",
+      "label": "Attestation corners",
+      "category": "Checkboxes",
+      "type": "length",
+      "description": "Attestation corners for checkboxes. Specific overrides take priority over shared controls.",
+      "fallback": "0.25rem",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "defaultValue": "0.25rem",
+      "scaleToken": "--ftk-radius-scale",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-attestation-surface",
+      "label": "Attestation background",
+      "category": "Checkboxes",
+      "type": "color",
+      "description": "Attestation background for checkboxes. Specific overrides take priority over shared controls.",
+      "fallback": "#f3f3f3",
+      "fallbackTokens": [
+        "--ftk-color-control-surface",
+        "--ftk-color-surface-muted"
+      ],
+      "defaultValue": "#f3f3f3",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-attestation-target-size",
+      "label": "Attestation target size (platform limited)",
+      "category": "Checkboxes",
+      "type": "length",
+      "description": "Attestation target size for checkboxes. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-control-height"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "guidance": "Sets the attestation target size. Takes priority over Control size scale.",
+      "basic": false,
+      "cssProperty": "height",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-calendar-day-size",
+      "label": "Calendar day size",
+      "category": "Calendar",
+      "type": "length",
+      "description": "Calendar day size for calendar. Specific overrides take priority over shared controls.",
+      "fallback": "2.15rem",
+      "fallbackTokens": [
+        "--ftk-control-height"
+      ],
+      "defaultValue": "2.15rem",
+      "scaleToken": "--ftk-control-scale",
+      "basic": false,
+      "cssProperty": "height",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-calendar-font-size",
+      "label": "Calendar text size",
+      "category": "Calendar",
+      "type": "font-size",
+      "description": "Calendar text size for calendar. Specific overrides take priority over shared controls.",
+      "fallback": "1.25rem",
+      "fallbackTokens": [
+        "--ftk-font-size"
+      ],
+      "defaultValue": "1.25rem",
+      "scaleToken": "--ftk-font-scale",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-calendar-border-width",
+      "label": "Calendar border width",
+      "category": "Calendar",
+      "type": "border-width",
+      "description": "Calendar border width for calendar. Specific overrides take priority over shared controls.",
+      "fallback": "1px",
+      "fallbackTokens": [
+        "--ftk-border-width"
+      ],
+      "defaultValue": "1px",
+      "scaleToken": "--ftk-border-scale",
+      "basic": false,
+      "cssProperty": "border-width",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-calendar-border-color",
+      "label": "Calendar border color",
+      "category": "Calendar",
+      "type": "color",
+      "description": "Calendar border color for calendar. Specific overrides take priority over shared controls.",
+      "fallback": "rgba(0,0,0,0.1)",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "defaultValue": "rgba(0,0,0,0.1)",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-modal-surface",
+      "label": "Modal background",
+      "category": "Modals",
+      "type": "color",
+      "description": "Modal background for modals. Specific overrides take priority over shared controls.",
+      "fallback": "#ffffff",
+      "fallbackTokens": [
+        "--ftk-color-surface"
+      ],
+      "defaultValue": "#ffffff",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-table-shadow",
+      "label": "Table shadow",
+      "category": "Tables",
+      "type": "box-shadow",
+      "description": "Table shadow for tables. Specific overrides take priority over shared controls.",
+      "fallback": "0 7px 10px rgba(0,0,0,0.25)",
+      "fallbackTokens": [
+        "--ftk-shadow-medium"
+      ],
+      "defaultValue": "0 7px 10px rgba(0,0,0,0.25)",
+      "basic": false,
+      "cssProperty": "box-shadow",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-table-shade",
+      "label": "Table shaded background",
+      "category": "Tables",
+      "type": "color",
+      "description": "Table shaded background for tables. Specific overrides take priority over shared controls.",
+      "fallback": "#f3f2f2",
+      "fallbackTokens": [
+        "--ftk-color-surface-muted"
+      ],
+      "defaultValue": "#f3f2f2",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-table-surface",
+      "label": "Table background",
+      "category": "Tables",
+      "type": "color",
+      "description": "Table background for tables. Specific overrides take priority over shared controls.",
+      "fallback": "#ffffff",
+      "fallbackTokens": [
+        "--ftk-color-surface"
+      ],
+      "defaultValue": "#ffffff",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-divider-subtitle-color",
+      "label": "Divider subtitle color",
+      "category": "Dividers",
+      "type": "color",
+      "description": "Divider subtitle color for dividers. Specific overrides take priority over shared controls.",
+      "fallback": "#706e6b",
+      "fallbackTokens": [
+        "--ftk-color-text-muted"
+      ],
+      "defaultValue": "#706e6b",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-divider-rule-color",
+      "label": "Divider rule color",
+      "category": "Dividers",
+      "type": "color",
+      "description": "Divider rule color for dividers. Specific overrides take priority over shared controls.",
+      "fallback": "#c9c7c5",
+      "fallbackTokens": [
+        "--ftk-color-border-muted"
+      ],
+      "defaultValue": "#c9c7c5",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-richtext-radius",
+      "label": "Rich-text editor corners",
+      "category": "Text fields",
+      "type": "length",
+      "description": "Rich-text editor corners for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "scaleToken": "--ftk-radius-scale",
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-button-radius",
+      "label": "Button corners",
+      "category": "Buttons",
+      "type": "length",
+      "description": "Button corners for buttons. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-input-radius",
+      "label": "Input corners",
+      "category": "Text fields",
+      "type": "length",
+      "description": "Input corners for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-radius-medium"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-textarea-radius",
+      "label": "Textarea corners",
+      "category": "Text fields",
+      "type": "length",
+      "description": "Textarea corners for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-input-radius",
+        "--ftk-radius-medium"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-checkbox-radius",
+      "label": "Checkbox corners",
+      "category": "Checkboxes",
+      "type": "length",
+      "description": "Checkbox corners for checkboxes. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-radius-small",
+        "--ftk-radius-medium"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-input-border-color",
+      "label": "Input border color",
+      "category": "Text fields",
+      "type": "color",
+      "description": "Input border color for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-textarea-border-color",
+      "label": "Textarea border color",
+      "category": "Text fields",
+      "type": "color",
+      "description": "Textarea border color for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-input-border-color",
+        "--ftk-color-border"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-checkbox-border-color",
+      "label": "Checkbox border color",
+      "category": "Checkboxes",
+      "type": "color",
+      "description": "Checkbox border color for checkboxes. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-color-border"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-checkbox-surface",
+      "label": "Checkbox background",
+      "category": "Checkboxes",
+      "type": "color",
+      "description": "Unchecked checkbox fill. Follows Input background; a specific override takes priority.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-color-control-surface"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-input-surface",
+      "label": "Input background",
+      "category": "Text fields",
+      "type": "color",
+      "description": "Input background for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-color-control-surface"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-textarea-surface",
+      "label": "Textarea background",
+      "category": "Text fields",
+      "type": "color",
+      "description": "Textarea background for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-input-surface",
+        "--ftk-color-control-surface"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-input-padding-inline",
+      "label": "Input horizontal padding",
+      "category": "Text fields",
+      "type": "length",
+      "description": "Input horizontal padding for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-input-padding-x"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-textarea-padding-inline",
+      "label": "Textarea horizontal padding",
+      "category": "Text fields",
+      "type": "length",
+      "description": "Textarea horizontal padding for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-input-padding-inline",
+        "--ftk-input-padding-x"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-textarea-padding-block",
+      "label": "Textarea vertical padding",
+      "category": "Text fields",
+      "type": "length",
+      "description": "Textarea vertical padding for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-input-padding-y"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-input-height",
+      "label": "Input height",
+      "category": "Text fields",
+      "type": "length",
+      "description": "Input height for text fields. Specific overrides take priority over shared controls.",
+      "fallback": "2rem",
+      "fallbackTokens": [
+        "--ftk-control-height"
+      ],
+      "defaultValue": "2rem",
+      "scaleToken": "--ftk-control-scale",
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "guidance": "Sets native input height through the form stylesheet. Includes the borders. Native-shadow hosts depend on Salesforce hook support.",
+      "basic": false,
+      "cssProperty": "height",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-button-font-size",
+      "label": "Button text size",
+      "category": "Buttons",
+      "description": "Text size for action buttons, independent of their height and other form text.",
+      "fallback": "Shared text size or scaled native button text",
+      "defaultValue": "0.8125rem",
+      "fallbackTokens": [
+        "--ftk-font-size"
+      ],
+      "scaleToken": "--ftk-control-scale",
+      "type": "font-size",
+      "guidance": "Clear to follow shared sizing again. Does not change field labels, inputs, choices, or calendar text.",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-button-height",
+      "label": "Button height",
+      "category": "Buttons",
+      "type": "length",
+      "description": "Button height for buttons. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-control-height"
+      ],
+      "scaleToken": "--ftk-control-scale",
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "guidance": "Sets action-button height through the form stylesheet. Includes the borders. Explicit component styling takes priority; native-shadow hosts depend on Salesforce hook support.",
+      "basic": false,
+      "cssProperty": "height",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-icon-button-size",
+      "label": "Icon button size (platform limited)",
+      "category": "Buttons",
+      "type": "length",
+      "description": "Icon button size for buttons. Specific overrides take priority over shared controls.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-control-height"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "guidance": "Sets the icon action target size. Takes priority over Control size scale.",
+      "basic": false,
+      "cssProperty": "height",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-color-text-muted",
+      "label": "Color Text Muted",
+      "category": "Shared overrides",
+      "description": "Secondary help foreground",
+      "fallback": "Inherited weak text; help/divider fallback #706e6b; matrix fallback #444444",
+      "type": "color",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-surface",
+      "label": "Card background",
+      "category": "Shared overrides",
+      "description": "Background of cards, choice tiles, and panels. Input field background can be changed separately.",
+      "fallback": "Original component surfaces; cards/choices/modals generally white",
+      "type": "color",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Component-specific backgrounds in Advanced take priority.",
+      "basic": true,
+      "cssProperty": "color",
+      "basicColorGroup": "Backgrounds",
+      "basicColorOrder": 1,
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-border",
+      "label": "Borders",
+      "category": "Shared overrides",
+      "description": "Essential field boundaries",
+      "fallback": "Existing component SLDS border fallback",
+      "type": "color",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": true,
+      "cssProperty": "color",
+      "basicColorGroup": "Borders",
+      "basicColorOrder": 0,
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-border-muted",
+      "label": "Color Border Muted",
+      "category": "Shared overrides",
+      "description": "Decorative container boundaries",
+      "fallback": "Template decorative border transparent; divider inherited border or #c9c7c5",
+      "type": "color",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-font-size-small",
+      "label": "Font Size Small",
+      "category": "Shared overrides",
+      "description": "Help text size",
+      "fallback": "Help 0.65rem; matrix secondary text 0.75rem",
+      "type": "font-size",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-radius-medium",
+      "label": "Corner radius",
+      "category": "Form fields",
+      "description": "One corner radius for inputs, buttons, choices, and containers.",
+      "fallback": "Per-component 5px, 0.25rem, 0.5rem or 0.625rem",
+      "type": "length or percentage",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "0 px gives square corners. Increase for rounded corners. Individual corner overrides take priority; circular controls stay circular.",
+      "basic": true,
+      "cssProperty": "border-top-left-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "basicControl": {
+        "min": 0,
+        "max": 32,
+        "step": 1,
+        "factor": 1,
+        "unit": "px"
+      },
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-border-width",
+      "label": "Border Width",
+      "category": "Shared overrides",
+      "description": "Boundary thickness",
+      "fallback": "Shared boxes 1px; survey/visual picker 1.5px; some matrix controls 2px",
+      "type": "border-width",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "border-width",
+      "units": [
+        "px",
+        "rem",
+        "em"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-input-padding-x",
+      "label": "Input Padding X",
+      "category": "Shared overrides",
+      "description": "Horizontal control padding",
+      "fallback": "Survey .875rem; native padding unchanged",
+      "type": "length",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-input-padding-y",
+      "label": "Input Padding Y",
+      "category": "Shared overrides",
+      "description": "Vertical control padding",
+      "fallback": "Survey .75rem; native padding unchanged",
+      "type": "length",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-control-height",
+      "label": "Control height",
+      "category": "Shared overrides",
+      "description": "Control minimum target height",
+      "fallback": "Existing per-component geometry: survey choices 3rem; native controls retain platform geometry without an override",
+      "type": "length",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "basic": false,
+      "cssProperty": "height",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-shadow-medium",
+      "label": "Shadow Medium",
+      "category": "Shared overrides",
+      "description": "Container elevation",
+      "fallback": "Boxes/tables: 0 7px 10px rgba(0,0,0,.25); header: 0 0 3px rgba(0,0,0,.16); template retains original normal/hover shadows",
+      "type": "box-shadow",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "box-shadow",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-surface-muted",
+      "label": "Color Surface Muted",
+      "category": "Shared overrides",
+      "description": "Subtle secondary surfaces",
+      "fallback": "Table shade rgb(243,242,242); original other surfaces",
+      "type": "color",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-radius-small",
+      "label": "Radius Small",
+      "category": "Shared overrides",
+      "description": "Compact control corners",
+      "fallback": "Native checkbox radius unchanged",
+      "type": "length or percentage",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "border-top-left-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-padding",
+      "label": "Shared section padding fallback",
+      "category": "Shared overrides",
+      "description": "One CSS length shared by boxed section sides/bottom and standard headers. Use the separate section-content edge controls for independent spacing.",
+      "fallback": "Horizontal 0.4rem; bottom 0.75rem",
+      "type": "length",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-padding-top",
+      "label": "Section content padding - top",
+      "category": "Shared overrides",
+      "description": "Controls only the top inset of plain and boxed section content. Header padding and special address/image layouts remain separate.",
+      "fallback": "0 by default; 0.5rem below a visible standard header",
+      "type": "length",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "fallbackTokens": [
+        "--ftk-section-padding-block"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-padding-right",
+      "label": "Section content padding - right",
+      "category": "Shared overrides",
+      "description": "Controls only the right inset of plain and boxed section content. Header padding and special address/image layouts remain separate.",
+      "fallback": "0.3rem in plain sections; 0.4rem in boxed sections",
+      "type": "length",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "fallbackTokens": [
+        "--ftk-section-padding-inline"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-padding-bottom",
+      "label": "Section content padding - bottom",
+      "category": "Shared overrides",
+      "description": "Controls only the bottom inset of plain and boxed section content. Header padding and special address/image layouts remain separate.",
+      "fallback": "0 in plain sections; 0.75rem in boxed sections",
+      "type": "length",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "fallbackTokens": [
+        "--ftk-section-padding-block"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-padding-left",
+      "label": "Section content padding - left",
+      "category": "Shared overrides",
+      "description": "Controls only the left inset of plain and boxed section content. Header padding and special address/image layouts remain separate.",
+      "fallback": "0.3rem in plain sections; 0.4rem in boxed sections",
+      "type": "length",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "basic": false,
+      "cssProperty": "padding-top",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "fallbackTokens": [
+        "--ftk-section-padding-inline"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-radius-large",
+      "label": "Radius Large",
+      "category": "Shared overrides",
+      "description": "Template card corners; separate scale for large surfaces",
+      "fallback": "Template cards 10px; matrix cards 0.75rem",
+      "type": "length",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Optional same-value shortcut. Specific component settings take priority; use Foundation scales to preserve proportions.",
+      "basic": false,
+      "cssProperty": "border-radius",
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-color-control-surface",
+      "label": "Input background",
+      "category": "Shared overrides",
+      "description": "Fill inside inputs, textareas, dropdowns, survey choices, visual pickers, and attestation cards.",
+      "fallback": "Inherited native input/textarea fill; matrix input fallback #ffffff",
+      "type": "color",
+      "isShared": true,
+      "inheritedLabel": "No shared override",
+      "guidance": "Selected choices blend a brand tint over this fill. Individual component backgrounds take priority.",
+      "basic": true,
+      "cssProperty": "color",
+      "basicColorGroup": "Backgrounds",
+      "basicColorOrder": 2,
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-input-placeholder-color",
+      "label": "Placeholder text color",
+      "category": "Text fields",
+      "type": "color",
+      "description": "Placeholder text in empty inputs and text areas. Follows an authored input text color unless overridden.",
+      "fallback": "Salesforce/site default",
+      "fallbackTokens": [
+        "--ftk-color-text"
+      ],
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": true
+    },
+    {
+      "name": "--ftk-hero-title-size",
+      "label": "Title size",
+      "category": "Stacked headers",
+      "description": "Title size for the Stacked header style. Shared text and layout scales apply until a specific value is set.",
+      "fallback": "clamp(2rem, 4vw, 2.75rem)",
+      "type": "font-size",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "rem",
+        "px",
+        "em"
+      ],
+      "scaleToken": "--ftk-font-scale",
+      "inheritedLabel": "Responsive title size",
+      "fallbackTokens": [
+        "--ftk-font-size-heading"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-hero-eyebrow-size",
+      "label": "Eyebrow size",
+      "category": "Stacked headers",
+      "description": "Eyebrow size for the Stacked header style. Shared text and layout scales apply until a specific value is set.",
+      "fallback": "0.75rem",
+      "defaultValue": "0.75rem",
+      "type": "font-size",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "rem",
+        "px",
+        "em"
+      ],
+      "scaleToken": "--ftk-font-scale",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-hero-kicker-size",
+      "label": "Pretitle size",
+      "category": "Stacked headers",
+      "description": "Pretitle size for the Stacked header style. Shared text and layout scales apply until a specific value is set.",
+      "fallback": "0.9375rem",
+      "defaultValue": "0.9375rem",
+      "type": "font-size",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "rem",
+        "px",
+        "em"
+      ],
+      "scaleToken": "--ftk-font-scale",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-hero-lead-size",
+      "label": "Body size",
+      "category": "Stacked headers",
+      "description": "Body size for the Stacked header style. Shared text and layout scales apply until a specific value is set.",
+      "fallback": "1.125rem",
+      "defaultValue": "1.125rem",
+      "type": "font-size",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "rem",
+        "px",
+        "em"
+      ],
+      "scaleToken": "--ftk-font-scale",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-hero-footer-size",
+      "label": "Footer size",
+      "category": "Stacked headers",
+      "description": "Footer size for the Stacked header style. Shared text and layout scales apply until a specific value is set.",
+      "fallback": "0.875rem",
+      "defaultValue": "0.875rem",
+      "type": "font-size",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "rem",
+        "px",
+        "em"
+      ],
+      "scaleToken": "--ftk-font-scale",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-hero-tag-size",
+      "label": "Tag text size",
+      "category": "Stacked headers",
+      "description": "Tag text size for the Stacked header style. Shared text and layout scales apply until a specific value is set.",
+      "fallback": "0.8125rem",
+      "defaultValue": "0.8125rem",
+      "type": "font-size",
+      "basic": false,
+      "cssProperty": "font-size",
+      "units": [
+        "rem",
+        "px",
+        "em"
+      ],
+      "scaleToken": "--ftk-font-scale",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-hero-line-gap",
+      "label": "Space between lines",
+      "category": "Stacked headers",
+      "description": "Space between lines for the Stacked header style. Shared text and layout scales apply until a specific value is set.",
+      "fallback": "1rem",
+      "defaultValue": "1rem",
+      "type": "length",
+      "basic": false,
+      "cssProperty": "gap",
+      "units": [
+        "rem",
+        "px",
+        "em"
+      ],
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-hero-lead-gap",
+      "label": "Title to body gap",
+      "category": "Stacked headers",
+      "description": "Title to body gap for the Stacked header style. Shared text and layout scales apply until a specific value is set.",
+      "fallback": "0.5rem",
+      "defaultValue": "0.5rem",
+      "type": "length",
+      "basic": false,
+      "cssProperty": "gap",
+      "units": [
+        "rem",
+        "px",
+        "em"
+      ],
+      "scaleToken": "--ftk-layout-spacing-scale",
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-hero-max-width",
+      "label": "Maximum text width",
+      "category": "Stacked headers",
+      "description": "Maximum text width for the Stacked header style. Shared text and layout scales apply until a specific value is set.",
+      "fallback": "44rem",
+      "defaultValue": "44rem",
+      "type": "length",
+      "basic": false,
+      "cssProperty": "max-width",
+      "units": [
+        "rem",
+        "px",
+        "em"
+      ],
+      "requiresNativeAdapter": false
+    },
+    {
+      "name": "--ftk-section-surface",
+      "label": "Frame background",
+      "category": "Section surfaces",
+      "description": "Default fill of Box, Shadow, Card and Title on border frames. An explicit Classic Theme section background takes priority.",
+      "fallback": "transparent",
+      "defaultValue": "transparent",
+      "type": "color",
+      "basic": false,
+      "cssProperty": "background-color",
+      "requiresNativeAdapter": false
+    }
+  ]
+}

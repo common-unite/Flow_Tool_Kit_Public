@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Button_Font_Size__c</fullName>
+    <description>Org default for the --ftk-button-font-size style token. Text size for action buttons, independent of their height and other form text. Blank inherits the component default.</description>
+    <label>Button text size</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

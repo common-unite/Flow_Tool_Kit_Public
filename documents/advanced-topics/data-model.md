@@ -18,7 +18,7 @@ Form__mdt
 │   └── Form_Field__mdt (1 → many)
 ├── Form_Conditional_Logic__mdt (1 → many)
 │   └── Form_Conditional_Logic_Condition__mdt (1 → many)
-└── Form_Style_Sheet__mdt (1 → 1, optional)
+└── Form_Theme__mdt (lookup, optional)
 ```
 
 | CMDT | Purpose | Key Fields |
@@ -28,8 +28,12 @@ Form__mdt
 | **Form_Field__mdt** | Field within a section: configuration and display | Section (lookup), FieldName, Position, Required, ReadOnly |
 | **Form_Conditional_Logic__mdt** | Visibility rule: when to show/hide a target | Form (lookup), LogicType (AND/OR), Target |
 | **Form_Conditional_Logic_Condition__mdt** | Individual condition within a logic rule | Logic (lookup), FieldName, Operator, Value |
-| **Form_Style_Sheet__mdt** | Theme: visual styling | Colors, fonts, spacing |
-| **Form_Labels__mdt** | Label overrides and translations | Field, Language, LabelText |
+| **Form_Theme__mdt** | Classic Theme: colors and backgrounds for a form or a section | Brand, border, heading and section colors |
+| **Form_Style_Sheet__mdt** | Stylesheet mapping: which CSS Static Resource to load on pages that show a form. Not linked to a form | StaticResourceName, Path, NamespacePrefix |
+| **Form_Label__mdt** | Reusable label text | Group, Tag, Value |
+| **Form_Label_Translation__mdt** | A label's text in another language | Form_Label (lookup), Language, Value |
+
+Saved Form Styles are not custom metadata. The org defaults from Global Styles are held in a protected package setting, and a Form Template's overrides are held in its **Style Overrides** field. See [Form Styles](../form-configuration/form-styles.md).
 
 ### Additional Configuration CMDTs
 

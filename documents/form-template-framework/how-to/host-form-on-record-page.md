@@ -30,6 +30,8 @@ If none of the three resolve, respondents see a compact "No Form Found" illustra
 
 Use this when the record already knows its form. The property is a picklist listing every Form Template and Form Submission lookup reachable from the page's object: its own fields first, then each parent's, then each grandparent's (for example `Campaign > Form Template` on a CampaignMember page). Form Template references list before Form Submission references within each group.
 
+On App pages, Home pages and Experience Cloud pages the property is typed instead of picked. Type the lookup's API name. The object name in front is optional, and a parent is reached through its relationship name: on a Contact, `FlowToolKit__Latest_Form_Submission__c`, `Contact.FlowToolKit__Latest_Form_Submission__c` and, for the lookup on its Account, `Account.FlowToolKit__Latest_Form_Submission__c` all work. The record the page passes in decides where the path starts.
+
 Choosing a **Form Submission** lookup (like Contact's `Latest Form Submission`) is the resume pattern: returning visitors land in their saved submission with all values restored. Choosing a **Form Template** lookup loads a fresh form driven by whichever template the record points at.
 
 If the lookup is blank on a given record, resolution simply moves on to the next mechanism; nothing breaks.

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Checkbox_Surface__c</fullName>
+    <description>Org default for the --ftk-checkbox-surface style token. Unchecked checkbox fill. Follows Input background; a specific override takes priority. Blank inherits the component default.</description>
+    <label>Checkbox background</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

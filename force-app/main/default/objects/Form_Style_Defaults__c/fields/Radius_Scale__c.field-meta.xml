@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Radius_Scale__c</fullName>
+    <description>Org default for the --ftk-radius-scale style token. Scales the rounding of input, button, choice, and card corners. Blank inherits the component default.</description>
+    <label>Corner scale</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

@@ -77,6 +77,7 @@ Add a format prefix inside the braces to render a raw stored value in a friendli
 | ----------------------------------- | ------------------------------------------ | --------------------------- |
 | `{{$date.Start_Date__c}}`           | Localized long date (date only)            | `July 26, 2026`             |
 | `{{$dateShort.Start_Date__c}}`      | Localized short numeric date               | `7/26/2026`                 |
+| `{{$due.Due_Date__c}}`              | How far off the date is, in words          | `Due in 3 days`, `Due today`, `Due yesterday` |
 | `{{$datetime.Created__c}}`          | Localized date and time                    | `July 26, 2026, 3:45 PM`    |
 | `{{$time.Reminder_Time__c}}`        | Localized time only                        | `3:45 PM`                   |
 | `{{$number.Attendees__c}}`          | Thousands grouping                         | `1,250`                     |

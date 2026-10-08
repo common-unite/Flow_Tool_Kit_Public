@@ -33,8 +33,13 @@ Add the Custom Metadata Type records for your forms:
    * `Form_Field__mdt` records (fields)
    * `Form_Conditional_Logic__mdt` records (if conditional logic is used)
    * `Form_Conditional_Logic_Condition__mdt` records (conditions)
-   * `Form_Style_Sheet__mdt` records (if themes are customized)
-   * `Form_Labels__mdt` records (if labels/translations are used)
+   * `Form_Theme__mdt` records (if you created themes)
+   * `Form_Style_Sheet__mdt` records (if you use stylesheets), with the CSS Static Resources they point to
+   * `Form_Label__mdt` and `Form_Label_Translation__mdt` records (if labels or translations are used)
+
+{% hint style="info" %}
+**Saved Form Styles do not travel in a change set.** Copy the org defaults from Global Styles with **Export** and **Import**. See [Move styles between orgs](../form-configuration/form-styles.md#move-styles-between-orgs).
+{% endhint %}
 
 {% hint style="warning" %}
 **Include all dependencies.** If you deploy a Section without its parent Form, or a Field without its parent Section, the deployment may fail or the references will be broken.

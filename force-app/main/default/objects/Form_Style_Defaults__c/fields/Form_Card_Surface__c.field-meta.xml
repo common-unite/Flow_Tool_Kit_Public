@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Card_Surface__c</fullName>
+    <description>Org default for the --ftk-form-card-surface style token. Form card background for form card. Specific overrides take priority over shared controls. Blank inherits the component default.</description>
+    <label>Form card background</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

@@ -12,6 +12,7 @@ Confirm all four of these. The install will not correct any of them for you.
 2. **The org is on the Household Account model.** In **NPSP Settings → People → Account Model**, the Account Model reads **Household Account**. This is the NPSP default, and it is what makes NPSP build a Household for every new Contact.
 3. **NPSP's trigger handlers are running.** In **NPSP Settings → Bulk Data Processes → Trigger Configuration**, confirm `ACCT_IndividualAccounts_TDTM` and `AFFL_Affiliations_TDTM` are active and that your username is not excluded from them. The first one builds every Household; the second maintains affiliations.
 4. **Enhanced Email and Lightning Web Security are on.** The base package requires Enhanced Email, and forms with large datasets degrade badly without LWS. The installer checks both and refuses to run if either is off.
+5. **Digital Experiences is enabled.** From 4.46 the base package includes Experience Cloud page templates, which cannot install where Digital Experiences is off. In Setup, open **Digital Experiences → Settings** and enable it. The installer checks and stops with instructions if it is off.
 
 ## Install with the guided installer
 

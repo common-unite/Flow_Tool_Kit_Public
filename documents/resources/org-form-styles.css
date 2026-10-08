@@ -1,0 +1,13 @@
+/* Custom-metadata stylesheet example.
+   Upload as a CSS Static Resource, then map it using Form_Style_Sheet__mdt.
+   This loader does not isolate selectors automatically.
+   Tokens under :root reach every Flow Tool Kit component on the page. */
+:root {
+    --ftk-input-surface: #f5f8fc;
+    --ftk-input-radius: 0.5rem;
+    --ftk-input-padding-inline: 0.875rem;
+}
+
+.flowForm .flow-form-help-below-label {
+    font-style: italic;
+}
