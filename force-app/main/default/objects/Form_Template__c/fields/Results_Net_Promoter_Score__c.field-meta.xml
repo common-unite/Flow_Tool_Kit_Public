@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Results_Net_Promoter_Score__c</fullName>
+    <description>Results: across this template&apos;s 0 to 10 scale questions, the share of answers at 9 or 10 minus the share at 0 to 6, from -100 to 100. Written by the Recalculate Results job.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Across this form&apos;s 0 to 10 questions, the share answering 9 or 10 minus the share answering 0 to 6. It runs from -100 to 100.</inlineHelpText>
+    <label>Net Promoter Score</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

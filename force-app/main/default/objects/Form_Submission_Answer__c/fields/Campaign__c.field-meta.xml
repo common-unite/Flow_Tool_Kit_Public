@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaign__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Campaign on the answer&apos;s Form Submission when the answer was written, so answers can be listed, filtered and charted by campaign across forms. Answers are rewritten whenever the submission converts again, which refreshes it.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Campaign on the Form Submission when this answer was written.</inlineHelpText>
+    <label>Campaign</label>
+    <referenceTo>Campaign</referenceTo>
+    <relationshipLabel>Form Submission Answers</relationshipLabel>
+    <relationshipName>Form_Submission_Answers</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

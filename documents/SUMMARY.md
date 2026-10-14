@@ -27,6 +27,7 @@
 * [Guest Forms Quickstart](how-to-guides/guest-forms-quickstart.md)
 * [Merge Duplicate Records](how-to-guides/merge-duplicate-records.md)
 * [Open A Form From A Lookup](how-to-guides/open-a-form-from-a-lookup.md)
+* [Organize Form Components](how-to-guides/organize-form-components.md)
 * [Override New And Edit With A Form](how-to-guides/override-new-and-edit-with-a-form.md)
 * [Schedule Flow Cache Warming](how-to-guides/schedule-flow-cache-warming.md)
 * [Section Frame And Header](how-to-guides/section-frame-and-header.md)
@@ -81,6 +82,7 @@
 * [Likert Matrix Sections](form-configuration/likert-matrix-sections.md)
 * [Picklist Option Labels](form-configuration/picklist-option-labels.md)
 * [Prompt Messages](form-configuration/prompt-messages.md)
+* [Question Reporting](form-configuration/question-reporting.md)
 * [reCAPTCHA & Security](form-configuration/recaptcha-security.md)
 * [Record Cards](form-configuration/record-cards.md)
 * [Style Token Reference](form-configuration/style-token-reference.md)
@@ -116,12 +118,15 @@
 * [Prefill Templates](form-template-framework/prefill-templates.md)
 * [Stages Mode](form-template-framework/stages-mode.md)
 * [Submission Conversion](form-template-framework/submission-conversion.md)
+* [Survey Mode](form-template-framework/survey-mode.md)
+* [Survey Results](form-template-framework/survey-results.md)
 * [Template Page Section Merge Fields](form-template-framework/template-page-section-merge-fields.md)
 * [URL Parameter Mapping](form-template-framework/url-parameter-mapping.md)
 
 ### How-To Guides
 
 * [Build Multi Page Form](form-template-framework/how-to/build-multi-page-form.md)
+* [Compare Survey Rounds With Campaigns](form-template-framework/how-to/compare-survey-rounds-with-campaigns.md)
 * [Create PDF from Submission](form-template-framework/how-to/create-pdf-from-submission.md)
 * [Host Form On Record Page](form-template-framework/how-to/host-form-on-record-page.md)
 * [Inject Custom Settings](form-template-framework/how-to/inject-custom-settings.md)
@@ -167,6 +172,7 @@
 
 * [Dynamic Flow Display](experience-cloud/dynamic-flow-display.md)
 * [Experience Cloud Components](experience-cloud/experience-cloud-components.md)
+* [Image Gallery Block](experience-cloud/image-gallery-block.md)
 * [Lwr Site Component Support](experience-cloud/lwr-site-component-support.md)
 * [Styling Design Blocks](experience-cloud/styling-design-blocks.md)
 
@@ -202,6 +208,7 @@
 
 ## Release Notes
 
+* [Form Builder Library Unreleased](release-notes/form-builder-library-unreleased.md)
 * [Form Styles Unreleased](release-notes/form-styles-unreleased.md)
 * [Record Card Unreleased](release-notes/record-card-unreleased.md)
 * [Release 3.208](release-notes/release-3.208.md)
@@ -265,6 +272,7 @@
 * [Release 4.7](release-notes/release-4.7.md)
 * [Release 4.8](release-notes/release-4.8.md)
 * [Release 4.9](release-notes/release-4.9.md)
+* [Survey And Results Unreleased](release-notes/survey-and-results-unreleased.md)
 
 ## Platform
 

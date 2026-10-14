@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enable_Form_Analytics__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Switches Form Analytics on for this template (#890): each submission's answers are written as Form Submission Answer records, the template is listed on the Form Analytics tab and its record page shows the Analytics tab. Replaces the Submission Answers conversion rule and the Survey conversion type.</description>
+    <inlineHelpText>Turn on to save each submitted answer as its own record, so this form&apos;s results appear in Form Analytics and can be reported on. Answers are saved when a submission finishes converting, or is bypassed.</inlineHelpText>
+    <label>Enable Form Analytics</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

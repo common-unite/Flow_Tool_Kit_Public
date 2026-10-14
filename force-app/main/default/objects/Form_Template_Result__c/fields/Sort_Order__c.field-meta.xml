@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sort_Order__c</fullName>
+    <description>The question&apos;s place on the form.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The question&apos;s place on the form.</inlineHelpText>
+    <label>Question Order</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

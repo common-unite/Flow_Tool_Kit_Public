@@ -12,6 +12,11 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Sunday</fullName>
+                <default>false</default>
+                <label>Sunday</label>
+            </value>
+            <value>
                 <fullName>Monday</fullName>
                 <default>false</default>
                 <label>Monday</label>
@@ -40,11 +45,6 @@
                 <fullName>Saturday</fullName>
                 <default>false</default>
                 <label>Saturday</label>
-            </value>
-            <value>
-                <fullName>Sunday</fullName>
-                <default>false</default>
-                <label>Sunday</label>
             </value>
         </valueSetDefinition>
     </valueSet>

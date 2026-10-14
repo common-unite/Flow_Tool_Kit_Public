@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-13T19:33:39.608511+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/_plans/survey-mode-and-analytics-qa/evidence/001-survey-mode-and-form-analytics-qa/aura-admin-review.mp4",
+    "width": 1024,
+    "height": 720,
+    "rotation": 0.0,
+    "duration": 22.0,
+    "bytes": 1585410,
+    "codec": "h264",
+    "frames": "1100",
+    "frameRate": "50/1",
+    "averageFrameRate": "50/1"
+  },
+  "sourceSHA256": "861b95163b716e1102a68dda2abba7c9e129f321f9b799039870e8f023a72025",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 1024,
+    "duration": null,
+    "fps": 25,
+    "endHold": 1.0,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/880-survey-experience-inline.gif",
+    "width": 1024,
+    "height": 720,
+    "rotation": 0.0,
+    "duration": 23.0,
+    "bytes": 11878736,
+    "codec": "gif",
+    "frames": "575",
+    "frameRate": "25/1",
+    "averageFrameRate": "25/1"
+  },
+  "outputSHA256": "07384d8dabb401c5de59cf4eb1bcf7a78e61066c5ffadfc5dcf98a31010f5b38",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

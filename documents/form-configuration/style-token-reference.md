@@ -1,6 +1,6 @@
 # CSS Style Token Reference
 
-> All 156 Flow Tool Kit style tokens, generated from the same catalog the style editor uses.
+> All 157 Flow Tool Kit style tokens, generated from the same catalog the style editor uses.
 
 A **token** is a CSS custom property, such as `--ftk-color-primary`. Every control in the style editor sets one, and a stylesheet can set the same ones.
 
@@ -180,6 +180,7 @@ Rules like this are yours to maintain: they depend on Salesforce's markup, they 
 | `--ftk-header-padding-block` | Advanced → Headings → Spacing → Vertical padding | length | Header vertical padding for headers. Specific overrides take priority over shared controls. | --ftk-section-padding → 0.5rem | Yes |
 | `--ftk-header-padding-left` | Advanced → Headings → Spacing → Left padding | length | Header left padding for headers. Specific overrides take priority over shared controls. | --ftk-section-padding-inline → --ftk-section-padding → 0.8rem | Yes |
 | `--ftk-header-padding-right` | Advanced → Headings → Spacing → Right padding | length | Header right padding for headers. Specific overrides take priority over shared controls. | --ftk-section-padding-inline → --ftk-section-padding → 0 | Yes |
+| `--ftk-header-title-color` | Advanced → Headings → More heading details → Title color | color | Title color for section headers. A Form Theme's heading color takes priority, except the packaged Form Default theme. | Salesforce/site default | Yes |
 | `--ftk-header-subtitle-color` | Advanced → Headings → More heading details → Subtitle color | color | Header subtitle color for headers. Specific overrides take priority over shared controls. | --ftk-color-text-muted → Salesforce/site default | Yes |
 
 ### Spacing

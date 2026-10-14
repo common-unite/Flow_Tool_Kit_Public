@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-13T19:31:04.417327+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/_plans/survey-mode-and-analytics-qa/evidence/001-survey-mode-and-form-analytics-qa/flow-docs-review.mp4",
+    "width": 1280,
+    "height": 900,
+    "rotation": 0.0,
+    "duration": 22.0,
+    "bytes": 2462667,
+    "codec": "h264",
+    "frames": "1100",
+    "frameRate": "50/1",
+    "averageFrameRate": "50/1"
+  },
+  "sourceSHA256": "34d2e7cd280957e15108e866db133cf6190917b0821bfe024faed2d7a148b9d8",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 1024,
+    "duration": null,
+    "fps": 25,
+    "endHold": 1.0,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/880-survey-mode.gif",
+    "width": 1024,
+    "height": 720,
+    "rotation": 0.0,
+    "duration": 23.0,
+    "bytes": 14661267,
+    "codec": "gif",
+    "frames": "575",
+    "frameRate": "25/1",
+    "averageFrameRate": "25/1"
+  },
+  "outputSHA256": "4b29d2142691650b672bf2619c9074f911408c0524cfbc61aeb8cce5c0c7d631",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

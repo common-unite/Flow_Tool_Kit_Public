@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Answer_Ordered__c</fullName>
+    <description>The answer behind its order number, such as "04 - Satisfied", so a report groups worded answers in scale order instead of alphabetically. A numbered option reads as its own number, padded so 10 sorts after 9. The answer alone when it has no order number, and for No Response, which then sorts after the numbered answers.</description>
+    <externalId>false</externalId>
+    <formula>IF(OR(ISBLANK(Option_Order__c), ISBLANK(Answer_Value__c)), Answer__c, IF(ISNUMBER(Answer__c), LPAD(Answer__c, 2, &quot;0&quot;), LPAD(TEXT(Option_Order__c), 2, &quot;0&quot;) &amp; &quot; - &quot; &amp; Answer__c))</formula>
+    <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
+    <label>Answer in Scale Order</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

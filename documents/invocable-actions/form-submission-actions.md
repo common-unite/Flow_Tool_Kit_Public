@@ -101,6 +101,50 @@ The reason this action exists: the standard Send Email action only honours a rel
 
 The action never throws. Template file attachments and classic letterheads are not carried into the rendered output; a template that relies on them should stay on the Send Email template path with a Contact recipient.
 
+## Create Form Submission Answers
+
+**Form Template | Create Form Submission Answers** writes one Form Submission Answer record per question the respondent was shown on a Form Submission, one per chosen option for a multi-select, replacing any written before. The packaged flow **Form Submission (After Update → Create Submission Answers)** calls it when a submission completes or is bypassed and the template's **Enable Form Analytics** is on.
+
+| Input | Required | Purpose |
+| --- | --- | --- |
+| Form Submission Id | Yes | The submission whose answers are written. |
+| Include Unanswered Questions | No | Also write a **No Response** answer for each question the respondent was shown and left unanswered. The packaged flow sets it on. |
+| Skip Fields | No | Form Submission fields that never write an answer, whatever a question is set to in the Form Builder, as API names separated by semicolons or commas. A name that is not a field on Form Submission stops the action with an error. |
+
+### Fields that never become answers
+
+Each question's **Reporting** setting in the Form Builder decides. Left on **Automatic**, these never write an answer record:
+
+- A contact's identity: Contact 1 and Contact 2 first name, last name, title, email, email type, phone and phone type.
+- The record lookups: Contact 1, Contact 2, Lead 1, Lead 2, Account, Campaign.
+- Status and the other package fields that ask the respondent nothing (any packaged Form Submission field without a question type).
+- Free-written text, because it charts nothing; a file upload is not free text and is written.
+
+Set a question to **Always** to include it even so, or **Never** to leave it out. Skip Fields is for a client's own exclusions; identity, lookup and system fields need no entry there. See [Question Reporting](../form-configuration/question-reporting.md) for the settings and worked examples.
+
+## Recalculate Results
+
+**Action Label**: Form Template | Recalculate Results
+
+**Category**: Flow Tool Kit
+
+Starts a background job that calculates each Form Template's stored results from its **Form Submission Answers**. It maintains one Form Template Result per question and the template's headline Responses, Average Score, Favorable, and Net Promoter Score. A record is written only when its numbers change.
+
+> Upcoming release. Configure this action in your own administrator-triggered or Schedule-Triggered Flow; no results schedule is installed automatically.
+
+| Input | Required | Meaning |
+| --- | --- | --- |
+| Batch Size | No | Answers read per batch, from 1 to 2000; defaults to 2000. |
+
+| Output | Meaning |
+| --- | --- |
+| Job Id | The recalculation job started or already waiting/running. |
+| Already Running | True when an existing job is reused and no second job is started. |
+
+The action requests work and returns before the job finishes. Wait for conversion to create the answer records, request recalculation, then check results after background processing completes. Opening Results or switching a chart does not invoke this action.
+
+See the recorded [submission-to-results walkthrough](../form-template-framework/survey-results.md#submit-convert-and-recalculate), including the prepared administrator Flow and independently checked updated totals.
+
 ## Related Pages
 
 - [Form Submissions](../form-template-framework/form-submissions.md): submission lifecycle

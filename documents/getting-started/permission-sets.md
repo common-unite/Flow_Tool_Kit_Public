@@ -1,6 +1,6 @@
 # Permission Sets
 
-> Flow Tool Kit includes three permission sets. Assign them based on what each user needs to do.
+> Flow Tool Kit includes four permission sets. Assign them based on what each user needs to do.
 
 {% hint style="info" %}
 **Prerequisites**: Flow Tool Kit must be installed in your org. See [Installation](installation.md).
@@ -18,7 +18,12 @@
 | ------------------------ | -------------------------------- | --------------------------------------------------------------------------------------------------- |
 | **Form Builder Admin**   | System Administrators            | Full access: build forms, manage templates, admin utilities, cache management, metadata operations |
 | **Form Builder Manager** | Delegated admins / form builders | Build and manage forms and templates; no admin utilities or setup access                           |
+| **Form Builder Internal User** | Internal users who work with form data | View templates, work with every submission and its answers, use Form Analytics; cannot build components or change templates |
 | **Form Flow User**       | End users who fill out forms     | Minimum runtime access: render forms, submit data, use invocable actions in flows                  |
+
+{% hint style="info" %}
+**A fifth, single-purpose set.** The package also includes **Form Style Defaults Manager**, which only lets a user save the org-wide form style defaults on Form Builder's Global Styles tab. Form Builder Admin already includes that access, so most orgs never assign it on its own.
+{% endhint %}
 
 ## Form Builder Admin
 
@@ -66,6 +71,31 @@ Form Builder Manager users **cannot**:
 * Access Salesforce Setup pages
 * Modify metadata
 
+## Form Builder Internal User
+
+**Assign to**: internal Salesforce users who review submissions and results but do not build forms.
+
+This set sits one step below Form Builder Manager. It grants every field Manager does, so nothing on a submission is hidden, and leaves out the building.
+
+Form Builder Internal User users can:
+
+* View Form Templates, their pages and their form components
+* Create, edit and delete Form Submissions and their answers, and review and reprocess them
+* Use Form Analytics in full, including the Campaign filter and the Compare view
+* See the Campaign a submission, an answer and a stored result belong to
+* Open the Form Analytics, Form Submissions and Form Templates tabs
+
+Form Builder Internal User users **cannot**:
+
+* Create or edit form components (no Form Builder, Table Builder or Form Components tab)
+* Create, edit or delete Form Templates, pages or page sections
+* Import Form Templates
+* Access Salesforce Setup or modify metadata
+
+{% hint style="warning" %}
+**Internal users only.** This set grants access to the Campaign object, which some Experience Cloud licenses cannot hold. Do not assign it to portal users or the Guest User. They use Form Flow User.
+{% endhint %}
+
 ## Form Flow User
 
 **Assign to**: End users who interact with forms in Flows but never build or manage them.
@@ -92,6 +122,17 @@ Form Flow User grants access to these invocable action classes:
 **Common mistake**: Forgetting to assign Form Flow User to end users. If a user can't see form fields or gets "Insufficient access" errors when filling out a form in a Flow, check their permission set assignment first.
 {% endhint %}
 
+### No Campaign Access
+
+Form Flow User is the base set for everyone who fills out a form: internal users, portal users and the Guest User. It holds only access that every license can have. Some Experience Cloud licenses cannot reach the Campaign object, so this set grants no access to Campaign and no access to any field that looks up to a Campaign.
+
+What that means in Form Analytics for a user whose only set is Form Flow User:
+
+* The charts, the numbers and the View report links work, and cover every answer.
+* There is no Campaign filter and no Compare view.
+
+To give an internal user the Campaign filter and Compare, assign **Form Builder Internal User**. For a portal user whose license can reach Campaigns, create a permission set in your own org that grants Read on Campaign and on the Campaign fields of Form Submission, Form Submission Answer and Form Template Result, and assign it alongside Form Flow User.
+
 ### Create and Read Only on Submission Records
 
 Form Flow User grants **Create and Read, but not Update**, on **Form Submission** and **Form Submission Stage**.
@@ -113,39 +154,43 @@ All of these users are saved with a direct record update, which requires Update.
 * **Submit** saves nothing and the confirmation page never appears, because the save is rejected before the success step runs.
 * The same form works correctly for internal users and for guests.
 
-**Fix**: create a permission set in your own org that grants **Edit** on `FlowToolKit__Form_Submission__c` and `FlowToolKit__Form_Submission_Stage__c`, then assign it alongside Form Flow User to every user who fills out forms. Field-level access is already granted by Form Flow User, so the two object permissions are all you need to add.
+**Fix for internal users**: assign **Form Builder Internal User**, which grants full access to submissions.
+
+**Fix for portal users**: create a permission set in your own org that grants **Edit** on `FlowToolKit__Form_Submission__c` and `FlowToolKit__Form_Submission_Stage__c`, then assign it alongside Form Flow User to every user who fills out forms. Field-level access is already granted by Form Flow User, so the two object permissions are all you need to add.
 
 **Do not assign that permission set to the Guest User.** Salesforce blocks the assignment, and guests do not need it.
 {% endhint %}
 
-Users holding **Form Builder Admin** or **Form Builder Manager** are unaffected, because both grant full CRUD on these objects. That is why this does not show up in most internal testing.
+Users holding **Form Builder Admin**, **Form Builder Manager** or **Form Builder Internal User** are unaffected, because all three grant full CRUD on these objects. That is why this does not show up in most internal testing.
 
 Record-level access still applies on top of object permissions. **Form Submission** uses a **Private** external sharing model, so a user can update a submission they own. If your process has one person resume a submission that someone else created, add a sharing rule or Apex sharing as well.
 
 ## Comparison Matrix
 
-| Capability                     | Admin | Manager | Flow User |
-| ------------------------------ | :---: | :-----: | :-------: |
-| Build forms in Form Builder    |  Yes  |   Yes   |     No    |
-| Fill out forms in Flows        |  Yes  |   Yes   |    Yes    |
-| Create a new submission        |  Yes  |   Yes   |    Yes    |
-| Update an existing submission  |  Yes  |   Yes   |     No    |
-| Manage Form Templates          |  Yes  |   Yes   |     No    |
-| Review/convert submissions     |  Yes  |   Yes   |     No    |
-| Use Invocable Actions in Flows |  Yes  |   Yes   |    Yes    |
-| Reset form cache               |  Yes  |    No   |     No    |
-| Import/export templates (VF)   |  Yes  |    No   |     No    |
-| View Setup                     |  Yes  |    No   |     No    |
-| Custom tab access              |  Yes  |    No   |     No    |
-| Apex classes                   |   56  |    47   |     36    |
-| Field permissions              |  478  |   477   |    446    |
-| Object permissions             |   14  |    14   |     11    |
+| Capability                     | Admin | Manager | Internal User | Flow User |
+| ------------------------------ | :---: | :-----: | :-----------: | :-------: |
+| Build forms in Form Builder    |  Yes  |   Yes   |       No      |     No    |
+| Fill out forms in Flows        |  Yes  |   Yes   |      Yes      |    Yes    |
+| Create a new submission        |  Yes  |   Yes   |      Yes      |    Yes    |
+| Update an existing submission  |  Yes  |   Yes   |      Yes      |     No    |
+| Manage Form Templates          |  Yes  |   Yes   |   View only   |     No    |
+| Review/convert submissions     |  Yes  |   Yes   |      Yes      |     No    |
+| Form Analytics                 |  Yes  |   Yes   |      Yes      | No Campaign filter or Compare |
+| Campaign access                |  Yes  |   Yes   |      Yes      |     No    |
+| Use Invocable Actions in Flows |  Yes  |   Yes   |      Yes      |    Yes    |
+| Reset form cache               |  Yes  |    No   |       No      |     No    |
+| Import/export templates (VF)   |  Yes  |    No   |       -       |     No    |
+| View Setup                     |  Yes  |    No   |       No      |     No    |
+| Custom tab access              |  Yes  |    No   |       -       |     No    |
+| Apex classes                   |   56  |    47   |       -       |     36    |
+| Field permissions              |  478  |   477   |       -       |    446    |
+| Object permissions             |   14  |    14   |       -       |     11    |
 
 ## Assignment Best Practices
 
 ![Assigning a permission set to a user](../.gitbook/assets/permission-set-assignment.png)
 
-1. **Start with the least privilege**: assign Form Flow User to all users who interact with forms, then upgrade to Manager only for users who need to build forms.
+1. **Start with the least privilege**: assign Form Flow User to all users who interact with forms, Form Builder Internal User to internal users who review submissions and results, and Manager only to users who need to build forms.
 2. **Use Form Builder Manager for delegated admins**: don't give System Administrator profiles just for form building. Form Builder Manager provides everything a form builder needs.
 3. **Audit regularly**: review permission set assignments quarterly to ensure users have the right level of access.
 4. **Don't combine with restrictive profiles**: permission sets add to (never subtract from) profile permissions. If a profile restricts object access, the permission set may not be enough.

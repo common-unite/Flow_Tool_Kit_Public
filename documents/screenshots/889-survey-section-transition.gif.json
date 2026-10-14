@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-13T19:33:35.525922+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/_plans/survey-mode-and-analytics-qa/evidence/001-survey-mode-and-form-analytics-qa/section-transition-review.mp4",
+    "width": 1024,
+    "height": 720,
+    "rotation": 0.0,
+    "duration": 9.0,
+    "bytes": 652407,
+    "codec": "h264",
+    "frames": "450",
+    "frameRate": "50/1",
+    "averageFrameRate": "50/1"
+  },
+  "sourceSHA256": "cb4fc890923e48cad9c515cf515c7a3681b734e400c5fe558bfa4e26cac6988b",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 1024,
+    "duration": null,
+    "fps": 25,
+    "endHold": 1.0,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/889-survey-section-transition.gif",
+    "width": 1024,
+    "height": 720,
+    "rotation": 0.0,
+    "duration": 10.0,
+    "bytes": 4625265,
+    "codec": "gif",
+    "frames": "250",
+    "frameRate": "25/1",
+    "averageFrameRate": "25/1"
+  },
+  "outputSHA256": "677a08f0b57b029981b5602082dc53db01805ef8fba83bd150a48bc6f2f6f2cd",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

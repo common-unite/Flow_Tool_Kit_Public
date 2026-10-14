@@ -29,6 +29,31 @@ _Additional fields store serialized form data and metadata for each page/section
 
 ![Save progress button and toggle](../.gitbook/assets/save-progress-toggle.png)
 
+## Survey Question Fields
+
+For the upcoming Survey and Results features, see [Survey Mode](survey-mode.md) for the respondent experience and [Survey Results](survey-results.md) for response totals, scores, and charts.
+
+Form Submission includes reusable question families and a single Age Range field. Replace the question label in Form Builder with the wording respondents should see. Each field starts unanswered; choose whether an answer is required on the form.
+
+| Fields | Answer choices, in order |
+| --- | --- |
+| `Importance_Question_1__c` through `Importance_Question_10__c` | Not at all Important; Slightly Important; Moderately Important; Very Important; Extremely Important |
+| `Likelihood_Question_1__c` through `Likelihood_Question_10__c` | Very Unlikely; Unlikely; Neither Likely nor Unlikely; Likely; Very Likely |
+| `Ease_Question_1__c` through `Ease_Question_10__c` | Very Difficult; Difficult; Neither Easy nor Difficult; Easy; Very Easy |
+| `Confidence_Question_1__c` through `Confidence_Question_10__c` | Not at all Confident; Slightly Confident; Moderately Confident; Very Confident; Extremely Confident |
+| `Yes_No_Question_1__c` through `Yes_No_Question_10__c` | Yes; No; Not Sure; Not Applicable |
+| `Change_Question_1__c` through `Change_Question_5__c` | Much Worse; Somewhat Worse; About the Same; Somewhat Better; Much Better |
+| `Expectations_Question_1__c` through `Expectations_Question_5__c` | Far Below Expectations; Below Expectations; Met Expectations; Above Expectations; Far Above Expectations |
+| `Usefulness_Question_1__c` through `Usefulness_Question_5__c` | Not at all Useful; Slightly Useful; Moderately Useful; Very Useful; Extremely Useful |
+| `Familiarity_Question_1__c` through `Familiarity_Question_5__c` | Not at all Familiar; Slightly Familiar; Moderately Familiar; Very Familiar; Extremely Familiar |
+| `Age_Range__c` | Under 18; 18-24; 25-34; 35-44; 45-54; 55-64; 65 or Older; Prefer Not to Answer |
+
+Use the scale families for individual questions or [Likert Matrix sections](../form-configuration/likert-matrix-sections.md). Their choices run from low to high. Change measures perceived improvement or decline, Expectations compares an experience with what was expected, Usefulness measures practical value, and Familiarity captures self-reported knowledge of a topic.
+
+The Yes/No family preserves uncertainty and non-applicability separately from a blank answer; use Override Available Picklist Options to hide choices a particular question does not need. Age Range records the respondent's selected age band without requiring a birthdate. Prefer Not to Answer is a separate response from leaving the question blank.
+
+Use these fields for survey responses with the current submission types; a separate **Survey** conversion type is no longer required. Form Builder Admin, Form Builder Manager, and Form Flow User grant read and edit access to these fields.
+
 ## How It Works
 
 **Save Flow**:
@@ -89,3 +114,7 @@ For complex applications (grant requests, insurance claims), allow users to comp
 * **Status Management**: Define clear status values (Draft, In Progress, Submitted, Approved, Rejected) to track where each submission stands in your process.
 * **Experience Cloud**: Form Submissions work in Experience Cloud flows. Guest users may need special handling for submission ownership.
 * **Cleanup**: Consider a scheduled flow or batch process to clean up abandoned submissions (e.g., "In Progress" for more than 30 days).
+
+## Survey answer reporting
+
+Turn on **Form Template Settings → Form Analytics → Enable Form Analytics** to create reporting answers when a submission's conversion is **Complete** or **Bypassed**. Use [Question Reporting](../form-configuration/question-reporting.md) to configure which fields contribute. This setting is independent of the section-level survey presentation. See [Survey Results](survey-results.md) for the reporting workflow. These features are prepared for the upcoming release.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Average_Score__c</fullName>
+    <description>The average Score of the question&apos;s scored answers, on the question&apos;s own scale. Blank when none is scored.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The average of the scores on this question&apos;s answers, on the question&apos;s own scale. Blank when the question is not scored, such as a written answer or a list of days.</inlineHelpText>
+    <label>Average Score</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

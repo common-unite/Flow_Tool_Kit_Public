@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Answer_Choice__c</fullName>
+    <description>The option chosen, as a picklist, so a chart can give each answer a fixed color and list answers in scale order. Holds the option as stored, not a label customized on the form, so a renamed option keeps its color and its place: the stored value of a picklist answer, Yes or No for a checkbox, the number chosen on a Likert number scale, and No Response for a choice question shown and left unanswered. Blank for every other answer. Lists the options of the scale questions the package ships, in scale order; the worded scales run red to green from lowest to highest, and the numbered options carry no fixed color because 1 to 5 belongs to both the 1 to 5 rating and the 0 to 10 scale. Not restricted: a customer&apos;s own option is written as it is, uncolored and unordered until it is added to this picklist.</description>
+    <inlineHelpText>The option chosen. Charts grouped by this field use each value&apos;s chart color and list values in this picklist&apos;s order.</inlineHelpText>
+    <label>Answer Choice</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Strongly Disagree</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Strongly Disagree</label>
+            </value>
+            <value>
+                <fullName>Disagree</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Disagree</label>
+            </value>
+            <value>
+                <fullName>Neither Agree nor Disagree</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Neither Agree nor Disagree</label>
+            </value>
+            <value>
+                <fullName>Agree</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Agree</label>
+            </value>
+            <value>
+                <fullName>Strongly Agree</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Strongly Agree</label>
+            </value>
+            <value>
+                <fullName>Much Worse</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Much Worse</label>
+            </value>
+            <value>
+                <fullName>Somewhat Worse</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Somewhat Worse</label>
+            </value>
+            <value>
+                <fullName>About the Same</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>About the Same</label>
+            </value>
+            <value>
+                <fullName>Somewhat Better</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Somewhat Better</label>
+            </value>
+            <value>
+                <fullName>Much Better</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Much Better</label>
+            </value>
+            <value>
+                <fullName>Not at all Confident</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Not at all Confident</label>
+            </value>
+            <value>
+                <fullName>Slightly Confident</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Slightly Confident</label>
+            </value>
+            <value>
+                <fullName>Moderately Confident</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Moderately Confident</label>
+            </value>
+            <value>
+                <fullName>Very Confident</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Very Confident</label>
+            </value>
+            <value>
+                <fullName>Extremely Confident</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Extremely Confident</label>
+            </value>
+            <value>
+                <fullName>Very Difficult</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Very Difficult</label>
+            </value>
+            <value>
+                <fullName>Difficult</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Difficult</label>
+            </value>
+            <value>
+                <fullName>Neither Easy nor Difficult</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Neither Easy nor Difficult</label>
+            </value>
+            <value>
+                <fullName>Easy</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Easy</label>
+            </value>
+            <value>
+                <fullName>Very Easy</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Very Easy</label>
+            </value>
+            <value>
+                <fullName>Far Below Expectations</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Far Below Expectations</label>
+            </value>
+            <value>
+                <fullName>Below Expectations</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Below Expectations</label>
+            </value>
+            <value>
+                <fullName>Met Expectations</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Met Expectations</label>
+            </value>
+            <value>
+                <fullName>Above Expectations</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Above Expectations</label>
+            </value>
+            <value>
+                <fullName>Far Above Expectations</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Far Above Expectations</label>
+            </value>
+            <value>
+                <fullName>Not at all Familiar</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Not at all Familiar</label>
+            </value>
+            <value>
+                <fullName>Slightly Familiar</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Slightly Familiar</label>
+            </value>
+            <value>
+                <fullName>Moderately Familiar</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Moderately Familiar</label>
+            </value>
+            <value>
+                <fullName>Very Familiar</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Very Familiar</label>
+            </value>
+            <value>
+                <fullName>Extremely Familiar</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Extremely Familiar</label>
+            </value>
+            <value>
+                <fullName>Never</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Never</label>
+            </value>
+            <value>
+                <fullName>Rarely</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Rarely</label>
+            </value>
+            <value>
+                <fullName>Sometimes</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Sometimes</label>
+            </value>
+            <value>
+                <fullName>Often</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Often</label>
+            </value>
+            <value>
+                <fullName>Always</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Always</label>
+            </value>
+            <value>
+                <fullName>Not at all Important</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Not at all Important</label>
+            </value>
+            <value>
+                <fullName>Slightly Important</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Slightly Important</label>
+            </value>
+            <value>
+                <fullName>Moderately Important</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Moderately Important</label>
+            </value>
+            <value>
+                <fullName>Very Important</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Very Important</label>
+            </value>
+            <value>
+                <fullName>Extremely Important</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Extremely Important</label>
+            </value>
+            <value>
+                <fullName>Very Unlikely</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Very Unlikely</label>
+            </value>
+            <value>
+                <fullName>Unlikely</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Unlikely</label>
+            </value>
+            <value>
+                <fullName>Neither Likely nor Unlikely</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Neither Likely nor Unlikely</label>
+            </value>
+            <value>
+                <fullName>Likely</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Likely</label>
+            </value>
+            <value>
+                <fullName>Very Likely</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Very Likely</label>
+            </value>
+            <value>
+                <fullName>Very Dissatisfied</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Very Dissatisfied</label>
+            </value>
+            <value>
+                <fullName>Dissatisfied</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Dissatisfied</label>
+            </value>
+            <value>
+                <fullName>Neutral</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Neutral</label>
+            </value>
+            <value>
+                <fullName>Satisfied</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Satisfied</label>
+            </value>
+            <value>
+                <fullName>Very Satisfied</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Very Satisfied</label>
+            </value>
+            <value>
+                <fullName>Not at all Useful</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>Not at all Useful</label>
+            </value>
+            <value>
+                <fullName>Slightly Useful</fullName>
+                <color>#FE9339</color>
+                <default>false</default>
+                <label>Slightly Useful</label>
+            </value>
+            <value>
+                <fullName>Moderately Useful</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Moderately Useful</label>
+            </value>
+            <value>
+                <fullName>Very Useful</fullName>
+                <color>#91DB8B</color>
+                <default>false</default>
+                <label>Very Useful</label>
+            </value>
+            <value>
+                <fullName>Extremely Useful</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Extremely Useful</label>
+            </value>
+            <value>
+                <fullName>0</fullName>
+                <default>false</default>
+                <label>0</label>
+            </value>
+            <value>
+                <fullName>1</fullName>
+                <default>false</default>
+                <label>1</label>
+            </value>
+            <value>
+                <fullName>2</fullName>
+                <default>false</default>
+                <label>2</label>
+            </value>
+            <value>
+                <fullName>3</fullName>
+                <default>false</default>
+                <label>3</label>
+            </value>
+            <value>
+                <fullName>4</fullName>
+                <default>false</default>
+                <label>4</label>
+            </value>
+            <value>
+                <fullName>5</fullName>
+                <default>false</default>
+                <label>5</label>
+            </value>
+            <value>
+                <fullName>6</fullName>
+                <default>false</default>
+                <label>6</label>
+            </value>
+            <value>
+                <fullName>7</fullName>
+                <default>false</default>
+                <label>7</label>
+            </value>
+            <value>
+                <fullName>8</fullName>
+                <default>false</default>
+                <label>8</label>
+            </value>
+            <value>
+                <fullName>9</fullName>
+                <default>false</default>
+                <label>9</label>
+            </value>
+            <value>
+                <fullName>10</fullName>
+                <default>false</default>
+                <label>10</label>
+            </value>
+            <value>
+                <fullName>Yes</fullName>
+                <color>#2E844A</color>
+                <default>false</default>
+                <label>Yes</label>
+            </value>
+            <value>
+                <fullName>No</fullName>
+                <color>#BA0517</color>
+                <default>false</default>
+                <label>No</label>
+            </value>
+            <value>
+                <fullName>Not Sure</fullName>
+                <color>#FCC003</color>
+                <default>false</default>
+                <label>Not Sure</label>
+            </value>
+            <value>
+                <fullName>Not Applicable</fullName>
+                <color>#AEAEAE</color>
+                <default>false</default>
+                <label>Not Applicable</label>
+            </value>
+            <value>
+                <fullName>No Response</fullName>
+                <color>#C9C9C9</color>
+                <default>false</default>
+                <label>No Response</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

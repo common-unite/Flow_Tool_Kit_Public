@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-13T19:33:41.785565+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/_plans/survey-mode-and-analytics-qa/evidence/001-survey-mode-and-form-analytics-qa/mobile-review.mp4",
+    "width": 430,
+    "height": 932,
+    "rotation": 0.0,
+    "duration": 29.0,
+    "bytes": 2435708,
+    "codec": "h264",
+    "frames": "1450",
+    "frameRate": "50/1",
+    "averageFrameRate": "50/1"
+  },
+  "sourceSHA256": "be3f4ca226b9c83bd7fbc4649ceaefc7c127c3078e598e42c63c06b65d9fda11",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 430,
+    "duration": null,
+    "fps": 25,
+    "endHold": 1.0,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/880-survey-mobile.gif",
+    "width": 430,
+    "height": 932,
+    "rotation": 0.0,
+    "duration": 30.0,
+    "bytes": 17835168,
+    "codec": "gif",
+    "frames": "750",
+    "frameRate": "25/1",
+    "averageFrameRate": "25/1"
+  },
+  "outputSHA256": "da6651de6e7244b6c7c72bf92e1da84b1cc8af2b7b2bdc8ea548ebdd24e30366",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

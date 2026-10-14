@@ -156,6 +156,14 @@ The remedy is yours, in one of two places: take the Record Type condition off th
 
 Nonprofit Cloud models people and families differently: a person is a Person Account, a family is a Household with a Party Relationship Group, and membership and family relationships are records in their own right. The **Nonprofit Cloud Extension** teaches this pipeline that shape, using the same Conversion Rules, statuses, logs and Reprocess described above. See the [Nonprofit Cloud Extension overview](../nonprofit-cloud/overview.md).
 
+## Survey answers and stored results
+
+For the upcoming survey release, **Enable Form Analytics** in Form Template Settings controls whether reportable questions create **Form Submission Answer** records. Answers are created when conversion reaches **Complete** or is **Bypassed**. The former **Survey** conversion type is no longer used. Section-level **Survey Section** controls presentation independently of analytics.
+
+Reporting settings govern which questions create answers; changing a field to **Never** does not delete earlier answers. A completed response on a template with analytics disabled does not create new reporting answers.
+
+Stored Results are a separate step. Run **Form Template | Recalculate Results** through your configured Flow, then wait for its background job before checking the updated totals. See the [recorded submission and recalculation walkthrough](survey-results.md#submit-convert-and-recalculate) and [Question Reporting](../form-configuration/question-reporting.md).
+
 ## Related Pages
 
 * [Nonprofit Cloud Extension](../nonprofit-cloud/overview.md): Person Accounts, Households and relationships

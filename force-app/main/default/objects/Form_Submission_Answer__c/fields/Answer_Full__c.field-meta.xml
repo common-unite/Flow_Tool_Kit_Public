@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Answer_Full__c</fullName>
+    <description>The whole answer, for long text and rich text answers. A report cannot group by this field; group by Answer.</description>
+    <label>Full Answer</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

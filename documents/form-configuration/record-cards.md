@@ -91,7 +91,7 @@ The image is chosen the way an Image section chooses one.
 | Asset Name | The Asset File the card shows. Required on Media Top and Photo Overlay, where the photo leads the card |
 | Image Override Field | Optional. When the record holds an image in this field, it is shown in place of the asset. A link, an Asset File as `/file-asset-public/<Name>` or its name, or a formula or rich text field holding one of those |
 | Image Height, Framed Image, Photo Overlay | Appear once an image is chosen |
-| Scrim Color | Photo Overlay only. The tint the scrim fades to and the fill under the photo, with an opacity. Empty keeps the site's navy |
+| Scrim Color | Photo Overlay only. The tint the scrim fades to and the fill under the photo, with an opacity. Empty follows the brand color, darkened so the white text stays readable |
 
 On Icon Lead and Centered Profile the Image group is called Photo, and appears when **Avatar** is set to Image.
 

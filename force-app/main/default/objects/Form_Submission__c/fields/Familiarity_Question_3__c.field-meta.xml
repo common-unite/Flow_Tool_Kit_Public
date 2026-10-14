@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Familiarity_Question_3__c</fullName>
+    <description>Part of the packaged Familiarity scale battery (Not at all Familiar through Extremely Familiar). Same-scale fields support Likert Matrix sections and self-reported knowledge or familiarity questions as reusable landing spots for survey answers.</description>
+    <label>Familiarity Question 3</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not at all Familiar</fullName>
+                <default>false</default>
+                <label>Not at all Familiar</label>
+            </value>
+            <value>
+                <fullName>Slightly Familiar</fullName>
+                <default>false</default>
+                <label>Slightly Familiar</label>
+            </value>
+            <value>
+                <fullName>Moderately Familiar</fullName>
+                <default>false</default>
+                <label>Moderately Familiar</label>
+            </value>
+            <value>
+                <fullName>Very Familiar</fullName>
+                <default>false</default>
+                <label>Very Familiar</label>
+            </value>
+            <value>
+                <fullName>Extremely Familiar</fullName>
+                <default>false</default>
+                <label>Extremely Familiar</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

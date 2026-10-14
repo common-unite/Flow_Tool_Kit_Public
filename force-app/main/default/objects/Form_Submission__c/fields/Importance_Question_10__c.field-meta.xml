@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Importance_Question_10__c</fullName>
+    <description>Part of the packaged Importance scale battery (Not at all Important through Extremely Important). Same-scale fields support Likert Matrix sections and priority questions as reusable landing spots for survey answers.</description>
+    <label>Importance Question 10</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not at all Important</fullName>
+                <default>false</default>
+                <label>Not at all Important</label>
+            </value>
+            <value>
+                <fullName>Slightly Important</fullName>
+                <default>false</default>
+                <label>Slightly Important</label>
+            </value>
+            <value>
+                <fullName>Moderately Important</fullName>
+                <default>false</default>
+                <label>Moderately Important</label>
+            </value>
+            <value>
+                <fullName>Very Important</fullName>
+                <default>false</default>
+                <label>Very Important</label>
+            </value>
+            <value>
+                <fullName>Extremely Important</fullName>
+                <default>false</default>
+                <label>Extremely Important</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

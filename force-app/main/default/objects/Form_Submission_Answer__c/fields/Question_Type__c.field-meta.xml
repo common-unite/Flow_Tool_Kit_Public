@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Question_Type__c</fullName>
+    <description>What kind of question the answer belongs to, so reports can sort and filter by it. Set from the source field&apos;s name for the fields the package ships: a scale series takes its family (Satisfaction, Confidence, Rating and the rest); the other series take the kind of response, each spanning more than one data type (Yes / No for the yes or no picklists and the checkboxes, Numeric Response for numbers and percents, Date Response for dates, Custom Response for text, long text and links); a single field takes its subject (Demographics, Contact, Address and the rest). Left blank for a field the package does not ship. Not restricted, so a customer&apos;s own before-save flow on Form Submission Answer can write a type of its own for its own fields.</description>
+    <inlineHelpText>The kind of question: a scale family such as Satisfaction or Confidence, or a subject such as Demographics. Blank for your own fields unless your automation fills it.</inlineHelpText>
+    <label>Question Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Agreement</fullName>
+                <default>false</default>
+                <label>Agreement</label>
+            </value>
+            <value>
+                <fullName>Change</fullName>
+                <default>false</default>
+                <label>Change</label>
+            </value>
+            <value>
+                <fullName>Confidence</fullName>
+                <default>false</default>
+                <label>Confidence</label>
+            </value>
+            <value>
+                <fullName>Ease</fullName>
+                <default>false</default>
+                <label>Ease</label>
+            </value>
+            <value>
+                <fullName>Expectations</fullName>
+                <default>false</default>
+                <label>Expectations</label>
+            </value>
+            <value>
+                <fullName>Familiarity</fullName>
+                <default>false</default>
+                <label>Familiarity</label>
+            </value>
+            <value>
+                <fullName>Frequency</fullName>
+                <default>false</default>
+                <label>Frequency</label>
+            </value>
+            <value>
+                <fullName>Importance</fullName>
+                <default>false</default>
+                <label>Importance</label>
+            </value>
+            <value>
+                <fullName>Likelihood</fullName>
+                <default>false</default>
+                <label>Likelihood</label>
+            </value>
+            <value>
+                <fullName>Satisfaction</fullName>
+                <default>false</default>
+                <label>Satisfaction</label>
+            </value>
+            <value>
+                <fullName>Usefulness</fullName>
+                <default>false</default>
+                <label>Usefulness</label>
+            </value>
+            <value>
+                <fullName>Rating</fullName>
+                <default>false</default>
+                <label>Rating</label>
+            </value>
+            <value>
+                <fullName>Scale</fullName>
+                <default>false</default>
+                <label>Scale</label>
+            </value>
+            <value>
+                <fullName>Yes / No</fullName>
+                <default>false</default>
+                <label>Yes / No</label>
+            </value>
+            <value>
+                <fullName>Custom Response</fullName>
+                <default>false</default>
+                <label>Custom Response</label>
+            </value>
+            <value>
+                <fullName>Custom Choice</fullName>
+                <default>false</default>
+                <label>Custom Choice</label>
+            </value>
+            <value>
+                <fullName>Numeric Response</fullName>
+                <default>false</default>
+                <label>Numeric Response</label>
+            </value>
+            <value>
+                <fullName>Date Response</fullName>
+                <default>false</default>
+                <label>Date Response</label>
+            </value>
+            <value>
+                <fullName>File Upload</fullName>
+                <default>false</default>
+                <label>File Upload</label>
+            </value>
+            <value>
+                <fullName>Total Score</fullName>
+                <default>false</default>
+                <label>Total Score</label>
+            </value>
+            <value>
+                <fullName>Demographics</fullName>
+                <default>false</default>
+                <label>Demographics</label>
+            </value>
+            <value>
+                <fullName>Contact</fullName>
+                <default>false</default>
+                <label>Contact</label>
+            </value>
+            <value>
+                <fullName>Address</fullName>
+                <default>false</default>
+                <label>Address</label>
+            </value>
+            <value>
+                <fullName>Organization</fullName>
+                <default>false</default>
+                <label>Organization</label>
+            </value>
+            <value>
+                <fullName>Consent</fullName>
+                <default>false</default>
+                <label>Consent</label>
+            </value>
+            <value>
+                <fullName>Preferences</fullName>
+                <default>false</default>
+                <label>Preferences</label>
+            </value>
+            <value>
+                <fullName>Event</fullName>
+                <default>false</default>
+                <label>Event</label>
+            </value>
+            <value>
+                <fullName>Referral</fullName>
+                <default>false</default>
+                <label>Referral</label>
+            </value>
+            <value>
+                <fullName>Request</fullName>
+                <default>false</default>
+                <label>Request</label>
+            </value>
+            <value>
+                <fullName>Order</fullName>
+                <default>false</default>
+                <label>Order</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

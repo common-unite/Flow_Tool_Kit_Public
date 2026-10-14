@@ -1,5 +1,7 @@
 # Field Validation
 
+Survey Mode keeps required-field validation when advancing a question or row. See the recorded [required-name-row example](../form-template-framework/survey-mode.md#required-answers-and-returning-to-a-question): an empty row blocks **Next**, and completing both names allows it to advance.
+
 > Enforce required fields, read-only states, minimum/maximum values, and regex patterns, manually or dynamically through conditional rules.
 
 ## Video Walkthroughs

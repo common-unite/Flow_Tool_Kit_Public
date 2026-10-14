@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Score_5_Point__c</fullName>
+    <description>The Score restated on a 1 to 5 scale, so questions scored on different scales share one axis. The lowest score among the question&apos;s options counts as 1, the highest as 5, and the others fall in between in proportion: on a scale of -2 to 2 the answer scored 0 is 3, on 0 to 10 the answer 7 is 3.8. Equal to Score on a question scored 1 to 5. Set on choice answers when the answer is written and again when the Recalculate Results job runs. Blank when the answer has no Score or its question&apos;s options carry fewer than two different scores.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Score on a 1 to 5 scale: the question&apos;s lowest option counts as 1 and its highest as 5.</inlineHelpText>
+    <label>Score (5 Point)</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

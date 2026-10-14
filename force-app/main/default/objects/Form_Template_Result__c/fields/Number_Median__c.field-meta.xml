@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_Median__c</fullName>
+    <description>The middle number entered for a number or currency question: half the answers are at or below it. Exact when the question has 200 or fewer different answers; otherwise read from the ranges the answers fall in, so approximate. Blank for any other question.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The middle number entered: half the answers are at or below it. Approximate when there are many different answers.</inlineHelpText>
+    <label>Number Median</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Likelihood_Question_6__c</fullName>
+    <description>Part of the packaged Likelihood scale battery (Very Unlikely through Very Likely). Same-scale fields support Likert Matrix sections and intention questions as reusable landing spots for survey answers.</description>
+    <label>Likelihood Question 6</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Very Unlikely</fullName>
+                <default>false</default>
+                <label>Very Unlikely</label>
+            </value>
+            <value>
+                <fullName>Unlikely</fullName>
+                <default>false</default>
+                <label>Unlikely</label>
+            </value>
+            <value>
+                <fullName>Neither Likely nor Unlikely</fullName>
+                <default>false</default>
+                <label>Neither Likely nor Unlikely</label>
+            </value>
+            <value>
+                <fullName>Likely</fullName>
+                <default>false</default>
+                <label>Likely</label>
+            </value>
+            <value>
+                <fullName>Very Likely</fullName>
+                <default>false</default>
+                <label>Very Likely</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

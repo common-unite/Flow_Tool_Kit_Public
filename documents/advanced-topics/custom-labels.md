@@ -275,6 +275,26 @@ To change the English wording, edit the label's **Value** rather than adding a t
 | `Free_Version_Block_Subtitle` | Site Design Blocks work on Account, Contact, Case, Lead and Form Template records in the free version. Upgrade to use them on other objects. | siteDesignBlock | Illustration subtitle listing the objects free supports |
 | `Free_Version_Block_Title` | Not available in free version | siteDesignBlock | Illustration title when a block sits on an object free excludes |
 
+## Site Design Block, Image Gallery
+
+| Label API Name | Display Value | Used By | Purpose |
+|---|---|---|---|
+| `Site_Design_Block_Gallery` | Photo gallery | siteDesignBlockGallery | Name of the photo group for screen readers |
+| `Site_Design_Block_Gallery_View_All_Photos` | View all {0} photos | siteDesignBlockGallery | Button that opens every photo; {0} is the number of photos |
+| `Site_Design_Block_Gallery_View_All_Count` | View all {0} | siteDesignBlockGallery | The same link on a phone |
+| `Site_Design_Block_Gallery_View_All` | View all | siteDesignBlockGallery, siteDesignBlockGalleryViewer | Under the "+N" count, and the viewer's View all control |
+| `Site_Design_Block_Gallery_More` | {0} more photos. View all | siteDesignBlockGallery | Screen reader name of the "+N" photo |
+| `Site_Design_Block_Gallery_All_Photos` | All photos | siteDesignBlockGallery | Title of the All photos window |
+| `Site_Design_Block_Gallery_Photo_Count` | {0} photos | siteDesignBlockGallery | Count under the All photos title |
+| `Site_Design_Block_Gallery_Swipe` | Swipe for more | siteDesignBlockGallery | Hint under a filmstrip on a phone |
+| `Site_Design_Block_Gallery_Photo_Number` | Photo {0} of {1} | siteDesignBlockGallery, siteDesignBlockGalleryModal, siteDesignBlockGalleryViewer | Name of a photo with no caption |
+| `Site_Design_Block_Gallery_Previous` | Previous photos | siteDesignBlockGallery | Filmstrip button that scrolls back |
+| `Site_Design_Block_Gallery_Next` | Next photos | siteDesignBlockGallery | Filmstrip button that scrolls forward |
+| `Site_Design_Block_Gallery_Close` | Close | siteDesignBlockGalleryViewer | Closes the viewer |
+| `Site_Design_Block_Gallery_Previous_Photo` | Previous photo | siteDesignBlockGalleryViewer | The viewer's previous button |
+| `Site_Design_Block_Gallery_Next_Photo` | Next photo | siteDesignBlockGalleryViewer | The viewer's next button |
+| `Site_Design_Block_Gallery_Viewer` | Photo viewer | siteDesignBlockGallery, siteDesignBlockGalleryModal | Name of the viewer's dialog, followed by its counter and caption |
+
 ## Table Builder, Errors
 
 | Label API Name | Display Value | Used By | Purpose |

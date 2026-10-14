@@ -17,7 +17,7 @@ Themes and stylesheets you already use keep working alongside it.
 
 ## Quick start
 
-**Before you start:** you need the **Form Style Defaults Manager** permission set and the **Customize Application** permission. Without the permission set, the Global Styles tab does not appear.
+**Before you start:** you need the **Form Builder (Administrator)** permission set and the **Customize Application** permission. Without the permission set, the Global Styles tab does not appear.
 
 1. In the **Flow Tool Kit** app, open **Form Builder** and select any form component. It is only there to give you a preview.
 2. Open the **Global Styles** tab. It is the last tab and may sit under **More**.
@@ -50,7 +50,7 @@ A saved style reaches every form that has no theme of its own, and every form on
 | **How it saves** | **Save org defaults**, in the bar at the bottom of the page | By itself, about two seconds after your last change |
 | **Undo an edit** | **Cancel**, before you save | Change the setting back, or clear it |
 | **Start over** | **Reset org defaults** | **Reset to org defaults** |
-| **Who can use it** | The **Form Style Defaults Manager** permission set, plus **Customize Application** to save | Anyone who can edit the template. The **Form Builder (Administrator)** and **Form Builder (Manager)** permission sets include the field it saves to, **Style Overrides** |
+| **Who can use it** | The **Form Builder (Administrator)** permission set, plus **Customize Application** to save | Anyone who can edit the template. The **Form Builder (Administrator)** and **Form Builder (Manager)** permission sets include the field it saves to, **Style Overrides** |
 
 In Form Builder, selecting a different form component changes the preview, not what you are editing. Saving in Global Styles always saves the org defaults.
 
@@ -276,7 +276,7 @@ Work down this list. The first match is usually the cause.
 
 | Symptom | Check |
 | --- | --- |
-| The Global Styles tab is missing | You need the **Form Style Defaults Manager** permission set. On a narrow screen, look under **More** |
+| The Global Styles tab is missing | You need the **Form Builder (Administrator)** permission set. On a narrow screen, look under **More** |
 | Save org defaults reports a missing permission | Saving also needs **Customize Application**, the same permission Form Builder needs to save a form |
 | "Org styles changed since you loaded them" | Another administrator saved first. Reload Form Builder, then make your change again |
 | A template change did not save | Wait for **Style overrides saved** under the editor title. If it reports an error, the record was changed elsewhere; reload the page |

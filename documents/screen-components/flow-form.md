@@ -206,3 +206,7 @@ Set `review` to true on a second screen to display a read-only summary of everyt
 * **Experience Cloud**: When used inside a Flow embedded in Experience Cloud, set `serverURL` to `{!$Flow.ServerURL}` for proper resource resolution.
 * **Language Override**: Use `languageOverride` to serve forms in specific languages. This works with Form Label Translation metadata for multilingual deployments.
 * **Dynamic Form Selection**: Enable `dynamicFormSelectorEnabled` to set the form component name from a formula or variable, enabling one screen element to render different form components based on conditions.
+
+## Survey Mode
+
+For the upcoming survey release, enable **Survey Mode** under the Form component’s **Form Properties (Optional)** in Flow Builder. See the [setup screenshot and screen Flow recording](../form-template-framework/survey-mode.md#enable-it-in-a-screen-flow). Question-level **Next** advances within the form; the Flow footer remains a separate action.

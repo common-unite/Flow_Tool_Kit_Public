@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Score__c</fullName>
+    <description>What the answer counts for, for sums and averages. For a choice: the score set for the option in the Form Builder; with none set, the number itself for a list of numbers (a 1 to 5 rating) and the place in the list, low to high, for a worded scale the package ships. For a Likert section in Number mode: the number chosen. Blank for every other answer, so an average of Score counts scored questions only. A number the respondent entered is in Number Value, not here.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>What this answer counts for. Blank when the question is not scored.</inlineHelpText>
+    <label>Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

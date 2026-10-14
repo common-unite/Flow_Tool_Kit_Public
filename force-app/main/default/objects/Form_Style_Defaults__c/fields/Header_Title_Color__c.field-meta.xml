@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Title_Color__c</fullName>
+    <description>Org default for the --ftk-header-title-color style token. Title color for section headers. A Form Theme&apos;s heading color takes priority, except the packaged Form Default theme. Blank inherits the component default.</description>
+    <label>Header title color</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

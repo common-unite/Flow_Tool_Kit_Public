@@ -52,6 +52,7 @@ Components you drag onto Flow Screens in Flow Builder.
 Multi-page forms with submissions, conversion, and lifecycle management.
 
 - **Multi-page forms**: Template → Pages → Sections → Forms architecture
+- [Survey Mode](../form-template-framework/survey-mode.md) and [Survey Results](../form-template-framework/survey-results.md), upcoming release: guided question focus, response metrics, and answer-distribution charts
 - [Page-level conditional logic](../form-template-framework/form-templates.md): show/hide entire pages based on field values or user attributes
 - **Save and resume**: users can save progress and return later
 - **Pre-fill from existing records**: populate fields from existing Salesforce records

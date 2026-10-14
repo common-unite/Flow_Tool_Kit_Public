@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaign__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Campaign this result counts, on a result broken down by campaign. Each campaign that sends a form is one round of it, so the same question can be compared from round to round. Blank on the overall result of a question, and on the result that counts the answers that carry no campaign.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Campaign whose answers this result counts. Blank on an overall result and on the result for answers with no campaign.</inlineHelpText>
+    <label>Campaign</label>
+    <referenceTo>Campaign</referenceTo>
+    <relationshipLabel>Form Template Results</relationshipLabel>
+    <relationshipName>Form_Template_Results</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

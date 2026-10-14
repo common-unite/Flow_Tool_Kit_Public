@@ -89,6 +89,7 @@ Every other token is set by its own name, exactly as listed below.
 | `--ftk-site-ink-inverse` / `-soft` / `-muted` | Text on dark surfaces, strongest to lightest |
 | `--ftk-site-warning-ink` | Warning text (timeline states) |
 | `--ftk-site-facts-label-ink` / `--ftk-site-facts-value-ink` | Facts rows label/value inks |
+| `--ftk-site-check-fill` | Fill behind a checklist bullet's tick (defaults to the accent) |
 
 ### Lines, chrome, shadows
 
@@ -110,7 +111,7 @@ Every other token is set by its own name, exactly as listed below.
 | `--ftk-site-h1-size` | Hero heading |
 | `--ftk-site-h2-size` | Call-to-action and callout headings |
 | `--ftk-site-h3-size` | Section headings |
-| `--ftk-site-title-size` | Showcase title |
+| `--ftk-site-title-size` | A hero's Body Title |
 | `--ftk-site-card-title-size` | Card titles |
 | `--ftk-site-subheading-size` | Subheadings and lead paragraphs |
 | `--ftk-site-quote-size` / `--ftk-site-price-size` | Quote text, pricing figure |
@@ -132,6 +133,9 @@ Every other token is set by its own name, exactly as listed below.
 | `--ftk-site-grid-gap` / `--ftk-site-split-gap` | Card grids; two-column split layouts |
 | `--ftk-site-button-gap` / `--ftk-site-buttons-gap` | Gap between buttons; space above the button row |
 | `--ftk-site-header-gap` | Space between a section header and its content |
+| `--ftk-site-body-gap` / `--ftk-site-stats-gap` / `--ftk-site-bullets-gap` | Space under a hero's body copy, inline stats and bullets |
+| `--ftk-site-buttons-below` / `--ftk-site-badges-gap` | Space under the button row; space under the badges |
+| `--ftk-site-footnote-gap` | Space above the footnote |
 | `--ftk-site-pad-top/right/bottom/left` | Section padding (also settable per block in the Builder) |
 | `--ftk-site-pad-mobile` / `--ftk-site-inset-gutter` | Mobile edge padding; inset-shell gutter |
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_Ranges__c</fullName>
+    <description>How the numbers entered for a number or currency question spread, as a list of ranges with the count of answers in each, written by the Recalculate Results job for the Results panel to draw. The job picks the ranges from the answers: one per number when there are six or fewer different answers, otherwise up to six ranges with round edges, the top one open. Stored as JSON, each range as its low end, its high end and its count: numbers only, so the panel words them in each viewer's language and currency. Not meant to be read or edited by hand.</description>
+    <externalId>false</externalId>
+    <label>Number Ranges</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

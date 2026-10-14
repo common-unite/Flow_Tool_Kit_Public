@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Results_Favorable__c</fullName>
+    <description>Results: the share of answers at 4 or 5 across this template&apos;s five point questions. Written by the Recalculate Results job.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Across this form&apos;s 1 to 5 questions, the share of answers scoring 4 or 5, such as Satisfied and Very Satisfied.</inlineHelpText>
+    <label>Favorable</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

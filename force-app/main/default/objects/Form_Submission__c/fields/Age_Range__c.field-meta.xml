@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Age_Range__c</fullName>
+    <description>Self-reported age range for demographic survey questions without collecting a date of birth. Includes nonoverlapping age bands and an explicit option to decline answering; no age is calculated from this field.</description>
+    <label>Age Range</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Under 18</fullName>
+                <default>false</default>
+                <label>Under 18</label>
+            </value>
+            <value>
+                <fullName>18-24</fullName>
+                <default>false</default>
+                <label>18-24</label>
+            </value>
+            <value>
+                <fullName>25-34</fullName>
+                <default>false</default>
+                <label>25-34</label>
+            </value>
+            <value>
+                <fullName>35-44</fullName>
+                <default>false</default>
+                <label>35-44</label>
+            </value>
+            <value>
+                <fullName>45-54</fullName>
+                <default>false</default>
+                <label>45-54</label>
+            </value>
+            <value>
+                <fullName>55-64</fullName>
+                <default>false</default>
+                <label>55-64</label>
+            </value>
+            <value>
+                <fullName>65 or Older</fullName>
+                <default>false</default>
+                <label>65 or Older</label>
+            </value>
+            <value>
+                <fullName>Prefer Not to Answer</fullName>
+                <default>false</default>
+                <label>Prefer Not to Answer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

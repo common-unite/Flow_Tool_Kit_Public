@@ -73,3 +73,9 @@ Grant Application (Form_Template__c)
 - [Form Templates Reference](form-templates.md): component properties
 - [Build Multi-Page Form](how-to/build-multi-page-form.md): detailed walkthrough
 - [Pages and Sections](pages-and-sections.md): page configuration details
+
+## Survey Mode
+
+For the upcoming survey release, expand a section in the page's **Page Sections** editor and enable **Survey Section** beside **Do Not Print**. Each section can use this presentation independently. The same control appears under **Customize → Component**. See [Survey Mode](survey-mode.md#enable-it-on-a-form-template) for the setting and respondent walkthrough.
+
+To collect reportable answers, use **Form Template Settings → Form Analytics → Enable Form Analytics**. This is separate from the section's presentation setting. See [Survey Results](survey-results.md).

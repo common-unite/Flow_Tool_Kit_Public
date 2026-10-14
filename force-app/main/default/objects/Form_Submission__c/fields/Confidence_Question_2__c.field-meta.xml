@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Confidence_Question_2__c</fullName>
+    <description>Part of the packaged Confidence scale battery (Not at all Confident through Extremely Confident). Same-scale fields support Likert Matrix sections and learning or readiness questions as reusable landing spots for survey answers.</description>
+    <label>Confidence Question 2</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not at all Confident</fullName>
+                <default>false</default>
+                <label>Not at all Confident</label>
+            </value>
+            <value>
+                <fullName>Slightly Confident</fullName>
+                <default>false</default>
+                <label>Slightly Confident</label>
+            </value>
+            <value>
+                <fullName>Moderately Confident</fullName>
+                <default>false</default>
+                <label>Moderately Confident</label>
+            </value>
+            <value>
+                <fullName>Very Confident</fullName>
+                <default>false</default>
+                <label>Very Confident</label>
+            </value>
+            <value>
+                <fullName>Extremely Confident</fullName>
+                <default>false</default>
+                <label>Extremely Confident</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

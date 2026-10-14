@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>picklistOptionScores__c</fullName>
+    <description>JSON map of picklist API value to score ({"apiValue":4}), edited beside the custom labels in the Customize Option Labels and Customize Visual Picker windows in Form Builder. Read only when a submission&apos;s answers are written as Form Submission Answer records: an option&apos;s score becomes the answer&apos;s Number Value, in place of the default (the number itself for a list of numbers, the place in the list for a worded scale the package ships). The form never shows it (#879).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>What each option counts for in reports of submission answers, managed from the Customize Option Labels editor in Form Builder. An option without a score keeps the default.</inlineHelpText>
+    <label>Picklist Option Scores</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>6</visibleLines>
+</CustomField>

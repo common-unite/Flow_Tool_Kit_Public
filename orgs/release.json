@@ -1,6 +1,5 @@
 {
   "orgName": "Form Builder - Release Test Org",
-  "release": "previous",
   "edition": "Enterprise",
   "features": ["Communities", "enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
   "settings": {

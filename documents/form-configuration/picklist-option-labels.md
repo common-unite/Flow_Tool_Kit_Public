@@ -1,5 +1,7 @@
 # Picklist Option Labels
 
+For the upcoming survey release, the option-label dialog also supports explicit answer scores. See [Question Reporting](question-reporting.md#assign-scores-to-answer-choices) for a recorded five-choice example and how it connects to Results.
+
 > Rename what respondents see in any picklist or multiselect, per form, without touching your org's metadata. Values stay API-safe for your automations and reports; labels become audience-friendly, and with merge fields they can even change live as the respondent fills out the form.
 
 ## Overview

@@ -31,7 +31,7 @@ A form with no Form Styles saved renders as it did before, with these exceptions
 
 ## Rollout and current limits
 
-- **Who can save the org defaults:** an administrator with the **Form Style Defaults Manager** permission set and the **Customize Application** permission. The permission set shows the Global Styles tab; Customize Application is what allows the save, the same permission Form Builder needs to save a form.
+- **Who can save the org defaults:** an administrator with the **Form Builder (Administrator)** permission set and the **Customize Application** permission. The permission set shows the Global Styles tab; Customize Application is what allows the save, the same permission Form Builder needs to save a form.
 - **Who can style a template:** anyone who can edit the template and its **Style Overrides** field, which **Form Builder (Administrator)** and **Form Builder (Manager)** include.
 - Check a few typical templates and Flow screens before you save org defaults. A Classic Theme you created, or a stylesheet, can take priority on purpose.
 - Custom-metadata sheets remain page-level CSS and need explicit selector scoping. Declare tokens under `:root` there; they reach every Flow Tool Kit component on the page. Template-assigned stylesheet selectors are scoped automatically.

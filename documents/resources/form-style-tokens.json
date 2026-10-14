@@ -1002,6 +1002,19 @@
       "requiresNativeAdapter": false
     },
     {
+      "name": "--ftk-header-title-color",
+      "label": "Header title color",
+      "category": "Headers",
+      "type": "color",
+      "description": "Title color for section headers. A Form Theme's heading color takes priority, except the packaged Form Default theme.",
+      "fallback": "Salesforce/site default",
+      "hostDefault": true,
+      "inheritedLabel": "Salesforce/site default",
+      "basic": false,
+      "cssProperty": "color",
+      "requiresNativeAdapter": false
+    },
+    {
       "name": "--ftk-header-subtitle-color",
       "label": "Header subtitle color",
       "category": "Headers",

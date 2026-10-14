@@ -110,3 +110,7 @@ Enable read-only mode to display a formatted, themed summary of record data. Use
 * **No Apex Needed**: LDS handles all data operations. This is simpler to set up but means you can't run custom Apex logic during save. For complex save operations, use a Flow-based approach instead.
 * **RelaxedCSP**: The component declares `lightningCommunity__RelaxedCSP` capability for proper styling and functionality in Experience Cloud.
 * **Form Configuration Modes**: The property editor supports both Form Component selection (metadata reference) and custom JSON form definitions, the same modes available in Form Builder.
+
+## Survey Mode
+
+For the upcoming survey release, enable **Survey Mode** in the **Form (Dynamic Component)** property editor. See the [inline and modal recordings](../form-template-framework/survey-mode.md#enable-it-in-experience-cloud) for question advancement, multi-select **Next**, and modal **Close** behavior.

@@ -46,6 +46,8 @@ This is especially useful when:
 
 ## Configuration Modes
 
+For visual browsing, folder organization, and tag filtering in Form Builder, see [Organize Form Components](../how-to-guides/organize-form-components.md).
+
 Flow Tool Kit components that accept form configurations support three input modes:
 
 ### 1. Component Mode

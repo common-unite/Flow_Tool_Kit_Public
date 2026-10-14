@@ -36,12 +36,30 @@ The redesigned Sections tree and the Live Editor, where fields are edited, moved
 
 ## Key Features
 
+### Find and Organize Form Components
+
+Click **Select Form Component** in the toolbar to browse form previews. Use the folder tree, **Category**, **Tags**, or the name and description search to narrow the list. Hover over a card or focus it with the keyboard to read its details, then select it to open the form.
+
+In **Settings → Folder and Tags**, assign the current form to a folder and add reusable tags. See [Organize Form Components](../how-to-guides/organize-form-components.md) for animated walkthroughs of tagging, creating folders, and filtering previews.
+
 ### Section Management
 
 * Create, reorder, and delete sections within a form component
 * Set section labels, descriptions, and display options
 * Configure section-level conditional visibility
 * Choose between standard layout and accordion display
+
+### Choose an Image for a Section
+
+1. Add or select an **Image** section and open its **Image** tab.
+2. Under **Asset Name**, click **Select Image**, or **Change Image** when an image is already selected.
+3. Browse the image folders, or search by label, description, or API name.
+4. Click an image tile to apply it. The selected image fills the editor's available width, with **Image Override Field** below it.
+5. Click **Save** to keep the section changes.
+
+Use **Change Image** to replace the asset or **Remove** to clear the selection.
+
+![Selecting an Image section asset, browsing image folders, and changing the selected image](../.gitbook/assets/873-image-section-selector-demo.gif)
 
 ### Field Configuration
 
@@ -67,7 +85,7 @@ You can preview how your form will look directly within Flow Builder; no need to
 
 Use the **Global Styles** tab (under **More** when space is limited) to set the org defaults: the look every form starts from. **Basics** sets the overall appearance; **Advanced** fine-tunes one detail at a time without replacing Basics. The selected form component only provides the preview. While this tab is open, the bar at the bottom of the page shows **Reset org defaults**, **Cancel** and **Save org defaults** in place of the form's own buttons, and saving stores the org defaults, not the form component.
 
-This tab needs the **Form Style Defaults Manager** permission set, and saving also needs **Customize Application**. To change one Form Template only, use the **Style Editor** tab on that template's record instead. See [Form Styles: Org Defaults and Template Overrides](../form-configuration/form-styles.md) for a quick start, where saved styles apply, how the layers combine and how to move styles between orgs. Developers can use the [CSS token reference](../form-configuration/style-token-reference.md).
+This tab needs the **Form Builder (Administrator)** permission set, and saving also needs **Customize Application**. To change one Form Template only, use the **Style Editor** tab on that template's record instead. See [Form Styles: Org Defaults and Template Overrides](../form-configuration/form-styles.md) for a quick start, where saved styles apply, how the layers combine and how to move styles between orgs. Developers can use the [CSS token reference](../form-configuration/style-token-reference.md).
 
 ### Theme Assignment
 
