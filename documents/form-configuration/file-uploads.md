@@ -65,6 +65,12 @@ Flow Tool Kit enables file uploads on any form by converting a Long Text Area fi
 }
 ```
 
+### Open a Saved File
+
+In Release 4.49, a saved file's link on an Experience Cloud site serves the file through that site's path, including any prefix such as `/testing/`. PDFs open in a new tab; other file types download. The link stays on the same site rather than sending the user to a different site's login page. The user still needs access to the file.
+
+In Lightning Experience, the link continues to open the file preview.
+
 ### File Removal (Soft Delete)
 
 When a user removes a file in the form UI, the ContentDocument is **not** deleted from Salesforce. Instead, `isDeleted: true` is set in the JSON. Your flow logic decides whether to actually delete the file or just unlink it.

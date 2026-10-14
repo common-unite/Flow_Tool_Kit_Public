@@ -4,6 +4,12 @@ A refused form save is never silent again: the save flow reports every failed st
 
 ## 🛠 A refused save shows its reason instead of "Submitted successfully" (#756, #762)
 
+Give respondents a clear next step when a save cannot complete. The message identifies the rejected value or access problem, so users do not mistake a failed save for a successful submission.
+
+![A guest form explains that Phone Type does not accept Landline and asks the respondent to choose another value](../screenshots/756-guest-save-failed-restricted-picklist.png)
+
+*The response stays on screen for correction; the error does not claim the form was submitted.*
+
 - **Guests and embedded forms no longer see a success message when nothing was saved.** The headless save flow, `Form Submission Upsert`, sent a failed Form Submission create back into its own routing, which ended cleanly, so the form reported success with no record and no auto-number consumed. Every save step in the flow now ends through Assign Error Message, and the message names the step that failed, such as Form Submission save.
 - **The toast shows everywhere the form runs.** Save errors now use Salesforce's newer toast, which also appears on LWR sites and on forms embedded in other websites, where the older toast never showed. A save error stays on screen until the respondent closes it; only field validation toasts close on their own.
 - **The message is readable and says what to do.** The platform's boilerplate is stripped and the cause is put in one plain sentence, followed by what to do: correct the answer, or contact the administrator, with a plain direction for the administrator to increase access for guest users when access is the cause. For example: `Phone Type does not accept the value "Landline". Please choose another value or contact your administrator.` Access errors, restricted picklist values, validation rules, required fields and a missing permission set grant on an override each get their own wording. The full platform text stays in the browser console for admins. Prefill flow errors get the same cleanup.
@@ -24,6 +30,10 @@ A refused form save is never silent again: the save flow reports every failed st
 - **Existing orgs do not receive new picklist values on upgrade.** If you need Other, add it to both fields and to your Form Submission record types in Setup.
 
 ## 🛠 A form says so when its pre-fill template cannot be read (#765)
+
+![A warning explains that some default answers could not be loaded](../screenshots/765-prefill-template-unreadable-notice.jpg)
+
+*Make missing defaults visible, then correct access using the sharing setup in the guide below.*
 
 - **Missing defaults are no longer silent.** When the person filling in a form cannot read its Pre-fill Template record, the form used to open without the defaults and give no sign of it, while the admin's own preview showed every default. The form now shows a warning toast saying that some default answers were not loaded because the pre-fill template is not shared with them, and asking them to contact their administrator. The toast stays until it is closed. The browser console names the Pre-fill Template record and the sharing rule that fixes it. This also covers pre-fill templates on repeater and table sections, which could stop the section from loading.
 - **Share pre-fill templates on the Is Pre-fill Template checkbox, never on the record type.** A sharing rule written on the Pre-fill Template record type stops matching when the record carries another record type. The new [Who Can Read the Pre-fill Template](../form-template-framework/prefill-templates.md#who-can-read-the-pre-fill-template) section gives the rule, and the Experience Cloud deployment guides list it as a guest setup step.
@@ -60,6 +70,10 @@ Digital Experiences must be enabled in the org before 4.46 installs or upgrades,
 - **Fixed:** after an autosave failed, later saves on the page could run as silent autosaves and show no message.
 
 ## 🛠 A blocked Next or Submit shows its toasts everywhere and moves to the first field (#758, #766)
+
+![A respondent sees a required first-name error, corrects it and continues to review](../screenshots/758-validation-recovery.gif)
+
+*Show the problem where it can be corrected. This example stops at review without submitting a registration.*
 
 - **Toasts that show everywhere, three at most.** When required fields are empty or a value fails validation, each field keeps its red message and the field-by-field toasts now use Salesforce's newer toast, so they also show on LWR sites and embedded forms, where they never appeared before. Inside a Form Template, focus also moves to the first field to fix. A screen shows at most three of them however many forms it holds: the first two problems, then a count of the rest. A warning or a save error that is still open does not take one of the three places. The Form Template's own "fix the errors" toast is gone; the field toasts already say what to fix.
 - **Everywhere a form validates:** page Next and Submit, Mark Complete in stages mode, the review page and its Edit window, and a Flow Form on its own in a Flow screen. There the Flow runtime redraws the screen after a blocked Next, so the form toasts and marks its fields and leaves focus where it was.

@@ -2,7 +2,7 @@
 
 Use **Reporting Settings** in Form Builder to choose which Form Submission fields create reportable answers, how questions are classified, and which chart they use by default.
 
-> Upcoming release. These reporting controls are not assigned a package version yet.
+> Available in [Release 4.49](../release-notes/release-4.49.md).
 
 First enable **Form Template Settings → Form Analytics → Enable Form Analytics** on the template. Question reporting settings only create answer records when that switch is on. Eligible answers are recorded when submission conversion is **Complete** or **Bypassed**, including questions in Custom mode sections. **Survey Section** controls the respondent presentation separately.
 

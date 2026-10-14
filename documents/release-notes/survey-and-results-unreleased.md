@@ -1,6 +1,6 @@
-# Survey Mode and Form Analytics upcoming release
+# Survey Mode and Form Analytics in Release 4.49
 
-These features are prepared for the next release and are not assigned a package version yet.
+These features shipped in [Release 4.49](release-4.49.md). This walkthrough retains the recorded survey and analytics examples.
 
 ## Focus on one question at a time
 

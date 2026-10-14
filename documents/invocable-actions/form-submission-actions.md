@@ -130,7 +130,7 @@ Set a question to **Always** to include it even so, or **Never** to leave it out
 
 Starts a background job that calculates each Form Template's stored results from its **Form Submission Answers**. It maintains one Form Template Result per question and the template's headline Responses, Average Score, Favorable, and Net Promoter Score. A record is written only when its numbers change.
 
-> Upcoming release. Configure this action in your own administrator-triggered or Schedule-Triggered Flow; no results schedule is installed automatically.
+> Available in [Release 4.49](../release-notes/release-4.49.md). Configure this action in your own administrator-triggered or Schedule-Triggered Flow; no results schedule is installed automatically.
 
 | Input | Required | Meaning |
 | --- | --- | --- |

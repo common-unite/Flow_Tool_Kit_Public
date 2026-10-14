@@ -78,9 +78,15 @@ This component has no Flow outputs (it is not a Flow Screen component; it embeds
 * `small`: narrow dialog
 * `medium`: standard width
 * `large`: wide dialog (default)
-* `full`: full viewport width
+* `full`: large on a desktop and edge to edge on a phone (available in Release 4.49).
+
+In Release 4.49, the flow sheet uses the package's own modal. A dialog opened inside it, such as a lookup search window, a confirmation, or another package's dialog, appears above the sheet on Experience Cloud and Lightning pages. Closing the inner dialog returns to the sheet. A required prefill flow must finish before its dialog closes; use **Finish** rather than Escape or the close icon.
 
 ## Works With
+
+![A standard Account search window appears above the flow sheet](../screenshots/894-flow-sheet-account-search.png)
+
+*Lookup search stays above the form that opened it; Cancel returns to the sheet.*
 
 | Component            | Integration                                                 |
 | -------------------- | ----------------------------------------------------------- |

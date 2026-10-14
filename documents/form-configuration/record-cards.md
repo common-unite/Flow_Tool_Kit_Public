@@ -84,6 +84,14 @@ Media Top and Photo Overlay lead with a photo, so a card with no image of its ow
 
 ### Image
 
+![Preview scrim color and opacity changes on a Photo Overlay card](../screenshots/832-photo-overlay.gif)
+
+For Photo Overlay cards, adjust **Scrim Color** and **Opacity %** while checking text contrast in the preview. Save the form when satisfied.
+
+**Release 4.48:** Photo Overlay adds Scrim Color with opacity, and Footer Right appears as a filled chip using Corner Tag Color. Asset inputs accept a bare Asset API name, `asset:<name>`, `/file-asset-public/<name>` or a site file-asset path.
+
+See the [4.48 release walkthrough](../release-notes/release-4.48.md) for these controls and repeater configuration additions.
+
 The image is chosen the way an Image section chooses one.
 
 | Setting | What it does |

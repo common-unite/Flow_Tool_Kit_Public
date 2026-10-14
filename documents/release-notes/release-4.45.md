@@ -4,6 +4,12 @@ Forms now keep their full design for every user, and the package installs again 
 
 ## 🛠 Forms keep their full design for every user (#751)
 
+Forms keep their designed layout while respecting each user's field access. An unavailable field gets a clear placeholder instead of silently changing the design for everyone.
+
+![The same grant-form layout retains placeholders for fields the current user cannot access](../screenshots/751-muted-user-placeholders-final.png)
+
+*Diagnostic example: the form keeps its layout, while restricted fields remain unavailable to this user.*
+
 - **Fields no longer disappear from a form for everyone.** A form built in custom metadata is assembled once and shared by every user. If the first person to load it could not read some of its fields, the shared copy was stored without them, and every user, admins included, saw the short form until an admin opened it in Form Builder. The form is now always assembled exactly as designed. Each user's field access still applies when the form renders: a field the user cannot read shows its "Field is not accessible" placeholder.
 - **Saved form versions keep every field too.** Saving a form in Form Builder stores a version of it. That version is now also built from the full design, whoever saves it.
 - **PDFs are unchanged.** A PDF still leaves out fields the user generating it cannot read, because it prints record values.
@@ -22,6 +28,12 @@ Forms now keep their full design for every user, and the package installs again 
 - **No rule means no change.** Components without a rule behave exactly as before.
 
 ## 🛠 Record Picker filter uses the shared rule editor (#747)
+
+Start with the Record Picker workflow below, then use the shared rule editor to refine the matching records. The recording introduces the picker; this release improves its filter configuration.
+
+![Configuring a Record Picker and its lookup suggestions](../screenshots/661-record-picker-demo.gif)
+
+[Configure lookup filtering and search fields](../how-to-guides/use-the-record-picker.md).
 
 - **Pick picklist values instead of typing them,** search the Field list, and choose operators that match the field type (In, Not In, Includes, Like, Is True, Is False and the comparisons).
 - **Merge values** such as `{{AccountId}}` have a button per row, and **cross-object paths** have their own choice in Field.

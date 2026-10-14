@@ -2,7 +2,7 @@
 
 Use **Form Analytics** in the Flow Tool Kit app, or a Form Template record's **Analytics** tab, to review answers and charts.
 
-> Upcoming release. These Analytics features are not assigned a package version yet.
+> Available in [Release 4.49](../release-notes/release-4.49.md).
 
 ## Enable answer reporting
 

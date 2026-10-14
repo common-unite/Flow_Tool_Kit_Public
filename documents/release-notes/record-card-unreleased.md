@@ -1,12 +1,14 @@
-# Record Card - upcoming release
+# Record Cards in Release 4.47
 
-This feature is prepared for the next release; it is not assigned a package version yet.
+Shipped in [Release 4.47](release-4.47.md). This page provides the detailed feature walkthrough.
 
 ## Show a record as a designed card
 
+![Record Card examples for opportunities, housing and programs](../screenshots/781-record-card-media-top.png)
+
 A Record Card lays one record out as a finished card: a photo, a badge, a title, detail rows, tags and buttons. Every line takes typed text, a `{{Field}}` merge field, or both, and a line left empty is left off the card.
 
-Nine card types ship: Media Top, Photo Overlay, Date Tile, Progress, Header Band, Icon Lead, Centered Profile, Field List and Value Spotlight. Switching type keeps the lines the new type also uses.
+Eleven card types ship: Media Top, Photo Overlay, Date Tile, Countdown, Strip, Progress, Header Band, Icon Lead, Centered Profile, Field List and Value Spotlight. Switching type keeps the lines the new type also uses.
 
 ## Available on Experience Cloud and in forms
 

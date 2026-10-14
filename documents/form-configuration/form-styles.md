@@ -15,6 +15,10 @@ Themes and stylesheets you already use keep working alongside it.
 | Write a stylesheet, or look up the code name of a setting | [CSS Style Token Reference](style-token-reference.md) and [Custom Styling Overview](custom-styling-overview.md) |
 | Understand a theme you already use | [Themes, Labels & Styling](themes-labels-styling.md) |
 
+![Change global brand color and field spacing, then save org defaults](../screenshots/749-global-styles.gif)
+
+*Preview shared styling changes in Form Builder, then select Save org defaults to apply them.*
+
 ## Quick start
 
 **Before you start:** you need the **Form Builder (Administrator)** permission set and the **Customize Application** permission. Without the permission set, the Global Styles tab does not appear.

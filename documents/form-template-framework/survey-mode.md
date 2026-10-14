@@ -2,7 +2,7 @@
 
 Survey Mode helps respondents focus on one question at a time. Enable it separately for each section with **Survey Section**. A page opens in its ordinary layout, without cards or an overlay. Entering a question brings up its card and covers the surrounding form with a 95 percent white veil.
 
-> Upcoming release. Survey Mode is not assigned a package version yet.
+> Available in [Release 4.49](../release-notes/release-4.49.md).
 
 ## Enable it on a Form Template
 
