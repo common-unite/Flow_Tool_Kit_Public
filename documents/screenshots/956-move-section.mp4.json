@@ -1,0 +1,44 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-22T18:34:59.110180+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/_handoffs/evidence/058-page-section-hover-toolbar-qa-and-docs-media/04-move-review.mp4",
+    "width": 1440,
+    "height": 1514,
+    "rotation": 0.0,
+    "duration": 6.432061,
+    "bytes": 403546,
+    "codec": "h264",
+    "frames": "230",
+    "frameRate": "60/1",
+    "averageFrameRate": "230000000/6432061"
+  },
+  "sourceSHA256": "4ef6597062fc799fa4781aaa7c1f3ac0b9663408ecd1f253bb1f807a4da8b3a5",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 1440,
+    "duration": null,
+    "fps": 50,
+    "endHold": 0,
+    "maxMB": null,
+    "codec": "libx264",
+    "crf": 18,
+    "audio": false
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/956-move-section.mp4",
+    "width": 1440,
+    "height": 1514,
+    "rotation": 0.0,
+    "duration": 7.54,
+    "bytes": 482180,
+    "codec": "h264",
+    "frames": "377",
+    "frameRate": "50/1",
+    "averageFrameRate": "50/1"
+  },
+  "outputSHA256": "59499af53c046fde297abc9d6e3485e03f612470cff68c13b7603d4ab856b58a",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

@@ -2,8 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>editModalReturnOnSelect__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>Repeater configuration flag. When true, clicking the select button inside the repeater edit modal commits and closes the modal immediately (handleEditModalCancel) and hides the separate Return button. Passed into the repeater configuration via edit-modal-return-on-select on c-flow-form-repeat. Use for pick-and-return style selection rather than open-ended editing.</description>
-    <inlineHelpText>Turn on so that selecting a record inside the repeater's edit popup immediately saves and closes it. Leave off to keep the popup open with a separate Return button until the user is done.</inlineHelpText>
+    <description>Deprecated and never read (#936). A template section repeater has no Select button, so there is nothing for this flag to act on; selecting a record inside the edit popup and returning is a Flow repeater property (editModalReturnOnSelect). Left in place because a packaged field cannot be removed. Leave it unchecked.</description>
+    <inlineHelpText>Deprecated and has no effect; leave it unchecked. Closing an edit popup on Select is a Flow repeater setting, not a template section one.</inlineHelpText>
     <label>Return on Select</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

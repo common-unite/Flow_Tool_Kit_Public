@@ -32,6 +32,7 @@
 * [Schedule Flow Cache Warming](how-to-guides/schedule-flow-cache-warming.md)
 * [Section Frame And Header](how-to-guides/section-frame-and-header.md)
 * [Set Up File Uploads](how-to-guides/set-up-file-uploads.md)
+* [Show Rich Text Field Images](how-to-guides/show-rich-text-field-images.md)
 * [Use Data Tables](how-to-guides/use-data-tables.md)
 * [Use Repeating Sections](how-to-guides/use-repeating-sections.md)
 * [Use Rich Text Message Cards](how-to-guides/use-rich-text-message-cards.md)
@@ -67,6 +68,7 @@
 
 ## Form Configuration
 
+* [Banner Sections](form-configuration/banner-sections.md)
 * [Conditional Logic](form-configuration/conditional-logic.md)
 * [Custom Metadata Types](form-configuration/custom-metadata-types.md)
 * [Custom Styling Overview](form-configuration/custom-styling-overview.md)
@@ -103,11 +105,13 @@
 
 ## Form Template Framework
 
+* [Anonymous Submissions](form-template-framework/anonymous-submissions.md)
 * [Campaign Integration](form-template-framework/campaign-integration.md)
 * [Confirmation Pages](form-template-framework/confirmation-pages.md)
 * [Creating Templates](form-template-framework/creating-templates.md)
 * [Form Availability](form-template-framework/form-availability.md)
 * [Form Submissions](form-template-framework/form-submissions.md)
+* [Form Template Mapping](form-template-framework/form-template-mapping.md)
 * [Form Template Sources](form-template-framework/form-template-sources.md)
 * [Form Templates](form-template-framework/form-templates.md)
 * [Merge Submissions](form-template-framework/merge-submissions.md)
@@ -275,6 +279,7 @@
 * [Release 4.7](release-notes/release-4.7.md)
 * [Release 4.8](release-notes/release-4.8.md)
 * [Release 4.9](release-notes/release-4.9.md)
+* [Sprint 2026 10 14 Unreleased](release-notes/sprint-2026-10-14-unreleased.md)
 * [Survey And Results Unreleased](release-notes/survey-and-results-unreleased.md)
 
 ## Platform

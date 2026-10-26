@@ -49,7 +49,7 @@ A question on a 0–10 scale keeps its own average in the question results and c
 
 ## Read question results
 
-Stored **Question results** are calculated separately from the answer records used by report charts. A newly submitted form can already have chart data while Question results still says results will appear after the **Recalculate Results** job runs.
+Stored **Question results** are calculated separately from the answer records used by report charts. A response's answers reach the charts at once. The stored numbers follow about two minutes later, when the template's results are worked out again on their own. **Refresh results**, beside **Print or save as PDF**, works them out now.
 
 Shown blank questions and hidden questions are different. **No Response** represents eligible questions that were shown but left blank. A question the respondent never saw does not count as a shown blank answer. Setting a field's reporting inclusion to **Never** affects future answer creation; historical answers remain. See [reporting inclusion](../form-configuration/question-reporting.md#exclude-future-answers-with-never).
 
@@ -58,8 +58,8 @@ Shown blank questions and hidden questions are different. **No Response** repres
 1. Submit the response and wait for its confirmation.
 2. With **Enable Form Analytics** on, wait for conversion to be **Complete** or **Bypassed** and for eligible **Form Submission Answer** records to appear.
 3. Open **Analytics → By question**, or a chart's **View report** link, to inspect the saved answers.
-4. For stored results, run **Form Template | Recalculate Results** through a Flow configured by your administrator. Wait for the background job, then reopen the results.
+4. Stored results update about two minutes after the answers are written. However many responses arrive in that time, the template is worked out once, and only that template's answers are read. To see them sooner, choose **Refresh results** beside **Print or save as PDF**; the panel reloads when the numbers are ready.
 
-**Results Last Changed** records when stored results changed. Reloading a page or switching chart views does not run the recalculation job.
+**Results Last Changed** on the Form Template records when stored results last changed. A refresh that finds the same numbers leaves it as it was. Reloading a page or switching chart views does not work the results out again. **Refresh results** is offered to users who can write Form Template Results, which the Form Builder Admin permission set grants.
 
-See the [Recalculate Results action](../invocable-actions/form-submission-actions.md#recalculate-results) to configure an administrator-triggered or scheduled Flow, and [Survey Mode](survey-mode.md) for the respondent experience.
+The [Recalculate Results action](../invocable-actions/form-submission-actions.md#recalculate-results) still works out every template at once, from an administrator-triggered or scheduled Flow. Keep a nightly run as a safety net. See [Survey Mode](survey-mode.md) for the respondent experience.

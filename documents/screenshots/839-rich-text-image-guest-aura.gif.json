@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-24T23:49:34.628835+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/rich-text-image-rig-839/media/take-guest-aura-2/raw/page@5578c52eece41fcc3a987bba7f237041.webm",
+    "width": 1280,
+    "height": 800,
+    "rotation": 0.0,
+    "duration": 24.4,
+    "bytes": 7343883,
+    "codec": "vp9",
+    "frames": null,
+    "frameRate": "50/1",
+    "averageFrameRate": "50/1"
+  },
+  "sourceSHA256": "10a0d0500226b9009ae0c3c25f7dbce629f41d3f62d95095423cacc24c90b83e",
+  "parameters": {
+    "start": 6.5,
+    "crop": null,
+    "width": 960,
+    "duration": 17.0,
+    "fps": 15,
+    "endHold": 1.5,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/839-rich-text-image-guest-aura.gif",
+    "width": 960,
+    "height": 600,
+    "rotation": 0.0,
+    "duration": 18.54,
+    "bytes": 9197668,
+    "codec": "gif",
+    "frames": "278",
+    "frameRate": "15/1",
+    "averageFrameRate": "50/3"
+  },
+  "outputSHA256": "a68155c284fb87d8014078ffff60f380b67a2a5ddf73e98965466314751b4643",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

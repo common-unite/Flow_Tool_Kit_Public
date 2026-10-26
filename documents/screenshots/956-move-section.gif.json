@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-22T18:35:01.747440+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/956-move-section.mp4",
+    "width": 1440,
+    "height": 1514,
+    "rotation": 0.0,
+    "duration": 7.54,
+    "bytes": 482180,
+    "codec": "h264",
+    "frames": "377",
+    "frameRate": "50/1",
+    "averageFrameRate": "50/1"
+  },
+  "sourceSHA256": "59499af53c046fde297abc9d6e3485e03f612470cff68c13b7603d4ab856b58a",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 1440,
+    "duration": null,
+    "fps": 25,
+    "endHold": 0.0,
+    "maxMB": 5.0,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/956-move-section.gif",
+    "width": 1440,
+    "height": 1514,
+    "rotation": 0.0,
+    "duration": 7.56,
+    "bytes": 1410607,
+    "codec": "gif",
+    "frames": "189",
+    "frameRate": "25/1",
+    "averageFrameRate": "25/1"
+  },
+  "outputSHA256": "8b78f27bf083a87fbf702cd6a5fb760b44bf535a43ae852fb7336d678df20ee6",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

@@ -88,4 +88,4 @@ A value that is not a Campaign of that survey is ignored, and the page opens on 
 * Rounds compare as groups. Comparing one person's answers from round to round is not part of this release.
 * Only scored questions appear on Compare.
 * The Compare tab shows up to twelve Campaigns.
-* Numbers on Compare, and each question's Responses, Average Score and Favorable, come from the Recalculate Results job. They are as fresh as its last run. The charts read the answers directly.
+* Numbers on Compare, and each question's Responses, Average Score and Favorable, are stored results. They update about two minutes after a response's answers are written, or at once with **Refresh results**. The charts read the answers directly.

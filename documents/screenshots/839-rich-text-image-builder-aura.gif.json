@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-24T23:53:34.119540+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/rich-text-image-rig-839/media/take-builder-aura-3/raw/page@c18a6879e79c24e725ce3fa8b12cabcb.webm",
+    "width": 1280,
+    "height": 800,
+    "rotation": 0.0,
+    "duration": 78.0,
+    "bytes": 20254659,
+    "codec": "vp9",
+    "frames": null,
+    "frameRate": "50/1",
+    "averageFrameRate": "50/1"
+  },
+  "sourceSHA256": "21edc39a5b3f776f3be989d423228c703fb69ccf56705ccf73b7e2d570572903",
+  "parameters": {
+    "start": 45.521,
+    "crop": null,
+    "width": 960,
+    "duration": 30.0,
+    "fps": 15,
+    "endHold": 1.5,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/839-rich-text-image-builder-aura.gif",
+    "width": 960,
+    "height": 600,
+    "rotation": 0.0,
+    "duration": 31.54,
+    "bytes": 9089208,
+    "codec": "gif",
+    "frames": "473",
+    "frameRate": "15/1",
+    "averageFrameRate": "50/3"
+  },
+  "outputSHA256": "02f1008b449091c3b226e6ee7cb2a36d4af299861de58d988497645c600747c9",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

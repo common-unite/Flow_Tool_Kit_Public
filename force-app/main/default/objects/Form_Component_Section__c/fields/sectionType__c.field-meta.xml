@@ -80,6 +80,11 @@
                 <default>false</default>
                 <label>recordCardSection</label>
             </value>
+            <value>
+                <fullName>bannerSection</fullName>
+                <default>false</default>
+                <label>bannerSection</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

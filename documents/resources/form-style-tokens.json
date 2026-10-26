@@ -1155,7 +1155,7 @@
       "label": "Read-only text corners",
       "category": "Text fields",
       "type": "length",
-      "description": "Read-only text corners for text fields. Specific overrides take priority over shared controls.",
+      "description": "Corners of a read-only text input and of the read-only long-text box. Specific overrides take priority over shared controls.",
       "fallback": "0.25rem",
       "fallbackTokens": [
         "--ftk-radius-medium"
@@ -1174,10 +1174,10 @@
     },
     {
       "name": "--ftk-read-only-border-width",
-      "label": "Read-only text border width",
+      "label": "Read-only long-text border width",
       "category": "Text fields",
       "type": "border-width",
-      "description": "Read-only text border width for text fields. Specific overrides take priority over shared controls.",
+      "description": "Border width of the read-only long-text box (a read-only long text with a maximum height). A read-only input keeps the platform's disabled border. Specific overrides take priority over shared controls.",
       "fallback": "1px",
       "fallbackTokens": [
         "--ftk-border-width"
@@ -1195,10 +1195,10 @@
     },
     {
       "name": "--ftk-read-only-border-color",
-      "label": "Read-only text border color",
+      "label": "Read-only long-text border color",
       "category": "Text fields",
       "type": "color",
-      "description": "Read-only text border color for text fields. Specific overrides take priority over shared controls.",
+      "description": "Border color of the read-only long-text box (a read-only long text with a maximum height). A read-only input keeps the platform's disabled border. Specific overrides take priority over shared controls.",
       "fallback": "#e5e5e5",
       "fallbackTokens": [
         "--ftk-color-border"

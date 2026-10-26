@@ -114,7 +114,7 @@ Enter a regular expression in **Field Format** and a user-friendly message in **
 
 * **Character Counter**: Automatically displays as the user types (e.g., "7 of 200"). No configuration needed.
 * **Minimum / Maximum Length**: Same as string fields. Override the schema default maximum to a lower value.
-* **Minimum / Maximum Height**: Set CSS height values (e.g., `250px`) to control the textarea size. Maximum Height is available on plain text areas and rich text alike.
+* **Minimum / Maximum Height**: Set CSS height values (e.g., `250px`) to control the textarea size. Minimum Height sizes every text area. Maximum Height applies to read-only display and to the rich text editor; an editable plain text area keeps its native sizing and resize grip (#933).
 
 ### Text (String) fields as a Text Area
 

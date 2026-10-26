@@ -54,6 +54,26 @@ Page: "Contact & Organization"
 └── Section 2 (Position: 20) → "Org_Details" form component (Account object)
 ```
 
+### Editing Sections From the Preview
+
+On a Form Template Page record, hover over any section in the **Preview** to show a dashed box around the whole section with a toolbar in its top right corner. The toolbar works like the Form Builder's hover box and stays in step with the **Page Sections** list beside it.
+
+![Hovering a section in the page preview shows the outline and the edit, move and delete toolbar](../screenshots/956-hover-toolbar.png)
+
+| Control | What it does |
+| --- | --- |
+| **Edit Section** (pencil) | Opens that section's editor from the Page Sections list. A spinner covers the section until the editor opens. |
+| **Move Section Up** / **Move Section Down** | Swaps the section with its neighbour. The preview and the Page Sections list both reorder. The first section cannot move up and the last cannot move down. |
+| **Delete Section** | Asks for confirmation on the page, then removes the section from the preview and the list. **Cancel** leaves it untouched. |
+
+![The spinner covers the section while its editor opens](../screenshots/956-edit-spinner.png)
+
+![Moving a section down and back up, with the Page Sections list following](../screenshots/956-move-section.gif)
+
+![Delete asks for confirmation before removing the section](../screenshots/956-delete-confirm.png)
+
+Hover works on whole sections only, never on single fields. **Clone** stays in the Page Sections list. Changes made in the list still update the preview.
+
 ## Flow Sections
 
 A section can render a **Screen Flow** instead of a form component. In the page section configurator, set **Component Type** to **Flow**; the source field becomes a **Flow** picklist.
@@ -140,9 +160,35 @@ Pages can be conditionally shown or hidden based on field values from **previous
 
 Page 3 ("Spouse Information") is only shown when the "Marital Status" field on Page 1 equals "Married" or "Domestic Partnership".
 
+## Section Conditional Logic
+
+A section can show or hide as the form runs, using the same rule editor as pages. Unlike page rules, a section rule reacts straight away to fields on the same page.
+
+![Ticking Prefer to remain Anonymous hides the contact section, then the rule is set in the section's Visibility panel](../screenshots/963-section-conditional-logic.gif)
+
+**Where to set it:**
+
+* **Customize** on the section, then **Visibility**. The modal's **Save** stores the rule.
+* The **Conditional Logic** tab on the section's record page.
+
+![The Visibility panel in the Customize modal, hiding a section when Anonymous is true](../screenshots/963-section-visibility-panel.png)
+
+Choose **Show when conditions are met** or **Hide when conditions are met**, then add conditions and combine them with AND, OR or custom logic. With no conditions, the section always appears.
+
+**What a hidden section does:**
+
+* The whole section goes, frame and header included.
+* Its fields skip validation and drop out of the review screen, the stage drop-down, page counts, the PDF and Answers.
+* Its fields save blank. If the section shows again in the same visit, the answers come back.
+* Table, repeater and record card rows in a hidden section are held and nothing saves while hidden. Saved child records are removed on the next save.
+* A page whose sections are all hidden is skipped like a hidden page.
+
+On a Lightning record page the form reloads after Save, so answers held while a section was hidden do not come back after a save.
+
 ## Related Pages
 
 * [Creating Templates](creating-templates.md): step-by-step template creation
 * [Form Templates Reference](form-templates.md): screen component properties
 * [Page Conditional Logic](page-conditional-logic.md): detailed conditional logic guide
 * [Template, Page and Section Merge Fields](template-page-section-merge-fields.md): `$Template`, `$Page` and `$Section` values in headers and text
+* [Form Template Mapping](form-template-mapping.md): put an Account, Contact or custom object form in a page section

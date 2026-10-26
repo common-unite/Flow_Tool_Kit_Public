@@ -2,7 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Submitted_By__c</fullName>
     <externalId>false</externalId>
-    <formula>HYPERLINK(
+    <formula>IF(Anonymous__c, &quot;Anonymous&quot;,
+/** 🕶️ An anonymous respondent is never named, not even by who created the record 🕶️ **/
+HYPERLINK(
 /** 🔗 The Link path is set here 🔗 **/
 &apos;/&apos;&amp;BlankValue(Contact_1__c,BlankValue(Lead_1__c,BlankValue(Account__c,CreatedById))), 
 
@@ -17,7 +19,7 @@ IF(Not(IsBlank(Account__c)),Account__r.Name,
 
 CreatedBy.FirstName+&quot; &quot;+CreatedBy.LastName))),
 
-&apos;_self&apos;)</formula>
+&apos;_self&apos;))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Submitted By</label>
     <required>false</required>

@@ -141,7 +141,9 @@ Starts a background job that calculates each Form Template's stored results from
 | Job Id | The recalculation job started or already waiting/running. |
 | Already Running | True when an existing job is reused and no second job is started. |
 
-The action requests work and returns before the job finishes. Wait for conversion to create the answer records, request recalculation, then check results after background processing completes. Opening Results or switching a chart does not invoke this action.
+The action requests work and returns before the job finishes. Opening Results or switching a chart does not invoke this action.
+
+You do not need this action to see new responses. A template's results are worked out again about two minutes after its answers are written, and **Refresh results** on the Analytics panel works them out at once. Both read only that template's answers and never stop this action from starting. Keep a scheduled run of this action as a nightly safety net, for example after answers are deleted or a refresh could not be scheduled.
 
 See the recorded [submission-to-results walkthrough](../form-template-framework/survey-results.md#submit-convert-and-recalculate), including the prepared administrator Flow and independently checked updated totals.
 

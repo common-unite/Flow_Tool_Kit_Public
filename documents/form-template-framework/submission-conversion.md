@@ -121,6 +121,18 @@ The packaged flows are ordinary autolaunched flows built from these calls, so cu
 
 Campaign Member conversion chains directly from the Contact and Lead upserts: as soon as a person converts, their membership follows - no separate controller pass.
 
+### Transaction Mode
+
+A **Convert to Record** call has a **Transaction Mode**, chosen under its Conversion Flow. A transaction is everything Salesforce saves together: if anything in it fails, all of it is undone and nothing is half saved.
+
+| Mode | What happens | Choose it when |
+| --- | --- | --- |
+| **Synchronous** (default) | The conversion flow runs in the same transaction as the step before it, then hands control back to the controller, which picks the next rule. | Most conversions. |
+| **Asynchronous** | The conversion flow gets a transaction of its own, with its own limits, and still hands control back. What earlier steps saved stays saved if this one fails. | The step is heavy, makes a callout, or is likely to fail without the rest having to fail with it. |
+| **Inline** | The conversion flow runs right here, and when it finishes your flow carries on with the next element. Its Return to Controller does nothing. A step that logs an error stops every element after it and leaves the reason on the submission; that step's own changes are undone, earlier steps stay. | You list the steps one after another in a single flow. |
+
+To carry on past a failing Inline step, add a fault path to its Convert to Record action and log the fault there.
+
 ## Conversion Log
 
 Every conversion attempt is logged in `Form_Submission_Conversion_Log__c`:
@@ -140,8 +152,12 @@ Dispatch steps are silent, so the log reads chronologically: **Start once, each 
 When a conversion fails (missing required fields, validation rule violations, duplicate rules):
 
 1. The conversion log records the error
-2. The submission status reflects the failure
+2. The submission status reflects the failure, and Finish never marks a conversion Complete while it carries an error
 3. The submission can be corrected and re-converted
+
+**A confirmation email that cannot be sent never fails the conversion.** The send is logged as an error row so you can find it and fix the cause (a bad address, a bounced contact email, a missing email template), and you can send the email by hand from the activity timeline; the submission still reads Complete. To log any other error the same way, tick **Record this error and carry on: it does not fail the conversion** on a Log action. That is rarely what you want.
+
+**How we treat faults.** The package handles a fault so the person submitting the form never sees it fail: the submission is left in Error with the reason, and Reprocess picks it up. It does not hide the fault from you. A step that stops an Inline run is an unhandled fault on purpose, so it appears in Setup's list of failed flow interviews and Salesforce emails your flow error recipients. Treat those as a to-do list: a fault means a gap in the process, such as a validation rule the form does not enforce or data a step needs and does not get, and the goal is to close it so the fault stops happening.
 
 ## Record types and duplicate rules
 
@@ -162,7 +178,7 @@ For the upcoming survey release, **Enable Form Analytics** in Form Template Sett
 
 Reporting settings govern which questions create answers; changing a field to **Never** does not delete earlier answers. A completed response on a template with analytics disabled does not create new reporting answers.
 
-Stored Results are a separate step. Run **Form Template | Recalculate Results** through your configured Flow, then wait for its background job before checking the updated totals. See the [recorded submission and recalculation walkthrough](survey-results.md#submit-convert-and-recalculate) and [Question Reporting](../form-configuration/question-reporting.md).
+Stored Results are a separate step. They are worked out again for the template about two minutes after its answers are written, and **Refresh results** on the Analytics panel works them out at once. **Form Template | Recalculate Results** in a scheduled Flow works out every template and is the nightly safety net. See the [recorded submission and recalculation walkthrough](survey-results.md#submit-convert-and-recalculate) and [Question Reporting](../form-configuration/question-reporting.md).
 
 ## Related Pages
 
@@ -171,3 +187,4 @@ Stored Results are a separate step. Run **Form Template | Recalculate Results** 
 * [Use Form Submissions](how-to/use-form-submissions.md): end-to-end guide
 * [Overridable Conversion Flows](how-to/overridable-conversion-flows.md): custom conversion logic
 * [Form Submission Actions](../invocable-actions/form-submission-actions.md): invocable actions for logging events
+* [Form Template Mapping](form-template-mapping.md): the Apply Submission Field Maps action fills fields from mapped page sections

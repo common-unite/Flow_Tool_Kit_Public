@@ -1,0 +1,49 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-26T04:50:43.643186+00:00",
+  "source": {
+    "path": "/Users/common-unite/Desktop/Screen Recording 2026-10-25 at 11.47.41\u202fPM.mov",
+    "width": 3024,
+    "height": 1964,
+    "rotation": 0.0,
+    "duration": 29.225,
+    "bytes": 18961643,
+    "codec": "h264",
+    "frames": "1155",
+    "frameRate": "120/1",
+    "averageFrameRate": "3850/101"
+  },
+  "sourceSHA256": "dc0cb95669a10cfa6dae7c530ca1a90f8f9ad18d8645e0f914732793a5690ce9",
+  "parameters": {
+    "start": 0,
+    "crop": [
+      0,
+      70,
+      3024,
+      1894
+    ],
+    "width": 1280,
+    "duration": null,
+    "fps": null,
+    "endHold": 0,
+    "maxMB": null,
+    "codec": "libx264",
+    "crf": 18,
+    "audio": false
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/963-section-conditional-logic.mp4",
+    "width": 1280,
+    "height": 802,
+    "rotation": 0.0,
+    "duration": 27.208333,
+    "bytes": 1207175,
+    "codec": "h264",
+    "frames": "1155",
+    "frameRate": "120/1",
+    "averageFrameRate": "27720/653"
+  },
+  "outputSHA256": "9a91c1100c8dfdea12b2f3efd3275bf4f4702a30d1f1d002cd37965c28e1a963",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

@@ -7,15 +7,11 @@
     <label>Form Component</label>
     <lookupFilter>
         <active>true</active>
+        <errorMessage>Choose a record Form Component. A component on another object needs a Form Template Mapping to feed the Form Submission; the template record page says when one is missing.</errorMessage>
         <filterItems>
             <field>Form_Component__c.RecordTypeId</field>
             <operation>equals</operation>
             <value>Record Component</value>
-        </filterItems>
-        <filterItems>
-            <field>Form_Component__c.ObjectApiName__c</field>
-            <operation>equals</operation>
-            <value>FlowToolKit__Form_Submission__c</value>
         </filterItems>
         <isOptional>false</isOptional>
     </lookupFilter>

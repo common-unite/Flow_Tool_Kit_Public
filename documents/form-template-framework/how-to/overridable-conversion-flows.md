@@ -79,3 +79,7 @@ The [Nonprofit Cloud Extension](../../nonprofit-cloud/overview.md) is this mecha
 * [Use Form Submissions](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/how-to-guides/use-form-submissions.md): submission lifecycle
 * [Form Template Framework](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-templates.md): template reference
 * [Form Submissions Reference](https://github.com/common-unite/cUnite_FormBuilder/blob/master/documents/form-template-framework/form-template-framework/form-submissions.md): submission details
+
+## Keep component field maps working in an override
+
+The packaged Upsert Account, Upsert Contact, Upsert Lead, Process Case and Process Opportunity flows run **Form Submission | Apply Submission Field Maps** after the Transform and before Remove Null Values. If you override one of them, add the same action in the same place and assign its **Record** output back to your record variable, or fields mapped on the Form Template Mapping tab will not reach the record. See [Form Template Mapping](../form-template-mapping.md#conversion).

@@ -398,6 +398,10 @@ flows:
                 options:
                     name: Testing Aura
                 ignore_failure: True
+            13:
+                task: load_form_analytics_demo
+                description: Form Analytics demo (#900), a survey template, three campaigns, 30 contacts and 90 responses submitted in one update and converted (#902), then results recalculated
+                ignore_failure: True
 
     # Reusable NPC platform layer. Deploys NO product source, so other repos can
     # consume it as a step:  flow: formbuilder:npc_org_setup
@@ -1026,6 +1030,9 @@ tasks:
         description: "Adds every picklist value the package ships (fields, record type assignments, global value sets) that the org is missing, reading the package source at the release tag. Add-only; never removes, relabels, reorders or changes defaults. New managed picklist values reach fresh installs only, so upgraded orgs need this (#696, #723)."
         class_path: tasks.sync_picklist_values.SyncPackagedPicklistValues
         group: Flow Tool Kit installer
+    load_form_analytics_demo:
+        class_path: tasks.form_analytics_demo.LoadFormAnalyticsDemo
+        description: Load the Form Analytics demo, submit its responses and wait for them to convert, then recalculate results (#900)
     check_lws_enabled:
         class_path: tasks.check_lws_enabled.CheckLWSEnabled
         description: Check if Lightning Web Security (LWS) is enabled
@@ -1125,36 +1132,7 @@ orgs:
             namespaced: True
 
 
-        sprint_2026-09-09_npc:
-            config_file: orgs/npc.json
-            days: 30
-            namespaced: True
 
-        # Sprint 2026-09-11: NPC EXTENSION-DEVELOPMENT org for #662 (the conversion engine must stop
-        # injecting Person Account matching rules when the Contact record type is not PersonAccount).
-        # Build with npc_conversion_dev_org so the extension runs from SOURCE against an installed base.
-        sprint_2026-09-11_npc:
-            config_file: orgs/npc.json
-            days: 30
-            namespaced: True
-
-        # Sprint 2026-09-09 BASE-PACKAGE org: force-app is source-deployed, nothing installed.
-        # The _npc sibling above has the released base package INSTALLED, so base components are
-        # managed there and cannot be source-deployed (#657 testing needs this one instead).
-        sprint_2026-09-09:
-            config_file: orgs/dev.json
-            days: 30
-            namespaced: True
-
-        sprint_2026-10-03:
-            config_file: orgs/dev.json
-            days: 30
-            namespaced: True
-
-        sprint_2026-10-08:
-            config_file: orgs/dev.json
-            days: 30
-            namespaced: True
 
         # #513 Form Design Kit: renders the showcase form so Phase 2 can capture
         # real markup and screenshots from the running renderer.

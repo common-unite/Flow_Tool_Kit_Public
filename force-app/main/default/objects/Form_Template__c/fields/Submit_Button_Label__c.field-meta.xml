@@ -24,6 +24,11 @@
                 <label>Submit Form</label>
             </value>
             <value>
+                <fullName>Submit Survey</fullName>
+                <default>false</default>
+                <label>Submit Survey</label>
+            </value>
+            <value>
                 <fullName>Submit Application</fullName>
                 <default>false</default>
                 <label>Submit Application</label>

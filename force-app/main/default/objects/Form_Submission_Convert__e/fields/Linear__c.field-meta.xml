@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Linear__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Set by a Convert to Record action with Linear on. The step runs in place and waits, Return to Controller does nothing, and an error stops every step after it. Never published: a linear event only travels in memory.</description>
+    <isFilteringDisabled>false</isFilteringDisabled>
+    <isNameField>false</isNameField>
+    <isSortingDisabled>false</isSortingDisabled>
+    <label>Linear</label>
+    <type>Checkbox</type>
+</CustomField>

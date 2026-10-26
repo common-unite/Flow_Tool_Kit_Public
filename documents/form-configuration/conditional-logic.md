@@ -52,6 +52,22 @@ The most common type. Evaluate a field's value on the current record:
 * **Is Blank / Is Not Blank**: Show fields when a value is present or absent
 * **Greater Than / Less Than**: Show section when `Amount` is greater than 10000
 
+### Initial and blank values
+
+`CHANGED` compares the current answer with the value the form received when it first loaded the record. Returning to that starting value makes the condition false again. It does not mean that the respondent has ever edited the field.
+
+`DOESNOTCONTAIN` requires a nonblank answer. A blank answer does not satisfy it.
+
+| Condition | Starting value | Current answer | Result |
+| --- | --- | --- | --- |
+| CHANGED | blank | blank | False |
+| CHANGED | blank | Any answer | True |
+| CHANGED | start | start2 | True |
+| CHANGED | start | start | False |
+| DOESNOTCONTAIN `show` | Any | blank | False |
+| DOESNOTCONTAIN `show` | Any | other | True |
+| DOESNOTCONTAIN `show` | Any | show more | False |
+
 ### User-Based Conditions
 
 Evaluate properties of the current user instead of field values:

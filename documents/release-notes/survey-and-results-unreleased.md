@@ -18,7 +18,7 @@ Turn on **Form Template Settings → Form Analytics → Enable Form Analytics** 
 
 ![Enable Form Analytics in Form Template Settings](../screenshots/890-form-analytics-setting.png)
 
-The template's **Analytics** tab appears when the switch is on. **By question** shows answer charts, and **View report** opens the report filtered to that template and question. Stored question metrics still use the separate **Recalculate Results** job.
+The template's **Analytics** tab appears when the switch is on. **By question** shows answer charts, and **View report** opens the report filtered to that template and question. Stored question metrics update about two minutes after a response's answers are written, and **Refresh results**, beside **Print or save as PDF**, updates them at once. Each refresh reads only that template's answers. A printed or saved copy puts three charts to a row and opens with the template's name, linked to the template, in place of the browser's own page title and address.
 
 See [Survey Results](../form-template-framework/survey-results.md) and [Question Reporting](../form-configuration/question-reporting.md) for the reporting workflow.
 
