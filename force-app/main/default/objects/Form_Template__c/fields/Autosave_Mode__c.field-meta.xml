@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Autosave_Mode__c</fullName>
-    <description>How autosave paces its saves when Enable_Autosave__c is checked. "Upon Change" (default when blank) debounces 3 seconds after the respondent's last change with a 15-second max-wait cap, so continuous typing that keeps resetting the debounce still checkpoints; saves are entirely interaction-driven. "Every 10 Seconds" / "Every 30 Seconds" run a checkpoint clock that starts on the first interaction and skips any tick where nothing changed; any save (manual or auto) stops the clock until the next interaction. Unrestricted picklist per the managed-package value-propagation rule (#222).</description>
+    <description>How often autosave runs when Enable Autosave is on. Upon Change, the default, saves 3 seconds after the respondent's last change, and at least every 15 seconds during continuous typing. Every 10 Seconds and Every 30 Seconds save on a timer that starts with the first change, skips any interval with nothing new, and pauses after each save until the respondent changes something again.</description>
     <externalId>false</externalId>
     <inlineHelpText>Choose how autosave paces itself. "Upon Change" saves 3 seconds after the respondent stops making changes (at most 15 seconds after the first unsaved change during continuous typing) and is the recommended default; the timed options save on a 10- or 30-second checkpoint clock that only runs while the respondent is actively working and never saves when nothing changed.</inlineHelpText>
     <label>Autosave Mode</label>

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Component_Type__c</fullName>
     <defaultValue>&apos;Field Set&apos;</defaultValue>
-    <description>Picklist that drives what this section renders: Field Set, Repeater, Table, Flow, Lightning Web Component, or Display Text. The formTemplatePageSection LWC reads this (via the derived isFieldSet/isRepeater/isTable/isFlow formula checkboxes and direct equality for LWC/Display Text) to pick its render branch. Field Set/Repeater/Table render a Form Component; Flow renders a Screen Flow; Lightning Web Component renders the component named in lwcComponentName; Display Text renders only rich text. Set in the page section configurator's Component tab.</description>
+    <description>What this section shows. Field Set, Repeater and Table show a Form Component's fields as one record, as repeated rows, or as an editable table. Flow shows a Screen Flow, Lightning Web Component shows a custom component, and Display Text shows rich text only. Set on the Component tab of the page section configurator; the isFieldSet, isRepeater, isTable and isFlow checkboxes are derived from it.</description>
     <inlineHelpText>Pick what this section displays: a Field Set, Repeater, or Table form component, an embedded Screen Flow, a custom Lightning Web Component, or static Display Text. Your choice controls which source field becomes visible (Form, Flow, or component name) and which Customize tabs appear.</inlineHelpText>
     <label>Component Type</label>
     <required>true</required>

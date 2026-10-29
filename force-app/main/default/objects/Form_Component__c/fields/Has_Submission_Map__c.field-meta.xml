@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Has_Submission_Map__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>Cross-object page sections (#955). True when Submission Field Map holds at least one mapping; kept in sync when the map is saved because a formula cannot read a long text field. The page section picker filters on it.</description>
+    <description>Cross-object page sections. True when Submission Field Map holds at least one mapping; kept in sync when the map is saved because a formula cannot read a long text field. The page section picker filters on it.</description>
     <inlineHelpText>Checked when this component maps fields to Form Submission fields, which lets it appear in the Form Template page section picker.</inlineHelpText>
     <label>Has Submission Map</label>
     <trackHistory>false</trackHistory>

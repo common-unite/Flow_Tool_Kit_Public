@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Submission_Field_Map__c</fullName>
-    <description>Cross-object page sections (#955). JSON keyed by Form Submission field: {"lookupField":"FlowToolKit__Account__c","fields":{"FlowToolKit__Company__c":"Name"}}. Lets a component on another object feed Form Submission fields live in a Form Template page section. Empty on Form Submission components.</description>
+    <description>Cross-object page sections. JSON keyed by Form Submission field: {"lookupField":"FlowToolKit__Account__c","fields":{"FlowToolKit__Company__c":"Name"}}. Lets a component on another object feed Form Submission fields live in a Form Template page section. Empty on Form Submission components.</description>
     <inlineHelpText>Maps this component's fields to Form Submission fields so it can be placed in a Form Template page section. Edit it from the Form Builder mapping tab.</inlineHelpText>
     <label>Submission Field Map</label>
     <length>131072</length>

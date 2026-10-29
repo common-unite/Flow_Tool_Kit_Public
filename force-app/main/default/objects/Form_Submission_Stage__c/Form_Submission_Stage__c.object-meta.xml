@@ -143,7 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>Default</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Runtime per-stage record for a Form Submission running in Stages Mode. One record per Form Template Page on the bound template; tracks completion status, assignee, and timestamps. Master-detail to Form_Submission__c — sharing follows the parent.</description>
+    <description>Tracks one stage of a Form Submission running in Stages Mode. There is one record per Form Template Page on the submission's template, holding its status, assignee and dates. Master-detail to Form Submission, so sharing follows the parent.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>

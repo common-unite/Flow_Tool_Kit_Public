@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>helpTextLong__c</fullName>
+    <description>Holds helpText when it is longer than 255 characters, such as rich text. Read first; helpText__c is the fallback for values saved before this field existed.</description>
+    <externalId>false</externalId>
+    <label>helpTextLong</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

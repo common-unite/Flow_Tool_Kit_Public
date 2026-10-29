@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Tags__c</fullName>
-    <description>#874: comma separated tags the component browser filters by. A metadata form carries the value in config__c. Long text, so it cannot be filtered in a query.</description>
+    <description>Comma separated tags that the component browser filters by. Forms built from custom metadata store the same value in their configuration. Long text, so it cannot be used in a query filter.</description>
     <inlineHelpText>Comma separated, such as Grants, Intake.</inlineHelpText>
     <label>Tags</label>
     <length>32768</length>

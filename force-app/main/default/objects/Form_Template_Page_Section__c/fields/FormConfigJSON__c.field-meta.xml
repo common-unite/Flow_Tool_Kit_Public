@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FormConfigJSON__c</fullName>
-    <description>JSON wrapper persisted by the page section editor: { formSelectionMode, object, formQualifiedApiName, formJsonConfig }. It records whether the section sources its layout from a selected Form Component (component mode) or an inline form-builder config (custom mode), keeping both so the admin can toggle modes losslessly. Read by the editor and passed to the runtime form components as form-j-s-o-n; legacy raw form-builder JSON is treated as custom mode. System-managed by the configurator.</description>
+    <description>Settings the page section editor saves for the section's form, as JSON: whether it uses a saved Form Component (component mode) or a form built in place (custom mode). Both are kept so the admin can switch modes without losing work. Managed by the configurator; do not edit by hand.</description>
     <inlineHelpText>Stores this section's component configuration, including whether it uses a selected Form or an inline custom form layout. It is written automatically by the page section configurator; edit the section through the Customize panel rather than this field.</inlineHelpText>
     <label>FormConfigJSON</label>
     <length>131072</length>

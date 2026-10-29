@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Edit_FormQualifiedApiName__c</fullName>
-    <description>QualifiedApiName of an alternate edit Form for a Table's single-row modal. Consumed by the legacy formTemplateSection render path (override-table-form-name); the current formTemplatePageSection path reads Alternate_FormQualifiedApiName__c instead. Prefer Alternate Form for new configurations.</description>
+    <description>API name of an edit form for a Table's single-row window, read only by older page sections. Current sections use Alternate Form instead; prefer it for new configurations.</description>
     <externalId>true</externalId>
-    <inlineHelpText>Legacy field for the Table single-row edit form on the older page-section layout. For new templates, set the Alternate Form field instead; leave this blank unless you are maintaining a legacy section.</inlineHelpText>
+    <inlineHelpText>Edit form for a Table's single-row window, read only by older page sections. For new templates set Alternate Form instead and leave this blank.</inlineHelpText>
     <label>FormQualifiedApiName</label>
     <length>255</length>
     <required>false</required>

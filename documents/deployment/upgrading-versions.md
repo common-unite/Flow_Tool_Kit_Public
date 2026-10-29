@@ -24,15 +24,18 @@ Flow Tool Kit is a managed package installed from AppExchange. When a new versio
 
 ## Post-Upgrade Steps
 
-### 0. LWR sites: publish every site
+### 0. LWR sites: place FlowToolKit LWR Support, then publish every site
 
-If you run an **LWR** Experience site (Build Your Own (LWR) / Microsite) that shows a Flow Tool Kit form:
+If you run an **LWR** Experience site (Build Your Own (LWR) / Microsite) that shows a Flow Tool Kit form, do this before anything else. The upgrade does not reach an LWR site until the site is published, and a site published on Winter '27 or later without the support component drops the form engine from every page that holds only a Form Template.
 
-1. Make sure the **FlowToolKit LWR Support** component is in the site footer, so every page carries it. Without it a form can stay blank or show no fields, with an `LWR3008` error in the browser console.
-2. **Publish the site.** An LWR site keeps serving the component code captured at its last publish, so an upgrade does not reach the site until you publish it.
+1. Open the site in Experience Builder, on any page. Scroll to the **Theme Footer** region at the bottom; it belongs to the theme layout and appears on every page.
+2. Drag **FlowToolKit LWR Support** from the Components panel into an empty column of that footer. It renders nothing. If the site uses more than one theme layout, do this in each layout whose pages show a form.
+3. Click **Publish**.
+4. Open a form page by its own address in a private window and confirm the form shows its fields, with no `LWR3008` error in the browser console.
+
+Why both steps: an LWR site keeps serving the component code captured at its last publish, so an upgraded package is not on the site until you publish. Since Winter '27 the publisher bundles only the components it can see on your pages at publish time, and the Form Template loads its section forms on demand, so without the support component a form page gets no section forms (blank sections, or `component/latest` requests failing with 401 or 503 in the Network panel). A site that worked on an earlier publish breaks on its next publish without this step.
 
 Aura sites and Lightning pages need no change. See [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-component-support.md), which also covers the guest settings LWR sites need.
-
 
 ### 1. Verify Permission Sets
 

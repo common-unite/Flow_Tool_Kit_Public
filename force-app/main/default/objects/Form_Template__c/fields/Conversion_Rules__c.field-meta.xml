@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Conversion_Rules__c</fullName>
-    <description>Multi-select set of conversion directives evaluated (with Contains) by the Process Form Submission convert Flows to decide which records to build from a submission — e.g. Contact1, Contact2, Account, Lead1/Lead2, Create Case, Opportunity, and address/Campaign-Member sub-actions. Options are filtered by the controlling Conversion Type. Numbered suffixes (Contact1 vs Contact2) map to the primary and secondary record on the submission.</description>
+    <description>Multi-select set of conversion directives evaluated (with Contains) by the Process Form Submission convert Flows to decide which records to build from a submission, for example Contact1, Contact2, Account, Lead1/Lead2, Create Case, Opportunity, and address/Campaign-Member sub-actions. Options are filtered by the controlling Conversion Type. Numbered suffixes (Contact1 vs Contact2) map to the primary and secondary record on the submission.</description>
     <inlineHelpText>Select every record the submission should create or update on conversion (Contact, second Contact, Account, Lead, Case, Opportunity, address and Campaign Member options). The available choices depend on the Conversion Type you picked.</inlineHelpText>
     <label>Conversion Rules</label>
     <required>false</required>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>picklistOptionLabels__c</fullName>
-    <description>JSON map of picklist API value to custom display label ({"apiValue":"override label"}), edited via the Customize Option Labels modal in Form Builder. flowFormField swaps option labels at render (single and multiselect) and registers the map with flowFormHelper so {{merge}} substitution of the field's value resolves to the same display label; saved values always remain API names. Override labels support {{merge}} fields and custom labels; values without an entry keep their default translated label (#223).</description>
+    <description>Custom wording for a picklist's options on this form, without changing the picklist itself. Edited in Form Builder's Customize Option Labels window and stored as JSON mapping each API value to its label. Saved values stay the API names, and merge fields that show the answer use the custom wording too. Labels can include merge fields and custom labels; options without an entry keep their standard translated label.</description>
     <externalId>false</externalId>
     <inlineHelpText>Maps picklist values to custom display labels, managed from the Customize Option Labels editor in Form Builder. Only what respondents see changes: saved values keep their API names, and any value without an override keeps its default label.</inlineHelpText>
     <label>Picklist Option Labels</label>

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Survey_Section__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>Presents this Field Set section as a survey: each question sits in its own frame, one question is in focus at a time and choosing an answer moves to the next (#889). Set per section so a form can mix survey questions with sections that are filled in together, such as contact details. Replaces the template-wide Survey Mode switch.</description>
+    <description>Presents this Field Set section as a survey: each question sits in its own frame, one question is in focus at a time and choosing an answer moves to the next. Set per section so a form can mix survey questions with sections that are filled in together, such as contact details. Replaces the template-wide Survey Mode switch.</description>
     <inlineHelpText>Show this section&apos;s questions one at a time, each in its own frame. Leave it off for sections people fill in together, such as contact details.</inlineHelpText>
     <label>Survey Section</label>
     <trackTrending>false</trackTrending>

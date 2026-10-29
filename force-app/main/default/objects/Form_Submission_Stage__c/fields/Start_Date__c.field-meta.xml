@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Start_Date__c</fullName>
-    <description>Stamped by the LWC the first time a respondent clicks Start/Resume on this stage. Not overridden on subsequent visits.</description>
-    <inlineHelpText>Date and time the respondent first opened this stage. Set once on the first Start/Resume click and preserved on later visits — does not reset.</inlineHelpText>
+    <description>Set by the form the first time a respondent clicks Start or Resume on this stage. Later visits do not change it.</description>
+    <inlineHelpText>Date and time the respondent first opened this stage. Set once on the first Start or Resume click and kept on later visits.</inlineHelpText>
     <label>Start Date</label>
     <required>false</required>
     <trackHistory>true</trackHistory>

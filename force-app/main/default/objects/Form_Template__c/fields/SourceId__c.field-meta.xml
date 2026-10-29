@@ -3,7 +3,7 @@
     <fullName>SourceId__c</fullName>
     <description>Self-referencing Id stamped on clones: holds the originating Form_Template__c Id. The clone controller sets it and queries siblings by it; the before/after triggers use it to suppress default-header seeding, auto Prefill Template creation, and the default first-page insert so clones reuse the source's structure instead of regenerating it.</description>
     <externalId>true</externalId>
-    <inlineHelpText>System field that links a cloned template back to the template it was copied from. Managed automatically by the clone action — you normally don't edit this.</inlineHelpText>
+    <inlineHelpText>System field that links a cloned template back to the template it was copied from. Managed automatically by the clone action, so you normally don't edit this.</inlineHelpText>
     <label>SourceId</label>
     <length>18</length>
     <required>false</required>

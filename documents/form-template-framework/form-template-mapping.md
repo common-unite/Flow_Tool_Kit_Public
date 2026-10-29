@@ -67,7 +67,25 @@ Closing the picker without picking a form puts the section back on its original 
 * **Repeaters and tables.** A mapped form in a repeater or table row maps to that row's submission.
 * **The PDF and print views** show mapped sections with the right values, labels and picklist values.
 
-Two sections that map to the same Form Submission field stay in sync, and the last change wins. This already happens between two Form Submission sections; mapping just makes it more common.
+Two sections that map to the same Form Submission field stay in sync, and the last change wins. This already happens between two Form Submission sections; mapping just makes it more common. When the sections are on the same object, the lookup they map decides which of them stay in sync; see [Several sections on the same object](#several-sections-on-the-same-object).
+
+## Several sections on the same object
+
+A template often carries more than one section on the same object: an Account section and a Parent Account section, a Primary Contact and an Alternate Contact, or one address form placed twice. The **Apply these mappings to** choice on each form decides which of those sections stay in sync on a page.
+
+| The form's mappings apply to | On a page, the section stays in sync with |
+| --- | --- |
+| One Form Submission lookup (for example **Account**) | Every other section on the same object that applies to the **same** lookup, on every page of the template. They share every field, as if they were one form. |
+| A different lookup (for example **Parent Account**) | Only sections on that lookup. Sections on different lookups never touch each other, so a value typed into Account never lands in Parent Account. |
+| All Accounts (every conversion) | Every section on that object on the page, including those on a lookup. Only the fields the All section draws cross over, so a shared address form never carries a field it does not show. |
+
+The link is the record itself when the lookup already holds one, so a section opened on a saved submission syncs with the sections that map to the same record. Before the lookup is filled, the link is the lookup field, which gives the same result.
+
+**The two-record case.** A submission that converts to two records of the same object needs two forms, one applied to each lookup. Each section then keeps its own values, and conversion fills each record through its own lookup. An All section on the same page is deliberately shared with both: it is the form for "this applies to any Account", so it shows the value of whichever lookup section changed last, and a value typed into it reaches both. If that is not what you want, apply the form to one lookup instead of All.
+
+**Calculated values.** A mapped section that shows a formula, roll-up or other calculated Form Submission field recalculates once as soon as it loads, so a saved submission opens with current values rather than the ones stored at the last save. While someone types in a mapped section, the formulas it feeds recalculate the same way they do in a Form Submission section (see [Formula Recalculation](../form-configuration/formula-recalculation.md)). Rows of a repeater or data table are saved records and do not recalculate on load.
+
+The help text under **Apply these mappings to** on the Form Template Mapping tab repeats these rules where you choose the lookup.
 
 ## Conversion
 

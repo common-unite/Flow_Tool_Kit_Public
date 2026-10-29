@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Lead_Matching_Rules__c</fullName>
-    <description>Per-section multi-select of Salesforce matching rule developer names used to find existing Leads for this section's related records during conversion. Read by Form_Submission_Convert_Setup's getPageSection branch as the section's own value; a blank checks every active Lead matching rule. The section never inherits the Form Template's Lead Matching Rules. Works with Update Most Confident Lead.</description>
+    <description>Salesforce matching rules used to find existing Leads for this section's related records during conversion. Leave blank to check every active Lead matching rule. The section never inherits the Form Template's Lead Matching Rules. Works with Update Most Confident Lead, which decides what happens when several Leads match.</description>
     <inlineHelpText>Choose which Lead matching rules conversion uses for this section's data. Leave blank to check every active Lead matching rule; pair with Update Most Confident Lead to control how multiple matches resolve.</inlineHelpText>
     <label>Lead Matching Rules</label>
     <required>false</required>

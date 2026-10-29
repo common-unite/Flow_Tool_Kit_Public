@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Header_Text_Variant__c</fullName>
     <defaultValue>&quot;default&quot;</defaultValue>
-    <description>#733: message style for the page header text (default, info, warning, error, success, highlight).</description>
+    <description>Message style for the page header text (default, info, warning, error, success, highlight).</description>
     <inlineHelpText>How the page header text is styled.</inlineHelpText>
     <label>Header Text Variant</label>
     <required>false</required>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Header_Bottom_Margin__c</fullName>
-    <description>#733: SLDS bottom-margin utility class under the Stacked page header, before the first section.</description>
+    <description>SLDS bottom-margin utility class under the Stacked page header, before the first section.</description>
     <inlineHelpText>Stacked only. Space between the header and the first section.</inlineHelpText>
     <label>Header Bottom Margin</label>
     <required>false</required>

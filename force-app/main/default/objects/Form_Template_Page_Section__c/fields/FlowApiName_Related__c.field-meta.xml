@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>FlowApiName_Related__c</fullName>
-    <description>The conversion flow the Related Records sweep dispatches this section’s captured rows to. Resolves the section’s Conversion Map Flow override when one is selected, else the packaged default for the Conversion Rule from Form Template Conversion Mapping Default custom metadata. Formula — not directly settable.</description>
+    <description>The conversion flow the Related Records sweep dispatches this section’s captured rows to. Resolves the section’s Conversion Map Flow override when one is selected, else the packaged default for the Conversion Rule from Form Template Conversion Mapping Default custom metadata. A formula, so it cannot be set directly.</description>
     <externalId>false</externalId>
     <formula>CASE(Conversion_Rule__c , 
 

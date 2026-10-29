@@ -34,6 +34,8 @@ LWR sites build their JavaScript bundle at **publish time**, from the components
 
 Aura sites do not work this way. They can fetch a component definition on demand at runtime, which is why they need no equivalent step.
 
+**Winter '27 changed what a publish includes.** Before Winter '27 the publisher also emitted a separate build for each component our code loads on demand, so a site could work without the support block if it had been published in that window. From Winter '27 the publisher builds only what it reaches from the components on each page, and nothing for an on-demand load. A page holding only a Form Template then has no section forms at all: the sections stay blank and the browser console shows `component/latest/...` requests failing with 401 (guest) or 503 (member) followed by `LWR3008`. The support block in the theme footer is the fix, and the same site breaks on its next publish without it, however long it worked before.
+
 ### Which forms need it
 
 Any LWR site where a form uses one of the on-demand pieces, which includes most real forms. It is not only for Flows: a form placed straight on a page needs it too.
@@ -75,7 +77,7 @@ Guests still need the object, field and sharing access that the form itself uses
 
 ## Publish after every upgrade
 
-An LWR site keeps serving the component code it captured at its last publish. After you upgrade Flow Tool Kit, open each LWR site in Experience Builder and **Publish**, or the site keeps running the previous version's components. Aura sites pick up the new version without publishing.
+An LWR site keeps serving the component code it captured at its last publish. After you upgrade Flow Tool Kit, open each LWR site in Experience Builder and **Publish**, or the site keeps running the previous version's components against the new package. On an upgraded but unpublished site the symptom is the same blank form and `LWR3008`, because the new component build asks for pieces the old publish never bundled. Check that the support block is in the theme footer before you publish, so the publish does not drop the on-demand pieces in turn. Aura sites pick up the new version without publishing.
 
 ## Verifying
 
@@ -89,12 +91,14 @@ After publishing, open a form page on the site as a real visitor would, in a pri
 
 | Symptom | Likely cause |
 | --- | --- |
+| The page shows "This form could not load on this page. Please contact your administrator." with a details line naming `LWR3008` | The site cannot load the form's components: place the FlowToolKit LWR Support block in the theme layout footer and publish the site; after a package upgrade, publish the site. The browser console names the component that failed |
 | Form area blank or spinning, or a form with no fields, and `LWR3008` in the console | Component Support block missing, or the site was not published after placing it |
 | A form works when you click through to it, but shows no fields from a bookmark, an emailed link or after a refresh | The Component Support block is on some pages only. Move it to the site footer and publish |
 | Guests see "Unauthorized access" or no form | **Allow guest users to access public APIs** is off |
 | Picker or background images missing for guests | **Let guest users view asset files** is off, or the site runs a version before 4.45 |
 | "You do not have the level of access necessary" where a flow should be | The flow is not restricted to permission sets and granted to the guest user |
 | An upgrade's fixes do not show on the site | The site was not published after the upgrade |
+| Sections blank right after a package upgrade; `component/latest/...lightning%2FinputField` or `...FlowToolKit%2FflowForm` returns 401 or 503, then `LWR3008` | The site was not published after the upgrade, or it was published on Winter '27 or later without the support block in the theme footer. Place the block, publish, test the page by its own address |
 | Form (Design Block) buttons show as plain links in the site's link color, with no fill | The LWR theme styles every link and, up to 4.46, its rule outranked the block's button and link colors. Upgrade to the release after 4.46, then publish the site. Aura sites were never affected |
 
 ## Related Pages

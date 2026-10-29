@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>This object is used to trigger to form conversion processes</description>
+    <description>Platform event that drives Form Submission conversion. Each event starts or continues one step of turning a submission into Salesforce records.</description>
     <eventType>HighVolume</eventType>
     <label>Form Submission Convert</label>
     <pluralLabel>Form Submission Convert</pluralLabel>

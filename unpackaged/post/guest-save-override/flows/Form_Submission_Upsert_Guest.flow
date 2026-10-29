@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>67.0</apiVersion>
+    <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
-        <description>#397: the related DML just applied everything the payload described, so the payload's job is done. It stays written with the parent save for crash and fault safety, and clears only on this success path - conversion then finds nothing to double-process. Guests never reach this element, so their payload still rides into conversion.</description>
+        <description>The related DML just applied everything the payload described, so the payload's job is done. It stays written with the parent save for crash and fault safety, and clears only on this success path - conversion then finds nothing to double-process. Guests never reach this element, so their payload still rides into conversion.</description>
         <name>Assign_Clear_Additional_Data</name>
         <label>Assign Clear Additional Data</label>
         <locationX>0</locationX>
@@ -20,7 +20,7 @@
         </connector>
     </assignments>
     <assignments>
-        <description>#397: the upsert writes the new Ids into Filter_Upsert_Records, and the caller needs them back. Without the Ids a row that was added, saved and then removed would be spliced client-side instead of marked for delete, orphaning the created record.</description>
+        <description>The upsert writes the new Ids into Filter_Upsert_Records, and the caller needs them back. Without the Ids a row that was added, saved and then removed would be spliced client-side instead of marked for delete, orphaning the created record.</description>
         <name>Assign_Upserted_Output</name>
         <label>Assign Upserted Output</label>
         <locationX>0</locationX>
@@ -38,7 +38,7 @@
         </connector>
     </assignments>
     <assignments>
-/        <description>Prefixes $Flow.FaultMessage with the step that failed and captures both into the outputs; the section or component shows the real DML failure instead of failing silently, which matters most for guest users who have no other error surface.</description>
+        <description>Prefixes $Flow.FaultMessage with the step that failed and captures both into the outputs; the section or component shows the real DML failure instead of failing silently, which matters most for guest users who have no other error surface.</description>
         <name>Assign_Error_Message</name>
         <label>Assign Error Message</label>
         <locationX>0</locationX>
@@ -221,7 +221,7 @@
         </connector>
     </assignments>
     <assignments>
-        <description>#261: intentional no-op fault sink. A stage-save fault is handled and IGNORED (no error flag, no message) so the interview finishes cleanly and the submission save stands. Guests in user mode can never update a transferred stage; stage progress is auxiliary metadata and must not block a save. The assignment re-asserts the hasError default purely because Flow requires an assignment item.</description>
+        <description>Intentional no-op fault sink. A stage-save fault is handled and IGNORED (no error flag, no message) so the interview finishes cleanly and the submission save stands. Guests in user mode can never update a transferred stage; stage progress is auxiliary metadata and must not block a save. The assignment re-asserts the hasError default purely because Flow requires an assignment item.</description>
         <name>Ignore_Stage_Fault</name>
         <label>Ignore Stage Fault</label>
         <locationX>0</locationX>
@@ -352,7 +352,7 @@
         </connector>
     </collectionProcessors>
     <decisions>
-        <description>The sequencer: after each operation the flow re-enters here and WasVisited guards pick the next unfinished job in order. A brand-new submission (no Id) requires a populated UniqueId and inserts through the external-id upsert; a record that ARRIVED with an Id updates instead (the upsert-not-visited guard, #262, keeps a record born in this interview from being redundantly re-updated, which guests cannot survive); then related records, then the stage. Each rule&apos;s conditions are the contract for what gets saved at all.</description>
+        <description>The sequencer: after each operation the flow re-enters here and WasVisited guards pick the next unfinished job in order. A brand-new submission (no Id) requires a populated UniqueId and inserts through the external-id upsert; a record that ARRIVED with an Id updates instead (the upsert-not-visited guard keeps a record born in this interview from being redundantly re-updated, which guests cannot survive); then related records, then the stage. Each rule&apos;s conditions are the contract for what gets saved at all.</description>
         <name>Switch_DML</name>
         <label>Swtich</label>
         <locationX>0</locationX>
@@ -657,7 +657,7 @@
         <upsertExternalIdField>FlowToolKit__UniqueId__c</upsertExternalIdField>
     </recordCreates>
     <recordCreates>
-        <description>First-save idempotency: upserting by FlowToolKit__UniqueId__c (unique, unlike the legacy %%%NAMESPACE%%%ExternalId__c, #256) means two saves carrying the same client-generated unique id resolve to one record, which is what makes autosave, retries, and double clicks safe on new submissions. A failed save ends the flow through Assign_Error_Message; it used to return to the sequencer, which had nothing left to run, so the interview finished with hasError false and a guest saw Submitted successfully with no record.</description>
+        <description>First-save protection: upserting by UniqueId, a unique key that the older ExternalId field is not, means two saves carrying the same client-generated id resolve to one record. That is what makes autosave, retries and double clicks safe on new submissions. A failed save ends the flow through Assign_Error_Message, so the caller sees the error and never reports a successful submit without a record.</description>
         <name>Upsert_Form_Submission</name>
         <label>Upsert</label>
         <locationX>0</locationX>
@@ -700,7 +700,7 @@
         <inputReference>Filter_Delete_Records</inputReference>
     </recordDeletes>
     <recordUpdates>
-        <description>#397: persists the cleared payload after the related DML succeeds. A one-field write keyed by Id, so it cannot re-fire the full-record save.</description>
+        <description>Persists the cleared payload after the related DML succeeds. A one-field write keyed by Id, so it cannot re-fire the full-record save.</description>
         <name>Clear_Additional_Data</name>
         <label>Clear Additional Data</label>
         <locationX>0</locationX>

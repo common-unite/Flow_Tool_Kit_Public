@@ -3,7 +3,7 @@
     <fullName>Stage_Label__c</fullName>
     <externalId>false</externalId>
     <formula>Form_Template_Page__r.Page_Label__c</formula>
-    <inlineHelpText>Display name for this stage — mirrors the linked page&apos;s Page Label so reports and list views show a human-readable name without joining to the page record.</inlineHelpText>
+    <inlineHelpText>Display name for this stage. It mirrors the linked page&apos;s Page Label so reports and list views show a readable name without joining to the page record.</inlineHelpText>
     <label>Stage Label</label>
     <required>false</required>
     <trackHistory>false</trackHistory>

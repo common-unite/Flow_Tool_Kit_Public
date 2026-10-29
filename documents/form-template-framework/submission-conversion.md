@@ -159,6 +159,17 @@ When a conversion fails (missing required fields, validation rule violations, du
 
 **How we treat faults.** The package handles a fault so the person submitting the form never sees it fail: the submission is left in Error with the reason, and Reprocess picks it up. It does not hide the fault from you. A step that stops an Inline run is an unhandled fault on purpose, so it appears in Setup's list of failed flow interviews and Salesforce emails your flow error recipients. Treat those as a to-do list: a fault means a gap in the process, such as a validation rule the form does not enforce or data a step needs and does not get, and the goal is to close it so the fault stops happening.
 
+### Your own fields on Form Submission
+
+Your custom fields on Form Submission reach your override flows as before, with two exceptions the Setup action cannot help:
+
+| Field | What happens | What to do |
+| --- | --- | --- |
+| A field whose API name matches one of ours without the prefix, for example your `Submitted_By__c` beside `FlowToolKit__Submitted_By__c` | The package cannot read it: inside the package the bare name means our field. It is left out of the record the Setup action hands to your flow, and a debug log says so | Read it in your own flow with a Get Records on the submission, or give it a name of your own |
+| A custom Address or Geolocation field | Flow cannot pass a record holding one into an action, so the whole field is left out | Its parts (street, city, latitude, longitude) are on the record as usual |
+
+Before this release both cases stopped every conversion in the org with "duplicate field selected" or "A field wasn't found or isn't supported for Apex action".
+
 ## Record types and duplicate rules
 
 The Contact engine looks up the record type a template names, checks that it exists, and then saves the Contact **without** writing `RecordTypeId`. That is deliberate: a packaged flow cannot reference `RecordTypeId` on a standard object without failing to install in every org that has no record types on it, and the package has to install everywhere. Two things follow:

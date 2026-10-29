@@ -72,7 +72,32 @@ A queried record carries **every field in the query**, and any field that is emp
 
 Use a Transform (below) that maps only the fields you own, or seed `prefillRecord` from `record` first and then modify it, so untouched fields keep their prefilled values.
 
-## Recommended pattern: surgical mapping via Transform
+## The starter flows are examples, not the only way
+
+Both starter flows are worked examples. They show one way to fill the form, and you are free to build yours differently. They map fields in two styles, so you can see each:
+
+| Style | How it maps | Where to see it |
+| --- | --- | --- |
+| **Transform elements** | Each output field is mapped by hand in the flow | The Pre-fill Mappings defaults in both starters |
+| **Prefill From Mapped Record action** | Fields copy through the sections mapped on their form components (Form Template Mapping tab), so the flow carries no field list | The Prefill (Account), Prefill (Primary Contact) and Prefill (Alternate Contacts) steps in both starters |
+
+You do not need a Transform when your sections are mapped. Keep one when you want default values or fields that are always set, whatever the sections map.
+
+## The Prefill From Mapped Record action
+
+**Form Submission | Prefill From Mapped Record** copies record values onto the submission through the Submission Field Maps of the template's sections. A value on the record replaces the submission value; a blank value never clears one. It has three modes:
+
+| Mode | You pass | It does |
+| --- | --- | --- |
+| **Single** (default) | The submission and one record your flow fetched (an Account, a Contact, a Program) | Copies the record through every section mapped to its object. Pick the Form Submission lookup the record stands for (for example Account or Parent Account) so two records of one object use their own sections. Chain one call per record and pass each call's Form Submission output to the next. Works for guest users, because the flow fetches the record. |
+| **Related** | The submission, a collection of records, and a Section Tag | Turns each record into one row for the repeater or table section with that tag, through that section's map. Assign the action's Related Records output to `prefillRelatedRecords`. |
+| **Auto** | The submission, with its lookups (Account, Contact 1 and so on) already set | For users who may read the source records (internal users, permissioned Experience Cloud users). Each section map that names a lookup queries that record as the running user, reading only fields the user can see, and copies its mapped fields. Related rows still need Related mode. |
+
+Pass the **Form Template Id** (the flow input `record.Form_Template__c`) when the submission you hand the action was built by a Transform: a Transform output carries only the fields it maps, so the action cannot find the template from it. Both starters do this. When the template is unknown the action copies nothing and says so in Skipped Mappings.
+
+The starters fetch all fields in their Get Records steps, so a field you map on a form component later is copied without editing the flow. If your clone lists fields instead, include every mapped field in the Get Records step for Single and Related; fields that are not on the record are skipped and listed in the action's Skipped Mappings output.
+
+## Surgical mapping via Transform
 
 The starter `(Form) Prefill | Template` uses **Transform elements** for field mapping. Each `transformValueActions` entry maps one output field, so the Transform's result includes only the fields your Flow owns. This avoids the most common mistake: bulk-copying every field of `record` onto `prefillRecord`, which would wipe out the Form Template's prefill values and any URL parameters the running user passed in.
 
@@ -82,8 +107,7 @@ The starter Flow:
 2. Looks up the Contact's Account.
 3. A **Switch** decision guards downstream work, only proceeding when both Contact and Account exist (so anonymous guests with no Contact safely no-op).
 4. The **Pre-fill Mappings** Transform builds `prefillRecord` with `Contact1_First_Name__c`, `Contact1_Last_Name__c`, `Contact1_Phone__c`, `Contact1_Email__c`, plus Account fields (`Company__c`, `Company_Phone__c`, `Website__c`, `Description__c`).
-5. A second **Alternate Contacts** Transform builds a collection of related Form Submissions for every other Contact on the Account, with `Internal_SectionId__c = "Contacts"` so they route to the section tagged `Contacts`.
-6. Assignment writes `prefillRecord` to the output and `Add`s the alternate contacts collection to `prefillRelatedRecords`.
+5. The Transform result is assigned to `prefillRecord` as defaults, then the Prefill From Mapped Record action runs three times: **Prefill (Account)** and **Prefill (Primary Contact)** in Single mode, and **Prefill (Alternate Contacts)** in Related mode with the tag `Contacts`. Each action writes its output straight to `prefillRecord` or `prefillRelatedRecords`.
 
 ![Starter Flow canvas in Flow Builder](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/123-prefill-flow-builder-canvas.png)
 

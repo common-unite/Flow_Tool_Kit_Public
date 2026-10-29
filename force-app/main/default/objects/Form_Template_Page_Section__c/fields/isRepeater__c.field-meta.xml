@@ -3,7 +3,7 @@
     <fullName>isRepeater__c</fullName>
     <formula>ISPICKVAL(Component_Type__c,&apos;Repeater&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <description>Formula checkbox: ISPICKVAL(Component_Type__c,'Repeater'). Read by the formTemplatePageSection LWC to render this section through c-flow-form-repeat (multiple child rows). System-derived from Component Type; not directly editable.</description>
+    <description>Checked when Component Type is Repeater, so the section shows repeated rows. A formula; not editable.</description>
     <inlineHelpText>Read-only indicator that is checked automatically when Component Type is Repeater. You do not set this directly; change the Component Type to control it.</inlineHelpText>
     <label>isRepeater</label>
     <trackTrending>false</trackTrending>

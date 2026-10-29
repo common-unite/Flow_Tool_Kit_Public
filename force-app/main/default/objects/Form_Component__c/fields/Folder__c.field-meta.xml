@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Folder__c</fullName>
-    <description>#874: where this component is filed in the component browser: folder names joined with a slash, such as Grants/Applications. A metadata form carries the value in config__c; no folder object exists. Long text, so it cannot be filtered in a query.</description>
+    <description>Where this component is filed in the component browser, as folder names joined with a slash, such as Grants/Applications. Folders exist only as this path; there is no separate folder record. Forms built from custom metadata store the same value in their configuration. Long text, so it cannot be used in a query filter.</description>
     <inlineHelpText>Folder names joined with a slash, such as Grants/Applications.</inlineHelpText>
     <label>Folder</label>
     <length>32768</length>
