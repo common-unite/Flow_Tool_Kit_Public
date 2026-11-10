@@ -178,6 +178,8 @@
         <excludedStandardButtons>Accept</excludedStandardButtons>
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
+        <excludedStandardButtons>Import</excludedStandardButtons>
+        <listViewButtons>Import_Form_Component</listViewButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

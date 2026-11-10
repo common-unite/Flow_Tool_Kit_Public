@@ -8,7 +8,7 @@ Long forms with optional sections, multi-contributor workflows, or multi-session
 
 ![Stages overview showing Complete, In progress, and Todo status badges with time estimates](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/125-stages-overview.png)
 
-![Walkthrough: opening a stage, filling it with the vertical indicator, and the Return / Save Progress / Mark Complete footer](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/125-stages-walkthrough.gif)
+{% embed url="https://vimeo.com/1241874866" %}
 
 **What you can do.**
 

@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-03T13:12:27.693370+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/guest-forms-on-your-site/out/guest-forms-on-your-site.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 198.86901,
+    "bytes": 15518609,
+    "codec": "h264",
+    "frames": "5964",
+    "frameRate": "30/1",
+    "averageFrameRate": "91607040/3053983"
+  },
+  "sourceSHA256": "39d45a55f57c7d0c3162fcb80b86beb01d8ece1569d9d208ea0c83dae2dbca43",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/guest-forms-on-your-site.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 274702,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "d116eeaf048534bdf6fcf324a6aae132db3b3e4e18682b0eceff52240ff04a4b",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-01T19:43:35.984658+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/738-change-field/out/change-field-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 36.808659,
+    "bytes": 2436511,
+    "codec": "h264",
+    "frames": "1103",
+    "frameRate": "30/1",
+    "averageFrameRate": "30/1"
+  },
+  "sourceSHA256": "30f473268e76bb44e93048c9c42f9bb0f13f9b414758ef6e9f8470683a158867",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/738-change-field-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 247114,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "1f4b79ff5015ac88e2d92ebcd826c9a46e3b5e0ddd1cc1016a47d67e226f4330",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

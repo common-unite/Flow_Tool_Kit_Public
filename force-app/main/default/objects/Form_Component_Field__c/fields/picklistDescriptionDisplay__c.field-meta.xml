@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>picklistDescriptionDisplay__c</fullName>
+    <description>Where the form shows each option&apos;s description from Picklist Option Settings. Empty means Auto: lists, survey buttons and visual pickers show it under each option; button groups and badges show it in a popup when the respondent hovers over or focuses the option (a tap on a phone); the standard picklist and multi-select combobox show it inside the dropdown menu; path and dual listbox show the chosen options&apos; descriptions under the field. Below Option, Hover Bubble and Below Field override Auto; a choice the display type cannot draw falls back to Auto.</description>
+    <inlineHelpText>Where option descriptions appear on the form. Leave empty for Auto, which picks the best place for the field&apos;s display type.</inlineHelpText>
+    <label>Option Description Display</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Below Option</fullName>
+                <default>false</default>
+                <label>Below Option</label>
+            </value>
+            <value>
+                <fullName>Hover Bubble</fullName>
+                <default>false</default>
+                <label>Hover Bubble</label>
+            </value>
+            <value>
+                <fullName>Below Field</fullName>
+                <default>false</default>
+                <label>Below Field</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

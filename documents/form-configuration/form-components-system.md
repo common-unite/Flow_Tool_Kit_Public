@@ -26,9 +26,9 @@ This is especially useful when:
 | `Label__c` | Text | Display name for the component |
 | `QualifiedApiName__c` | Text | Unique API name for referencing the component |
 | `ObjectApiName__c` | Text | The SObject API name this form is for |
-| `FormConfigJSON__c` | LongTextArea | The form definition stored as JSON |
-| `Form_Object__c` | Lookup | Reference to the Form Object metadata |
-| `Theme__c` | Lookup | Associated Form Theme |
+| `FormConfigJSON__c` | LongTextArea | A JSON copy of the form, rebuilt from the component's section, field and logic records each time it is saved |
+| `Form_Object__c` | Text | API name of the Form Object metadata record |
+| `Theme__c` | Text | API name of the Form Theme |
 | `Active__c` | Checkbox | Whether this component is available for selection |
 | `Description__c` | Text | Admin description |
 | `CategoryTag__c` | Picklist | Organizational category tag |
@@ -88,9 +88,9 @@ A shared child component that renders either a combobox (Component mode) or an e
 
 ## How It Works
 
-1. **Create a Form Component**: In Form Builder, design your form and save it as a Form Component (or create a `Form_Component__c` record directly)
-2. **Component stores JSON**: The form definition is serialized as JSON in the `FormConfigJSON__c` field
-3. **Runtime selection**: When a Flow Form, Data Table, or Experience Cloud component references the Form Component, it reads the JSON and renders the form
+1. **Create a Form Component**: In Form Builder, design your form and save it as a Form Component, or import one from another org: see [Export and Import Form Components](export-import-form-components.md). A `Form_Component__c` record inserted directly has no section or field records, so it shows nothing until it is opened in Form Builder and saved.
+2. **Component stores its parts as records**: A record component keeps its sections, fields, conditional logic and conditions in their own records, and saves a JSON copy of the whole form in `FormConfigJSON__c`
+3. **Runtime selection**: When a Flow Form, Data Table, Form Template or Experience Cloud component references the Form Component by its `VersionId__c` (`<API name>_v0`), it builds the form from those records and renders it
 4. **Version tracking**: Changes to the Form Component update the version number, providing an audit trail
 
 ## Works With
@@ -113,6 +113,20 @@ Store a Form Component QualifiedApiName on each record type (via a custom field)
 
 ### 3. Versioned Form Configurations
 Use the `Version__c` and `VersionId__c` fields to track changes to form configurations over time. Roll back by restoring a previous JSON version.
+
+## Pre-fill Values
+
+A form component placed on a page can start with values already filled in. In Experience Builder (or the Lightning App Builder), select the form component and click **Assign Pre-fill Values** under **Pre-fill Settings**. In **Assign Record Defaults**, search the field list (it lists the object's fields by label and API name, not the labels on the form) and add each field you want filled.
+
+For a Date or Date/Time field, turn on **Current date** (or **Current date/time**) and the field is filled with the date at the moment the form opens, not the date you picked while setting it up. An **Offset** box sets a number of days either way, for a due date a month out or a cut-off a week back.
+
+This video walks through adding a date field and turning on Current date:
+
+{% embed url="https://vimeo.com/1242499432" %}
+
+## Moving Components Between Orgs
+
+A record Form Component has **Export** and **Import Form Component** buttons, like a Form Template. See [Export and Import Form Components](export-import-form-components.md).
 
 ## Tips & Considerations
 

@@ -10,7 +10,9 @@
 
 A Rich Text section normally renders as plain text. With a **Message Variant**, the same section becomes a designed **message card**, useful for validation summaries, callouts, tips, or confirmations. The card's color, left accent edge, and icon are driven entirely by Lightning Design System status tokens, so it matches your org's branding across internal Lightning and Experience Cloud (LWR and Aura) sites.
 
-![Choosing a Message Variant and the card rendering live in the preview](../.gitbook/assets/148-message-variant-card-demo.gif)
+This video turns a note into Info, Warning, Error and Success cards, then a Highlight rule:
+
+{% embed url="https://vimeo.com/1242113120" %}
 
 ## The Variants
 
@@ -48,8 +50,6 @@ Use the rich text editor to write your message. A bold first line reads as the c
 ![A Highlight passage inside a framed section](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/719-highlight-block.png)
 
 The rule sits on the same edge as the fields, so the text lines up with the inputs below it.
-
-![Choosing Highlight in the Form Builder](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/719-highlight-block-demo.gif)
 
 **Form Template page sections** have the same choice. In the page section's **Customize** window, a **Display Text** section's **Message Variant** includes Highlight, and so does **Header Text Variant**, which styles the text shown with a section's header.
 

@@ -18,8 +18,9 @@ Before building a template, create the individual form components that each sect
 ## Step 2: Create the Template Record
 
 1. Navigate to the **Form Templates** tab (or create a `Form_Template__c` record directly)
-2. Set the template **Name** (e.g., "Grant Application")
-3. Configure template-level settings:
+2. Set the template **Name** (e.g., "Grant Application"), and optionally a **Form Template Subtitle** and **Header Tags** (short tags separated by semicolons, such as "2027 season; About 10 minutes")
+3. A new template starts with the **Form Header Banner** header: a banner showing the name, subtitle, Header Tags as pills and the Banner/Header Image from the **Form Images** tab. See [The default header](../form-configuration/banner-sections.md#the-default-template-header).
+4. Configure template-level settings:
    - **Active**: whether the template is available for use
    - **Save and Resume**: enable progress saving
    - **Form Availability**: date range and condition controls
@@ -61,6 +62,36 @@ Grant Application (Form_Template__c)
 └── Page 4: Review (Position: 40)
     └── Section 1: Review All (→ renders all previous sections in read-only mode)
 ```
+
+## Open the live web form
+
+**Open Web Form** on a Form Template opens the template's form on your site in a new tab, so you see it the way a respondent does.
+
+The video shows the first-click setup, then one template moved to a different site with Change Web Form Address.
+
+{% embed url="https://vimeo.com/1243904372" %}
+
+**The first time**, when no address is set, Open Web Form asks where your forms live instead:
+
+1. Pick your site from the list. Flow Tool Kit lists every active Experience Cloud site in your org with its address, and tells Aura and LWR sites apart for you. For a page outside Salesforce, pick **Custom address** and type it.
+2. Choose **Default for all templates** (saved in Flow Tool Kit Settings; only users who can edit that setting, usually admins, see this choice) or **This template only** (saved in the template's **Web Form Site URL**).
+3. Click the form link to test it, then **Save and Open**.
+
+From then on, Open Web Form opens the form straight away. Every existing template uses the default the moment it is saved; nothing else needs editing.
+
+| Site | Address saved | Open Web Form opens |
+| --- | --- | --- |
+| Aura site at `https://yoursite.my.site.com/forms` | `https://yoursite.my.site.com/forms/s/form-template` | `.../forms/s/form-template/<template Id>` |
+| LWR site at `https://yoursite.my.site.com/apply` | `https://yoursite.my.site.com/apply/form-template` | `.../apply/form-template/<template Id>` |
+| Custom address ending in `/` or `=` | as typed | the address with the Id added, no second slash |
+
+The link only works once the site has a **Form Template** object page; see step 3 of [Put a form on your site for guests](../how-to-guides/guest-forms-quickstart.md). The read-only **Web Form URL** field on the template shows the full link, for reports, emails and flows.
+
+- **Changing it later:** open the template's **Show more actions** menu and click **Change Web Form Address** (it appears once an address is set). It shows what opens now, the default and the template's own address; pick a new site and save it as the default, for this template only, or set the template back to the default.
+- **No access to set it:** a user who can't edit the template or the setting sees "Ask your admin to set it".
+- **Copied record page:** both actions are on the packaged Form Template record page and layout. If your org uses a copy of the record page, add **Open Web Form** and **Change Web Form Address** to that page's highlights panel actions yourself.
+- **Different site per team:** Flow Tool Kit Settings is a hierarchy setting, so a profile or user value replaces the org default for those users, for example to point a test team at a sandbox site.
+- **Pop-up blocked:** if the browser blocks the new tab, Open Web Form shows the link to click instead.
 
 ## Tips
 

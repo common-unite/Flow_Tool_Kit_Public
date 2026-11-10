@@ -83,6 +83,16 @@ Read [Form Styles: Org Defaults and Template Overrides](../form-configuration/fo
 
 ![Template record page with pages and sections](../.gitbook/assets/template-record-page-overview.png)
 
+## Fields Referenced
+
+The **Fields Referenced** table on a Form Template's **Related** tab lists every field the template uses, so you can review what it collects without opening each page and section.
+
+{% embed url="https://vimeo.com/1242116194" %}
+
+- The summary line counts the distinct fields, the pages they sit on, and the total bindings. It includes every field that can appear, before conditional logic hides any.
+- Each row is one place a field appears: label, API name, type, object, page, section, source (Metadata, Record or JSON) and the component it comes from. The page and section names link to their records.
+- Click a column heading to sort. Sorting by Section groups the fields the way the form shows them.
+
 ## How It Works
 
 **Template Structure**: The hierarchy is Template → Pages → Sections → Forms:
@@ -95,11 +105,11 @@ Read [Form Styles: Org Defaults and Template Overrides](../form-configuration/fo
 
 **Progress Tracking and the Vertical Indicator**: Linear templates track each page's status on Form Submission Stage records, the same records Stages Mode uses. Entering a page marks it In Progress; a validated Next marks it Done; and leaving a completed page in an invalid state (for example, after clearing a required field) flips it to a needs-correction state until fixed. The vertical stage indicator renders these statuses as markers (green check = done, blue pencil = current page, clock = in progress, orange warning = needs correction, gray dot = not visited) and doubles as navigation: respondents can always click backward, and can click forward to any page they have already visited, so returning to an early page never strands them from their last in-progress page. Statuses persist whenever the submission saves (autosave, Save Progress, submit); forms that never save still track progress for the session. Inside Flow screens the trail is session-only, since your Flow owns the DML.
 
-**Save and Resume**: When `formSubmission` is provided, the component loads previously saved data. The `saveProgress` output signals when the user wants to save their progress. Your Flow handles the actual DML to save/load the Form Submission record.
+**Save and Resume**: When `formSubmission` is provided, the component loads previously saved data. The `saveProgress` output signals when the user wants to save their progress. Your Flow handles the actual DML to save/load the Form Submission record. Outside a Flow, turn on **Send Save Progress Email** on a non-stages template and the respondent is emailed a link back to their draft after they save, at most once an hour (see [Save Progress Email](save-progress-email.md)).
 
 **Record Page / App Page**: Outside of Flows, the component renders the template's pages inline and resolves what to load from the hosting record. A Form Template or Form Submission record Id loads directly. Any other record resolves in order: the **Related Field Name** lookup (when configured and populated), the **Form Template Source** custom metadata mapping, then the **Form Template (Fallback)** selection. New submissions created through the source mapping or the fallback are stamped with the hosting record's id in `Source_Id__c`, so they report and resume from that record. When nothing resolves, the component shows a compact "No Form Found" illustration with configuration guidance instead of rendering a form. Step-by-step setup: [Host a Form on Any Record Page](how-to/host-form-on-record-page.md).
 
-![Configuring the Related Field Name and fallback Form Template on a Contact record page](../.gitbook/assets/234-record-page-resolution-demo.gif)
+{% embed url="https://vimeo.com/1241878134" %}
 
 ## Works With
 

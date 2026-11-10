@@ -8,7 +8,7 @@ Give respondents a focused survey experience, turn their answers into useful cha
 
 Survey Mode brings the active question forward while keeping the rest of the form available. Respondents move through choice questions with a click, while text and multi-select answers use **Next**. Enable it per section, so a form can combine focused survey questions with its existing layout.
 
-![Training Evaluation brings the active question into focus and advances through answers](../screenshots/880-survey-mode.gif)
+{% embed url="https://vimeo.com/1241864649" %}
 
 *From a training evaluation to a feedback survey, give each question room to be read and answered.* [See the Survey Mode guide](../form-template-framework/survey-mode.md).
 
@@ -58,7 +58,7 @@ Search the image library, browse folders, and choose from tiles in the rebuilt *
 
 The component selector shows live previews, with folders and tags to narrow the choices.
 
-![Filtering live form-component previews by tag and opening the selected component](../screenshots/874-form-browser-tags-demo.gif)
+{% embed url="https://vimeo.com/1242041141" %}
 
 *Find a reusable component and see its fields before adding it to your form.*
 

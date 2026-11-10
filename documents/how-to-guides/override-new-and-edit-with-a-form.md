@@ -12,7 +12,9 @@ By default, clicking **New** or **Edit** on a record opens the standard Salesfor
 
 This feature swaps that standard page for a form you built. Users keep clicking the same familiar **New** and **Edit** buttons; what opens is your form.
 
-![Editing an Account through an overridden Edit button](../.gitbook/assets/348-record-action-override-edit-modal-demo.gif)
+Walkthrough: making a form the Account default, overriding Edit in Setup, then editing an Account through the form.
+
+{% embed url="https://vimeo.com/1241859816" %}
 
 ## How It Works
 
@@ -43,7 +45,7 @@ Two things matter for an override form specifically:
 3. Click **Make Default** in the top right of the **Form Name** header.
 4. Click **Save** to deploy.
 
-![Toggling the Default Form button in Form Settings](../.gitbook/assets/348-record-action-override-default-form-button-demo.gif)
+The walkthrough at the top of this page shows **Make Default** in its first part.
 
 The button reports the current state and the action available:
 

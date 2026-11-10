@@ -4,6 +4,10 @@
 
 ![Full Stages Mode walkthrough on a public site: landing on the stage overview, opening a stage, saving progress, and marking stages complete](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/125-stages-public-walkthrough-demo.gif)
 
+Walkthrough: turning on Stages Mode for a Form Template, then an applicant completing one stage and leaving another in progress.
+
+{% embed url="https://vimeo.com/1241874866" %}
+
 {% hint style="success" %}
 **Try it yourself:** the form above is a live public demo. Open the [Affordable Housing | Land Trust Application](https://common-unite.my.site.com/s/form-template/a0fRQ000003mUy9/affordable-housing-land-trust-application?language=en_US) and click through the stages, save progress, and mark pages complete, no login required.
 {% endhint %}
@@ -104,18 +108,17 @@ The three FlowToolKit permission sets ship with full CRUD/FLS:
 
 ## Save & Resume via Email
 
+In stages mode the resume email is sent only when the respondent clicks the button below; the automatic [Save Progress Email](save-progress-email.md) never sends from a stages-mode template, even with **Send Save Progress Email** on.
+
 A respondent partway through a long form can click **Email me a resume link** in the stages overview header and receive a single-use URL that returns them to their exact saved state. Combined with Stages Mode, this is the answer for multi-session forms: nonprofits leaving applications open for weeks, finance teams pausing on the budget page until they have figures, contributors handing off between staff and program leads.
 
 ![Stages overview header showing the "Draft saved" indicator and the "Email me a resume link" button, with completed stages below](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/127-draft-saved-resume-button.png)
 
-> ### Required setup: must be done before the feature works in your org
+> ### Setup: where the link points
 >
-> The package ships the token plumbing, the trigger, the prefill match, the LWC button, and a starter send-resume-link flow. **Two things you have to do yourself** before the resume email is usable end-to-end:
+> The resume link opens the form at the template's **Web Form URL** with the token as the `resume` parameter, which the form template reads with no URL Parameter Mapping. Web Form URL uses the template's own address (**Web Form Site URL**, a picked site or a custom https address, set with **Open Web Form** or **Change Web Form Address**), otherwise the org's **Default Web Form URL** in Flow Tool Kit Settings, then adds the template Id. Set one of the two before using the button: with neither, no email is sent and a Conversion Log row says how to fix it. The Save Progress email uses the same link ([Save Progress email](save-progress-email.md)); for site guests read [Guest User Considerations](save-progress-email.md#guest-user-considerations).
 >
-> 1. **Create an EmailTemplate** (Classic or Lightning, Object Type = `FlowToolKit__Form_Submission__c`) and reference its `DeveloperName` from `Form_Template__c.Email_Template_Name_Resume_Form__c` on every Form Template that should use a branded email. The template body builds the resume URL using `{!FlowToolKit__Form_Submission__c.FlowToolKit__Internal_Unique_Token__c}` as the `pv9` URL parameter, pointing at your Experience Cloud / Lightning record page domain. **Without this, the resume email falls back to a minimal inline body whose URL is a `https://YOUR-DOMAIN/...` placeholder, non-functional outside Salesforce.**
-> 2. **OR override the shipped flow**: clone `(Form) Form Submission Send Resume Link | Overridable`, open its `EmailBody` text template, and replace the `YOUR-DOMAIN` placeholder in the inline `<a href="...">` with your actual Experience Cloud or Lightning Experience domain. Activate the clone, deactivate the shipped flow. This is the fallback path when an admin would rather embed the URL in the flow than via an EmailTemplate.
->
-> Pick option 1 for branding flexibility and Translation Workbench support; option 2 if the inline body is good enough but you need the URL fixed. **Without one or the other, the resume link button will send an email containing a literal `YOUR-DOMAIN` placeholder URL that won't work.**
+> For your own branded email, create an EmailTemplate (Object Type `FlowToolKit__Form_Submission__c`), merge `{!FlowToolKit__Form_Submission__c.FlowToolKit__Internal_Resume_Link__c}` (Save Progress Resume Link) for the link, and put its DeveloperName in the template's **Email Template Name (Resume Form)**. Without one, the package sends its built-in email with the same link.
 
 ### How it works
 
@@ -130,8 +133,8 @@ A respondent partway through a long form can click **Email me a resume link** in
    ```
    In this formula, `Contact1_Email__c` wins, then `Email__c`, then the related Contact 1's `Email` (so a submission whose only recipient signal is the `Contact_1__c` lookup still resolves a real address), and finally the submission Owner's `User.Email`. Because every submission has an Owner with a User email, a recipient effectively always resolves; there is no blank-recipient branch in the flow.
 5. The email goes out with merge fields for the submission Id (`{!$Record.Id}`) and token (`{!$Record.Internal_Unique_Token__c}`). The shipped body is intentionally minimal; admins clone the flow to brand the email and construct the full resume URL.
-6. The recipient clicks the link, which carries URL parameter `pv9` (Token) into the Form Template record page.
-7. The Form Template's existing URL parameter mapping (`pv9 → Internal_Unique_Token__c`) feeds the token into the `Form_Submission_Prefill` flow's `record` input.
+6. The recipient clicks the link, which carries the token in the `resume` URL parameter to the template's form page.
+7. The form template reads the token itself (no URL Parameter Mapping) and runs the template's Prefill Flow, or the packaged `Form_Submission_Prefill` when the template is on Bypass, with the token on its `record` input.
 8. The prefill flow's new resume path looks up the submission by **Token + Form_Template**. The token is a unique 128-bit random secret: adding the Submission Id to the match would be theater (any attacker with the URL also has the Id), so we keep the URL short and the Submission Id off the wire. The flow clears both `Internal_Unique_Token__c` and `Internal_Send_Resume_Link__c` (making the link single-use), and returns the saved submission plus all child `Form_Submission_Stage__c` records to the LWC.
 9. The LWC detects the resumed record by its Id, hydrates the stages overview from the returned stages, and auto-expands the last-edited stage (`Internal_LastSavedPageId__c`).
 
@@ -187,7 +190,9 @@ For a guest-portal scenario (Experience Cloud public form, respondent has no Sal
 
 1. Clone `Form_Submission_Prefill` to their own namespace (e.g. `MyOrg__Form_Submission_Resume_Guest`).
 2. Edit the clone and change `<runInMode>DefaultMode</runInMode>` to `<runInMode>SystemModeWithoutSharing</runInMode>`.
-3. Activate the clone, deactivate the shipped flow, and point `Form_Template__c.Prefill_Flow_Api_Name__c` at the clone.
+3. Activate the clone and point `Form_Template__c.Prefill_Flow_Api_Name__c` at the clone. A template on Bypass uses the shipped flow for resume links, so the clone must be named on every template whose guests should resume.
+
+Without a clone, a guest's resume link opens a new form with a notice saying the link can't open the saved form. See [Guest User Considerations](save-progress-email.md#guest-user-considerations).
 
 **Security implications the subscriber accepts when doing this:**
 
@@ -198,33 +203,18 @@ For a guest-portal scenario (Experience Cloud public form, respondent has no Sal
 
 This is exactly the kind of "subscribers extend in their own namespace" pattern FlowToolKit is designed around. The package never elevates sharing on the subscriber's behalf.
 
-### Path 1 (preferred): Customize via Form Template's Email Template Name field
+### Your own resume email: Email Template Name (Resume Form)
 
-The shipped `Form_Submission_Send_Resume_Link` flow looks at the linked Form Template's **Email Template Name (Resume Form)** field. If that field is populated, the flow finds the EmailTemplate by DeveloperName and sends via it: the admin's full branding, copy, and merge fields take over. **If the field is blank, the flow falls back to the inline body which contains a `YOUR-DOMAIN` placeholder URL that will not work in real email clients; you MUST either populate this field or override the flow (Path 2).**
+The shipped `Form_Submission_Send_Resume_Link` flow first sends the EmailTemplate named in the Form Template's **Email Template Name (Resume Form)**. If that field is blank, or that send fails for any reason, it sends the built-in email: the form's name and a **Continue your form** link built from the template's Web Form URL (see Setup above). If the built-in send fails too, the save is kept and one Log Only Conversion Log row says the email didn't send.
 
 **To configure a branded resume email per Form Template:**
 
-1. **Build an EmailTemplate** (Classic or Lightning): Setup → Email Templates → New. Give it a meaningful DeveloperName like `Resume_Grant_Application`. The Object Type should be `FlowToolKit__Form_Submission__c` so merge fields like `{!FlowToolKit__Form_Submission__c.FlowToolKit__Internal_Unique_Token__c}` are available.
-2. **Construct the resume URL inside the template body**: substitute your real Experience Cloud or Lightning record page domain for `<your-site-domain>`:
-   ```
-   https://<your-site-domain>/path/to/form-template-page?pv9={!FlowToolKit__Form_Submission__c.FlowToolKit__Internal_Unique_Token__c}
-   ```
-3. **Open the Form Template record** and set **Email Template Name (Resume Form)** to the EmailTemplate's DeveloperName (e.g. `Resume_Grant_Application`). Save.
-4. **Test**: click "Email me a resume link" on a form submission for that template. Your branded email arrives instead of the package default.
+1. **Build an EmailTemplate** (Classic or Lightning): Setup → Email Templates → New. Give it a DeveloperName like `Resume_Grant_Application` and Object Type `FlowToolKit__Form_Submission__c`.
+2. **Merge the link** with `{!FlowToolKit__Form_Submission__c.FlowToolKit__Internal_Resume_Link__c}` (Save Progress Resume Link). It is the template's Web Form URL plus `resume` and the token, so it follows the site the admin chose; no domain is typed into the email.
+3. **Open the Form Template record** and set **Email Template Name (Resume Form)** to the EmailTemplate's DeveloperName. Save.
+4. **Test**: click "Email me a resume link" on a submission for that template.
 
-### Path 2: Override the shipped flow's inline EmailBody with your domain
-
-If you don't want to manage an EmailTemplate record but still need the resume link to actually work, **override the shipped flow's inline body** so the URL in its `EmailBody` text template uses your real domain instead of the `YOUR-DOMAIN` placeholder.
-
-1. **Clone** `(Form) Form Submission Send Resume Link | Overridable`: Setup → Flows → click the flow → Save As. Give the clone a meaningful API name in your namespace.
-2. **Edit the clone's `EmailBody` text template** and replace `https://YOUR-DOMAIN/{!$Record.Form_Template__c}?pv9=...` with your actual resume URL (Experience Cloud site URL, Lightning record page URL, or wherever your form template renders). Both the button `<a href>` and the fallback "paste this URL" footer use the placeholder; replace both.
-3. **Activate the clone, deactivate the shipped flow.** The trigger condition (`ISCHANGED(Internal_Unique_Token__c) AND NOT(ISBLANK(Internal_Unique_Token__c))`) means both would otherwise fire and the recipient gets two emails; only one should be Active at a time.
-
-This same clone is also the right place to add anything else the inline body can't express: send through SendGrid / Mailgun, attach a PDF, switch templates by submission state, etc.
-
-### Either path is required
-
-**Without one of these two paths, the resume link email will literally read `https://YOUR-DOMAIN/...` in the recipient's inbox**; the click won't go anywhere useful. The package ships the wiring (token generation, single-use clearing, flow trigger, LWC button, prefill match) but the URL domain is org-specific and the package cannot construct it. Path 1 is the lightest-weight option (no flow override needed); Path 2 is the right choice if you want the URL fixed in the flow itself.
+To send through another service, attach a PDF or change the logic, clone `(Form) Form Submission Send Resume Link | Overridable`, activate the clone and deactivate the shipped flow (only one may be active, or the recipient gets two emails).
 
 ### Admin-initiated form invitations
 
@@ -398,6 +388,10 @@ Every user-facing string in the Stages overview is sourced from a Custom Label, 
 ## Non-Linear Navigation (Without Stages Mode)
 
 Stages Mode is inherently non-linear: respondents can always jump between pages. The **Non-Linear Navigation** template setting brings that same freedom to templates that keep the default linear layout.
+
+This video shows a five-page form before and after the setting is switched on:
+
+{% embed url="https://vimeo.com/1242100593" %}
 
 When enabled, clicking any page in the **vertical stage indicator** jumps straight to it - no validation gate on leaving a page (required-field enforcement stays at submit), and moving between pages updates the respondent's `Form_Submission_Stage__c` records exactly as Stages Mode does.
 

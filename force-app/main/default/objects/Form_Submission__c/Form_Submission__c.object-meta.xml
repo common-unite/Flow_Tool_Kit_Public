@@ -176,6 +176,7 @@
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
+        <listViewButtons>Reprocess_Selected</listViewButtons>
         <searchResultsAdditionalFields>Tag_Internal__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Internal_Description__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>

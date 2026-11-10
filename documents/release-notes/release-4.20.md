@@ -6,6 +6,8 @@ Extensibility on the Form Template, a Save button that stays out of the way, and
 
 - **Custom settings and business process configuration** (#572): the Form Template Settings and Data Conversion Settings tabs are components we ship and replace on every upgrade, which left nowhere to put an organization's own settings. Both tabs now end with a section deliberately left empty for you, backed by an unprotected form record you are free to fill. Add a field to Form Template, drop it into `Form Template Settings (Custom)` or `Form Template Conversion Rules (Custom)` in Form Builder, and it renders on the tab alongside ours. Because the field lives on the Form Template record, record-triggered Flows, validation rules, and overridable conversion Flows can all branch on it. Flow Tool Kit never writes to those two records, so your fields survive upgrades. See [Inject Custom Settings](../form-template-framework/how-to/inject-custom-settings.md).
 
+  {% embed url="https://vimeo.com/1242084298" %}
+
 ## Behavior changes
 
 Two changes alter how existing forms behave after upgrading. Neither needs configuration, but both are worth knowing before you upgrade.

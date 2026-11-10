@@ -8,6 +8,8 @@ A large release centered on the **native Page Sections configurator**, a **JSON-
 
 ### Native Page Sections configurator
 
+{% embed url="https://vimeo.com/1241863067" %}
+
 The *Configure Page Sections* screen flow is replaced by a native LWC configurator on the Form Template Page record page: faster, themed, and far more capable. (#143)
 
 **What you can do.**

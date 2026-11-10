@@ -86,6 +86,21 @@ This is not a cache staleness problem and resetting the form cache will not help
 
 **Solution**: schedule the daily warmer so a background job pays that cost before your users arrive. See [Schedule Flow Cache Warming](../how-to-guides/schedule-flow-cache-warming.md).
 
+## Every Form Load Is Slow, Not Only the First
+
+**Symptom**: every form is slow to appear, every time, for every user. Reloading the same form does not make it faster.
+
+**Cause**: the Flow Tool Kit cache partition has no capacity, so every form is built from scratch on every load. Measured on one form: **2,875 ms with no cache against 60 ms with it**. Nothing reports an error; it only looks slow.
+
+**Check**: Setup → **Platform Cache** → open **FormComponents** (namespace FlowToolKit). The Organization cache should show at least 3 MB.
+
+| What you see | What to do |
+|---|---|
+| 3 MB or more | The cache is not the problem. See [Experience Cloud Form Is Slow](#experience-cloud-form-is-slow) and [Forms Are Correct but Slow on the First Load Each Day](#forms-are-correct-but-slow-on-the-first-load-each-day). |
+| 0 MB in a scratch org | The org definition is missing the cache features. Add them and create a new org; see [Where the Cache Lives](../advanced-topics/cache-reset.md#where-the-cache-lives). |
+| No Platform Cache page | Professional Edition has no Platform Cache. Forms work, but every load builds cold. |
+| 0 MB in any other org | Allocate capacity to FormComponents on the same page, then contact Common-Unite support: a certified install should never show 0 MB. |
+
 ## Deployment Fails for Form Metadata
 
 **Symptom**: Change set or SFDX deployment fails with errors referencing Form\_\_mdt or related CMDT records.

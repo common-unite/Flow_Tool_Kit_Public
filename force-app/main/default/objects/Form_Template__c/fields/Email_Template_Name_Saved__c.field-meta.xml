@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Email_Template_Name_Saved__c</fullName>
-    <description>DeveloperName of the Salesforce EmailTemplate used by the Send Email Flow when notifying a user that their progress was saved. Read via BlankValue fallback after any platform-event override. Pairs with Send Save Progress Email.</description>
+    <description>DeveloperName of the email template the automatic Save Progress email uses when the submission has a Contact 1 to render it against; merge Save Progress Resume Link for the link. Without a Contact 1, or when no template matches, a built-in message with the link is sent. Also read by the Send Email flow on a Save Progress conversion event. Pairs with Send Save Progress Email.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Enter the developer name of the EmailTemplate to use when emailing users that their saved progress was kept. Works together with Send Save Progress Email.</inlineHelpText>
+    <inlineHelpText>Developer name of the email template for the Save Progress email. Used when the submission has a Contact 1; otherwise a built-in message is sent. Merge the Save Progress Resume Link field for the link.</inlineHelpText>
     <label>Email Template Name (Saved)</label>
     <length>255</length>
     <required>false</required>

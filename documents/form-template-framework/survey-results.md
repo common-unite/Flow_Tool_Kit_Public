@@ -18,6 +18,10 @@ Open the template's **Analytics** tab. If it is hidden by the available width, u
 
 ![The Analytics tab shows satisfaction and usefulness charts for a completed Training Evaluation response](../screenshots/890-analytics-tab.png)
 
+The last part of this walkthrough refreshes and reads the Analytics tab:
+
+{% embed url="https://vimeo.com/1241864649" %}
+
 ## Explore responses and charts
 
 **By question** displays individual question charts. Use the **Question** selector to narrow the view. **By type** groups the reporting view by question type, and **Question results** provides stored per-question metrics.

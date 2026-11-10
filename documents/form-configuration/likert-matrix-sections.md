@@ -11,7 +11,9 @@ A Likert Matrix section renders a group of fields as a survey-style grid: one ro
 * **Two modes.** Picklist mode builds the answer columns from a picklist field's options; Number mode lets you define labeled answers that store numbers, with an optional live total.
 * **On phones and narrow columns** the grid collapses to stacked survey-button cards per question, using the same brand-aware styling as the [Survey Buttons display type](field-type-settings.md#survey-buttons).
 
-![A Likert Matrix being configured and answered live in the Form Builder preview](../.gitbook/assets/144-likert-picklist-demo.gif)
+This video adds a Likert Matrix section, three questions as rows and a trimmed scale, then shows Survey Buttons and Visual Picker on a single question:
+
+{% embed url="https://vimeo.com/1242095057" %}
 
 You will find **Likert Matrix** in the new-section menu under Input Fields:
 
@@ -32,7 +34,7 @@ Rows stripe alternately for readability, the selected cell fills with your org's
 Both picklist override tools work on the matrix and apply to the whole scale:
 
 * **Override Available Picklist Options** subsets or reorders the columns. Enable three of five options on the first field and the matrix renders three columns.
-* **Override Option Labels** relabels columns without touching stored values, with full merge-field support. See [Picklist Option Labels](picklist-option-labels.md).
+* **Override Option Labels** relabels columns without touching stored values, with full merge-field support, and can give each column a description that shows when the respondent hovers or focuses the column header. See [Picklist Option Labels](picklist-option-labels.md).
 
 ![Customizing a column label from the matrix's option label editor](../.gitbook/assets/144-likert-option-labels.png)
 

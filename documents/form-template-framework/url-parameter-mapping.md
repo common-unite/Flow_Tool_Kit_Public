@@ -72,7 +72,7 @@ The form accepts either spelling, so you never have to think about it beyond pic
 * **New submissions only**: URL parameters are only applied when creating a new Form Submission. Resuming a saved submission never overwrites existing values.
 * **Non-Flow context only**: when the form runs inside a Flow, use the existing `Form (Get Url Parameters)` screen component instead. URL Parameter Mapping is for forms loaded directly on record pages or Experience Cloud.
 * **One param, many fields**: the same URL parameter can be mapped to multiple Form Submission fields (e.g., map `pv1` to both `Referral_Code__c` and `Campaign_Source__c`).
-* **Intelligent type coercion**: URL parameters are strings, but the system automatically converts values to match the target field type (numbers, booleans, dates, lookups).
+* **Intelligent type coercion**: URL parameters are strings, but the system automatically converts values to match the target field type (numbers, booleans, dates, times, lookups).
 
 ### Type Coercion
 
@@ -84,10 +84,13 @@ The form accepts either spelling, so you never have to think about it beyond pic
 | Checkbox                  | `"true"` or `"1"` → true | `pv1=true` → `true`                        |
 | Date                      | Parse ISO format         | `pv1=2027-06-01` → `2027-06-01`            |
 | DateTime                  | Parse ISO format         | `pv1=2027-06-01T09:00:00Z` → full datetime |
+| Time                      | 24-hour `H:mm`, `HH:mm`, `HH:mm:ss` or `HH:mm:ss.SSS`, optional trailing `Z` | `pv1=9:30` → `09:30:00.000Z` (9:30 AM) |
 | Lookup (Id)               | Direct assignment        | `pv1=001xx000003DGbr` → record Id          |
 | Picklist                  | Direct assignment        | `pv1=Option A` → `"Option A"`              |
 
 Invalid values (e.g., `"abc"` for a number field) are silently skipped; the field is left blank rather than causing an error.
+
+For a **Time** field, write the time on the 24-hour clock: `9:30`, `09:30`, `14:05`, `09:30:15` and `09:30:15.5` all work, and a trailing `Z` is accepted. Hours run 0 to 23 and minutes and seconds 0 to 59, so `25:00`, `9:75`, `noon` and `9:30 PM` are skipped.
 
 ## Admin Setup
 

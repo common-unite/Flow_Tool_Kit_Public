@@ -9,6 +9,8 @@ A **Form Template** or **Form Submission** lookup on a form component can now re
 
 ![Start New Form and View/Edit Form Submission](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/391-lookup-override-types-demo.gif)
 
+{% embed url="https://vimeo.com/1241862370" %}
+
 ### The record you are standing on is the source
 
 This is the part worth understanding, because it is what makes the feature useful rather than just convenient.

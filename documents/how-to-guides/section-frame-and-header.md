@@ -15,6 +15,10 @@ Every section has two appearance choices, and they are edited together at the to
 
 ![The Section Frame and Section Header groups on the Content tab](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/694-section-frame-editor.png)
 
+This video adds a Box and a Shadow frame, tries each header style, then shows the title as a divider, an accordion and a Stacked header:
+
+{% embed url="https://vimeo.com/1242058975" %}
+
 ## Choose a Frame
 
 1. In the **Form Builder**, open the section's editor.
@@ -78,8 +82,6 @@ Choose **Stacked** as the Header Style, and these fields appear under it. Every 
 ![Stacked selected in the Form Builder, with the live preview](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/720-stacked-header-form-builder.png)
 
 Every text part is rich text and accepts merge fields, including the page and template fields described in [Template, Page and Section Merge Fields](../form-template-framework/template-page-section-merge-fields.md). The inputs show as a single line until you click into one; then the full rich text editor opens.
-
-![Switching a section to Stacked and filling it in](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/720-stacked-header-demo.gif)
 
 ### Spacing and colors
 

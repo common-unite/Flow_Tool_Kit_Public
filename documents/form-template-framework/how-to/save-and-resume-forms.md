@@ -72,9 +72,11 @@ If the user returns to the same form URL and has an existing draft, automaticall
 
 > Available from v3.239
 
-Autosave commits the respondent's in-progress submission silently as they work, no button click required. It rides the exact same save pipeline as Save Progress: the draft is a normal `Form_Submission__c` with status "Draft", and if the respondent never clicks anything, autosave creates that initial draft record on its own. In Stages Mode, the current page's stage record is kept in sync on every autosave, just as it is on a manual save.
+Autosave commits the respondent's in-progress submission silently as they work, no button click required. It rides the exact same save pipeline as Save Progress: the draft is a normal `Form_Submission__c` with status "Saved", and if the respondent never clicks anything, autosave creates that initial draft record on its own. In Stages Mode, the current page's stage record is kept in sync on every autosave, just as it is on a manual save.
 
-![Enabling autosave and choosing a mode on the Form Template record page](../../.gitbook/assets/216-autosave-demo.gif)
+This video switches autosave on for a template, then fills in the form and finds the submission autosave created:
+
+{% embed url="https://vimeo.com/1242098520" %}
 
 ### Enabling it
 
@@ -101,7 +103,7 @@ Choose Upon Change when you want drafts persisted as tightly as possible; choose
 
 ### What a save does (and doesn't do)
 
-* The **first** autosave with no existing draft **creates** the Form Submission (status "Draft"); every later autosave **updates** that same record.
+* The **first** autosave with no existing draft **creates** the Form Submission (status "Saved"); every later autosave **updates** that same record.
 * Autosaves are **silent**: no toast, no page refresh, no interruption to what the respondent is doing. The Save Progress button (if enabled) keeps its normal confirmation toast.
 * If an autosave **fails** (network hiccup, validation), it logs to the browser console and stays quiet; no error toast on every cycle. The draft simply catches up on the next save.
 * If an autosave comes due while another save is still mid-flight, it **waits and retries** (3 seconds later in Upon Change; on the next tick in timed modes) instead of double-saving.

@@ -6,6 +6,19 @@ The Form (Design Block) component takes its look from three places, strongest fi
 2. **Your site's Theme panel.** The brand color and fonts you set for the site flow into every block, with no CSS.
 3. **Site CSS.** For anything the Theme panel does not cover, a short list of `-override` tokens restyles every block at once.
 
+## Add a design block to a page
+
+1. Open the site in Experience Builder and go to the page.
+2. In the **Components** panel, search for **Design Block** and drag **Form (Design Block)** onto the page.
+3. In the block's properties, under **Choose a Section Type**, pick a type such as **Hero**, **Stats**, **Timeline**, **Cards**, **Steps** or **Pricing**. The block arrives filled with sample content.
+4. Click **Next Design** to cycle through other looks for the same type.
+5. Open each row under **Content** (Heading, Body, Badges, Buttons, Media, Footnote) and replace the sample content with yours. **Layout** and **Style** hold the arrangement, spacing and background.
+6. **Publish** the site.
+
+This video adds a Hero section above a form on an LWR site, tries another design and replaces the sample heading:
+
+{% embed url="https://vimeo.com/1242892294" %}
+
 ## Brand every block from the Theme panel
 
 Set your site's colors and fonts in Experience Builder's **Theme** panel and every design block follows. The blocks read the values the site publishes as styling hooks, on Aura and LWR sites alike:

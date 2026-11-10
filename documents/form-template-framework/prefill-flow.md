@@ -85,6 +85,10 @@ You do not need a Transform when your sections are mapped. Keep one when you wan
 
 ## The Prefill From Mapped Record action
 
+This walkthrough shows the starter flow's three Prefill steps, then a form opening already filled from an Account and its Contacts.
+
+{% embed url="https://vimeo.com/1241917566" %}
+
 **Form Submission | Prefill From Mapped Record** copies record values onto the submission through the Submission Field Maps of the template's sections. A value on the record replaces the submission value; a blank value never clears one. It has three modes:
 
 | Mode | You pass | It does |
@@ -94,6 +98,8 @@ You do not need a Transform when your sections are mapped. Keep one when you wan
 | **Auto** | The submission, with its lookups (Account, Contact 1 and so on) already set | For users who may read the source records (internal users, permissioned Experience Cloud users). Each section map that names a lookup queries that record as the running user, reading only fields the user can see, and copies its mapped fields. Related rows still need Related mode. |
 
 Pass the **Form Template Id** (the flow input `record.Form_Template__c`) when the submission you hand the action was built by a Transform: a Transform output carries only the fields it maps, so the action cannot find the template from it. Both starters do this. When the template is unknown the action copies nothing and says so in Skipped Mappings.
+
+**Strip Null Values** (since 5.3) leaves empty fields out of the submission and rows the action returns; formula, auto-number and other read-only values stay, because the form displays them. Turn it on for the call whose output becomes `prefillRecord` or `prefillRelatedRecords`: the form holds that record and sends it back on every save, so an empty field only makes each save bigger. With Strip Null Values on and no Source Record, the action only strips. The starters use that on the resume path: Get Records returns the saved submission with every field, most of them empty, and **Prefill (Saved Submission)** strips it before it becomes `prefillRecord`.
 
 The starters fetch all fields in their Get Records steps, so a field you map on a form component later is copied without editing the flow. If your clone lists fields instead, include every mapped field in the Get Records step for Single and Related; fields that are not on the record are skipped and listed in the action's Skipped Mappings output.
 
@@ -183,11 +189,11 @@ What this pattern doesn't protect: leaked URLs (forwarded emails, screenshots). 
 
 ## Guest users and the upsert override
 
-When a guest user fills out a form on a guest community, they can INSERT a new Form Submission (Salesforce allows that), but they cannot UPDATE one in user mode (Salesforce sharing blocks it). An insert is refused too when the record points at something the guest cannot read, for example an Account or Contact stamped by a URL parameter or a prefill flow. The **`Form_Submission_Upsert`** Flow exists as the documented escape hatch, but **the package ships it in user mode**.
+When a guest user fills out a form on a guest community, they can INSERT a new Form Submission (Salesforce allows that), but they cannot UPDATE one in user mode (Salesforce sharing blocks it). An insert is refused too when the record points at something the guest cannot read, for example an Account or Contact stamped by a URL parameter or a prefill flow. The **`Form_Submission_Upsert`** Flow exists as the documented escape hatch. It ships on the default run mode; since 5.3 the form starts it from Apex, where the default runs in system context (see [How the form starts the save flow](#how-the-form-starts-the-save-flow)).
 
 From 4.46 a refused save is no longer silent: the flow returns the fault and the form shows it, with the raw platform message and the remedy. Before 4.46 the submission save's fault path ended the interview cleanly and the respondent saw "Submitted successfully" with no record. **A clone made before 4.46 keeps that wiring**, because Save As copies the elements as they were: open your clone, select the **Upsert** element that saves the Form Submission, and point its fault path at **Assign Error Message**, or clone the packaged flow again.
 
-**FlowToolKit is a managed package and cannot ship any Flow or Apex that elevates sharing.** Every Flow in the package, including this one, runs in user mode by default. The Flow defines the *interface*; if you need actual elevation, you override.
+The Flow defines the *interface*; your override decides how it runs. Since 5.3 the packaged flow, started from Apex on the default setting, runs in system context; override it in User Context, Enforces User Permissions to keep each respondent's own access, or in System Context for guests who must update their saved submissions.
 
 To enable guest-user updates:
 
@@ -197,6 +203,44 @@ To enable guest-user updates:
 4. Document the security review: keep `without sharing` to the smallest scope, validate the inbound `record` shape and ownership before persisting, log anything unexpected.
 
 Salesforce and the Flow Tool Kit managed package are NOT responsible for data exposure or destructive DML introduced by a subscriber override. The override mechanism gives you full control over the DML; the security review is on you.
+
+### How the form starts the save flow
+
+**Since 5.3 the form starts `Form_Submission_Upsert` from Apex** (`FormTemplate_Controller.saveFormSubmission`). Before 5.3 it rendered a hidden Flow component (`lightning-flow`) that started the flow in the browser. The flow, its inputs, its outputs and every override are unchanged; only the way the form starts it changed.
+
+**The bug that forced the switch (#1039).** On an LWR site the Flow component starts a flow with a request that carries every input in the **address (URL)**, not in the request body. The save hands the whole submission to the flow as its `record` input, so the address grows with the answers. Past about 17,000 characters the site refuses the request before any flow runs: **HTTP 414 URI Too Long** or **431 Request Header Fields Too Large**. Nothing is saved, nothing is logged, and the respondent sees "Hmm, that didn't work. Check your internet connection and refresh the page", which blames their connection.
+
+It hit two ways:
+
+| How | What filled the address |
+| --- | --- |
+| A resumed application (REDF, 2026-11-06) | The prefill flow returned the saved submission with all 566 Form Submission fields, 471 of them empty. Every one rode the next save: a 29,031-character address, refused with 414. |
+| A long fresh application | Answers adding up to about 16,000 to 19,000 characters. Real text fails sooner: a space or most punctuation takes 3 address characters, an accented letter 6 to 9. |
+
+Measured on an LWR site in a scratch org, as the site guest, saving one answer of the given length:
+
+| Answer length | Before 5.3 (Flow component) | Since 5.3 (Apex) |
+| --- | --- | --- |
+| 4,000 | address 5,042 characters, reached the server | address 145 characters, body 4,734, reached the flow |
+| 16,000 | address 17,042, reached the server | not measured |
+| 19,000 | address 20,042, refused (431) | not measured |
+| 24,000 | address 25,042, refused (414) | address 145, body 24,734, reached the flow |
+| 100,000 | address 101,042, refused (431) | address 145, body 100,734, reached the flow |
+
+The test form's text boxes hold 40 characters, so at these lengths the flow then refused the value itself ("data value too large"): the point is that the request now reaches it. An Apex call that is not cacheable sends its parameters in the request body, so the save reaches the flow at any length; the only limit left is each field's own length. A 30,000-character answer in a long text field saves whole (Apex test `FormSubmissionSave_Utility_Test`).
+
+**Why the save flow's run mode now matters.** A flow started from Apex does not inherit the user's access the way a flow started in the browser does: in **Default Mode** ("User or system context, depends on how the flow is launched") it runs in system context. Salesforce added a fix in Winter '27 (API 68.0): **User Context, Enforces User Permissions**, which keeps the running user's own access whoever starts the flow. So:
+
+| The flow that runs | How it runs when the form saves |
+| --- | --- |
+| The packaged `Form_Submission_Upsert` (no override) | **Default**, so **system context**. Before 5.3 the browser start gave it the respondent's access. |
+| Your override, **System Context** | System context, as you chose. Unchanged. |
+| Your override, **User Context, Enforces User Permissions** (API 68 or later) | The respondent's own access. |
+| Your override, **Default** (any override saved before 5.3) | **System context**, the same as the packaged flow. |
+
+The form applies no security of its own: the flow that runs decides what may be saved. **To keep saves to each respondent's own access, override the save flow (or open your existing override), save it as API version 68.0 or later, and set How to Run the Flow to User Context, Enforces User Permissions.** Choose System Context only if guests must update their saved submissions.
+
+Smaller resumed records: the starter prefill flows now return the saved submission through **Prefill From Mapped Record** with **Strip Null Values** on (see [The Prefill From Mapped Record action](#the-prefill-from-mapped-record-action)), so a resumed form receives only the fields that hold a value. Formula values, the submission number and other read-only fields still arrive.
 
 ### How a save finds an existing submission
 
@@ -208,7 +252,7 @@ Whether the upsert finds the existing record depends on who can see it: it only 
 
 | Who saves, through which flow | A save carrying only the Unique Id of an existing submission |
 | --- | --- |
-| Guest, packaged flow (Default Mode) | Finds no match, tries to insert a new record, and is refused by the unique Unique Id: the form shows **Save Failed** with `DUPLICATE_VALUE` on Unique Id. Nothing is saved and no duplicate is created. |
+| Guest, packaged flow (user mode) | Finds no match, tries to insert a new record, and is refused by the unique Unique Id: the form shows **Save Failed** with `DUPLICATE_VALUE` on Unique Id. Nothing is saved and no duplicate is created. |
 | Guest, your override in System Mode Without Sharing | Finds the existing submission, updates it, and returns its record Id. The next save updates by Id. |
 | Logged-in site member, packaged flow, who can read and edit the submission (for example its owner) | Finds it, updates it, and returns its record Id. |
 | Logged-in site member, packaged flow, who cannot read the submission | Same as a guest on the packaged flow: `DUPLICATE_VALUE`, nothing saved. |

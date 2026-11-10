@@ -182,7 +182,7 @@ The spotlights are the headline act, but forty-six releases added capability eve
 ### Form Building & Display Types
 
 - **Custom Picklist Option Labels**: per-form display wording for any picklist or multiselect while stored values keep their API names; labels run through the merge pipeline and re-render live as other answers change. (3.239) 📚 [Picklist Option Labels](../form-configuration/picklist-option-labels.md) ![Option labels with live merge fields](../.gitbook/assets/223-option-labels-merge-demo.gif)
-- **Attestation display type**: booleans render as a clickable consent card: checkbox beside a rich-text statement, brand-color fill when checked. (3.234) ![Attestation card](../.gitbook/assets/188-attestation-selector-demo.gif)
+- **Attestation display type**: booleans render as a clickable consent card: checkbox beside a rich-text statement, brand-color fill when checked. (3.234) {% embed url="https://vimeo.com/1242114702" %}
 - **Dynamic Selector display types**: fields named for icons, email templates, image assets, or style sheets get real pickers, including the complete SLDS icon set (629 icons added). (3.241) 📚 [Field Type Settings](../form-configuration/field-type-settings.md#dynamic-selector-overrides)
 - **Text fields as Text Areas**: any standard Text field renders multi-line with counter and height controls; Maximum Height clamps read-only long text into a scrollable box. (3.241)
 - **Review Display Type**: design read-only "review your answers" screens in the same WYSIWYG editor. (3.210)
@@ -193,14 +193,14 @@ The spotlights are the headline act, but forty-six releases added capability eve
 - **Theme Label Color + Default Label Size**: a theme paints and sizes every label in a form. (3.234)
 - **LWC Section Type**: embed any custom Lightning Web Component inside a form section with live record data, change events, and validation. (3.213) 📚 [LWC Section Type](../advanced-topics/lwc-section-type.md)
 - **Section Divider Styles**: 12 designed, theme-driven divider styles with rich-text labels and icons. (3.234) ![Divider style picker](../.gitbook/assets/147-divider-style-picker-demo.gif)
-- **Rich Text Message Cards**: render rich text as themed info/warning/error/success status cards. (3.234) ![Message cards](../.gitbook/assets/148-message-variant-card-demo.gif)
+- **Rich Text Message Cards**: render rich text as themed info/warning/error/success status cards. (3.234) {% embed url="https://vimeo.com/1242113120" %}
 - **Record Compare for quizzes**: compare submitted values against a stored answer key. (3.196)
 
 ### Form Templates & Pages
 
 - **Form Template Page Conditional Logic**: show or hide entire pages from Form Submission values with an expression builder; navigation, stages, and outputs adjust automatically. (3.211) ![Page conditional logic](../.gitbook/assets/68-page-conditional-logic.png) 📚 [Page Conditional Logic](../form-template-framework/page-conditional-logic.md)
 - **Native Page Sections configurator**: live-preview add/reorder/delete on the record page, replacing the old screen flow; up to 15 sections per page; Display Text and LWC section types; in-place Customize modal. (3.234)
-- **Form Templates on any record page**: dynamic Related Field resolution walking lookups up to grandparents, plus a fallback template for App/Home pages. (3.239) ![Record page resolution](../.gitbook/assets/234-record-page-resolution-demo.gif) 📚 [Host a Form on a Record Page](../form-template-framework/how-to/host-form-on-record-page.md)
+- **Form Templates on any record page**: dynamic Related Field resolution walking lookups up to grandparents, plus a fallback template for App/Home pages. (3.239) [Walkthrough video](https://vimeo.com/1241878134) 📚 [Host a Form on a Record Page](../form-template-framework/how-to/host-form-on-record-page.md)
 - **URL Parameter Mapping**: map query parameters (pv1–pv9, UTM, payment intents) into form values on template load. (3.217) 📚 [URL Parameter Mapping](../form-template-framework/url-parameter-mapping.md)
 - **Stage Mode Layout options**: hide the progress banner, hide completed fields, or show a branded template header per template. (3.239)
 - **Final Submit Button Label**: label the true final submit distinctly from the button that opens review. (3.239)

@@ -13,8 +13,8 @@ Forms and form components work on these objects:
 | Object | |
 | --- | --- |
 | Account, Contact, Lead, Case | Standard objects |
-| Campaign, Campaign Member | Standard objects |
 | Form Submission, Form Template, Form Page, Form Page Section, Survey Response | Flow Tool Kit objects |
+| Hub Request, Hub Acceptance Criterion, Hub Project | Client Hub objects (Common-Unite package) |
 
 A form built on any other object shows "Object Is Not Available Within the Free Version". Site Design Blocks work on Account, Contact, Case, Lead and Form Template records, and show a "Not available in free version" notice on other records.
 
@@ -34,6 +34,7 @@ When an annual allowance is granted, it replaces the monthly one. Contact Common
 - **A submission counts when it is created**, whether or not it is ever submitted. Autosave and Save Progress count once, when they first create the record; resuming or submitting later does not count again.
 - **Pre-fill templates never count.**
 - **Rows from tables, repeaters and section flows never count.** These are the related records a form creates under its main submission.
+- **Client Hub forms never count.** A Hub Request, Hub Acceptance Criterion or Hub Project form saves the Hub record itself, never a Form Submission.
 - **Deleting submissions does not give the allowance back.** The count is kept separately from the records.
 
 ### When the allowance is used up

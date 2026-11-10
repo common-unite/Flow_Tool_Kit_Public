@@ -4,6 +4,9 @@
 
 ## 🆕 Conversion, simplified (#288)
 
+{% embed url="https://vimeo.com/1241862308" %}
+
+
 - **One action, four modes**: `Form Template | Conversion Event` replaces the old spread of record-creates, derivation formulas, and a retired logging subflow. Every conversion flow — packaged or your own override — calls the same action in **Start**, **Convert to Record**, **Log**, or **Return to Controller** mode. The 77 per-flow derivation formulas are gone; the event carries its own field names.
 - **A guided property editor**: pick the mode and the editor shows exactly what that mode needs — a grouped conversion-flow picker (template formulas, picklist overrides, metadata defaults, active flows), status and lookup field pickers, and automatic binding of the standard `FormSubmission`/`FormTemplate` variables with a manual fallback.
 - **Readable conversion logs (#299)**: dispatch steps are silent now. A conversion reads the way you'd tell it: **Start once → each outcome (Created / Matched / Updated, or the error) → Finish.** Related-record rows log against both the row and the parent submission.

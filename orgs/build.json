@@ -1,7 +1,12 @@
 {
   "orgName": "Form Builder - Build Test Org",
   "edition": "Enterprise",
-  "features": ["Communities", "enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
+  "features": [
+    "Communities",
+    "enableSetPasswordInApi",
+    "PlatformCache",
+    "ProviderFreePlatformCache"
+  ],
   "settings": {
     "communitiesSettings": {
       "enableCommunityWorkspaces": true,
@@ -12,6 +17,9 @@
     },
     "flowSettings": {
       "enableFlowPauseEnabled": true
+    },
+    "experienceBundleSettings": {
+      "enableExperienceBundleMetadata": true
     }
   }
 }

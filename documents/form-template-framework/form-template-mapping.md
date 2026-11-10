@@ -8,6 +8,10 @@ Form Template Mapping removes that step. In the Form Builder you tell a form on 
 
 ![The Form Template Mapping tab on an Account form](../screenshots/955-form-template-mapping-tab.png)
 
+Walkthrough: mapping an Account form's fields, placing it in a page section, and the mapped section following a change elsewhere in the form.
+
+{% embed url="https://vimeo.com/1241841968" %}
+
 ## What you can do
 
 * **Reuse a form you already built.** Place an Account, Contact, Lead, Case, Opportunity or custom object form in any Form Template page section.

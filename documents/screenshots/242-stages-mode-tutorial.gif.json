@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-01T00:51:48.592712+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/242-stages/out/stages-mode-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 94.815299,
+    "bytes": 4699137,
+    "codec": "h264",
+    "frames": "2843",
+    "frameRate": "30/1",
+    "averageFrameRate": "21834240/727859"
+  },
+  "sourceSHA256": "2239897e674b031156974752fc16f44dd84142b97a5d412eed348269210cb1f6",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/242-stages-mode-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 643908,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "7ec71fc4b86dca7fb4cd08aa5ee4c701214a96cb8e789d24b26cf9f15b711714",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

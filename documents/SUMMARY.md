@@ -1,5 +1,6 @@
 # Table of Contents
 
+* [Picklist Value Sets](picklist-value-sets.md)
 * [Video Mapping](video-mapping.md)
 
 ## Welcome
@@ -72,6 +73,7 @@
 * [Conditional Logic](form-configuration/conditional-logic.md)
 * [Custom Metadata Types](form-configuration/custom-metadata-types.md)
 * [Custom Styling Overview](form-configuration/custom-styling-overview.md)
+* [Export Import Form Components](form-configuration/export-import-form-components.md)
 * [Field Labels Help Text](form-configuration/field-labels-help-text.md)
 * [Field Type Settings](form-configuration/field-type-settings.md)
 * [Field Validation](form-configuration/field-validation.md)
@@ -120,6 +122,7 @@
 * [Pages And Sections](form-template-framework/pages-and-sections.md)
 * [Prefill Flow](form-template-framework/prefill-flow.md)
 * [Prefill Templates](form-template-framework/prefill-templates.md)
+* [Save Progress Email](form-template-framework/save-progress-email.md)
 * [Stages Mode](form-template-framework/stages-mode.md)
 * [Submission Conversion](form-template-framework/submission-conversion.md)
 * [Survey Mode](form-template-framework/survey-mode.md)
@@ -280,6 +283,7 @@
 * [Release 4.8](release-notes/release-4.8.md)
 * [Release 4.9](release-notes/release-4.9.md)
 * [Sprint 2026 10 14 Unreleased](release-notes/sprint-2026-10-14-unreleased.md)
+* [Sprint 2026 10 26 Unreleased](release-notes/sprint-2026-10-26-unreleased.md)
 * [Survey And Results Unreleased](release-notes/survey-and-results-unreleased.md)
 
 ## Platform

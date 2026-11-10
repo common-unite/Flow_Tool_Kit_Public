@@ -8,7 +8,7 @@ Enable **Survey Section** in each page section's editor, beside **Do Not Print**
 
 A page opens without question cards or an overlay. Entering a question brings up its card and a 95 percent white veil; clicking the veil returns to the ordinary page layout. Single-choice answers advance with one click. Text and multi-select questions use **Next**, while the form's footer remains available.
 
-![Training Evaluation focuses a text question, advances through single-choice answers, and reveals the matrix section](../screenshots/880-survey-mode.gif)
+{% embed url="https://vimeo.com/1241864649" %}
 
 When moving between survey sections, the next section appears as a whole. Single-question sections, including matrices, keep their heading and content together. See [Survey Mode](../form-template-framework/survey-mode.md) for the settings, keyboard walkthrough, mobile matrix, and Aura example.
 

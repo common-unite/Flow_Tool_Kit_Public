@@ -69,6 +69,16 @@ Use **Change Image** to replace the asset or **Remove** to clear the selection.
 * Configure default values and validation rules
 * Set field order within sections via drag-and-drop
 
+### Change a Field
+
+Point a question at a different field without removing it and setting it up again. Click **Change Field** beside the merge field button: on the field editor toolbar, in the Form Component Outline, in the Customize Section Fields list, or on the hover bar over a field in the preview. Search for the new field and click **Change Field**.
+
+{% embed url="https://vimeo.com/1242104876" %}
+
+- Every setting is kept unless it is not valid for the new field: labels, help text, widths, position, conditional rule, prompts, required and read-only always stay. A setting that belongs to another data type resets, and the window lists what will reset before you confirm.
+- Only fields not already in the section are offered, grouped by data type.
+- Not offered for address parts, Likert rows and Table Builder columns. Conditional rule conditions and merge fields that name the old field are not rewritten.
+
 ### Preview Forms in Flow Builder
 
 You can preview how your form will look directly within Flow Builder; no need to run the entire flow.

@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-01T20:21:17.499201+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/719-message-cards/out/message-cards-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 49.708659,
+    "bytes": 1907839,
+    "codec": "h264",
+    "frames": "1490",
+    "frameRate": "30/1",
+    "averageFrameRate": "30/1"
+  },
+  "sourceSHA256": "a112dacdfc5796f478836007e2105239f47457df59a4f69e958cf1e75c912427",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/719-message-cards-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 225138,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "a443a0dfdefa3e9a03d371875595cc09256755277e4495fec2fb464014c9e9a1",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

@@ -32,7 +32,21 @@ Pages are sorted by the **Position** field (ascending numeric). Best practice:
 * Gaps are fine; only the relative order matters
 * Duplicate positions cause unpredictable ordering
 
+## Page Header
+
+Each page can show its own header above its sections, set once on the page instead of faked with a section header. Open the Form Template Page record, go to the **Page Header** tab and switch on **Display Header**. The page's **Preview** on the left updates as you go.
+
+{% embed url="https://vimeo.com/1242120985" %}
+
+- **Header Style**: Classic, Classic Spread (icon on the right) or Stacked. Stacked is a larger display header with a pretitle, body, tags and footer; its subtitle shows above the title as the eyebrow.
+- **Title, Subtitle and Header Text** are rich text and accept merge fields, such as `{{$Template.Name}}` or the page's own fields (see [Template, Page and Section Merge Fields](template-page-section-merge-fields.md)).
+- **Top Margin**, **Bottom Margin** and an optional icon set the spacing. New pages default to Classic with no margins.
+
 ## Section Structure
+
+Walkthrough: adding a section in the Page Sections configurator, picking its form component, retitling and reordering it with the preview following, and where Customize, Clone and Delete sit.
+
+{% embed url="https://vimeo.com/1241863067" %}
 
 Each `Form_Template_Page_Section__c` record represents one component within a page. A page can have multiple sections, each rendering a different component. A section's **Component Type** (set in the page section configurator) determines what it renders: a Field Set, Repeater, or Table form component, a **Flow** (see [Flow Sections](pages-and-sections.md#flow-sections) below), a custom **Lightning Web Component** (see [LWC Section Type](../advanced-topics/lwc-section-type.md), which can also read and write the section's related records), or static **Display Text**.
 
@@ -68,7 +82,9 @@ On a Form Template Page record, hover over any section in the **Preview** to sho
 
 ![The spinner covers the section while its editor opens](../screenshots/956-edit-spinner.png)
 
-![Moving a section down and back up, with the Page Sections list following](../screenshots/956-move-section.gif)
+This walkthrough moves a section up and back, cancels a delete, and opens a section's editor, all from the preview.
+
+{% embed url="https://vimeo.com/1242002897" %}
 
 ![Delete asks for confirmation before removing the section](../screenshots/956-delete-confirm.png)
 
@@ -118,7 +134,7 @@ The form template hands data to the flow through the input variables and reads i
 
 **What the flow returns on finish.** When your flow completes (the user clicks the **Finish** / **Mark Complete** button), the form reads these outputs:
 
-* **`record`**: the main `Form_Submission__c` values the section collected.
+* **`record`**: the main `Form_Submission__c` values the section collected. The form takes back only the fields whose values differ from the `record` it passed in, so you can stamp values straight onto `record` (for example a Contact lookup and a first name). A field the respondent changes on another section after this one started is never put back to its old value.
 * **`relatedRecords`**: the child rows (repeater/table) the section manages. Stamp `Internal_SectionId__c = {!section.Id}` on each so the form keeps them grouped with this section.
 * **`buttonClickedLabel`**: set this to the label of the button the user clicked, exactly as the form passed it in. The form matches it against the labels it gave you: `buttonLabel_Back` goes back (or returns to the stages overview), `buttonLabel_SaveProgress` saves without advancing, and anything else is the forward action. A hard-coded label that does not match one of the inputs is treated as forward, so keep the buttons bound to the label variables.
 * **`isValid`**: let the form know whether the flow's own screens validated.
@@ -164,7 +180,9 @@ Page 3 ("Spouse Information") is only shown when the "Marital Status" field on P
 
 A section can show or hide as the form runs, using the same rule editor as pages. Unlike page rules, a section rule reacts straight away to fields on the same page.
 
-![Ticking Prefer to remain Anonymous hides the contact section, then the rule is set in the section's Visibility panel](../screenshots/963-section-conditional-logic.gif)
+Walkthrough: setting a rule in the Visibility panel, then the section hiding and coming back as an applicant answers.
+
+{% embed url="https://vimeo.com/1241814570" %}
 
 **Where to set it:**
 

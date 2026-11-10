@@ -403,6 +403,10 @@ flows:
                 task: load_form_analytics_demo
                 description: Form Analytics demo (#900), a survey template, three campaigns, 30 contacts and 90 responses submitted in one update and converted (#902), then results recalculated
                 ignore_failure: True
+            14:
+                task: deploy_walkthrough_demos
+                description: Every archived walkthrough demo (unpackaged/walkthroughs), common first, so a new dev org can record or show any walkthrough (#1028). Dev flows only; one failing walkthrough is logged and the rest carry on.
+                ignore_failure: True
 
     # Reusable NPC platform layer. Deploys NO product source, so other repos can
     # consume it as a step:  flow: formbuilder:npc_org_setup
@@ -785,6 +789,10 @@ tasks:
     export_form:
         class_path: cci_flowtoolkit_tasks.export_form.ExportFormMetadata
 
+    deploy_walkthrough_demos:
+        description: Deploys and loads every archived walkthrough demo in unpackaged/walkthroughs (common first) into a dev org; -o walkthroughs <folder> for one (#1028)
+        class_path: cci_flowtoolkit_tasks.walkthrough_demos.DeployWalkthroughDemos
+
     create_npc_package_version:
         description: Build a 2GP managed version of the NPC conversion extension package (Flow Tool Kit - NPC | Form Template Extension, namespace FlowToolKit, same as the base) from force-app-npc-conversion, depending on the released base version. The package source carries no namespace tokens, so nothing is injected - the namespace is simply the project's. Run against npc_release, whose definition file gives the build org the PersonAccounts and Industries features the metadata needs.
         class_path: cci_flowtoolkit_tasks.extension_package.CreateExtensionPackageVersion
@@ -1115,6 +1123,23 @@ tasks:
 
 orgs:
     scratch:
+
+        sprint_2026-10-26:
+            config_file: orgs/dev.json
+            days: 30
+            namespaced: True
+
+        # #1012 walkthroughs that change App Builder, page layouts or Flow Builder for every user
+        walkthrough_2026-11-01:
+            config_file: orgs/dev.json
+            days: 7
+            namespaced: True
+
+        # #1001 #998 release Step 6.5: a plain subscriber org (no namespace) for the beta plus unprefixed twin fields
+        subscriber_twin:
+            config_file: orgs/dev.json
+            days: 7
+            namespaced: False
 
         npsp_dev:
             config_file: orgs/npsp.json

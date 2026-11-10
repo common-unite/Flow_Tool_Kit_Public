@@ -13,15 +13,17 @@ Your org's picklist values are named for your database: "Customer - Direct", "Ti
 * Labels support **merge fields**, so an option's wording can react to the respondent's other answers in real time.
 * No metadata deployments, no value renames, no admin change tickets. A form manager does it all in the builder in seconds.
 
-![Overriding option labels on a picklist, then watching the live preview render the new labels](../.gitbook/assets/223-option-labels-picklist-demo.gif)
+This video rewords three answers on a survey question and shows the new labels in the preview:
+
+{% embed url="https://vimeo.com/1242106079" %}
 
 ## Configuring option labels
 
 1. Open your form in **Form Builder** and select a picklist or multiselect field.
 2. In **Picklist Override Settings**, click **Override Option Labels**. The button shows a count whenever the field already has custom labels, so you can spot overridden fields at a glance.
-3. The editor lists every value with two columns: the read-only **Value** (the API name that gets saved) and a **Custom Label** input whose placeholder shows the current default label.
+3. The editor lists every value with the read-only **Value** (the API name that gets saved), a **Custom Label** input whose placeholder shows the current default label, a **Score**, and a **Description** (see [Option descriptions](#option-descriptions)).
 4. Type a custom label for any subset of values. Leave an input empty to keep the default; a respondent never sees a blank option.
-5. Click **Save Labels**, then save the form.
+5. Click **Save**, then save the form.
 
 ![The Override Option Labels button in Picklist Override Settings](../.gitbook/assets/223-option-labels-button.png)
 
@@ -38,6 +40,35 @@ In this example, a Data Conversion Tag option is labeled `Tasks ({{FlowToolKit__
 ![The label editor with a merge field inside a custom label](../.gitbook/assets/223-option-labels-modal-merge.png)
 
 This turns option lists into contextual UI: "Email a copy to \{{Email\_\_c\}}", "Schedule follow-up with \{{Contact\_1\_\_r.FirstName\}}", or any wording that should reflect what the respondent already told you.
+
+## Option descriptions
+
+A custom label renames an option; a description explains it. Write one in the **Description** box under each value in the same editor (or in **Customize Visual Picker** for a visual picker field), save, then save the form. An option with no description shows none.
+
+This video writes two descriptions and shows each place respondents can see them:
+
+{% embed url="https://vimeo.com/1244987851" %}
+
+Once a field has a description, **Option Description Display** appears under the editor button. Leave it on **Auto** and the form picks the place that suits the field's display type:
+
+| Display type | Auto shows the description |
+| --- | --- |
+| Radio, multiselect checkboxes, select-all checkboxes, survey buttons, visual picker | Under each option, always visible |
+| Radio buttons, separated buttons, icon buttons, multiselect badges | In a popup when the respondent hovers over or focuses the option itself (a tap shows it on a phone); no icon is added |
+| Standard dropdown, multiselect combobox | As a second line under each option inside the dropdown menu |
+| Dual listbox, path | The chosen option's description, under the field |
+
+You can pick **Below Option**, **Hover Bubble** or **Below Field** instead. A choice the display type cannot draw falls back to Auto; **Below Field** works on every type.
+
+Good practice:
+
+* Keep descriptions to a sentence. Long text under every option makes a list hard to scan; use **Hover Bubble** when descriptions run long.
+* On a standard dropdown, give every option a description. Salesforce notes the menu can look misaligned when only some options have one.
+* Merge fields such as `{{FirstName}}` work, as in custom labels. Descriptions are plain text.
+* Review screens and PDFs show the chosen label only; the description explains a choice, it is not part of the answer.
+* A Likert matrix built on a picklist shows each option's description when the respondent hovers or focuses its column header.
+* Descriptions live with the option's custom label and score in `Form_Component_Field__c.picklistOptionSettings__c` and travel with the form.
+* Radio Buttons on a required field normally use Salesforce's button group. When the options have hover descriptions, the form draws its own buttons instead, so each option can open its popup; required validation works the same.
 
 ## How it works
 
@@ -56,9 +87,11 @@ This turns option lists into contextual UI: "Email a copy to \{{Email\_\_c\}}", 
 
 ## Good to know
 
+* Forms built before option descriptions keep working with no change. Their custom labels, scores and visual picker icons are read from the older settings until someone saves the option window again; from then on everything for that field is kept together in one place.
+
 * If two different forms on the same page override the same field with different labels, each form's option list is always correct; merge-field text on that page resolves to the most recently rendered form's labels.
 * A field hidden by conditional logic registers its labels for merge display once it first renders.
-* Custom option labels live in the form's configuration (`Form_Component_Field__c.picklistOptionLabels__c`), so they travel with the form when you clone or migrate it.
+* Custom option labels live in the form's configuration (`Form_Component_Field__c.picklistOptionSettings__c`, one object per option holding its label, description, score and icon), so they travel with the form when you clone or migrate it. A form saved before that field existed keeps its labels in `picklistOptionLabels__c` until the option windows next save it.
 
 ## Related Pages
 

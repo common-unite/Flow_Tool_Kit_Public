@@ -10,7 +10,9 @@ A new **Banner** section type gives any form a branded title: a photo, your logo
 
 ![A Banner section in the header of a Form Template](../screenshots/965-banner-header.png)
 
-![Switching a banner between Overlay, Split and Compact, then choosing its background image](../screenshots/965-banner-section.gif)
+Walkthrough: building a banner in the Form Builder (tags, title, photo, layouts), then the banner heading a live form from the template header.
+
+{% embed url="https://vimeo.com/1241824997" %}
 
 *A branded form title without writing HTML or borrowing a Record Card.*
 
@@ -31,6 +33,8 @@ On a Form Template Page, hover a section in the **Preview** and a dashed box app
 
 *Work on the section you can see instead of finding its row in the list.*
 
+{% embed url="https://vimeo.com/1242002897" %}
+
 - **Edit Section** opens the section's editor. A spinner covers the section until the editor is up.
 - **Move Section Up** and **Move Section Down** swap the section with its neighbour. The preview and the list reorder together, and the arrows that would move a section off either end are disabled.
 - **Delete Section** asks for confirmation on the page first. Cancel leaves the section untouched.
@@ -45,7 +49,9 @@ Hover works on whole sections, never on single fields. Clone stays in the Page S
 
 Page sections now take conditional logic, the same rule editor pages use. Set it from **Customize > Visibility** or the section's new **Conditional Logic** tab. The section hides or shows the moment a field on the same page changes.
 
-![Ticking Prefer to remain Anonymous hides the contact section, then the rule is set in the section's Visibility panel](../screenshots/963-section-conditional-logic.gif)
+Walkthrough: setting a rule in the Visibility panel, then the section hiding and coming back as an applicant answers.
+
+{% embed url="https://vimeo.com/1241814570" %}
 
 ![The Visibility panel in the Customize modal](../screenshots/963-section-visibility-panel.png)
 
@@ -63,6 +69,10 @@ Page sections now take conditional logic, the same rule editor pages use. Set it
 A Form Template page section can now hold a form on another object, such as Account, Contact or a custom object. Map its fields to Form Submission fields once on the new **Form Template Mapping** tab in the Form Builder, and the form reads and writes the submission instead of its own object.
 
 ![The Form Template Mapping tab on an Account form](../screenshots/955-form-template-mapping-tab.png)
+
+Walkthrough: mapping an Account form's fields, placing it in a page section, and the mapped section following a change elsewhere in the form.
+
+{% embed url="https://vimeo.com/1241841968" %}
 
 *Reuse the forms you already built instead of rebuilding them on Form Submission.*
 

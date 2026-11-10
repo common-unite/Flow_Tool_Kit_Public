@@ -52,7 +52,9 @@ The toggle and checkbox display types have a UX limitation with required fields:
 
 The **Attestation** display type renders a boolean as a consent/certification **card**: a checkbox sits beside a rich-text statement inside a bordered box, and the whole card is clickable. When the user checks it, the card fills with your brand color so the agreement visibly stands out.
 
-![Selecting the Attestation display type and the card rendering in the preview](../.gitbook/assets/188-attestation-selector-demo.gif)
+This video turns a waiver checkbox into an attestation card with a formatted statement, then checks it:
+
+{% embed url="https://vimeo.com/1242114702" %}
 
 Unlike the other display types, Attestation replaces the plain **Custom Label** with a **Rich Text Label** field: write the full attestation statement (formatting, links, and merge fields) there. When you choose Attestation, the Form Builder hides the label, help text, prepend/append, and prompt inputs, since the rich-text statement is the only visible content. Leave the rich text blank and the field's standard label is used instead.
 
@@ -128,7 +130,9 @@ Set a **Maximum Height** on a long text or rich text field and its **read-only**
 
 Number, currency, and percent fields can render as something more interactive than a plain input. Select the field and choose a **Number Display Type** in Number Override Settings:
 
-![The Number Display Type dropdown, the Edit Preset Amounts editor, and stepper, slider, and preset chips rendering in the preview](../.gitbook/assets/254-number-overrides-demo.gif)
+This video sets Employees to a Stepper, then a Slider, and gives Annual Revenue preset amount chips with an Other option:
+
+{% embed url="https://vimeo.com/1242090622" %}
 
 | Display Type       | Description                                                                                     |
 | ------------------ | ----------------------------------------------------------------------------------------------- |
@@ -183,7 +187,9 @@ Render any picklist as **vertical, full-width option cards** with the look and f
 
 Select a picklist field and set **Picklist Display Type** to **Survey Buttons** in Picklist Override Settings:
 
-![Switching a picklist to Survey Buttons and selecting options in the preview](../.gitbook/assets/246-survey-buttons-demo.gif)
+This video switches a picklist to Survey Buttons, then to Visual Picker (it starts at 0:55):
+
+{% embed url="https://vimeo.com/1242095057" %}
 
 * Works on every form factor; unlike the Radio display type, it never falls back to a dropdown on phones, making it a strong default for mobile-first forms.
 * The full picklist toolkit applies: subset and reorder options with Override Available Picklist Options, relabel them with [Picklist Option Labels](picklist-option-labels.md), and use required, help text, and conditional rules as usual.
@@ -247,12 +253,13 @@ A few behaviors to know:
 
 Turn any picklist or multiselect picklist into a grid of **selectable cards**, each showing an SLDS icon or one of your org's public image assets. Hovering a card fades the media into the option's label (phones show the label as an always-on caption instead), and selected cards outline and tint in your org's brand color.
 
-![Visual picker cards on a picklist and a multiselect, with hover revealing the labels](../.gitbook/assets/247-visual-picker-demo.gif)
+{% embed url="https://vimeo.com/1242095057" %}
 
 Set **Picklist Display Type** to **Visual Picker** in Picklist Override Settings, then click **Customize Visual Picker** to map each option:
 
 * **Type** picks the media per option. **Icon** (the default) opens the icon picker with its standard, custom, and doctype groups; **Image Asset** lists the org's public image assets, scaled to fit the card.
 * **Custom Label** works exactly like Override Option Labels, which this modal replaces while Visual Picker is active: saved values keep their API names, empty inputs keep the default label, and merge fields are supported. The label is what the hover reveal (or the phone caption) displays.
+* **Score** and **Description** work as in Override Option Labels. A description shows on the card under the option's label, which then stays visible. See [Option descriptions](picklist-option-labels.md#option-descriptions).
 
 ![Mapping icons, image assets, and custom labels per option in the Customize Visual Picker editor](../.gitbook/assets/247-visual-picker-modal-demo.gif)
 

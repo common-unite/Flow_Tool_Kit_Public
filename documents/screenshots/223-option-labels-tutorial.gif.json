@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-01T19:48:39.127402+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/223-option-labels/out/option-labels-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 40.523667,
+    "bytes": 3180155,
+    "codec": "h264",
+    "frames": "1214",
+    "frameRate": "30/1",
+    "averageFrameRate": "30/1"
+  },
+  "sourceSHA256": "3a7d35899cc4e1e4ec3e40b3328c24643db9aaf7e6eaf5f7b7c3697c276cbd71",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/223-option-labels-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 279596,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "d7eb643dc3ffad9ed87a2d72cc2d42341b9339726ae988245841606d35d3610e",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

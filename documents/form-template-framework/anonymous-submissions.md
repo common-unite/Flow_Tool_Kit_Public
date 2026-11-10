@@ -2,7 +2,9 @@
 
 The **Anonymous** checkbox on a Form Submission lets a respondent answer without being named on the record. Answers stay. Names, contact details, addresses and links to people are cleared. This page explains what the checkbox does, what it can and cannot promise, and the business process to follow when a survey must be truly anonymous.
 
-> Unreleased. Planned for the next release.
+Available from version 5.0. This walkthrough shows a respondent turning on Anonymous, and the saved submission that results.
+
+{% embed url="https://vimeo.com/1242020219" %}
 
 ## What the checkbox does
 

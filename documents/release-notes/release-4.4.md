@@ -8,6 +8,8 @@ Stages Mode has always let respondents jump freely between pages. The new **Non-
 
 ![The Non-Linear Navigation toggle in Form Template Settings](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/301-non-linear-navigation-toggle.png)
 
+{% embed url="https://vimeo.com/1242100593" %}
+
 ## 🆕 Exclusive values in multiselect picklists (#305, #308)
 
 Some answers rule out every other answer - and now the form knows it. When a multiselect option's value is one of the **exclusive values** below (case-insensitive), selecting it clears every other selection and locks the remaining options until it is unchecked, across all display types (Multiselect Checkbox, Select All variant, Badge, Combobox, and Visual Picker):
@@ -32,6 +34,8 @@ No configuration needed - name the picklist value one of these and the behavior 
 ## 🆕 Review Mode: the whole submission at a glance (#291)
 
 A new **Review Mode** checkbox on the **Form (Template)** component turns it into an internal review panel. Instead of the page-by-page form, the review page loads as the **only** page: every answer from every page, grouped under its page and section headings - no stage indicators, no page navigation, no button bar. Drop it on the Form Submission record page and staff read the entire response top to bottom.
+
+{% embed url="https://vimeo.com/1242131985" %}
 
 - **Available on** Lightning record, app, and home pages plus Flow screens (input-only). Deliberately not offered in Experience Cloud - this is an internal tool.
 - **Works on any template** - the review summary is generated on the fly, whether or not the template's Enable Review Screen setting is on.

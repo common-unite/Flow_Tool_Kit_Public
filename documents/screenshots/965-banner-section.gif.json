@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-26T04:47:30.745925+00:00",
+  "source": {
+    "path": "/Users/common-unite/Desktop/Screen Recording 2026-10-25 at 11.44.42\u202fPM.mov",
+    "width": 3024,
+    "height": 1964,
+    "rotation": 0.0,
+    "duration": 21.183333,
+    "bytes": 25111150,
+    "codec": "h264",
+    "frames": "1026",
+    "frameRate": "120/1",
+    "averageFrameRate": "61560/1271"
+  },
+  "sourceSHA256": "2bc73fd681bc233192bb4747d2f33250dc252ee5a8db6c26c8f85a78dd325cba",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 960,
+    "duration": null,
+    "fps": 15,
+    "endHold": 1.5,
+    "maxMB": 8.0,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/965-banner-section.gif",
+    "width": 960,
+    "height": 624,
+    "rotation": 0.0,
+    "duration": 22.74,
+    "bytes": 3585150,
+    "codec": "gif",
+    "frames": "341",
+    "frameRate": "15/1",
+    "averageFrameRate": "50/3"
+  },
+  "outputSHA256": "609b4456e0d44a9ef1e530f07964da755b1e5e28b3fe30d5f5af32d2e7bc9698",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

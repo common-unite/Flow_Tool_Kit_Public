@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-01T20:41:02.210547+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/324-merge-formats/out/merge-formats-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 38.875325,
+    "bytes": 1770708,
+    "codec": "h264",
+    "frames": "1165",
+    "frameRate": "30/1",
+    "averageFrameRate": "30/1"
+  },
+  "sourceSHA256": "73d31dac94280e2ad61bda95c0aeb39aab479dbf5de904f52374ccb5d0e044c8",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/324-merge-formats-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 237772,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "8fe17fabb62fc69c15682dc4dbbddd44545f2f91a89c2e6ec946032c7769fbfd",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

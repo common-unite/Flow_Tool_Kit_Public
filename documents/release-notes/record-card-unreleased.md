@@ -6,6 +6,8 @@ Shipped in [Release 4.47](release-4.47.md). This page provides the detailed feat
 
 ![Record Card examples for opportunities, housing and programs](../screenshots/781-record-card-media-top.png)
 
+{% embed url="https://vimeo.com/1241846868" %}
+
 A Record Card lays one record out as a finished card: a photo, a badge, a title, detail rows, tags and buttons. Every line takes typed text, a `{{Field}}` merge field, or both, and a line left empty is left off the card.
 
 Eleven card types ship: Media Top, Photo Overlay, Date Tile, Countdown, Strip, Progress, Header Band, Icon Lead, Centered Profile, Field List and Value Spotlight. Switching type keeps the lines the new type also uses.

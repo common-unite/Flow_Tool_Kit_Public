@@ -6,6 +6,9 @@ A controlled page header for Form Template Pages, the Stacked header on every pa
 
 - **Prefill flow values show on the page** (#735). Since 4.41, a prefill flow that finished while the first page was already on screen left its fields blank: the values were held and saved, but not shown. They now fill in as the prefill window closes. The same fix covers every value pushed onto a page that is already drawn: the upsert and action flow `record` output, a settled payment, and formula results. Stages templates were not affected.
 - **Page header** (#733). Each Form Template Page can show its own header above its sections, set once on the page instead of faked with a section header and margins. Choose Classic, Classic Spread or Stacked; Stacked adds the pretitle, body, tags and footer. Every part is rich text and accepts merge fields, including `{{$Template.Name}}` and the page fields. New fields on Form Template Page: `Show_Header__c`, `Header_Style__c`, `Header_Top_Margin__c`, `Header_Icon_Name__c`, `Header_Title__c`, `Header_Subtitle__c`, `Header_Text__c`, `Header_Text_Variant__c`, `Header_Kicker__c`, `Header_Lead__c`, `Header_Tags__c`, `Header_Tags_Position__c`, `Header_Footer__c` and `Header_Bottom_Margin__c`. New pages default to Classic with no top or bottom margin, and a page saved before this release reads the same way.
+
+  {% embed url="https://vimeo.com/1242120985" %}
+
 - **Page Header tab** on the Form Template Page record page, with the new **Form Page (Header)** component. The Page Text tab keeps Title, Body and Footer.
 - **Stacked header on Field Set, Repeater and Table sections** (#731). A page section of those types set to Stacked rendered the Classic header. All three now show the pretitle, body, tags, footer and bottom margin.
 - **Page record preview** shows Flow, LWC and Display Text sections as well as Field Set, Repeater and Table sections.

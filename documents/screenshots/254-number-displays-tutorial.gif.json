@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-01T18:45:10.007746+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/254-number-displays/out/number-displays-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 105.12168,
+    "bytes": 3915189,
+    "codec": "h264",
+    "frames": "3152",
+    "frameRate": "30/1",
+    "averageFrameRate": "2017280/67251"
+  },
+  "sourceSHA256": "1253b5a952743ec5e9b1ee6ae25c5352b9e105617503acba9040d8e24175fb23",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/254-number-displays-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 244616,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "65040909994a4e98b209c5d8ca2b3faa448b822185d96c24de7cc578c4520f88",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

@@ -15,7 +15,9 @@ Think about what this unlocks:
 
 The pattern works with any standard or custom object. If you can create a record in Salesforce, you can connect a form to it.
 
-![Form Template Source Editor Demo](../.gitbook/assets/form-template-source-editor-demo.gif)
+This video maps a campaign's start and end dates onto every new submission and marks one mapping Live:
+
+{% embed url="https://vimeo.com/1242137404" %}
 
 ## Why This Matters
 

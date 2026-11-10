@@ -2,7 +2,7 @@
 
 Three headline additions this release, built as a family: **Likert Matrix sections** bring survey-style question grids with live scoring to Form Builder, the new **Survey Buttons** picklist display type gives any picklist the modern option-card look on desktop and mobile alike, and **Visual Picker** renders picklist and multiselect options as icon or image cards.
 
-![A Likert Matrix being configured and answered live in the Form Builder preview](../.gitbook/assets/144-likert-picklist-demo.gif)
+{% embed url="https://vimeo.com/1242095057" %}
 
 ## New
 
@@ -25,7 +25,7 @@ Each row keeps the full field toolkit: required and read-only flags, custom labe
 
 Any picklist can now render as **vertical, full-width option cards**: large tap-friendly targets with a radio indicator, the selected card outlined and tinted in your org's brand color, matching what respondents expect from modern survey tools.
 
-![Switching a picklist to Survey Buttons and selecting options in the preview](../.gitbook/assets/246-survey-buttons-demo.gif)
+
 
 Pick **Survey Buttons** under Picklist Display Type in Picklist Override Settings. It renders on every form factor (no phone fallback to a dropdown, unlike the Radio display type), plays nicely with option subsetting, custom option labels, help text, and conditional rules, and stores the standard picklist API value. Likert Matrix sections reuse the same rendering for their mobile layout, so survey forms stay visually consistent end to end. Details: [Field Type Settings](../form-configuration/field-type-settings.md#survey-buttons).
 
@@ -33,7 +33,7 @@ Pick **Survey Buttons** under Picklist Display Type in Picklist Override Setting
 
 Picklists and multiselect picklists can now render as a grid of **visual cards**: each option shows an SLDS icon or one of your org's public image assets, hovering fades the media into the option label (phones show a caption instead), and selected cards outline and tint in your org's brand color. Multiselect fields get checkbox behavior so several cards stay selected.
 
-![Visual picker cards on a picklist and a multiselect, with hover revealing the labels](../.gitbook/assets/247-visual-picker-demo.gif)
+
 
 Choose **Visual Picker** as the Picklist Display Type and the Override Option Labels button becomes **Customize Visual Picker**: one editor maps each option's media (Icon with the standard/custom/doctype icon picker, or Image Asset from your public assets) alongside the same Custom Label input you already know, with merge fields and API-safe stored values intact. Column(s) Size shapes the grid exactly as it does for radio options, option subsetting applies, and icons paint in the brand color across internal, Aura, and LWR contexts.
 

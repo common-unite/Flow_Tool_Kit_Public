@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-01T14:55:32.057347+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/901-readable-fault/out/readable-fault-message-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 58.348667,
+    "bytes": 1595239,
+    "codec": "h264",
+    "frames": "1749",
+    "frameRate": "30/1",
+    "averageFrameRate": "8954880/298501"
+  },
+  "sourceSHA256": "fd7313405c6ded91020de2592dcf72c18c1c8f429ab61ded228dc70cda958e72",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/901-readable-fault-message-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 142878,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "129cd807863cc6311a9d75038d34b9808a87910c7aa88fd3b9a46c24a8ae686a",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-31T23:48:01.145664+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/391-lookup-forms/out/open-form-from-lookup-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 63.54401,
+    "bytes": 2243629,
+    "codec": "h264",
+    "frames": "1905",
+    "frameRate": "30/1",
+    "averageFrameRate": "29260800/975391"
+  },
+  "sourceSHA256": "7f2b2f4005e025d6e10e1f088004cfbb55a212548bcdd98ff797e1de9decf018",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/391-open-form-from-lookup-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 207815,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "b77f443b0c4dd415ccb926ef062e5286898f6dc04941cc518f5ef1cddd01ef37",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

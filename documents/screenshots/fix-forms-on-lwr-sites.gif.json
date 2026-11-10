@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-03T13:55:29.265376+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/fix-forms-on-lwr-sites/out/fix-forms-on-lwr-sites.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 95.041992,
+    "bytes": 5002450,
+    "codec": "h264",
+    "frames": "2850",
+    "frameRate": "30/1",
+    "averageFrameRate": "30/1"
+  },
+  "sourceSHA256": "422972786b83c124fa287f4bde609870017a3dcd45523fd64bd3ce1afef95819",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/fix-forms-on-lwr-sites.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 214398,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "7cfe3c736ae160aef60fdfdc7f11367e4d4940dcf03978f97aadd39d4f1ad527",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

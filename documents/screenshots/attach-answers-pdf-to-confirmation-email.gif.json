@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-09T16:46:11.741912+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/.claude/worktrees/agent-ad5490bb05ba058e9/scratch-org/attach-answers-pdf-to-confirmation-email/out/attach-answers-pdf-to-confirmation-email.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 126.127333,
+    "bytes": 8122770,
+    "codec": "h264",
+    "frames": "3783",
+    "frameRate": "30/1",
+    "averageFrameRate": "30/1"
+  },
+  "sourceSHA256": "967e5b4291724cbe49b7bea222621ff4549ff3eef9046ec461b2fbe93e0bc4ff",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/.claude/worktrees/agent-ad5490bb05ba058e9/scratch-org/attach-answers-pdf-to-confirmation-email/attach-answers-pdf-to-confirmation-email.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 312643,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "e917815f721e2ce47261c17f9bacfd0fb8adb0bef902006caf2023e1cf548b8a",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

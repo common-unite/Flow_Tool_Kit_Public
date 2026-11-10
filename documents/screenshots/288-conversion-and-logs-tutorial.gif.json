@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-31T23:47:27.304588+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/288-conversion/out/conversion-and-logs-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 82.044667,
+    "bytes": 2927589,
+    "codec": "h264",
+    "frames": "2460",
+    "frameRate": "30/1",
+    "averageFrameRate": "30/1"
+  },
+  "sourceSHA256": "b673e1326fef6b3551eb981fb37eb4e10c0e95cce5b3aee098ad8b1d853c53df",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/288-conversion-and-logs-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 227778,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "45e0d25442d480b9f5e40bba11a2e152718ee2cdde3b29e529c32cc6dc47eb12",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

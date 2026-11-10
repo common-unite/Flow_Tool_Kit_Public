@@ -55,6 +55,19 @@ This forces the browser to reload all JavaScript and CSS, which can resolve disp
 | **Conditional logic** | Parsed logic rules and conditions | Next evaluation uses fresh rules |
 | **Themes** | Parsed style sheet metadata | Next render applies fresh styles |
 
+## Where the Cache Lives
+
+The form metadata cache lives in the Platform Cache partition **FormComponents** (namespace FlowToolKit), in the Organization cache.
+
+- **Installed orgs**: Salesforce gives this partition 3 MB of Provider Free cache on install, because Flow Tool Kit is a security-reviewed AppExchange package. It cannot be removed. A large org can add more from its own cache in Setup → **Platform Cache**. Professional Edition has no Platform Cache.
+- **Scratch orgs**: a scratch org gets the 3 MB only when its definition file turns both cache features on. Without them the partition has 0 MB, and every form load is about 48 times slower (2,875 ms against 60 ms measured on one form), with no error:
+
+```json
+"features": ["PlatformCache", "ProviderFreePlatformCache"]
+```
+
+Every read and write to the partition is best effort: with no capacity, forms still load correctly, only slowly. See [Every Form Load Is Slow, Not Only the First](../faq-troubleshooting/troubleshooting.md#every-form-load-is-slow-not-only-the-first).
+
 ## Two different caches
 
 Flow Tool Kit performance involves two caches that are easy to confuse. Resetting one does nothing for the other.
@@ -80,6 +93,7 @@ If forms are showing outdated *content*, reset. If forms are showing correct con
 | Form not loading at all | No | Check permissions and configuration |
 | Error messages | No | Check form setup and object access |
 | Form correct but takes 20+ seconds on first load each day | No | Schedule flow cache warming |
+| Every form load slow, every time, for every user | Yes, no cache capacity | See [Where the Cache Lives](#where-the-cache-lives) |
 
 {% hint style="warning" %}
 **Cache reset affects all users.** After a reset, the first form load for each user will be slightly slower as the cache is rebuilt. This is temporary; subsequent loads are fast again.

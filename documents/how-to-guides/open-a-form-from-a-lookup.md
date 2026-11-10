@@ -4,6 +4,10 @@
 
 ![Start New Form and View/Edit Form Submission](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/391-lookup-override-types-demo.gif)
 
+Walkthrough: setting a lookup to View/Edit Form Submission as a button, then opening the linked application from the Account's form.
+
+{% embed url="https://vimeo.com/1241862370" %}
+
 {% hint style="info" %}
 **Prerequisites**: a form with a lookup field. For **Start New Form** the lookup must point at Form Template; for **View/Edit Form Submission** it must point at Form Submission. See [Build A Form](build-a-form.md).
 {% endhint %}

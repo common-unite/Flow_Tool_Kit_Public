@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Web_Form_URL__c</fullName>
+    <description>Org-wide address of the site page that shows a form by Form Template Id. Form_Template__c.Web_Form_URL__c reads it when the template has no Web Form Site URL, so every template's Open Web Form button works once this is filled.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The page on your main site that shows a form by template Id, for example https://yoursite.my.site.com/forms. The Open Web Form button adds the template Id to the end. A template's Web Form Site URL overrides it.</inlineHelpText>
+    <label>Default Web Form URL</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -12,6 +12,9 @@ The Stacked section header and Highlight text, template and page merge fields, a
 ## Form Templates
 
 - **Template, page and section merge fields** (#724). Page section text can merge fields from the Form Template, the current page and the section itself: `{{$Template.Name}}`, `{{$Page.FlowToolKit__Page_Label__c}}`, `{{$Section.FlowToolKit__Title__c}}`, with the date and number formatters. `{{$Page.Number}}` and `{{$Page.Count}}` count only the pages the respondent can see now, so a page hidden by conditional logic drops out and the numbers recount. See [Template, Page and Section Merge Fields](../form-template-framework/template-page-section-merge-fields.md).
+
+  {% embed url="https://vimeo.com/1242119144" %}
+
 - **Guest form loads with a subscriber field twin** (#699, #714). Guests got "Form Load Error" on a form whose configuration referenced a subscriber field that shares its local API name with a packaged Flow Tool Kit field, for example a local `cUnite_Volunteer_Group__c` next to the packaged `FlowToolKit__cUnite_Volunteer_Group__c`. 4.41 did not fix it. The cause: a user-mode query that selects one of the form's field reference columns fails inside the package for a user who cannot read the packaged twin.
   - The field reference columns are never queried now. They come from the custom metadata accessor, for form fields, conditions and the Form Template Source mapping (#714).
   - Where a form references a local field that a Flow Tool Kit field shadows, the form uses the packaged field of the same name, and field-level security decides who sees it: grant read on the packaged field to the users who need it. The log names the shadowed field at WARN level so you can repoint the form field.

@@ -34,6 +34,10 @@ Every field on the three objects can be merged, including custom fields you add 
 
 They do **not** resolve inside a form component's own field labels, help text or placeholders. Those merge against the Form Submission only (see [Field Labels and Help Text](../form-configuration/field-labels-help-text.md)).
 
+## In the Template Header and Footer
+
+The template's header and footer components are built on the Form Template object, so they merge the template's fields directly, with no prefix: `{{Name}}`, `{{FlowToolKit__Form_Template_Subtitle__c}}`, `{{FlowToolKit__Header_Tags__c}}` and `{{FlowToolKit__Form_Banner_Image__c}}`. They are listed in the Form Builder's merge field picker for a Form Template component. The packaged default header uses all four (see [The default template header](../form-configuration/banner-sections.md#the-default-template-header)).
+
 ## Page Number and Page Count
 
 `{{$Page.Number}}` and `{{$Page.Count}}` count **visible pages only**, and they recount while the respondent works through the form.
@@ -69,6 +73,10 @@ The stage indicator drops and restores Household the same way, so the step list 
 ![Typing Skip hides Household: Contact now reads Page 1 of 2 and the stage list shows Contact and Finish](../screenshots/724-page-count-rule-hides-page.png)
 
 ![After Continue, Finish reads Page 2 of 2 in both the header and the section text](../screenshots/724-page-count-next-page-renumbered.png)
+
+This video puts the line in each page's Details text on a five-page grant form and moves between pages:
+
+{% embed url="https://vimeo.com/1242119144" %}
 
 ## Syntax
 

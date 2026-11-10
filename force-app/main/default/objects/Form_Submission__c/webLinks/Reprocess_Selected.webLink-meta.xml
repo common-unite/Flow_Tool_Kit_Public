@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reprocess_Selected</fullName>
+    <availability>online</availability>
+    <description>Reprocess the Form Submissions picked in a list view, one at a time, after a confirmation that shows how many will run.</description>
+    <displayType>massActionButton</displayType>
+    <height>600</height>
+    <linkType>page</linkType>
+    <masterLabel>Reprocess Selected</masterLabel>
+    <openType>sidebar</openType>
+    <page>FormSubmissionReprocess</page>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+</WebLink>

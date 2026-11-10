@@ -18,7 +18,7 @@ Your picklist values are named for your database; your respondents should never 
 
 Select a picklist field in Form Builder and click **Override Option Labels** in Picklist Override Settings. The editor lists every value beside a Custom Label input (the default label is the placeholder); override any subset and leave the rest empty to keep their defaults. The button shows a count so overridden fields are easy to spot.
 
-![Overriding option labels and watching the preview update](../.gitbook/assets/223-option-labels-picklist-demo.gif)
+{% embed url="https://vimeo.com/1242106079" %}
 
 The headline trick: custom labels run through the standard merge pipeline, so an option's wording can **react to the respondent's other answers in real time**. Label an option `Tasks ({{FlowToolKit__Priority__c}})` and it re-renders as "Tasks (Medium)" the instant the respondent picks Medium:
 
@@ -30,7 +30,7 @@ Overrides apply across every picklist display type (dropdown, radio, buttons, ic
 
 Form Templates can now save the respondent's in-progress submission **automatically and silently** as they work, with no Save Progress click required. Autosave uses the same save pipeline as Save Progress (the draft is a normal Form Submission with status "Draft"), creates the initial draft on its own if the respondent never clicks anything, and keeps the current page's stage record in sync in Stages Mode.
 
-![Enabling autosave and choosing a mode](../.gitbook/assets/216-autosave-demo.gif)
+{% embed url="https://vimeo.com/1242098520" %}
 
 Enable it per template under **Save & Form Submission Settings → Enable Autosave**, then pick an **Autosave Mode**:
 
@@ -62,7 +62,7 @@ The Form (Template) component is now practical on any Lightning record page, not
 
 Resolution order for a record that is not itself a template or submission: the Related Field Name lookup, then the Form Template Source custom metadata mapping, then the fallback template. Submissions created through the source mapping or the fallback are stamped with the hosting record's id in `Source_Id__c`, so they report and resume from that record. When nothing resolves, the component now shows a compact "No Form Found" illustration with configuration guidance.
 
-![Configuring a Contact record page from empty state to a running form](../.gitbook/assets/234-record-page-resolution-demo.gif)
+{% embed url="https://vimeo.com/1241878134" %}
 
 ### Log Conversion Event Action Upgrades (#237, #238)
 

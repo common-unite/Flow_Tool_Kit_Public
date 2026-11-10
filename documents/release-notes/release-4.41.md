@@ -9,6 +9,9 @@ Faster conditional logic on Form Templates, Section Frames with four header styl
 - **An address section without an Address-type field no longer breaks the form** (#713). Validation used to throw on it; it is now skipped.
 - **Section Frames** (#693, #694, #695, #697, #698, #700, #701, #702 to #708). Section Class, Header Style and Header Display were three unrelated fields for one idea. They are now one concept, shared by component sections and page sections: a **Section Frame** (none, Box, Shadow) and a **Header Style** (Classic, Classic Spread, Card, Title on border). The Section Frame group sits first on the section editor's Content tab with a visual picker. Frames reach outward so fields inside a Box or Shadow sit on the same edge as a standard Flow input, repeaters and tables included; blank Padding Horizontal now means none. Title on border keeps the drop shadow, the icon rides the border without painting over a tinted background, a theme's section background fills only framed sections, and a plain divider on a framed page section renders as a divider. Page sections gain `Section_Frame__c` and `Header_Style__c`, both granted in every permission set. Divider Style, Header Divider Style, Header Style and Section Theme are now unrestricted picklists, so a new value we ship saves in an upgraded org even before the picklist definition catches up.
 
+  {% embed url="https://vimeo.com/1242058975" %}
+
+
 ## Payment step
 
 - **Resuming a Pending Payment submission reads the real amount** (#716). Reopening one on its record page showed "Amount is too small" although the record's Stripe Amount was fine. The Stripe Connector clears the record it was mounted with when it connects, and the resume path was the one place nothing pushed the record back before the amount check. The payment step now hands the Stripe form its record again right before revealing it. Works with the connector already installed; the connector's own fix ships with its next release.

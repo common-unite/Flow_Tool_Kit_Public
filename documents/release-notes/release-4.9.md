@@ -35,6 +35,8 @@ Blocks no longer flash before evaluating, a hidden block leaves no gap in the la
 
 A new widget on the Form Template record page lists **every field the template references**, so you can review a template's true data footprint without opening each page and section. Each occurrence gets its own row, with linked Section and Source columns, and Source is split into the source and the component it comes from.
 
+{% embed url="https://vimeo.com/1242116194" %}
+
 ## 🛠 Page field map now walks all three section sources (#360)
 
 Hiding a page cleared the fields it contained only when those fields came from metadata. Sections configured from a record or from inline JSON were skipped, so their values survived a page being hidden. The map now walks all three sources.

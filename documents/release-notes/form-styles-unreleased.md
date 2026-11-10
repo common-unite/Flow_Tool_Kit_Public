@@ -4,7 +4,7 @@ Shipped in [Release 4.47](release-4.47.md). This page provides the detailed feat
 
 ## Shared styles and template refinements
 
-![Using the template Style Editor with a live form preview](../screenshots/749-template-style-editor-demo.gif)
+{% embed url="https://vimeo.com/1241844704" %}
 
 Set the look of every form in **Form Builder → Global Styles**, then make one template different in the **Style Editor** tab on its Form Template record. The saved org defaults also apply to Form (Component), Form (Repeater), Form (Table), Form (Header), Form (Illustration) and Form (Calendar/Scheduler) placed directly on a Flow screen.
 

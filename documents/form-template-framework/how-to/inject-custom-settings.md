@@ -29,6 +29,10 @@ Your fields render inside our tab, under a collapsible heading, alongside the se
 
 ## Add a custom setting
 
+This video adds a Funding Round picklist to the custom form, then sets it on a template's **Form Setup** tab:
+
+{% embed url="https://vimeo.com/1242084298" %}
+
 ### 1. Create the field on Form Template
 
 Create the field on the `Form Template` object exactly as you would any custom field. It is your field, in your namespace, on your object.
@@ -46,13 +50,13 @@ Both arrive with a single empty section, ready for fields.
 
 ### 3. Add your field to the section
 
-Drag your new field into the section and configure it the way you would in any Flow Tool Kit form: width, help text, required, conditional logic, default values.
+Click **Add fields**, find your field in the **Available** list (the filter box narrows it), and move it to **Assigned**. Then configure it the way you would in any Flow Tool Kit form: width, help text, required, conditional logic, default values.
 
 Everything the form builder offers is available here. These are ordinary form fields; the only thing special about them is where they render.
 
 ### 4. Save and reload the Form Template
 
-Save the form, then reload a Form Template record. Your field appears on the tab, below the settings Flow Tool Kit ships, under its own collapsible heading.
+Click **Save**, then **OK**, and wait for the Builder to finish saving. Then open a Form Template record. On the **Form Setup** tab (the Form Template Settings component), your field appears at the bottom, below the settings Flow Tool Kit ships, under its own collapsible heading, **Custom Form Template Settings**.
 
 ## Driving business processes from your settings
 

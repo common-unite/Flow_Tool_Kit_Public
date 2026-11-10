@@ -4,7 +4,9 @@ The Record Picker for lookup fields, and Change Field in the Form Builder. Looku
 
 ## 🆕 Record Picker for lookups (#661)
 
-![Setting up the Record Picker on Parent Account](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/661-record-picker-demo.gif)
+This video sets up a Record Picker with a filter that follows another answer, then tries it in the preview:
+
+{% embed url="https://vimeo.com/1242077463" %}
 
 - **A new Lookup Field Display Type, Record Picker**, for lookups that point at one object. Choose it on the field's Field tab in Form Builder, then open **Record Picker Settings**.
 - **Filters that follow the form.** Add rows such as `Account Type` equals `{{Type}}`; the suggestions narrow as soon as that answer changes. A row whose merged value is blank is skipped, so the picker shows everything until the answer is given. Filter logic such as `1 AND (2 OR 3)` and cross-object paths are supported.
@@ -15,6 +17,8 @@ The Record Picker for lookup fields, and Change Field in the Form Builder. Looku
 ## 🆕 Change Field in the Form Builder (#738)
 
 ![Choosing another field in the Change Field modal](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/738-change-field-modal.jpg)
+
+{% embed url="https://vimeo.com/1242104876" %}
 
 - **Point a section field at a different field without rebuilding it.** A new **Change Field** button sits beside the merge field button everywhere the field quick buttons show: the field editor toolbar, the Form Component Outline, the Customize Section Fields list and the hover bar over a field in the preview. Built for forms where an admin or an AI agent picked the wrong field.
 - **Every setting is kept unless it is not valid for the new field.** Labels, help text, widths, position, conditional rule, prompts, required and read-only always stay. A setting that belongs to another data type resets to its default, and the modal lists what will reset, and why, before you confirm.

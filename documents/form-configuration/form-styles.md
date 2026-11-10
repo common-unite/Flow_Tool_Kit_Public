@@ -15,7 +15,9 @@ Themes and stylesheets you already use keep working alongside it.
 | Write a stylesheet, or look up the code name of a setting | [CSS Style Token Reference](style-token-reference.md) and [Custom Styling Overview](custom-styling-overview.md) |
 | Understand a theme you already use | [Themes, Labels & Styling](themes-labels-styling.md) |
 
-![Change global brand color and field spacing, then save org defaults](../screenshots/749-global-styles.gif)
+Walkthrough: setting and saving org defaults in Global Styles, then overriding one template in its Style Editor.
+
+{% embed url="https://vimeo.com/1241844704" %}
 
 *Preview shared styling changes in Form Builder, then select Save org defaults to apply them.*
 
@@ -101,7 +103,7 @@ Your record page may be laid out differently, so the tab names below can differ 
 
 There is no Save button. The editor saves about two seconds after your last change. The line under the editor's title reads **Saving changes**, then **Style overrides saved**. Other templates keep their own settings.
 
-![The template Style Editor in use: dragging the Basics sliders and choosing a Brand color changes the preview at once, and the editor saves by itself](../.gitbook/assets/749-template-style-editor-demo.gif)
+The walkthrough at the top of this page shows the template Style Editor in its second half: the preview changes at once, and the editor saves by itself.
 
 A setting you leave alone keeps inheriting. Opening the editor does not copy the org defaults into the template, so a later change to the org defaults still reaches every setting this template has not changed.
 

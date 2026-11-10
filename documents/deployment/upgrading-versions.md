@@ -83,6 +83,19 @@ Review the release notes for new features you may want to enable:
 | New features not appearing | Verify the upgrade completed successfully in Setup → Installed Packages |
 | Flows with Flow Tool Kit components won't save | A new required property may have been added; check release notes |
 
+### Orgs upgraded from version 3
+
+This applies only to a few very old orgs that went straight from a 3.x version to a current one. Most orgs never had these leftover fields and can skip it.
+
+How to tell your org is one of them:
+
+- After you press **Reset Form Cache**, components lose their settings: section titles show "New Section", and widths, labels and display settings go back to their defaults.
+- Or, in **Setup → Custom Metadata Types → Form Conditional Logic**, you see fields such as `customLogic` or `conditionType`, or a validation rule named `Custom_Logic_Required_When_Type`.
+
+**If you see either, contact us at support@common-unite.com and we'll clean up your org for free.** Until then, avoid pressing Reset Form Cache.
+
+Why it happens: a version 3 install created fields that later versions no longer use, on **Form**, **Form Section**, **Form Field** and **Form Conditional Logic**. An upgrade cannot remove fields from your org, so they stay behind, and Reset Form Cache reads their old default values in place of each form's own settings. The fields named above are examples; a full cleanup removes all of them at once, which is why we do it with you. Once they are gone, Reset Form Cache keeps your settings.
+
 {% hint style="info" %}
 **Version compatibility**: Flow Tool Kit maintains backward compatibility across versions. Your existing forms should work without changes after upgrading. If something breaks, check the release notes for known issues.
 {% endhint %}

@@ -22,6 +22,10 @@ Both guest settings are under **Setup → Digital Experiences → All Sites → 
 
 The component renders nothing. It has no properties and no visible output.
 
+This video shows a form that will not load for a visitor, the fix in Experience Builder, and the same page loading after the publish:
+
+{% embed url="https://vimeo.com/1242836710" %}
+
 **One page is not enough.** The component only helps the pages that carry it. If it sits on the Home page alone, a visitor who starts at Home and clicks through to a form sees the form, but a visitor who opens the form's page directly, from a bookmark, a link in an email or after a refresh, sees a form with no fields. The site footer covers every page, however the visitor arrives.
 
 If you cannot edit the footer, place the component on every page that shows a form instead.

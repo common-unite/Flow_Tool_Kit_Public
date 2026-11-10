@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-02T21:39:29.979355+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/print-any-record-as-pdf/out/visualforce-pdf-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 354.27,
+    "bytes": 21236646,
+    "codec": "h264",
+    "frames": "10626",
+    "frameRate": "30/1",
+    "averageFrameRate": "54405120/1813591"
+  },
+  "sourceSHA256": "4d6c0494185d10260d7d03daaf31a1765b436cbb92000205b7b354bc418603f0",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/1025-visualforce-pdf-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 117347,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "b41376ed70dcf4b2245146e761c0010725c0cdd61799841519c16cee8e1a5552",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

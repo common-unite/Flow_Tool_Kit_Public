@@ -9,6 +9,10 @@ The same card is available in two places, and it looks and behaves the same in b
 
 ![Three Media Top cards on an Experience Cloud page](../screenshots/781-record-card-media-top.png)
 
+Walkthrough: adding a Record Card in the Form Builder, switching card types, and filling its lines.
+
+{% embed url="https://vimeo.com/1241846868" %}
+
 ## Card types
 
 Pick the card type first. Each type shows only the settings it draws, and switching type keeps every line the new type also uses.

@@ -2,6 +2,10 @@
 
 > A checklist for putting a Form Template on an Experience Cloud site that anyone can fill out without logging in. Work through it top to bottom; each step links to the detailed page if you need more.
 
+This video walks through letting guests in, the Form Template page, the guest permission set, the sharing rule and a test as a guest:
+
+{% embed url="https://vimeo.com/1242821145" %}
+
 {% hint style="info" %}
 **Before you start:** Flow Tool Kit is installed, you have a Form Template that is **Active**, and Digital Experiences is turned on (**Setup → Digital Experiences → Settings → Enable Digital Experiences**).
 {% endhint %}
@@ -16,17 +20,16 @@
 ## 2. Let guests in
 
 - [ ] Open the site in **Experience Builder** (**Workspaces → Builder**).
-- [ ] **Settings → General**: tick **Public can access the site**.
+- [ ] **Settings → General → Public Access**: tick **Guest users can see and interact with the site without logging in**.
 - [ ] Note the **Guest User Profile** link on the same panel. You use the guest user in steps 4 to 7.
 
 ## 3. Add record pages for Form Template and Form Submission
 
 Object pages give every Form Template its own link on the site, so one page serves all your forms. Resume links from save and resume land on the Form Template page, and links to a saved submission open it on the Form Submission page. Flow Tool Kit ships a page template for each.
 
-- [ ] In Experience Builder, open the **Pages** menu → **New Page** → **Object Pages** → choose **Form Template** → **Create**. Builder adds a detail page, a list page and a related list page.
-- [ ] Repeat for **Form Submission**.
-- [ ] Open **Form Template Detail** → page properties (the gear) → **Page Variations** → **New Page Variation** → choose the **Form Template Detail** template → **Next**, name it, **Create**. Then make it the page's default variation and delete the standard one. The template holds **Form (Template)** bound to the page's record, and a page title from the record's name.
-- [ ] Do the same on **Form Submission Detail** with the **Form Submission Detail** template. Given a Form Submission, the form opens that submission with its saved answers.
+- [ ] In Experience Builder, open the **Pages** menu → **New Page** → **Object Pages** → choose **Form Template** → **Create**, then **Create** again. Builder adds a detail page, a list page and a related list page. The detail page is built from the **Form Template Detail** template Flow Tool Kit ships, so **Form (Template)** is already on it, bound to the page's record, with a page title from the record's name.
+- [ ] Repeat for **Form Submission**. Its detail page holds the form too: given a Form Submission, it opens that submission with its saved answers.
+- [ ] If a detail page shows standard record components instead of the form, open it → page properties (the gear) → **Page Variations** → **New Page Variation** → choose the **Form Template Detail** (or **Form Submission Detail**) template → **Next**, name it, **Create**, then make it the page's default variation and delete the standard one.
 - [ ] **LWR sites:** the templates are for Aura sites. On an LWR site, remove the standard record components from each detail page and drag **Form (Template)** on instead, with **Record Id** set to `{!Route.recordId}`. Also drag **FlowToolKit LWR Support** into the site footer.
 - [ ] **Publish** the site.
 
@@ -41,7 +44,7 @@ Guests read a Form Template page through the sharing rule in step 5. A Form Subm
 ## 4. Give the guest user the Form Flow User permission set
 
 - [ ] In Experience Builder, **Settings → General → Guest User Profile** link → **View Users** → open the site's guest user.
-- [ ] **Permission Set Assignments → Edit Assignments** → add **Form Flow User** → **Save**.
+- [ ] **Permission Set Assignments → Edit Assignments** → add **Form Flow User** (listed as **Form (Flow User)**) → **Save**.
 
 Form Flow User gives guests Read and Create on the form objects and access to the packaged form flows. Guests can never hold Edit or Delete, which is why the save override in step 6 exists. See [Permission Sets](../getting-started/permission-sets.md).
 

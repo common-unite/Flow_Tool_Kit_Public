@@ -4,6 +4,8 @@
 
 One Form Template can now behave differently for every campaign, event, or job that uses it. On the Form Template Source configurator's Pre-fill tab, map any field on the source record onto a Form Submission field: pick a source field, pick the Form Submission field to receive it, and add the row. The picker supports **relationship traversal up to five hops** (a parent campaign's or account's fields) and **basic type matching** so text maps to text, a checkbox to a checkbox, and a lookup to a same-object lookup.
 
+{% embed url="https://vimeo.com/1242137404" %}
+
 ![Source Field Mappings Demo](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/322-source-field-mappings-demo.gif)
 
 Each mapping is **Prefill** or **Live**:
@@ -39,6 +41,9 @@ Merge fields gain four new format tokens, and the existing date token becomes pr
 
 These work anywhere merge fields already do: rich text, field labels, help text, and section content.
 
+
+{% embed url="https://vimeo.com/1242117854" %}
+
 ## 🆕 Design Blocks: build the pages around your forms (#328, #332)
 
 **Form (Design Block)** is a new Experience Cloud component for everything surrounding a form: landing pages, thank-you pages, and campaign microsites. Drop it onto a page, choose a layout, and fill in the content. Ten layouts ship with it:
@@ -48,6 +53,10 @@ These work anywhere merge fields already do: rich text, field labels, help text,
 Everything is configured from one property editor: theming, spacing, background gradients and textures, borders, and per-item color overrides. The Heading, Body, and Footnote groups each carry their own alignment, so a centered heading can sit above left-aligned copy, and an Arrangement toggle switches a block between stacked and split.
 
 A block whose layout has not been chosen yet now shows an illustrated prompt pointing at the property editor, instead of a bare line of text.
+
+This video adds a design block to a page, picks a section type and replaces the sample content:
+
+{% embed url="https://vimeo.com/1242892294" %}
 
 ## 🆕 Merge fields in Design Blocks (#329)
 

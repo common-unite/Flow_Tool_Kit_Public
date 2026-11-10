@@ -42,9 +42,13 @@ Give respondents a clear next step when a save cannot complete. The message iden
 ## 📘 Guest Forms Quickstart (#767)
 
 - **One checklist for public forms on an Experience Cloud site.** [Guest Forms Quickstart](../how-to-guides/guest-forms-quickstart.md) covers creating and activating the site, letting guests in, placing the form, the guest permission set, guest sharing rules, the save override in System Context Without Sharing, LWR extras and testing as a guest, with a table of what a guest sees when a step is missing.
+
+  {% embed url="https://vimeo.com/1242821145" %}
 - **Corrected:** the Experience Cloud deploy guide said guest users cannot receive permission sets. They can, and Form Flow User is meant to be assigned to the site's guest user.
 
 ## 📘 Overriding Packaged Flows (#763)
+
+{% embed url="https://vimeo.com/1241879216" %}
 
 - **One page for the override mechanism.** [Overriding Packaged Flows](../advanced-topics/overriding-packaged-flows.md) explains the flow override (Save as flow override: every caller runs yours, and every counter, picklist and log keeps showing the packaged name) against a plain clone, why a guest-serving save override runs in System Context Without Sharing while the package ships nothing in system context, and what to check when an override is deployed with metadata: it can arrive as Draft, and a flow with a local action needs API 63 or later. Linked from the NPSP and Nonprofit Cloud Customizing pages, the Prefill Flow page and the Guest Forms Quickstart.
 - **The installer sets up the guest save override.** An optional step on a first install, **Install the Guest Save Override (inactive)**, checked by default on the Install, Nonprofit Cloud and NPSP plans, deploys a copy of `(Form) Upsert | Overridable` as a flow override in System Context Without Sharing, inactive, plus the **Form Flow (Guest User)** permission set that grants it. The admin reviews it, activates it and assigns the permission set to the site's guest user; the package itself still ships nothing in system context. Re-runs and upgrades skip the step, so the permission set, which extension installers add their guest grants to, is never replaced. See [The installer's guest save override](../advanced-topics/overriding-packaged-flows.md#the-installers-guest-save-override).
@@ -57,7 +61,7 @@ Give respondents a clear next step when a save cannot complete. The message iden
 
 Digital Experiences must be enabled in the org before 4.46 installs or upgrades, because these templates are Experience Cloud pages. The installer checks for it first and stops with instructions when it is off.
 
-- **Record pages for your forms in two clicks.** On an Aura site, create a page variation of the Form Template and Form Submission object pages from the new **Form Template Detail** and **Form Submission Detail** templates. Each holds Form (Template) bound to the page's record, so every template gets its own link on the site and resume links have a page to land on. See step 3 of the [Guest Forms Quickstart](../how-to-guides/guest-forms-quickstart.md).
+- **Record pages for your forms in two clicks.** On an Aura site, create a page variation of the Form Template and Form Submission object pages from the new **Form Template Detail** and **Form Submission Detail** templates. Each holds Form (Template) bound to the page's record, so every template gets its own link on the site and resume links have a page to land on. See step 3 of the [Guest Forms Quickstart](../how-to-guides/guest-forms-quickstart.md). Experience Builder now builds the detail page from these templates when you create the object pages, so the page variation is needed only when a detail page shows standard record components instead of the form.
 
 ## 🛠 A value set on an input by a tool registers (#760)
 

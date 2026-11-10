@@ -33,6 +33,15 @@ Type a custom label to replace the one from the object schema. The field still m
 Salesforce limits field labels to 40 characters. The custom label override **removes this limitation**: enter labels of any length.
 {% endhint %}
 
+### Rich Text Labels
+
+Custom Label is a rich text editor. Click into it on the field's **Labels** tab and the toolbar opens: font, size, colour, bold, italic, underline, lists, alignment and links. Format only the words that need it; the rest of the label keeps the theme's label style, which is already bold, so italics or a colour stand out more than bold.
+
+{% embed url="https://vimeo.com/1242111039" %}
+
+- Help text added on the same tab shows as a bubble right after the label, however the label is formatted.
+- A few places show the label as plain text, without its formatting: validation summary lines, preset amount and record picker placeholders, and selector labels.
+
 ### HTML in Labels
 
 Custom labels support HTML for styling. For example:
@@ -69,6 +78,10 @@ Merge fields also work inside **picklist option labels**: rename any picklist or
 
 **Numbered Questions**: Use `Question {{fieldnumber}}: {{Label}}` as the custom label to auto-number survey questions. Numbering is scoped to each form component and skips hidden fields, so questions never show gaps and re-flow when fields are reordered or conditionally hidden. Repeating sections number each instance from 1. `{{fieldnumber}}` and `{{sectionnumber}}` work in labels, help text, prompts, and placeholders.
 
+This video numbers three survey questions, then moves one and the numbers follow:
+
+{% embed url="https://vimeo.com/1242109232" %}
+
 ### Formatting Merge Values
 
 Add a format prefix inside the braces to render a raw stored value in a friendlier, localized form. Dates and currency use the running user's locale, so the same form reads naturally for every audience.
@@ -87,6 +100,10 @@ Add a format prefix inside the braces to render a raw stored value in a friendli
 You can also transform text with `{{Field__c.replaceAll('old','new')}}`.
 
 {% hint style="info" %}
+This video types a date and an amount, and a sentence shows them with `$date` and `$currency`:
+
+{% embed url="https://vimeo.com/1242117854" %}
+
 Date-only fields never shift a day: a `2026-07-26` value renders as July 26 in every timezone. Datetime and time formats display in the viewer's timezone. Currency uses the org's currency in a single-currency org, or the running user's currency in a multi-currency org.
 {% endhint %}
 

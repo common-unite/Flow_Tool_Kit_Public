@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-01T19:26:05.641738+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/301-nonlinear/out/non-linear-navigation-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 64.020312,
+    "bytes": 3825725,
+    "codec": "h264",
+    "frames": "1919",
+    "frameRate": "30/1",
+    "averageFrameRate": "9825280/327569"
+  },
+  "sourceSHA256": "5b66778882ab8a4381439b69dcf8a94d6004c7441d75b1a3ef7911436bcaa138",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/301-non-linear-navigation-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 300332,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "bc61d7abdd489cbe4eba324b0223e2033f04fc6829348ee6f91f93e426f99fb0",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

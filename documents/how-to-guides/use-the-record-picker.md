@@ -2,7 +2,9 @@
 
 > Turn any single-object lookup into a searchable picker with filters, a second line of detail under each suggestion, and an extra field to search on. It also gives portal users a working lookup when they can edit a record but not create one.
 
-![Setting up the Record Picker on Parent Account](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/661-record-picker-demo.gif)
+This video sets up a Record Picker with a filter that follows another answer, then tries it in the preview:
+
+{% embed url="https://vimeo.com/1242077463" %}
 
 {% hint style="info" %}
 **Prerequisites**: A form with a lookup field that points at **one** object (for example Parent Account on Account, or Account on Contact). See [Build a Form](build-a-form.md).

@@ -6,11 +6,9 @@ Release 4.47 ships Form Styles, the Record Card, and buttons that open a Flow or
 
 Set org-wide defaults in **Form Builder → Global Styles**, then refine one template in its **Style Editor**. Preview changes as you work; export and import the settings to reuse them in another org.
 
-![Changing a template's styles and seeing the form preview update](../screenshots/749-template-style-editor-demo.gif)
+{% embed url="https://vimeo.com/1241844704" %}
 
 *Make one template distinct while keeping shared org defaults for the rest.*
-
-![Change the brand color and field spacing, then save org defaults](../screenshots/749-global-styles.gif)
 
 ![Global Styles Basics controls for shared form appearance](../.gitbook/assets/form-styles-global-basics.png)
 
@@ -24,7 +22,7 @@ Record Cards turn record values into visual listings, event cards, profiles and 
 
 *Put the important details and the next action together.*
 
-![Bind a partner name and add a contact row in the Record Card editor preview](../screenshots/781-build-record-card.gif)
+{% embed url="https://vimeo.com/1241846868" %}
 
 *Build a partner spotlight using record fields. This walkthrough shows the editor preview.*
 

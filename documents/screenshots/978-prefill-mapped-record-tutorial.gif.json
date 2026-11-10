@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-11-01T04:39:43.540005+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/978-prefill-mapped/out/prefill-mapped-record-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 75.495667,
+    "bytes": 2343608,
+    "codec": "h264",
+    "frames": "2263",
+    "frameRate": "30/1",
+    "averageFrameRate": "17379840/579379"
+  },
+  "sourceSHA256": "a8061b0d951f56e5658dbb31e791f9ba0083e3f6aed4983e316e981b2dd99d3f",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/978-prefill-mapped-record-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 274767,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "6bcba2ada353bf6954517cb82efb8eaaaeb17a4dce3fbff62de8b5e4b25eee0d",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

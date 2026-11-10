@@ -4,6 +4,10 @@ Flow Tool Kit ships its automation as flows marked **overridable**: the save flo
 
 ## Two routes
 
+Walkthrough: creating a flow override of a packaged conversion flow with Save As New Flow.
+
+{% embed url="https://vimeo.com/1241879216" %}
+
 **A flow override.** Open the packaged flow in Flow Builder and choose **Save As**. Because the packaged flow is overridable, Flow Builder opens **Save as flow override** instead of a plain copy; give the new flow a label and API name, make your changes, and **Activate** it. From then on everything that names the packaged flow runs yours: the form's save, the prefill and resume calls, subflow calls, and the conversion dispatcher. Nothing else needs pointing at it. In metadata the override is an ordinary flow whose `overriddenFlow` names the packaged flow.
 
 **A plain clone.** Save a copy without the override link and point the package at it explicitly: a Form Template's Flow API Name fields for one template, or the Form Template Conversion Mapping Default records for the whole org. The NPSP and Nonprofit Cloud Customizing pages describe this route for the conversion step flows. A clone only runs where something names it.
@@ -14,7 +18,9 @@ Flow Tool Kit ships its automation as flows marked **overridable**: the save flo
 
 ## Overrides that serve guests run in system context
 
-Guests save through `(Form) Upsert | Overridable`, and a guest can insert a Form Submission but never update one or stamp it with a record they cannot read. The package ships every flow in the default (user) context and never in system context; the override that serves your guest site is yours, and it has to run as **System Context Without Sharing**: open your override's properties, **Show Advanced**, and set **How to Run the Flow**. Then grant it: Form Flow User only grants the packaged flows, so add your override under **Flow Access** in a permission set of your own and assign it to the guest user. Without that grant the save fails with "You do not have permission to run this form's save process".
+Guests save through `(Form) Upsert | Overridable`, and a guest can insert a Form Submission but never update one or stamp it with a record they cannot read. Since 5.3 the form starts the save flow from Apex, where a flow on the default setting runs in system context; the packaged save flow ships on the default setting (see [How the form starts the save flow](../form-template-framework/prefill-flow.md#how-the-form-starts-the-save-flow)); the override that serves your guest site is yours, and it has to run as **System Context Without Sharing**: open your override's properties, **Show Advanced**, and set **How to Run the Flow**. Then grant it: Form Flow User only grants the packaged flows, so add your override under **Flow Access** in a permission set of your own and assign it to the guest user. Without that grant the save fails with "You do not have permission to run this form's save process".
+
+**Since 5.3 the packaged save flow, and any override still on the default setting, runs in system context.** To keep each respondent's own access, override it (or open your override), save it as API version 68.0 or later, and set **How to Run the Flow** to **User Context, Enforces User Permissions**; choose System Context only when it serves guests who must update their saved submissions.
 
 Keep the override to saving the submission it receives, and review it like any other code that runs for the public. The [Guest Forms Quickstart](../how-to-guides/guest-forms-quickstart.md#6-set-up-the-save-override-for-guests) walks through the clicks; [Guest users and the upsert override](../form-template-framework/prefill-flow.md#guest-users-and-the-upsert-override) covers the security review and the fault wiring a clone made before 4.46 keeps.
 

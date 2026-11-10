@@ -23,7 +23,7 @@ Every style is drawn from Lightning Design System building blocks and colored en
 
 A Rich Text section can now render as a themed **status message card** (info, warning, error, or success) instead of plain text. Pick a **Message Variant** in the Form Builder and the section becomes a designed card with a colored left edge, a tinted fill, and a status icon. Perfect for validation summaries, callouts, and confirmations.
 
-![Choosing a Message Variant and the card rendering live in the preview](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/148-message-variant-card-demo.gif)
+{% embed url="https://vimeo.com/1242113120" %}
 
 **What you can do.**
 
@@ -35,7 +35,7 @@ A Rich Text section can now render as a themed **status message card** (info, wa
 
 Boolean fields gain a new **Attestation** display type: a consent/certification **card** instead of a bare toggle. A checkbox sits beside a rich-text statement inside a brand-themed box, and clicking anywhere on the card checks it. When checked, the card fills with your brand color so the agreement clearly stands out, ideal for consent, certifications, and terms acknowledgements.
 
-![Selecting the Attestation display type in the Form Builder](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/188-attestation-selector-demo.gif)
+{% embed url="https://vimeo.com/1242114702" %}
 
 ![A checked attestation card on a branded form](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/188-attestation-selector.png)
 

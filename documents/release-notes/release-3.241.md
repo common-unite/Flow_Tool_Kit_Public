@@ -8,7 +8,9 @@ A quality release: number fields gain interactive stepper, slider, and preset-am
 
 Number, currency, and percent fields can now render as something more interactive than a plain input. Set **Number Display Type** in a field's Number Override Settings:
 
-![The Number Display Type dropdown, the preset editor, and stepper, slider, and preset chips in the preview](../.gitbook/assets/254-number-overrides-demo.gif)
+This video sets Employees to a Stepper, then a Slider, and gives Annual Revenue preset amount chips with an Other option:
+
+{% embed url="https://vimeo.com/1242090622" %}
 
 * **Stepper**: minus/plus buttons flank the formatted input. The field's **Step** value sets the increment (set it to `1` so a stepper counts by whole dollars, not pennies); Step never restricts what a respondent can type.
 * **Slider**: a draggable range that defaults to 0–100 and honors the field's Min/Max and Step when set.

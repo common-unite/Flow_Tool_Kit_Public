@@ -2,6 +2,8 @@
 
 ## 🆕 Override New and Edit with a Form Component (#348)
 
+{% embed url="https://vimeo.com/1241859816" %}
+
 You can now replace the standard **New** and **Edit** actions on an object with a Form Component. Nominate the form per object using the **Default Override Form** setting, and Salesforce will open your form instead of the standard record page layout wherever those actions appear.
 
 The Default Override control is a stateful button, so at a glance you can see which object currently has an override in place. See the admin guide in the documentation for setup.

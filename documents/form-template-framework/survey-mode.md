@@ -17,7 +17,9 @@ The same controls appear in **Customize → Component**. The former template-lev
 
 ## Answer a survey
 
-![Training Evaluation opens without focused cards; entering a text answer activates its card, and single-choice answers advance to the matrix section](../screenshots/880-survey-mode.gif)
+Walkthrough: turning on Survey Section, answering one question at a time, moving to the next survey section, and reading the results on the Analytics tab.
+
+{% embed url="https://vimeo.com/1241864649" %}
 
 Scrolling alone does not select a question. Click or Tab into a field to focus it. The active card has a border, a question number, and a **Required** or **Answered** indicator where applicable. Click the white veil to return to the ordinary page layout.
 
@@ -29,7 +31,7 @@ The form's navigation bar remains separate and usable. **Continue** advances to 
 
 Completing the last question of a section brings the next survey section into view as a whole. Respondents can then enter a question in that section. A section with a single question, including a matrix, stays together with its heading; the veil remains outside the section.
 
-![Completing the fourth question reveals the next survey section, where selecting an answer focuses that question](../screenshots/889-survey-section-transition.gif)
+The walkthrough above shows this moment: after the last question of About your training, the Looking ahead section comes into view whole, and clicking a question brings up its card.
 
 ## Required answers and returning to a question
 

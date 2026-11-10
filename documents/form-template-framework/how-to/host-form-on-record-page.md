@@ -16,7 +16,9 @@ The Form (Template) component is not limited to Form Template and Form Submissio
 
 If none of the three resolve, respondents see a compact "No Form Found" illustration instead of a form, and the component tells the admin what to configure.
 
-![From empty state to a running form on a Contact record page](../../.gitbook/assets/234-record-page-resolution-demo.gif)
+Walkthrough: adding Form (Template) to a Contact record page in Lightning App Builder, choosing the fallback template, activating the page, and the form on a contact.
+
+{% embed url="https://vimeo.com/1241878134" %}
 
 ## Step 1: Add the Component
 
@@ -53,6 +55,10 @@ Pick a template from the dropdown, which lists every Form Template by name. It l
 ## Review Mode: the whole submission at a glance
 
 **Review Mode** turns the component into an internal review panel. Enable the checkbox on the component and, instead of the page-by-page form, the **review page loads as the only page**: every answer from every page, grouped under its page and section headings, with nothing else around it - no stage indicators, no page navigation, no button bar. It is built for the staff side of the desk: an admin or reviewer opens a Form Submission record and reads the entire response top to bottom without clicking through pages.
+
+This video ticks Review Mode in the Lightning App Builder, then opens a survey response as the summary:
+
+{% embed url="https://vimeo.com/1242131985" %}
 
 ### Where it works
 

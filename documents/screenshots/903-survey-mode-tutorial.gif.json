@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-31T23:58:44.974109+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/903-survey/out/survey-mode-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 106.275325,
+    "bytes": 4762886,
+    "codec": "h264",
+    "frames": "3187",
+    "frameRate": "30/1",
+    "averageFrameRate": "30/1"
+  },
+  "sourceSHA256": "d6092fe20806dc0188e026fa65fe29f4bc87f145aa5d57d25fe81fc1ea946b9a",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/903-survey-mode-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 249494,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "4a0e5b8482c4b829cfc4dbd8b114da83be112e8f58cec44c34b43bec0612ab57",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

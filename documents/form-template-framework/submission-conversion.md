@@ -30,6 +30,8 @@ Form Submission (Status: Complete)
 
 Conversion triggers automatically when a submission reaches "Submitted" status. This is configured at the template level and runs as a platform event-driven process.
 
+By default the Form Submission Convert trigger runs as the Automated Process user. You can set a running user on it instead with a Platform Event Subscriber Config (for example, so the records and log rows a conversion creates show a named integration user as their creator); conversions run the same way under that user. After you deploy or remove the config, suspend and resume the trigger's subscription (Setup, Platform Events, Form Submission Convert, Subscriptions, Manage) so the change takes effect.
+
 ### Manual Conversion
 
 An admin or manager reviews the submission first, then triggers conversion manually. This allows for quality checks, edits, and approval before records are created.
@@ -135,6 +137,10 @@ To carry on past a failing Inline step, add a fault path to its Convert to Recor
 
 ## Conversion Log
 
+Walkthrough: setting a template's conversion rules to Contact1, then reprocessing a submission and reading its Conversion Log tab.
+
+{% embed url="https://vimeo.com/1241862308" %}
+
 Every conversion attempt is logged in `Form_Submission_Conversion_Log__c`:
 
 | Field             | Description                         |
@@ -154,6 +160,19 @@ When a conversion fails (missing required fields, validation rule violations, du
 1. The conversion log records the error
 2. The submission status reflects the failure, and Finish never marks a conversion Complete while it carries an error
 3. The submission can be corrected and re-converted
+
+### Reprocessing many submissions at once
+
+Two buttons rerun conversion for more than one submission:
+
+- **Reprocess All**, in the actions menu of a Form Template, reruns every submitted submission of that template.
+- **Reprocess Selected**, on a Form Submissions list view, reruns the ones you tick.
+
+Both show a summary before anything changes: how many will run, how many already converted (skipped unless you include them), and how many are already queued (left in place). Submissions then convert one at a time, in the order they arrived, so two submissions for the same new person never both create that person. Records an earlier conversion created are matched or updated, not duplicated.
+
+{% embed url="https://vimeo.com/1241799579" %}
+
+Existing orgs add both buttons to their page layouts by hand: the Reprocess All action on the Form Template layout, and Reprocess Selected on the Form Submission list view button layout. Page layouts are not changed by a package upgrade.
 
 **A confirmation email that cannot be sent never fails the conversion.** The send is logged as an error row so you can find it and fix the cause (a bad address, a bounced contact email, a missing email template), and you can send the email by hand from the activity timeline; the submission still reads Complete. To log any other error the same way, tick **Record this error and carry on: it does not fail the conversion** on a Log action. That is rarely what you want.
 

@@ -39,6 +39,95 @@ What Salesforce accepts depends on what the file is shared with. Measured on fil
 
 Blank means Viewer and All Users, which work for both. Any other pair makes Salesforce refuse the link: the flow stops with the error (for example "Invalid sharing type C") and the new file is not kept.
 
+### Print any record as a PDF, laid out with your form components
+
+Any record can be printed with your own Form Components: a Contact with its Account card and a list of related records, for example. You build three things.
+
+The walkthrough builds the three components, the page and the flow, then runs it from a Contact:
+
+{% embed url="https://vimeo.com/1242559675" %}
+
+**1. Form Components.** Build one component per object you print, in the **Form Builder** tab or the **Form Components** tab; the PDF prints both, and hides the sections and fields the component's conditional logic hides for that record. To get the name the PDF needs: for a Form Builder component, open it, click the **Settings** tab, and click the **Form Tag** field, which copies the full API name to your clipboard; for a Form Components tab component, use its record's **VersionId**, which ends in `_v0` (for example `PDF_Contact_Details_v0`).
+
+**2. A Visualforce page.** In Setup, open **Visualforce Pages** and click **New**. Start from this page, which follows the Flow Tool Kit Form Submission print page:
+
+```html
+<apex:page standardController="Contact"
+           contentType="application/pdf"
+           renderAs="pdf"
+           showHeader="false"
+           sidebar="false"
+           standardStylesheets="false"
+           applyBodyTag="false"
+           applyHtmlTag="false">
+    <html lang="en_us">
+    <head>
+        <style>
+            @page {
+                margin: 0.5in 0.25in;
+                size: letter;
+                @top-left { content: "{!Contact.Name}"; font-size: 10px; font-family: Arial, Helvetica, sans-serif; color: rgb(81, 79, 77); }
+                @top-center { content: "Contact Summary"; font-size: 14px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; }
+                @bottom-right { content: "Page " counter(page) " of " counter(pages); font-size: 10px; font-family: Arial, Helvetica, sans-serif; color: rgb(81, 79, 77); }
+            }
+            h2 { font-family: Arial, Helvetica, sans-serif; font-size: 13pt; color: #032D60; border-bottom: 2px solid #0176D3; padding-bottom: 4px; margin: 16px 0 8px; }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <!-- The starting record -->
+        <h2>{!Contact.Name}</h2>
+        <FlowToolKit:DynamicPDF formComponentName="PDF_Contact_Details" relatedId="{!Contact.Id}"/>
+
+        <!-- Reach up: the Contact's Account, only when there is one -->
+        <apex:outputPanel layout="block" rendered="{!NOT(ISBLANK(Contact.AccountId))}">
+            <h2>{!Contact.Account.Name}</h2>
+            <FlowToolKit:DynamicPDF formComponentName="PDF_Account_Card" relatedId="{!Contact.AccountId}"/>
+        </apex:outputPanel>
+
+        <!-- Reach down: one block per related record -->
+        <h2>Applications</h2>
+        <apex:repeat value="{!Contact.FlowToolKit__Form_Submissions__r}" var="submission">
+            <FlowToolKit:DynamicPDF formComponentName="PDF_Submission_Row" relatedId="{!submission.Id}"/>
+        </apex:repeat>
+    </body>
+    </html>
+</apex:page>
+```
+
+What each part does:
+
+| Part | Required | What it does |
+|---|---|---|
+| `standardController` | Yes | The object you start from. Generate PDF passes **Record Id** to the page as its id, and the standard controller turns it into that record, so every merge field and block can read it. |
+| `renderAs="pdf"`, `contentType` | Yes | Makes the page a PDF. |
+| `showHeader`, `sidebar`, `standardStylesheets`, `applyHtmlTag`, `applyBodyTag` all `false` | Yes | Keeps Salesforce's own page and styles out. You write the `html` and `head`; each `DynamicPDF` block adds the Flow Tool Kit PDF styles itself. Do not add the Lightning Design System stylesheet: the PDF renderer cannot use it. |
+| `@page` | No | Paper size, margins, a header and page numbers. |
+| `FlowToolKit:DynamicPDF` | Yes, one per block | Prints one Form Component for one record. |
+| `rendered` | No | Shows a block only when a condition is true, such as when the Contact has an Account. |
+| `apex:repeat` | No | Prints a block once per related record. The list is the child relationship name with `__r`: in Setup, open the lookup field on the child object and read **Child Relationship Name**. Add the namespace in front for a packaged lookup. |
+
+`DynamicPDF` attributes:
+
+| Attribute | Required | Description |
+|---|---|---|
+| `formComponentName` | Yes | The component's API name |
+| `relatedId` | Yes, or `relatedRecord` | The Id of the record to print: the starting record, a lookup on it (`Contact.AccountId`), or the repeat variable's Id |
+| `relatedRecord` | No | A record instead of an Id |
+| `themeName` | No | A Form Theme API name, for header colours |
+| `showPrompts` | No | Prints field and section prompts |
+| `escapeRichText` | No | `false` prints rich text fields as formatted text |
+
+Preview the page before building the flow: open `/apex/ContactSummaryPDF?id=` followed by a Contact Id. Give everyone who will make the PDF access to the page: in their permission set, **Visualforce Page Access**.
+
+**3. A flow.** Add **Generate PDF**. Choose your page, set **Record Id** to the starting record's Id (a Contact Id for a Contact page), name the file, and set **Share With** to the record the file belongs on. The same action works in:
+
+* **A screen flow** run from a button: create a text variable `recordId`, available for input, then an action on the object (Object Manager, **Buttons, Links, and Actions**, **New Action**, type Flow) and add it to the page.
+* **A record-triggered flow**: put Generate PDF on the **Run Asynchronously** path. Salesforce does not allow a PDF to be made while the record is saving.
+* **An autolaunched or scheduled flow**, called with a record Id.
+
+To keep one file and add versions to it, look up the existing file first and pass it to **New Version Of**. If the file is not yet shared with the **Share With** record, the action shares it; if it already is, the existing link is kept. When the PDF cannot be made or saved, the flow stops with Salesforce's reason, so give the action a fault path if the flow should carry on.
+
 ### Inputs
 
 | Property | Type | Required | Description |

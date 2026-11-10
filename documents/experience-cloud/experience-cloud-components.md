@@ -53,6 +53,11 @@ The property editor provides a visual interface for configuring:
 | **Modal Size**     | Dialog width when using modal display: small, medium, large, full                    |
 | **Read Only**      | Display the form in read-only mode                                                   |
 | **Theme**          | Form Theme for styling                                                               |
+| **Hide Success Messages** | Unchecked by default, under **Confirmation Settings**. Check it to stop the success message that pops up after a record is created or saved, for example when your confirmation message or the page you send people to already tells them it worked. Error and validation messages always show. |
+
+This video checks **Hide Success Messages** on a form in Experience Builder, publishes, then saves on the live page: no message on that form, while a form left at the default still shows it:
+
+{% embed url="https://vimeo.com/1244993314" %}
 
 ### Outputs
 

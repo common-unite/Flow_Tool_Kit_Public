@@ -1,0 +1,42 @@
+{
+  "status": "ready",
+  "createdAt": "2026-10-31T22:07:58.461793+00:00",
+  "source": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/scratch-org/955-mapping/out/form-template-mapping-tutorial.mp4",
+    "width": 1920,
+    "height": 1080,
+    "rotation": 0.0,
+    "duration": 110.755338,
+    "bytes": 5101996,
+    "codec": "h264",
+    "frames": "3321",
+    "frameRate": "30/1",
+    "averageFrameRate": "1244160/41477"
+  },
+  "sourceSHA256": "9327c540a75637b1e9778b0d6c7b3090c49f66801923c996c14194984dd1e4aa",
+  "parameters": {
+    "start": 0,
+    "crop": null,
+    "width": 640,
+    "duration": 12.0,
+    "fps": 12,
+    "endHold": 1,
+    "maxMB": null,
+    "loop": 0
+  },
+  "output": {
+    "path": "/Users/common-unite/IdeaProjects/cUnite_FormBuilder/documents/screenshots/955-form-template-mapping-tutorial.gif",
+    "width": 640,
+    "height": 360,
+    "rotation": 0.0,
+    "duration": 13.0,
+    "bytes": 191914,
+    "codec": "gif",
+    "frames": "156",
+    "frameRate": "12/1",
+    "averageFrameRate": "25/2"
+  },
+  "outputSHA256": "a7cbff2ad77e097f24e0f36fda01462e62252dbb77a59328792e41327cf38351",
+  "decodeChecked": true,
+  "visuallyReviewed": false
+}

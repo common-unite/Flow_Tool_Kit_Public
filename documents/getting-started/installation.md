@@ -53,6 +53,23 @@ If you see the Form Builder tab and can create a form, Flow Tool Kit is installe
 **Can't see the Form Builder tab?** Make sure you've assigned the **Form Builder Admin** or **Form Builder Manager** permission set. The tab is only visible to users with the correct permissions.
 {% endhint %}
 
+## Check the Form Cache
+
+Nothing to do here in most orgs; this is a one-minute check.
+
+Flow Tool Kit keeps every built form, theme, label and style sheet in a Platform Cache partition named **FormComponents**. Because Flow Tool Kit is a security-reviewed AppExchange package, Salesforce gives that partition **3 MB of cache free** the moment the package installs. You cannot remove it, and you do not need to set it up.
+
+To see it: Setup → **Platform Cache** → open **FormComponents** (namespace FlowToolKit). The Organization cache should show at least 3 MB, listed as Provider Free.
+
+| Org | What you get |
+|---|---|
+| Enterprise, Unlimited, Performance | 3 MB free, automatically. Large orgs can add more from the org's own cache on the same page. |
+| Developer Edition | 3 MB free, automatically. |
+| Professional Edition | No Platform Cache. Forms still work, but every form load builds the form from scratch. |
+| Scratch org | Only when the org definition turns cache on. See [Cache Reset](../advanced-topics/cache-reset.md#where-the-cache-lives). |
+
+Without the cache, every form load rebuilds the form from scratch and nothing reports an error. One form measured 2,875 ms to load without the cache against 60 ms with it. See [Troubleshooting](../faq-troubleshooting/troubleshooting.md#every-form-load-is-slow-not-only-the-first).
+
 ## Schedule the Daily Warmer
 
 Do this once, before you go live. It is the single highest-impact performance step for Flow Tool Kit.

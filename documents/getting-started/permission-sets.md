@@ -31,11 +31,11 @@
 
 This is the most permissive set. It grants:
 
-* **56 Apex class accesses**: all runtime, builder, and admin utility classes
-* **478 field permissions**: full read/edit on all Flow Tool Kit fields
-* **14 object permissions**: full CRUD on all Flow Tool Kit objects
+* **83 Apex class accesses**: all runtime, builder, and admin utility classes
+* **1,010 field permissions**: full read/edit on all Flow Tool Kit fields
+* **17 object permissions**: full CRUD on all Flow Tool Kit objects
 * **5 custom tabs**: Form Builder, Form Components, Form Submissions, Form Templates, Table Builder
-* **6 Visualforce pages**: CacheFlow (cache management), Form Submission Print, Form Template Clone/Export/Import
+* **14 Visualforce pages**: CacheFlow (cache management), Form Submission Print and Reprocess, Form Template Clone/Export/Import/Print/Results, Form Component Export/Import
 * **User permissions**: Access Content Builder, Modify Metadata, View Roles, View Setup
 
 ## Form Builder Manager
@@ -48,11 +48,11 @@ This is the most permissive set. It grants:
 
 This set grants:
 
-* **47 Apex class accesses**: all runtime and builder classes, excluding admin utilities
-* **477 field permissions**: read/edit on nearly all Flow Tool Kit fields
-* **14 object permissions**: full CRUD on all Flow Tool Kit objects (same as Admin)
+* **72 Apex class accesses**: all runtime and builder classes, excluding admin utilities
+* **852 field permissions**: read/edit on nearly all Flow Tool Kit fields
+* **17 object permissions**: full CRUD on all Flow Tool Kit objects (same as Admin)
 * **No custom tabs**: tabs must be assigned separately or via an app
-* **No Visualforce pages**: no cache management or template import/export
+* **The same 14 Visualforce pages as Admin**, including Form Template Clone/Export/Import and Form Component Export/Import
 * **No setup permissions**: no View Setup, Modify Metadata, or Content Builder access
 
 Form Builder Manager users can:
@@ -60,6 +60,7 @@ Form Builder Manager users can:
 * Create, edit, and delete forms in Form Builder
 * Configure fields, sections, conditional logic, and themes
 * Create and manage Form Templates (multi-page forms)
+* Clone, export and import Form Templates, and export and import record Form Components (a Manager updates an existing component only when its Form Managers list them; see [Export and Import Form Components](../form-configuration/export-import-form-components.md))
 * Manage Form Submissions (review, convert)
 * Use all Invocable Actions in Flows
 * Access all Form Tool Kit objects and fields
@@ -67,7 +68,6 @@ Form Builder Manager users can:
 Form Builder Manager users **cannot**:
 
 * Reset the form cache (the **Reset Form Cache** button in Form Builder, gated on the **Form Component Admin** custom permission)
-* Clone/export/import Form Templates via Visualforce pages
 * Access Salesforce Setup pages
 * Modify metadata
 
@@ -179,12 +179,13 @@ Record-level access still applies on top of object permissions. **Form Submissio
 | Campaign access                |  Yes  |   Yes   |      Yes      |     No    |
 | Use Invocable Actions in Flows |  Yes  |   Yes   |      Yes      |    Yes    |
 | Reset form cache               |  Yes  |    No   |       No      |     No    |
-| Import/export templates (VF)   |  Yes  |    No   |       -       |     No    |
+| Import/export templates (VF)   |  Yes  |   Yes   |       -       |     No    |
+| Import/export record components |  Yes  | Yes (listed in Form Managers to update) |  -  |     No    |
 | View Setup                     |  Yes  |    No   |       No      |     No    |
 | Custom tab access              |  Yes  |    No   |       -       |     No    |
-| Apex classes                   |   56  |    47   |       -       |     36    |
-| Field permissions              |  478  |   477   |       -       |    446    |
-| Object permissions             |   14  |    14   |       -       |     11    |
+| Apex classes                   |   83  |    72   |       -       |     36    |
+| Field permissions              | 1,010 |   852   |       -       |    446    |
+| Object permissions             |   17  |    17   |       -       |     11    |
 
 ## Assignment Best Practices
 
