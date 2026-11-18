@@ -16,8 +16,8 @@ The current release is **5.4.0.2**. Use whichever route suits you:
   * Production and Developer Edition orgs: `https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C18PYAS`
 * **Always current:** the [latest release on GitHub](https://github.com/common-unite/Flow_Tool_Kit_Public/releases/latest) lists the install links of the newest version, with its release notes.
 
-{% hint style="warning" %}
-**LWR sites:** keep FlowToolKit LWR Support in the Theme Footer of the theme layout, then Publish after upgrading. An LWR site serves the code from its last publish, and since Winter '27 a site published without that component shows forms with no sections.
+{% hint style="info" %}
+Read the [5.4 release notes](../release-notes/release-5.4.md) and the [documentation](https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/).
 {% endhint %}
 
 ## Install from AppExchange
