@@ -122,7 +122,7 @@ The pattern must match the whole value, the same way the field checks it as the 
 
 ### Built-in Email Address Check
 
-<!-- Walkthrough video: Email fields check for a full address before submit (Vimeo embed goes here) -->
+{% embed url="https://vimeo.com/1248021542" %}
 
 Every Email field, packaged or your own, checks for a full address before the form can move on: a name, an @, and a domain with a dot in it, such as `name@example.com`. An address such as `bobby@wright` shows this message under the field: "This email address is not complete. Enter it like name@example.com." No setup is needed.
 
@@ -131,11 +131,72 @@ Every Email field, packaged or your own, checks for a full address before the fo
 * **Matches Salesforce**: the check accepts subdomains (`name@dept.school.edu`), plus addressing and dots in the name (`first.last+tag@x.org`) and long endings (`.nonprofit`, `.community`). Salesforce itself refuses an Email value with no dot in its domain, so dotless internal addresses such as `name@intranet` cannot be saved in an Email field.
 * If an incomplete address still reaches the save, for example an unchanged prefilled value, the error reads "The email address "bobby@wright" is not complete. Please correct it and save again."
 
+### Ready-made email patterns
+
+Paste one of these into the field's **Field Format**, and the message into **Custom Formatting Alert Message**. Each one was tested on a live guest form and against the same addresses a Salesforce Email field saves or refuses.
+
+**Standard (matches Salesforce)**: accepts every address a Salesforce Email field saves, and blocks every address it refuses.
+
+```
+[A-Za-z0-9!#$%&'*+\/=?\^_\`\{\|\}~\-][A-Za-z0-9.!#$%&'*+\/=?\^_\`\{\|\}~\-]*@(?:[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?
+```
+
+* **Format Alert Message**: "Enter a full email address, like name@example.com."
+* **Use this when** you want the built-in rule with your own message, or on a Text field that holds an email address (the built-in check runs only on Email fields).
+
+**Public addresses only**: accepts ordinary internet addresses (letters, digits and `. _ % + ' -` in the name, and an ending of 2 or more letters such as `.com`, `.org` or `.nonprofit`).
+
+```
+[A-Za-z0-9_%+'\-][A-Za-z0-9._%+'\-]*@(?:[A-Za-z0-9](?:[A-Za-z0-9\-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}
+```
+
+* **Format Alert Message**: "Enter a full email address, like name@example.com."
+* **Use this when** you want the stricter shape: it also blocks a one-letter ending (`name@example.c`) and a numeric host (`name@127.0.0.1`), which Salesforce would save.
+
+| Address                  | Salesforce Email field | Standard | Public addresses only |
+| ------------------------ | ---------------------- | -------- | --------------------- |
+| `name@dept.school.edu`   | saves                  | accepted | accepted              |
+| `first.last+tag@x.org`   | saves                  | accepted | accepted              |
+| `name@helpers.nonprofit` | saves                  | accepted | accepted              |
+| `name@example.c`         | saves                  | accepted | blocked               |
+| `name@127.0.0.1`         | saves                  | accepted | blocked               |
+| `bobby@wright`           | refuses                | blocked  | blocked               |
+| `bobby@wright..com`      | refuses                | blocked  | blocked               |
+| `.bobby@wright.com`      | refuses                | blocked  | blocked               |
+
+{% hint style="info" %}
+**Dotless domains cannot be saved in an Email field.** Salesforce refuses an Email value with no dot in its domain, such as `name@intranet` or `name@localhost`, so no Field Format can make one save there. Keep such addresses in a Text field.
+{% endhint %}
+
+### Ready-made Text field patterns
+
+These work on Text fields, and on Phone fields with masking turned off. Like every Field Format, they check only a field that has a value; an empty field is governed by **Required**.
+
+**Phone (US)**: a 10-digit US number, with or without a leading `1` or `+1`.
+
+```
+(?:\+?1[ .\-]?)?(?:\([2-9]\d{2}\)|[2-9]\d{2})[ .\-]?[2-9]\d{2}[ .\-]?\d{4}
+```
+
+* **Format Alert Message**: "Enter a 10-digit US phone number, like (816) 555-0134."
+* **Accepts** `(816) 555-0134`, `816-555-0134`, `816.555.0134`, `8165550134` and `+1 816 555 0134`. **Blocks** `555-0134`, `(816 555-0134`, `016-555-0134`, an extension and a non-US number.
+* **Use this when** a Text field holds a phone number, or a Phone field has masking turned off.
+
+**ZIP code (US)**: 5 digits, or ZIP+4 with or without the hyphen.
+
+```
+\d{5}(?:-?\d{4})?
+```
+
+* **Format Alert Message**: "Enter a 5-digit ZIP code, or ZIP+4 like 64106-1234."
+* **Accepts** `64106`, `64106-1234` and `641061234`. **Blocks** `6410`, `64106-12`, `64106 1234` and a Canadian postal code.
+* **Use this when** a Text field holds a US postal code.
+
 ## Phone Validation
 
 When **phone masking** is enabled (default), min/max length validation is enforced automatically; users cannot submit a partial phone number.
 
-When masking is disabled, use regex validation for custom phone format enforcement. See [Field Type Settings](field-type-settings.md) for phone masking details.
+When masking is disabled, use regex validation for custom phone format enforcement, such as the tested [Phone (US) pattern](#ready-made-text-field-patterns). See [Field Type Settings](field-type-settings.md) for phone masking details.
 
 ![Phone masking auto-format](../.gitbook/assets/phone-masking-auto-format.png)
 
