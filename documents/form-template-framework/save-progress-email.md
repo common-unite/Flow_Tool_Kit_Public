@@ -73,7 +73,17 @@ A save with none of them sends nothing. The first later save that has one sends 
 | When no email goes out | The template has no web form address, or both sends faulted (for example no recipient email, an unverified Default Workflow User, or the daily limit): the save is kept, and one **Conversion Log** row on the submission says "Save Progress email didn't send" and gives the reason. The submission's conversion status is not changed. A request the trigger refuses because the person saving cannot read the Form Template is logged the same way. |
 | The link | The template's Web Form URL plus `resume=<token>`: its Web Form Site URL if set, otherwise the org's Default Web Form URL, then the template Id. It opens the template's public form page, never a record page. The stages resume email uses the same link. |
 | Opening the link | The form template reads the `resume` parameter itself (and `pv9` when it holds a token, for links sent before this release), with no URL Parameter Mapping. It runs the template's Prefill Flow, or the packaged **(Form) Prefill \| Template** when the template is on Bypass, in default mode. The prefill finds the draft by token and template, clears the token and the request (single use), and the form opens on the saved answers. The next save sends a fresh link straight away, even inside the hour. If the prefill can't open the draft, a new form opens with: "This link can't open your saved form. It may already have been used or have expired, or this site's guest user can't read saved forms (see Guest User Considerations). A new form has opened below." |
-| Expiry | Tokens clear on submit and after 7 days (the **Expire Resume Tokens** scheduled flow). A save from the form can never clear the token or the request itself, so the hour cannot be dodged that way. |
+| Expiry | Tokens clear on submit and after 7 days (the **Expire Resume Tokens** scheduled flow; see [The Expire Resume Tokens scheduled flow](#the-expire-resume-tokens-scheduled-flow), which also explains how to change the window). A save from the form can never clear the token or the request itself, so the hour cannot be dodged that way. |
+
+### Why a new link disables the older one
+
+**How it works.** A Form Submission holds only one token at a time. Each request for a resume link makes a new token, which replaces the old one, so the older link stops working. Opening the submission through the prefill flow clears the token, so the link works once.
+
+**Why.** Security. A link in an email is a key to the saved record, and drafts often hold personal details. With one live token, no link sits in an inbox or an email template giving anyone access to the record for all time.
+
+**One strategy among others.** This is one built-in strategy in a security model, not the full set of security considerations. Your org can add its own security postures to guest forms.
+
+**You are not locked in.** The form template framework runs inside flows, so you can override them to turn off a default or change the behavior. The token itself is made in the Form Submission trigger, so the changes go in the flows around it: your own **(Form) Send Resume Link | Overridable** override can build the emailed link from a token you keep, and your own copy of **(Form) Prefill | Template** (set as the template's **Prefill Flow**) can look that token up and decide when it stops working. For example, an org could store its tokens on a related custom object and query past ones. That is possible, but not recommended: it brings back long-lived links, so review it against your own security rules. How to override: [Overriding Packaged Flows](../advanced-topics/overriding-packaged-flows.md).
 
 ## What happens when
 
@@ -121,6 +131,38 @@ A save with none of them sends nothing. The first later save that has one sends 
 | No Contact 1 (most site guests), no template named, or the template send fails for any other reason | The built-in email, which carries the form's name and the link |
 
 A site guest who only types an email address has no Contact 1, so the built-in email is what they get. To send your own branded email to them, override the flow (below).
+
+## The Expire Resume Tokens scheduled flow
+
+**Purpose.** A resume link that nobody opens would otherwise work forever. **(Form) Expire Resume Tokens | Scheduled | Overridable** (`Form_Submission_Expire_Resume_Tokens`) is the housekeeping that retires old links, so a forgotten email cannot open a draft months later. It ships active, so it runs without any setup, and you can override it if the default window does not suit you.
+
+**How it works.**
+
+| Part | What it does |
+|---|---|
+| Schedule | Runs once a day. A link that passes the cutoff stops working at the next daily run, so a link lives up to a day longer than the window. |
+| Which submissions | Form Submissions that have both **Send Resume Link** (`Internal_Send_Resume_Link__c`) and **Save Progress Resume Link** (`Internal_Unique_Token__c`) filled in, that is, submissions with a link outstanding. |
+| The cutoff | A formula named `Token_Expiration_Cutoff`: `{!$Flow.CurrentDateTime} - 7`, now minus 7 days. A submission is expired when its **Send Resume Link** time, the moment the last email was requested, is older than the cutoff. The window counts from the last email, not the last save. |
+| What it clears | Both fields. The token is gone, so the link finds no draft and the respondent sees the "This link can't open your saved form" notice with a new form. Clearing **Send Resume Link** also means the next save can email a fresh link at once, without waiting out the hour. |
+
+Other ways a link stops working, none of which depend on this flow: it is **opened once** (the prefill clears the token), a **newer link is requested** (a new token replaces it), or the form is **submitted** (the trigger clears both fields on the first submission date).
+
+**Overriding it with your own logic.** The flow is overridable, so the steps are the ones on [Overriding Packaged Flows](../advanced-topics/overriding-packaged-flows.md#two-routes):
+
+1. In Setup, open **Flows**, open **(Form) Expire Resume Tokens | Scheduled | Overridable** and choose **Save As**. Flow Builder offers **Save as flow override**; give it a label and API name.
+2. Change the cutoff formula, the decision or the update, as in the examples below, and **Activate** the override. The packaged flow stays installed, and your override runs in its place.
+3. Keep the two fields it clears (**Send Resume Link** and **Save Progress Resume Link**) in the update. Clearing only one leaves a half-cleared submission.
+
+Generic examples:
+
+* **A longer or shorter window.** Edit the formula: `{!$Flow.CurrentDateTime} - 30` keeps links for a month, `- 1` for a day. Change nothing else.
+* **Expire at the form's close date.** A link should stop working once the form closes. Form Templates have a **Close Date** (`Close_Date__c`, a date and time). In the override, replace the cutoff test with a decision that clears a submission when its template's close date has passed: `{!$Record.FlowToolKit__Form_Template__r.FlowToolKit__Close_Date__c} < {!$Flow.CurrentDateTime}` (drop the namespace prefix in an unpackaged org). Combine it with the 7-day test if you want whichever comes first.
+* **A different window per template.** Add a decision before the update that looks at the template, such as its name or a custom field of your own, and sends each branch through its own cutoff: 3 days for a short registration, 60 days for a long application.
+* **Warn the respondent before expiry.** Add a branch for submissions whose link is 6 days old that sends an email through the **Send Email** action ("Your saved form closes tomorrow"), and keep the 7-day branch for the clear. Because the flow runs once a day, a window of a few days is enough to land the warning.
+
+{% hint style="info" %}
+**Test with a throwaway submission.** In a sandbox, create a draft with a resume link, set its **Send Resume Link** time back past your window, and run the override once from Flow Builder's debug option or let it run overnight. Confirm the token clears before you rely on the override.
+{% endhint %}
 
 ## Optional: override the send flow
 

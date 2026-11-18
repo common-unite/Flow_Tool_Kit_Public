@@ -105,6 +105,10 @@ After publishing, open a form page on the site as a real visitor would, in a pri
 | Sections blank right after a package upgrade; `component/latest/...lightning%2FinputField` or `...FlowToolKit%2FflowForm` returns 401 or 503, then `LWR3008` | The site was not published after the upgrade, or it was published on Winter '27 or later without the support block in the theme footer. Place the block, publish, test the page by its own address |
 | Form (Design Block) buttons show as plain links in the site's link color, with no fill | The LWR theme styles every link and, up to 4.46, its rule outranked the block's button and link colors. Upgrade to the release after 4.46, then publish the site. Aura sites were never affected |
 
+{% hint style="info" %}
+**Need a hand?** Ask questions in our [Slack community](https://common-unite.my.site.com/slack), or book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours).
+{% endhint %}
+
 ## Related Pages
 
 - [Deploy to Experience Cloud](../how-to-guides/deploy-to-experience-cloud.md): adding forms to site pages and guest permissions

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>Hierarchy</customSettingsType>
-    <description>Protected package style configuration. Only organization-level values are used. Blank tokens inherit component defaults.</description>
+    <description>Protected package style configuration. Only organization-level values are used. Blank tokens inherit component defaults. Also holds the org default Banner logo and its alt text, which the Form Template Logo formulas read; those two are not style tokens.</description>
     <enableFeeds>false</enableFeeds>
     <label>Form Style Defaults</label>
     <visibility>Protected</visibility>

@@ -61,6 +61,8 @@ After reviewing a submission, convert it into Salesforce records:
 | Opportunity     | Sales opportunity                |
 | Campaign Member | Add to a marketing campaign      |
 
+A converted Opportunity is named with the submission's **Subject** (its first 120 characters). When Subject is blank, it is named with the submission number. A converted Case uses Subject as its Case Subject. To give these records a real name, have the form fill Subject.
+
 ## Step 4: Set Up Conversion Rules
 
 Conversion rules define how submission fields map to Salesforce fields:

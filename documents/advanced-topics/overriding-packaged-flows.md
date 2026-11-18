@@ -1,6 +1,6 @@
 # Overriding Packaged Flows
 
-Flow Tool Kit ships its automation as flows marked **overridable**: the save flow `(Form) Upsert | Overridable`, the prefill and resume flows, and every conversion engine and step flow. Overridable means you can replace one with a flow of your own, and the package keeps calling the replacement. This page covers the two ways to do that, what each one changes, and the three things that trip people up when the override serves guests or travels through a deployment.
+Flow Tool Kit ships its automation as flows marked **overridable**: the save flow `(Form) Upsert | Overridable`, the prefill and resume flows, the scheduled flow that expires resume links ([how to override it](../form-template-framework/save-progress-email.md#the-expire-resume-tokens-scheduled-flow)), and every conversion engine and step flow. Overridable means you can replace one with a flow of your own, and the package keeps calling the replacement. This page covers the two ways to do that, what each one changes, and the three things that trip people up when the override serves guests or travels through a deployment.
 
 ## Two routes
 
@@ -24,21 +24,9 @@ Guests save through `(Form) Upsert | Overridable`, and a guest can insert a Form
 
 Keep the override to saving the submission it receives, and review it like any other code that runs for the public. The [Guest Forms Quickstart](../how-to-guides/guest-forms-quickstart.md#6-set-up-the-save-override-for-guests) walks through the clicks; [Guest users and the upsert override](../form-template-framework/prefill-flow.md#guest-users-and-the-upsert-override) covers the security review and the fault wiring a clone made before 4.46 keeps.
 
-## The installer's guest save override
+## Guest save override
 
-Since 4.46 the installer offers an optional step on a first install, **Install the Guest Save Override (inactive)**, checked by default on the Install, Nonprofit Cloud and NPSP plans. It deploys a copy of `(Form) Upsert | Overridable` as a flow override named **(Form) Upsert | Guest Override** (`Form_Submission_Upsert_Guest`) in System Context Without Sharing, **inactive**, together with the permission set **Form Flow (Guest User)** (`Form_Flow_Guest_User`) that grants it. Both are unmanaged metadata of your own; the package still ships nothing in system context.
-
-What the step leaves to you, by design:
-
-1. Review the override in Flow Builder, as you would any code that runs for the public.
-2. **Activate** it. Until then the packaged flow keeps serving every save.
-3. Assign **Form Flow (Guest User)** to the site's guest user alongside Form (Flow User).
-
-The step runs on a first install only. A re-run of setup and the Upgrade plan skip it, so the permission set is never replaced: Flow Tool Kit extension installers add their own guest grants to **Form Flow (Guest User)**, and so can you. An org installed before 4.46 keeps the override it built; the copy the installer would have deployed is the same flow, so there is nothing to migrate.
-
-{% hint style="info" %}
-**Test in a new guest session.** A guest session that started before the override was activated, or before the permission set was assigned, keeps running with what it had and still fails with "You do not have permission to run this form's save process". Open the form in a fresh private window, or log out of the site at `https://<site domain>/<site path>/secur/logout.jsp` and load the form again.
-{% endhint %}
+A guest save needs an override of `(Form) Upsert | Overridable` that runs in System Context Without Sharing, is activated, and is granted to the guest user: add it under **Flow Access** in a permission set you assign to the guest user (the profile works too). It is ordinary Salesforce access, nothing Flow Tool Kit ships. The [Guest Forms Quickstart](../how-to-guides/guest-forms-quickstart.md#6-set-up-the-save-override-for-guests) has the clicks, and the test to run as a guest in a new private window.
 
 ## Deploying an override with metadata
 
@@ -49,5 +37,6 @@ The step runs on a first install only. A re-run of setup and the Upgrade plan sk
 ## Related pages
 
 - [Prefill Flow](../form-template-framework/prefill-flow.md)
+- [Save Progress Email: the Expire Resume Tokens scheduled flow](../form-template-framework/save-progress-email.md#the-expire-resume-tokens-scheduled-flow)
 - [Guest Forms Quickstart](../how-to-guides/guest-forms-quickstart.md)
 - [NPSP Customizing](../npsp/customizing.md) and [Nonprofit Cloud Customizing](../nonprofit-cloud/customizing.md)

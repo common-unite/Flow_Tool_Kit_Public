@@ -118,6 +118,19 @@ String and email fields support **regular expression** validation:
 
 **Example**: An email field with regex `.*@salesforce\.com` and message "You must provide a Salesforce email address."
 
+The pattern must match the whole value, the same way the field checks it as the person types. Patterns can use Unicode classes such as `\p{L}` (any letter).
+
+### Built-in Email Address Check
+
+<!-- Walkthrough video: Email fields check for a full address before submit (Vimeo embed goes here) -->
+
+Every Email field, packaged or your own, checks for a full address before the form can move on: a name, an @, and a domain with a dot in it, such as `name@example.com`. An address such as `bobby@wright` shows this message under the field: "This email address is not complete. Enter it like name@example.com." No setup is needed.
+
+* **Your own pattern wins**: when the field has a **Field Format**, the form uses only that pattern (and its **Custom Formatting Alert Message**) and skips the built-in check.
+* **Existing values are never blocked**: the check runs only on an address the person typed or changed on this visit. A prefilled value (from a record, a URL parameter or a flow variable) or the value of a saved submission that is left as it is submits as before.
+* **Matches Salesforce**: the check accepts subdomains (`name@dept.school.edu`), plus addressing and dots in the name (`first.last+tag@x.org`) and long endings (`.nonprofit`, `.community`). Salesforce itself refuses an Email value with no dot in its domain, so dotless internal addresses such as `name@intranet` cannot be saved in an Email field.
+* If an incomplete address still reaches the save, for example an unchanged prefilled value, the error reads "The email address "bobby@wright" is not complete. Please correct it and save again."
+
 ## Phone Validation
 
 When **phone masking** is enabled (default), min/max length validation is enforced automatically; users cannot submit a partial phone number.

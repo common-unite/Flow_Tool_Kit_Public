@@ -92,12 +92,16 @@ How to tell your org is one of them:
 - After you press **Reset Form Cache**, components lose their settings: section titles show "New Section", and widths, labels and display settings go back to their defaults.
 - Or, in **Setup → Custom Metadata Types → Form Conditional Logic**, you see fields such as `customLogic` or `conditionType`, or a validation rule named `Custom_Logic_Required_When_Type`.
 
-**If you see either, contact us at support@common-unite.com and we'll clean up your org for free.** Until then, avoid pressing Reset Form Cache.
+**If you see either, message us in our [Slack community](https://common-unite.my.site.com/slack) (or email support@common-unite.com if you'd rather keep it private) and we'll clean up your org for free.** Until then, avoid pressing Reset Form Cache.
 
 Why it happens: a version 3 install created fields that later versions no longer use, on **Form**, **Form Section**, **Form Field** and **Form Conditional Logic**. An upgrade cannot remove fields from your org, so they stay behind, and Reset Form Cache reads their old default values in place of each form's own settings. The fields named above are examples; a full cleanup removes all of them at once, which is why we do it with you. Once they are gone, Reset Form Cache keeps your settings.
 
 {% hint style="info" %}
 **Version compatibility**: Flow Tool Kit maintains backward compatibility across versions. Your existing forms should work without changes after upgrading. If something breaks, check the release notes for known issues.
+{% endhint %}
+
+{% hint style="info" %}
+**Need a hand?** Ask questions in our [Slack community](https://common-unite.my.site.com/slack), or book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours).
 {% endhint %}
 
 ## Related Pages

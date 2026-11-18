@@ -6,6 +6,10 @@
 **Prerequisites**: Flow Tool Kit installed, an Experience Cloud site, and a **Rich Text Area** field on the object that holds the photos. Staff add a photo by pasting or uploading it into that field.
 {% endhint %}
 
+This walkthrough shows the guest sharing rule and field access, points a Record Card Design Block at the rich text field in Experience Builder, publishes, and opens the page signed out:
+
+{% embed url="https://vimeo.com/1247811689" %}
+
 ## How it works
 
 A rich text field doesn't store the image itself. It stores a short link to it, about 160 characters per photo. Flow Tool Kit reads the link out of the field and draws the image from the address your site serves it at. The same field works on an Aura site, an LWR site and inside Salesforce.
@@ -60,9 +64,9 @@ This also works inside a **Dynamic Repeater**: each record's section shows that 
 ### A Design Block
 
 1. In Experience Builder, add a **Record Card** or **Showcase** Design Block and give it the id of the record that holds the photo. The block needs the record to read the field.
-2. Set the image source to **URL**.
+2. Set the image source to **URL**. On a Record Card it is in **Card Content**, under **Image**; on a Showcase, in **Media**.
 3. In the URL box, type the rich text field's **API name** inside double curly braces, for example `{{Photo__c}}`. Type the field's name, not its contents: don't paste the photo or its link. The block reads the field from the record and draws whatever photo it holds, so each record shows its own.
-4. The block's panel then shows **Image set** rather than the token. That is expected; the token is still saved.
+4. The block draws the record's photo in Experience Builder straight away. A Showcase's **Media** summary then shows **Image set** rather than the token. That is expected; the token is still saved.
 
 ## Step 3: Check as a guest
 

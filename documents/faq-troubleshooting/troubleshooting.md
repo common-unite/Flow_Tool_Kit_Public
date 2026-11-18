@@ -3,7 +3,7 @@
 > Symptoms, causes, and solutions for common Flow Tool Kit issues.
 
 {% hint style="info" %}
-**Can't find your issue?** Check the [FAQ](../form-template-framework/faq/faq.md) for quick answers to common questions, or reach out via the [AppExchange listing](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000HC4zCUAT).
+**Can't find your issue?** Check the [FAQ](../form-template-framework/faq/faq.md) for quick answers to common questions, ask in our [Slack community](https://common-unite.my.site.com/slack), or book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours).
 {% endhint %}
 
 ## Form Builder Won't Load

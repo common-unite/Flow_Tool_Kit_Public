@@ -80,7 +80,7 @@ This component has no Flow outputs (it is not a Flow Screen component; it embeds
 * `large`: wide dialog (default)
 * `full`: large on a desktop and edge to edge on a phone (available in Release 4.49).
 
-In Release 4.49, the flow sheet uses the package's own modal. A dialog opened inside it, such as a lookup search window, a confirmation, or another package's dialog, appears above the sheet on Experience Cloud and Lightning pages. Closing the inner dialog returns to the sheet. A required prefill flow must finish before its dialog closes; use **Finish** rather than Escape or the close icon.
+In Release 4.49, the flow sheet uses the package's own modal. A dialog opened inside it, such as a lookup search window, a confirmation, or another package's dialog, appears above the sheet on Experience Cloud and Lightning pages. Closing the inner dialog returns to the sheet. The sheet shows only the flow's own buttons; it adds none of its own, and its X or the Escape key closes it without finishing the flow. On a phone, a full-size sheet keeps its X inside the screen. When a flow in the sheet opens a second sheet and that second sheet closes, by its X or Escape, the keyboard goes back into the first sheet, so the next Escape closes it. A required prefill flow must finish before its dialog closes; use **Finish** rather than Escape or the close icon.
 
 ## Works With
 

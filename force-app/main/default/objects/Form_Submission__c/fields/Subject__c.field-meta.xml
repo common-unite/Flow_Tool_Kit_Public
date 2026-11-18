@@ -2,6 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Subject__c</fullName>
     <externalId>false</externalId>
+    <description>A short title for the submission. Data Conversion uses it as the Case Subject and as the Opportunity Name (the first 120 characters); when it is blank the Opportunity is named with the submission number.</description>
+    <inlineHelpText>A short title for this submission. It becomes the Subject of a converted Case and the Name of a converted Opportunity.</inlineHelpText>
     <label>Subject</label>
     <length>255</length>
     <required>false</required>

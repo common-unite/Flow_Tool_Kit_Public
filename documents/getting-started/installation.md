@@ -88,6 +88,10 @@ Schedule it as yourself, an active administrator. Full detail, including how to 
 **Upgrading rather than installing fresh?** Check Setup → **Scheduled Jobs** for an existing `Cache_FlowToolKit_Components` entry. If its **Submitted By** column is blank, it was created automatically by an old installer, has never worked, and needs to be deleted and re-created by you.
 {% endhint %}
 
+{% hint style="info" %}
+**Need a hand?** Ask questions in our [Slack community](https://common-unite.my.site.com/slack), or book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours).
+{% endhint %}
+
 ## Next Steps
 
 - [Quick Start Guide](quick-start.md): build your first real form in 5 minutes

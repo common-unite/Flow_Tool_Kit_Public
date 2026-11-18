@@ -50,6 +50,13 @@ plans:
                 task: sync_packaged_picklist_values
                 ui_options:
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
+            2.6:
+                task: execute_anon
+                options:
+                    apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
+                ui_options:
+                    name: "Refresh the Form Theme cache"
+                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -118,6 +125,13 @@ plans:
                 task: sync_packaged_picklist_values
                 ui_options:
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
+            2.6:
+                task: execute_anon
+                options:
+                    apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
+                ui_options:
+                    name: "Refresh the Form Theme cache"
+                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -212,6 +226,13 @@ plans:
                 task: sync_packaged_picklist_values
                 ui_options:
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
+            2.6:
+                task: execute_anon
+                options:
+                    apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
+                ui_options:
+                    name: "Refresh the Form Theme cache"
+                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -284,6 +305,13 @@ plans:
                 task: sync_packaged_picklist_values
                 ui_options:
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
+            2.6:
+                task: execute_anon
+                options:
+                    apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
+                ui_options:
+                    name: "Refresh the Form Theme cache"
+                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
 
 flows:
 
@@ -362,43 +390,48 @@ flows:
                 task: deploy
                 options:
                     path: force-app-post
-            # Testing Aura EC site for iframe embed testing
+            # The three test sites scratch-org/showcase holds bundles for (#1211). The showcase deploy (step 11)
+            # is one deploy, so a missing site refuses all three bundles. Site steps never ignore a failure:
+            # a dev org without its sites is not ready (salesforce rule 74). skip_existing makes a rerun safe.
             7:
                 task: create_community
+                description: Testing Aura, the Aura guest site (/testing/s) for iframe embed, the regression suite's aura host and the guest resave check
                 options:
                     template: Build Your Own
                     name: Testing Aura
                     url_path_prefix: testing
-                ignore_failure: True
+                    skip_existing: True
             8:
-                task: publish_community
+                task: create_community
+                description: Testing LWR, the LWR guest site (/testinglwr), the regression suite's lwr host; takes about five minutes
                 options:
-                    name: Testing Aura
-                ignore_failure: True
+                    template: Build Your Own (LWR)
+                    name: Testing LWR
+                    url_path_prefix: testinglwr
+                    skip_existing: True
             9:
-                task: execute_anon
-                description: Configure Testing Aura guest user permissions
+                task: create_community
+                description: Testing CS, the Customer Service theme check site for the Site Blocks design system (/testingcs/s); its bundle is built by scratch-org/showcase/build_cs_site.py
                 options:
-                    path: datasets/dev/setup_testing_aura_site.apex
-                ignore_failure: True
+                    template: Build Your Own
+                    name: Testing CS
+                    url_path_prefix: testingcs
+                    skip_existing: True
             10:
                 task: execute_anon
                 description: Resolve conversion-test related-record section markers to real section Ids (Snowfakery cannot write an Id into the Text field Internal_SectionId__c)
                 options:
                     path: scripts/seed-conversion-related-records.apex
                 ignore_failure: True
+            10.5:
+                task: execute_anon
+                description: Demo of the Contact Add to Account conversion rule (Account, template, submission, converted Contact)
+                options:
+                    path: scripts/seed-contact-add-to-account-demo.apex
+                ignore_failure: True
             11:
-                task: deploy
-                description: Design block showcase page on the Testing Aura site. No-ops until scratch-org/showcase/experiences has been captured once, see its README.
-                options:
-                    path: scratch-org/showcase
-                ignore_failure: True
-            12:
-                task: publish_community
-                description: Republish so the showcase page is visible to the guest user
-                options:
-                    name: Testing Aura
-                ignore_failure: True
+                task: deploy_testing_sites
+                description: The three test sites' pages (scratch-org/showcase), the design block showcase, demo pages, the Form Template and Form Submission pages a template's web form opens on Testing Aura and Testing LWR, the regression suite's /s/regression page and the LWR Support footer. Published by step 18.
             13:
                 task: load_form_analytics_demo
                 description: Form Analytics demo (#900), a survey template, three campaigns, 30 contacts and 90 responses submitted in one update and converted (#902), then results recalculated
@@ -407,6 +440,55 @@ flows:
                 task: deploy_walkthrough_demos
                 description: Every archived walkthrough demo (unpackaged/walkthroughs), common first, so a new dev org can record or show any walkthrough (#1028). Dev flows only; one failing walkthrough is logged and the rest carry on.
                 ignore_failure: True
+            15:
+                task: execute_anon
+                description: Banner logo demo (#1105), the org default logo on Global Style and two active Form Templates on the Banner header, one with its own Logo Override
+                options:
+                    path: scripts/seed-banner-logo-1105.apex
+                ignore_failure: True
+            16:
+                task: execute_anon
+                description: Review screen demo (#1178, #1179), a one-page Trip Review Demo template (Date, Date/Time, File Upload) and a saved submission whose receipts are pretty-printed JSON, one removed; needs the Expense Reimbursement 2 template to clone from
+                options:
+                    path: scripts/seed-review-date-file-upload-1178.apex
+                ignore_failure: True
+            17:
+                flow: regression_fixtures
+            18:
+                task: activate_testing_sites
+                description: Testing Aura, Testing LWR and Testing CS Live with guest API access, their guests granted Form Flow User and the regression flows, published (waits for each publish), and each home page opened as a guest; any failure fails the flow (#1211)
+
+    # What the Chrome regression suite (unpackaged/config/regression) and the release's guest resave check
+    # (release Step 2.8) need in a dev org: the scenario flows, tabs and permission sets, the QA Guest
+    # Resave form, template and its System Mode upsert override, QA Regression Survey, and guest sharing
+    # rules for both test sites (#1211). Needs the test sites (create_community) and Program Outcomes
+    # Survey (load_form_analytics_demo) first; activate_testing_sites gives the guests the permission sets.
+    regression_fixtures:
+        group: Flow Tool Kit
+        description: Load the regression suite's fixtures into a dev org that already has its test sites (#1211)
+        steps:
+            1:
+                task: deploy
+                options:
+                    path: unpackaged/config/regression/metadata
+            2:
+                task: deploy
+                options:
+                    path: unpackaged/config/regression/guest-sharing
+            3:
+                task: assign_permission_sets
+                options:
+                    api_names: QA_Regression_Tabs
+            4:
+                task: execute_anon
+                description: QA Guest Resave, the guest resave check's template (no prefill, Skip Prefill, autosave on), then a form cache reset
+                options:
+                    path: unpackaged/config/regression/data/qa-guest-resave-template.apex
+            5:
+                task: execute_anon
+                description: QA Regression Survey, a copy of Program Outcomes Survey with Send Confirmation off
+                options:
+                    path: unpackaged/config/regression/data/qa-regression-survey-template.apex
 
     # Reusable NPC platform layer. Deploys NO product source, so other repos can
     # consume it as a step:  flow: formbuilder:npc_org_setup
@@ -1039,6 +1121,18 @@ tasks:
         description: "Adds every picklist value the package ships (fields, record type assignments, global value sets) that the org is missing, reading the package source at the release tag. Add-only; never removes, relabels, reorders or changes defaults. New managed picklist values reach fresh installs only, so upgraded orgs need this (#696, #723)."
         class_path: tasks.sync_picklist_values.SyncPackagedPicklistValues
         group: Flow Tool Kit installer
+    deploy_testing_sites:
+        class_path: tasks.testing_sites.DeployTestingSites
+        description: Deploy the test sites' pages (scratch-org/showcase), filling in the Aura object pages' key prefixes (#1211)
+        options:
+            path: scratch-org/showcase
+            key_prefix_objects: Form_Template__c,Form_Submission__c
+    activate_testing_sites:
+        class_path: tasks.testing_sites.ActivateTestingSites
+        description: Set the test sites Live with guest API access, grant their guests the test permission sets, publish and wait, then check each home page answers a guest (#1211)
+        options:
+            sites: Testing Aura,Testing LWR,Testing CS
+            guest_permission_sets: Form_Flow_User,QA_Regression_Guest_Access,QA_Guest_Upsert_Override
     load_form_analytics_demo:
         class_path: tasks.form_analytics_demo.LoadFormAnalyticsDemo
         description: Load the Form Analytics demo, submit its responses and wait for them to convert, then recalculate results (#900)
@@ -1155,6 +1249,13 @@ orgs:
         dev:
             config_file: orgs/dev.json
             days: 30
+            namespaced: True
+
+        # Release pre-build checks (release skill steps 2 to 3a): a fresh namespaced org from master,
+        # never the shared sprint org. Bobby approved 2026-11-18.
+        release_check:
+            config_file: orgs/dev.json
+            days: 7
             namespaced: True
 
 

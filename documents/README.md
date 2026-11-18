@@ -29,6 +29,11 @@ Flow Tool Kit is a managed package that gives Salesforce admins the power to bui
 | [FAQ & Troubleshooting](form-template-framework/faq/faq.md)                                                              | Common questions and solutions                               |
 | [Videos & Tutorials](videos/video-library.md)                                                                            | 90+ video walkthroughs organized by topic                    |
 
+## Get Help
+
+* Ask questions in our [Slack community](https://common-unite.my.site.com/slack)
+* Book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours)
+
 ## Links
 
 * [AppExchange Listing](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000HC4zCUAT)

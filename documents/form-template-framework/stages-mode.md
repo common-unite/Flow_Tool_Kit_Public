@@ -2,8 +2,6 @@
 
 > Render a Form Template as a non-linear stepper. Respondents see all pages at once, pick their path, work in any order, and the form remembers what's done.
 
-![Full Stages Mode walkthrough on a public site: landing on the stage overview, opening a stage, saving progress, and marking stages complete](https://raw.githubusercontent.com/common-unite/Flow_Tool_Kit_Public/main/documents/screenshots/125-stages-public-walkthrough-demo.gif)
-
 Walkthrough: turning on Stages Mode for a Form Template, then an applicant completing one stage and leaving another in progress.
 
 {% embed url="https://vimeo.com/1241874866" %}

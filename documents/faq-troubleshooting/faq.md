@@ -110,6 +110,10 @@ Use **Form Builder Manager** for users who build and manage form components but 
 
 Yes. Assign the **Form Flow User** permission set; it provides the minimum access needed to render and interact with forms in Flows.
 
+## Still Have Questions?
+
+Ask questions in our [Slack community](https://common-unite.my.site.com/slack), or book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours).
+
 ## Related Pages
 
 - [Troubleshooting](troubleshooting.md): step-by-step solutions for specific issues

@@ -2,7 +2,24 @@
 
 > The latest features and improvements in Flow Tool Kit.
 
-## Latest Release: v4.1
+## Latest Release: v5.3
+
+{% hint style="info" %}
+**Install or upgrade:** get the latest release from the [Common-Unite install page](https://install.common-unite.com/products).
+{% endhint %}
+
+- **Typing keeps every character**: in Form Templates with a page or section conditional rule (from 5.0 on), a pause mid-word could drop characters or empty the field. Every character now stays, on every host. Forms without those rules never had the problem.
+- **Save Progress email**: on ordinary (non-stages) forms, respondents get an email with a link that reopens their draft when they save.
+- **PDF on the confirmation email**: attach a PDF of the answers to the confirmation email.
+- **Picklist option descriptions**: a short description under each picklist option, set in the Form Builder.
+- **Header Tags and a Banner header** for every new Form Template.
+- **Export and import Form Components** between orgs.
+- **Reprocess many submissions at once**, with a summary before anything changes.
+- **Open Web Form** on Form Templates, and a link can now fill in a Time field.
+
+See the [5.3 release notes](../release-notes/release-5.3.md) for the upgrade checklist and every fix.
+
+## v4.1
 
 99 ready-made Form Submission fields (132 to 231) so new forms need zero field creation: generic question shapes, rating-scale batteries sized for instant Likert sections, nonprofit staples, and demographics, all with full value sets and permission set coverage. Plus a thirteen-component grant application demo, the guest first-save fix, and record forms working on objects without MRU. See the [4.1 release notes](../release-notes/release-4.1.md).
 
@@ -38,6 +55,7 @@ Key highlights from recent releases:
 
 | Version | Highlights |
 |---------|-----------|
+| [v5.3](../release-notes/release-5.3.md) | Typing keeps every character, Save Progress email, PDF on the confirmation email, picklist option descriptions, Header Tags, Form Component export and import |
 | [v4.0](../release-notes/release-4.0.md) | Cumulative milestone release: Stages Mode, Save & Resume, Survey Suite, number inputs, iframe embed, prefill flow, template sources, style sheets |
 | [v3.241](../release-notes/release-3.241.md) | Number display types, dynamic selectors, save-flow fix, section overlap fix |
 | [v3.240](../release-notes/release-3.240.md) | Likert Matrix sections, Survey Buttons, Visual Picker |
@@ -52,6 +70,9 @@ Key highlights from recent releases:
 
 ## Stay Updated
 
+- **Install**: the [Common-Unite install page](https://install.common-unite.com/products) always has the latest release
+- **Slack**: [join the Flow Tool Kit community](https://common-unite.my.site.com/slack) and ask questions there
+- **Office hours**: [book a spot in our daily office hours](https://calendly.com/common-unite/daily-office-hours)
 - **Vimeo**: [Flow Tool Kit Video Library](https://vimeo.com/showcase/flowtoolkit) for video walkthroughs of new features
 - **LinkedIn**: Follow [@flowgrammer](https://www.linkedin.com/in/flowgrammer/) for feature announcements and tips
 - **AppExchange**: [Flow Tool Kit listing](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000HC4zCUAT)

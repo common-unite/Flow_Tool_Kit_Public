@@ -64,6 +64,10 @@ There's no hard limit imposed by Flow Tool Kit. However, very long templates (20
 
 Yes. The Form Template component includes built-in forward and backward navigation. Users can return to previous pages to review or edit their responses.
 
+{% hint style="info" %}
+**Need a hand?** Ask questions in our [Slack community](https://common-unite.my.site.com/slack), or book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours).
+{% endhint %}
+
 ## Related Pages
 
 - [Form Templates Reference](../form-templates.md): component properties and architecture

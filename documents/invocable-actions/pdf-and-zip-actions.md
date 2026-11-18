@@ -23,7 +23,7 @@ Every input and output also carries help text, so the action reads the same in p
 
 | Page | Prints | Record Id |
 |---|---|---|
-| Form Submission Print (`FlowToolKit__FormSubmissionPrint`) | The submission in its form's own layout and theme, page by page. Pages the respondent never saw and pages marked Do Not Print are left out. | The Form Submission |
+| Form Submission Print (`FlowToolKit__FormSubmissionPrint`) | The submission in its form's own layout and theme, page by page. Pages the respondent never saw and pages marked Do Not Print are left out. So is a section with nothing to print (every question in it hidden, or a Repeater or Table with no rows) unless it has its own text, and a page left with no section and no text of its own. | The Form Submission |
 | Form Submission Simple Print (`FlowToolKit__FormSubmissionSimplePrint`) | The same answers as plain question and answer tables, with the same pages left out. | The Form Submission |
 | Form Template Print (`FlowToolKit__FormTemplatePrint`) | The template as its form, every page, with its pre-fill answers when it has a pre-fill template. | The Form Template |
 | Form Template Simple Print (`FlowToolKit__FormTemplateSimplePrint`) | The template's questions as plain tables. | The Form Template |

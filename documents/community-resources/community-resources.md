@@ -6,6 +6,8 @@
 
 | Channel | Link | Description |
 |---------|------|-------------|
+| **Slack** | [Flow Tool Kit community](https://common-unite.my.site.com/slack) | Ask questions and get answers from the team and other admins |
+| **Office Hours** | [Daily office hours](https://calendly.com/common-unite/daily-office-hours) | Book a spot to get help live |
 | **AppExchange** | [Flow Tool Kit](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000HC4zCUAT) | Install the package, read reviews, check version history |
 | **Vimeo** | [Flow Tool Kit Showcase](https://vimeo.com/showcase/flowtoolkit) | 90+ video walkthroughs organized by feature |
 | **LinkedIn** | [@flowgrammer](https://www.linkedin.com/in/flowgrammer/) | Feature announcements, tips, and posts (primary content channel) |
@@ -43,6 +45,8 @@ Browse the full [Video Library](../videos/video-library.md) or visit the [Vimeo 
 
 ## Consulting & Support
 
+- **Slack**: ask questions in our [Slack community](https://common-unite.my.site.com/slack)
+- **Office hours**: book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours)
 - **Flow Wizards Consulting**: [AppExchange listing](https://appexchange.salesforce.com/appxConsultingListingDetail?listingId=86d0282b-a980-462e-a4a2-49167365bc50) for custom Flow support, training, and implementation
 - **AppExchange Reviews**: [Leave a review](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000HC4zCUAT) if Flow Tool Kit is helping your team
 

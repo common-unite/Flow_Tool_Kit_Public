@@ -4,6 +4,10 @@ Use **Reporting Settings** in Form Builder to choose which Form Submission field
 
 > Available in [Release 4.49](../release-notes/release-4.49.md).
 
+This walkthrough sets Always, a Question Type and a Default Chart on a survey question, gives each answer choice a score, changes a name field to Never, and reads the result on the template's Analytics tab:
+
+{% embed url="https://vimeo.com/1247810767" %}
+
 First enable **Form Template Settings → Form Analytics → Enable Form Analytics** on the template. Question reporting settings only create answer records when that switch is on. Eligible answers are recorded when submission conversion is **Complete** or **Bypassed**, including questions in Custom mode sections. **Survey Section** controls the respondent presentation separately.
 
 ## Choose inclusion, question type, and chart

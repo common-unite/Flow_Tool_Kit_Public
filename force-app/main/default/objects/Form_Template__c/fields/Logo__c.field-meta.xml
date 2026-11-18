@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Logo__c</fullName>
+    <description>The logo this Form Template&apos;s Banner shows: the Logo Override when it is set, otherwise the org default logo from the Form Builder&apos;s Global Styles tab. Reference it in a Banner&apos;s Logo Override Field as {{Logo__c}} so every template has a logo without setting one on each.</description>
+    <externalId>false</externalId>
+    <formula>BLANKVALUE(Logo_Override__c, $Setup.Form_Style_Defaults__c.Default_Logo__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>The Logo Override when set, otherwise the org default logo from the Global Styles tab. Use this field in a Banner&apos;s Logo Override Field.</inlineHelpText>
+    <label>Logo</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -79,6 +79,10 @@ Click **Save**. Your form component metadata is now stored and ready to use.
 
 Click **Debug** or **Run** in Flow Builder to preview your form. You should see your Contact Intake form component rendered with the fields you configured, in the layout you defined.
 
+{% hint style="info" %}
+**Need a hand?** Ask questions in our [Slack community](https://common-unite.my.site.com/slack), or book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours).
+{% endhint %}
+
 ## What's Next?
 
 You've built your first form component. Here's where to go from here:

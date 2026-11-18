@@ -62,13 +62,9 @@ External users see no records by default. Create guest user sharing rules in **S
 
 Guests save through the flow **(Form) Upsert | Overridable**. The packaged flow runs as the respondent, so a guest save is refused whenever it would update a saved submission (save and resume) or point at a record the guest cannot read (an Account or Contact passed in the URL or by a prefill flow). Since 4.46 the form shows the refusal instead of a false "Submitted successfully".
 
-{% hint style="success" %}
-**Installed with the Flow Tool Kit installer, 4.46 or later?** Its optional step **Install the Guest Save Override (inactive)** has done the first two items for you: **Setup → Flows** holds **(Form) Upsert | Guest Override**, already in System Context Without Sharing, and the permission set **Form Flow (Guest User)** already grants it. Review the override, **Activate** it, and assign the permission set to the guest user as in step 4. See [The installer's guest save override](../advanced-topics/overriding-packaged-flows.md#the-installers-guest-save-override).
-{% endhint %}
-
 - [ ] **Setup → Flows** → open **(Form) Upsert | Overridable** → **Save As** to create your override.
 - [ ] In the new flow, open the flow's properties (**Show Advanced**) and set **How to Run the Flow** to **System Context Without Sharing-Access All Data**. Save and **Activate**. From then on every form uses your override instead of the packaged flow.
-- [ ] Create a permission set of your own, add your override under **Flow Access**, and assign it to the guest user as in step 4. Form Flow User only grants the packaged flow; without this the save fails with "You do not have permission to run this form's save process".
+- [ ] Grant the override to the guest user. Preferably create a permission set of your own, add the override under **Flow Access**, and assign it to the guest user as in step 4; the guest user's profile works too. Form Flow User only grants the packaged flow; without a grant for your override the save fails with "You do not have permission to run this form's save process".
 
 {% hint style="warning" %}
 **Your override runs without sharing for anyone who can open the form.** Keep it to saving the submission it receives, and review it like any other code that runs for the public. Flow Tool Kit ships nothing in system mode; the override is yours. See [Guest users and the upsert override](../form-template-framework/prefill-flow.md#guest-users-and-the-upsert-override) and, if the override is deployed with metadata rather than built in Setup, [Overriding Packaged Flows](../advanced-topics/overriding-packaged-flows.md): it may arrive inactive, and a flow with a local action needs API 63 or later.
@@ -95,7 +91,7 @@ Details: [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-comp
 - [ ] Open `https://<your site>/s/form-template/<Form Template Id>` in a **private browser window**, where you are not logged in to Salesforce.
 - [ ] The form loads, any default answers are filled in, and no warning toast about default answers appears.
 - [ ] Fill it out and submit. You see the confirmation, and a new **Form Submission** appears in Salesforce with the related records your form creates.
-- [ ] If the form uses save and resume, save progress, open the resume link in a new private window, change an answer and submit.
+- [ ] Save progress, then save again on the same submission. If the form uses resume, open the resume link in a new private window and submit. These are the saves the override exists for.
 - [ ] Test the URL parameters and prefill your real links will carry, with real records.
 
 ## If something is wrong
@@ -105,8 +101,8 @@ Details: [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-comp
 | "Page not found" or an empty record page | Step 3: the object page exists, its default variation holds Form (Template), and the site is published. |
 | Nothing, or "You can't view this form" | Step 5: Form Template sharing rule, and the template is Active. Step 1: the site is active. |
 | Blank or spinning form, or a form with no fields, on an LWR site | Step 3: FlowToolKit LWR Support placed in the site footer, not on one page only, and the site published. Step 8: public APIs on. |
-| "You do not have permission to run this form's save process" | Step 4 and step 6: Form Flow User, and a permission set of your own that grants your override under Flow Access. |
-| "could not be updated with your current access", "linked to a record you do not have access to" or "do not have access to save" | Step 6: the override runs in System Context Without Sharing, or the URL or prefill passes a record the guest cannot read. |
+| "You do not have permission to run this form's save process" | Step 6: the override is Activated and granted to the guest user (permission set Flow Access or profile). |
+| "could not be updated with your current access", "linked to a record you do not have access to" or "do not have access to save" | Step 6: set the override to System Context Without Sharing, or fix the URL or prefill that passes a record the guest cannot read. |
 | The save still fails after you activated the override or assigned the permission set | A guest session that started earlier keeps the access it had. Test in a new private window, or log out of the site at `https://<site domain>/<site path>/secur/logout.jsp` and load the form again. |
 | "does not accept the value" | A URL or prefilled value is not one of the field's picklist values. Add the value or change what the link or prefill sends. |
 | "...this form's pre-fill template is not shared with you" | Step 5: the Pre-fill Template sharing rule on Is Pre-fill Template. |

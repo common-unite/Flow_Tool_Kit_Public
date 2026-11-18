@@ -62,6 +62,10 @@
 3. Check that [Lightning Web Security is enabled](../../faq-troubleshooting/troubleshooting.md) for performance
 4. Set `serverURL` appropriately when embedding in Experience Cloud Flows
 
+{% hint style="info" %}
+**Need a hand?** Ask questions in our [Slack community](https://common-unite.my.site.com/slack), or book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours).
+{% endhint %}
+
 ## Related Pages
 
 - [Form Template FAQ](faq.md): common questions

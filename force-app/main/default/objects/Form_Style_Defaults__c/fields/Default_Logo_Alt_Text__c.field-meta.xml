@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Logo_Alt_Text__c</fullName>
+    <description>The org-wide alt text for the default logo, read aloud by screen readers. Set on the Form Builder&apos;s Global Styles tab and read by the Logo Alt Text formula field on Form Template. Not a style token.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set this on the Form Builder&apos;s Global Styles tab. Usually the organization&apos;s name.</inlineHelpText>
+    <label>Default Logo Alt Text</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

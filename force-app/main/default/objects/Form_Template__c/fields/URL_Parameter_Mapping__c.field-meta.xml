@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>URL_Parameter_Mapping__c</fullName>
-    <description>JSON array mapping URL parameter keys to Form Submission fields. Each entry specifies a URL param (e.g., pv1, utm_source) and the Form_Submission__c field to populate. Only applied to new submissions when the form loads outside of Flow context.</description>
-    <inlineHelpText>Configure via the "URL Parameter Mapping" quick action. Maps URL parameters (pv1-pv9, utm_source, etc.) to Form Submission fields so values are automatically captured when users arrive via a link.</inlineHelpText>
+    <description>JSON array mapping URL parameter keys to Form Submission fields. Each entry specifies a URL param (e.g., pv1, utm_source) and the Form_Submission__c field to populate. Only applied to new submissions when the form loads outside of Flow context. A 15-character record Id mapped to a lookup or Id field is stored as its 18-character Id before the prefill flow runs.</description>
+    <inlineHelpText>Configure via the "URL Parameter Mapping" quick action. Maps URL parameters (pv1-pv9, utm_source, etc.) to Form Submission fields so values are automatically captured when users arrive via a link. A 15-character record Id from an email merge field is turned into the 18-character Id for lookup and Id fields.</inlineHelpText>
     <label>URL Parameter Mapping</label>
     <length>32768</length>
     <trackHistory>false</trackHistory>

@@ -179,6 +179,12 @@ Things to know:
 
 **Opacity.** Each color has an **Opacity %** box from 0 (see-through) to 100 (solid). Clearing the opacity returns it to 100.
 
+**The address search box follows Input size too.** An address section's **Search For Address** box grows and shrinks with **Input size** and **Text size**, the same as the other fields on the form.
+
+Walkthrough: an address section's search box following Input size and Text size on a template's Style Editor.
+
+{% embed url="https://vimeo.com/1244985887" %}
+
 ## Advanced: one detail at a time
 
 Advanced adds to Basics. Open only the category you need:

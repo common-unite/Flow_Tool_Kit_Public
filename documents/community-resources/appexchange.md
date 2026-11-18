@@ -28,6 +28,8 @@ Reviews help other admins discover Flow Tool Kit and help us understand what's w
 
 ## Consulting & Support
 
+Questions while you set up? Ask in our [Slack community](https://common-unite.my.site.com/slack), or book a spot in our [daily office hours](https://calendly.com/common-unite/daily-office-hours).
+
 Need help implementing Flow Tool Kit or building custom solutions?
 
 **[Flow Wizards: AppExchange Consulting](https://appexchange.salesforce.com/appxConsultingListingDetail?listingId=86d0282b-a980-462e-a4a2-49167365bc50)**
