@@ -283,6 +283,7 @@
 * [Release 4.8](release-notes/release-4.8.md)
 * [Release 4.9](release-notes/release-4.9.md)
 * [Release 5.3](release-notes/release-5.3.md)
+* [Release 5.4](release-notes/release-5.4.md)
 * [Sprint 2026 10 14 Unreleased](release-notes/sprint-2026-10-14-unreleased.md)
 * [Sprint 2026 10 26 Unreleased](release-notes/sprint-2026-10-26-unreleased.md)
 * [Survey And Results Unreleased](release-notes/survey-and-results-unreleased.md)
