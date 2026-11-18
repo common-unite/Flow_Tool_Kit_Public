@@ -57,6 +57,38 @@ def strip_namespace(name, prefix):
     return name
 
 
+def value_key(name, prefix):
+    """FlowToolKit__testing_contact_override and testing_contact_override are the same value (#1247)."""
+    name = unquote(name or "")
+    if prefix and name.lower().startswith(prefix.lower() + "__"): name = name[len(prefix) + 2:]
+    return name.lower()
+
+
+def plan_additions(source_values, org_values, prefix, warn, where):
+    """Source values the org lacks. Never one it has under another namespace form, never a label it already uses (#1247)."""
+    existing_keys = {value_key(value["fullName"], prefix): value["fullName"] for value in org_values}
+    existing_labels = {(value.get("label") or value["fullName"]).strip().lower(): value["fullName"] for value in org_values}
+    missing = []
+    for value in source_values:
+        key = value_key(value["fullName"], prefix)
+        if key in existing_keys:
+            if existing_keys[key] != value["fullName"]: warn(f"  ~ {where}: {value['fullName']} not added, the org has it as {existing_keys[key]}")
+            continue
+        label = (value.get("label") or value["fullName"]).strip().lower()
+        if "label" in value and label in existing_labels:
+            warn(f"  ~ {where}: {value['fullName']} not added, its label {value['label']!r} is already used by {existing_labels[label]}")
+            continue
+        missing.append(value)
+        existing_keys[key] = value["fullName"]
+        existing_labels[label] = value["fullName"]
+    return missing
+
+
+def label_of(element):
+    found = element.find("label")
+    return found.text if found is not None else None
+
+
 def tokenize(name):
     """Custom names get the namespace token; standard object names do not."""
     return name if not name.endswith("__c") else NAMESPACE_TOKEN + name
@@ -155,6 +187,11 @@ class SyncPackagedPicklistValues(BaseMetadataTransformTask):
     def namespace_prefix(self):
         return self.options.get("namespace_inject") if self.options.get("managed") else None
 
+    @property
+    def value_namespace(self):
+        """The prefix a value name may carry in one form and not the other, managed or not (#1247)."""
+        return self.options.get("namespace_inject") or getattr(self.project_config, "project__package__namespace", None)
+
     def _transform(self):
         self.changed_entities = {}
         self.added_count = 0
@@ -185,8 +222,8 @@ class SyncPackagedPicklistValues(BaseMetadataTransformTask):
             value_set = field.find("valueSet")
             definition = value_set.find("valueSetDefinition") if value_set is not None else None
             if definition is None: continue
-            existing = {value.fullName.text for value in definition.findall("value")}
-            missing = [value for value in source_values if value["fullName"] not in existing]
+            org_values = [{"fullName": value.fullName.text, "label": label_of(value)} for value in definition.findall("value")]
+            missing = plan_additions(source_values, org_values, self.value_namespace, self.logger.warning, f"{org_object_name}.{org_field_name}")
             if not missing: continue
             for value in missing:
                 element = definition.append("value")
@@ -210,8 +247,9 @@ class SyncPackagedPicklistValues(BaseMetadataTransformTask):
             for picklist in record_type.findall("picklistValues"):
                 source_values = source.get(strip_namespace(picklist.picklist.text, self.namespace_prefix)) or source.get(picklist.picklist.text)
                 if not source_values: continue
-                existing = {unquote(value.fullName.text) for value in picklist.findall("values")}
-                missing = [value for value in source_values if unquote(value) not in existing]
+                org_values = [{"fullName": value.fullName.text} for value in picklist.findall("values")]
+                where = f"record type {org_object_name}.{org_record_type_name} / {picklist.picklist.text}"
+                missing = [value["fullName"] for value in plan_additions([{"fullName": value} for value in source_values], org_values, self.value_namespace, self.logger.warning, where)]
                 for value in missing:
                     element = picklist.append("values")
                     element.append("fullName", text=value)
@@ -229,8 +267,8 @@ class SyncPackagedPicklistValues(BaseMetadataTransformTask):
         org_name = value_set_file.stem
         source_values = self.source_value_sets.get(strip_namespace(org_name, self.namespace_prefix))
         if not source_values: return False
-        existing = {value.fullName.text for value in metadata.findall("customValue")}
-        missing = [value for value in source_values if value["fullName"] not in existing]
+        org_values = [{"fullName": value.fullName.text, "label": label_of(value)} for value in metadata.findall("customValue")]
+        missing = plan_additions(source_values, org_values, self.value_namespace, self.logger.warning, f"global value set {org_name}")
         if not missing: return False
         for value in missing:
             current = metadata.findall("customValue")
