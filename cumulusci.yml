@@ -49,6 +49,7 @@ plans:
             2.5:
                 task: sync_packaged_picklist_values
                 ui_options:
+                    name: "Add missing Flow Tool Kit picklist values"
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             2.6:
                 task: execute_anon
@@ -124,6 +125,7 @@ plans:
             2.5:
                 task: sync_packaged_picklist_values
                 ui_options:
+                    name: "Add missing Flow Tool Kit picklist values"
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             2.6:
                 task: execute_anon
@@ -225,6 +227,7 @@ plans:
             2.5:
                 task: sync_packaged_picklist_values
                 ui_options:
+                    name: "Add missing Flow Tool Kit picklist values"
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             2.6:
                 task: execute_anon
@@ -304,6 +307,7 @@ plans:
             2.5:
                 task: sync_packaged_picklist_values
                 ui_options:
+                    name: "Add missing Flow Tool Kit picklist values"
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             2.6:
                 task: execute_anon
