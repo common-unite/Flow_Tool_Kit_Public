@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Section_Surface__c</fullName>
+    <description>Org default for the --ftk-section-surface style token. Default fill of Box, Shadow, Card and Title on border frames. An explicit Classic Theme section background takes priority. Blank inherits the component default.</description>
+    <label>Section surface</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

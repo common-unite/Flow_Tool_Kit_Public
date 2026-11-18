@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Web_Form_Site_URL__c</fullName>
+    <description>Optional per-template site address. When filled, Web_Form_URL__c uses it instead of Flow_Tool_Kit_Settings__c.Default_Web_Form_URL__c. For templates whose form lives on a different site than the org default.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Fill only when this form lives on a different site than the Default Web Form URL in Flow Tool Kit Settings. Enter the page that shows the form, for example https://www.example.org/forms. The template Id is added to the end.</inlineHelpText>
+    <label>Web Form Site URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Color_Label__c</fullName>
+    <description>Org default for the --ftk-color-label style token. Text above or beside each field, independent of Input text and Choice text. Blank inherits the component default.</description>
+    <label>Field labels</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

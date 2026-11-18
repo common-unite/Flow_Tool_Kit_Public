@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Anonymous__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>The respondent chose to stay anonymous. On save, the Clear Anonymous Identity flow clears the values that identify them (names, contact details, addresses, company and person lookups). The packaged contact and organization components hide. Conversion skips Contact, Lead and Account and, when the template adds respondents to a campaign, links one shared anonymous Lead instead. For a truly anonymous survey, collect it through a guest site.</description>
+    <inlineHelpText>Check to submit without sharing who you are. Your name, contact details and address are not saved.</inlineHelpText>
+    <label>Anonymous</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

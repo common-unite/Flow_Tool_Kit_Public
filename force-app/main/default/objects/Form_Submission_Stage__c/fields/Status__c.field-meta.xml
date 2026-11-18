@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Status__c</fullName>
-    <description>Canonical per-stage state. The formTemplate LWC reads, displays, and writes this value as the respondent saves and advances.</description>
+    <description>The stage's current state. The form shows it on the stages overview and updates it as the respondent saves and moves through the stages.</description>
     <inlineHelpText>The stage&apos;s current state. Set by the form runtime as respondents save and advance. Set to Requires Correction by an internal reviewer to send a stage back to the applicant for changes.</inlineHelpText>
     <label>Status</label>
     <required>false</required>

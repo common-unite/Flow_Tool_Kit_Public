@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>picklistOptionScores__c</fullName>
+    <description>Older storage for option scores, read only while Picklist Option Settings is empty. Forms saved before Picklist Option Settings existed keep their scores here; the option windows now save scores to Picklist Option Settings instead. Stored as JSON mapping each API value to a number. A score becomes the answer&apos;s Number Value in Form Submission Answer records; the form never shows it.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Older option scores, used only until the field&apos;s option settings are saved from Form Builder.</inlineHelpText>
+    <label>Picklist Option Scores</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>6</visibleLines>
+</CustomField>

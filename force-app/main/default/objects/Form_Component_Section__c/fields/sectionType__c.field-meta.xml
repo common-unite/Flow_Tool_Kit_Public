@@ -75,6 +75,16 @@
                 <default>false</default>
                 <label>likertSection</label>
             </value>
+            <value>
+                <fullName>recordCardSection</fullName>
+                <default>false</default>
+                <label>recordCardSection</label>
+            </value>
+            <value>
+                <fullName>bannerSection</fullName>
+                <default>false</default>
+                <label>bannerSection</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

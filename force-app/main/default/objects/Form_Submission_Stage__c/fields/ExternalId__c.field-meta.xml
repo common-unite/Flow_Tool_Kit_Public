@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ExternalId__c</fullName>
     <caseSensitive>true</caseSensitive>
-    <description>Client-generated unique key (random session id + Form Template Page Id) so the formTemplate LWC can upsert stages on-demand without requiring a pre-existing record Id. Required for stages-mode preview-window flows where the submission record has no Id until first save.</description>
+    <description>Unique key the form generates (a random session id plus the Form Template Page Id) so a stage can be saved before the submission has a record Id. Needed in Stages Mode, where the submission is not saved until the respondent's first save.</description>
     <externalId>true</externalId>
     <inlineHelpText>System-managed external identifier used by the form runtime to track stage records before they&apos;re persisted.</inlineHelpText>
     <label>External Id</label>

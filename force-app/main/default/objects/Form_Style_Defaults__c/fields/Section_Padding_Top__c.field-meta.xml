@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Section_Padding_Top__c</fullName>
+    <description>Org default for the --ftk-section-padding-top style token. Controls only the top inset of plain and boxed section content. Header padding and special address/image layouts remain separate. Blank inherits the component default.</description>
+    <label>Section Content Padding Top</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

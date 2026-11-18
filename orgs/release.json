@@ -1,13 +1,25 @@
 {
   "orgName": "Form Builder - Release Test Org",
   "edition": "Enterprise",
-  "features": ["enableSetPasswordInApi", "PlatformCache", "ProviderFreePlatformCache"],
+  "features": [
+    "Communities",
+    "enableSetPasswordInApi",
+    "PlatformCache",
+    "ProviderFreePlatformCache"
+  ],
   "settings": {
+    "communitiesSettings": {
+      "enableCommunityWorkspaces": true,
+      "enableNetworksEnabled": true
+    },
     "emailAdministrationSettings": {
       "enableEnhancedEmailEnabled": true
     },
     "flowSettings": {
       "enableFlowPauseEnabled": true
+    },
+    "experienceBundleSettings": {
+      "enableExperienceBundleMetadata": true
     }
   }
 }

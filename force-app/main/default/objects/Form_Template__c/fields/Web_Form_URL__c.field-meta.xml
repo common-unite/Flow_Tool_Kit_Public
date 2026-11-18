@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Web_Form_URL__c</fullName>
+    <description>Live web form address used by the Open Web Form button: Web_Form_Site_URL__c if filled, otherwise Flow_Tool_Kit_Settings__c.Default_Web_Form_URL__c, then the 18-character template Id. No slash is added when the address already ends in / or =. Blank when neither address is set, which hides the button on the record page.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+    ISBLANK(BLANKVALUE(Web_Form_Site_URL__c, $Setup.Flow_Tool_Kit_Settings__c.Default_Web_Form_URL__c)),
+    null,
+    BLANKVALUE(Web_Form_Site_URL__c, $Setup.Flow_Tool_Kit_Settings__c.Default_Web_Form_URL__c)
+    &amp; IF(OR(RIGHT(BLANKVALUE(Web_Form_Site_URL__c, $Setup.Flow_Tool_Kit_Settings__c.Default_Web_Form_URL__c), 1) = "/", RIGHT(BLANKVALUE(Web_Form_Site_URL__c, $Setup.Flow_Tool_Kit_Settings__c.Default_Web_Form_URL__c), 1) = "="), "", "/")
+    &amp; CASESAFEID(Id)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>The live web form for this template: Web Form Site URL if filled, otherwise the Default Web Form URL in Flow Tool Kit Settings, then the template Id. Blank when neither is set, and the Open Web Form button is hidden.</inlineHelpText>
+    <label>Web Form URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

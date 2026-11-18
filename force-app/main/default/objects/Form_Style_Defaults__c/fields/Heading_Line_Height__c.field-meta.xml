@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Heading_Line_Height__c</fullName>
+    <description>Org default for the --ftk-heading-line-height style token. Heading line spacing for headers. Specific overrides take priority over shared controls. Blank inherits the component default.</description>
+    <label>Heading line spacing</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

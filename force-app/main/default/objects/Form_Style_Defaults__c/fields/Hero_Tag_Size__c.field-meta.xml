@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hero_Tag_Size__c</fullName>
+    <description>Org default for the --ftk-hero-tag-size style token. Tag text size for the Stacked header style. Shared text and layout scales apply until a specific value is set. Blank inherits the component default.</description>
+    <label>Stacked tag text size</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

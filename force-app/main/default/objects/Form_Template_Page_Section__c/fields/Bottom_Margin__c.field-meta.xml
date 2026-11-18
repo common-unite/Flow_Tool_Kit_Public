@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Bottom_Margin__c</fullName>
     <defaultValue>&apos;slds-m-bottom_none&apos;</defaultValue>
-    <description>SLDS bottom-margin utility class (slds-m-bottom_none through slds-m-bottom_large). For Field Set/Repeater/Table it is passed into the form component (bottom-margin) which applies it; for Display Text and Lightning Web Component the formTemplatePageSection LWC applies it on the section wrapper. Defaults to slds-m-bottom_none.</description>
+    <description>Space below the section, from none to large. Defaults to none.</description>
     <inlineHelpText>Choose how much vertical space appears below this entire section. Larger values separate it from the section below; defaults to none.</inlineHelpText>
     <label>Bottom Margin</label>
     <required>false</required>

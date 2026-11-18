@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Heading_Letter_Spacing__c</fullName>
+    <description>Org default for the --ftk-heading-letter-spacing style token. Section-heading tracking Blank inherits the component default.</description>
+    <label>Heading Letter Spacing</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

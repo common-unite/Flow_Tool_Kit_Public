@@ -3,7 +3,7 @@
     <fullName>Divider_Subtitle__c</fullName>
     <label>Divider Subtitle</label>
     <description>Optional subtitle rendered under the divider. Supports rich text.</description>
-    <inlineHelpText>Add optional rich-text shown beneath the divider's title for divider sections that support a subtitle. Keep it short — a sentence of supporting context — since the divider is a visual break, not a content block; leave blank to show the title alone.</inlineHelpText>
+    <inlineHelpText>Optional rich text shown beneath the divider's title, for divider styles that support a subtitle. Keep it to a sentence of supporting context, since the divider is a visual break, not a content block. Leave blank to show the title alone.</inlineHelpText>
     <length>5000</length>
     <trackTrending>false</trackTrending>
     <type>Html</type>

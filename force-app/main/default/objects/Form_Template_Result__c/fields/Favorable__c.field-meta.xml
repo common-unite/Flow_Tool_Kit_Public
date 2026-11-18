@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Favorable__c</fullName>
+    <description>The share of scored answers at 4 or 5, for a question on a five point scale (the worded scales and the 1 to 5 rating) whose scores all sit within 1 to 5. Blank for any other question.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>On a question scored 1 to 5, the share of answers scoring 4 or 5, such as Satisfied and Very Satisfied. Blank on any other question.</inlineHelpText>
+    <label>Favorable</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Control_Scale__c</fullName>
+    <description>Org default for the --ftk-control-scale style token. Scales inputs, their text, inner padding and icons, choice controls, and buttons together. Blank inherits the component default.</description>
+    <label>Control size scale</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

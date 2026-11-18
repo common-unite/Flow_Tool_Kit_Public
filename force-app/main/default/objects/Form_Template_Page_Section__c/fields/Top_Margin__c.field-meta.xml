@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Top_Margin__c</fullName>
     <defaultValue>&apos;slds-m-top_none&apos;</defaultValue>
-    <description>SLDS top-margin utility class (slds-m-top_none through slds-m-top_large) applied to the whole section wrapper for every component type. The formTemplatePageSection LWC composes it into sectionWrapperClass. Defaults to slds-m-top_none.</description>
+    <description>Space above the whole section, from none to large, for every section type. Defaults to none.</description>
     <inlineHelpText>Choose how much vertical space appears above this entire section. Larger values separate it from the section above; defaults to none.</inlineHelpText>
     <label>Top Margin</label>
     <required>false</required>

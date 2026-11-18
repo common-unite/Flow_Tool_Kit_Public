@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Color_Control_Surface__c</fullName>
+    <description>Org default for the --ftk-color-control-surface style token. Fill inside inputs, textareas, dropdowns, survey choices, visual pickers, and attestation cards. Blank inherits the component default.</description>
+    <label>Color Control Surface</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

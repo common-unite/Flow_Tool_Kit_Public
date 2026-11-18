@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Record_Card__c</fullName>
+    <description>Settings for a recordCardSection, as JSON: the card type, the text or merge field in each slot, its rows, tags and buttons. The same shape the Form (Design Block) stores for its Record Card type, so one card component renders both.</description>
+    <externalId>false</externalId>
+    <label>Record Card</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

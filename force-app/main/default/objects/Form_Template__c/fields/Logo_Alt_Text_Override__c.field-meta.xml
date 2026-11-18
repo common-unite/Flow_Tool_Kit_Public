@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Logo_Alt_Text_Override__c</fullName>
+    <description>This Form Template&apos;s own logo alt text, used in place of the org default from the Global Styles tab. Optional; leave it blank to use the org default. Banners read it through the Logo Alt Text formula field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Optional. What a screen reader says for this form&apos;s logo, usually the organization&apos;s name. Leave blank to use the org default.</inlineHelpText>
+    <label>Logo Alt Text Override</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

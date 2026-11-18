@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>reportingQuestionType__c</fullName>
+    <description>Set from the Form Builder&apos;s Reporting Settings. The Question Type stamped on this question&apos;s Form Submission Answers, in place of the type worked out from the field&apos;s name. Blank means automatic.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Question Type written on this question&apos;s answers. Blank uses the type the field ships with.</inlineHelpText>
+    <label>reportingQuestionType</label>
+    <length>80</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

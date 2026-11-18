@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Answer__c</fullName>
+    <description>The answer as shown to the respondent, cut to 255 characters so a report can group and count by it. A multi-select answer has one record per chosen option. The whole answer is in Full Answer.</description>
+    <label>Answer</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+    <externalId>false</externalId>
+</CustomField>

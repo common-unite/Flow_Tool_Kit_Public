@@ -2,8 +2,8 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Send_Save_Progress_Email__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>When enabled, an email will be sent immediately after a form is saved</description>
-    <inlineHelpText>Turn on to email users a confirmation each time they save their progress. Set the message with the Email Template Name (Saved) field.</inlineHelpText>
+    <description>Emails the respondent a link back to their draft after they save, on non-stages forms only, at most once an hour per submission. The form asks for the email on the first save that has a recipient email (Contact 1, Contact 1 Email or Email), on the first save after the respondent reopens a link, and again only when the last email was more than an hour ago; the Send Save Progress Email flow sends it. The link is the Web Form URL with a single-use pv9 token, so the Web Form URL must be set and pv9 mapped to Unique Token with a prefill flow that resumes by token. Has no effect in stages mode, where the Send Resume Email button sends the link instead. A custom upsert override that does not pass the whole record through drops the request, and no email is sent.</description>
+    <inlineHelpText>Emails respondents a link back to their draft after they save, at most once an hour. Non-stages forms only; needs a recipient email on the submission and a Web Form URL. Uses Email Template Name (Saved) when the submission has a Contact 1, otherwise a built-in message.</inlineHelpText>
     <label>Send Save Progress Email</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

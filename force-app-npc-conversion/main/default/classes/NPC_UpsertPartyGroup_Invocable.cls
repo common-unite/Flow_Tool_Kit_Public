@@ -15,7 +15,7 @@
  */
 public with sharing class NPC_UpsertPartyGroup_Invocable {
 
-    @InvocableMethod(Label='(NPC) Upsert Party Relationship Group' Category='Flow Tool Kit' Description='Inserts or updates one Party Relationship Group by the Id it carries: blank Id inserts, a real Id updates.')
+    @InvocableMethod(label='(NPC) Upsert Party Relationship Group' category='Flow Tool Kit' description='Inserts or updates one Party Relationship Group by the Id it carries: blank Id inserts, a real Id updates.')
     public static List<Result> run(List<Request> requests) {
         List<Result> results = new List<Result>();
         for (Request request : requests) {
@@ -40,16 +40,16 @@ public with sharing class NPC_UpsertPartyGroup_Invocable {
     }
 
     public class Request {
-        @InvocableVariable(Label='Party Relationship Group' Description='The group to save, with its Id filled in when it already exists. Leave its Type blank and use Group Type instead.')
+        @InvocableVariable(label='Party Relationship Group' description='The group to save, with its Id filled in when it already exists. Leave its Type blank and use Group Type instead.')
         public PartyRelationshipGroup partyRelationshipGroup;
-        @InvocableVariable(Label='Group Type' Description='The party group type, stamped onto the record in Apex - this object\'s enum picklists cannot cross the Flow action input boundary.')
+        @InvocableVariable(label='Group Type' description='The party group type, stamped onto the record in Apex - this object\'s enum picklists cannot cross the Flow action input boundary.')
         public String groupType;
-        @InvocableVariable(Label='Group Status' Description='Status for a brand-new group; an existing group is always set back to Active.')
+        @InvocableVariable(label='Group Status' description='Status for a brand-new group; an existing group is always set back to Active.')
         public String groupStatus;
     }
 
     public class Result {
-        @InvocableVariable(Label='Party Relationship Group' Description='The saved group, carrying its Id.')
+        @InvocableVariable(label='Party Relationship Group' description='The saved group, carrying its Id.')
         public PartyRelationshipGroup partyRelationshipGroup;
     }
 }

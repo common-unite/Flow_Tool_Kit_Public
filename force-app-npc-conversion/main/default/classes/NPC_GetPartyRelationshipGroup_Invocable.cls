@@ -17,7 +17,7 @@
  */
 public with sharing class NPC_GetPartyRelationshipGroup_Invocable {
 
-    @InvocableMethod(Label='(NPC) Get Party Relationship Group' Category='Flow Tool Kit' Description='Finds one Party Relationship Group: by a single Account and group type, or the OLDEST active group across a collection of Accounts (how a returning family keeps the Household they already have).')
+    @InvocableMethod(label='(NPC) Get Party Relationship Group' category='Flow Tool Kit' description='Finds one Party Relationship Group: by a single Account and group type, or the OLDEST active group across a collection of Accounts (how a returning family keeps the Household they already have).')
     public static List<Result> run(List<Request> requests) {
         List<Result> results = new List<Result>();
         for (Request request : requests) results.add(process(request));
@@ -44,18 +44,18 @@ public with sharing class NPC_GetPartyRelationshipGroup_Invocable {
     }
 
     public class Request {
-        @InvocableVariable(Label='Account Id' Description='Find the group on this one Account. Ignored when Account Ids is supplied.')
+        @InvocableVariable(label='Account Id' description='Find the group on this one Account. Ignored when Account Ids is supplied.')
         public String accountId;
-        @InvocableVariable(Label='Account Ids' Description='Find the oldest matching group across these Accounts (a person\'s household memberships).')
+        @InvocableVariable(label='Account Ids' description='Find the oldest matching group across these Accounts (a person\'s household memberships).')
         public List<String> accountIds;
-        @InvocableVariable(Label='Group Type' Description='Party group type. Defaults to Household.')
+        @InvocableVariable(label='Group Type' description='Party group type. Defaults to Household.')
         public String groupType;
-        @InvocableVariable(Label='Status' Description='Only used with Account Ids. Defaults to Active.')
+        @InvocableVariable(label='Status' description='Only used with Account Ids. Defaults to Active.')
         public String status;
     }
 
     public class Result {
-        @InvocableVariable(Label='Party Relationship Group' Description='The group found, or null when there is none - null is an answer, not an error. Deliberately queried WITHOUT its Type and Status fields: this object\'s enum picklists cannot cross the Flow action boundary carrying a value, in either direction under the managed runtime.')
+        @InvocableVariable(label='Party Relationship Group' description='The group found, or null when there is none - null is an answer, not an error. Deliberately queried WITHOUT its Type and Status fields: this object\'s enum picklists cannot cross the Flow action boundary carrying a value, in either direction under the managed runtime.')
         public PartyRelationshipGroup partyRelationshipGroup;
     }
 }

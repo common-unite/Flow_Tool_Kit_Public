@@ -25,6 +25,9 @@ plans:
         title: Install Flow Tool Kit
         tier: primary
         checks:
+            - when: "'Network' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "Digital Experiences must be enabled before Flow Tool Kit installs or upgrades: the package includes Experience Cloud page templates for Form Template and Form Submission. In Setup, open Digital Experiences > Settings, enable Digital Experiences, then run this installer again."
             - when: "not tasks.check_lws_enabled()['is_enabled']"
               action: error
               message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
@@ -47,10 +50,28 @@ plans:
                 task: sync_packaged_picklist_values
                 ui_options:
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
+            2.6:
+                task: execute_anon
+                options:
+                    apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
+                ui_options:
+                    name: "Refresh the Form Theme cache"
+                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
                     description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
+            3.5:
+                task: deploy_guest_save_override
+                ui_options:
+                    name: "Install the Guest Save Override (inactive)"
+                    description: "For Experience Cloud sites with guest forms. Installs a copy of the packaged save flow as a flow override that runs in System Context Without Sharing, inactive, with the permission set Form Flow (Guest User) that grants it. A guest can insert a submission but never update one or save one that points at a record the guest cannot read; this override is the documented remedy, and it is yours, not the package's. After setup: review the override, activate it, and assign the permission set to the site's guest user. First install only; a re-run is skipped so the permission set you and the extension installers add to is never replaced. Uncheck it if your org has no guest forms."
+                    is_required: False
+                    is_recommended: True
+                checks: &guest_override_first_install_only
+                    - when: "tasks.check_base_installed()['is_installed']"
+                      action: skip
+                      message: "Flow Tool Kit is already installed, so the guest save override is not deployed again. The Form Flow (Guest User) permission set stays as you and the extension installers left it."
 
     # AFNP / Nonprofit Cloud orgs. Everything the vanilla plan does, plus the NPC conversion
     # extension and the post-install content the packages cannot carry.
@@ -73,6 +94,9 @@ plans:
         preflight_message: "This installs Flow Tool Kit together with the Nonprofit Cloud conversion extension, which converts form submissions into Person Accounts, households and relationships. Install it in a Nonprofit Cloud org only. Before running it, activate the Standard Person Account Matching Rule and then its duplicate rule in Setup: they ship inactive and no API can activate them."
         post_install_message: "Flow Tool Kit and the Nonprofit Cloud conversion extension are installed. The Conversion Rules picklist values, Account and Contact record types, matching-rule value and Conversion Mapping Defaults have been applied. That setup content runs only on a first installation, so any changes you make to the Conversion Rules dependency matrix are preserved on later upgrades."
         checks:
+            - when: "'Network' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "Digital Experiences must be enabled before Flow Tool Kit installs or upgrades: the package includes Experience Cloud page templates for Form Template and Form Submission. In Setup, open Digital Experiences > Settings, enable Digital Experiences, then run this installer again."
             - when: "not tasks.check_lws_enabled()['is_enabled']"
               action: error
               message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
@@ -101,10 +125,25 @@ plans:
                 task: sync_packaged_picklist_values
                 ui_options:
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
+            2.6:
+                task: execute_anon
+                options:
+                    apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
+                ui_options:
+                    name: "Refresh the Form Theme cache"
+                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
                     description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
+            3.5:
+                task: deploy_guest_save_override
+                ui_options:
+                    name: "Install the Guest Save Override (inactive)"
+                    description: "For Experience Cloud sites with guest forms. Installs a copy of the packaged save flow as a flow override that runs in System Context Without Sharing, inactive, with the permission set Form Flow (Guest User) that grants it. A guest can insert a submission but never update one or save one that points at a record the guest cannot read; this override is the documented remedy, and it is yours, not the package's. After setup: review the override, activate it, and assign the permission set to the site's guest user. First install only; a re-run is skipped so the permission set you and the extension installers add to is never replaced. Uncheck it if your org has no guest forms."
+                    is_required: False
+                    is_recommended: True
+                checks: *guest_override_first_install_only
             5:
                 task: install_npc_conversion
                 ui_options:
@@ -156,6 +195,9 @@ plans:
         preflight_message: "This installs Flow Tool Kit together with the NPSP conversion extension, which converts form submissions into NPSP Households, Organizations, affiliations and primary contacts. Install it in an org with the Nonprofit Success Pack (NPSP) and the Household Account model."
         post_install_message: "Flow Tool Kit and the NPSP conversion extension are installed. The Conversion Rules mapping for Contact(s) templates, the Household and Organization Account record type values, the NPSP matching rule value and the Conversion Mapping Defaults have been applied. That setup content runs only on a first installation, so any changes you make to the Conversion Rules dependency matrix are preserved on later upgrades."
         checks:
+            - when: "'Network' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "Digital Experiences must be enabled before Flow Tool Kit installs or upgrades: the package includes Experience Cloud page templates for Form Template and Form Submission. In Setup, open Digital Experiences > Settings, enable Digital Experiences, then run this installer again."
             - when: "not tasks.check_lws_enabled()['is_enabled']"
               action: error
               message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
@@ -184,10 +226,25 @@ plans:
                 task: sync_packaged_picklist_values
                 ui_options:
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
+            2.6:
+                task: execute_anon
+                options:
+                    apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
+                ui_options:
+                    name: "Refresh the Form Theme cache"
+                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
                     description: "Grants the System Administrator profile access to Flow Tool Kit objects, fields, Apex classes, and pages. The package ships with permissions closed, so admins need this to configure forms right after install. Safe to re-run."
+            3.5:
+                task: deploy_guest_save_override
+                ui_options:
+                    name: "Install the Guest Save Override (inactive)"
+                    description: "For Experience Cloud sites with guest forms. Installs a copy of the packaged save flow as a flow override that runs in System Context Without Sharing, inactive, with the permission set Form Flow (Guest User) that grants it. A guest can insert a submission but never update one or save one that points at a record the guest cannot read; this override is the documented remedy, and it is yours, not the package's. After setup: review the override, activate it, and assign the permission set to the site's guest user. First install only; a re-run is skipped so the permission set you and the extension installers add to is never replaced. Uncheck it if your org has no guest forms."
+                    is_required: False
+                    is_recommended: True
+                checks: *guest_override_first_install_only
             4:
                 task: install_npsp_conversion
                 ui_options:
@@ -228,7 +285,11 @@ plans:
         tier: additional
         is_listed: False
         preflight_message: "This upgrades Flow Tool Kit and its dependencies to the latest version. Existing custom metadata records will not be modified."
+        post_install_message: "Read the [release notes](https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/welcome/whats-new) and the [documentation](https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/). Questions or issues? Reach out to [support](mailto:support@common-unite.com) or ask in the [Flow Tool Kit Slack](https://common-unite.my.site.com/slack)."
         checks:
+            - when: "'Network' not in tasks.check_sobjects_available()['sobjects']"
+              action: error
+              message: "Digital Experiences must be enabled before Flow Tool Kit installs or upgrades: the package includes Experience Cloud page templates for Form Template and Form Submission. In Setup, open Digital Experiences > Settings, enable Digital Experiences, then run this installer again."
             - when: "not tasks.check_lws_enabled()['is_enabled']"
               action: error
               message: "Lightning Web Security (LWS) must be enabled. Go to Setup → Session Settings → enable 'Use Lightning Web Security for Lightning web components'. Without LWS, forms with large datasets will experience severe performance degradation."
@@ -244,6 +305,13 @@ plans:
                 task: sync_packaged_picklist_values
                 ui_options:
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
+            2.6:
+                task: execute_anon
+                options:
+                    apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
+                ui_options:
+                    name: "Refresh the Form Theme cache"
+                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
 
 flows:
 
@@ -322,43 +390,105 @@ flows:
                 task: deploy
                 options:
                     path: force-app-post
-            # Testing Aura EC site for iframe embed testing
+            # The three test sites scratch-org/showcase holds bundles for (#1211). The showcase deploy (step 11)
+            # is one deploy, so a missing site refuses all three bundles. Site steps never ignore a failure:
+            # a dev org without its sites is not ready (salesforce rule 74). skip_existing makes a rerun safe.
             7:
                 task: create_community
+                description: Testing Aura, the Aura guest site (/testing/s) for iframe embed, the regression suite's aura host and the guest resave check
                 options:
                     template: Build Your Own
                     name: Testing Aura
                     url_path_prefix: testing
-                ignore_failure: True
+                    skip_existing: True
             8:
-                task: publish_community
+                task: create_community
+                description: Testing LWR, the LWR guest site (/testinglwr), the regression suite's lwr host; takes about five minutes
                 options:
-                    name: Testing Aura
-                ignore_failure: True
+                    template: Build Your Own (LWR)
+                    name: Testing LWR
+                    url_path_prefix: testinglwr
+                    skip_existing: True
             9:
-                task: execute_anon
-                description: Configure Testing Aura guest user permissions
+                task: create_community
+                description: Testing CS, the Customer Service theme check site for the Site Blocks design system (/testingcs/s); its bundle is built by scratch-org/showcase/build_cs_site.py
                 options:
-                    path: datasets/dev/setup_testing_aura_site.apex
-                ignore_failure: True
+                    template: Build Your Own
+                    name: Testing CS
+                    url_path_prefix: testingcs
+                    skip_existing: True
             10:
                 task: execute_anon
                 description: Resolve conversion-test related-record section markers to real section Ids (Snowfakery cannot write an Id into the Text field Internal_SectionId__c)
                 options:
                     path: scripts/seed-conversion-related-records.apex
                 ignore_failure: True
+            10.5:
+                task: execute_anon
+                description: Demo of the Contact Add to Account conversion rule (Account, template, submission, converted Contact)
+                options:
+                    path: scripts/seed-contact-add-to-account-demo.apex
+                ignore_failure: True
             11:
+                task: deploy_testing_sites
+                description: The three test sites' pages (scratch-org/showcase), the design block showcase, demo pages, the Form Template and Form Submission pages a template's web form opens on Testing Aura and Testing LWR, the regression suite's /s/regression page and the LWR Support footer. Published by step 18.
+            13:
+                task: load_form_analytics_demo
+                description: Form Analytics demo (#900), a survey template, three campaigns, 30 contacts and 90 responses submitted in one update and converted (#902), then results recalculated
+                ignore_failure: True
+            14:
+                task: deploy_walkthrough_demos
+                description: Every archived walkthrough demo (unpackaged/walkthroughs), common first, so a new dev org can record or show any walkthrough (#1028). Dev flows only; one failing walkthrough is logged and the rest carry on.
+                ignore_failure: True
+            15:
+                task: execute_anon
+                description: Banner logo demo (#1105), the org default logo on Global Style and two active Form Templates on the Banner header, one with its own Logo Override
+                options:
+                    path: scripts/seed-banner-logo-1105.apex
+                ignore_failure: True
+            16:
+                task: execute_anon
+                description: Review screen demo (#1178, #1179), a one-page Trip Review Demo template (Date, Date/Time, File Upload) and a saved submission whose receipts are pretty-printed JSON, one removed; needs the Expense Reimbursement 2 template to clone from
+                options:
+                    path: scripts/seed-review-date-file-upload-1178.apex
+                ignore_failure: True
+            17:
+                flow: regression_fixtures
+            18:
+                task: activate_testing_sites
+                description: Testing Aura, Testing LWR and Testing CS Live with guest API access, their guests granted Form Flow User and the regression flows, published (waits for each publish), and each home page opened as a guest; any failure fails the flow (#1211)
+
+    # What the Chrome regression suite (unpackaged/config/regression) and the release's guest resave check
+    # (release Step 2.8) need in a dev org: the scenario flows, tabs and permission sets, the QA Guest
+    # Resave form, template and its System Mode upsert override, QA Regression Survey, and guest sharing
+    # rules for both test sites (#1211). Needs the test sites (create_community) and Program Outcomes
+    # Survey (load_form_analytics_demo) first; activate_testing_sites gives the guests the permission sets.
+    regression_fixtures:
+        group: Flow Tool Kit
+        description: Load the regression suite's fixtures into a dev org that already has its test sites (#1211)
+        steps:
+            1:
                 task: deploy
-                description: Design block showcase page on the Testing Aura site. No-ops until scratch-org/showcase/experiences has been captured once, see its README.
                 options:
-                    path: scratch-org/showcase
-                ignore_failure: True
-            12:
-                task: publish_community
-                description: Republish so the showcase page is visible to the guest user
+                    path: unpackaged/config/regression/metadata
+            2:
+                task: deploy
                 options:
-                    name: Testing Aura
-                ignore_failure: True
+                    path: unpackaged/config/regression/guest-sharing
+            3:
+                task: assign_permission_sets
+                options:
+                    api_names: QA_Regression_Tabs
+            4:
+                task: execute_anon
+                description: QA Guest Resave, the guest resave check's template (no prefill, Skip Prefill, autosave on), then a form cache reset
+                options:
+                    path: unpackaged/config/regression/data/qa-guest-resave-template.apex
+            5:
+                task: execute_anon
+                description: QA Regression Survey, a copy of Program Outcomes Survey with Send Confirmation off
+                options:
+                    path: unpackaged/config/regression/data/qa-regression-survey-template.apex
 
     # Reusable NPC platform layer. Deploys NO product source, so other repos can
     # consume it as a step:  flow: formbuilder:npc_org_setup
@@ -540,6 +670,11 @@ flows:
                 task: github_copy_subtree
                 options:
                     tag_name: "latest"
+            # Promotion alone leaves the old version recommended; this marks the one just promoted so no
+            # separate handoff is needed. Last, so a failure here cannot block the GitHub release, notes or
+            # public-repo copy, yet still fails the flow loudly. Re-run alone: cci task run set_recommended_package_version
+            99:
+                task: set_recommended_package_version
 
     # Subscriber-style NPC org (org: npc_subscriber). Installs the latest released Flow Tool Kit via install_managed,
     # then the NPC licenses/permission sets, force-app-npc configuration and sample data - mirrors npc_dev_org steps 7-11.3
@@ -738,8 +873,20 @@ flows:
 
 tasks:
 
+    set_recommended_package_version:
+        description: Mark the newest released package version as the recommended version (the Upgrade to Recommended Version link in subscribers' Installed Packages). Part of release_2gp_production, so promoting always does it. Retries with --skip-ancestor-check only on the known Graph.addNode error. Dry run with -o env '{"PACKAGE_ID":"0Ho4W000000PBNpSAO","DRY_RUN":"true"}'.
+        class_path: cumulusci.tasks.command.Command
+        options:
+            command: bash scripts/set_recommended_version.sh
+            env:
+                PACKAGE_ID: 0Ho4W000000PBNpSAO
+
     export_form:
         class_path: cci_flowtoolkit_tasks.export_form.ExportFormMetadata
+
+    deploy_walkthrough_demos:
+        description: Deploys and loads every archived walkthrough demo in unpackaged/walkthroughs (common first) into a dev org; -o walkthroughs <folder> for one (#1028)
+        class_path: cci_flowtoolkit_tasks.walkthrough_demos.DeployWalkthroughDemos
 
     create_npc_package_version:
         description: Build a 2GP managed version of the NPC conversion extension package (Flow Tool Kit - NPC | Form Template Extension, namespace FlowToolKit, same as the base) from force-app-npc-conversion, depending on the released base version. The package source carries no namespace tokens, so nothing is injected - the namespace is simply the project's. Run against npc_release, whose definition file gives the build org the PersonAccounts and Industries features the metadata needs.
@@ -977,10 +1124,31 @@ tasks:
         options:
             package_name: "Flow Tool Kit: NPSP | Form Template Extension"
 
+    deploy_guest_save_override:
+        description: "Deploys unpackaged/post/guest-save-override: a client-owned flow override of the packaged (Form) Upsert | Overridable flow in System Mode Without Sharing, INACTIVE, plus the permission set Form Flow (Guest User) that grants it. The admin reviews it, activates it and assigns the permission set to the site's guest user; nothing in the package runs in system mode. First install only (plan check), because extension installers add their guest grants to that permission set afterwards. The flow copy is generated from the packaged source by scripts/guest-save-override.js and guarded by its Jest test."
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/post/guest-save-override
+        group: Flow Tool Kit installer
     sync_packaged_picklist_values:
         description: "Adds every picklist value the package ships (fields, record type assignments, global value sets) that the org is missing, reading the package source at the release tag. Add-only; never removes, relabels, reorders or changes defaults. New managed picklist values reach fresh installs only, so upgraded orgs need this (#696, #723)."
         class_path: tasks.sync_picklist_values.SyncPackagedPicklistValues
         group: Flow Tool Kit installer
+    deploy_testing_sites:
+        class_path: tasks.testing_sites.DeployTestingSites
+        description: Deploy the test sites' pages (scratch-org/showcase), filling in the Aura object pages' key prefixes (#1211)
+        options:
+            path: scratch-org/showcase
+            key_prefix_objects: Form_Template__c,Form_Submission__c
+    activate_testing_sites:
+        class_path: tasks.testing_sites.ActivateTestingSites
+        description: Set the test sites Live with guest API access, grant their guests the test permission sets, publish and wait, then check each home page answers a guest (#1211)
+        options:
+            sites: Testing Aura,Testing LWR,Testing CS
+            guest_permission_sets: Form_Flow_User,QA_Regression_Guest_Access,QA_Guest_Upsert_Override
+    load_form_analytics_demo:
+        class_path: tasks.form_analytics_demo.LoadFormAnalyticsDemo
+        description: Load the Form Analytics demo, submit its responses and wait for them to convert, then recalculate results (#900)
     check_lws_enabled:
         class_path: tasks.check_lws_enabled.CheckLWSEnabled
         description: Check if Lightning Web Security (LWS) is enabled
@@ -1021,7 +1189,7 @@ tasks:
             # Deploying a path the mirror never received fails at INSTALL time, not at publish time.
             include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md","documents/",
                        "tasks/","force-app-post/","force-app-npc-conversion/","force-app-npsp-conversion/",
-                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/",
+                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/","unpackaged/post/guest-save-override/",
                        "force-app/main/default/objects/","force-app/main/default/globalValueSets/" ]
 
     # Installer-only publish, decoupled from a base package release. Pushes the current master
@@ -1041,7 +1209,7 @@ tasks:
             create_release: False
             include: [ "cumulusci.yml","sfdx-project.json","orgs/","README.md",
                        "tasks/","force-app-post/","force-app-npc-conversion/","force-app-npsp-conversion/",
-                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/",
+                       "unpackaged/npc-conversion-post/","unpackaged/npsp-conversion-post/","unpackaged/post/guest-save-override/",
                        "force-app/main/default/objects/","force-app/main/default/globalValueSets/" ]
 
     robot:
@@ -1062,10 +1230,23 @@ tasks:
 
 orgs:
     scratch:
-        sprint_2026-09-29:
+
+        sprint_2026-10-26:
             config_file: orgs/dev.json
             days: 30
             namespaced: True
+
+        # #1012 walkthroughs that change App Builder, page layouts or Flow Builder for every user
+        walkthrough_2026-11-01:
+            config_file: orgs/dev.json
+            days: 7
+            namespaced: True
+
+        # #1001 #998 release Step 6.5: a plain subscriber org (no namespace) for the beta plus unprefixed twin fields
+        subscriber_twin:
+            config_file: orgs/dev.json
+            days: 7
+            namespaced: False
 
         npsp_dev:
             config_file: orgs/npsp.json
@@ -1083,27 +1264,15 @@ orgs:
             days: 30
             namespaced: True
 
-
-        sprint_2026-09-09_npc:
-            config_file: orgs/npc.json
-            days: 30
-            namespaced: True
-
-        # Sprint 2026-09-11: NPC EXTENSION-DEVELOPMENT org for #662 (the conversion engine must stop
-        # injecting Person Account matching rules when the Contact record type is not PersonAccount).
-        # Build with npc_conversion_dev_org so the extension runs from SOURCE against an installed base.
-        sprint_2026-09-11_npc:
-            config_file: orgs/npc.json
-            days: 30
-            namespaced: True
-
-        # Sprint 2026-09-09 BASE-PACKAGE org: force-app is source-deployed, nothing installed.
-        # The _npc sibling above has the released base package INSTALLED, so base components are
-        # managed there and cannot be source-deployed (#657 testing needs this one instead).
-        sprint_2026-09-09:
+        # Release pre-build checks (release skill steps 2 to 3a): a fresh namespaced org from master,
+        # never the shared sprint org. Bobby approved 2026-11-18.
+        release_check:
             config_file: orgs/dev.json
-            days: 30
+            days: 7
             namespaced: True
+
+
+
 
         # #513 Form Design Kit: renders the showcase form so Phase 2 can capture
         # real markup and screenshots from the running renderer.

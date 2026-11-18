@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Font_Size__c</fullName>
+    <description>Org default for the --ftk-font-size style token. Sets inherited body and input text size. Native controls may grow to fit larger text. Labels and headings have separate controls. Blank inherits the component default.</description>
+    <label>Font Size</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

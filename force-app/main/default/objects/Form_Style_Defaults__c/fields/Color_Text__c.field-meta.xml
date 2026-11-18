@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Color_Text__c</fullName>
+    <description>Org default for the --ftk-color-text style token. Text entered in inputs and textareas. Field labels, choices, and form content keep their own colors. Blank inherits the component default.</description>
+    <label>Color Text</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

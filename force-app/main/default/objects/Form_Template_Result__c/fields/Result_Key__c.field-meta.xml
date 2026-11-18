@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Result_Key__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>The template&apos;s Id and the question&apos;s source field, so the job finds a question&apos;s result again instead of writing a second one.</description>
+    <externalId>true</externalId>
+    <label>Result Key</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

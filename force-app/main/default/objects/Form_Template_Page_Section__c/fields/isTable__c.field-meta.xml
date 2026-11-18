@@ -3,7 +3,7 @@
     <fullName>isTable__c</fullName>
     <formula>ISPICKVAL(Component_Type__c,&apos;Table&apos;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <description>Formula checkbox: ISPICKVAL(Component_Type__c,'Table'). Read by the formTemplatePageSection LWC to render this section through c-flow-data-table (editable grid). System-derived from Component Type; not directly editable.</description>
+    <description>Checked when Component Type is Table, so the section shows an editable table. A formula; not editable.</description>
     <inlineHelpText>Read-only indicator that is checked automatically when Component Type is Table. You do not set this directly; change the Component Type to control it.</inlineHelpText>
     <label>isTable</label>
     <trackTrending>false</trackTrending>

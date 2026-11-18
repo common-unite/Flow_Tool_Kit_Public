@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Contact_Matching_Rules__c</fullName>
-    <description>Per-section multi-select of Salesforce matching rule developer names used to find existing Contacts for this section's related records during conversion. Read by Form_Submission_Convert_Setup's getPageSection branch as the section's own value; a blank checks every active Contact matching rule. The section never inherits the Form Template's Contact Matching Rules. Drives the Convert vs Related-Record routing and works with Update Most Confident Contact.</description>
+    <description>Salesforce matching rules used to find existing Contacts for this section's related records during conversion. Leave blank to check every active Contact matching rule. The section never inherits the Form Template's Contact Matching Rules. Works with Update Most Confident Contact, which decides what happens when several Contacts match.</description>
     <inlineHelpText>Choose which Contact matching rules conversion uses for this section's data. Leave blank to check every active Contact matching rule; pair with Update Most Confident Contact to control how multiple matches resolve.</inlineHelpText>
     <label>Contact Matching Rules</label>
     <required>false</required>

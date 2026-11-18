@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Logo_Override__c</fullName>
+    <description>This Form Template&apos;s own logo, used in place of the org default logo from the Global Styles tab: an asset name or an https:// link. Optional; leave it blank to use the org default. Banners read it through the Logo formula field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Optional. An asset name or an https:// link to this form&apos;s logo. Leave blank to use the org default logo set on the Form Builder&apos;s Global Styles tab.</inlineHelpText>
+    <label>Logo Override</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Answer_Value__c</fullName>
+    <description>The value as stored on the Form Submission, such as a picklist API value, cut to 255 characters. Stays the same when an option&apos;s label is customized, so it is the stable thing to group by.</description>
+    <label>Stored Value</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+    <externalId>false</externalId>
+</CustomField>

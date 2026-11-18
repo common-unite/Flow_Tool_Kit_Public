@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_Total__c</fullName>
+    <description>The sum of the numbers entered for a number or currency question. Blank for any other question.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The sum of the numbers entered.</inlineHelpText>
+    <label>Number Total</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

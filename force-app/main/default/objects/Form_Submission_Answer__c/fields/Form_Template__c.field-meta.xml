@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Form_Template__c</fullName>
+    <description>The Form Template the submission was made on, copied here so a report can filter and group answers by template without going through the submission.</description>
+    <label>Form Template</label>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <referenceTo>Form_Template__c</referenceTo>
+    <relationshipLabel>Form Submission Answers</relationshipLabel>
+    <relationshipName>Form_Submission_Answers</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

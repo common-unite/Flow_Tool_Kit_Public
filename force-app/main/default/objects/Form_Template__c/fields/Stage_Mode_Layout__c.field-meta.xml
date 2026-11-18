@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Stage_Mode_Layout__c</fullName>
-    <description>Multiselect of Stages Mode layout adjustments read by the formTemplate LWC on the stages overview screen. Hide Progress Banner removes the progress summary card, Hide Completed Fields removes the per-stage field/section count pills (validation error counts still show), and Display Template Header renders the template's configured header form component (FormQualifiedApiName_Header__c) in place of the plain title and subtitle. Blank means the default layout.</description>
+    <description>Layout options for the Stages Mode overview. Hide Progress Banner removes the progress summary card. Hide Completed Fields removes the per-stage field and section counts; error counts still show. Display Template Header shows the template's header form component in place of the plain title and subtitle. Blank keeps the default layout.</description>
     <inlineHelpText>Choose layout adjustments for the Stages Mode overview screen. Hide Progress Banner removes the progress summary bar, Hide Completed Fields removes the field and section counts on each stage, and Display Template Header shows this template's configured Header component instead of the simple title and subtitle.</inlineHelpText>
     <label>Stage Mode Layout</label>
     <required>false</required>

@@ -41,6 +41,9 @@
     },
     "languageSettings": {
       "enableTranslationWorkbench": true
+    },
+    "experienceBundleSettings": {
+      "enableExperienceBundleMetadata": true
     }
   },
   "objectSettings": {

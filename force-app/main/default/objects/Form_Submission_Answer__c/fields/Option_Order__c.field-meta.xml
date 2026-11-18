@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Option_Order__c</fullName>
+    <description>For a picklist answer, the chosen option&apos;s place in the order the form offers its options (else its place in the picklist), starting at 1. Lets a report sort answers in scale order; Answer in Scale Order is built from it.</description>
+    <label>Option Order</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+    <externalId>false</externalId>
+</CustomField>

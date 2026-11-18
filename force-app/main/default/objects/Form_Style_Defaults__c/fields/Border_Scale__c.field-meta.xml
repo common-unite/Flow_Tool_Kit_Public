@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Border_Scale__c</fullName>
+    <description>Org default for the --ftk-border-scale style token. Scales input, textarea, choice, button, and section border thickness. Blank inherits the component default.</description>
+    <label>Border thickness scale</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

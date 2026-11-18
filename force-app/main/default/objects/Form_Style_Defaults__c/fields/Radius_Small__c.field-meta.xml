@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Radius_Small__c</fullName>
+    <description>Org default for the --ftk-radius-small style token. Compact control corners Blank inherits the component default.</description>
+    <label>Radius Small</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

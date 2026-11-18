@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Divider_Position__c</fullName>
     <defaultValue>&quot;bottom&quot;</defaultValue>
-    <description>Picklist (top, bottom) setting where the section divider renders relative to the section content. The formTemplatePageSection LWC uses it (showDividerTop/showDividerBottom) to place the c-form-section-theme divider above or below; default behavior places it at the bottom when not 'top'. For Field Set it is passed as divider-position into c-flow-form.</description>
+    <description>Whether the section divider sits above (top) or below (bottom) the section content. Defaults to below.</description>
     <inlineHelpText>Choose whether the section divider appears above (top) or below (bottom) this section's content. Requires the section divider to be enabled on the Divider tab.</inlineHelpText>
     <label>Divider Position</label>
     <required>false</required>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>By_Campaign__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checked on a result that counts one campaign&apos;s answers to a question, or the answers that carry no campaign. Unchecked on the overall result, which counts every answer to the question. The checked results of a question add up to its overall result.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Checked when this result counts one campaign&apos;s answers. Unchecked on the overall result.</inlineHelpText>
+    <label>By Campaign</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

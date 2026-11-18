@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Color_Surface__c</fullName>
+    <description>Org default for the --ftk-color-surface style token. Background of cards, choice tiles, and panels. Input field background can be changed separately. Blank inherits the component default.</description>
+    <label>Color Surface</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

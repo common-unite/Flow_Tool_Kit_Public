@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>reporting__c</fullName>
+    <description>Set from the Form Builder&apos;s Reporting Settings. Whether a Form Submission Answer is written for this question: include, exclude, or blank for automatic. Automatic writes an answer for every question except the primary contact&apos;s name, title, email and phone, which are left out unless set to include, so a respondent&apos;s identity is not copied into answer records by default.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>include, exclude, or blank for automatic. Automatic reports every question except the primary contact&apos;s name, title, email and phone.</inlineHelpText>
+    <label>reporting</label>
+    <length>20</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>UniqueId__c</fullName>
     <caseSensitive>true</caseSensitive>
-    <description>Session-scoped creation guard for flow-based upserts (#256): the form components generate this client-side when a submission or row is first staged, so a retry, autosave, or double click within the same session resolves to ONE record via upsert instead of duplicates. Unique + External ID (unlike the legacy ExternalId__c, which was released non-unique and therefore can never satisfy Flow&apos;s upsert-by-external-id validation). Once a record has an Id, all DML goes by Id and this field is inert. Blank on records saved before this field existed; the form components backfill a fresh value on the next touch purely for data hygiene, never copying ExternalId__c (whose historical duplicates must not enter a unique field).</description>
+    <description>Key the form generates when a submission or row is first staged, so a retry, an autosave or a double click in the same session saves one record instead of duplicates. It is unique and an External ID, which the older ExternalId field is not, so saves can upsert by it. Once a record has an Id, saves go by Id and this field has no further effect. Records saved before this field existed get a value on their next save.</description>
     <externalId>true</externalId>
     <inlineHelpText>System-generated key that prevents duplicate records when a form save is retried in the same session. Populated automatically by the form components; leave it alone.</inlineHelpText>
     <label>Unique Id</label>

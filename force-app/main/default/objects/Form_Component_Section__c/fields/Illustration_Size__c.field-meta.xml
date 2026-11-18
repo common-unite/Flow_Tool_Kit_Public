@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Illustration_Size__c</fullName>
     <label>Illustration Size</label>
-    <description>The SLDS illustration size rendered by an illustration section: slds-illustration_small or slds-illustration_large.</description>
+    <description>Size of the illustration in an illustration section: small or large.</description>
     <inlineHelpText>Choose how large the illustration renders. Defaults to Small.</inlineHelpText>
     <type>Picklist</type>
     <required>false</required>

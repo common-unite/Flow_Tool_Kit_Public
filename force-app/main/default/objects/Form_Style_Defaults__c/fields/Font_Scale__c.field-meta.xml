@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Font_Scale__c</fullName>
+    <description>Org default for the --ftk-font-scale style token. Scales field labels, help text, headings, stage text, and unformatted rich text. Input text follows Input size. Blank inherits the component default.</description>
+    <label>Text size scale</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Position__c</fullName>
-    <description>Numeric sort order of this page within its Form Template (ascending). FormTemplate_Utility orders the page query by Position, and in Stages Mode the page's Position drives Form_Submission_Stage__c.Sort_Order__c (a formula that mirrors it), so the stages overview lists cards in this order with no trigger needed when pages are reordered. Required. Best practice: use gaps (10, 20, 30) so pages can be inserted later; duplicate positions produce unpredictable ordering. The page section configurator's reorder/recalculate logic also manages this on bulk moves.</description>
+    <description>Order of this page within its Form Template, lowest first. Stage records follow it through their Sort Order formula, so the stages overview matches. Leave gaps (10, 20, 30) so pages can be inserted later; equal positions give an unpredictable order. The page section configurator also renumbers pages when they are moved in bulk.</description>
     <externalId>false</externalId>
     <inlineHelpText>Enter a number that sets this page's order in the form (lower numbers come first). Use increments of 10 (10, 20, 30) so you can insert pages later without renumbering, and avoid duplicate values, which make page and stage ordering unpredictable.</inlineHelpText>
     <label>Position</label>

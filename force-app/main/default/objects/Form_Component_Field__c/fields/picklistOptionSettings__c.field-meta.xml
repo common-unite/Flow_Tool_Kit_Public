@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>picklistOptionSettings__c</fullName>
+    <description>Each option&apos;s custom label, description, score and icon or image for this picklist field, set in Form Builder&apos;s Customize Option Labels and Customize Visual Picker windows. Respondents see the label and description; the score feeds Form Submission Answer reports; the icon or image shows on a visual picker card. Stored as JSON, one object per picklist API value: {"apiValue":{"label":"...","description":"...","score":4,"icon":"utility:check"}} (an image card holds "asset" in place of "icon"). The builder writes only this field. While it is empty the form reads the older Picklist Option Labels, Picklist Option Scores and Picklist Visual Picker Options fields; once saved, even as {}, this field is the whole truth.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Each option&apos;s custom label, description, score and icon or image, managed from the Customize Option Labels and Customize Visual Picker windows in Form Builder.</inlineHelpText>
+    <label>Picklist Option Settings</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>6</visibleLines>
+</CustomField>

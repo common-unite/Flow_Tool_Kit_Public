@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Joined_Choice_Padding_Inline__c</fullName>
+    <description>Org default for the --ftk-joined-choice-padding-inline style token. Joined-choice horizontal padding for joined choices. Specific overrides take priority over shared controls. Blank inherits the component default.</description>
+    <label>Joined-choice horizontal padding</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+</CustomField>

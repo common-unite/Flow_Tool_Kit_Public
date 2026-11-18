@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Tags__c</fullName>
+    <description>Short tags for the template's header, separated by semicolons. A header or footer shows them with the merge field {{FlowToolKit__Header_Tags__c}}: a Banner section's Tags setting draws one pill per tag, and rich text shows the text as typed. The packaged Form Header Banner shows them as pills.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Short tags shown in the template header, separated by semicolons: 2027 season; About 10 minutes</inlineHelpText>
+    <label>Header Tags</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

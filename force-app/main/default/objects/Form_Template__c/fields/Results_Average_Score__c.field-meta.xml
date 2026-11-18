@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Results_Average_Score__c</fullName>
+    <description>Results: the average Score across this template&apos;s five point questions (the worded scales and the 1 to 5 rating), so it reads from 1 to 5. Each question&apos;s own average is on its Form Template Result. Written by the Recalculate Results job.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The average score across this form&apos;s 1 to 5 questions. A question on another scale, such as 0 to 10, keeps its own average under Question results.</inlineHelpText>
+    <label>Average Score</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
