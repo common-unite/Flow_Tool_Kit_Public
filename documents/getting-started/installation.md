@@ -6,6 +6,20 @@
 **Prerequisites**: You need System Administrator access to install managed packages in your Salesforce org.
 {% endhint %}
 
+## Install the current release
+
+The current release is **5.4.0.2**. Use whichever route suits you:
+
+* **Common-Unite installer (recommended):** the [Common-Unite install page](https://install.common-unite.com/products) installs or upgrades Flow Tool Kit and runs the setup steps (picklist values, System Administrator access, the theme cache refresh) for you.
+* **Direct install links** for version 5.4.0.2. Open the one that matches your org while logged in as an administrator:
+  * Sandbox and scratch orgs: `https://test.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C18PYAS`
+  * Production and Developer Edition orgs: `https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C18PYAS`
+* **Always current:** the [latest release on GitHub](https://github.com/common-unite/Flow_Tool_Kit_Public/releases/latest) lists the install links of the newest version, with its release notes.
+
+{% hint style="warning" %}
+**LWR sites:** keep FlowToolKit LWR Support in the Theme Footer of the theme layout, then Publish after upgrading. An LWR site serves the code from its last publish, and since Winter '27 a site published without that component shows forms with no sections.
+{% endhint %}
+
 ## Install from AppExchange
 
 1. Go to the [Flow Tool Kit listing on AppExchange](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000HC4zCUAT).
