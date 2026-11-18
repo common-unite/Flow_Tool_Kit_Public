@@ -21,6 +21,16 @@
 - **It matches Salesforce.** Subdomains, plus addressing, dots in the name and long endings such as `.nonprofit` all pass. If an incomplete address still reaches the save, the error now names the address and asks the respondent to correct it.
 - **Ready-made patterns.** [Field Validation](../form-configuration/field-validation.md#built-in-email-address-check) has tested email patterns (Standard, and Public addresses only) and US phone and ZIP patterns to paste into a Field Format.
 
+Learn more: [Field Validation: Built-in Email Address Check](../form-configuration/field-validation.md#built-in-email-address-check).
+
+### Field Format patterns: tested patterns to paste in
+
+{% embed url="https://vimeo.com/1248039924" %}
+
+A **Field Format** checks what someone types against a pattern, but a pattern written from scratch is hard to get right. The docs now carry tested, ready-made patterns for email addresses (Standard, and Public addresses only), US phone numbers and US ZIP codes. Paste one into a field's **Field Format** and pair it with a friendly **Custom Formatting Alert Message**, so respondents see what to fix. Nothing in the package changed.
+
+Learn more: [Field Validation: Regex Pattern Validation](../form-configuration/field-validation.md#regex-pattern-validation).
+
 ### Banner: one shared header with each template's own logo and colors
 
 {% embed url="https://vimeo.com/1247981214" %}
@@ -50,6 +60,8 @@ A Banner header can now take its logo, the logo's alt text and its colors from t
 - The packaged permission sets carry the field access, so there is nothing new to assign.
 - To show a logo on every template, set **Default Logo** on the Form Builder's Global Styles tab. Templates on the packaged Banner header pick it up at once. For your own Banner headers, set the Banner's **Logo Override Field** to the Form Template's **Logo** field.
 
+Learn more: [Banner Sections](../form-configuration/banner-sections.md).
+
 ### Help links in the Form and Table Builder
 
 Help is now one click away while you build. The Form Builder and Table Builder show three links on the title line, above the toolbar on the right (Builder header links, #1100):
@@ -62,12 +74,21 @@ Each link opens in a new tab. On a narrower screen the links show as icons only;
 
 The same three links replace the support email address at the bottom of the source configurator and the Embed Code Generator, so every help request reaches the team in Slack.
 
-### New walkthroughs
+### Question Reporting walkthrough: choose which survey questions report
 
-Two documentation pages now open with a narrated walkthrough (Use Vimeo embeds instead of GIFs, #1174). Nothing in the package changed.
+{% embed url="https://vimeo.com/1247810767" %}
 
-- **Question Reporting:** choose which survey questions report, and how they score. [Watch it](https://vimeo.com/1247810767).
-- **Show Rich Text Field Images:** show photos from a rich text field on your site, even for guests. [Watch it](https://vimeo.com/1247811689).
+The Question Reporting page now opens with a narrated walkthrough (Use Vimeo embeds instead of GIFs, #1174). It sets a Question Type and a default chart on a question, gives each answer choice a score, turns reporting off for a name field, and reads the result on the template's Analytics tab. Nothing in the package changed.
+
+Learn more: [Question Reporting](../form-configuration/question-reporting.md).
+
+### Rich text images walkthrough: show photos on your site, even for guests
+
+{% embed url="https://vimeo.com/1247811689" %}
+
+The Show Rich Text Field Images guide now opens with a narrated walkthrough (Use Vimeo embeds instead of GIFs, #1174). It shows a photo stored in a rich text field as the image in Form (Image), a Record Card or a Design Block, even for signed-out site guests: the guest sharing rule and field access, pointing a Record Card at the rich text field in Experience Builder, and publishing the site. Nothing in the package changed.
+
+Learn more: [Show Rich Text Field Images](../how-to-guides/show-rich-text-field-images.md).
 
 ## Bug fixes
 
@@ -103,6 +124,8 @@ Affected versions: every version from 4.42.0.3 through 5.3.0.2.
 
 Other dialogs in the package (confirmations, editors, lookups) keep their Cancel and Confirm buttons.
 
+Learn more: [Dynamic Flow Display](../experience-cloud/dynamic-flow-display.md).
+
 ### Email links with a 15-character record Id
 
 {% embed url="https://vimeo.com/1247234634" %}
@@ -113,7 +136,7 @@ Form Templates now turn a 15-character record Id into its 18-character form befo
 
 You don't need to change any links, email templates or prefill flows. Saved submissions store the same 18-character Id they always did.
 
-See [URL Parameter Mapping](../form-template-framework/url-parameter-mapping.md#type-coercion).
+Learn more: [URL Parameter Mapping: Type Coercion](../form-template-framework/url-parameter-mapping.md#type-coercion).
 
 ### A Campaign's form opens when Form Prefill Flow keeps its default
 
@@ -126,6 +149,8 @@ The Campaign field **Form Prefill Flow** starts at the picklist default **-- Non
 Now **-- None --** means the same as a blank field: the Campaign does not override the prefill flow, and the Form Template's own Prefill Flow runs (or none, when the template is set to Bypass). A flow you pick on the Campaign still runs instead of the template's.
 
 Existing Campaigns work as they are; there is no need to clear the field.
+
+Learn more: [Campaign Integration](../form-template-framework/campaign-integration.md).
 
 ### Add to Account now links the Contact to the converted Account
 
@@ -142,6 +167,8 @@ Now the rule works alongside the template's other rules: the converted Contact g
 #### Where the fix is
 
 The fix is in the packaged flow **(Form Submission) Convert | Upsert | Contact | Overridable**, in its **Switch (Add to Account)** decision. The **🏣 Add to Account** outcome checks the template's Conversion Rules for `Contact1 👉 Add to Account` and `Contact2 👉 Add to Account`. It used to match only when the Conversion Rules equalled that one value, so it missed every template with more than one rule. It now matches when the Conversion Rules contain the value.
+
+Learn more: [Submission Conversion: Conversion Rules](../form-template-framework/submission-conversion.md#conversion-rules).
 
 ### Converted Opportunities take their name from the submission's Subject
 
@@ -160,6 +187,8 @@ The Subject field on Form Submission now has a description and help text that sa
 
 The change is in the packaged flow **(Form Submission) Convert | Process | Opportunity | Overridable**. Its **Opportunity Field Map** transform now sets the Opportunity **Name** from the submission's Subject, falls back to the submission's number (or "New Opportunity" when there is neither), and keeps the first 120 characters.
 
+Learn more: [Submission Conversion](../form-template-framework/submission-conversion.md).
+
 ### The answers PDF skips sections with nothing to print
 
 {% embed url="https://vimeo.com/1247973391" %}
@@ -176,6 +205,8 @@ This applies to both print pages, Form Submission Print and Form Submission Simp
 
 You no longer need to turn on **Do Not Print** for an empty Repeater just to keep its heading out of the PDF.
 
+Learn more: [Create PDF from Submission](../form-template-framework/how-to/create-pdf-from-submission.md).
+
 ### Escape works again after a sheet inside a sheet closes
 
 {% embed url="https://vimeo.com/1247974207" %}
@@ -185,6 +216,8 @@ When a flow in a sheet opened a second sheet on top, closing that second sheet w
 Now, when the top sheet closes, the keyboard goes back to the button that opened it, or, when the flow has redrawn that button, onto the Close button of the sheet that is still open. The next Escape closes that sheet.
 
 This applies to every Flow Tool Kit sheet: Form (Dynamic Flow) sheets, flow action buttons on form sections, and the dialogs in the Form and Table Builders. A single sheet works as before.
+
+Learn more: [Dynamic Flow Display](../experience-cloud/dynamic-flow-display.md).
 
 ### Form themes stay in sync with the theme cache
 
@@ -197,6 +230,8 @@ What changes:
 
 If you deploy theme changes as metadata yourself, **Reset Form Cache** in the Form Builder still refreshes the list at once, as before.
 
+Learn more: [Themes, Labels & Styling](../form-configuration/themes-labels-styling.md).
+
 ### Form Builder: Custom Label is full width again on a field's Labels tab
 
 {% embed url="https://vimeo.com/1247970483" %}
@@ -208,6 +243,18 @@ If you deploy theme changes as metadata yourself, **Reset Form Cache** in the Fo
 **Why it matters.** Custom Label is where an admin rewords a question for respondents. With the input a few pixels wide, the label could not be read or edited on these field types.
 
 The fix applies as soon as the package is upgraded.
+
+Learn more: [Field Labels Help Text: Custom Label Override](../form-configuration/field-labels-help-text.md#custom-label-override).
+
+### Repeater rows keep what you type
+
+{% embed url="https://vimeo.com/1247961631" %}
+
+A Repeater could save every row blank when its row design was stored on the section, which is how every template from the Template Catalog saves its sections (Repeater rows over a record Form Component, #1163). The rows were created, but nothing typed into them was kept, so the form could not be submitted. Rows now keep what respondents type from the first keystroke.
+
+Nothing changes for you: there is no setup step, and existing Repeaters keep working as before.
+
+Learn more: [Repeater](../screen-components/repeater.md).
 
 {% hint style="info" %}
 **Using LWR sites?** Publish your site after upgrading so it picks up the latest package code from the LWR cache. See [LWR Sites: Setup and Considerations](../experience-cloud/lwr-site-component-support.md).
