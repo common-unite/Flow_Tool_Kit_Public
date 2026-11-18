@@ -56,8 +56,8 @@ plans:
                 options:
                     apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
                 ui_options:
-                    name: "Refresh the Form Theme cache"
-                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
+                    name: "Reset the Flow Tool Kit cache"
+                    description: "Resets Flow Tool Kit's cache of Form Themes, so themes this version adds or changes show on the next form load. To also clear every cached form, use Reset Form Cache in the Form Builder. Nothing else is changed. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -132,8 +132,8 @@ plans:
                 options:
                     apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
                 ui_options:
-                    name: "Refresh the Form Theme cache"
-                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
+                    name: "Reset the Flow Tool Kit cache"
+                    description: "Resets Flow Tool Kit's cache of Form Themes, so themes this version adds or changes show on the next form load. To also clear every cached form, use Reset Form Cache in the Form Builder. Nothing else is changed. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -234,8 +234,8 @@ plans:
                 options:
                     apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
                 ui_options:
-                    name: "Refresh the Form Theme cache"
-                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
+                    name: "Reset the Flow Tool Kit cache"
+                    description: "Resets Flow Tool Kit's cache of Form Themes, so themes this version adds or changes show on the next form load. To also clear every cached form, use Reset Form Cache in the Form Builder. Nothing else is changed. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -314,8 +314,8 @@ plans:
                 options:
                     apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
                 ui_options:
-                    name: "Refresh the Form Theme cache"
-                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
+                    name: "Reset the Flow Tool Kit cache"
+                    description: "Resets Flow Tool Kit's cache of Form Themes, so themes this version adds or changes show on the next form load. To also clear every cached form, use Reset Form Cache in the Form Builder. Nothing else is changed. Safe to re-run."
 
 flows:
 
