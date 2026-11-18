@@ -2,6 +2,12 @@
 
 > **For LWR (Build Your Own (LWR) / Microsite) sites.** LWR sites build and serve pages differently from Aura sites, so a few settings and habits matter that Aura sites never need. Aura sites and Lightning pages are unaffected by everything on this page.
 
+## In short
+
+- **LWR caches all of a site's code when you publish it**, and it can't load components dynamically after that.
+- **Flow Tool Kit form components are loaded dynamically**, so the **FlowToolKit LWR Support** component must be in the site's footer for them to render.
+- **Publish the site after every Flow Tool Kit upgrade**, so it picks up the latest package code from the LWR cache.
+
 ## Checklist
 
 | Do this | Why | Symptom when missing |
