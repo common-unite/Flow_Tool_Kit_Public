@@ -1,4 +1,28 @@
-# Salesforce DX Project: Next Steps
+# Flow Tool Kit: Form and Table Builder
+
+Build forms, tables and multi-page Form Templates for Salesforce Flow, Lightning pages and Experience Cloud sites, configured by admins with no code.
+
+## Install
+
+The current release is **5.4.0.2**.
+
+* **Common-Unite installer (recommended):** https://install.common-unite.com/products installs or upgrades the package and runs its setup steps.
+* **Sandbox and scratch orgs:** https://test.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C18PYAS
+* **Production and Developer Edition orgs:** https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C18PYAS
+* **Always current:** https://github.com/common-unite/Flow_Tool_Kit_Public/releases/latest
+
+**LWR sites:** keep FlowToolKit LWR Support in the Theme Footer of the theme layout, then Publish after upgrading. An LWR site serves the code from its last publish, and since Winter '27 a site published without that component shows forms with no sections.
+
+## Documentation and help
+
+* Docs and release notes: https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/
+* What's New: https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/welcome/whats-new
+* Slack community: https://common-unite.my.site.com/slack
+* Daily office hours: https://calendly.com/common-unite/daily-office-hours
+
+---
+
+## Salesforce DX project notes
 
 Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
 
