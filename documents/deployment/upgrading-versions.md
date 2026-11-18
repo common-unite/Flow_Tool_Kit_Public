@@ -8,7 +8,7 @@ Flow Tool Kit is a managed package installed from AppExchange. When a new versio
 
 ## Pre-Upgrade Checklist
 
-1. **Read the release notes**: check [Release Notes](../release-notes/release-3.211.md) for the version you're upgrading to. Look for:
+1. **Read the release notes**: check the release notes for the version you're upgrading to (the latest is [Release 5.4](../release-notes/release-5.4.md); [What's New](../welcome/whats-new.md) lists every recent version). Look for:
    - Breaking changes or deprecated features
    - New features that require configuration
    - New permission set entries
@@ -16,6 +16,8 @@ Flow Tool Kit is a managed package installed from AppExchange. When a new versio
 3. **Back up your CMDT records**: retrieve your form metadata via SFDX as a safety net.
 
 ## Upgrade Steps
+
+The [Common-Unite install page](https://install.common-unite.com/products) upgrades to the current release (5.4.0.2) and runs the setup steps for you. To upgrade from AppExchange instead:
 
 1. Go to the [Flow Tool Kit AppExchange listing](https://appexchange.salesforce.com/appxListingDetail?listingId=a0N4V00000HC4zCUAT).
 2. Click **Get It Now** and select the org to upgrade.
