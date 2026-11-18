@@ -2,11 +2,29 @@
 
 > The latest features and improvements in Flow Tool Kit.
 
-## Latest Release: v5.3
+## Latest Release: v5.4
 
 {% hint style="info" %}
 **Install or upgrade:** get the latest release from the [Common-Unite install page](https://install.common-unite.com/products).
 {% endhint %}
+
+**New features**
+
+- **Email fields check for a complete address** (a name, an @ and a domain with a dot) before the form moves on, with [ready-made patterns](../form-configuration/field-validation.md#built-in-email-address-check) to paste into a Field Format.
+- **Banner**: one shared header with each template's own logo and colors, plus an org default logo.
+- **Help links** (What's New, Slack Support, Office Hours) in the Form and Table Builder.
+
+**Bug fixes**
+
+- **Review screen**: dates show as saved in any time zone, and File Upload fields list their files by name.
+- **Installs in orgs without Orders**: Flow Tool Kit no longer stops with "orders aren't enabled" (every version from 4.42.0.3 through 5.3.0.2).
+- **A flow's sheet shows only the flow's own buttons**, with no extra Close under them.
+- **Add to Account** links the Contact to the converted Account, and **converted Opportunities** are named from the submission's Subject.
+- **15-character Ids in email links** reach the prefill flow as 18-character Ids.
+
+See the [5.4 release notes](../release-notes/release-5.4.md) for every new feature and fix.
+
+## v5.3
 
 - **Typing keeps every character**: in Form Templates with a page or section conditional rule (from 5.0 on), a pause mid-word could drop characters or empty the field. Every character now stays, on every host. Forms without those rules never had the problem.
 - **Save Progress email**: on ordinary (non-stages) forms, respondents get an email with a link that reopens their draft when they save.
@@ -55,6 +73,7 @@ Key highlights from recent releases:
 
 | Version | Highlights |
 |---------|-----------|
+| [v5.4](../release-notes/release-5.4.md) | Email address check, Banner logo and colors from the template, help links in the builders, review screen dates and uploads, installs without Orders |
 | [v5.3](../release-notes/release-5.3.md) | Typing keeps every character, Save Progress email, PDF on the confirmation email, picklist option descriptions, Header Tags, Form Component export and import |
 | [v4.0](../release-notes/release-4.0.md) | Cumulative milestone release: Stages Mode, Save & Resume, Survey Suite, number inputs, iframe embed, prefill flow, template sources, style sheets |
 | [v3.241](../release-notes/release-3.241.md) | Number display types, dynamic selectors, save-flow fix, section overlap fix |
