@@ -24,13 +24,13 @@
         <inputParameters>
             <name>flowApiName</name>
             <value>
-                <elementReference>FormTemplate.FlowApiName_Case__c</elementReference>
+                <elementReference>Setup.formTemplate.FlowApiName_Case__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -48,13 +48,13 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -91,13 +91,13 @@
         <inputParameters>
             <name>flowApiName</name>
             <value>
-                <elementReference>FormTemplate.FlowApiName_Contact1__c</elementReference>
+                <elementReference>Setup.formTemplate.FlowApiName_Contact1__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -115,13 +115,13 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -158,13 +158,13 @@
         <inputParameters>
             <name>flowApiName</name>
             <value>
-                <elementReference>FormTemplate.FlowApiName_Contact2__c</elementReference>
+                <elementReference>Setup.formTemplate.FlowApiName_Contact2__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -182,13 +182,13 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -225,13 +225,13 @@
         <inputParameters>
             <name>flowApiName</name>
             <value>
-                <elementReference>FormTemplate.FlowApiName_FileUpload__c</elementReference>
+                <elementReference>Setup.formTemplate.FlowApiName_FileUpload__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -243,13 +243,13 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <nameSegment>FormSubmission_LogEvent_Invocable</nameSegment>
@@ -280,13 +280,13 @@
         <inputParameters>
             <name>flowApiName</name>
             <value>
-                <elementReference>FormTemplate.FlowApiName_Lead1__c</elementReference>
+                <elementReference>Setup.formTemplate.FlowApiName_Lead1__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -304,13 +304,80 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>statusFieldApiName</name>
+            <value>
+                <stringValue>FlowToolKit__Conversion_Status_Lead_1__c</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FormSubmission_LogEvent_Invocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Calls the Log Conversion Event action in Convert to Record mode for an anonymous submission whose template adds respondents to a campaign. The Anonymous Lead step finds or creates the one shared anonymous Lead, sets it as Lead 1, and hands on to the Lead 1 Campaign Member step. Override it with a flow override on that step.</description>
+        <name>Link_Anonymous_Lead_Event</name>
+        <label>Link Anonymous Lead</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FormSubmission_LogEvent_Invocable</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>elementApiName</name>
+            <value>
+                <stringValue>Link_Anonymous_Lead_Event</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>faultMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>flowApiName</name>
+            <value>
+                <stringValue>FlowToolKit__Form_Submission_Convert_Process_Lead_Anonymous_Overridable</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>formTemplate</name>
+            <value>
+                <elementReference>Setup.formTemplate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>lookupFieldApiName</name>
+            <value>
+                <stringValue>FlowToolKit__Lead_1__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mode</name>
+            <value>
+                <stringValue>Convert to Record</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>platformEvent</name>
+            <value>
+                <elementReference>Setup.platformEvent</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>record</name>
+            <value>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -347,13 +414,13 @@
         <inputParameters>
             <name>flowApiName</name>
             <value>
-                <elementReference>FormTemplate.FlowApiName_Lead2__c</elementReference>
+                <elementReference>Setup.formTemplate.FlowApiName_Lead2__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -371,13 +438,13 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -414,13 +481,13 @@
         <inputParameters>
             <name>flowApiName</name>
             <value>
-                <elementReference>FormTemplate.FlowApiName_Opportunity__c</elementReference>
+                <elementReference>Setup.formTemplate.FlowApiName_Opportunity__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -438,13 +505,13 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -484,7 +551,7 @@
         <inputParameters>
             <name>flowApiName</name>
             <value>
-                <elementReference>FormTemplate.FlowApiName_Account__c</elementReference>
+                <elementReference>Setup.formTemplate.FlowApiName_Account__c</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -493,7 +560,7 @@
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -514,13 +581,13 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -569,7 +636,7 @@
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -581,19 +648,19 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>recordId</name>
             <value>
-                <elementReference>FormSubmission.Id</elementReference>
+                <elementReference>Setup.formSubmission.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -630,7 +697,7 @@
         <inputParameters>
             <name>formTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -642,19 +709,19 @@
         <inputParameters>
             <name>platformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
             <name>recordId</name>
             <value>
-                <elementReference>FormSubmission.Id</elementReference>
+                <elementReference>Setup.formSubmission.Id</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -667,7 +734,41 @@
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
-    <apiVersion>67.0</apiVersion>
+    <actionCalls>
+        <description>Retrieves every record a pass needs in one go: the submission, its Form Template, the parent submission, the sections with a conversion rule and the rows still to convert. Use its outputs in the decisions and actions that follow instead of querying each object yourself. On a Start event the Form Submission Convert trigger has already reset every conversion status and logged Conversion Started before this flow runs. In a debug run, Debug Record stands in for the event.</description>
+        <name>Setup</name>
+        <label>Setup</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Flow_ConversionSetup_Invocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Switch_Start</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>debugEventName</name>
+            <value>
+                <stringValue>Convert</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>debugRecord</name>
+            <value>
+                <elementReference>DebugRecord</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>platformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Flow_ConversionSetup_Invocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>Retags the in-memory event as EventName Email, Type Confirmation before the confirmation send, so the send is logged under its own event name instead of the rule that happened to precede it. EventName is only a log label now (dispatch routes by FlowApiName), so this affects the log entry, not where the event goes.</description>
@@ -675,6 +776,13 @@
         <label>Reset Event</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>PlatformEvent</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Setup.platformEvent</elementReference>
+            </value>
+        </assignmentItems>
         <assignmentItems>
             <assignToReference>PlatformEvent.EventName__c</assignToReference>
             <operator>Assign</operator>
@@ -696,7 +804,7 @@
     <decisions>
         <description>The heart of the pipeline. Rules evaluate top to bottom and the FIRST match wins, calling the Log Conversion Event action (which publishes one platform event) and ending the pass: Account, Contact 1, Lead 1, Contact 2, Lead 2, Opportunity, Case, then Additional Data, Related Records, Files, and Confirmation, with the default outcome logging Finish when nothing remains. A rule matches while the template&apos;s Conversion Rules setting enables it AND its status field is not yet Created, Matched, or Updated (a blank target lookup also qualifies). Each object step therefore gets its own transaction and governor limits, and a rerun after a fix picks up exactly where it stopped. When adding a custom rule in a clone, follow the same pattern: gate on your own status field so your rule is idempotent, call the action in Convert to Record mode to publish one event, and end the pass.</description>
         <name>Conversion_Rules</name>
-        <label>Switch</label>
+        <label>Conversion Rules</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -705,12 +813,33 @@
         <defaultConnectorLabel>✅ Conversion Complete</defaultConnectorLabel>
         <rules>
             <name>Convert_Account</name>
-            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2 AND (NOT(6) OR 7 OR NOT(8))</conditionLogic>
+            <conditionLogic>(1 OR (2 AND 3 AND 4)) AND 5 AND 6 AND (NOT(7) OR 8 OR NOT(9))</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission.Account__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Account__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Account__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Created</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Account__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Matched</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Account__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Updated</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -721,24 +850,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Account__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <leftValueReference>Setup.formSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Created</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Account__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Matched</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Account__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Updated</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -749,7 +864,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Contact_1__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Contact_1__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -769,12 +884,33 @@
         </rules>
         <rules>
             <name>Convert_Contact_1</name>
-            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2</conditionLogic>
+            <conditionLogic>(1 OR (2 AND 3 AND 4)) AND 5 AND 6</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission.Contact_1__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Contact_1__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Contact_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Created</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Contact_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Matched</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Contact_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Updated</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -785,24 +921,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Contact_1__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <leftValueReference>Setup.formSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Created</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Contact_1__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Matched</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Contact_1__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Updated</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -812,12 +934,33 @@
         </rules>
         <rules>
             <name>Convert_Lead_1</name>
-            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2</conditionLogic>
+            <conditionLogic>(1 OR (2 AND 3 AND 4)) AND 5 AND 6</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission.Lead_1__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Lead_1__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Lead_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Created</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Lead_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Matched</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Lead_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Updated</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -828,24 +971,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Lead_1__c</leftValueReference>
-                <operator>NotEqualTo</operator>
+                <leftValueReference>Setup.formSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Created</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Lead_1__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Matched</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Lead_1__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Updated</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -855,12 +984,33 @@
         </rules>
         <rules>
             <name>Convert_Contact_2</name>
-            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2 AND 6 AND (NOT(7) OR 8 OR NOT(9))</conditionLogic>
+            <conditionLogic>(1 OR (2 AND 3 AND 4)) AND 5 AND 6 AND 7 AND (NOT(8) OR 9 OR NOT(10))</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission.Contact_2__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Contact_2__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Contact_2__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Created</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Contact_2__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Matched</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Contact_2__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Updated</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -871,29 +1021,15 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Contact_2__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Created</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Contact_2__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Matched</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Contact_2__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Updated</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Contact2_Last_Name__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Contact2_Last_Name__c</leftValueReference>
                 <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
@@ -906,7 +1042,7 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Account__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Account__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -926,12 +1062,33 @@
         </rules>
         <rules>
             <name>Convert_Lead_2</name>
-            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2 AND 6</conditionLogic>
+            <conditionLogic>(1 OR (2 AND 3 AND 4)) AND 5 AND 6 AND 7</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission.Lead_2__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Lead_2__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Lead_2__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Created</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Lead_2__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Matched</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Lead_2__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Updated</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -942,29 +1099,15 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Lead_2__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Created</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Lead_2__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Matched</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Lead_2__c</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>Updated</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>FormSubmission.Contact2_Last_Name__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Contact2_Last_Name__c</leftValueReference>
                 <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
@@ -975,41 +1118,91 @@
             <label>🙋‍♂️ Convert Lead(2)</label>
         </rules>
         <rules>
-            <name>Convert_Opportunity</name>
-            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2</conditionLogic>
+            <name>Link_Anonymous_Lead</name>
+            <conditionLogic>(1 OR (2 AND 3 AND 4)) AND 5 AND 6</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission.Opportunity__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Lead_1__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormTemplate.Conversion_Rules__c</leftValueReference>
-                <operator>Contains</operator>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Lead_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
                 <rightValue>
-                    <stringValue>Opportunity 💰</stringValue>
+                    <stringValue>Created</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Opportunity__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Lead_1__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Matched</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Opportunity__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Lead_1__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Updated</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Opportunity__c</leftValueReference>
+                <leftValueReference>Includes_Campaign_Member</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Link_Anonymous_Lead_Event</targetReference>
+            </connector>
+            <label>🕶️ Link Anonymous Lead</label>
+        </rules>
+        <rules>
+            <name>Convert_Opportunity</name>
+            <conditionLogic>(1 OR (2 AND 3 AND 4)) AND 5</conditionLogic>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Opportunity__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Opportunity__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Matched</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Opportunity__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Updated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Opportunity__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Created</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formTemplate.Conversion_Rules__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Opportunity 💰</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -1021,35 +1214,35 @@
             <name>Convert_Case</name>
             <conditionLogic>(1 OR (2 AND 3 AND 4)) AND 5</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission.Case__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Case__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Case__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Case__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Created</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Case__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Case__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Matched</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status_Case__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Conversion_Status_Case__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Updated</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Form_Template__r.Conversion_Rules__c</leftValueReference>
+                <leftValueReference>Setup.formTemplate.Conversion_Rules__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Create Case</stringValue>
@@ -1064,14 +1257,14 @@
             <name>Process_Additional_Data</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission.Internal_Additional_Data__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Internal_Additional_Data__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Internal_Additional_Data__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Internal_Additional_Data__c</leftValueReference>
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue></stringValue>
@@ -1086,14 +1279,14 @@
             <name>Convert_Related_Records</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>RelatedRecords</leftValueReference>
+                <leftValueReference>Setup.relatedRecords</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>RelatedRecords</leftValueReference>
+                <leftValueReference>Setup.relatedRecords</leftValueReference>
                 <operator>IsEmpty</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -1108,70 +1301,70 @@
             <name>Convert_Files</name>
             <conditionLogic>(1 AND 2) OR (3 AND 4) OR (5 AND 6) OR (7 AND 8) OR (9 AND 10)</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_1__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_1__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_1__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_1__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>&quot;processed&quot;:false</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_2__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_2__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_2__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_2__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>&quot;processed&quot;:false</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_3__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_3__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_3__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_3__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>&quot;processed&quot;:false</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_4__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_4__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_4__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_4__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>&quot;processed&quot;:false</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_5__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_5__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.File_Upload_5__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.File_Upload_5__c</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>&quot;processed&quot;:false</stringValue>
@@ -1184,38 +1377,45 @@
         </rules>
         <rules>
             <name>Send_Confirmation</name>
-            <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
+            <conditionLogic>1 AND 2 AND 3 AND (4 OR 5) AND 6</conditionLogic>
             <conditions>
-                <leftValueReference>FormTemplate.Send_Confirmation__c</leftValueReference>
+                <leftValueReference>Setup.formTemplate.Send_Confirmation__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormTemplate.Email_Template_Name_Confirmation__c</leftValueReference>
+                <leftValueReference>Setup.formTemplate.Email_Template_Name_Confirmation__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Internal_Confirmation_Last_Sent__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Internal_Confirmation_Last_Sent__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Contact_1__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Contact_1__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Lead_1__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Lead_1__c</leftValueReference>
                 <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Setup.formSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
@@ -1229,7 +1429,7 @@
     <decisions>
         <description>Re-fire protection and template gating. Break ends the pass when the submission is missing or already Complete, which makes stray or replayed events harmless. The Bypass outcomes cover templates whose Conversion Type is Bypass or blank: no records convert, but a Bypass with Additional Data still deserializes the related rows first so they exist for reporting, and both paths log a Finish so the submission still reaches Complete.</description>
         <name>Switch_Start</name>
-        <label>Switch</label>
+        <label>Switch (Start)</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -1240,14 +1440,14 @@
             <name>Break</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>FormSubmission</leftValueReference>
+                <leftValueReference>Setup.formSubmission</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Conversion_Status__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Conversion_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Complete</stringValue>
@@ -1259,21 +1459,21 @@
             <name>Bypass_w_Additional_Data</name>
             <conditionLogic>(1 OR 2) AND 3</conditionLogic>
             <conditions>
-                <leftValueReference>FormTemplate.Conversion_Type__c</leftValueReference>
+                <leftValueReference>Setup.formTemplate.Conversion_Type__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Bypass</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormTemplate.Conversion_Type__c</leftValueReference>
+                <leftValueReference>Setup.formTemplate.Conversion_Type__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormSubmission.Internal_Additional_Data__c</leftValueReference>
+                <leftValueReference>Setup.formSubmission.Internal_Additional_Data__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -1289,14 +1489,14 @@
             <name>Bypass</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
-                <leftValueReference>FormTemplate.Conversion_Type__c</leftValueReference>
+                <leftValueReference>Setup.formTemplate.Conversion_Type__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <stringValue>Bypass</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormTemplate.Conversion_Type__c</leftValueReference>
+                <leftValueReference>Setup.formTemplate.Conversion_Type__c</leftValueReference>
                 <operator>IsBlank</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -1311,11 +1511,12 @@
     <description>WHAT IT DOES: The traffic controller of an NPSP form conversion. Each time a Form Submission needs converting, this flow looks at the template&apos;s Conversion Rules, picks the ONE rule that should run next, sends it off, and ends. The rule&apos;s own flow returns a platform event that starts this controller again for the next rule, until nothing is left and the submission is marked Complete. Installed by pointing the Controller record of Form Template Conversion Mapping Default at it.
 
 HOW IT WORKS, STEP BY STEP:
-1. The Setup subflow loads the submission, its template and (for repeater rows) the capturing section, and handles the Start reset that makes Reprocess possible.
+1. The Conversion Setup action loads the submission, its template, the parent submission and section for a repeater or table row, the sections with a conversion rule and the rows still to convert, in one read. On a Start event the Form Submission Convert trigger has already reset every conversion status and logged Conversion Started.
 2. One decision walks the rules in priority order and dispatches the first whose work is not finished. A rule is finished when its lookup on the submission is filled and its status reads Created, Matched or Updated; an Error or Ready status means &quot;run me again&quot;, which is how Reprocess and multi-pass conversions work.
 3. The NPSP difference from the packaged controller is Household mode, which the template&apos;s Account record type decides: NPSP&apos;s Household record type, HH_Account. Every NPSP org has it, so no extra conversion rule is needed. NPSP builds a Household Account for every new Contact by itself, so people come first: the ACCOUNT rule waits until Contact 1 exists. Contact 1&apos;s save finds the family&apos;s Household (a new Contact gets one from NPSP, a returning Contact already has one) and stamps it on the submission; the Account rule then runs as an update of that Household. Contact 2 also waits for the Household on the submission, so it joins the same Household instead of getting its own. Without Household mode the packaged order stands.
 4. Every dispatch is a Log Conversion Event action in Convert to Record mode: it publishes the platform event carrying which flow to run and which status and lookup fields that flow&apos;s logs should stamp. The FlowApiName fields on the template are override hooks - name a custom flow there and it runs instead of the default.
-5. When no rule matches, Finish logs, stamps anything unprocessed as Bypassed, and the conversion is Complete.
+5. An anonymous submission (Anonymous on the template) converts no Account, Contact or Lead and sends no confirmation; when the template adds respondents to a campaign it links the one shared anonymous Lead instead.
+6. When no rule matches, Finish logs, stamps anything unprocessed as Bypassed, and the conversion is Complete.
 
 WHERE IT FITS: The same one-rule-per-pass state machine as the packaged controller, so everything an admin knows about the Form Template framework - conversion statuses on the submission, the Conversion Log, Reprocess, per-template flow overrides - applies unchanged. Only the Household-mode ordering is NPSP-specific.</description>
     <environments>Default</environments>
@@ -1323,37 +1524,43 @@ WHERE IT FITS: The same one-rule-per-pass state machine as the packaged controll
         <description>True when this template converts people into NPSP Households, which is decided by the template&apos;s Account record type alone: NPSP&apos;s Household record type, HH_Account. Drives the two hold-backs: the Account rule waits for Contact 1 (whose save finds or builds the Household), and Contact 2 waits for the Household on the submission so it joins the same one.</description>
         <name>HouseholdMode</name>
         <dataType>Boolean</dataType>
-        <expression>TEXT({!FormTemplate.Account_Record_Type__c}) = &apos;HH_Account&apos;</expression>
+        <expression>TEXT({!Setup.formTemplate.Account_Record_Type__c}) = &apos;HH_Account&apos;</expression>
     </formulas>
     <formulas>
-        <description>Exact-match test for the &apos;Account&apos; Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing &apos;Account&apos; false-positive).</description>
+        <description>Exact-match test for the 'Account' Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing 'Account' false-positive).</description>
         <name>Includes_Account</name>
         <dataType>Boolean</dataType>
-        <expression>INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Account&apos;)</expression>
+        <expression>INCLUDES({!Setup.formTemplate.Conversion_Rules__c}, &apos;Account&apos;)</expression>
     </formulas>
     <formulas>
-        <description>Exact-match test for the &apos;Contact1&apos; Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing &apos;Contact1&apos; false-positive).</description>
+        <description>Exact-match test for the 'Contact1' Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing 'Contact1' false-positive).</description>
         <name>Includes_Contact1</name>
         <dataType>Boolean</dataType>
-        <expression>INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Contact1&apos;)</expression>
+        <expression>INCLUDES({!Setup.formTemplate.Conversion_Rules__c}, &apos;Contact1&apos;)</expression>
     </formulas>
     <formulas>
-        <description>Exact-match test for the &apos;Contact2&apos; Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing &apos;Contact2&apos; false-positive).</description>
+        <description>Exact-match test for the 'Contact2' Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing 'Contact2' false-positive).</description>
         <name>Includes_Contact2</name>
         <dataType>Boolean</dataType>
-        <expression>INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Contact2&apos;)</expression>
+        <expression>INCLUDES({!Setup.formTemplate.Conversion_Rules__c}, &apos;Contact2&apos;)</expression>
     </formulas>
     <formulas>
-        <description>Exact-match test for the &apos;Lead1&apos; Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing &apos;Lead1&apos; false-positive).</description>
+        <description>Exact-match test for the 'Lead1' Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing 'Lead1' false-positive).</description>
         <name>Includes_Lead1</name>
         <dataType>Boolean</dataType>
-        <expression>INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Lead1&apos;)</expression>
+        <expression>INCLUDES({!Setup.formTemplate.Conversion_Rules__c}, &apos;Lead1&apos;)</expression>
     </formulas>
     <formulas>
-        <description>Exact-match test for the &apos;Lead2&apos; Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing &apos;Lead2&apos; false-positive).</description>
+        <description>Exact-match test for the 'Lead2' Conversion Rule: INCLUDES on the multiselect, which a decision condition cannot express (Contains substring-matches any value, so subscriber-added values containing 'Lead2' false-positive).</description>
         <name>Includes_Lead2</name>
         <dataType>Boolean</dataType>
-        <expression>INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Lead2&apos;)</expression>
+        <expression>INCLUDES({!Setup.formTemplate.Conversion_Rules__c}, &apos;Lead2&apos;)</expression>
+    </formulas>
+    <formulas>
+        <description>Exact-match test for the four Create Campaign Member Conversion Rules (Contact1, Contact2, Lead1 and Lead2 👉 Create Campaign Member): INCLUDES on the multiselect, which a decision condition cannot express. Read by the Link Anonymous Lead rule.</description>
+        <name>Includes_Campaign_Member</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(INCLUDES({!Setup.formTemplate.Conversion_Rules__c}, &apos;Contact1 👉 Create Campaign Member&apos;), INCLUDES({!Setup.formTemplate.Conversion_Rules__c}, &apos;Contact2 👉 Create Campaign Member&apos;), INCLUDES({!Setup.formTemplate.Conversion_Rules__c}, &apos;Lead1 👉 Create Campaign Member&apos;), INCLUDES({!Setup.formTemplate.Conversion_Rules__c}, &apos;Lead2 👉 Create Campaign Member&apos;))</expression>
     </formulas>
     <interviewLabel>(NPSP) Convert | Process | Form Submission | Overridable {!$Flow.CurrentDateTime}</interviewLabel>
     <isOverridable>true</isOverridable>
@@ -1395,19 +1602,19 @@ WHERE IT FITS: The same one-rule-per-pass state machine as the packaged controll
         <inputAssignments>
             <name>FormSubmission</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>FormTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>PlatformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputAssignments>
     </subflows>
@@ -1421,25 +1628,21 @@ WHERE IT FITS: The same one-rule-per-pass state machine as the packaged controll
         <inputAssignments>
             <name>AllPageSections</name>
             <value>
-                <elementReference>AllPageSections</elementReference>
+                <elementReference>Setup.allPageSections</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>PlatformEvent</name>
             <value>
-                <elementReference>PlatformEvent</elementReference>
+                <elementReference>Setup.platformEvent</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>RelatedRecords</name>
             <value>
-                <elementReference>RelatedRecords</elementReference>
+                <elementReference>Setup.relatedRecords</elementReference>
             </value>
         </inputAssignments>
-        <outputAssignments>
-            <assignToReference>PlatformEvent</assignToReference>
-            <name>PlatformEvent</name>
-        </outputAssignments>
     </subflows>
     <subflows>
         <description>Sends the confirmation exactly once per submission: the rule requires Send Confirmation enabled, a template name configured, Internal Confirmation Last Sent still empty, and a converted Contact 1 or Lead 1 to render the template against. Runs as a subflow so the send and the Finish log share the final transaction.</description>
@@ -1454,13 +1657,13 @@ WHERE IT FITS: The same one-rule-per-pass state machine as the packaged controll
         <inputAssignments>
             <name>FormSubmission</name>
             <value>
-                <elementReference>FormSubmission</elementReference>
+                <elementReference>Setup.formSubmission</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <name>FormTemplate</name>
             <value>
-                <elementReference>FormTemplate</elementReference>
+                <elementReference>Setup.formTemplate</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1470,64 +1673,6 @@ WHERE IT FITS: The same one-rule-per-pass state machine as the packaged controll
             </value>
         </inputAssignments>
     </subflows>
-    <subflows>
-        <description>The shared front door. Loads the submission, template, parent, related rows, and rule-bearing page sections from the event, and resolves the matching-rule settings each object step applies. On Start events it logs Conversion Started, which resets every conversion status field to Ready (including custom status fields, discovered as picklists sharing the packaged status value set) and sets the overall status to In Progress, then clears Start__c so later passes never re-reset.</description>
-        <name>Setup</name>
-        <label>Setup</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Switch_Start</targetReference>
-        </connector>
-        <flowName>Form_Submission_Convert_Setup</flowName>
-        <inputAssignments>
-            <name>Debug_EventName</name>
-            <value>
-                <stringValue>Convert</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>DebugRecord</name>
-            <value>
-                <elementReference>DebugRecord</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>PlatformEvent</name>
-            <value>
-                <elementReference>PlatformEvent</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>AllPageSections</assignToReference>
-            <name>AllPageSections</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>FormSubmission</assignToReference>
-            <name>FormSubmission</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>FormTemplate</assignToReference>
-            <name>FormTemplate</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>PlatformEvent</assignToReference>
-            <name>PlatformEvent</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>RelatedRecords</assignToReference>
-            <name>RelatedRecords</name>
-        </outputAssignments>
-    </subflows>
-    <variables>
-        <description>The template&apos;s page sections whose Conversion Rule is set and not Bypass, in page and sort order. Passed to the Related Records step so each captured row converts according to the section that captured it.</description>
-        <name>AllPageSections</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Form_Template_Page_Section__c</objectType>
-    </variables>
     <variables>
         <description>Debug affordance: supply a Form Submission here to run the controller directly in Flow Builder. Setup fabricates the platform event from it (recordId plus the Debug EventName and Type inputs), so you can step through a pass without publishing anything.</description>
         <name>DebugRecord</name>
@@ -1538,37 +1683,12 @@ WHERE IT FITS: The same one-rule-per-pass state machine as the packaged controll
         <objectType>Form_Submission__c</objectType>
     </variables>
     <variables>
-        <name>FormSubmission</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Form_Submission__c</objectType>
-    </variables>
-    <variables>
-        <name>FormTemplate</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Form_Template__c</objectType>
-    </variables>
-    <variables>
-        <description>The event that launched this pass. On the first pass Start__c is true (Setup logs Conversion Started and resets every status field); on re-entry passes EventName is Convert with no Start flag. An override must stay an active autolaunched flow and keep a Form_Submission_Convert__e input variable: the dispatcher trigger validates both before launching and logs a conversion error if either is missing.</description>
+        <description>The event that launched this pass. On the first pass Start__c is true (the Form Submission Convert trigger has reset every status field and logged Conversion Started before this flow runs); on re-entry passes EventName is Convert with no Start flag. An override must stay an active autolaunched flow and keep a Form_Submission_Convert__e input variable: the dispatcher trigger validates both before launching and logs a conversion error if either is missing.</description>
         <name>PlatformEvent</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Form_Submission_Convert__e</objectType>
-    </variables>
-    <variables>
-        <description>Related record rows (repeater and table section captures) still needing conversion, loaded by Setup only on Convert re-entry passes. Non-empty triggers the Convert Related Records outcome after the primary rules settle; each row is matched to its page section, whose per-section conversion rule and matching settings apply.</description>
-        <name>RelatedRecords</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Form_Submission__c</objectType>
     </variables>
 </Flow>

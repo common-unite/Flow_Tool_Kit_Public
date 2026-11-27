@@ -113,12 +113,14 @@ The date picker visually **greys out** dates outside the valid range, preventing
 
 String and email fields support **regular expression** validation:
 
-1. Enter a regex pattern in the **Field Format (Regular Expression)** field.
-2. Enter a **Custom Formatting Alert Message**, the user-friendly error shown when the value doesn't match.
+1. Enter a regex pattern in the **Field Format** field.
+2. Enter a **Format Alert Message**, the user-friendly error shown when the value doesn't match.
 
 **Example**: An email field with regex `.*@salesforce\.com` and message "You must provide a Salesforce email address."
 
 The pattern must match the whole value, the same way the field checks it as the person types. Patterns can use Unicode classes such as `\p{L}` (any letter).
+
+For which field types support a Field Format, how it works with phone masking, the escaping gotchas and more tested patterns (EIN, dollar amounts, names, postal codes, years, websites), see [Field Format Patterns](field-format-patterns.md).
 
 ### Built-in Email Address Check
 
@@ -126,14 +128,14 @@ The pattern must match the whole value, the same way the field checks it as the 
 
 Every Email field, packaged or your own, checks for a full address before the form can move on: a name, an @, and a domain with a dot in it, such as `name@example.com`. An address such as `bobby@wright` shows this message under the field: "This email address is not complete. Enter it like name@example.com." No setup is needed.
 
-* **Your own pattern wins**: when the field has a **Field Format**, the form uses only that pattern (and its **Custom Formatting Alert Message**) and skips the built-in check.
+* **Your own pattern wins**: when the field has a **Field Format**, the form uses only that pattern (and its **Format Alert Message**) and skips the built-in check.
 * **Existing values are never blocked**: the check runs only on an address the person typed or changed on this visit. A prefilled value (from a record, a URL parameter or a flow variable) or the value of a saved submission that is left as it is submits as before.
 * **Matches Salesforce**: the check accepts subdomains (`name@dept.school.edu`), plus addressing and dots in the name (`first.last+tag@x.org`) and long endings (`.nonprofit`, `.community`). Salesforce itself refuses an Email value with no dot in its domain, so dotless internal addresses such as `name@intranet` cannot be saved in an Email field.
 * If an incomplete address still reaches the save, for example an unchanged prefilled value, the error reads "The email address "bobby@wright" is not complete. Please correct it and save again."
 
 ### Ready-made email patterns
 
-Paste one of these into the field's **Field Format**, and the message into **Custom Formatting Alert Message**. Each one was tested on a live guest form and against the same addresses a Salesforce Email field saves or refuses.
+Paste one of these into the field's **Field Format**, and the message into **Format Alert Message**. Each one was tested on a live guest form and against the same addresses a Salesforce Email field saves or refuses.
 
 **Standard (matches Salesforce)**: accepts every address a Salesforce Email field saves, and blocks every address it refuses.
 

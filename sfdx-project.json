@@ -20,8 +20,8 @@
       "path": "force-app-npsp-conversion",
       "default": false,
       "package": "Flow Tool Kit: NPSP | Form Template Extension",
-      "versionName": "NPSP Form Template Extension 1.0",
-      "versionNumber": "1.0.0.NEXT",
+      "versionName": "NPSP Form Template Extension 1.1",
+      "versionNumber": "1.1.0.NEXT",
       "definitionFile": "orgs/npsp.json",
       "dependencies": [
         {
@@ -43,7 +43,7 @@
           "package": "NPSP Nonprofit Success Pack 3.237"
         },
         {
-          "package": "Flow Tool Kit base 4.34"
+          "package": "Flow Tool Kit base 5.4"
         }
       ],
       "unpackagedMetadata": {
@@ -63,12 +63,12 @@
         ]
       },
       "package": "Flow Tool Kit: NPC | Form Template Extension",
-      "versionName": "NPC Form Template Extension 1.5",
-      "versionNumber": "1.5.0.NEXT",
+      "versionName": "NPC Form Template Extension 1.6",
+      "versionNumber": "1.6.0.NEXT",
       "definitionFile": "orgs/npc.json",
       "dependencies": [
         {
-          "package": "Flow Tool Kit base 4.34"
+          "package": "Flow Tool Kit base 5.4.0.2"
         }
       ],
       "unpackagedMetadata": {
@@ -91,6 +91,8 @@
     "Flow Tool Kit: NPC | Form Template Extension@1.4.0-1": "04tRQ000000AbKrYAK",
     "Flow Tool Kit: NPC | Form Template Extension@1.5.0-1": "04tRQ000000AcFJYA0",
     "Flow Tool Kit base 4.34": "04tRQ000000AjBxYAK",
+    "Flow Tool Kit base 5.4.0.2": "04tRQ000000C18PYAS",
+    "Flow Tool Kit base 5.4": "04tRQ000000C18PYAS",
     "Flow Tool Kit: NPSP | Form Template Extension": "0HoRQ00000003Fd0AI",
     "NPSP npe01 Contacts and Organizations 3.23": "04t4w0000004ALTAA2",
     "NPSP npo02 Households 3.19": "04t4w000000gfNKAAY",

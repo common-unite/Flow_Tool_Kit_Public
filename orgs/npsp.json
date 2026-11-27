@@ -9,7 +9,8 @@
     "ContactsToMultipleAccounts",
     "DefaultWorkflowUser",
     "EnableSetPasswordInApi",
-    "MarketingUser"
+    "MarketingUser",
+    "Communities"
   ],
   "settings": {
     "lightningExperienceSettings": {
@@ -41,6 +42,10 @@
     },
     "languageSettings": {
       "enableTranslationWorkbench": true
+    },
+    "communitiesSettings": {
+      "enableCommunityWorkspaces": true,
+      "enableNetworksEnabled": true
     },
     "experienceBundleSettings": {
       "enableExperienceBundleMetadata": true

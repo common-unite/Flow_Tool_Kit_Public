@@ -32,9 +32,13 @@ The default conversion:
 
 1. Create a new **Auto-Launched Flow** in Flow Builder (or clone a packaged `| Template` starter, which arrives pre-wired).
 2. Add the ONE required input variable: an input, non-collection record variable of type **Form Submission Convert** (`FlowToolKit__Form_Submission_Convert__e`). Any variable name works; the dispatcher detects it and passes the platform event in. This is the entire dispatch contract.
-3. Call the packaged **(Form Submission) Convert | Utility | Setup | Overridable** subflow first: it returns the Form Submission, parent, Form Template, page section, and matching-rule settings, and handles start-of-conversion logging.
+3. Call the **Form Template | Conversion Setup** action first, and pass it the platform event: it returns the Form Submission, parent, Form Template, page sections, related rows and matching-rule settings in one step. The conversion trigger has already reset the statuses and logged the start before your flow runs, so there is nothing more to do at the start. See [Conversion Setup Action](../conversion-setup-action.md) for every input and output.
 4. Add your custom logic (a Transform element mapping submission fields to your target is the packaged pattern), log the outcome with the **Form Template | Log Conversion Event** action, and hand control back by enabling the action's *Dispatch Return Event* on your success log.
 5. Save and activate the Flow.
+
+{% hint style="info" %}
+Flows you built earlier with the **(Form Submission) Convert | Utility | Setup | Overridable** subflow keep working; the subflow is still supported and calls the action inside. Use the action in anything new.
+{% endhint %}
 
 ## Step 3: Configure the Override
 

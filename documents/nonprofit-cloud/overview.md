@@ -60,7 +60,7 @@ The four utility flows are deliberately **form-agnostic**: values in, values out
 | --- | --- |
 | **Nonprofit Cloud** with the Group Membership feature licensed | The extension writes Party Relationship Group and Contact Contact Relation records. Without the license those objects do not exist. |
 | **Person Accounts enabled** | Every person the extension creates is a Person Account. |
-| **Flow Tool Kit base package 4.31.0.1 or later** | The extension declares it as a package dependency, so an older base package blocks the install. |
+| **Flow Tool Kit base package 5.4.0.2 or later** | The extension declares it as a package dependency, so an older base package blocks the install. |
 | An Account record type for households, and an active person account record type | The engine looks these up by name and falls back to the org default if a name does not match. |
 
 ## Where to go next

@@ -74,6 +74,7 @@
 * [Custom Metadata Types](form-configuration/custom-metadata-types.md)
 * [Custom Styling Overview](form-configuration/custom-styling-overview.md)
 * [Export Import Form Components](form-configuration/export-import-form-components.md)
+* [Field Format Patterns](form-configuration/field-format-patterns.md)
 * [Field Labels Help Text](form-configuration/field-labels-help-text.md)
 * [Field Type Settings](form-configuration/field-type-settings.md)
 * [Field Validation](form-configuration/field-validation.md)
@@ -110,6 +111,7 @@
 * [Anonymous Submissions](form-template-framework/anonymous-submissions.md)
 * [Campaign Integration](form-template-framework/campaign-integration.md)
 * [Confirmation Pages](form-template-framework/confirmation-pages.md)
+* [Conversion Setup Action](form-template-framework/conversion-setup-action.md)
 * [Creating Templates](form-template-framework/creating-templates.md)
 * [Form Availability](form-template-framework/form-availability.md)
 * [Form Submissions](form-template-framework/form-submissions.md)
@@ -182,6 +184,43 @@
 * [Image Gallery Block](experience-cloud/image-gallery-block.md)
 * [Lwr Site Component Support](experience-cloud/lwr-site-component-support.md)
 * [Styling Design Blocks](experience-cloud/styling-design-blocks.md)
+
+## Flow Tool Kit for Claude
+
+* [Getting Started](flow-tool-kit-for-claude/getting-started.md)
+* [Overview](flow-tool-kit-for-claude/README.md)
+
+### Walkthroughs
+
+* [End-to-End Walkthrough](flow-tool-kit-for-claude/walkthroughs/end-to-end.md)
+
+### Skills
+
+* [FTK Start](flow-tool-kit-for-claude/skills/ftk-start.md)
+* [Brand Kit](flow-tool-kit-for-claude/skills/brand-kit.md)
+* [Build Custom LWC](flow-tool-kit-for-claude/skills/build-custom-lwc.md)
+* [Build Email Templates](flow-tool-kit-for-claude/skills/build-email-templates.md)
+* [Build Flow Section](flow-tool-kit-for-claude/skills/build-flow-section.md)
+* [Build Form Component](flow-tool-kit-for-claude/skills/build-form-component.md)
+* [Build Repeater](flow-tool-kit-for-claude/skills/build-repeater.md)
+* [Build Site Pages](flow-tool-kit-for-claude/skills/build-site-pages.md)
+* [Build Table](flow-tool-kit-for-claude/skills/build-table.md)
+* [Build Template](flow-tool-kit-for-claude/skills/build-template.md)
+* [Consolidate Sections](flow-tool-kit-for-claude/skills/consolidate-sections.md)
+* [Convert to Metadata](flow-tool-kit-for-claude/skills/convert-to-metadata.md)
+* [Design to Blocks](flow-tool-kit-for-claude/skills/design-to-blocks.md)
+* [Field Audit](flow-tool-kit-for-claude/skills/field-audit.md)
+* [Flow Access Fix](flow-tool-kit-for-claude/skills/flow-access-fix.md)
+* [Form Design](flow-tool-kit-for-claude/skills/form-design.md)
+* [Form Migrate](flow-tool-kit-for-claude/skills/form-migrate.md)
+* [FormAssembly Capture](flow-tool-kit-for-claude/skills/formassembly-capture.md)
+* [New Invocable](flow-tool-kit-for-claude/skills/new-invocable.md)
+* [New Mapping Flow](flow-tool-kit-for-claude/skills/new-mapping-flow.md)
+* [New Record Page Form](flow-tool-kit-for-claude/skills/new-record-page-form.md)
+* [Org Catalog](flow-tool-kit-for-claude/skills/org-catalog.md)
+* [Pull Form](flow-tool-kit-for-claude/skills/pull-form.md)
+* [Repeating Data](flow-tool-kit-for-claude/skills/repeating-data.md)
+* [Salesforce Guest Audit](flow-tool-kit-for-claude/skills/sf-guest-audit.md)
 
 ## Advanced Topics
 
@@ -286,6 +325,7 @@
 * [Release 5.4](release-notes/release-5.4.md)
 * [Sprint 2026 10 14 Unreleased](release-notes/sprint-2026-10-14-unreleased.md)
 * [Sprint 2026 10 26 Unreleased](release-notes/sprint-2026-10-26-unreleased.md)
+* [Sprint 2026 11 19 Unreleased](release-notes/sprint-2026-11-19-unreleased.md)
 * [Survey And Results Unreleased](release-notes/survey-and-results-unreleased.md)
 
 ## Platform

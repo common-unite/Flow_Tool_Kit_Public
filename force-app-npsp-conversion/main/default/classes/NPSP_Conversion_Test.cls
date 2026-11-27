@@ -5,6 +5,7 @@ private class NPSP_Conversion_Test {
     /**Household mode is the HH_Account record type on the template, never a rule: Contact 1 converts first and its Household is stamped on the submission, and the Account rule then updates that Household. A person is linked to that Household only when an Add to Account rule (or the section's Add to Account box) asks for it (Bobby, 2026-09-17).**/
     private static final String HOUSEHOLD_RULES = 'Account;Contact1;Contact1 👉 Add to Account;Contact2;Contact2 👉 Add to Account';
     /**Organization mode: the packaged order stands (Account first), and the Add to Account rules affiliate each person with the Organization.**/
+    private static final String RESPONDENT_USERNAME = 'npsp.conversion.respondent@example.com.flowtoolkit.testing';
     private static final String ORGANIZATION_RULES = 'Account;Contact1;Contact1 👉 Add to Account;Contact2;Contact2 👉 Add to Account';
 
     @TestSetup
@@ -19,6 +20,15 @@ private class NPSP_Conversion_Test {
         npo02__Households_Settings__c householdSettings = npo02__Households_Settings__c.getOrgDefaults();
         householdSettings.npo02__Household_Rules__c = 'No Contacts';
         upsert householdSettings;
+
+        /**#1268: the package build runs tests as a user without the package permission sets, so every test submits as a Minimum Access respondent holding only Form Flow User**/
+        User respondent = new User(FirstName = 'Respondent', LastName = 'User', Email = 'npsp.conversion.respondent@example.com', Username = RESPONDENT_USERNAME, Alias = 'npspcnv',
+            ProfileId = [SELECT Id FROM Profile WHERE Name = 'Minimum Access - Salesforce' LIMIT 1].Id,
+            TimeZoneSidKey = 'America/Los_Angeles', LocaleSidKey = 'en_US', EmailEncodingKey = 'UTF-8', LanguageLocaleKey = 'en_US');
+        System.runAs(new User(Id = UserInfo.getUserId())) { /**setup objects in their own context, after the custom settings, or a synchronous run fails with MIXED_DML_OPERATION**/
+            insert respondent;
+            insert new PermissionSetAssignment(AssigneeId = respondent.Id, PermissionSetId = [SELECT Id FROM PermissionSet WHERE Name = 'Form_Flow_User' AND NamespacePrefix = 'FlowToolKit' LIMIT 1].Id);
+        }
 
         Form_Template__c household = new Form_Template__c(Name = 'NPSP Household Intake', Conversion_Type__c = 'Contact(s)', Account_Record_Type__c = 'HH_Account', Conversion_Rules__c = HOUSEHOLD_RULES, IsActive__c = true);
         Form_Template__c organization = new Form_Template__c(Name = 'NPSP Organization Intake', Conversion_Type__c = 'Contact(s)', Account_Record_Type__c = 'Organization', Conversion_Rules__c = ORGANIZATION_RULES, IsActive__c = true);
@@ -43,94 +53,115 @@ private class NPSP_Conversion_Test {
 
     @IsTest
     static void household_newFamily_everyoneInOneNpspHousehold() {
-        Id parentId = submit('NPSP Household Intake', person('Omar', 'Haddad'), person('Layla', 'Haddad'), new List<Contact>{person('Sami', 'Haddad'), person('Nour', 'Haddad')});
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Household Intake', person('Omar', 'Haddad'), person('Layla', 'Haddad'), new List<Contact>{person('Sami', 'Haddad'), person('Nour', 'Haddad')});
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'household_newFamily');
-        System.assertEquals('Created', parent.Conversion_Status_Contact_1__c, 'Contact 1 is new');
-        System.assertEquals('Created', parent.Conversion_Status_Contact_2__c, 'Contact 2 is new');
-        System.assertEquals('Updated', parent.Conversion_Status_Account__c, 'The Account rule updates the Household Contact 1 brought, it never creates one');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'household_newFamily');
+            System.assertEquals('Created', parent.Conversion_Status_Contact_1__c, 'Contact 1 is new');
+            System.assertEquals('Created', parent.Conversion_Status_Contact_2__c, 'Contact 2 is new');
+            System.assertEquals('Updated', parent.Conversion_Status_Account__c, 'The Account rule updates the Household Contact 1 brought, it never creates one');
 
-        Account household = [SELECT Id, RecordType.DeveloperName FROM Account WHERE Id = :parent.Account__c];
-        System.assertEquals('HH_Account', household.RecordType.DeveloperName, 'The submission points at an NPSP Household');
-        System.assertEquals(4, [SELECT COUNT() FROM Contact WHERE LastName = 'Haddad' AND AccountId = :household.Id], 'Head, spouse and both children are in that one Household');
-        System.assertEquals(1, [SELECT COUNT() FROM Account WHERE Id IN (SELECT AccountId FROM Contact WHERE LastName = 'Haddad')], 'Nobody got a Household of their own');
-        for (Form_Submission__c row : [SELECT Conversion_Status__c, Conversion_Status_Contact_2__c FROM Form_Submission__c WHERE Parent_Form_Submission__c = :parentId]) assertStatusWithLogs('Complete', row.Conversion_Status__c, row.Id, 'Every repeater row must finish');
-        System.assert(!hasLogWithStatus(parentId, 'Error'), 'A clean run writes no Error log');
+            Account household = [SELECT Id, RecordType.DeveloperName FROM Account WHERE Id = :parent.Account__c];
+            System.assertEquals('HH_Account', household.RecordType.DeveloperName, 'The submission points at an NPSP Household');
+            System.assertEquals(4, [SELECT COUNT() FROM Contact WHERE LastName = 'Haddad' AND AccountId = :household.Id], 'Head, spouse and both children are in that one Household');
+            System.assertEquals(1, [SELECT COUNT() FROM Account WHERE Id IN (SELECT AccountId FROM Contact WHERE LastName = 'Haddad')], 'Nobody got a Household of their own');
+            for (Form_Submission__c row : [SELECT Conversion_Status__c, Conversion_Status_Contact_2__c FROM Form_Submission__c WHERE Parent_Form_Submission__c = :parentId]) assertStatusWithLogs('Complete', row.Conversion_Status__c, row.Id, 'Every repeater row must finish');
+            System.assert(!hasLogWithStatus(parentId, 'Error'), 'A clean run writes no Error log');
+        }
     }
 
+    /**Base 5.3 converts each Start in its own job, which a test runs only at stopTest, so the first visit is seeded as records rather than converted in the same test**/
     @IsTest
     static void household_returningFamily_matchesPeopleAndReusesTheirHousehold() {
-        Id firstId = submit('NPSP Household Intake', person('Omar', 'Haddad'), person('Layla', 'Haddad'), new List<Contact>());
-        Test.startTest();
-        runConversion();
-        Id householdId = reload(firstId).Account__c;
+        System.runAs(respondent()) {
+            Contact omar = person('Omar', 'Haddad');
+            insertBypassingDuplicateRules(new List<Contact>{omar});
+            Id householdId = [SELECT AccountId FROM Contact WHERE Id = :omar.Id].AccountId;
+            Contact layla = person('Layla', 'Haddad');
+            layla.AccountId = householdId;
+            insertBypassingDuplicateRules(new List<Contact>{layla});
 
-        Id secondId = submit('NPSP Household Intake', person('Omar', 'Haddad'), person('Layla', 'Haddad'), new List<Contact>{person('Rami', 'Haddad')});
-        runConversion();
-        Test.stopTest();
+            Id secondId = submit('NPSP Household Intake', person('Omar', 'Haddad'), person('Layla', 'Haddad'), new List<Contact>{person('Rami', 'Haddad')});
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c second = reload(secondId);
-        assertStatusWithLogs('Complete', second.Conversion_Status__c, secondId, 'household_returningFamily');
-        System.assertEquals('Matched', second.Conversion_Status_Contact_1__c, 'The returning head is matched');
-        System.assertEquals('Matched', second.Conversion_Status_Contact_2__c, 'The returning spouse is matched');
-        System.assertEquals(householdId, second.Account__c, 'The returning family keeps its Household');
-        System.assertEquals(3, [SELECT COUNT() FROM Contact WHERE LastName = 'Haddad'], 'Only the new child is a new Contact');
-        System.assertEquals(3, [SELECT COUNT() FROM Contact WHERE LastName = 'Haddad' AND AccountId = :householdId], 'The new child joins the existing Household');
+            Form_Submission__c second = reload(secondId);
+            assertStatusWithLogs('Complete', second.Conversion_Status__c, secondId, 'household_returningFamily');
+            System.assertEquals('Matched', second.Conversion_Status_Contact_1__c, 'The returning head is matched');
+            System.assertEquals('Matched', second.Conversion_Status_Contact_2__c, 'The returning spouse is matched');
+            System.assertEquals(householdId, second.Account__c, 'The returning family keeps its Household');
+            System.assertEquals(3, [SELECT COUNT() FROM Contact WHERE LastName = 'Haddad'], 'Only the new child is a new Contact');
+            System.assertEquals(3, [SELECT COUNT() FROM Contact WHERE LastName = 'Haddad' AND AccountId = :householdId], 'The new child joins the existing Household');
+        }
     }
-
+    /**A submission that already converted (its lookups and statuses seeded) is reprocessed; base 5.3 runs the Start in a job the test runs at stopTest**/
     @IsTest
     static void reprocess_sameFamily_createsNothingNew() {
-        Id parentId = submit('NPSP Household Intake', person('Omar', 'Haddad'), person('Layla', 'Haddad'), new List<Contact>{person('Sami', 'Haddad')});
+        System.runAs(respondent()) {
+            Contact omar = person('Omar', 'Haddad');
+            insertBypassingDuplicateRules(new List<Contact>{omar});
+            Id householdId = [SELECT AccountId FROM Contact WHERE Id = :omar.Id].AccountId;
+            Contact layla = person('Layla', 'Haddad');
+            Contact sami = person('Sami', 'Haddad');
+            layla.AccountId = householdId;
+            sami.AccountId = householdId;
+            insertBypassingDuplicateRules(new List<Contact>{layla, sami});
+            Id parentId = convertedSubmission('NPSP Household Intake', omar, layla, sami, householdId);
+            Integer contactsBefore = [SELECT COUNT() FROM Contact];
+            Integer accountsBefore = [SELECT COUNT() FROM Account];
 
-        Test.startTest();
-        runConversion();
-        Integer contactsBefore = [SELECT COUNT() FROM Contact];
-        Integer accountsBefore = [SELECT COUNT() FROM Account];
-        startAgain(parentId);
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            startAgain(parentId);
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'reprocess');
-        System.assertEquals(contactsBefore, [SELECT COUNT() FROM Contact], 'No new Contact on reprocess');
-        System.assertEquals(accountsBefore, [SELECT COUNT() FROM Account], 'No new Household on reprocess');
-        System.assert(!hasLogWithStatus(parentId, 'Error'), 'A clean reprocess writes no Error log');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'reprocess');
+            System.assertEquals(contactsBefore, [SELECT COUNT() FROM Contact], 'No new Contact on reprocess');
+            System.assertEquals(accountsBefore, [SELECT COUNT() FROM Account], 'No new Household on reprocess');
+            System.assertEquals(householdId, parent.Account__c, 'The submission keeps its Household');
+            System.assert(!hasLogWithStatus(parentId, 'Error'), 'A clean reprocess writes no Error log');
+        }
     }
-
     @IsTest
     static void contactsOnly_withoutHouseholdMode_everyoneKeepsTheirOwnHousehold() {
-        Id parentId = submit('NPSP Contacts Only', person('Priya', 'Shah'), person('Arjun', 'Mehta'), new List<Contact>());
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Contacts Only', person('Priya', 'Shah'), person('Arjun', 'Mehta'), new List<Contact>());
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'contactsOnly');
-        System.assertEquals(null, parent.Account__c, 'Without the HH_Account record type there is no Household mode, so nothing is stamped on the submission');
-        Contact priya = [SELECT AccountId FROM Contact WHERE LastName = 'Shah'];
-        Contact arjun = [SELECT AccountId FROM Contact WHERE LastName = 'Mehta'];
-        System.assertNotEquals(null, priya.AccountId, 'NPSP builds Contact 1 a Household');
-        System.assertNotEquals(priya.AccountId, arjun.AccountId, 'Contact 2 is not moved into Contact 1 Household');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'contactsOnly');
+            System.assertEquals(null, parent.Account__c, 'Without the HH_Account record type there is no Household mode, so nothing is stamped on the submission');
+            Contact priya = [SELECT AccountId FROM Contact WHERE LastName = 'Shah'];
+            Contact arjun = [SELECT AccountId FROM Contact WHERE LastName = 'Mehta'];
+            System.assertNotEquals(null, priya.AccountId, 'NPSP builds Contact 1 a Household');
+            System.assertNotEquals(priya.AccountId, arjun.AccountId, 'Contact 2 is not moved into Contact 1 Household');
+        }
     }
 
     @IsTest
     static void householdWithAddToAccount_joinsTheHouseholdAndWritesNoAffiliation() {
-        Id parentId = submit('NPSP Household Add to Account', person('Nina', 'Patel'), person('Dev', 'Patel'), new List<Contact>());
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Household Add to Account', person('Nina', 'Patel'), person('Dev', 'Patel'), new List<Contact>());
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'householdWithAddToAccount');
-        System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Patel' AND AccountId = :parent.Account__c], 'Both people are in the Household');
-        System.assertEquals(0, [SELECT COUNT() FROM npe5__Affiliation__c WHERE npe5__Contact__r.LastName = 'Patel'], 'A Household is never an affiliation');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'householdWithAddToAccount');
+            System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Patel' AND AccountId = :parent.Account__c], 'Both people are in the Household');
+            System.assertEquals(0, [SELECT COUNT() FROM npe5__Affiliation__c WHERE npe5__Contact__r.LastName = 'Patel'], 'A Household is never an affiliation');
+        }
     }
 
     // ---- organizations ----
@@ -138,376 +169,430 @@ private class NPSP_Conversion_Test {
 
     @IsTest
     static void primaryContactChecked_onContact2_becomesTheOrganizationPrimaryContact() {
-        Id parentId = submit('NPSP Organization Intake', person('Iris', 'Novak'), person('Marcus', 'Reed'), new List<Contact>(), 'Maple Tenants Union', true);
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Organization Intake', person('Iris', 'Novak'), person('Marcus', 'Reed'), new List<Contact>(), 'Maple Tenants Union', true);
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'primaryContactChecked_organization');
-        System.assertEquals('Reed', [SELECT npe01__One2OneContact__r.LastName FROM Account WHERE Id = :parent.Account__c].npe01__One2OneContact__r.LastName, 'The checked Contact 2 is the Primary Contact, although Contact 1 converted first');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'primaryContactChecked_organization');
+            System.assertEquals('Reed', [SELECT npe01__One2OneContact__r.LastName FROM Account WHERE Id = :parent.Account__c].npe01__One2OneContact__r.LastName, 'The checked Contact 2 is the Primary Contact, although Contact 1 converted first');
+        }
     }
 
     @IsTest
     static void primaryContactChecked_onContact2_becomesTheHouseholdPrimaryContact() {
-        Id parentId = submit('NPSP Household Intake', person('Hana', 'Kim'), person('Joon', 'Kim'), new List<Contact>(), null, true);
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Household Intake', person('Hana', 'Kim'), person('Joon', 'Kim'), new List<Contact>(), null, true);
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'primaryContactChecked_household');
-        System.assertEquals('Joon', [SELECT npe01__One2OneContact__r.FirstName FROM Account WHERE Id = :parent.Account__c].npe01__One2OneContact__r.FirstName, 'The checked Contact 2 is the Household Primary Contact');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'primaryContactChecked_household');
+            System.assertEquals('Joon', [SELECT npe01__One2OneContact__r.FirstName FROM Account WHERE Id = :parent.Account__c].npe01__One2OneContact__r.FirstName, 'The checked Contact 2 is the Household Primary Contact');
+        }
     }
 
     // ---- more household paths ----
 
     @IsTest
     static void householdRecordTypeWithoutAccountRule_stampsTheHouseholdAndContact2StillJoins() {
-        Id parentId = submit('NPSP Household Without Account Rule', person('Yusuf', 'Demir'), person('Elif', 'Demir'), new List<Contact>());
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Household Without Account Rule', person('Yusuf', 'Demir'), person('Elif', 'Demir'), new List<Contact>());
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'householdWithoutAccountRule');
-        System.assertNotEquals(null, parent.Account__c, 'Contact 1 still stamps its Household on the submission');
-        System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Demir' AND AccountId = :parent.Account__c], 'Contact 2 joins it without an Account rule');
-        System.assert(!hasLogWithStatus(parentId, 'Error'), 'A clean run writes no Error log');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'householdWithoutAccountRule');
+            System.assertNotEquals(null, parent.Account__c, 'Contact 1 still stamps its Household on the submission');
+            System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Demir' AND AccountId = :parent.Account__c], 'Contact 2 joins it without an Account rule');
+            System.assert(!hasLogWithStatus(parentId, 'Error'), 'A clean run writes no Error log');
+        }
     }
 
     @IsTest
     static void household_matchedContact2InAnotherHousehold_isAddedToTheFamilyHousehold() {
-        Contact layla = person('Layla', 'Haddad');
-        insertBypassingDuplicateRules(new List<Contact>{layla});
-        Id previousHouseholdId = [SELECT AccountId FROM Contact WHERE Id = :layla.Id].AccountId;
+        System.runAs(respondent()) {
+            Contact layla = person('Layla', 'Haddad');
+            insertBypassingDuplicateRules(new List<Contact>{layla});
+            Id previousHouseholdId = [SELECT AccountId FROM Contact WHERE Id = :layla.Id].AccountId;
 
-        Id parentId = submit('NPSP Household Intake', person('Omar', 'Haddad'), person('Layla', 'Haddad'), new List<Contact>());
+            Id parentId = submit('NPSP Household Intake', person('Omar', 'Haddad'), person('Layla', 'Haddad'), new List<Contact>());
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'matchedContact2InAnotherHousehold');
-        System.assertEquals('Matched', parent.Conversion_Status_Contact_2__c, 'The existing spouse is matched, not duplicated');
-        System.assertEquals(parent.Account__c, [SELECT AccountId FROM Contact WHERE Id = :layla.Id].AccountId, 'The matched spouse is added to the family Household');
-        System.assertEquals(1, [SELECT COUNT() FROM Account WHERE Id = :previousHouseholdId], 'NPSP keeps the spouse previous Household; it is never deleted');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'matchedContact2InAnotherHousehold');
+            System.assertEquals('Matched', parent.Conversion_Status_Contact_2__c, 'The existing spouse is matched, not duplicated');
+            System.assertEquals(parent.Account__c, [SELECT AccountId FROM Contact WHERE Id = :layla.Id].AccountId, 'The matched spouse is added to the family Household');
+            System.assertEquals(1, [SELECT COUNT() FROM Account WHERE Id = :previousHouseholdId], 'NPSP keeps the spouse previous Household; it is never deleted');
+        }
     }
 
     @IsTest
     static void primaryContactChecked_onRepeaterRow_becomesTheHouseholdPrimaryContact() {
-        Id parentId = submit('NPSP Household Intake', person('Hana', 'Kim'), person('Joon', 'Kim'), new List<Contact>{person('Mina', 'Kim')});
-        Form_Submission__c row = [SELECT Id FROM Form_Submission__c WHERE Parent_Form_Submission__c = :parentId];
-        row.Contact2_Primary_Contact__c = true;
-        update row;
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Household Intake', person('Hana', 'Kim'), person('Joon', 'Kim'), new List<Contact>{person('Mina', 'Kim')});
+            Form_Submission__c row = [SELECT Id FROM Form_Submission__c WHERE Parent_Form_Submission__c = :parentId];
+            row.Contact2_Primary_Contact__c = true;
+            update row;
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'primaryContactChecked_repeaterRow');
-        System.assertEquals('Mina', [SELECT npe01__One2OneContact__r.FirstName FROM Account WHERE Id = :parent.Account__c].npe01__One2OneContact__r.FirstName, 'The checked repeater row person is the Household Primary Contact');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'primaryContactChecked_repeaterRow');
+            System.assertEquals('Mina', [SELECT npe01__One2OneContact__r.FirstName FROM Account WHERE Id = :parent.Account__c].npe01__One2OneContact__r.FirstName, 'The checked repeater row person is the Household Primary Contact');
+        }
     }
 
     @IsTest
     static void campaignMembers_bothContacts_areChainedAfterTheHouseholdFollowUps() {
-        Campaign campaign = new Campaign(Name = 'Family Night', IsActive = true);
-        insert campaign;
-        Id parentId = submit('NPSP Household Campaign', person('Grace', 'Park'), person('Daniel', 'Park'), new List<Contact>());
-        update new Form_Submission__c(Id = parentId, Campaign__c = campaign.Id);
+        System.runAs(respondent()) {
+            Campaign campaign = new Campaign(Name = 'Family Night', IsActive = true);
+            insert campaign;
+            Id parentId = submit('NPSP Household Campaign', person('Grace', 'Park'), person('Daniel', 'Park'), new List<Contact>());
+            update new Form_Submission__c(Id = parentId, Campaign__c = campaign.Id);
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = [SELECT Conversion_Status__c, Conversion_Status_CampaignMember_1__c, Conversion_Status_CampaignMember_2__c, Account__c FROM Form_Submission__c WHERE Id = :parentId];
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'campaignMembers');
-        System.assertEquals('Created', parent.Conversion_Status_CampaignMember_1__c, 'Contact 1 Campaign Member created');
-        System.assertEquals('Created', parent.Conversion_Status_CampaignMember_2__c, 'Contact 2 Campaign Member created');
-        System.assertEquals(2, [SELECT COUNT() FROM CampaignMember WHERE CampaignId = :campaign.Id AND Contact.LastName = 'Park'], 'Both people are Campaign Members');
-        System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Park' AND AccountId = :parent.Account__c], 'The Household follow-ups still ran before the Campaign Members');
+            Form_Submission__c parent = [SELECT Conversion_Status__c, Conversion_Status_CampaignMember_1__c, Conversion_Status_CampaignMember_2__c, Account__c FROM Form_Submission__c WHERE Id = :parentId];
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'campaignMembers');
+            System.assertEquals('Created', parent.Conversion_Status_CampaignMember_1__c, 'Contact 1 Campaign Member created');
+            System.assertEquals('Created', parent.Conversion_Status_CampaignMember_2__c, 'Contact 2 Campaign Member created');
+            System.assertEquals(2, [SELECT COUNT() FROM CampaignMember WHERE CampaignId = :campaign.Id AND Contact.LastName = 'Park'], 'Both people are Campaign Members');
+            System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Park' AND AccountId = :parent.Account__c], 'The Household follow-ups still ran before the Campaign Members');
+        }
     }
 
     @IsTest
     static void householdWithoutAddToAccount_contact2KeepsItsOwnHousehold() {
-        Id parentId = submit('NPSP Household Without Add to Account', person('Leo', 'Marsh'), person('Ada', 'Marsh'), new List<Contact>());
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Household Without Add to Account', person('Leo', 'Marsh'), person('Ada', 'Marsh'), new List<Contact>());
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'householdWithoutAddToAccount');
-        System.assertEquals(parent.Account__c, [SELECT AccountId FROM Contact WHERE FirstName = 'Leo' AND LastName = 'Marsh'].AccountId, 'Contact 1 Household is stamped on the submission');
-        System.assertNotEquals(parent.Account__c, [SELECT AccountId FROM Contact WHERE FirstName = 'Ada' AND LastName = 'Marsh'].AccountId, 'Without an Add to Account rule Contact 2 is not linked to the stamped Household');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'householdWithoutAddToAccount');
+            System.assertEquals(parent.Account__c, [SELECT AccountId FROM Contact WHERE FirstName = 'Leo' AND LastName = 'Marsh'].AccountId, 'Contact 1 Household is stamped on the submission');
+            System.assertNotEquals(parent.Account__c, [SELECT AccountId FROM Contact WHERE FirstName = 'Ada' AND LastName = 'Marsh'].AccountId, 'Without an Add to Account rule Contact 2 is not linked to the stamped Household');
+        }
     }
 
     // ---- NPSP contact preferences ----
 
     @IsTest
     static void preferredEmailAndPhone_fillTheNpspTypedFields() {
-        Id parentId = submit('NPSP Household Intake', person('Rosa', 'Vega'), person('Tito', 'Vega'), new List<Contact>());
-        update new Form_Submission__c(Id = parentId,
-            Contact1_Email_Type__c = 'Work', Contact1_Phone__c = '5035550101', Contact1_Phone_Type__c = 'Mobile',
-            Contact2_Email_Type__c = 'Other', Contact2_Phone__c = '5035550102', Contact2_Phone_Type__c = 'Home');
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Household Intake', person('Rosa', 'Vega'), person('Tito', 'Vega'), new List<Contact>());
+            update new Form_Submission__c(Id = parentId,
+                Contact1_Email_Type__c = 'Work', Contact1_Phone__c = '5035550101', Contact1_Phone_Type__c = 'Mobile',
+                Contact2_Email_Type__c = 'Other', Contact2_Phone__c = '5035550102', Contact2_Phone_Type__c = 'Home');
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        assertStatusWithLogs('Complete', reload(parentId).Conversion_Status__c, parentId, 'preferredEmailAndPhone');
-        Contact rosa = [SELECT Email, npe01__WorkEmail__c, npe01__Preferred_Email__c, MobilePhone, npe01__PreferredPhone__c FROM Contact WHERE FirstName = 'Rosa' AND LastName = 'Vega'];
-        System.assertEquals('Work', rosa.npe01__Preferred_Email__c, 'Email Type Work is the Preferred Email');
-        System.assertEquals(rosa.Email, rosa.npe01__WorkEmail__c, 'The email also lands in Work Email, so Preferred Email points at a filled field');
-        System.assertEquals('Mobile', rosa.npe01__PreferredPhone__c, 'Phone Type Mobile is the Preferred Phone');
-        System.assertEquals('5035550101', rosa.MobilePhone, 'The phone also lands in Mobile Phone');
-        Contact tito = [SELECT Email, npe01__AlternateEmail__c, npe01__Preferred_Email__c, HomePhone, npe01__PreferredPhone__c FROM Contact WHERE FirstName = 'Tito' AND LastName = 'Vega'];
-        System.assertEquals('Alternate', tito.npe01__Preferred_Email__c, 'Email Type Other becomes NPSP Alternate');
-        System.assertEquals(tito.Email, tito.npe01__AlternateEmail__c, 'The email lands in Alternate Email');
-        System.assertEquals('Home', tito.npe01__PreferredPhone__c, 'Phone Type Home is the Preferred Phone');
-        System.assertEquals('5035550102', tito.HomePhone, 'The phone lands in Home Phone');
+            assertStatusWithLogs('Complete', reload(parentId).Conversion_Status__c, parentId, 'preferredEmailAndPhone');
+            Contact rosa = [SELECT Email, npe01__WorkEmail__c, npe01__Preferred_Email__c, MobilePhone, npe01__PreferredPhone__c FROM Contact WHERE FirstName = 'Rosa' AND LastName = 'Vega'];
+            System.assertEquals('Work', rosa.npe01__Preferred_Email__c, 'Email Type Work is the Preferred Email');
+            System.assertEquals(rosa.Email, rosa.npe01__WorkEmail__c, 'The email also lands in Work Email, so Preferred Email points at a filled field');
+            System.assertEquals('Mobile', rosa.npe01__PreferredPhone__c, 'Phone Type Mobile is the Preferred Phone');
+            System.assertEquals('5035550101', rosa.MobilePhone, 'The phone also lands in Mobile Phone');
+            Contact tito = [SELECT Email, npe01__AlternateEmail__c, npe01__Preferred_Email__c, HomePhone, npe01__PreferredPhone__c FROM Contact WHERE FirstName = 'Tito' AND LastName = 'Vega'];
+            System.assertEquals('Alternate', tito.npe01__Preferred_Email__c, 'Email Type Other becomes NPSP Alternate');
+            System.assertEquals(tito.Email, tito.npe01__AlternateEmail__c, 'The email lands in Alternate Email');
+            System.assertEquals('Home', tito.npe01__PreferredPhone__c, 'Phone Type Home is the Preferred Phone');
+            System.assertEquals('5035550102', tito.HomePhone, 'The phone lands in Home Phone');
+        }
     }
 
     @IsTest
     static void doNotContact_isSetWhenCheckedAndNeverClearedByAForm() {
-        Contact returning = person('June', 'Hale');
-        returning.npsp__Do_Not_Contact__c = true;
-        insertBypassingDuplicateRules(new List<Contact>{returning});
-        Id parentId = submit('NPSP Household Intake', person('June', 'Hale'), person('Owen', 'Hale'), new List<Contact>());
-        update new Form_Submission__c(Id = parentId, Contact1_DoNotCall__c = false, Contact2_DoNotCall__c = true);
+        System.runAs(respondent()) {
+            Contact returning = person('June', 'Hale');
+            returning.npsp__Do_Not_Contact__c = true;
+            insertBypassingDuplicateRules(new List<Contact>{returning});
+            Id parentId = submit('NPSP Household Intake', person('June', 'Hale'), person('Owen', 'Hale'), new List<Contact>());
+            update new Form_Submission__c(Id = parentId, Contact1_DoNotCall__c = false, Contact2_DoNotCall__c = true);
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        assertStatusWithLogs('Complete', reload(parentId).Conversion_Status__c, parentId, 'doNotContact');
-        System.assert([SELECT npsp__Do_Not_Contact__c FROM Contact WHERE Id = :returning.Id].npsp__Do_Not_Contact__c, 'An unchecked box never clears an existing Do Not Contact');
-        System.assert([SELECT npsp__Do_Not_Contact__c FROM Contact WHERE FirstName = 'Owen' AND LastName = 'Hale'].npsp__Do_Not_Contact__c, 'Contact 2 checked Do Not Call, read from the Contact 2 field');
+            assertStatusWithLogs('Complete', reload(parentId).Conversion_Status__c, parentId, 'doNotContact');
+            System.assert([SELECT npsp__Do_Not_Contact__c FROM Contact WHERE Id = :returning.Id].npsp__Do_Not_Contact__c, 'An unchecked box never clears an existing Do Not Contact');
+            System.assert([SELECT npsp__Do_Not_Contact__c FROM Contact WHERE FirstName = 'Owen' AND LastName = 'Hale'].npsp__Do_Not_Contact__c, 'Contact 2 checked Do Not Call, read from the Contact 2 field');
+        }
     }
 
     // ---- errors and matching ----
 
     @IsTest
-    static void blankLastName_errorsContact1_thenReprocessCompletes() {
-        Id parentId = submit('NPSP Household Intake', new Contact(FirstName = 'Nameless', Email = 'nameless.npsp.test@example.com'), person('Partner', 'Vale'), new List<Contact>());
+    static void blankLastName_errorsContact1_andHaltsTheConversion() {
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Household Intake', new Contact(FirstName = 'Nameless', Email = 'nameless.npsp.test@example.com'), person('Partner', 'Vale'), new List<Contact>());
 
-        Test.startTest();
-        runConversion();
-        Form_Submission__c failed = reload(parentId);
-        System.assertEquals('Error', failed.Conversion_Status_Contact_1__c, 'A Contact needs a last name, so Contact 1 errors');
-        System.assertNotEquals('Complete', failed.Conversion_Status__c, 'The conversion halts');
-        System.assertEquals(0, [SELECT COUNT() FROM Contact WHERE LastName = 'Vale'], 'Contact 2 waits for the Household, so nobody else converts');
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        update new Form_Submission__c(Id = parentId, Contact1_Last_Name__c = 'Vale');
-        startAgain(parentId);
-        runConversion();
-        Test.stopTest();
-
-        Form_Submission__c fixed = reload(parentId);
-        assertStatusWithLogs('Complete', fixed.Conversion_Status__c, parentId, 'blankLastName reprocess');
-        System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Vale' AND AccountId = :fixed.Account__c], 'After the fix both people convert into one Household');
+            Form_Submission__c failed = reload(parentId);
+            System.assertEquals('Error', failed.Conversion_Status_Contact_1__c, 'A Contact needs a last name, so Contact 1 errors');
+            System.assertNotEquals('Complete', failed.Conversion_Status__c, 'The conversion halts');
+            System.assertEquals(0, [SELECT COUNT() FROM Contact WHERE LastName = 'Vale'], 'Contact 2 waits for the Household, so nobody else converts');
+        }
     }
 
+    /**The second half of the blank last name case: the name is fixed on a submission whose Contact 1 reads Error, and Reprocess converts the family**/
+    @IsTest
+    static void blankLastNameFixed_reprocessCompletesInOneHousehold() {
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Household Intake', person('Nameless', 'Vale'), person('Partner', 'Vale'), new List<Contact>());
+            update new Form_Submission__c(Id = parentId, Conversion_Status__c = 'Error', Conversion_Status_Contact_1__c = 'Error');
+
+            Test.startTest();
+            startAgain(parentId);
+            runConversion();
+            Test.stopTest();
+
+            Form_Submission__c fixed = reload(parentId);
+            assertStatusWithLogs('Complete', fixed.Conversion_Status__c, parentId, 'blankLastName reprocess');
+            System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Vale' AND AccountId = :fixed.Account__c], 'After the fix both people convert into one Household');
+        }
+    }
     @IsTest
     static void multipleMatches_withoutMostConfidentMatch_errorsInsteadOfGuessing() {
-        insertBypassingDuplicateRules(new List<Contact>{person('Chris', 'Doyle'), person('Chris', 'Doyle')});
-        Id parentId = submit('NPSP Household Intake', person('Chris', 'Doyle'), null, new List<Contact>());
+        System.runAs(respondent()) {
+            insertBypassingDuplicateRules(new List<Contact>{person('Chris', 'Doyle'), person('Chris', 'Doyle')});
+            Id parentId = submit('NPSP Household Intake', person('Chris', 'Doyle'), null, new List<Contact>());
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        System.assertEquals('Error', parent.Conversion_Status_Contact_1__c, 'Two matching Contacts and no Update Most Confident Match: the pipeline refuses to guess');
-        System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Doyle'], 'No third Contact is created');
+            Form_Submission__c parent = reload(parentId);
+            System.assertEquals('Error', parent.Conversion_Status_Contact_1__c, 'Two matching Contacts and no Update Most Confident Match: the pipeline refuses to guess');
+            System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Doyle'], 'No third Contact is created');
+        }
     }
 
     // ---- more organization paths ----
 
     @IsTest
     static void existingOrganization_existingCurrentAffiliation_isUpdatedNotDuplicated() {
-        Account organization = newOrganization('Riverside Elementary School');
-        Contact sarah = person('Sarah', 'Johnson');
-        insertBypassingDuplicateRules(new List<Contact>{sarah});
-        insert new npe5__Affiliation__c(npe5__Contact__c = sarah.Id, npe5__Organization__c = organization.Id, npe5__Status__c = 'Current', npe5__Primary__c = true, npe5__StartDate__c = Date.newInstance(2019, 8, 15), npe5__Role__c = 'Teacher');
+        System.runAs(respondent()) {
+            Account organization = newOrganization('Riverside Elementary School');
+            Contact sarah = person('Sarah', 'Johnson');
+            insertBypassingDuplicateRules(new List<Contact>{sarah});
+            insert new npe5__Affiliation__c(npe5__Contact__c = sarah.Id, npe5__Organization__c = organization.Id, npe5__Status__c = 'Current', npe5__Primary__c = true, npe5__StartDate__c = Date.newInstance(2019, 8, 15), npe5__Role__c = 'Teacher');
 
-        Contact submitted = person('Sarah', 'Johnson');
-        submitted.Title = 'Principal';
-        Id parentId = submit('NPSP Organization Intake', submitted, null, new List<Contact>(), 'Riverside Elementary School', false);
-        update new Form_Submission__c(Id = parentId, Account__c = organization.Id);
+            Contact submitted = person('Sarah', 'Johnson');
+            submitted.Title = 'Principal';
+            Id parentId = submit('NPSP Organization Intake', submitted, null, new List<Contact>(), 'Riverside Elementary School', false);
+            update new Form_Submission__c(Id = parentId, Account__c = organization.Id);
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'existingOrganization');
-        System.assertEquals('Updated', parent.Conversion_Status_Account__c, 'The Organization already on the submission is updated, not created');
-        System.assertEquals('Matched', parent.Conversion_Status_Contact_1__c, 'Sarah is matched');
-        List<npe5__Affiliation__c> affiliations = [SELECT npe5__Role__c, npe5__StartDate__c, npe5__Primary__c FROM npe5__Affiliation__c WHERE npe5__Contact__c = :sarah.Id AND npe5__Organization__c = :organization.Id];
-        System.assertEquals(1, affiliations.size(), 'The existing Current affiliation is updated, never duplicated');
-        System.assertEquals('Principal', affiliations[0].npe5__Role__c, 'The Role follows the new Title');
-        System.assertEquals(Date.newInstance(2019, 8, 15), affiliations[0].npe5__StartDate__c, 'The original Start Date is kept');
-        System.assert(affiliations[0].npe5__Primary__c, 'It stays primary: it already was this Organization');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'existingOrganization');
+            System.assertEquals('Updated', parent.Conversion_Status_Account__c, 'The Organization already on the submission is updated, not created');
+            System.assertEquals('Matched', parent.Conversion_Status_Contact_1__c, 'Sarah is matched');
+            List<npe5__Affiliation__c> affiliations = [SELECT npe5__Role__c, npe5__StartDate__c, npe5__Primary__c FROM npe5__Affiliation__c WHERE npe5__Contact__c = :sarah.Id AND npe5__Organization__c = :organization.Id];
+            System.assertEquals(1, affiliations.size(), 'The existing Current affiliation is updated, never duplicated');
+            System.assertEquals('Principal', affiliations[0].npe5__Role__c, 'The Role follows the new Title');
+            System.assertEquals(Date.newInstance(2019, 8, 15), affiliations[0].npe5__StartDate__c, 'The original Start Date is kept');
+            System.assert(affiliations[0].npe5__Primary__c, 'It stays primary: it already was this Organization');
+        }
     }
 
     @IsTest
     static void primaryContactChecked_onContact1_replacesTheOrganizationPrimaryContact() {
-        Account organization = newOrganization('Maple Tenants Union');
-        Contact previous = person('Former', 'Lead');
-        insertBypassingDuplicateRules(new List<Contact>{previous});
-        organization.npe01__One2OneContact__c = previous.Id;
-        update organization;
+        System.runAs(respondent()) {
+            Account organization = newOrganization('Maple Tenants Union');
+            Contact previous = person('Former', 'Lead');
+            insertBypassingDuplicateRules(new List<Contact>{previous});
+            organization.npe01__One2OneContact__c = previous.Id;
+            update organization;
 
-        Id parentId = submit('NPSP Organization Intake', person('Iris', 'Novak'), null, new List<Contact>(), 'Maple Tenants Union', false);
-        update new Form_Submission__c(Id = parentId, Account__c = organization.Id, Contact1_Primary_Contact__c = true);
+            Id parentId = submit('NPSP Organization Intake', person('Iris', 'Novak'), null, new List<Contact>(), 'Maple Tenants Union', false);
+            update new Form_Submission__c(Id = parentId, Account__c = organization.Id, Contact1_Primary_Contact__c = true);
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        assertStatusWithLogs('Complete', reload(parentId).Conversion_Status__c, parentId, 'primaryContactChecked_contact1');
-        System.assertEquals('Novak', [SELECT npe01__One2OneContact__r.LastName FROM Account WHERE Id = :organization.Id].npe01__One2OneContact__r.LastName, 'A checked Contact 1 replaces an existing Primary Contact');
+            assertStatusWithLogs('Complete', reload(parentId).Conversion_Status__c, parentId, 'primaryContactChecked_contact1');
+            System.assertEquals('Novak', [SELECT npe01__One2OneContact__r.LastName FROM Account WHERE Id = :organization.Id].npe01__One2OneContact__r.LastName, 'A checked Contact 1 replaces an existing Primary Contact');
+        }
     }
 
     @IsTest
     static void organizationRepeaterRow_isAffiliatedWithTheOrganization() {
-        Contact staff = person('Omari', 'Hill');
-        staff.Title = 'Tutor';
-        Id parentId = submit('NPSP Organization Intake', person('Kofi', 'Mensah'), null, new List<Contact>{staff}, 'Northside Literacy Project', false);
+        System.runAs(respondent()) {
+            Contact staff = person('Omari', 'Hill');
+            staff.Title = 'Tutor';
+            Id parentId = submit('NPSP Organization Intake', person('Kofi', 'Mensah'), null, new List<Contact>{staff}, 'Northside Literacy Project', false);
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'organizationRepeaterRow');
-        npe5__Affiliation__c affiliation = [SELECT npe5__Status__c, npe5__Role__c FROM npe5__Affiliation__c WHERE npe5__Contact__r.LastName = 'Hill' AND npe5__Organization__c = :parent.Account__c];
-        System.assertEquals('Current', affiliation.npe5__Status__c, 'The repeater row person is affiliated with the parent submission Organization');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'organizationRepeaterRow');
+            npe5__Affiliation__c affiliation = [SELECT npe5__Status__c, npe5__Role__c FROM npe5__Affiliation__c WHERE npe5__Contact__r.LastName = 'Hill' AND npe5__Organization__c = :parent.Account__c];
+            System.assertEquals('Current', affiliation.npe5__Status__c, 'The repeater row person is affiliated with the parent submission Organization');
+        }
     }
 
     @IsTest
     static void affiliationUtility_refusesAHouseholdAndAMissingAccount() {
-        Contact person = person('Rae', 'Stone');
-        insertBypassingDuplicateRules(new List<Contact>{person});
-        Id householdId = [SELECT AccountId FROM Contact WHERE Id = :person.Id].AccountId;
+        System.runAs(respondent()) {
+            Contact person = person('Rae', 'Stone');
+            insertBypassingDuplicateRules(new List<Contact>{person});
+            Id householdId = [SELECT AccountId FROM Contact WHERE Id = :person.Id].AccountId;
 
-        for (Id accountId : new List<Id>{householdId, null}) {
-            Flow.Interview interview = Flow.Interview.createInterview('NPSP_Utility_Upsert_Affiliation', new Map<String, Object>{'ContactId' => person.Id, 'AccountId' => accountId});
-            interview.start();
-            System.assertEquals(true, interview.getVariableValue('HasError'), 'The utility refuses ' + (accountId == null ? 'a missing Account' : 'a Household'));
-            System.assert(String.isNotBlank((String) interview.getVariableValue('ErrorMessage')), 'With a message the caller can log');
+            for (Id accountId : new List<Id>{householdId, null}) {
+                Flow.Interview interview = Flow.Interview.createInterview('NPSP_Utility_Upsert_Affiliation', new Map<String, Object>{'ContactId' => person.Id, 'AccountId' => accountId});
+                interview.start();
+                System.assertEquals(true, interview.getVariableValue('HasError'), 'The utility refuses ' + (accountId == null ? 'a missing Account' : 'a Household'));
+                System.assert(String.isNotBlank((String) interview.getVariableValue('ErrorMessage')), 'With a message the caller can log');
+            }
+            System.assertEquals(0, [SELECT COUNT() FROM npe5__Affiliation__c WHERE npe5__Contact__c = :person.Id], 'Nothing is written');
         }
-        System.assertEquals(0, [SELECT COUNT() FROM npe5__Affiliation__c WHERE npe5__Contact__c = :person.Id], 'Nothing is written');
     }
 
     // ---- the packaged steps still run through the NPSP controller ----
 
     @IsTest
     static void opportunityAndCase_convertThroughTheNpspController() {
-        Id parentId = submit('NPSP Other Objects', person('Lena', 'Brooks'), null, new List<Contact>());
-        update new Form_Submission__c(Id = parentId, Stage_Status__c = 'Closed Won', Date__c = Date.today(), Amount__c = 250, Subject__c = 'Program question', Description__c = 'Asked about the youth program');
+        System.runAs(respondent()) {
+            Id parentId = submit('NPSP Other Objects', person('Lena', 'Brooks'), null, new List<Contact>());
+            update new Form_Submission__c(Id = parentId, Stage_Status__c = 'Closed Won', Date__c = Date.today(), Amount__c = 250, Subject__c = 'Program question', Description__c = 'Asked about the youth program');
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = [SELECT Conversion_Status__c, Conversion_Status_Opportunity__c, Conversion_Status_Case__c, Opportunity__c, Case__c, Account__c FROM Form_Submission__c WHERE Id = :parentId];
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'opportunityAndCase');
-        System.assertEquals('Created', parent.Conversion_Status_Opportunity__c, 'The Opportunity step runs');
-        System.assertEquals('Created', parent.Conversion_Status_Case__c, 'The Case step runs');
-        System.assertNotEquals(null, parent.Opportunity__c, 'The Opportunity is stamped');
-        System.assertNotEquals(null, parent.Case__c, 'The Case is stamped');
+            Form_Submission__c parent = [SELECT Conversion_Status__c, Conversion_Status_Opportunity__c, Conversion_Status_Case__c, Opportunity__c, Case__c, Account__c FROM Form_Submission__c WHERE Id = :parentId];
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'opportunityAndCase');
+            System.assertEquals('Created', parent.Conversion_Status_Opportunity__c, 'The Opportunity step runs');
+            System.assertEquals('Created', parent.Conversion_Status_Case__c, 'The Case step runs');
+            System.assertNotEquals(null, parent.Opportunity__c, 'The Opportunity is stamped');
+            System.assertNotEquals(null, parent.Case__c, 'The Case is stamped');
+        }
     }
 
     @IsTest
     static void lead_convertsThroughTheNpspController() {
-        Form_Template__c template = [SELECT Id FROM Form_Template__c WHERE Name = 'NPSP Lead'];
-        Form_Submission__c submission = new Form_Submission__c(Form_Template__c = template.Id, Status__c = 'Draft', Submission_Date__c = System.now(), Company__c = 'Lakeview Co-op',
-            Contact1_First_Name__c = 'Tess', Contact1_Last_Name__c = 'Nolan', Contact1_Email__c = 'tess.nolan.npsp.test@example.com');
-        insert submission;
-        submission.Status__c = 'Submitted';
-        update submission;
+        System.runAs(respondent()) {
+            Form_Template__c template = [SELECT Id FROM Form_Template__c WHERE Name = 'NPSP Lead'];
+            Form_Submission__c submission = new Form_Submission__c(Form_Template__c = template.Id, Status__c = 'Draft', Submission_Date__c = System.now(), Company__c = 'Lakeview Co-op',
+                Contact1_First_Name__c = 'Tess', Contact1_Last_Name__c = 'Nolan', Contact1_Email__c = 'tess.nolan.npsp.test@example.com');
+            insert submission;
+            submission.Status__c = 'Submitted';
+            update submission;
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c reloaded = [SELECT Conversion_Status__c, Conversion_Status_Lead_1__c, Lead_1__c FROM Form_Submission__c WHERE Id = :submission.Id];
-        assertStatusWithLogs('Complete', reloaded.Conversion_Status__c, submission.Id, 'lead');
-        System.assertEquals('Created', reloaded.Conversion_Status_Lead_1__c, 'The Lead step runs');
-        System.assertEquals(1, [SELECT COUNT() FROM Lead WHERE LastName = 'Nolan'], 'One Lead');
+            Form_Submission__c reloaded = [SELECT Conversion_Status__c, Conversion_Status_Lead_1__c, Lead_1__c FROM Form_Submission__c WHERE Id = :submission.Id];
+            assertStatusWithLogs('Complete', reloaded.Conversion_Status__c, submission.Id, 'lead');
+            System.assertEquals('Created', reloaded.Conversion_Status_Lead_1__c, 'The Lead step runs');
+            System.assertEquals(1, [SELECT COUNT() FROM Lead WHERE LastName = 'Nolan'], 'One Lead');
+        }
     }
 
     @IsTest
     static void fileUpload_isLinkedAndMarkedProcessed() {
-        ContentVersion version = new ContentVersion(Title = 'Proof of residence', PathOnClient = 'proof.txt', VersionData = Blob.valueOf('proof'));
-        insert version;
-        version = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :version.Id];
-        Id parentId = submit('NPSP Household Intake', person('Ivy', 'Chen'), null, new List<Contact>());
-        update new Form_Submission__c(Id = parentId, File_Upload_1__c = '{"files":[{"name":"proof.txt","documentId":"' + version.ContentDocumentId + '","contentVersionId":"' + version.Id + '"}],"processed":false}');
+        System.runAs(respondent()) {
+            ContentVersion version = new ContentVersion(Title = 'Proof of residence', PathOnClient = 'proof.txt', VersionData = Blob.valueOf('proof'));
+            insert version;
+            version = [SELECT Id, ContentDocumentId FROM ContentVersion WHERE Id = :version.Id];
+            Id parentId = submit('NPSP Household Intake', person('Ivy', 'Chen'), null, new List<Contact>());
+            update new Form_Submission__c(Id = parentId, File_Upload_1__c = '{"files":[{"name":"proof.txt","documentId":"' + version.ContentDocumentId + '","contentVersionId":"' + version.Id + '"}],"processed":false}');
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = [SELECT Conversion_Status__c, File_Upload_1__c FROM Form_Submission__c WHERE Id = :parentId];
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'fileUpload');
-        System.assert(parent.File_Upload_1__c.replace(' ', '').contains('"processed":true'), 'The Files step runs once and marks the manifest processed');
+            Form_Submission__c parent = [SELECT Conversion_Status__c, File_Upload_1__c FROM Form_Submission__c WHERE Id = :parentId];
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'fileUpload');
+            System.assert(parent.File_Upload_1__c.replace(' ', '').contains('"processed":true'), 'The Files step runs once and marks the manifest processed');
+        }
     }
 
     @IsTest
     static void confirmationEmail_isSentThroughTheNpspController() {
-        /**The Send Email step only accepts Lightning templates related to Form Submission.**/
+        /**The Send Email step only accepts Lightning templates related to Form Submission. A setup object, so it is saved by the admin in its own runAs, before the respondent submits.**/
         EmailTemplate emailTemplate = new EmailTemplate(DeveloperName = 'NPSP_Conversion_Test_Confirmation', Name = 'NPSP Conversion Test Confirmation', TemplateType = 'custom', UiType = 'SFX', RelatedEntityType = Form_Submission__c.SObjectType.getDescribe().getName(), FolderId = UserInfo.getUserId(), Subject = 'Thank you', HtmlValue = '<p>Thank you</p>');
         System.runAs(new User(Id = UserInfo.getUserId())) {
             insert emailTemplate;
         }
-        Form_Template__c template = [SELECT Id FROM Form_Template__c WHERE Name = 'NPSP Household Intake'];
-        update new Form_Template__c(Id = template.Id, Send_Confirmation__c = true, Email_Template_Name_Confirmation__c = 'NPSP_Conversion_Test_Confirmation');
-        Id parentId = submit('NPSP Household Intake', person('Maya', 'Ross'), null, new List<Contact>());
+        System.runAs(respondent()) {
+            Form_Template__c template = [SELECT Id FROM Form_Template__c WHERE Name = 'NPSP Household Intake'];
+            update new Form_Template__c(Id = template.Id, Send_Confirmation__c = true, Email_Template_Name_Confirmation__c = 'NPSP_Conversion_Test_Confirmation');
+            Id parentId = submit('NPSP Household Intake', person('Maya', 'Ross'), null, new List<Contact>());
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = [SELECT Conversion_Status__c, Internal_Confirmation_Last_Sent__c FROM Form_Submission__c WHERE Id = :parentId];
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'confirmationEmail');
-        System.assertNotEquals(null, parent.Internal_Confirmation_Last_Sent__c, 'The confirmation email step runs once Contact 1 exists | LOGS >> ' + logLines(parentId));
+            Form_Submission__c parent = [SELECT Conversion_Status__c, Internal_Confirmation_Last_Sent__c FROM Form_Submission__c WHERE Id = :parentId];
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'confirmationEmail');
+            System.assertNotEquals(null, parent.Internal_Confirmation_Last_Sent__c, 'The confirmation email step runs once Contact 1 exists | LOGS >> ' + logLines(parentId));
+        }
     }
 
     @IsTest
     static void additionalData_rowsAreCreatedAndJoinTheHousehold() {
-        Form_Template__c template = [SELECT Id FROM Form_Template__c WHERE Name = 'NPSP Household Intake'];
-        Form_Template_Page_Section__c section = [SELECT Id FROM Form_Template_Page_Section__c WHERE Form_Template_Page__r.Form_Template__c = :template.Id AND Conversion_Rule__c = 'Contact2' LIMIT 1];
-        Id parentId = submit('NPSP Household Intake', person('Noah', 'Grant'), null, new List<Contact>());
-        String payload = JSON.serialize(new List<Map<String, Object>>{new Map<String, Object>{
-            'FlowToolKit__UniqueId__c' => 'npsp-additional-data-row',
-            'FlowToolKit__Internal_Is_Related_Record__c' => true,
-            'FlowToolKit__Internal_SectionId__c' => section.Id,
-            'FlowToolKit__Form_Template__c' => template.Id,
-            'FlowToolKit__Status__c' => 'Submitted',
-            'FlowToolKit__Contact2_First_Name__c' => 'Ella',
-            'FlowToolKit__Contact2_Last_Name__c' => 'Grant',
-            'FlowToolKit__Contact2_Email__c' => 'ella.grant.npsp.test@example.com'}});
-        update new Form_Submission__c(Id = parentId, Internal_Additional_Data__c = payload);
+        System.runAs(respondent()) {
+            Form_Template__c template = [SELECT Id FROM Form_Template__c WHERE Name = 'NPSP Household Intake'];
+            Form_Template_Page_Section__c section = [SELECT Id FROM Form_Template_Page_Section__c WHERE Form_Template_Page__r.Form_Template__c = :template.Id AND Conversion_Rule__c = 'Contact2' LIMIT 1];
+            Id parentId = submit('NPSP Household Intake', person('Noah', 'Grant'), null, new List<Contact>());
+            String payload = JSON.serialize(new List<Map<String, Object>>{new Map<String, Object>{
+                'FlowToolKit__UniqueId__c' => 'npsp-additional-data-row',
+                'FlowToolKit__Internal_Is_Related_Record__c' => true,
+                'FlowToolKit__Internal_SectionId__c' => section.Id,
+                'FlowToolKit__Form_Template__c' => template.Id,
+                'FlowToolKit__Status__c' => 'Submitted',
+                'FlowToolKit__Contact2_First_Name__c' => 'Ella',
+                'FlowToolKit__Contact2_Last_Name__c' => 'Grant',
+                'FlowToolKit__Contact2_Email__c' => 'ella.grant.npsp.test@example.com'}});
+            update new Form_Submission__c(Id = parentId, Internal_Additional_Data__c = payload);
 
-        Test.startTest();
-        runConversion();
-        Test.stopTest();
+            Test.startTest();
+            runConversion();
+            Test.stopTest();
 
-        Form_Submission__c parent = reload(parentId);
-        assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'additionalData');
-        System.assertEquals(1, [SELECT COUNT() FROM Form_Submission__c WHERE Parent_Form_Submission__c = :parentId], 'The Additional Data row becomes a related submission');
-        System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Grant' AND AccountId = :parent.Account__c], 'The row person joins the Household');
+            Form_Submission__c parent = reload(parentId);
+            assertStatusWithLogs('Complete', parent.Conversion_Status__c, parentId, 'additionalData');
+            System.assertEquals(1, [SELECT COUNT() FROM Form_Submission__c WHERE Parent_Form_Submission__c = :parentId], 'The Additional Data row becomes a related submission');
+            System.assertEquals(2, [SELECT COUNT() FROM Contact WHERE LastName = 'Grant' AND AccountId = :parent.Account__c], 'The row person joins the Household');
+        }
     }
 
     // ---- helpers ----
+
+    private static User respondent() {
+        return [SELECT Id FROM User WHERE Username = :RESPONDENT_USERNAME LIMIT 1];
+    }
 
     private static Contact person(String firstName, String lastName) {
         return new Contact(FirstName = firstName, LastName = lastName, Email = firstName.toLowerCase() + '.' + lastName.toLowerCase() + '.npsp.test@example.com');
@@ -543,6 +628,22 @@ private class NPSP_Conversion_Test {
         }
         parent.Status__c = 'Submitted';
         update parent; /**Submitted with a submission date and no parent: the packaged record-triggered flow publishes Start**/
+        return parent.Id;
+    }
+
+    /**A submission as a finished conversion leaves it: lookups filled, statuses Created, and one converted repeater row**/
+    private static Id convertedSubmission(String templateName, Contact contact1, Contact contact2, Contact relative, Id householdId) {
+        Form_Template__c template = [SELECT Id FROM Form_Template__c WHERE Name = :templateName];
+        Form_Submission__c parent = new Form_Submission__c(Form_Template__c = template.Id, Status__c = 'Submitted', Submission_Date__c = System.now(), Conversion_Status__c = 'Complete',
+            Contact1_First_Name__c = contact1.FirstName, Contact1_Last_Name__c = contact1.LastName, Contact1_Email__c = contact1.Email,
+            Contact2_First_Name__c = contact2.FirstName, Contact2_Last_Name__c = contact2.LastName, Contact2_Email__c = contact2.Email,
+            Contact_1__c = contact1.Id, Contact_2__c = contact2.Id, Account__c = householdId,
+            Conversion_Status_Contact_1__c = 'Created', Conversion_Status_Contact_2__c = 'Created', Conversion_Status_Account__c = 'Updated');
+        insert parent;
+        Form_Template_Page_Section__c section = [SELECT Id FROM Form_Template_Page_Section__c WHERE Form_Template_Page__r.Form_Template__c = :template.Id AND Conversion_Rule__c = 'Contact2' LIMIT 1];
+        insert new Form_Submission__c(Form_Template__c = template.Id, Parent_Form_Submission__c = parent.Id, Internal_Is_Related_Record__c = true, Internal_SectionId__c = section.Id,
+            Status__c = 'Submitted', Submission_Date__c = System.now(), Conversion_Status__c = 'Complete', Contact_2__c = relative.Id, Conversion_Status_Contact_2__c = 'Created',
+            Contact2_First_Name__c = relative.FirstName, Contact2_Last_Name__c = relative.LastName, Contact2_Email__c = relative.Email);
         return parent.Id;
     }
 

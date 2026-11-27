@@ -41,7 +41,7 @@ A cloned step flow is dispatched by the same trigger as the packaged one, so it 
 
 - **One input variable of type `Form_Submission_Convert__e`.** The name does not matter; its presence does. The dispatcher looks for it, and refuses to launch a flow that does not have one.
 - **The flow must be an active autolaunched flow.**
-- **Call the Setup subflow first.** It loads the submission, template and section, resolves matching settings, and performs the start-of-conversion reset that makes Reprocess work.
+- **Call the [Conversion Setup action](../form-template-framework/conversion-setup-action.md) first** (**Form Template | Conversion Setup**, the element named Setup in every packaged step flow), passing it the platform event. It loads the submission, template and section in one step and resolves matching settings. The start-of-conversion reset that makes Reprocess work happens before your flow runs, so you do not repeat it. The older Setup subflow still works, because it calls the action inside, but the action is what the packaged flows use, so use it in anything you write or edit.
 - **Hand the record to the engine**, or if you are replacing the engine too, log the outcome and return control to the controller yourself.
 
 {% hint style="warning" %}

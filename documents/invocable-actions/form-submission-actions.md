@@ -28,6 +28,18 @@ Converts the JSON string stored in a `Form_Submission__c` record's `Internal_Add
 
 Use this action in conversion flows when a Form Template includes repeating sections or child record collections. The form serializes these records into the submission's additional data field. This action deserializes them so your Flow can process each record individually.
 
+### What the action accepts
+
+The JSON is written in the respondent's browser. Pass the submission being converted as `record`; the rows are checked against it.
+
+| In the JSON | What the action does |
+|---|---|
+| A row with no Unique Id, External Id or Id | Returned as a new row. Every row of the list is returned. |
+| A row whose Id, or Unique Id, matches a record that is already a related row of the submission | Returned for update, or for delete when `IsDeleted` is true. |
+| A row whose Id or Unique Id matches any other Form Submission | Left out. Nothing is changed or deleted on that record. |
+| A removed row (`IsDeleted`) that no longer exists | Skipped, so a Reprocess after a failed save does not fail on it. |
+| The parent lookup and the guest parent Id | Never read from the row. The action sets the parent to the submission being converted. |
+
 ---
 
 ## Log Conversion Event

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>67.0</apiVersion>
+    <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <actionCalls>
         <description>Which of those Accounts is a Household. One query over all of them, oldest first, so a person in more than one Household is answered with the one they joined first. Reads through the (NPC) Get Party Relationship Group Apex action rather than a Get Records element, because package validation runs in a build org that cannot hold the Group Membership licence and refuses the native element there (#628). A clone of this flow can use a plain Get Records instead - a subscriber org has the licence assigned.</description>

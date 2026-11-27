@@ -62,6 +62,8 @@ Unlike the other display types, Attestation replaces the plain **Custom Label** 
 
 The card's border and fill follow your org's brand color across internal Lightning, Aura, and LWR Experience Cloud sites. The underlying value is still a boolean `true`/`false`.
 
+When the statement fits on one line, the check is centred beside it. When the statement wraps onto more lines, the top of the check lines up with the top of the capital letters on the first line, so it reads as the start of the paragraph. The card measures the statement in the site's own font as it shows, and checks again when the statement re-wraps (a narrower window, a phone) or the site's font finishes loading, so the check stays lined up on every theme and at every width.
+
 ## Phone Fields
 
 {% embed url="https://vimeo.com/936810577" %}
@@ -191,7 +193,7 @@ This video switches a picklist to Survey Buttons, then to Visual Picker (it star
 
 {% embed url="https://vimeo.com/1242095057" %}
 
-* Works on every form factor; unlike the Radio display type, it never falls back to a dropdown on phones, making it a strong default for mobile-first forms.
+* Works at every form width: the buttons wrap, making it a strong default for mobile-first forms.
 * The full picklist toolkit applies: subset and reorder options with Override Available Picklist Options, relabel them with [Picklist Option Labels](picklist-option-labels.md), and use required, help text, and conditional rules as usual.
 * Selecting a card stores the standard picklist API value; clicking the selected card again clears a non-required field.
 * [Likert Matrix sections](likert-matrix-sections.md) reuse this exact rendering for their stacked mobile layout, so surveys look consistent across the whole form.
@@ -303,6 +305,7 @@ Convert a **Rich Text** field into a drawable signature pad for collecting e-sig
 * **Signature pad requires a Rich Text field**: this is not available on other field types.
 * **Phone masking is enabled by default**: turn it off explicitly if you don't want auto-formatting.
 * **Rating selectors work with any picklist**: the number of icons matches the number of picklist values automatically.
+* **Radios, radio buttons and path buttons adapt to a narrow form**: when the form is 480 pixels wide or less (a phone, or a narrow column or window on a computer), radios stack one to a row, radio buttons wrap onto more rows when they do not fit, and path buttons, which cannot wrap, become a dropdown. Each still shows only the choices you set on the form, in your order and with your custom labels. The form measures its own width, so this works the same on Aura sites, LWR sites and Lightning pages, and it follows the form as it is resized.
 
 ## Related Pages
 

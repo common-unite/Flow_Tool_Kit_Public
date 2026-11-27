@@ -1,7 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>67.0</apiVersion>
+    <actionCalls>
+        <description>Keep this first. The packaged Conversion Setup action reads, in one step, the submission, its Form Template, the parent submission and section for a repeater or table row, and the Contact matching rules (the section&apos;s for a row, the template&apos;s otherwise) that the NPC engine matches people with.</description>
+        <name>Setup</name>
+        <label>Setup</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Flow_ConversionSetup_Invocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Switch_Person_Record_Type</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>debugEventName</name>
+            <value>
+                <stringValue>Contact</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>debugEventType</name>
+            <value>
+                <elementReference>Contact2_FieldApiName</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>debugRecord</name>
+            <value>
+                <elementReference>DebugRecord</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>platformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Flow_ConversionSetup_Invocable</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>FormSubmission</assignToReference>
+            <name>formSubmission</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>FormTemplate</assignToReference>
+            <name>formTemplate</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>Matching_Rule_Names</assignToReference>
+            <name>matchingRuleNames</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>PageSection</assignToReference>
+            <name>pageSection</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>ParentFormSubmission</assignToReference>
+            <name>parentFormSubmission</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>PlatformEvent</assignToReference>
+            <name>platformEvent</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>Update_Most_Confident_Match</assignToReference>
+            <name>updateMostConfidentMatch</name>
+        </outputParameters>
+        <storeOutputAutomatically>false</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Stops this person with a clear Error when the template&apos;s Contact (Record Type) is not an active Person Account record type. The NPC extension converts every person as a Person Account, so a business record type cannot be used here; change the template&apos;s Contact (Record Type) to a Person Account record type, or to -- Use Default --, and Reprocess.</description>
+        <name>Log_Error_Record_Type</name>
+        <label>Log Error (Record Type)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FormSubmission_LogEvent_Invocable</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>conversionStatus</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>flowLabel</name>
+            <value>
+                <stringValue>(NPC) Convert | Process | Person Account Alternate | Overridable</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>formTemplate</name>
+            <value>
+                <elementReference>FormTemplate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Contact (Record Type) is not an active Person Account record type | The NPC extension converts people as Person Accounts. Set the template&apos;s Contact (Record Type) to a Person Account record type or to -- Use Default --, then Reprocess.</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>platformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>record</name>
+            <value>
+                <elementReference>FormSubmission</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>status</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>statusFieldApiName</name>
+            <value>
+                <stringValue>--From Platform Event--</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FormSubmission_LogEvent_Invocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>No record type named on the template: the org&apos;s oldest active Person Account record type, normally the standard one.</description>
+        <name>Assign_Default_Record_Type</name>
+        <label>Assign Default Record Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>PersonRecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>getRecordType.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>getPersonAccount</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>The Person Account record type the template names in Contact (Record Type).</description>
+        <name>Assign_Template_Record_Type</name>
+        <label>Assign Template Record Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>PersonRecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>getTemplateRecordType.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>getPersonAccount</targetReference>
+        </connector>
+    </assignments>
     <constants>
         <description>The API name of the submission&apos;s Contact 1 lookup; the address sub-rule formulas use it to tell which slot this pass converts.</description>
         <name>Contact1_FieldApiName</name>
@@ -18,11 +181,70 @@
             <stringValue>FlowToolKit__Contact_2__c</stringValue>
         </value>
     </constants>
+    <decisions>
+        <description>Does the template name a record type in Contact (Record Type)? Blank or -- Use Default -- uses the org&apos;s default Person Account record type.</description>
+        <name>Switch_Person_Record_Type</name>
+        <label>Switch (Person Record Type)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>getRecordType</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Use Default</defaultConnectorLabel>
+        <rules>
+            <name>Template_Record_Type</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FormTemplate.Contact_Record_Type__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FormTemplate.Contact_Record_Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>-- Use Default --</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getTemplateRecordType</targetReference>
+            </connector>
+            <label>Template Record Type</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>The record type the template names must be an active Person Account record type; anything else stops this person with a clear Error.</description>
+        <name>Switch_Template_Record_Type_Found</name>
+        <label>Switch (Template Record Type Found)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Log_Error_Record_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not a Person Account Record Type</defaultConnectorLabel>
+        <rules>
+            <name>Person_Record_Type_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getTemplateRecordType.Id</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Template_Record_Type</targetReference>
+            </connector>
+            <label>Person Record Type Found</label>
+        </rules>
+    </decisions>
     <description>WHAT IT DOES: Turns a form&apos;s Contact 2 answers (the second person on a form, or each family member captured in a repeater row) into a Person Account and hands it to the NPC Account engine. This is the mapping step: it decides which form fields land in which Account fields, and nothing else.
 
 HOW IT WORKS, STEP BY STEP:
-1. Setup loads the submission, template and section from the platform event.
-2. Two small lookups prepare the record: the org&apos;s active person account Record Type, and the Person Account Contact 2 already points at (so a re-run updates rather than duplicates).
+1. The packaged Conversion Setup action loads the submission, template, section and Contact matching rules from the platform event.
+2. The record type comes from the template&apos;s Contact (Record Type) when it names an active Person Account record type, or the org&apos;s default person record type when it says -- Use Default --; any other value stops this person with a clear Error. The Person Account Contact 2 already points at is then read by its Contact Id, so a re-run updates rather than duplicates, and a returning person keeps their record type.
 3. The Person Account (Field Map) transform is the heart of the flow and the reason to clone it: every line maps one form answer onto one Account field. The names, email, phone, birthdate and title always map; the mailing and other address blocks map only when the template&apos;s address sub-rules are on, so curated addresses are not overwritten by blank form answers. IsPersonAccount, the record type and the existing Id and PersonContactId ride along so the engine knows exactly what it is saving.
 4. The record goes to the single NPC Account engine, together with the template&apos;s Contact matching rules, and the engine does the rest: strip, match, save, log, follow-ups.
 
@@ -107,30 +329,77 @@ false))</expression>
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
-        <filters>
-            <field>RecordTypeId</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>getRecordType.Id</elementReference>
-            </value>
-        </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Account</object>
         <queriedFields>Id</queriedFields>
         <queriedFields>PersonContactId</queriedFields>
+        <queriedFields>RecordTypeId</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
-        <description>PersonAccount</description>
+        <description>The org&apos;s default Person Account record type, used when the template names none: the oldest active one, normally the standard PersonAccount.</description>
         <name>getRecordType</name>
-        <label>Record Type</label>
+        <label>Default Person Record Type</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>getPersonAccount</targetReference>
+            <targetReference>Assign_Default_Record_Type</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsPersonType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Account</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>RecordType</object>
+        <queriedFields>Id</queriedFields>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>The Person Account record type the template names in Contact (Record Type), by developer name. Found only when it is active and a person record type.</description>
+        <name>getTemplateRecordType</name>
+        <label>Template Person Record Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Switch_Template_Record_Type_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>FormTemplate.Contact_Record_Type__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>SobjectType</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Account</stringValue>
+            </value>
+        </filters>
         <filters>
             <field>IsPersonType</field>
             <operator>EqualTo</operator>
@@ -158,69 +427,6 @@ false))</expression>
         </connector>
     </start>
     <status>Active</status>
-    <subflows>
-        <description>Shared front door: resolves Contact matching settings (template-level, or section-level for related rows) before the field map runs.</description>
-        <name>Setup</name>
-        <label>Setup</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>getRecordType</targetReference>
-        </connector>
-        <flowName>Form_Submission_Convert_Setup</flowName>
-        <inputAssignments>
-            <name>Debug_EventName</name>
-            <value>
-                <stringValue>Contact</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Debug_EventType</name>
-            <value>
-                <elementReference>Contact2_FieldApiName</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>DebugRecord</name>
-            <value>
-                <elementReference>DebugRecord</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>PlatformEvent</name>
-            <value>
-                <elementReference>PlatformEvent</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>FormSubmission</assignToReference>
-            <name>FormSubmission</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>FormTemplate</assignToReference>
-            <name>FormTemplate</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>Matching_Rule_Names</assignToReference>
-            <name>MatchingRuleNames</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>PageSection</assignToReference>
-            <name>PageSection</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>ParentFormSubmission</assignToReference>
-            <name>ParentFormSubmission</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>PlatformEvent</assignToReference>
-            <name>PlatformEvent</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>Update_Most_Confident_Match</assignToReference>
-            <name>UpdateMostConfidentMatch</name>
-        </outputAssignments>
-    </subflows>
     <subflows>
         <description>The shared Contact engine (see the primary step); Type on the event is the only thing distinguishing an alternate from a primary conversion inside it.</description>
         <name>Upsert_Person_Account</name>
@@ -475,7 +681,8 @@ false))</expression>
                 <outputFieldApiName>RecordTypeId</outputFieldApiName>
                 <transformType>Map</transformType>
                 <value>
-                    <elementReference>getRecordType.Id</elementReference>
+                    <formulaDataType>String</formulaDataType>
+                    <formulaExpression>BLANKVALUE({!getPersonAccount.RecordTypeId}, {!PersonRecordTypeId})</formulaExpression>
                 </value>
             </transformValueActions>
         </transformValues>
@@ -499,7 +706,7 @@ false))</expression>
         <objectType>Form_Submission__c</objectType>
     </variables>
     <variables>
-        <description>Populated by the Setup subflow: the Form Template that owns the conversion configuration.</description>
+        <description>Populated by the Setup action: the Form Template that owns the conversion configuration.</description>
         <name>FormTemplate</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -508,7 +715,7 @@ false))</expression>
         <objectType>Form_Template__c</objectType>
     </variables>
     <variables>
-        <description>Populated by the Setup subflow: the duplicate matching rule API names configured for Contacts, passed to the Upsert Contact subflow&apos;s duplicate checker.</description>
+        <description>Populated by the Setup action: the duplicate matching rule API names configured for Contacts, passed to the NPC Account enginepassed to the Upsert Contact subflow&apos;s duplicateapos;s duplicate checker.</description>
         <name>Matching_Rule_Names</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -525,7 +732,7 @@ false))</expression>
         <objectType>Form_Template_Page_Section__c</objectType>
     </variables>
     <variables>
-        <description>Populated by the Setup subflow: the parent Form Submission when the converting record is a related submission row; blank otherwise.</description>
+        <description>Populated by the Setup action: the parent Form Submission when the converting record is a related submission row; blank otherwise.</description>
         <name>ParentFormSubmission</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -534,7 +741,7 @@ false))</expression>
         <objectType>Form_Submission__c</objectType>
     </variables>
     <variables>
-        <description>The Contact 2 event (EventName Contact, Type Contact_2__c). Type routes the shared subflow to stamp the Contact 2 status and lookup. An override must keep a Form_Submission_Convert__e input variable.</description>
+        <description>The Contact 2 event (EventName Contact, Type Contact_2__c). Type routes the NPC Account engine to stamp the Contact 2 status and lookup. An override must keep a Form_Submission_Convert__e input variable.</description>
         <name>PlatformEvent</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -543,7 +750,15 @@ false))</expression>
         <objectType>Form_Submission_Convert__e</objectType>
     </variables>
     <variables>
-        <description>Populated by the Setup subflow: the template&apos;s setting to update the single most confident duplicate match instead of logging a Multiple Matches error.</description>
+        <description>The Person Account record type this person is created with: the template&apos;s Contact (Record Type), or the org&apos;s default person record type when the template names none. A returning person keeps the record type they already have.</description>
+        <name>PersonRecordTypeId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Populated by the Setup action: the template&apos;s setting to update the single most confident duplicate match instead of logging a Multiple Matches error.</description>
         <name>Update_Most_Confident_Match</name>
         <dataType>Boolean</dataType>
         <isCollection>false</isCollection>

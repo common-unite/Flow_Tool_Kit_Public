@@ -97,6 +97,8 @@ The packaged conversion flows run a new action, **Form Submission | Apply Submis
 
 The action reads the maps from the sections on the submission's Form Template and fills **only the fields the Transform left empty**. The Transform stays the source of truth: if it already set a value, that value is kept.
 
+A repeater or table row applies only the section it was created from. Rows are saved without a Form Template of their own, so the action reads that section's maps from the parent submission's Form Template, the same template the rest of the row's conversion uses.
+
 | Input | What it does |
 | --- | --- |
 | Form Submission | The submission, or the repeater or table row, being converted |

@@ -1,6 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>67.0</apiVersion>
+    <actionCalls>
+        <description>Logs a configuration Error when this step runs for a template whose Conversion Rules no longer include Account, and stops the Account step.</description>
+        <name>Log_Error_Invalid_Field_Name</name>
+        <label>Log Error</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FormSubmission_LogEvent_Invocable</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>formTemplate</name>
+            <value>
+                <elementReference>FormTemplate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>conversionStatus</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>faultMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>flowLabel</name>
+            <value>
+                <stringValue>(NPC) Convert | Process | Account | Overridable</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <stringValue>Invalid Field Name: {!PlatformEvent.Type__c} or Invalid Conversion Rule(s)</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>platformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>record</name>
+            <value>
+                <elementReference>FormSubmission</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recordId</name>
+            <value>
+                <elementReference>FormSubmission.Account__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>status</name>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>statusFieldApiName</name>
+            <value>
+                <stringValue>--From Platform Event--</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FormSubmission_LogEvent_Invocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Keep this first. The packaged Conversion Setup action reads, in one step, the submission, its Form Template, and the parent submission and section when this is a repeater or table row.</description>
+        <name>Setup</name>
+        <label>Setup</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Flow_ConversionSetup_Invocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Switch_Account_Type</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>debugEventName</name>
+            <value>
+                <stringValue>Account</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>debugEventType</name>
+            <value>
+                <stringValue>FlowToolKit__Account__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>debugRecord</name>
+            <value>
+                <elementReference>DebugRecord</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>platformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Flow_ConversionSetup_Invocable</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>FormSubmission</assignToReference>
+            <name>formSubmission</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>FormTemplate</assignToReference>
+            <name>formTemplate</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>PageSection</assignToReference>
+            <name>pageSection</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>ParentFormSubmission</assignToReference>
+            <name>parentFormSubmission</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>PlatformEvent</assignToReference>
+            <name>platformEvent</name>
+        </outputParameters>
+        <storeOutputAutomatically>false</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>Stamps the record type the template names, or the Household type in Household mode.</description>
@@ -19,6 +152,32 @@
             <targetReference>Upsert_Account</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <description>Configuration guard: continues only when the template&apos;s Conversion Rules actually include an Account rule. This protects against events published by a custom controller whose template no longer has the rule enabled; the mismatch logs as a configuration error instead of converting garbage.</description>
+        <name>Switch_Account_Type</name>
+        <label>Switch (Account Type)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Log_Error_Invalid_Field_Name</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>break</defaultConnectorLabel>
+        <rules>
+            <name>Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FormTemplate.Conversion_Rules__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Account</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Account_Field_Map</targetReference>
+            </connector>
+            <label>🏢 Account</label>
+        </rules>
+    </decisions>
     <decisions>
         <description>Queries the configured Account record type only when the template names one; the literal -- Use Default -- value is a sentinel meaning the running user&apos;s default record type, so no lookup is needed.</description>
         <name>Switch_Record_Type</name>
@@ -55,7 +214,7 @@
     <description>WHAT IT DOES: Turns a form&apos;s company answers into the Account record for the Account rule - a business, or, in Household mode, the family&apos;s Household - and hands it to the NPC Account engine. This is the mapping step: it decides which form fields land in which Account fields, and nothing else.
 
 HOW IT WORKS, STEP BY STEP:
-1. Setup loads the submission, template and section from the platform event.
+1. The packaged Conversion Setup action loads the submission, template and section from the platform event, and a template without the Account rule logs a configuration Error instead of converting.
 2. The Account (Field Map) transform maps the company fields: name, phone, website, and the billing and shipping addresses only when the template&apos;s address sub-rules are on. The Name is special in Household mode: the Company if the form captured one, otherwise &quot;&lt;Contact 1&apos;s last name&gt; Household&quot;, which is how a family&apos;s Household gets its name.
 3. If the template names an Account record type, it is looked up and stamped onto the record; the literal -- Use Default -- means the org default applies.
 4. The record goes to the single NPC Account engine with the template&apos;s Account matching rules, and the engine does the rest: strip, match, save, log, and for a Household the group and memberships.
@@ -152,61 +311,6 @@ WHERE IT FITS: Installed by the Account record of Form Template Conversion Mappi
         </connector>
     </start>
     <status>Active</status>
-    <subflows>
-        <description>Shared front door: loads the submission and template and resolves the Account matching rule settings before the field map runs. Custom clones should keep this call first; everything downstream assumes its outputs.</description>
-        <name>Setup</name>
-        <label>Setup</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Account_Field_Map</targetReference>
-        </connector>
-        <flowName>Form_Submission_Convert_Setup</flowName>
-        <inputAssignments>
-            <name>Debug_EventName</name>
-            <value>
-                <stringValue>Account</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>Debug_EventType</name>
-            <value>
-                <stringValue>FlowToolKit__Account__c</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>DebugRecord</name>
-            <value>
-                <elementReference>DebugRecord</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>PlatformEvent</name>
-            <value>
-                <elementReference>PlatformEvent</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>FormSubmission</assignToReference>
-            <name>FormSubmission</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>FormTemplate</assignToReference>
-            <name>FormTemplate</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>PageSection</assignToReference>
-            <name>PageSection</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>ParentFormSubmission</assignToReference>
-            <name>ParentFormSubmission</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>PlatformEvent</assignToReference>
-            <name>PlatformEvent</name>
-        </outputAssignments>
-    </subflows>
     <subflows>
         <description>The single NPC Account engine: matching, save, logs, and for a Household its group and members.</description>
         <name>Upsert_Account</name>

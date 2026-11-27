@@ -397,6 +397,16 @@ When enabled, clicking any page in the **vertical stage indicator** jumps straig
 
 ![The Non-Linear Navigation toggle in Form Template Settings, available with the vertical indicator selected](../.gitbook/assets/301-non-linear-navigation-toggle.png)
 
+### Jumping forward to finished pages on a reopened draft
+
+This video shows a grant application running inside a screen flow: a reopened draft whose page list goes back but not forward, switching on Non-Linear Navigation and the Review Screen, and Submit still flagging every section with a required answer missing:
+
+{% embed url="https://vimeo.com/1250702876" %}
+
+Without the setting, the page list goes forward only to pages it has a record of visiting. A form inside a screen flow does not save that record, so once a draft is reopened, the finished pages ahead stay locked. With Non-Linear Navigation on, the applicant can go straight to any page.
+
+Jumping between pages does not run each page's checks, so pair the setting with **Enable Review Screen**: the review page shows the answers from every page, and Submit flags each section that still has a required answer missing until those answers are filled in.
+
 ## Related
 
 - [Pages and Sections](pages-and-sections.md): how `Form_Template_Page__c` ordering and Position work.

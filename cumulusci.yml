@@ -49,14 +49,15 @@ plans:
             2.5:
                 task: sync_packaged_picklist_values
                 ui_options:
+                    name: "Add missing Flow Tool Kit picklist values"
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             2.6:
                 task: execute_anon
                 options:
                     apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
                 ui_options:
-                    name: "Refresh the Form Theme cache"
-                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
+                    name: "Reset the Flow Tool Kit cache"
+                    description: "Clears and rebuilds Flow Tool Kit's cache for every form, theme and flow, the same as Reset Form Cache in the Form Builder, so what this version adds or changes shows on the next form load. The rebuild runs in the background after the install finishes and re-saves each active form the way a Form Builder save does. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -124,14 +125,15 @@ plans:
             2.5:
                 task: sync_packaged_picklist_values
                 ui_options:
+                    name: "Add missing Flow Tool Kit picklist values"
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             2.6:
                 task: execute_anon
                 options:
                     apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
                 ui_options:
-                    name: "Refresh the Form Theme cache"
-                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
+                    name: "Reset the Flow Tool Kit cache"
+                    description: "Clears and rebuilds Flow Tool Kit's cache for every form, theme and flow, the same as Reset Form Cache in the Form Builder, so what this version adds or changes shows on the next form load. The rebuild runs in the background after the install finishes and re-saves each active form the way a Form Builder save does. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -225,14 +227,15 @@ plans:
             2.5:
                 task: sync_packaged_picklist_values
                 ui_options:
+                    name: "Add missing Flow Tool Kit picklist values"
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             2.6:
                 task: execute_anon
                 options:
                     apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
                 ui_options:
-                    name: "Refresh the Form Theme cache"
-                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
+                    name: "Reset the Flow Tool Kit cache"
+                    description: "Clears and rebuilds Flow Tool Kit's cache for every form, theme and flow, the same as Reset Form Cache in the Form Builder, so what this version adds or changes shows on the next form load. The rebuild runs in the background after the install finishes and re-saves each active form the way a Form Builder save does. Safe to re-run."
             3:
                 task: update_admin_profile
                 ui_options:
@@ -285,7 +288,7 @@ plans:
         tier: additional
         is_listed: False
         preflight_message: "This upgrades Flow Tool Kit and its dependencies to the latest version. Existing custom metadata records will not be modified."
-        post_install_message: "Flow Tool Kit is upgraded. If you run an LWR Experience site that shows a Flow Tool Kit form, open it in Experience Builder, make sure the FlowToolKit LWR Support component is in the Theme Footer of the theme layout, and Publish. An LWR site keeps serving the component code from its last publish, and since Winter '27 a site published without that component shows forms with no sections. Aura sites need no publish."
+        post_install_message: "Read the [release notes](https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/welcome/whats-new) and the [documentation](https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/). Questions or issues? Reach out to [support](mailto:support@common-unite.com) or ask in the [Flow Tool Kit Slack](https://common-unite.my.site.com/slack)."
         checks:
             - when: "'Network' not in tasks.check_sobjects_available()['sobjects']"
               action: error
@@ -304,14 +307,15 @@ plans:
             2.5:
                 task: sync_packaged_picklist_values
                 ui_options:
+                    name: "Add missing Flow Tool Kit picklist values"
                     description: "Adds any Flow Tool Kit picklist values your org is missing. Salesforce delivers new picklist values only on a first install, so an upgraded org can lack values newer forms use. Only missing values are added; nothing you changed is removed, renamed or reordered. Safe to re-run."
             2.6:
                 task: execute_anon
                 options:
                     apex: "FlowToolKit.FormCacheReset_Batch.resetFormCache();"
                 ui_options:
-                    name: "Refresh the Form Theme cache"
-                    description: "Clears Flow Tool Kit's cached list of Form Themes, so themes this version adds or changes show on the next form load. Saving a form in the Form Builder already does this; this step covers themes delivered as metadata. Nothing else is changed. Safe to re-run."
+                    name: "Reset the Flow Tool Kit cache"
+                    description: "Clears and rebuilds Flow Tool Kit's cache for every form, theme and flow, the same as Reset Form Cache in the Form Builder, so what this version adds or changes shows on the next form load. The rebuild runs in the background after the install finishes and re-saves each active form the way a Form Builder save does. Safe to re-run."
 
 flows:
 
@@ -452,17 +456,25 @@ flows:
                 options:
                     path: scripts/seed-review-date-file-upload-1178.apex
                 ignore_failure: True
+            16.5:
+                task: execute_anon
+                description: Attestation alignment demo (#1278), a one-page Attestation Alignment Demo template with a one-line attestation (check centred) and a wrapping one (check level with the first line); needs a Newsletter Signup template to clone from
+                options:
+                    path: scripts/seed-attestation-alignment-1278.apex
+                ignore_failure: True
             17:
                 flow: regression_fixtures
             18:
                 task: activate_testing_sites
-                description: Testing Aura, Testing LWR and Testing CS Live with guest API access, their guests granted Form Flow User and the regression flows, published (waits for each publish), and each home page opened as a guest; any failure fails the flow (#1211)
+                description: Testing Aura, Testing LWR and Testing CS Live with guest API access, their guests granted Form Flow User and the regression flows (never the System Mode guest save override), published (waits for each publish), and each home page opened as a guest; any failure fails the flow (#1211)
 
     # What the Chrome regression suite (unpackaged/config/regression) and the release's guest resave check
     # (release Step 2.8) need in a dev org: the scenario flows, tabs and permission sets, the QA Guest
     # Resave form, template and its System Mode upsert override, QA Regression Survey, and guest sharing
     # rules for both test sites (#1211). Needs the test sites (create_community) and Program Outcomes
     # Survey (load_form_analytics_demo) first; activate_testing_sites gives the guests the permission sets.
+    # The override is left OFF, with no guest holding its permission set (Bobby, 2026-11-18): only a check
+    # that needs it turns it on, then off (scripts/qa/guest-override.cjs, guest-resave-check --both-cases: without it first, then with it).
     regression_fixtures:
         group: Flow Tool Kit
         description: Load the regression suite's fixtures into a dev org that already has its test sites (#1211)
@@ -489,6 +501,14 @@ flows:
                 description: QA Regression Survey, a copy of Program Outcomes Survey with Send Confirmation off
                 options:
                     path: unpackaged/config/regression/data/qa-regression-survey-template.apex
+            6:
+                task: execute_anon
+                description: QA Radio Width, the radio-small-width scenario's template (#1282)
+                options:
+                    path: unpackaged/config/regression/data/qa-radio-width-template.apex
+            7:
+                task: guest_override_off
+                description: The System Mode guest save override stays off (a Draft deploy leaves an already active version on); the guest resave check's --both-cases tests the guest without it, then switches it on for its second case
 
     # Reusable NPC platform layer. Deploys NO product source, so other repos can
     # consume it as a step:  flow: formbuilder:npc_org_setup
@@ -658,6 +678,9 @@ flows:
 
     release_2gp_beta:
         steps:
+            # Before anything builds: no flow in package source runs in System Context (Bobby, 2026-11-18, #1211)
+            0.5:
+                task: check_packaged_flow_run_mode
             90:
                 task: github_copy_subtree
                 options:
@@ -670,6 +693,11 @@ flows:
                 task: github_copy_subtree
                 options:
                     tag_name: "latest"
+            # Promotion alone leaves the old version recommended; this marks the one just promoted so no
+            # separate handoff is needed. Last, so a failure here cannot block the GitHub release, notes or
+            # public-repo copy, yet still fails the flow loudly. Re-run alone: cci task run set_recommended_package_version
+            99:
+                task: set_recommended_package_version
 
     # Subscriber-style NPC org (org: npc_subscriber). Installs the latest released Flow Tool Kit via install_managed,
     # then the NPC licenses/permission sets, force-app-npc configuration and sample data - mirrors npc_dev_org steps 7-11.3
@@ -868,6 +896,14 @@ flows:
 
 tasks:
 
+    set_recommended_package_version:
+        description: Mark the newest released package version as the recommended version (the Upgrade to Recommended Version link in subscribers' Installed Packages). Part of release_2gp_production, so promoting always does it. Retries with --skip-ancestor-check only on the known Graph.addNode error. Dry run with -o env '{"PACKAGE_ID":"0Ho4W000000PBNpSAO","DRY_RUN":"true"}'.
+        class_path: cumulusci.tasks.command.Command
+        options:
+            command: bash scripts/set_recommended_version.sh
+            env:
+                PACKAGE_ID: 0Ho4W000000PBNpSAO
+
     export_form:
         class_path: cci_flowtoolkit_tasks.export_form.ExportFormMetadata
 
@@ -883,7 +919,7 @@ tasks:
             package_name: "Flow Tool Kit: NPC | Form Template Extension"
             package_path: force-app-npc-conversion
             dependencies:
-                - 04tRQ000000AjBxYAK
+                - 04tRQ000000C18PYAS
             version_base: 1.0.0
             version_type: build
             skip_validation: False
@@ -903,8 +939,8 @@ tasks:
                 - 04t4w000001A00cAAC
                 - 04t4w000000tQ1HAAU
                 - 04tKd000000el3CIAQ
-                - 04tRQ000000AjBxYAK
-            version_base: 1.0.0
+                - 04tRQ000000C18PYAS
+            version_base: 1.1.0
             version_type: build
             skip_validation: False
             force_upload: True
@@ -1132,7 +1168,18 @@ tasks:
         description: Set the test sites Live with guest API access, grant their guests the test permission sets, publish and wait, then check each home page answers a guest (#1211)
         options:
             sites: Testing Aura,Testing LWR,Testing CS
-            guest_permission_sets: Form_Flow_User,QA_Regression_Guest_Access,QA_Guest_Upsert_Override
+            guest_permission_sets: Form_Flow_User,QA_Regression_Guest_Access
+    check_packaged_flow_run_mode:
+        class_path: cumulusci.tasks.command.Command
+        group: Flow Tool Kit
+        description: "Release gate (#1211, Bobby 2026-11-18): fails when any flow in an sfdx-project.json package directory has runInMode SystemModeWithSharing or SystemModeWithoutSharing. The first step of release_2gp_beta, so a System Mode flow never reaches a package build; QA fixtures that need System Mode live under unpackaged/"
+        options:
+            command: node scripts/qa/packaged-flow-run-mode.cjs
+    guest_override_off:
+        class_path: cumulusci.tasks.command.SalesforceCommand
+        description: "Switch the System Mode guest save override off: every override of Form_Submission_Upsert inactive, no QA_Guest_Upsert_Override assignments. Off by default in every dev org (Bobby, 2026-11-18, #1211); the guest resave check's --both-cases tests the guest without it, then turns it on for its second case"
+        options:
+            command: node scripts/qa/guest-override.cjs off
     load_form_analytics_demo:
         class_path: tasks.form_analytics_demo.LoadFormAnalyticsDemo
         description: Load the Form Analytics demo, submit its responses and wait for them to convert, then recalculate results (#900)

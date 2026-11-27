@@ -11,12 +11,12 @@ Confirm all four of these. The install will not correct any of them for you.
 1. **Nonprofit Cloud is set up in the org, with the Group Membership feature licensed.** Check by opening the App Launcher and searching for **Party Relationship Groups**. If the object is not there, the extension has nothing to write to.
 2. **Person Accounts are enabled**, and at least one person account record type is active.
 3. **An Account record type exists for households.** Any name works. Naming it `Household` means the packaged configuration will find it with no extra work.
-4. **Flow Tool Kit 4.31.0.1 or later is installed.** The extension declares the base package as a dependency, so an older version stops the install with a missing-dependency error.
+4. **Flow Tool Kit 5.4.0.2 or later is installed.** The extension declares the base package as a dependency, so an older version stops the install with a missing-dependency error.
 
 
 ## Step 1: Install the Flow Tool Kit base package
 
-If the base package is not already installed, or is older than 4.31.0.1, install or upgrade it first using the normal [deployment process](../deployment/deployment-overview.md). The extension will not install on top of an older base version.
+If the base package is not already installed, or is older than 5.4.0.2, install or upgrade it first using the normal [deployment process](../deployment/deployment-overview.md). The extension will not install on top of an older base version.
 
 ## Step 2: Install the extension package
 
@@ -82,7 +82,7 @@ That flow installs the latest released base package, installs the pinned extensi
 
 Before moving on, confirm each of these:
 
-- Setup → **Installed Packages** lists both **Flow Tool Kit: Form and Table Builder** (4.31.0.1 or later) and **Flow Tool Kit: NPC | Form Template Extension**.
+- Setup → **Installed Packages** lists both **Flow Tool Kit: Form and Table Builder** (5.4.0.2 or later) and **Flow Tool Kit: NPC | Form Template Extension**.
 - Setup → **Flows**, filtered for `NPC`, shows nine flows, all **Active**.
 - Setup → **Matching Rules** shows **Standard Person Account Matching Rule** as **Active**.
 - Setup → **Duplicate Rules** shows **Standard Person Account Duplicate Rule** as **Active**.

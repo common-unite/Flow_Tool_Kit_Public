@@ -28,7 +28,7 @@ The flows fall into three layers, and knowing which layer to touch is most of wh
 
 ## The controller
 
-The controller runs once per pass. It calls the packaged Setup subflow to load the submission, its template and (for repeater rows) the capturing section, then walks the conversion rules in a fixed priority order and dispatches the first one whose work is not finished:
+The controller runs once per pass. It calls the packaged **Conversion Setup** action ([Form Template | Conversion Setup](../form-template-framework/conversion-setup-action.md)), which loads the submission, its template, the parent submission and capturing section for a repeater or table row, the sections with a conversion rule and the rows still to convert in one read, then walks the conversion rules in a fixed priority order and dispatches the first one whose work is not finished:
 
 1. Account or Household
 2. Contact 1, then Lead 1
@@ -39,6 +39,8 @@ The controller runs once per pass. It calls the packaged Setup subflow to load t
 7. Finish
 
 When no rule matches, the conversion is marked Complete and anything untouched is stamped Bypassed.
+
+**Anonymous submissions.** When a respondent submits a template's anonymous survey, the controller skips the Account, Contact 1, Lead 1, Contact 2 and Lead 2 rules and sends no confirmation email, exactly as the packaged controller does. No person and no Household is created. When the template adds respondents to a campaign, the one shared anonymous Lead is linked instead. See [Anonymous Submissions](../form-template-framework/anonymous-submissions.md).
 
 This is the same state machine as the packaged controller. Conversion statuses, the Conversion Log, Reprocess and the per-template flow override fields all behave exactly as they do in a standard Flow Tool Kit conversion.
 
@@ -62,7 +64,7 @@ Household mode is on when the template's **Account record type is `HH_Account`**
 
 ## The step flows
 
-The two step flows do one job: turn form answers into a Contact, then hand it to the engine. Each calls Setup, runs a **Transform** element that maps the fields, and calls the engine. The Primary flow reads the `Contact1_*` fields; the Alternate flow reads the `Contact2_*` fields, which are also the fields each repeater and table row uses.
+The two step flows do one job: turn form answers into a Contact, then hand it to the engine. Each calls the Conversion Setup action, runs a **Transform** element that maps the fields, and calls the engine. The Primary flow reads the `Contact1_*` fields; the Alternate flow reads the `Contact2_*` fields, which are also the fields each repeater and table row uses.
 
 Both map names, salutation, email, phone, birthdate and title, plus the mailing and other address blocks when those sub-rules are on. Three mappings are NPSP's own:
 
@@ -82,7 +84,7 @@ Like the packaged engine, this one looks up the record type the template names, 
 
 **The save path:**
 
-1. **Strip blanks.** An empty form answer never erases data on an existing Contact. The template's Nullable Fields setting is the opt-out where blank genuinely means "clear this".
+1. **Fill mapped fields, then strip blanks.** First the **Apply Source Object Mappings** action fills any Contact field the step flow left empty from the template's page sections mapped to Contact on the Form Template Mapping tab, the same action the packaged Contact engine runs (see [Form Template Mapping](../form-template-framework/form-template-mapping.md)). A value the step flow set is never changed. Then an empty form answer never erases data on an existing Contact. The template's Nullable Fields setting is the opt-out where blank genuinely means "clear this".
 2. **Join the Household, if asked.** The submission's Account is read, or the parent submission's for a repeater row. When that Account is an `HH_Account` **and** the Add to Account rule for this person, or the section's Add to Account box, is on, the Household is set on the Contact before the save. A new person is created inside it; a matched person is moved into it. On Contact 1's first pass there is no Account yet, so nothing happens and NPSP builds the Household.
 3. **Update or match.** A Contact that arrived with an Id is updated directly. Otherwise the duplicate checker runs with the matching rules the template or section configured. One match, or the most confident match when the template allows it, is updated; several matches stop the conversion with a `Multiple Matches` status so a human can resolve it; no match inserts a new Contact through the bypass-duplicates action, so subscriber Block rules and alerts cannot interrupt an unattended conversion.
 4. **Read the Contact back.** A save returns only the fields that were written, and NPSP fills in the Household during the save, so the engine re-queries the Contact. Everything after this point needs the record as it now stands.

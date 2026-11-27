@@ -68,11 +68,15 @@ Go to **Setup → Picklist Value Sets → Contact Record Type**, and add one val
 | --- |
 | `PersonAccount` |
 
-At run time the engine resolves this name to the org's active person account record type.
+At run time the engine looks the value up as the developer name of an active Person Account record type and creates each person with it. If your org has its own person record type (for example `Client`), add its developer name to the value set the same way and select it on the template.
 
-{% hint style="warning" %}
-You must select `PersonAccount` on each Form Template that creates people. Marking the value as the value set's default has no effect, because the packaged field carries a formula default of `-- Use Default --` that cannot be changed after installation, and `-- Use Default --` means "let the org decide", which produces a business Account rather than a Person Account.
-{% endhint %}
+| Contact (Record Type) on the template | What the engine does |
+| --- | --- |
+| `PersonAccount`, or another active Person Account record type | Creates each person with that record type |
+| `-- Use Default --` or blank | Creates each person with the org's default Person Account record type (the oldest active one, normally the standard `PersonAccount`) |
+| Anything else, such as a business record type | Stops that person with an Error in the Conversion Log naming the setting to fix. Change the value and use Reprocess |
+
+A person who already exists keeps the record type they have.
 
 ## Step 5: Repoint the four conversion mapping records
 

@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <description>Fills the Account fields the Transform left empty from the page sections of the submission&apos;s Form Template that are mapped to Account through the lookup the event names (Type): Account for a Household or organisation, Contact 1 or Contact 2 for a person, where only sections applied to All Accounts reach a Person Account. A value the Transform already set is never changed. To bring a new Account field across, map it on the section&apos;s component in the Form Builder (Form Template Mapping tab); nothing in this flow changes. Sits before Remove Null Values so the mapped values are on the record when blanks are stripped and nullable fields are cleared. Turn on Log Filled Fields while testing to see which fields it filled in the Conversion Log.</description>
+        <name>Apply_Source_Object_Mappings</name>
+        <label>Apply Source Object Mappings</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Flow_ApplySubmissionMap_Invocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Remove_Null_Values</targetReference>
+        </connector>
+        <dataTypeMappings>
+            <typeName>T__record</typeName>
+            <typeValue>Account</typeValue>
+        </dataTypeMappings>
+        <dataTypeMappings>
+            <typeName>U__record</typeName>
+            <typeValue>Account</typeValue>
+        </dataTypeMappings>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>formSubmission</name>
+            <value>
+                <elementReference>FormSubmission</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>lookupField</name>
+            <value>
+                <elementReference>PlatformEvent.Type__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>record</name>
+            <value>
+                <elementReference>Account</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Flow_ApplySubmissionMap_Invocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <description>Inserts through the bypass-duplicates action (duplicate rule header allowSave): subscriber Block rules and alerts cannot interrupt an unattended platform-event transaction. All-or-none, run as current user.</description>
         <name>Insert_Account</name>
         <label>Insert Account</label>
@@ -1662,7 +1704,7 @@
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>Account</elementReference>
+                <elementReference>Apply_Source_Object_Mappings.record</elementReference>
             </value>
         </inputParameters>
         <nameSegment>Flow_StripNullValues_Invocable</nameSegment>
@@ -1811,7 +1853,7 @@
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
-    <apiVersion>67.0</apiVersion>
+    <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>Copies the most confident match&apos;s Id onto the Account so the update path targets the matched record while keeping every mapped value.</description>
@@ -1881,14 +1923,6 @@
             <targetReference>Switch_Matched_or_Updated</targetReference>
         </connector>
     </assignments>
-    <constants>
-        <description>The API name of the submission&apos;s Account lookup, compared against the platform event&apos;s Type to recognise an Account-rule pass.</description>
-        <name>Account_FieldApiName</name>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>FlowToolKit__Account__c</stringValue>
-        </value>
-    </constants>
     <constants>
         <description>The API name of the submission&apos;s Contact 1 lookup, compared against the platform event&apos;s Type to recognise a Contact 1 pass.</description>
         <name>Contact1_FieldApiName</name>
@@ -2480,8 +2514,8 @@
 
 HOW IT WORKS, STEP BY STEP:
 1. The calling step (Process Account, or Process Person Account Primary/Alternate) has already mapped the form&apos;s answers onto an Account record and chosen the matching rules. This engine never second-guesses the step.
-2. Blank values are stripped, so an empty answer never erases data on a record being updated.
-3. If the record arrived with an Id, it is updated. Otherwise the duplicate checker runs with the matching rules the step passed in: one match is updated, several matches stop the conversion for a human to resolve (unless the template allows the most confident match), no match inserts.
+2. The packaged Apply Submission Field Maps action fills the fields the step left empty from the template&apos;s page sections mapped to Account (Form Template Mapping), then blank values are stripped, so an empty answer never erases data on a record being updated.
+3. If the record arrived with an Id, it is updated. Otherwise the duplicate checker runs with the matching rules the step passed in: a Person Account also gets the Person Account matching rules, a business record matches on exactly what the step passed; one match is updated, several matches stop the conversion for a human to resolve (unless the template allows the most confident match), no match inserts.
 4. The saved Account is read back fresh, because a save returns only the fields that were set, and everything after this point needs the record as it truly stands - above all a Person Account&apos;s PersonContactId, the Contact Id the submission stores.
 5. The outcome is logged to the Conversion Log with the Log Conversion Event action; the platform event it carries tells the action which status and lookup fields to stamp on the Form Submission, which is how the controller knows this rule is finished.
 6. Then the Switch router: every follow-up returns here when it is done, each outcome fires at most once per pass (the Was Visited conditions), and when nothing is left the flow returns to the controller. In order: a Household-mode Contact 1 with no Account yet looks for the family&apos;s existing Household (found: it is written onto the submission; not found: Contact 1&apos;s status is set back to Ready, and the Account rule creates the Household before Contact 1 comes through a second time to join it); a saved Household gets its Party Relationship Group; a person joins the submission&apos;s Account when Household mode or the Add to Account rules ask for it; Contact 2 is related to Contact 1; campaign members are chained.
@@ -2507,10 +2541,10 @@ WHERE IT FITS: Installed by the Form Template framework&apos;s conversion mappin
         <expression>IF({!PlatformEvent.Type__c} = {!Contact1_FieldApiName}, INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Contact1 👉 Included In Group&apos;), IF({!PlatformEvent.Type__c} = {!Contact2_FieldApiName}, INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Contact2 👉 Included In Group&apos;),false))</expression>
     </formulas>
     <formulas>
-        <description>Which slot this pass is converting: the Account rule, or a person (Contact 1 / Contact 2).</description>
-        <name>Is_Account_Slot</name>
+        <description>True when the record being saved is a Person Account, as the person steps build it. Only a person gets the Person Account matching rules added; a Household, an organisation or any other business record matches on exactly the rules the calling step passed.</description>
+        <name>Is_Person_Record</name>
         <dataType>Boolean</dataType>
-        <expression>{!PlatformEvent.Type__c} = {!Account_FieldApiName}</expression>
+        <expression>{!Account.IsPersonAccount}</expression>
     </formulas>
     <formulas>
         <description>Asks the membership utility for the household's primary seat only when the slot this pass converts carries the Primary Contact flag (Contact 1 on the main submission, Contact 2 for a relative on a repeater row): the flagged person takes the seat and the previous holder is demoted, so a Household always has exactly one. Without a flag the utility still gives a free seat to the first member, so an unflagged main submission keeps today's head-of-household result and a later pass never takes the seat back from a flagged relative.</description>
@@ -2549,10 +2583,10 @@ WHERE IT FITS: Installed by the Form Template framework&apos;s conversion mappin
         <expression>BlankValue(TEXT({!FormSubmission.Contact2_Relationship_to_Contact1__c}),{!FormSubmission.Contact2_Relationship_Other__c})</expression>
     </formulas>
     <formulas>
-        <description>A person is matched on their Account, which the standard Contact rules can never match, so for a person the Standard Person Account Matching Rule and the extension&apos;s own NPC_Person_Account_Match are always both named, once each, beside whatever the step passed in. The standard rule ships inactive and only Setup can activate it; the extension&apos;s rule ships active and matches on email, so a person is found even in an org where the standard rule has never been activated. That fallback used to be dropped whenever the passed-in names already contained the standard rule, which is now the default on templates and sections, so every new template silently stopped matching. An organisation matches on exactly what the step passed.</description>
+        <description>The matching rules the duplicate check runs with. A business record (a Household, an organisation, or any record that is not a Person Account) matches on exactly the rules the calling step passed, nothing added. A Person Account cannot be found by the standard Contact rules, so for a person the Standard Person Account Matching Rule and the extension&apos;s own NPC_Person_Account_Match are both named, once each, before the rules the step passed, which keep their order. The standard rule ships inactive and only Setup can activate it; the extension&apos;s rule ships active and matches on email, so a person is found even where the standard rule was never activated. Rule names are compared whole, split on semicolons, so a custom rule whose name merely contains one of them is never mistaken for it.</description>
         <name>Resolved_Matching_Rules</name>
         <dataType>String</dataType>
-        <expression>IF({!Is_Account_Slot}, {!Matching_Rule_Names}, IF(ISBLANK({!Matching_Rule_Names}), &apos;Standard_PersonAccount_Match_Rule_v1_0;NPC_Person_Account_Match&apos;, IF(CONTAINS({!Matching_Rule_Names}, &apos;NPC_Person_Account_Match&apos;), {!Matching_Rule_Names}, IF(CONTAINS({!Matching_Rule_Names}, &apos;Standard_PersonAccount_Match_Rule_v1_0&apos;), {!Matching_Rule_Names} &amp; &apos;;NPC_Person_Account_Match&apos;, &apos;Standard_PersonAccount_Match_Rule_v1_0;NPC_Person_Account_Match;&apos; &amp; {!Matching_Rule_Names}))))</expression>
+        <expression>IF(NOT({!Is_Person_Record}), {!Matching_Rule_Names}, IF(ISBLANK({!Matching_Rule_Names}), &apos;Standard_PersonAccount_Match_Rule_v1_0;NPC_Person_Account_Match&apos;, IF(CONTAINS(&apos;;&apos; &amp; SUBSTITUTE({!Matching_Rule_Names}, &apos; &apos;, &apos;&apos;) &amp; &apos;;&apos;, &apos;;NPC_Person_Account_Match;&apos;), {!Matching_Rule_Names}, IF(CONTAINS(&apos;;&apos; &amp; SUBSTITUTE({!Matching_Rule_Names}, &apos; &apos;, &apos;&apos;) &amp; &apos;;&apos;, &apos;;Standard_PersonAccount_Match_Rule_v1_0;&apos;), {!Matching_Rule_Names} &amp; &apos;;NPC_Person_Account_Match&apos;, &apos;Standard_PersonAccount_Match_Rule_v1_0;NPC_Person_Account_Match;&apos; &amp; {!Matching_Rule_Names}))))</expression>
     </formulas>
     <interviewLabel>(NPC) Convert | Upsert | Account | Overridable {!$Flow.CurrentDateTime}</interviewLabel>
     <isOverridable>true</isOverridable>
@@ -2681,7 +2715,7 @@ WHERE IT FITS: Installed by the Form Template framework&apos;s conversion mappin
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Remove_Null_Values</targetReference>
+            <targetReference>Apply_Source_Object_Mappings</targetReference>
         </connector>
     </start>
     <status>Active</status>

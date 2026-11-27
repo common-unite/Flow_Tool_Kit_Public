@@ -30,14 +30,17 @@ They fall into three layers, and knowing which layer to touch is most of what yo
 
 ## The controller
 
-The controller runs once per pass. It calls the packaged Setup subflow to load the submission, its template and (for repeater rows) the capturing section, then walks the conversion rules in a fixed priority order and dispatches the first one whose work is not finished:
+The controller runs once per pass. It calls the packaged [**Conversion Setup** action](../form-template-framework/conversion-setup-action.md) to load the submission, its template, the sections that carry a conversion rule and the related rows still to convert, then walks the conversion rules in a fixed priority order and dispatches the first one whose work is not finished:
 
 1. Account or Household
 2. Person Account for Contact 1, then Lead 1
 3. Person Account for Contact 2, then Lead 2
-4. Opportunity, then Case
-5. Additional data, then related records, then files
-6. Confirmation email
+4. For an anonymous submission, the shared anonymous Lead (only when the template adds people to a campaign)
+5. Opportunity, then Case
+6. Additional data, then related records, then files
+7. Confirmation email
+
+**Anonymous submissions** (the **Anonymous** checkbox on the submission) skip the Household, both people and both Leads, and get no confirmation email, exactly as in the packaged controller. When the template adds people to a campaign, the submission is linked to the one shared anonymous Lead instead. See [Anonymous Submissions](../form-template-framework/anonymous-submissions.md).
 7. Finish
 
 When no rule matches, the conversion is marked Complete and anything untouched is stamped Bypassed.
@@ -64,11 +67,11 @@ Household mode is on when the template's Conversion Rules include `Account is Ho
 
 ## The step flows
 
-The three step flows do one job: turn form answers into a record, then hand it to the engine. Each one calls Setup, prepares a couple of lookups, runs a **Transform** element that maps the fields, and calls the engine.
+The three step flows do one job: turn form answers into a record, then hand it to the engine. Each one calls the Conversion Setup action, prepares a couple of lookups, runs a **Transform** element that maps the fields, and calls the engine.
 
 **Process Account** maps the company answers: name, phone, website, and the billing and shipping addresses (only when the template's address sub-rules are on, so blank answers never wipe curated addresses). In household mode the Name is special: it uses the company name if the form captured one, and otherwise builds `<Contact 1's last name> Household`. That is how a family's household gets named. If the template names an Account record type, it is looked up and stamped on.
 
-**Process Person Account Primary** and **Alternate** are the same flow reading different columns: the Primary flow reads the `Contact1_*` fields, the Alternate flow reads the `Contact2_*` fields, which are also the fields each repeater row uses. Both map names, salutation, email, mobile, phone, birthdate and title, plus the mailing and other address blocks when those sub-rules are on. Both look up the org's active person account record type and any Person Account the submission already points at, so a re-run updates a person rather than duplicating them.
+**Process Person Account Primary** and **Alternate** are the same flow reading different columns: the Primary flow reads the `Contact1_*` fields, the Alternate flow reads the `Contact2_*` fields, which are also the fields each repeater row uses. Both map names, salutation, email, mobile, phone, birthdate and title, plus the mailing and other address blocks when those sub-rules are on. Both take the person record type from the template's **Contact (Record Type)**: an active Person Account record type named there is used, `-- Use Default --` uses the org's default person record type, and any other value stops that person with an Error in the Conversion Log ([Configuration](configuration.md#step-4-add-the-personaccount-contact-record-type-value)). Both then read any Person Account the submission already points at, by its Contact Id, so a re-run updates a person rather than duplicating them, and a returning person keeps their record type.
 
 The Transform element in each of these is the thing to clone when you want different field mapping. See [Customizing](customizing.md).
 
@@ -78,14 +81,15 @@ One engine saves every Account the extension produces, whether it is a person, a
 
 **The save path:**
 
-1. **Strip blanks.** An empty form answer never erases data on an existing record. The template's Nullable Fields setting is the opt-out where blank genuinely means "clear this".
-2. **Update or match.** If the record arrived with an Id, it is updated directly. Otherwise the duplicate checker runs with the matching rules the step passed in.
-3. **Resolve the match.** One match is updated. Several matches stop the conversion with a `Multiple Matches` status so a human can resolve it, unless the template allows updating the most confident match. No match inserts a new record.
-4. **Read the record back.** A save returns only the fields that were written, so the engine re-queries the Account. This matters most for a Person Account, whose `PersonContactId` is the Contact Id the submission needs, and which does not exist until the insert has happened.
-5. **Log the outcome**, stamping the submission's status and lookup fields for this rule, which is how the controller knows the rule is finished.
+1. **Apply Form Template Mapping.** The packaged **Apply Submission Field Maps** action fills the fields the Transform left empty from the template's page sections mapped to Account ([Form Template Mapping](../form-template-framework/form-template-mapping.md)). A section mapped through the Account lookup fills the Household or organisation; a section applied to All Accounts also fills each Person Account. A value the Transform set is never changed.
+2. **Strip blanks.** An empty form answer never erases data on an existing record. The template's Nullable Fields setting is the opt-out where blank genuinely means "clear this".
+3. **Update or match.** If the record arrived with an Id, it is updated directly. Otherwise the duplicate checker runs with the matching rules the step passed in.
+4. **Resolve the match.** One match is updated. Several matches stop the conversion with a `Multiple Matches` status so a human can resolve it, unless the template allows updating the most confident match. No match inserts a new record.
+5. **Read the record back.** A save returns only the fields that were written, so the engine re-queries the Account. This matters most for a Person Account, whose `PersonContactId` is the Contact Id the submission needs, and which does not exist until the insert has happened.
+6. **Log the outcome**, stamping the submission's status and lookup fields for this rule, which is how the controller knows the rule is finished.
 
 {% hint style="info" %}
-**People are always matched with the Person Account rule.** A standard Contact matching rule can never match a Person Account, so the engine adds `NPC_Person_Account_Match` to whatever the template or section configured whenever it is saving a person, even when that configuration already names the Standard Person Account Matching Rule: the standard rule ships inactive until an admin activates it in Setup, and the extension's own rule is what guarantees a returning person is found by email. Organisations match on exactly what the template configured, unchanged.
+**People are always matched with the Person Account rules.** A standard Contact matching rule can never match a Person Account, so whenever the record being saved is a Person Account the engine names the Standard Person Account Matching Rule and `NPC_Person_Account_Match` before whatever the template or section configured, once each, keeping your rules in their order: the standard rule ships inactive until an admin activates it in Setup, and the extension's own rule is what guarantees a returning person is found by email. Rule names are compared whole, so a custom rule such as `NPC_Person_Account_Match_Custom` is never mistaken for the extension's rule. Any record that is not a Person Account (a Household, an organisation) matches on exactly what the template configured, nothing added.
 {% endhint %}
 
 **The follow-up router.** After a successful save, one decision decides what else this pass should do. Every follow-up returns to that decision when it finishes, each one fires at most once per pass, and when nothing is left the flow returns control to the controller. The follow-ups, in order:

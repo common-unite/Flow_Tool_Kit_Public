@@ -62,7 +62,7 @@ The affiliation utility is deliberately **form-agnostic**: values in, values out
 | **NPSP installed, on the Household Account model** | The whole design rests on NPSP building a Household for every Contact inserted without an Account. |
 | **The `HH_Account` and `Organization` Account record types** | Every NPSP org on the Household Account model has them. `HH_Account` on a Form Template is what turns Household mode on. |
 | **NPSP's Contact and Affiliation trigger handlers active** | `ACCT_IndividualAccounts_TDTM` builds the Household and `AFFL_Affiliations_TDTM` maintains affiliations. A subscriber who switched either off silently breaks the foundation. |
-| **Flow Tool Kit base package** | The extension declares it as a package dependency, so it installs first. |
+| **Flow Tool Kit base package** | Version 5.4 or later for extension 1.1. The extension declares it as a package dependency, so it installs first. |
 
 {% hint style="info" %}
 Person Accounts are not used anywhere in this extension, and NPSP does not need them. Every person it creates is an ordinary Contact.

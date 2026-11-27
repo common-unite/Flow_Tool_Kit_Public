@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <description>Fills the Contact fields the Transform left empty from the page sections of the submission&apos;s Form Template that are mapped to Contact through the lookup the event names (Type). A value the Transform already set is never changed. To bring a new Contact field across, map it on the section&apos;s component in the Form Builder (Form Template Mapping tab); nothing in this flow changes. Sits before Remove Null Values so the mapped values are on the record when blanks are stripped and nullable fields are cleared. Turn on Log Filled Fields while testing to see which fields it filled in the Conversion Log.</description>
+        <name>Apply_Source_Object_Mappings</name>
+        <label>Apply Source Object Mappings</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Flow_ApplySubmissionMap_Invocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Remove_Null_Values</targetReference>
+        </connector>
+        <dataTypeMappings>
+            <typeName>T__record</typeName>
+            <typeValue>Contact</typeValue>
+        </dataTypeMappings>
+        <dataTypeMappings>
+            <typeName>U__record</typeName>
+            <typeValue>Contact</typeValue>
+        </dataTypeMappings>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>formSubmission</name>
+            <value>
+                <elementReference>FormSubmission</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>lookupField</name>
+            <value>
+                <elementReference>PlatformEvent.Type__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>record</name>
+            <value>
+                <elementReference>Contact</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Flow_ApplySubmissionMap_Invocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <description>Inserts through the bypass-duplicates action (duplicate rule header allowSave, all-or-none, run as current user): subscriber Block rules and alerts cannot interrupt the unattended transaction. The record type the template names is looked up and checked but never written to the Contact, because a packaged flow cannot reference RecordTypeId without breaking installs in orgs that have no Contact record types; duplicate rules with a record type condition therefore do not see form conversions, and a subscriber step-flow clone maps the record type when it is wanted.</description>
         <name>Insert_Contact</name>
         <label>Insert Contact</label>
@@ -1422,7 +1464,7 @@
         <inputParameters>
             <name>record</name>
             <value>
-                <elementReference>Contact</elementReference>
+                <elementReference>Apply_Source_Object_Mappings.record</elementReference>
             </value>
         </inputParameters>
         <nameSegment>Flow_StripNullValues_Invocable</nameSegment>
@@ -1571,7 +1613,7 @@
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
-    <apiVersion>67.0</apiVersion>
+    <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>Copies the most confident match&apos;s Id onto the Contact so the update targets the matched record while keeping every mapped value.</description>
@@ -2330,7 +2372,7 @@
     <description>WHAT IT DOES: The one engine that saves every person in an NPSP form conversion: Contact 1, Contact 2, and every repeater or table row. The mapping steps decide WHAT goes on the Contact; this flow decides whether it is new or an existing person, saves it, puts it in the right NPSP Household, and logs the result. It follows the packaged Contact engine step for step, so anyone who knows that flow can read this one.
 
 HOW IT WORKS, STEP BY STEP:
-1. Blank form answers are stripped so they never erase data on a matched Contact, and the record type and owner are validated.
+1. Contact fields the step flow left empty are filled from the template&apos;s page sections mapped to Contact on the Form Template Mapping tab (Apply Source Object Mappings). Then blank form answers are stripped so they never erase data on a matched Contact, and the record type and owner are validated. The Contact&apos;s Account is the engine&apos;s, not a mapping&apos;s: leave Account Name off Contact section mappings.
 2. The Account on the submission (or on the parent submission for repeater and table rows) is read. When it is an NPSP Household and the template is in Household mode (its Account record type is HH_Account), or the Add to Account rule asks for it, the person joins that Household by setting the Contact&apos;s Account before the save. Only a Household is ever written onto a Contact.
 3. The duplicate checker runs with the template&apos;s Contact matching rules; the single or most confident match is updated, otherwise the Contact is inserted through the bypass-duplicates action so subscriber Block rules and alerts cannot stop an unattended conversion. Several matches without Update Most Confident Match log an error: the pipeline refuses to guess.
 4. The saved Contact is read back, because NPSP fills in the Household during the save.
@@ -2594,7 +2636,7 @@ Text({!FormSubmission.Form_Template__r.Contact_Record_Type__c})
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Remove_Null_Values</targetReference>
+            <targetReference>Apply_Source_Object_Mappings</targetReference>
         </connector>
     </start>
     <status>Active</status>

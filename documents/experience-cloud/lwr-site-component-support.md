@@ -16,6 +16,7 @@
 | Turn on **Allow guest users to access public APIs** | Forms load field details and records through Salesforce's public APIs, which LWR blocks for guests unless this is on | The form does not load for guests (for example "Unauthorized access") |
 | Turn on **Let guest users view asset files** when forms use image assets | Guests can only load asset files the site shares with them | Picker images or background images are missing for guests |
 | **Publish the site** after every Flow Tool Kit upgrade | LWR serves the component code captured at its last publish | Fixes from an upgrade do not appear on the site |
+| Set lookup fields to the **Record Picker** on forms people fill in on a phone or tablet | Salesforce's standard lookup field is not supported on LWR sites on mobile devices | Tapping a lookup on a phone or tablet does nothing |
 
 Both guest settings are under **Setup → Digital Experiences → All Sites → Workspaces → Administration → Preferences**. **Allow guest users to access public APIs** is not in the site's deployable metadata, so set it by hand on every site, in every org, including after a sandbox refresh or a site deployment.
 
@@ -85,6 +86,14 @@ Without this, a flow requires the **Run Flows** permission, which guest users ne
 
 Guests still need the object, field and sharing access that the form itself uses. See [Deploy to Experience Cloud](../how-to-guides/deploy-to-experience-cloud.md).
 
+## Lookup fields on phones and tablets
+
+Salesforce's standard lookup field is not supported on LWR sites on mobile devices: on a phone or tablet the field shows, but tapping it opens nothing. The same field works on a desktop, and on Aura sites on every device.
+
+On an LWR site, use the **Record Picker** for any lookup people may fill in on a phone or tablet. In Form Builder, select the lookup field and set **Lookup Field Display Type** to **Record Picker**, then save the form. The Record Picker works on phones, tablets and desktops, and it needs the same record access the standard lookup does. See [Use the Record Picker](../how-to-guides/use-the-record-picker.md).
+
+The Record Picker searches one object, so a lookup that can point at several objects (for example Owner) keeps the standard lookup and cannot be filled in on a phone on an LWR site.
+
 ## Publish after every upgrade
 
 An LWR site keeps serving the component code it captured at its last publish. After you upgrade Flow Tool Kit, open each LWR site in Experience Builder and **Publish**, or the site keeps running the previous version's components against the new package. On an upgraded but unpublished site the symptom is the same blank form and `LWR3008`, because the new component build asks for pieces the old publish never bundled. Check that the support block is in the theme footer before you publish, so the publish does not drop the on-demand pieces in turn. Aura sites pick up the new version without publishing.
@@ -108,6 +117,7 @@ After publishing, open a form page on the site as a real visitor would, in a pri
 | Picker or background images missing for guests | **Let guest users view asset files** is off, or the site runs a version before 4.45 |
 | "You do not have the level of access necessary" where a flow should be | The flow is not restricted to permission sets and granted to the guest user |
 | An upgrade's fixes do not show on the site | The site was not published after the upgrade |
+| Tapping a lookup field on a phone or tablet does nothing, with no error | Salesforce's standard lookup is not supported on LWR sites on mobile devices. Set the field's **Lookup Field Display Type** to **Record Picker** |
 | Sections blank right after a package upgrade; `component/latest/...lightning%2FinputField` or `...FlowToolKit%2FflowForm` returns 401 or 503, then `LWR3008` | The site was not published after the upgrade, or it was published on Winter '27 or later without the support block in the theme footer. Place the block, publish, test the page by its own address |
 | Form (Design Block) buttons show as plain links in the site's link color, with no fill | The LWR theme styles every link and, up to 4.46, its rule outranked the block's button and link colors. Upgrade to the release after 4.46, then publish the site. Aura sites were never affected |
 

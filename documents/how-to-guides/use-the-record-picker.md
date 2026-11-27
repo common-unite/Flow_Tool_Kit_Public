@@ -26,6 +26,7 @@ The Record Picker replaces the standard lookup input with Salesforce's `lightnin
 | People must pick from a subset of records (active programs, this household's contacts, accounts of one type) | **Record Picker** with a filter |
 | Many records share a name and people need a second detail to choose correctly | **Record Picker** with a display field |
 | People know a record by a number or code, not its name | **Record Picker** with an extra search field |
+| The form is on an LWR site and people fill it in on a phone or tablet | **Record Picker**; Salesforce's standard lookup does not open on a mobile device on an LWR site. See [LWR Sites](../experience-cloud/lwr-site-component-support.md#lookup-fields-on-phones-and-tablets) |
 | You want a full search modal with several columns, hierarchy or "New" record creation | The standard lookup with [Configure Lookup Fields](configure-lookup-fields.md) |
 | The lookup can point at several objects (for example Owner, or a Task's What) | The standard lookup; the picker searches one object only |
 

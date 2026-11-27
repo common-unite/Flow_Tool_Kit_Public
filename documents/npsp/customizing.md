@@ -21,10 +21,11 @@ Most requirements are template settings rather than flow changes. Before cloning
 - **Whether addresses map** is the address sub-rules, per person and per address block.
 - **Whether blank answers clear fields** is the Nullable Fields setting.
 - **Per-section overrides**: a page section can carry its own conversion rule, matching rules and Add to Account setting, which lets a family repeater and a staff repeater on one form behave differently.
+- **Extra Contact fields without a flow edit**: put a Contact form on a page section and map its fields to Form Submission fields on the **Form Template Mapping** tab. The NPSP Contact engine fills every mapped field the step flow left empty. Leave the Contact's Account Name out of those mappings: the engine owns the Household link. See [Form Template Mapping](../form-template-framework/form-template-mapping.md).
 
 ## Level 2: clone a step flow
 
-This is the right level for "we need different fields to map", which is the most common request.
+This is the right level for "we need different fields to map" when Form Template Mapping (Level 1) cannot express it, such as a value that depends on another answer.
 
 The two Contact step flows exist precisely to be cloned. Each is a thin wrapper around one Transform element, and that Transform is the field mapping. Cloning one gives you complete control of the mapping while leaving matching, saving, logging, Households and affiliations untouched.
 
@@ -44,7 +45,7 @@ A cloned step flow is dispatched by the same trigger as the packaged one, so it 
 
 - **One input variable of type `Form_Submission_Convert__e`.** The name does not matter; its presence does. The dispatcher looks for it, and refuses to launch a flow that does not have one.
 - **The flow must be an active autolaunched flow.**
-- **Call the Setup subflow first.** It loads the submission, template and section, resolves matching settings, and performs the start-of-conversion reset that makes Reprocess work.
+- **Call the [Conversion Setup action](../form-template-framework/conversion-setup-action.md) first** (Form Template | Conversion Setup), passing it the platform event. It loads the submission, template, parent submission and section and resolves the matching settings in one read; read its outputs (`Setup.formSubmission`, `Setup.matchingRuleNames` and the rest) in the steps that follow. The start-of-conversion reset that makes Reprocess work happens before your flow runs, so you do not repeat it. A clone saved before version 1.1 that still calls the older Setup subflow keeps working, because the subflow calls the action inside, but use the action in anything you write or edit.
 - **Hand the record to the engine**, or if you are replacing the engine too, log the outcome and return control to the controller yourself.
 
 {% hint style="warning" %}

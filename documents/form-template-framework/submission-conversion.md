@@ -178,6 +178,14 @@ Existing orgs add both buttons to their page layouts by hand: the Reprocess All 
 
 **How we treat faults.** The package handles a fault so the person submitting the form never sees it fail: the submission is left in Error with the reason, and Reprocess picks it up. It does not hide the fault from you. A step that stops an Inline run is an unhandled fault on purpose, so it appears in Setup's list of failed flow interviews and Salesforce emails your flow error recipients. Treat those as a to-do list: a fault means a gap in the process, such as a validation rule the form does not enforce or data a step needs and does not get, and the goal is to close it so the fault stops happening.
 
+### Record Id must be the new record's Id
+
+A success Log action that stamps a lookup needs **Record Id** to hold the new record's Id. For a **Create Records** element that creates from a record variable, Record Id is the variable's Id, `{!Variable.Id}`: the element itself returns `true`, not an Id. A Create Records element that creates one record from field values (automatic output) returns the new Id, so `{!Create_Element}` is right there. A rich text template wraps the Id in HTML tags; set the template to **View as Plain Text**.
+
+When Record Id is not an Id, the step stops at that Log action and does not return to the controller. The submission reads Error, the step's conversion status field reads Error, and an Error row names the value, the lookup and the fix, for example `Account was created, but the step could not stamp Account__c: Record Id "true" is not a valid Id, so the step stopped here.` The record the step created is still there, so check for it before you reprocess a step that always creates.
+
+The Log action's property editor shows the same thing while you build. A Record Id it can prove is not an Id (a Create Records element that creates from a record variable, or a rich text template) is cleared with **This is an invalid reference** and the variable to use; a Create Records element with automatic output is kept and marked valid; anything else it cannot list keeps its value with a warning.
+
 ### Your own fields on Form Submission
 
 Your custom fields on Form Submission reach your override flows as before, with two exceptions the Setup action cannot help:

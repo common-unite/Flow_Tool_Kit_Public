@@ -1,6 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
+        <description>Calls the Log Conversion Event action in Convert to Record mode for an anonymous submission whose template adds respondents to a campaign. The Anonymous Lead step finds or creates the one shared anonymous Lead, sets it as Lead 1, and hands on to the Lead 1 Campaign Member step. Override it with a flow override on that step.</description>
+        <name>Link_Anonymous_Lead_Event</name>
+        <label>Link Anonymous Lead</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>FormSubmission_LogEvent_Invocable</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>elementApiName</name>
+            <value>
+                <stringValue>Link_Anonymous_Lead_Event</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>faultMessage</name>
+            <value>
+                <elementReference>$Flow.FaultMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>flowApiName</name>
+            <value>
+                <stringValue>FlowToolKit__Form_Submission_Convert_Process_Lead_Anonymous_Overridable</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>formTemplate</name>
+            <value>
+                <elementReference>FormTemplate</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>lookupFieldApiName</name>
+            <value>
+                <stringValue>FlowToolKit__Lead_1__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>mode</name>
+            <value>
+                <stringValue>Convert to Record</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>platformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>record</name>
+            <value>
+                <elementReference>FormSubmission</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>statusFieldApiName</name>
+            <value>
+                <stringValue>FlowToolKit__Conversion_Status_Lead_1__c</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>FormSubmission_LogEvent_Invocable</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Keep this first. The packaged Conversion Setup action reads, in one step, the submission, its Form Template, the template&apos;s sections that carry a conversion rule and the related rows still to convert, and hands the event on with Start turned off (the conversion trigger already wrote the Start log).</description>
+        <name>Setup</name>
+        <label>Setup</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Flow_ConversionSetup_Invocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Switch_Start</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>debugEventName</name>
+            <value>
+                <stringValue>Convert</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>debugRecord</name>
+            <value>
+                <elementReference>DebugRecord</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>platformEvent</name>
+            <value>
+                <elementReference>PlatformEvent</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Flow_ConversionSetup_Invocable</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>AllPageSections</assignToReference>
+            <name>allPageSections</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>FormSubmission</assignToReference>
+            <name>formSubmission</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>FormTemplate</assignToReference>
+            <name>formTemplate</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>PlatformEvent</assignToReference>
+            <name>platformEvent</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>RelatedRecords</assignToReference>
+            <name>relatedRecords</name>
+        </outputParameters>
+        <storeOutputAutomatically>false</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
         <description>Dispatches the Case step via the Log Conversion Event action (Convert to Record mode): Type Case__c drives the stamped status and lookup fields, and FlowApiName_Case__c is the override hook.</description>
         <name>Convert_Case_Event</name>
         <label>Convert Case</label>
@@ -658,7 +779,7 @@
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
-    <apiVersion>67.0</apiVersion>
+    <apiVersion>68.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <assignments>
         <description>Retags the in-memory event as EventName Email, Type Confirmation before the send. The Log Conversion Event action keys its log entry and status handling off these values, so the email attempt is logged under its own event type instead of the rule that happened to precede it.</description>
@@ -685,7 +806,7 @@
         </connector>
     </assignments>
     <decisions>
-        <description>The heart of the pipeline. Rules evaluate top to bottom and the FIRST match wins, calling the action (which publishes one event) and ending the pass: Account, Contact 1, Lead 1, Contact 2, Lead 2, Opportunity, Case, then Additional Data, Related Records, Files, and Confirmation, with the default outcome logging Finish when nothing remains. A rule matches while the template&apos;s Conversion Rules setting enables it AND its status field is not yet Created, Matched, or Updated (a blank target lookup also qualifies). When adding a custom rule in a clone, follow the same pattern: gate on your own status field so your rule is idempotent, publish one event, and end the pass.</description>
+        <description>The heart of the pipeline. Rules evaluate top to bottom and the FIRST match wins, calling the action (which publishes one event) and ending the pass: Account, Contact 1, Lead 1, Contact 2, Lead 2, Link Anonymous Lead, Opportunity, Case, then Additional Data, Related Records, Files, and Confirmation, with the default outcome logging Finish when nothing remains. A rule matches while the template&apos;s Conversion Rules setting enables it AND its status field is not yet Created, Matched, or Updated (a blank target lookup also qualifies). An anonymous submission (Anonymous checked) never creates or matches a Household, a person or a Lead and gets no confirmation email; when the template adds people to a campaign it is linked to the one shared anonymous Lead instead, as in the packaged controller. When adding a custom rule in a clone, follow the same pattern: gate on your own status field so your rule is idempotent, publish one event, and end the pass.</description>
         <name>Conversion_Rules</name>
         <label>Switch</label>
         <locationX>0</locationX>
@@ -697,7 +818,7 @@
         <defaultConnectorLabel>✅ Conversion Complete</defaultConnectorLabel>
         <rules>
             <name>Convert_Organization_Household</name>
-            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2 AND (NOT(6) OR 7 OR NOT(8))</conditionLogic>
+            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2 AND (NOT(6) OR 7 OR NOT(8)) AND 9</conditionLogic>
             <conditions>
                 <leftValueReference>FormSubmission.Account__c</leftValueReference>
                 <operator>IsBlank</operator>
@@ -754,6 +875,13 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>FormSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Convert_Organization</targetReference>
             </connector>
@@ -798,10 +926,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormTemplate.Contact_Record_Type__c</leftValueReference>
+                <leftValueReference>FormSubmission.Anonymous__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>PersonAccount</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -811,7 +939,7 @@
         </rules>
         <rules>
             <name>Convert_Lead_1</name>
-            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2</conditionLogic>
+            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2 AND 6</conditionLogic>
             <conditions>
                 <leftValueReference>FormSubmission.Lead_1__c</leftValueReference>
                 <operator>IsBlank</operator>
@@ -845,6 +973,13 @@
                 <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>Updated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FormSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -898,10 +1033,10 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>FormTemplate.Contact_Record_Type__c</leftValueReference>
+                <leftValueReference>FormSubmission.Anonymous__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>PersonAccount</stringValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -911,7 +1046,7 @@
         </rules>
         <rules>
             <name>Convert_Lead_2</name>
-            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2 AND 6</conditionLogic>
+            <conditionLogic>(1 OR (3 AND 4 AND 5)) AND 2 AND 6 AND 7</conditionLogic>
             <conditions>
                 <leftValueReference>FormSubmission.Lead_2__c</leftValueReference>
                 <operator>IsBlank</operator>
@@ -954,10 +1089,67 @@
                     <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>FormSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
                 <targetReference>Convert_Lead_2_Platform_Event</targetReference>
             </connector>
             <label>🙋‍♂️ Convert Lead(2)</label>
+        </rules>
+        <rules>
+            <name>Link_Anonymous_Lead</name>
+            <conditionLogic>(1 OR (2 AND 3 AND 4)) AND 5 AND 6</conditionLogic>
+            <conditions>
+                <leftValueReference>FormSubmission.Lead_1__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FormSubmission.Conversion_Status_Lead_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Created</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FormSubmission.Conversion_Status_Lead_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Matched</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FormSubmission.Conversion_Status_Lead_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Updated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Includes_Campaign_Member</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FormSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Link_Anonymous_Lead_Event</targetReference>
+            </connector>
+            <label>🕶️ Link Anonymous Lead</label>
         </rules>
         <rules>
             <name>Convert_Opportunity</name>
@@ -1169,7 +1361,7 @@
         </rules>
         <rules>
             <name>Send_Confirmation</name>
-            <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
+            <conditionLogic>1 AND 2 AND 3 AND (4 OR 5) AND 6</conditionLogic>
             <conditions>
                 <leftValueReference>FormTemplate.Send_Confirmation__c</leftValueReference>
                 <operator>EqualTo</operator>
@@ -1201,6 +1393,13 @@
             <conditions>
                 <leftValueReference>FormSubmission.Lead_1__c</leftValueReference>
                 <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FormSubmission.Anonymous__c</leftValueReference>
+                <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
                 </rightValue>
@@ -1296,7 +1495,7 @@
     <description>WHAT IT DOES: The traffic controller of an NPC form conversion. Each time a Form Submission needs converting, this flow looks at the template&apos;s Conversion Rules, picks the ONE rule that should run next, sends it off, and ends. The rule&apos;s own flow returns a platform event that starts this controller again for the next rule, until nothing is left and the submission is marked Complete. Installed by pointing the Controller record of Form Template Conversion Mapping Default at it.
 
 HOW IT WORKS, STEP BY STEP:
-1. The Setup subflow loads the submission, its template and (for repeater rows) the capturing section, and handles the Start reset that makes Reprocess possible.
+1. The packaged Conversion Setup action loads the submission, its template, the sections that carry a conversion rule and the related rows still to convert, and hands the event on with Start turned off so Reprocess works.
 2. One decision - Conversion Rules - walks the rules in priority order and dispatches the first whose work is not finished. A rule is finished when its lookup on the submission is filled and its status reads Created, Matched or Updated; an Error or Ready status means &quot;run me again&quot;, which is exactly how Reprocess and multi-pass conversions work.
 3. The one NPC difference from the packaged controller: in Household mode (the template includes Account is Household, or names a Household record type), the ACCOUNT rule politely waits until Contact 1 exists. So Contact 1 converts first and looks for the family&apos;s existing Household; if there is none, the Account rule then creates one, and Contact 1 comes through once more to join it. Without Household mode, or on a template that never converts Contact 1, the packaged order stands: Account before people, because a business Add to Account needs the Account to exist first.
 4. Every dispatch is a Log Conversion Event action in Convert to Record mode: it publishes the platform event carrying which flow to run and which status and lookup fields that flow&apos;s logs should stamp. The FlowApiName fields on the template are override hooks - name a custom flow there and it runs instead of the default.
@@ -1304,6 +1503,12 @@ HOW IT WORKS, STEP BY STEP:
 
 WHERE IT FITS: This is the same one-rule-per-pass state machine as the packaged controller, so everything an admin knows about the Form Template framework - conversion statuses on the submission, the Conversion Log, Reprocess, per-template flow overrides - applies unchanged. Only the Household-mode ordering is NPC-specific.</description>
     <environments>Default</environments>
+    <formulas>
+        <description>Exact-match test for the four Create Campaign Member Conversion Rules (Contact1, Contact2, Lead1 and Lead2 👉 Create Campaign Member): INCLUDES on the multiselect, which a decision condition cannot express. Read by the Link Anonymous Lead rule.</description>
+        <name>Includes_Campaign_Member</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Contact1 👉 Create Campaign Member&apos;), INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Contact2 👉 Create Campaign Member&apos;), INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Lead1 👉 Create Campaign Member&apos;), INCLUDES({!FormTemplate.Conversion_Rules__c}, &apos;Lead2 👉 Create Campaign Member&apos;))</expression>
+    </formulas>
     <formulas>
         <description>True when this template builds a Household: the Account is Household rule is on, or the Account record type names a Household type. Drives the hold-back on the Account rule.</description>
         <name>HouseholdMode</name>
@@ -1454,55 +1659,6 @@ WHERE IT FITS: This is the same one-rule-per-pass state machine as the packaged 
                 <elementReference>PlatformEvent</elementReference>
             </value>
         </inputAssignments>
-    </subflows>
-    <subflows>
-        <description>The shared front door. Loads the submission, template, parent, related rows, and rule-bearing page sections from the event, and resolves matching-rule settings by EventName. On Start events it logs Conversion Started, which resets every conversion status field to Ready (including custom status fields, discovered as picklists sharing the packaged status value set) and sets the overall status to In Progress, then clears Start__c so later passes never re-reset.</description>
-        <name>Setup</name>
-        <label>Setup</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Switch_Start</targetReference>
-        </connector>
-        <flowName>Form_Submission_Convert_Setup</flowName>
-        <inputAssignments>
-            <name>Debug_EventName</name>
-            <value>
-                <stringValue>Convert</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>DebugRecord</name>
-            <value>
-                <elementReference>DebugRecord</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>PlatformEvent</name>
-            <value>
-                <elementReference>PlatformEvent</elementReference>
-            </value>
-        </inputAssignments>
-        <outputAssignments>
-            <assignToReference>AllPageSections</assignToReference>
-            <name>AllPageSections</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>FormSubmission</assignToReference>
-            <name>FormSubmission</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>FormTemplate</assignToReference>
-            <name>FormTemplate</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>PlatformEvent</assignToReference>
-            <name>PlatformEvent</name>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>RelatedRecords</assignToReference>
-            <name>RelatedRecords</name>
-        </outputAssignments>
     </subflows>
     <variables>
         <description>The template&apos;s page sections whose Conversion Rule is set and not Bypass, in page and sort order. Passed to the Related Records step so each captured row converts according to the section that captured it.</description>
