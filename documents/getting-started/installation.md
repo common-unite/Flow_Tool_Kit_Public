@@ -8,16 +8,16 @@
 
 ## Install the current release
 
-The current release is **5.4.0.2**. Use whichever route suits you:
+The current release is **5.5.0.1**. Use whichever route suits you:
 
 * **Common-Unite installer (recommended):** the [Common-Unite install page](https://install.common-unite.com/products) installs or upgrades Flow Tool Kit and runs the setup steps (picklist values, System Administrator access, the theme cache refresh) for you.
-* **Direct install links** for version 5.4.0.2. Open the one that matches your org while logged in as an administrator:
-  * Sandbox and scratch orgs: `https://test.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C18PYAS`
-  * Production and Developer Edition orgs: `https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C18PYAS`
+* **Direct install links** for version 5.5.0.1. Open the one that matches your org while logged in as an administrator:
+  * Sandbox and scratch orgs: `https://test.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C8cvYAC`
+  * Production and Developer Edition orgs: `https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C8cvYAC`
 * **Always current:** the [latest release on GitHub](https://github.com/common-unite/Flow_Tool_Kit_Public/releases/latest) lists the install links of the newest version, with its release notes.
 
 {% hint style="info" %}
-Read the [5.4 release notes](../release-notes/release-5.4.md) and the [documentation](https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/).
+Read the [5.5 release notes](../release-notes/release-5.5.md) and the [documentation](https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/).
 {% endhint %}
 
 ## Install from AppExchange
