@@ -4,14 +4,14 @@ Build forms, tables and multi-page Form Templates for Salesforce Flow, Lightning
 
 ## Install
 
-The current release is **5.4.0.2**.
+The current release is **5.5.0.1**.
 
 * **Common-Unite installer (recommended):** https://install.common-unite.com/products installs or upgrades the package and runs its setup steps.
-* **Sandbox and scratch orgs:** https://test.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C18PYAS
-* **Production and Developer Edition orgs:** https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C18PYAS
+* **Sandbox and scratch orgs:** https://test.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C8cvYAC
+* **Production and Developer Edition orgs:** https://login.salesforce.com/packaging/installPackage.apexp?p0=04tRQ000000C8cvYAC
 * **Always current:** https://github.com/common-unite/Flow_Tool_Kit_Public/releases/latest
 
-Read the release notes (https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/release-notes/release-5.4) and the documentation (https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/).
+Read the release notes (https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/release-notes/release-5.5) and the documentation (https://common-unite.gitbook.io/flow-tool-kit-or-form-and-table-builder/).
 
 ## Documentation and help
 
